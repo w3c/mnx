@@ -1,0 +1,857 @@
+<pre class="metadata">
+Status: LD
+Title: MNX Overview (Draft Proposal)
+Shortname: mnx-examples
+Level: 1
+Editor: Joe Berkovitz, Noteflight
+Abstract: This draft proposal describes the proposed MNX music notation markup language
+    with the aim of illustrating design goals and potential concrete solutions to those goals.
+    Examples are used rather than specification language.
+Markup Shorthands: markdown yes
+</pre>
+<pre class="ignored-specs">
+spec: html
+spec: svg2
+</pre>
+
+# Introduction
+
+## About MNX
+
+MNX is a proposed music notation markup standard. Its aim is to improve
+MusicXML in fundamental ways, while retaining many of its key concepts, terms
+and features.
+
+Rather than attempting to create a normative specification for MNX from the
+start, this document tries to describe key design goals. Each goal is
+accompanied with examples of proposed MNX markup that directly illustrates it.
+In some cases, alternative examples are included.
+
+The focus is on areas which substantially differ from MusicXML, and
+explanations refer to MusicXML features to show how MNX differs.
+
+Note that this is not intended to be an exhaustive list of the changes that
+MNX will include; it is merely an attempt to portray some of the most
+important ones. Many other changes and improvements are expected to be
+included.
+
+## Support for notation systems
+
+This proposal is focused on how MNX will support Common Western Music Notation
+(CWMN). However, MNX can support diverse notation systems through the
+mechanism of [[#the-container-document]].
+
+
+## Compatibility with MusicXML
+
+MNX does not attempt to be backward-compatible with MusicXML, nor is it a
+superset of MusicXML. However, a large number of MusicXML markup is expected
+to be preserved In these examples, however, MusicXML constructs are used
+freely as a way to show how proposed new concepts dovetail with existing ones.
+
+
+# Document organization
+
+Note: This section applies to all content types, CWMN or otherwise.
+
+## The container document
+
+MNX documents act as general-purpose containers, which may be arbitrarily
+subdivided into separate components which collectively make up the document as
+a whole.
+
+### A simple CWMN score
+
+Here's an example of the simplest structure, where an MNX document contains a
+single CWMN score. The <{head}> element includes descriptive information,
+while the <{score}> element contains the score contents.
+
+One other significant element occurs here: the <{style}> element, which includes
+information relevant to the document's visual styling.
+
+```xml
+<mnx xmlns="http://www.w3.org/mnx">
+    <head>
+        <identification>
+            <title>My Favorite Work</title>
+            <creator type="composer">Alan Smithee</creator>
+        </identification>
+        <style>
+            @import url(mystyles.css);
+        </style>
+    </head>
+    <score>
+        ...CWMN score contents here...
+    </score>
+</mnx>
+```
+
+### A simple graphical score
+
+The <{score}> element can be qualified by a <{score/content}> attribute that
+describes the encoding of the content. It defaults to
+<code>content="cwmn"</code> and may include values from a registry of MNX
+musical content types. This example shows a score using an alternate markup
+system, such as SVG (which is included merely as a plausible approach, not as
+a specific proposal):
+
+```xml
+<mnx xmlns="http://www.w3.org/mnx">
+    <head>
+        <identification>
+            <title>My Favorite Work</title>
+            <creator type="composer">Alan Smithee</creator>
+        </identification>
+    </head>
+    <score content="svg">
+        <svg xmlns="http://www.w3.org/2000/svg">
+            ...graphically notated SVG section of score...
+        </svg>
+    </score>
+</mnx>
+```
+
+### Compound MNX documents
+
+It's also possible to combine different representations of music in the same
+MNX document by using the <{collection}> element to combine  multiple chunks
+of music into a single chunk.  Each chunk may possess a distinct encoding.
+<{collection}> elements can be nested, allowing a subordinate collection to be 
+embedded in a higher-level one.
+
+Metadata elements such as <{identification}> or formatting elements like
+<{style}> may be included at any level of the resulting structure, causing
+them to apply them only to those parts of the document.
+
+Here's an example that includes a hierarchy of collections and scores. (Note
+that some of these could employ non-CWMN encodings as well.)
+
+```xml
+<mnx xmlns="http://www.w3.org/mnx">
+    <head>
+        ...
+    </head>
+    <collection>
+        <score type="section" content="cwmn">
+            <identification>
+                <title>Section 1</title>
+            </identification>
+            ...CWMN markup...
+            </svg>
+        </score>
+        <collection type="section">
+            <identification>
+                <title>Section 2</title>
+            </identification>
+            <score type="movement" content="cwmn">
+                <identification>
+                    <title>Section 2, Movement 1 (for Solo Flute)</title>
+                </identification>
+                ...CWMN markup...
+            </score>
+            <score type="movement" content="cwmn">
+                <identification>
+                    <title>Section 2, Movement 2 (for String Orchestra)</title>
+                </identification>
+                ...CWMN markup...
+            </score>
+        </collection>
+    </collection>
+</mnx>
+```
+
+## Profiles
+
+A <{score}> element may employ the <{score/profile}> attribute to indicate
+that it conforms to a particular set of expectations regarding its contents. A
+registry of valid profile names for each allowed score encoding is maintained
+as part of the specification.
+
+The intent of profiles is to allow programmatic validation of documents, and
+to permit different levels of validation to be enforced where appropriate. 
+MNX parsers may be also be constructed to specifically support certain
+profiles, significantly decreasing programming effort.
+
+For the purposes of this document, the most important profile is
+<code>&lt;score content="cwmn" profile="standard"></code>. This profile
+indicates that the <{score}> in question conforms to a set of standard
+assumptions regarding "well-formed" CWMN. Examples of such assumptions may
+include:
+
+- All parts contain the same number of measures
+- The metrical content of a measure does not exceed its duration
+- The metrical content of a tuplet does not exceed its duration
+
+As regards the last two points: mechanisms for notating apparent exceptions to
+these rules are described below, in such a way that the intent of the rules is
+preserved.
+
+## Metadata and Attribution
+
+The <{identification}> element in MNX is used to supply descriptive and
+bibliographic information, as it is in MusicXML.
+
+Its contents are similar to MusicXML, but it can be included in a variety of
+parent elements for greater flexibility:
+
+- The <{head}> element of the document
+- Any <{score}> or <{collection}> element at any level (work, section, movement...)
+- Any notational element (part, measure, notes...)
+
+Other parent elements will no doubt make sense as the specification is
+developed.
+
+# Semantics, Appearance and Interpretation
+
+Note: Except where otherwise stated, the remainder of this proposal pertains
+only to the CWMN content type in MNX, using the <code>standard</code> profile.
+
+MNX makes a very clear distinction between the following layers of musical
+information:
+
+- <em>Semantics</em>, the core stratum of notational data in a CWMN work that must
+    inform any potential rendering of that work. MNX encodes all semantic
+    information as XML markup like <{measure}>, <{note}> and so on. There is no
+    concept of "selective encoding" in this layer: without the required core of
+    semantic elements, the document is not valid. See [[#semantic-markup]].
+
+- <em>Appearance</em>, a layer of visual attributes and formatting that describes how
+    a work appears to the reader, independent of the other two layers. Where this
+    layer is absent, implementations are expected to supply a default appearance based
+    on the semantic layer. MNX encodes all appearance information using CSS styles
+    and properties. See [[#styling]] for more information.
+
+- <em>Interpretation</em>, a layer of performance information that describes how a work
+    sounds to the listener, independent of the other two layers. Where this
+    layer is absent, implementations are expected to supply a default interpretation based
+    on the semantic layer. Where this layer is present, MNX
+    encodes all interpretation information in the form of linked references to MIDI or audio data.
+    See [[#performance-interpretation]] for more information.
+
+Since only the semantic layer is encoded in MNX markup, these distinctions are
+made very concrete in MNX documents. Furthermore, ambiguities arising from
+combining the layers in MusicXML (such as the near-duplication of <code>tie</code>
+and <code>tied</code>) can disappear.
+
+
+# Semantic markup
+
+This section describes how MNX treats the semantic layer of a CWMN document in
+the standard profile.
+
+Note: In most of the examples that follow, the MNX container elements are
+omitted for brevity.
+
+## Element IDs
+
+Any element whatsoever in MNX markup may possess a regular <code>id</code>
+attribute as defined for the XML namespace. References to elements form a
+backbone principle of key aspects of MNX, for example [[#spanning-notations]].
+
+These attributes are of type <code>ID</code>, not <code>IDREF</code> and thus
+fully conform to the XML standard.  Existing uses of <code>id</code> in
+MusicXML that are in conflict with this usage, and which carry over to MNX,
+will be renamed.
+
+## Musical timelines
+
+MNX makes use of a different element structure than MusicXML to represent
+timelines of musical notations and events, always in chronological sequence.
+The elements of these timelines are essentially those found in MusicXML. The
+differences are driven by the following design goals:
+
+- Use parent elements as containers to organize child elements that are part
+    of a whole (e.g. notes in a chord).
+
+- Give parent elements responsibility for expressing concepts that are
+    logically shared by the children (e.g. the stem shared by notes in a chord).
+
+- Make it easy to alter the content of a MNX document using simple DOM
+    operations such as node insertion and deleting (e.g. add a note to a chord by
+    simply inserting a <{note}> element in the appropriate parent).
+
+- Eliminate the need for complex book-keeping and post-processing when
+    parsing measures of music.
+
+- For compactness and readability, represent note values and metrical durations as single
+    attributes that encode a unit of time value/dots with optional multiplier.
+    Compactness and readability are desirable because encodings are documented,
+    read and talked about, not only parsed and generated.
+
+
+### Note value encoding
+
+There are a variety of situations in which a note value needs to be supplied
+for an element. MNX uses a text encoding to represent such durations; in
+general, this replaces some arbitrary combination of MusicXMLs <{type}> and
+<{dot}> elements with no difference in semantics at all.
+
+The note value encoding scheme consists of a unit, expressed as a power-of-two
+division of a whole note, similar to the denominator of a time signature, with
+textual exceptions for large units. This may be optionally followed by zero or more dots
+expressed as occurrences of the asterisk character `*`, (to avoid confusion
+with a decimal point). Examples follow:
+
+: `1`
+:: a whole note
+: `4`
+:: a quarter note
+: `8*`
+:: a dotted eighth note
+: `8**`
+:: a double-dotted eighth note
+: `breve`
+:: a breve (double whole note)
+: `breve*`
+:: a dotted breve
+
+In general, the attribute name `value` is used to supply this information
+for various MNX elements.
+
+### Metrical duration encoding
+
+There are also situations in which a metrical duration needs to be supplied,
+as a real-valued number expressed in terms of a note value unit. There is no
+exact corresponding construct in MusicXML, although as will be seen this supplants
+the need for `divisions`.
+
+The notion is very similar to a time signature, but more general. These may be
+encoded in two ways:
+
+- A note value encoding specifies a duration equal to a single occurrence of the note value
+- A real number followed by `/` and a note value encoding specifies a duration equal to the
+given number of note value units.
+
+Examples:
+
+: `4`
+:: a quarter note
+: `3/4`
+:: three quarter notes
+: `3/8*`
+:: three dotted quarter notes (this form can be useful for arbitrary [[#tuplets]])
+: `15.2/256`
+:: 15.2 ticks where a tick equals a 256th note
+
+In general, the attribute name `duration` is used to supply these specifications
+for various MNX elements.
+
+### The <{measure}> timelines
+
+A <{measure}> can have two kinds of timeline within it:
+
+- A single optional <{sequence}> element that contains all the notations pertaining
+    to the measure <em>as a whole</em>, in chronological sequence.
+    This includes such notations as performance directions, barlines, clefs,
+    and so forth. It specifically excludes rests, notes or chords.
+
+- Zero or more <{voice}> elements, each of which contains notations that constitute
+    a <em>timeline of musical events</em> in chronological sequence.
+    These specifically include rests, notes and chords
+    (as represented by [[#events]]).
+
+Here's an example measure that shows both kinds of timeline in operation. In
+the <{sequence}> there are two direction elements, separated by a half-note
+gap in metrical time. There are also two independent
+melodic voices represented by <{voice}> elements.
+
+```xml
+<measure>
+    <sequence>
+        <direction>...</direction>
+        <space value="2"/>
+        <direction>...</direction>
+    </sequence>
+    <sequence>
+        <event value="2">...</event>
+        <event value="1">...</event>
+        <event value="1">...</event>
+    </sequence>
+    <sequence>
+        <event value="2*">...</event>
+        <event value="1">...</event>
+    </sequence>
+</measure>
+```
+
+### Sequences
+
+The new <{sequence}> element in MNX is always the child of a <{measure}> element. It
+contains child elements that relate to the measure overall, such as:
+
+- Notes, chords and rests
+- Text and directions
+- Barlines
+- Form indications
+- Caesuras
+- [[#spaces]] in between temporally separated elements
+
+The notated metrical time of these children increases monotonically within the
+sequence. Thus it constitutes a coherent musical
+"layer" within a measure. Where music contains polyphonic voices,
+a sequence is naturally used to represent each voice.
+
+The optional <{sequence/orientation}> attribute may assume the values <code>up</code>
+or <code>down</code>, affecting the default placement of stems, articulations,
+ornaments and other voice-specific objects within a sequence.
+
+```xml
+<measure>
+    <sequence orientation="up">
+        <event>
+            <note>...</note>
+        </event>
+        ...
+    </sequence>
+    <sequence orientation="down">
+        <event>
+            <note>...</note>
+        </event>
+        ...
+    </sequence>
+</measure>
+```
+
+Unlike the MusicXML <{voice}> element, the MNX <{sequence}> element may not
+possess a number or any other label. It can, however, be assigned a symbol via
+the optional <{sequence/name}> attribute that declares continuity between
+identically named/numbered sequences in successive measures of the same part.
+
+### Pitch encoding
+
+MNX introduces a text encoding of pitches, which represents a combination of
+MusicXML's <{step}>, <{octave}> and <{alter}> elements. This is done to
+address issues of readability and compactness in MusicXML and makes no
+semantic difference.
+
+The format consists of a MusicXML `step`, followed optionally by 0..2
+occurrences of `#` or `b` representing an integer alteration, followed by a MusicXML `octave`.
+An additional, non-integer alteration may be added to the preceding integral amount
+by including the suffix `+` or `-`, followed by a real-valued number of semitones.
+
+As with MusicXML `alter` values, any occurrences of `#` or `b` do not imply
+rendering of accidentals on some associated element. These remain specified by
+an `accidental` value, if provided.
+
+Examples:
+
+: `C4`
+:: Middle C
+: `C#4`
+:: The pitch one semitone above middle C
+: `Db4`
+:: The pitch one semitone above middle C (identical to the above)
+: `C4+0.5`
+:: The pitch one quarter-tone above middle C
+: `B4+1.5`
+:: The pitch one quarter-tone above middle C (identical to the above)
+: `C#4-0.5`
+:: The pitch one quarter-tone above middle C (identical to the above)
+
+
+The `pitch` attribute is used to supply pitch encodings where appropriate, typically
+for <{note}> elements.
+
+Pitch encodings are used also in [[#interpretation]].
+
+### Events
+
+The new MNX element <{event}> represents the related concepts of rest, note
+or chord depending on its contents. It supplies information that is common to
+all three:
+
+- metrical duration, expressed in terms of note value and dot count
+- stem orientation, length, etc. if applicable
+- flag and beam description
+- styling data (e.g. horizontal displacement)
+- grace/cue markers
+- lyrics
+- slurs and other event-oriented spanning notations
+
+Here's a middle C as a dotted half note.
+
+```xml
+<event value="2*">
+  <stem>up</stem>
+  <note pitch="C4"/>
+</event>
+```
+
+Here's a C major triad as an eighth note:
+
+```xml
+<event value="8">
+  <stem>up</stem>
+  <note pitch="C4"/>
+  <note pitch="E4"/>
+  <note pitch="G4"/>
+</event>
+```
+
+Here's a whole note rest:
+
+```xml
+<event value="1">
+  <rest/>
+</event>
+```
+
+And a grace note chord; the <{grace}> element belongs to the <{event}>:
+
+```xml
+<event value="8">
+  <grace/>
+  <stem>up</stem>
+  <note pitch="C4"/>
+  <note pitch="E4"/>
+  <note pitch="G4"/>
+</event>
+```
+
+As a special case, the following event encodes a <em>whole-measure</em> rest.
+Note that the `type` attribute is used to indicate this, rather than `value`:
+
+```xml
+<event type="measure">
+  <rest/>
+</event>
+```
+
+
+### Spaces
+
+A <{space}> is a way of specifying a metrical time interval that does not
+contain any notation. MNX uses <{space}> elements to explicitly represent such
+gaps. (In MusicXML, these gaps were often created using the <{forward}> and
+<{backward}> elements or with hidden rests, and could only be determined after
+complete parsing of a measure's contents.)
+
+Because of the use of the <{sequence}> element to organize
+notations in chronological sequence, and because non-notated gaps within a
+sequence can be explicitly represented, MNX does not need MusicXML's
+<{forward}> and <{backward}> elements. The contents of a sequence can always be
+expressed as a sequence of contiguous elements starting at the beginning of
+the measure and proceeding forward in metrical time.
+
+Accordingly, the concept of <code>divisions</code> also becomes
+unnecessary in MNX. To the extent that arbitrary durations are needed, they
+can always be expressed as multiples of some normal musical time unit.
+(See [[#tuplets]] for more information on how spaces work
+to take up space in tuplets -- divisions aren't needed here either.)
+
+A <{space}> takes a `length` attribute to specify its metrical duration (see
+[[#metrical-duration-encoding]]):
+
+```xml
+<space length="4*"/>
+```
+
+The following space is equivalent to 5 eighth notes:
+
+```xml
+<space length="5/8"/>
+```
+
+And so is this one:
+
+```xml
+<space length="2.5/4"/>
+```
+
+Spaces are useful for causing a non-metrical notation like text to appear at a certain
+metrically anchored place within a measure. For example, the following causes text
+to be anchored at a point one quarter note into the given measure:
+
+```xml
+<measure>
+  <sequence>
+      <space length="4"/>
+      <direction placement="above">
+        <direction-type>
+          <words>And then...</words>
+        </direction-type>
+      </direction>
+  </sequence>
+</measure>
+```
+
+### Anchor spaces
+
+Spaces may omit the <{length}> attribute, in which case they possess zero
+duration. This is useful for creating anchor points for [[#spanning-
+notations]], for example, allowing lines or slurs to originate or terminate in
+places where there is no note.
+
+### Tuplets
+
+In MNX, the <{tuplet}> element applies a time modification to all of its child
+elements, which are the same as those allowed in <{sequence}>. In fact,
+<{tuplet}> is very much like a nested <{sequence}> element, with an implicit time
+signature representing the notated duration inside the tuplet. It functions
+just like an <{event}> or <{space}> element, in that it takes up a known duration
+within its parent.
+
+A <{tuplet}> uses the two attributes `actual` and `normal` making use of
+[[#metrical-duration-encoding]] to represent
+various combinations of the MusicXML child elements of <{time-modification}>.
+It is thus more expressive in terms of permitting ratios including dots and
+dissimilar actual and normal note values. These encodings also permit
+reasonable defaulting of beam and rest groups inside the tuplet based on
+the notional subdivisions.
+
+Numerals and brackets may or may not be shown in conjunction with a
+<{tuplet}>, according to attributes that are much the same as MusicXML.
+
+Here's an example of an eighth-note triplet:
+
+```xml
+<sequence>
+    ...preceding events in sequence...
+    <tuplet actual="3/8" normal="2/8">
+        <time-modification />
+        <event>
+            <type>eighth</type>
+            <note>...</note>
+        </event>
+        <event>
+            <type>eighth</type>
+            <note>...</note>
+        </event>
+        <event>
+            <type>eighth</type>
+            <note>...</note>
+        </event>
+    </tuplet>
+    ...remaining events in sequence...
+</sequence>
+```
+
+One can of course include spaces, text, directions, and so on in tuplets as
+well. Not to mention nesting tuplets within tuplets.
+
+Other examples of tuplets:
+
+```xml
+<tuplet actual="5/8" normal="11/16">
+    ...a tuplet that displays 5 eighth notes in the space of 11 sixteenths...
+</tuplet>
+```
+
+```xml
+<tuplet actual="7/8*" normal="4/4*">
+    ...a tuplet that displays 7 dotted eighth notes in the space of 4 dotted quarters...
+</tuplet>
+```
+
+## Spanning notations
+
+Many notations occupy an arbitrary span of time in a score, across
+some number of measures in a given part. Some examples are:
+
+- slurs
+- dynamic wedges (hairpins)
+- 8va lines
+- performance directions like "let vibrate"
+
+Essentially all the notations described by a combination of MusicXML's
+<code>number</code> and <code>type="start/stop"</code> fall into this
+category. (Some of these are considered <{notations}> in MusicXML and others
+are considered <{direction-type}>s. We won't deal with this classification
+problem yet.)
+
+In MNX, such <em>spanning notations</em> are described in terms of a <em>start
+element</em> and an <em>stop element</em>. These elements may be any element
+that occurs inside a <{sequence}> (most often, <{event}> or
+<{space}>).
+
+The start element of a spanning notation is specified by including the span
+directly in the start element as a child. The stop element is specified via an
+<code>ref</code> attribute on the span that supplies the stop element's ID.
+
+Thus there is no use of MusicXML's <code>number=N</code> or
+<code>type="start"</code> and <code>type="stop"</code> attributes.
+
+Here's an example, showing a slur that connects two non-adjacent chords in the
+same measure (the situation is very similar for events in different measures):
+
+```xml
+<measure>
+    <sequence>
+        <event value="4">
+            <note pitch="C5"/>
+            <note pitch="Eb5"/>
+            <slur ref="a1"/>
+        </event>
+        <event value="4">
+            <note pitch="D5"/>
+        </event>
+        <event id="a1" value="4">
+            <note pitch="Db5"/>
+        </event>
+    </sequence>
+</measure>
+```
+
+An alternate means of supplying spanning notations is also allowed, in which
+the endpoints of the span are specified positionally. This technique does not depend on
+any start or stop element: the spanning notation is simply included in a sequence,
+and its `length` attribute supplies its overall length in the score.
+
+```xml
+<measure>
+    <sequence>
+        <slur length="2/4"/>
+        <event value="4">
+            <note pitch="C5"/>
+            <note pitch="Eb5"/>
+        </event>
+        <event value="4">
+            <note pitch="D5"/>
+        </event>
+        <event value="4">
+            <note pitch="Db5"/>
+        </event>
+    </sequence>
+</measure>
+```
+
+Issue: Other attributes are needed to supply adjustments to spanning notation positions
+in terms of offset or X increments.
+
+Issue: do we really care what order the reference and the target occur in?
+
+## Text and directions
+
+Issue: Should MNX split directions out into text-like (durationless) direction types
+and span-like direction types? It doesn't appear that the left-to-right
+sequencing rule in MusicXML makes sense when putting these things together
+in the same <{direction}>, but it makes sense for text-like things.
+
+Issue: Text with embedded style/font runs should be dealt with using <{span}>
+tags and CSS styling, rather than a sequence of separate direction-types.
+
+Issue: How should paragraph-style interpolated blocks be dealt with?
+
+## Semantic layout overrides
+
+The CWMN canon has many examples of notation in which notes do not add up
+metrically to yield the duration of a measure or tuplet, or in which notes in one
+voices align with notes in another, in spite of the dissimilar points in time
+at which they would appear to be specified by their notated duration.
+
+MNX addresses these problems by allowing any <{event}> to optionally specify
+either or both of the following:
+
+- render this event using the visual conventions for an arbitrary duration
+    (e.g. render notehead, stem and flag/beam as for
+    a sixteenth-note, although the note occupies an eighth-note
+    duration within its timeline). An `actual-value` attribute
+    may be used to supply the visually rendered note or rest value
+    for any given <{event}>.
+
+- visually align this event with some other arbitrary event in the same
+    measure (e.g. line up a regular sixteenth note with the last note in some
+    other voice's sixteenth-note triplet). A `position-ref` attribute
+    specifies an IDREF for target event with which to align.
+
+TBD: include fragment of Chopin Op. 15 no. 2 encoding here to illustrate.
+Encoding using technique 1 yields an upper voice that when played coincides
+with the quintuplet flow.  Technique 2 yields an upper voice that
+is interpreted with an independent 16th-note flow. Both techniques look
+identical - the editor must decide!
+
+# Styling
+
+MNX employs CSS style properties to describe the appearance layer of a score.
+The property vocabulary used by MNX is not the same as for HTML or SVG,
+although it has some overlap. A large part of the work to specify MNX will
+involve figuring out the new set of properties that we need to drive music
+rendering and appearance.
+
+As a result of this shift in approach, a great deal of MusicXML markup
+will shift into CSS. This allows it to be controlled by *style sheets* and
+<a>media queries</a>, yielding a great deal of expressive power over score
+appearance in multiple contexts.
+
+Here's a quick example to set the stage for more discussion, showing the
+application of color and positioning details to notes. In this example, the
+`color` property is self-explanatory, and the `relative-y` property is the
+same as found in MusicXML. The value `1sl` means *1 staff line* (analogous to
+typical CSS units such as `1px` for *1 pixel*).
+
+```xml
+<measure>
+    <sequence>
+        <event style="color: red;">
+            <note>...</note>
+        </event>
+        <direction style="color: green; relative-y: 1sl;">
+            <direction-type><words>...</words></direction-type>
+        </direction>
+        <event style="color: red;">
+            <note>...</note>
+        </event>
+    </sequence>
+</measure>
+```
+
+## CSS and style properties
+
+As in HTML or SVG, CSS properties can be specified in several distinct ways:
+
+- They can be specified directly on the pertinent element, inline, using the
+    `style` attribute in which properties are explicitly given. This is the approach
+    used in the preceding example.
+
+- They can be specified indirectly on the pertinent element by using the
+    `class` attribute, causing the applicable properties to be looked up
+    in one or more associated stylesheets using the element's class name(s).
+    For instance, `class="alternate"` might be used in a given document
+    to specify a specific look for notes in an alternate melody line,
+    allowing that appearance to be specified exactly once in the stylesheet
+    selector for `.alternate`.
+
+- They can be inferred implicitly from the element's characteristics, according
+    to the selectors in the CSS specification. For example a stylesheet might
+    include a `.note` selector specifying the default appearance of all notes.
+
+## Stylesheets
+
+In MNX, stylesheets are referenced by including a <{style}> element below the appropriately
+scoped chunk of the document. This element may contain CSS, and may further import
+external documents using the import statement.
+
+## Unit abbreviations
+
+Properties representing a visual displacement or distance must use a number followed
+by an explicit unit:
+
+: sl
+:: staff lines
+: st
+:: staff tenths (same unit as in MusicXML)
+: px
+:: display pixels (same unit as in SVG or HTML)
+
+## Selectors
+
+## Renditions and rendition queries
+
+## Rendering model
+
+## Key style properties
+
+### Visibility
+
+### Common formatting
+
+### Fine positioning
+
+### Breaks
+
+### Layout metrics
+
+# Interpretation
+
+Make note of <code>tie</code> vs. <code>tied</code>.
+
