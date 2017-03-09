@@ -30,6 +30,9 @@ In some cases, alternative examples are included.
 The focus is on areas which substantially differ from MusicXML, and
 explanations refer to MusicXML features to show how MNX differs.
 
+Where not explicitly called out, the reader can assume that MusicXML features
+carry over to MNX unchanged, or in an obvious and analogous fashion.
+
 Note that this is not intended to be an exhaustive list of the changes that
 MNX will include; it is merely an attempt to portray some of the most
 important ones. Many other changes and improvements are expected to be
@@ -226,7 +229,7 @@ information:
     layer is absent, implementations are expected to supply a default interpretation based
     on the semantic layer. Where this layer is present, MNX
     encodes all interpretation information in the form of linked references to MIDI or audio data.
-    See [[#performance-interpretation]] for more information.
+    See [[#interpretation]] for more information.
 
 Since only the semantic layer is encoded in MNX markup, these distinctions are
 made very concrete in MNX documents. Furthermore, ambiguities arising from
@@ -304,6 +307,8 @@ with a decimal point). Examples follow:
 :: a breve (double whole note)
 : `breve*`
 :: a dotted breve
+: `t`
+:: shorthand for a 1024th note (<u>t</u>ick)
 
 In general, the attribute name `value` is used to supply this information
 for various MNX elements.
@@ -320,7 +325,7 @@ encoded in two ways:
 
 - A note value encoding specifies a duration equal to a single occurrence of the note value
 - A real number followed by `/` and a note value encoding specifies a duration equal to the
-given number of note value units.
+    given number of note value units.
 
 Examples:
 
@@ -774,10 +779,10 @@ will shift into CSS. This allows it to be controlled by *style sheets* and
 appearance in multiple contexts.
 
 Here's a quick example to set the stage for more discussion, showing the
-application of color and positioning details to notes. In this example, the
-`color` property is self-explanatory, and the `relative-y` property is the
-same as found in MusicXML. The value `1sl` means *1 staff line* (analogous to
-typical CSS units such as `1px` for *1 pixel*).
+application of color and positioning details to various MNX elements. In this
+example, the `color` property is self-explanatory, and the `relative-y`
+property is the same as found in MusicXML. The value `1sl` means *1 staff
+line* (analogous to typical CSS units such as `1px` for *1 pixel*).
 
 ```xml
 <measure>
@@ -785,11 +790,11 @@ typical CSS units such as `1px` for *1 pixel*).
         <event style="color: red;">
             <note>...</note>
         </event>
-        <direction style="color: green; relative-y: 1sl;">
-            <direction-type><words>...</words></direction-type>
+        <direction style="relative-y: 1sl;">
+            <direction-type><words style="color: #666">...</words></direction-type>
         </direction>
-        <event style="color: red;">
-            <note>...</note>
+        <event>
+            <note style="color: red;">...</note>
         </event>
     </sequence>
 </measure>
@@ -817,29 +822,137 @@ As in HTML or SVG, CSS properties can be specified in several distinct ways:
 
 ## Stylesheets
 
+Stylesheets allow visual style properties to be declared using <a>selectors</a>.
+These work exactly as in CSS, except where extended in MNX-specific ways.
+
 In MNX, stylesheets are referenced by including a <{style}> element below the appropriately
 scoped chunk of the document. This element may contain CSS, and may further import
 external documents using the import statement.
+
+The following example illustrates the power of stylesheets and selectors; see
+the <a href="https://drafts.csswg.org/selectors-4/">CSS Selectors Level 4</a> draft specification for more details.
+
+```xml
+<mnx xmlns="http://www.w3.org/mnx">
+    <head>
+        <style>
+            score {
+                font-family: Bravura;
+            }
+            .alternate {
+                color: #666;  /* gray */
+            }
+            direction {
+                font-family: Times Roman;
+                font-size: 2sl;
+            }
+            words.aside {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <score>
+        <measure>
+            <sequence>
+                <event class="alternate">
+                    <note>...</note>
+                </event>
+                <direction style="relative-y: 1sl;">
+                    <direction-type><words class="aside">...</words></direction-type>
+                </direction>
+                <event>
+                    <note class="alternate">...</note>
+                </event>
+            </sequence>
+        </measure>
+    </score>
+</mnx>
+```
+
+# External stylesheets
+
+It's often useful to separate stylesheet definitions in a separate `.css` file. The
+`@import` directive serves this purpose:
+
+```xml
+<mnx xmlns="http://www.w3.org/mnx">
+    <head>
+        <style>
+            @import url(house-style.css)
+        </style>
+    </head>
+    <score>
+        ...
+    </score>
+</mnx>
+```
 
 ## Unit abbreviations
 
 Properties representing a visual displacement or distance must use a number followed
 by an explicit unit:
 
-: sl
+: `sl`
 :: staff lines
-: st
+: `st`
 :: staff tenths (same unit as in MusicXML)
-: px
+: `px`
 :: display pixels (same unit as in SVG or HTML)
+: `/`*note-value*
+:: displacement based on metrical time within a measure (i.e. property is a metrical duration encoding)
 
-## Selectors
+## CSS standard properties
 
-## Renditions and rendition queries
+Certain CSS standard properties will replace the corresponding MusicXML
+properties, to avoid conflict with other web standards. Notably, the CSS
+`display` and `visibility` replace MusicXML's `print-object` attribute.  All
+CSS properties relating to fonts and typography ('font-family', 'font-weight',
+'font-style' and so forth) will also replace corresponding features in
+MusicXML. `color` has roughly the same meaning in both.
 
-## Rendering model
+The expectation is that almost all other MusicXML attributes and elements
+governing visual rendition will simply migrate to CSS properties with no
+change except for the units used. These include positioning tweaks as well
+as system and page breaks.
 
-## Key style properties
+The result is that MusicXML will generally look very simple and semantic,
+with occasional `style` and `class` attributes supplying exceptions to the
+general house style supplied by a score-wide stylesheet.
+
+Examples of migrated MusicXML properties include:
+
+- `relative-x` and `relative-y`
+- `default-x` and `default-y`
+- `offset`
+- `new-system` and `new-page`
+
+In keeping with CSS conventions, MusicXML's values of `yes` and `no` will be
+generally replaced with `true` and `false`. 
+
+MNX will also define new properties for useful concepts not previously
+addressed in MusicXML. For example, MNX could introduce a property forcing
+measures to be flowed within the same system ("keep with next").
+
+Issue: MNX should define the meaning of `default` and `relative` more clearly and
+propose a tight set of requirements on positioning, while leaving lots of wiggle room
+for competition between implementations.
+
+## Media queries and parts
+
+CSS defines a notion of <a>media queries</a> which permit stylesheet definitions
+to apply in only certain contexts. For web pages, this is used to vary the appearance
+according to whether a page is viewed on, say, a mobile device, or a laptop screen,
+or on printed paper.
+
+In MNX, media queries can be used in exactly the same way, but they 
+can also be used to govern how parts are displayed. This permits high quality
+parts to be generated from the same document as the full score, if desired. It also
+permits part-specific breaks and formatting that can be blended into the single document
+by use of part-specific classes and stylesheet definitions.
+
+TBD: Need examples.
+
+## Musical Selectors
 
 ### Visibility
 

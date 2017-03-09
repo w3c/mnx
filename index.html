@@ -1390,6 +1390,7 @@ Possible extra rowspan handling
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
+     <dd><a href="https://github.com/joeberkovitz/mnx-temp/issues/">GitHub</a>
      <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editor:
      <dd class="editor p-author h-card vcard"><span class="p-name fn">Joe Berkovitz</span> (<span class="p-org org">Noteflight</span>)
@@ -1462,21 +1463,24 @@ Examples are used rather than specification language.</p>
      <ol class="toc">
       <li><a href="#css-and-style-properties"><span class="secno">5.1</span> <span class="content">CSS and style properties</span></a>
       <li><a href="#stylesheets"><span class="secno">5.2</span> <span class="content">Stylesheets</span></a>
-      <li><a href="#unit-abbreviations"><span class="secno">5.3</span> <span class="content">Unit abbreviations</span></a>
-      <li><a href="#selectors"><span class="secno">5.4</span> <span class="content">Selectors</span></a>
-      <li><a href="#renditions-and-rendition-queries"><span class="secno">5.5</span> <span class="content">Renditions and rendition queries</span></a>
-      <li><a href="#rendering-model"><span class="secno">5.6</span> <span class="content">Rendering model</span></a>
+     </ol>
+    <li>
+     <a href="#external-stylesheets"><span class="secno">6</span> <span class="content">External stylesheets</span></a>
+     <ol class="toc">
+      <li><a href="#unit-abbreviations"><span class="secno">6.1</span> <span class="content">Unit abbreviations</span></a>
+      <li><a href="#css-standard-properties"><span class="secno">6.2</span> <span class="content">CSS standard properties</span></a>
+      <li><a href="#media-queries-and-parts"><span class="secno">6.3</span> <span class="content">Media queries and parts</span></a>
       <li>
-       <a href="#key-style-properties"><span class="secno">5.7</span> <span class="content">Key style properties</span></a>
+       <a href="#musical-selectors"><span class="secno">6.4</span> <span class="content">Musical Selectors</span></a>
        <ol class="toc">
-        <li><a href="#visibility"><span class="secno">5.7.1</span> <span class="content">Visibility</span></a>
-        <li><a href="#common-formatting"><span class="secno">5.7.2</span> <span class="content">Common formatting</span></a>
-        <li><a href="#fine-positioning"><span class="secno">5.7.3</span> <span class="content">Fine positioning</span></a>
-        <li><a href="#breaks"><span class="secno">5.7.4</span> <span class="content">Breaks</span></a>
-        <li><a href="#layout-metrics"><span class="secno">5.7.5</span> <span class="content">Layout metrics</span></a>
+        <li><a href="#visibility"><span class="secno">6.4.1</span> <span class="content">Visibility</span></a>
+        <li><a href="#common-formatting"><span class="secno">6.4.2</span> <span class="content">Common formatting</span></a>
+        <li><a href="#fine-positioning"><span class="secno">6.4.3</span> <span class="content">Fine positioning</span></a>
+        <li><a href="#breaks"><span class="secno">6.4.4</span> <span class="content">Breaks</span></a>
+        <li><a href="#layout-metrics"><span class="secno">6.4.5</span> <span class="content">Layout metrics</span></a>
        </ol>
      </ol>
-    <li><a href="#interpretation"><span class="secno">6</span> <span class="content">Interpretation</span></a>
+    <li><a href="#interpretation"><span class="secno">7</span> <span class="content">Interpretation</span></a>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
      <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
@@ -1503,6 +1507,8 @@ accompanied with examples of proposed MNX markup that directly illustrates it.
 In some cases, alternative examples are included.</p>
    <p>The focus is on areas which substantially differ from MusicXML, and
 explanations refer to MusicXML features to show how MNX differs.</p>
+   <p>Where not explicitly called out, the reader can assume that MusicXML features
+carry over to MNX unchanged, or in an obvious and analogous fashion.</p>
    <p>Note that this is not intended to be an exhaustive list of the changes that
 MNX will include; it is merely an attempt to portray some of the most
 important ones. Many other changes and improvements are expected to be
@@ -1667,7 +1673,7 @@ sounds to the listener, independent of the other two layers. Where this
 layer is absent, implementations are expected to supply a default interpretation based
 on the semantic layer. Where this layer is present, MNX
 encodes all interpretation information in the form of linked references to MIDI or audio data.
-See <a href="#performance-interpretation"></a> for more information.</p>
+See <a href="#interpretation">§7 Interpretation</a> for more information.</p>
    </ul>
    <p>Since only the semantic layer is encoded in MNX markup, these distinctions are
 made very concrete in MNX documents. Furthermore, ambiguities arising from
@@ -1737,6 +1743,9 @@ with a decimal point). Examples follow:</p>
     <dt data-md=""><code>breve*</code>
     <dd data-md="">
      <p>a dotted breve</p>
+    <dt data-md=""><code>t</code>
+    <dd data-md="">
+     <p>shorthand for a 1024th note (<u>t</u>ick)</p>
    </dl>
    <p>In general, the attribute name <code>value</code> is used to supply this information
 for various MNX elements.</p>
@@ -1883,7 +1892,7 @@ an <code>accidental</code> value, if provided.</p>
    </dl>
    <p>The <code>pitch</code> attribute is used to supply pitch encodings where appropriate, typically
 for <code><a data-link-type="element">note</a></code> elements.</p>
-   <p>Pitch encodings are used also in <a href="#interpretation">§6 Interpretation</a>.</p>
+   <p>Pitch encodings are used also in <a href="#interpretation">§7 Interpretation</a>.</p>
    <h4 class="heading settled" data-level="4.2.6" id="events"><span class="secno">4.2.6. </span><span class="content">Events</span><a class="self-link" href="#events"></a></h4>
    <p>The new MNX element <code><a data-link-type="element">event</a></code> represents the related concepts of rest, note
 or chord depending on its contents. It supplies information that is common to
@@ -2133,19 +2142,19 @@ rendering and appearance.</p>
 will shift into CSS. This allows it to be controlled by <em>style sheets</em> and <a data-link-type="dfn" href="https://drafts.csswg.org/mediaqueries-4/#media-query">media queries</a>, yielding a great deal of expressive power over score
 appearance in multiple contexts.</p>
    <p>Here’s a quick example to set the stage for more discussion, showing the
-application of color and positioning details to notes. In this example, the <code>color</code> property is self-explanatory, and the <code>relative-y</code> property is the
-same as found in MusicXML. The value <code>1sl</code> means <em>1 staff line</em> (analogous to
-typical CSS units such as <code>1px</code> for <em>1 pixel</em>).</p>
+application of color and positioning details to various MNX elements. In this
+example, the <code>color</code> property is self-explanatory, and the <code>relative-y</code> property is the same as found in MusicXML. The value <code>1sl</code> means <em>1 staff
+line</em> (analogous to typical CSS units such as <code>1px</code> for <em>1 pixel</em>).</p>
 <pre class="language-xml highlight"><span class="nt">&lt;measure</span><span class="nt">></span>
     <span class="nt">&lt;sequence</span><span class="nt">></span>
         <span class="nt">&lt;event</span> <span class="na">style=</span><span class="s">"color: red;"</span><span class="nt">></span>
             <span class="nt">&lt;note</span><span class="nt">></span>...<span class="nt">&lt;/note></span>
         <span class="nt">&lt;/event></span>
-        <span class="nt">&lt;direction</span> <span class="na">style=</span><span class="s">"color: green; relative-y: 1sl;"</span><span class="nt">></span>
-            <span class="nt">&lt;direction-type</span><span class="nt">></span><span class="nt">&lt;words</span><span class="nt">></span>...<span class="nt">&lt;/words></span><span class="nt">&lt;/direction-type></span>
+        <span class="nt">&lt;direction</span> <span class="na">style=</span><span class="s">"relative-y: 1sl;"</span><span class="nt">></span>
+            <span class="nt">&lt;direction-type</span><span class="nt">></span><span class="nt">&lt;words</span> <span class="na">style=</span><span class="s">"color: #666"</span><span class="nt">></span>...<span class="nt">&lt;/words></span><span class="nt">&lt;/direction-type></span>
         <span class="nt">&lt;/direction></span>
-        <span class="nt">&lt;event</span> <span class="na">style=</span><span class="s">"color: red;"</span><span class="nt">></span>
-            <span class="nt">&lt;note</span><span class="nt">></span>...<span class="nt">&lt;/note></span>
+        <span class="nt">&lt;event</span><span class="nt">></span>
+            <span class="nt">&lt;note</span> <span class="na">style=</span><span class="s">"color: red;"</span><span class="nt">></span>...<span class="nt">&lt;/note></span>
         <span class="nt">&lt;/event></span>
     <span class="nt">&lt;/sequence></span>
 <span class="nt">&lt;/measure></span>
@@ -2169,33 +2178,127 @@ to the selectors in the CSS specification. For example a stylesheet might
 include a <code>.note</code> selector specifying the default appearance of all notes.</p>
    </ul>
    <h3 class="heading settled" data-level="5.2" id="stylesheets"><span class="secno">5.2. </span><span class="content">Stylesheets</span><a class="self-link" href="#stylesheets"></a></h3>
+   <p>Stylesheets allow visual style properties to be declared using <a data-link-type="dfn">selectors</a>.
+These work exactly as in CSS, except where extended in MNX-specific ways.</p>
    <p>In MNX, stylesheets are referenced by including a <code><a data-link-type="element">style</a></code> element below the appropriately
 scoped chunk of the document. This element may contain CSS, and may further import
 external documents using the import statement.</p>
-   <h3 class="heading settled" data-level="5.3" id="unit-abbreviations"><span class="secno">5.3. </span><span class="content">Unit abbreviations</span><a class="self-link" href="#unit-abbreviations"></a></h3>
+   <p>The following example illustrates the power of stylesheets and selectors; see
+the <a href="https://drafts.csswg.org/selectors-4/">CSS Selectors Level 4</a> draft specification for more details.</p>
+<pre class="language-xml highlight"><span class="nt">&lt;mnx</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/mnx"</span><span class="nt">></span>
+    <span class="nt">&lt;head</span><span class="nt">></span>
+        <span class="nt">&lt;style</span><span class="nt">></span>
+            score {
+                font-family: Bravura;
+            }
+            .alternate {
+                color: #666;  /* gray */
+            }
+            direction {
+                font-family: Times Roman;
+                font-size: 2sl;
+            }
+            words.aside {
+                font-weight: bold;
+            }
+        <span class="nt">&lt;/style></span>
+    <span class="nt">&lt;/head></span>
+    <span class="nt">&lt;score</span><span class="nt">></span>
+        <span class="nt">&lt;measure</span><span class="nt">></span>
+            <span class="nt">&lt;sequence</span><span class="nt">></span>
+                <span class="nt">&lt;event</span> <span class="na">class=</span><span class="s">"alternate"</span><span class="nt">></span>
+                    <span class="nt">&lt;note</span><span class="nt">></span>...<span class="nt">&lt;/note></span>
+                <span class="nt">&lt;/event></span>
+                <span class="nt">&lt;direction</span> <span class="na">style=</span><span class="s">"relative-y: 1sl;"</span><span class="nt">></span>
+                    <span class="nt">&lt;direction-type</span><span class="nt">></span><span class="nt">&lt;words</span> <span class="na">class=</span><span class="s">"aside"</span><span class="nt">></span>...<span class="nt">&lt;/words></span><span class="nt">&lt;/direction-type></span>
+                <span class="nt">&lt;/direction></span>
+                <span class="nt">&lt;event</span><span class="nt">></span>
+                    <span class="nt">&lt;note</span> <span class="na">class=</span><span class="s">"alternate"</span><span class="nt">></span>...<span class="nt">&lt;/note></span>
+                <span class="nt">&lt;/event></span>
+            <span class="nt">&lt;/sequence></span>
+        <span class="nt">&lt;/measure></span>
+    <span class="nt">&lt;/score></span>
+<span class="nt">&lt;/mnx></span>
+</pre>
+   <h2 class="heading settled" data-level="6" id="external-stylesheets"><span class="secno">6. </span><span class="content">External stylesheets</span><a class="self-link" href="#external-stylesheets"></a></h2>
+   <p>It’s often useful to separate stylesheet definitions in a separate <code>.css</code> file. The <code>@import</code> directive serves this purpose:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;mnx</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/mnx"</span><span class="nt">></span>
+    <span class="nt">&lt;head</span><span class="nt">></span>
+        <span class="nt">&lt;style</span><span class="nt">></span>
+            @import url(house-style.css)
+        <span class="nt">&lt;/style></span>
+    <span class="nt">&lt;/head></span>
+    <span class="nt">&lt;score</span><span class="nt">></span>
+        ...
+    <span class="nt">&lt;/score></span>
+<span class="nt">&lt;/mnx></span>
+</pre>
+   <h3 class="heading settled" data-level="6.1" id="unit-abbreviations"><span class="secno">6.1. </span><span class="content">Unit abbreviations</span><a class="self-link" href="#unit-abbreviations"></a></h3>
    <p>Properties representing a visual displacement or distance must use a number followed
 by an explicit unit:</p>
    <dl>
-    <dt data-md="">sl
+    <dt data-md=""><code>sl</code>
     <dd data-md="">
      <p>staff lines</p>
-    <dt data-md="">st
+    <dt data-md=""><code>st</code>
     <dd data-md="">
      <p>staff tenths (same unit as in MusicXML)</p>
-    <dt data-md="">px
+    <dt data-md=""><code>px</code>
     <dd data-md="">
      <p>display pixels (same unit as in SVG or HTML)</p>
+    <dt data-md=""><code>/</code><em>note-value</em>
+    <dd data-md="">
+     <p>displacement based on metrical time within a measure (i.e. property is a metrical duration encoding)</p>
    </dl>
-   <h3 class="heading settled" data-level="5.4" id="selectors"><span class="secno">5.4. </span><span class="content">Selectors</span><a class="self-link" href="#selectors"></a></h3>
-   <h3 class="heading settled" data-level="5.5" id="renditions-and-rendition-queries"><span class="secno">5.5. </span><span class="content">Renditions and rendition queries</span><a class="self-link" href="#renditions-and-rendition-queries"></a></h3>
-   <h3 class="heading settled" data-level="5.6" id="rendering-model"><span class="secno">5.6. </span><span class="content">Rendering model</span><a class="self-link" href="#rendering-model"></a></h3>
-   <h3 class="heading settled" data-level="5.7" id="key-style-properties"><span class="secno">5.7. </span><span class="content">Key style properties</span><a class="self-link" href="#key-style-properties"></a></h3>
-   <h4 class="heading settled" data-level="5.7.1" id="visibility"><span class="secno">5.7.1. </span><span class="content">Visibility</span><a class="self-link" href="#visibility"></a></h4>
-   <h4 class="heading settled" data-level="5.7.2" id="common-formatting"><span class="secno">5.7.2. </span><span class="content">Common formatting</span><a class="self-link" href="#common-formatting"></a></h4>
-   <h4 class="heading settled" data-level="5.7.3" id="fine-positioning"><span class="secno">5.7.3. </span><span class="content">Fine positioning</span><a class="self-link" href="#fine-positioning"></a></h4>
-   <h4 class="heading settled" data-level="5.7.4" id="breaks"><span class="secno">5.7.4. </span><span class="content">Breaks</span><a class="self-link" href="#breaks"></a></h4>
-   <h4 class="heading settled" data-level="5.7.5" id="layout-metrics"><span class="secno">5.7.5. </span><span class="content">Layout metrics</span><a class="self-link" href="#layout-metrics"></a></h4>
-   <h2 class="heading settled" data-level="6" id="interpretation"><span class="secno">6. </span><span class="content">Interpretation</span><a class="self-link" href="#interpretation"></a></h2>
+   <h3 class="heading settled" data-level="6.2" id="css-standard-properties"><span class="secno">6.2. </span><span class="content">CSS standard properties</span><a class="self-link" href="#css-standard-properties"></a></h3>
+   <p>Certain CSS standard properties will replace the corresponding MusicXML
+properties, to avoid conflict with other web standards. Notably, the CSS <code>display</code> and <code>visibility</code> replace MusicXML’s <code>print-object</code> attribute.  All
+CSS properties relating to fonts and typography (<a class="property" data-link-type="propdesc" href="https://drafts.csswg.org/css-fonts-3/#propdef-font-family">font-family</a>, <a class="property" data-link-type="propdesc" href="https://drafts.csswg.org/css-fonts-3/#propdef-font-weight">font-weight</a>, <a class="property" data-link-type="propdesc" href="https://drafts.csswg.org/css-fonts-3/#propdef-font-style">font-style</a> and so forth) will also replace corresponding features in
+MusicXML. <code>color</code> has roughly the same meaning in both.</p>
+   <p>The expectation is that almost all other MusicXML attributes and elements
+governing visual rendition will simply migrate to CSS properties with no
+change except for the units used. These include positioning tweaks as well
+as system and page breaks.</p>
+   <p>The result is that MusicXML will generally look very simple and semantic,
+with occasional <code>style</code> and <code>class</code> attributes supplying exceptions to the
+general house style supplied by a score-wide stylesheet.</p>
+   <p>Examples of migrated MusicXML properties include:</p>
+   <ul>
+    <li data-md="">
+     <p><code>relative-x</code> and <code>relative-y</code></p>
+    <li data-md="">
+     <p><code>default-x</code> and <code>default-y</code></p>
+    <li data-md="">
+     <p><code>offset</code></p>
+    <li data-md="">
+     <p><code>new-system</code> and <code>new-page</code></p>
+   </ul>
+   <p>In keeping with CSS conventions, MusicXML’s values of <code>yes</code> and <code>no</code> will be
+generally replaced with <code>true</code> and <code>false</code>.</p>
+   <p>MNX will also define new properties for useful concepts not previously
+addressed in MusicXML. For example, MNX could introduce a property forcing
+measures to be flowed within the same system ("keep with next").</p>
+   <p class="issue" id="issue-d9033513"><a class="self-link" href="#issue-d9033513"></a> MNX should define the meaning of <code>default</code> and <code>relative</code> more clearly and
+propose a tight set of requirements on positioning, while leaving lots of wiggle room
+for competition between implementations.</p>
+   <h3 class="heading settled" data-level="6.3" id="media-queries-and-parts"><span class="secno">6.3. </span><span class="content">Media queries and parts</span><a class="self-link" href="#media-queries-and-parts"></a></h3>
+   <p>CSS defines a notion of <a data-link-type="dfn" href="https://drafts.csswg.org/mediaqueries-4/#media-query">media queries</a> which permit stylesheet definitions
+to apply in only certain contexts. For web pages, this is used to vary the appearance
+according to whether a page is viewed on, say, a mobile device, or a laptop screen,
+or on printed paper.</p>
+   <p>In MNX, media queries can be used in exactly the same way, but they
+can also be used to govern how parts are displayed. This permits high quality
+parts to be generated from the same document as the full score, if desired. It also
+permits part-specific breaks and formatting that can be blended into the single document
+by use of part-specific classes and stylesheet definitions.</p>
+   <p>TBD: Need examples.</p>
+   <h3 class="heading settled" data-level="6.4" id="musical-selectors"><span class="secno">6.4. </span><span class="content">Musical Selectors</span><a class="self-link" href="#musical-selectors"></a></h3>
+   <h4 class="heading settled" data-level="6.4.1" id="visibility"><span class="secno">6.4.1. </span><span class="content">Visibility</span><a class="self-link" href="#visibility"></a></h4>
+   <h4 class="heading settled" data-level="6.4.2" id="common-formatting"><span class="secno">6.4.2. </span><span class="content">Common formatting</span><a class="self-link" href="#common-formatting"></a></h4>
+   <h4 class="heading settled" data-level="6.4.3" id="fine-positioning"><span class="secno">6.4.3. </span><span class="content">Fine positioning</span><a class="self-link" href="#fine-positioning"></a></h4>
+   <h4 class="heading settled" data-level="6.4.4" id="breaks"><span class="secno">6.4.4. </span><span class="content">Breaks</span><a class="self-link" href="#breaks"></a></h4>
+   <h4 class="heading settled" data-level="6.4.5" id="layout-metrics"><span class="secno">6.4.5. </span><span class="content">Layout metrics</span><a class="self-link" href="#layout-metrics"></a></h4>
+   <h2 class="heading settled" data-level="7" id="interpretation"><span class="secno">7. </span><span class="content">Interpretation</span><a class="self-link" href="#interpretation"></a></h2>
    <p>Make note of <code>tie</code> vs. <code>tied</code>.</p>
   </main>
   <div data-fill-with="conformance">
@@ -2348,6 +2451,13 @@ by an explicit unit:</p>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
+    <a data-link-type="biblio">[css-fonts-3]</a> defines the following terms:
+    <ul>
+     <li><a href="https://drafts.csswg.org/css-fonts-3/#propdef-font-family">font-family</a>
+     <li><a href="https://drafts.csswg.org/css-fonts-3/#propdef-font-style">font-style</a>
+     <li><a href="https://drafts.csswg.org/css-fonts-3/#propdef-font-weight">font-weight</a>
+    </ul>
+   <li>
     <a data-link-type="biblio">[mediaqueries-4]</a> defines the following terms:
     <ul>
      <li><a href="https://drafts.csswg.org/mediaqueries-4/#media-query">media query</a>
@@ -2356,6 +2466,8 @@ by an explicit unit:</p>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
+   <dt id="biblio-css-fonts-3">[CSS-FONTS-3]
+   <dd>John Daggett. <a href="https://www.w3.org/TR/css-fonts-3/">CSS Fonts Module Level 3</a>. URL: <a href="https://www.w3.org/TR/css-fonts-3/">https://www.w3.org/TR/css-fonts-3/</a>
    <dt id="biblio-mediaqueries-4">[MEDIAQUERIES-4]
    <dd>Florian Rivoal; Tab Atkins Jr.. <a href="https://www.w3.org/TR/mediaqueries-4/">Media Queries Level 4</a>. URL: <a href="https://www.w3.org/TR/mediaqueries-4/">https://www.w3.org/TR/mediaqueries-4/</a>
    <dt id="biblio-rfc2119">[RFC2119]
@@ -2372,4 +2484,7 @@ sequencing rule in MusicXML makes sense when putting these things together
 in the same <code><a data-link-type="element">direction</a></code>, but it makes sense for text-like things.<a href="#issue-caf40334"> ↵ </a></div>
    <div class="issue"> Text with embedded style/font runs should be dealt with using <code><a data-link-type="element">span</a></code> tags and CSS styling, rather than a sequence of separate direction-types.<a href="#issue-41d7faa8"> ↵ </a></div>
    <div class="issue"> How should paragraph-style interpolated blocks be dealt with?<a href="#issue-83fe9539"> ↵ </a></div>
+   <div class="issue"> MNX should define the meaning of <code>default</code> and <code>relative</code> more clearly and
+propose a tight set of requirements on positioning, while leaving lots of wiggle room
+for competition between implementations.<a href="#issue-d9033513"> ↵ </a></div>
   </div>
