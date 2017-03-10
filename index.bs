@@ -336,8 +336,8 @@ encoded in these ways:
 - A real number followed by `/` and a note value encoding specifies a duration equal to the
     given number of note value units. The note value is subject to any contextual
     time modification due to tuplets.
-- A real number followed by the special suffix `t` (for ticks) specifies the given number
-    of 1024th notes (1/256 of the value of a quarter note).
+- A real number followed by the special suffix `t` specifies the given number
+    of ticks, where a tick is 1/960 of a quarter note.
 
 Examples:
 
@@ -350,7 +350,7 @@ Examples:
 : `3/8*`
 :: three dotted quarter notes (this form can be useful for arbitrary [[#tuplets]])
 : `15.2t`
-:: 15.2 ticks where a tick equals a 1024th note
+:: 15.2 ticks
 
 In general, the attribute name `duration` is used to supply these specifications
 for various MNX elements.
@@ -977,9 +977,7 @@ by an explicit unit:
 : `//`*note-value*
 :: displacement based on metrical time within the containing measure, *disregarding any containing tuplets*.
 : `t`
-:: MIDI ticks (1024th notes)
-
-Issue: Pick a tick value with nicer divisors (perhaps a 240th of a quarter note?).
+:: MIDI ticks (1/960 of a quarter note)
 
 ## CSS property usage
 

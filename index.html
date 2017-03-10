@@ -1775,8 +1775,8 @@ equal to a single occurrence of the note value</p>
 given number of note value units. The note value is subject to any contextual
 time modification due to tuplets.</p>
     <li data-md="">
-     <p>A real number followed by the special suffix <code>t</code> (for ticks) specifies the given number
-of 1024th notes (1/256 of the value of a quarter note).</p>
+     <p>A real number followed by the special suffix <code>t</code> specifies the given number
+of ticks, where a tick is 1/960 of a quarter note.</p>
    </ul>
    <p>Examples:</p>
    <dl>
@@ -1794,7 +1794,7 @@ of 1024th notes (1/256 of the value of a quarter note).</p>
      <p>three dotted quarter notes (this form can be useful for arbitrary <a href="#tuplets">§4.3.9 Tuplets</a>)</p>
     <dt data-md=""><code>15.2t</code>
     <dd data-md="">
-     <p>15.2 ticks where a tick equals a 1024th note</p>
+     <p>15.2 ticks</p>
    </dl>
    <p>In general, the attribute name <code>duration</code> is used to supply these specifications
 for various MNX elements.</p>
@@ -2310,9 +2310,8 @@ by an explicit unit:</p>
      <p>displacement based on metrical time within the containing measure, <em>disregarding any containing tuplets</em>.</p>
     <dt data-md=""><code>t</code>
     <dd data-md="">
-     <p>MIDI ticks (1024th notes)</p>
+     <p>MIDI ticks (1/960 of a quarter note)</p>
    </dl>
-   <p class="issue" id="issue-40727229"><a class="self-link" href="#issue-40727229"></a> Pick a tick value with nicer divisors (perhaps a 240th of a quarter note?).</p>
    <h3 class="heading settled" data-level="5.5" id="css-property-usage"><span class="secno">5.5. </span><span class="content">CSS property usage</span><a class="self-link" href="#css-property-usage"></a></h3>
    <h4 class="heading settled" data-level="5.5.1" id="standard-css-properties"><span class="secno">5.5.1. </span><span class="content">Standard CSS properties</span><a class="self-link" href="#standard-css-properties"></a></h4>
    <p>Certain CSS standard properties will replace the corresponding MusicXML
@@ -2782,7 +2781,6 @@ sequencing rule in MusicXML makes sense when putting these things together
 in the same <code><a data-link-type="element">direction</a></code>, but it makes sense for text-like things.<a href="#issue-caf40334"> ↵ </a></div>
    <div class="issue"> Text with embedded style/font runs should be dealt with using <code><a data-link-type="element">span</a></code> tags and CSS styling, rather than a sequence of separate direction-types.<a href="#issue-41d7faa8"> ↵ </a></div>
    <div class="issue"> How should paragraph-style interpolated blocks be dealt with?<a href="#issue-83fe9539"> ↵ </a></div>
-   <div class="issue"> Pick a tick value with nicer divisors (perhaps a 240th of a quarter note?).<a href="#issue-40727229"> ↵ </a></div>
    <div class="issue"> MNX should define the meaning of <code>default</code> and <code>relative</code> more clearly and
 propose a tight set of requirements on positioning, while leaving lots of wiggle room
 for competition between implementations.<a href="#issue-d9033513"> ↵ </a></div>
