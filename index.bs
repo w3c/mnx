@@ -1199,6 +1199,9 @@ of course:
 : `tempo`
 :: Tempo expressed as a metrical duration encoding, e.g. **tempo: 120/4**. (same as
     MusicXML, but doesn't require quarter note units).
+: `playback`
+:: Controls whether interpretation occurs at all. **playback: none** will suppress
+    the interpretation of all events with this property.
 
 Note: There is no `tied` property. It is not clear that one is needed, since
 the sounded duration of a tied note should take the semantic `tie`
