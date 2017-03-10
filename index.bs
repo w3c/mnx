@@ -53,6 +53,7 @@ to be preserved In these examples. MusicXML constructs are used freely
 throughout as a way to show how proposed new concepts dovetail with existing
 ones.
 
+It is however, a goal to be able to machine-translate MusicXML into MNX.
 
 # Document organization
 
@@ -598,12 +599,11 @@ just like an <{event}> or <{space}> element, in that it takes up a known duratio
 within its parent.
 
 A <{tuplet}> uses the two attributes `actual` and `normal` making use of
-[[#metrical-duration-encoding]] to represent
-various combinations of the MusicXML child elements of <{time-modification}>.
-It is thus more expressive in terms of permitting ratios including dots and
-dissimilar actual and normal note values. These encodings also permit
-reasonable defaulting of beam and rest groups inside the tuplet based on
-the notional subdivisions.
+[[#metrical-duration-encoding]] to represent the tuplet ratio.
+It thus combines the function of MusicXML's <{tuplet}> and <{time-modification}>
+elements into a single construct: the contained elements are automatically
+subject to time modification, and CSS styling can control the appearance of
+the tuplet. 
 
 Numerals and brackets may or may not be shown in conjunction with a
 <{tuplet}>, by using the relevant MusicXML attributes which carry over into MNX.
@@ -675,7 +675,10 @@ may be any element that occurs inside a <{sequence}> (most often, <{event}> or
 
 The start element of a spanning notation is specified by including the span
 directly in the start element as a child. The stop element is specified via an
-<code>ref</code> attribute on the span that supplies the stop element's ID.
+<code>ref</code> attribute on the span that supplies the stop element's ID. Thus,
+spanning notations "point to" the notation where they will end. This is different
+from MusicXML, in which the stop point refers back to the spanning notation's
+number.
 
 Thus there is no use of MusicXML's <code>number=N</code> or
 <code>type="start"</code> and <code>type="stop"</code> attributes.
@@ -976,6 +979,8 @@ by an explicit unit:
 : `t`
 :: MIDI ticks (1024th notes)
 
+Issue: Pick a tick value with nicer divisors (perhaps a 240th of a quarter note?).
+
 ## CSS property usage
 
 ### Standard CSS properties
@@ -1014,18 +1019,17 @@ Examples of migrated MusicXML properties from notation markup include:
 In keeping with CSS conventions, MusicXML's values of `yes` and `no` will be
 generally replaced with `true` and `false`. 
 
-### New MNX properties
-
-MNX will also define new properties for useful concepts not previously
-addressed in MusicXML. For example, MNX could introduce a property forcing
-measures to be flowed within the same system ("keep with next").
-
-Another useful property would distinguish elements that are intended to appear
-in both full-score and part views.
-
 Issue: MNX should define the meaning of `default` and `relative` more clearly and
 propose a tight set of requirements on positioning, while leaving lots of wiggle room
 for competition between implementations.
+
+### New MNX properties
+
+MNX will also define new properties for useful concepts not previously
+addressed in MusicXML.
+
+As one example, an **part-display: all** property could distinguish elements
+that are intended to appear in both full-score and part views.
 
 ## Media queries and parts
 
@@ -1171,11 +1175,13 @@ in the stylesheet, rather than appearance classes.
 </mnx>
 ```
 
-Note: The reason for separating `pclass` from `class` is that there are CSS rules
-for superimposing different classes in the same attribute, and it seems
-undesirable to have both sets of rules working at the same time. It may also
-be a good thing for implementations to be able to ignore all interpretation-
-related style information if it's not relevant.
+Note: <{style}> is used to define stylesheets that govern both appearance and
+interpretation: there is only one set of stylesheets. The reason for
+separating `pclass` from `class` is that there are CSS rules for superimposing
+different classes in the same attribute, and it seems undesirable to have both
+sets of rules working at the same time. It may also be a good thing for
+implementations to be able to ignore all interpretation- related style
+information if it's not relevant.
 
 ## Interpretation properties
 
@@ -1251,14 +1257,15 @@ notes with spaces to create streams of simple events:
 : `note(0, C4, 0.33/4) note(0.33/4, E4, 0.33/4) note(0.67/4, G4, 0.33/4)`
 :: A C major arpeggio with the duration of a quarter note, sounding at the event's default offset.
 
-In this example, a regularly notated C triad is played as an arpeggiated C
-chord. Note that the styling is applied to the entire <{event}>, replacing the
-interpretation of all contained elements:
+In this example, a regularly notated C-G dyad is actually played as an
+arpeggiated C major triad, as part of an exercise in aural triad
+identification (the prompt might be, "what's the middle note?".) Note that the
+styling is applied to the entire <{event}>, replacing the interpretation of
+all contained elements:
 
 ```xml
 <event value="4" perform="play: note(0, C4, 4) note(1/32, E4, 7/32) note(2/32, G4, 6/32);">
     <note pitch="C4"/>
-    <note pitch="E4"/>
     <note pitch="G4"/>
 </event>
 ```

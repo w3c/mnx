@@ -1530,6 +1530,7 @@ superset of MusicXML. However, a large number of MusicXML markup is expected
 to be preserved In these examples. MusicXML constructs are used freely
 throughout as a way to show how proposed new concepts dovetail with existing
 ones.</p>
+   <p>It is however, a goal to be able to machine-translate MusicXML into MNX.</p>
    <h2 class="heading settled" data-level="2" id="document-organization"><span class="secno">2. </span><span class="content">Document organization</span><a class="self-link" href="#document-organization"></a></h2>
    <p class="note" role="note"><span>Note:</span> This section applies to all content types, CWMN or otherwise.</p>
    <h3 class="heading settled" data-level="2.1" id="the-container-document"><span class="secno">2.1. </span><span class="content">The container document</span><a class="self-link" href="#the-container-document"></a></h3>
@@ -1992,12 +1993,10 @@ elements, which are the same as those allowed in <code><a data-link-type="elemen
 signature representing the notated duration inside the tuplet. It functions
 just like an <code><a data-link-type="element">event</a></code> or <code><a data-link-type="element">space</a></code> element, in that it takes up a known duration
 within its parent.</p>
-   <p>A <code><a data-link-type="element">tuplet</a></code> uses the two attributes <code>actual</code> and <code>normal</code> making use of <a href="#metrical-duration-encoding">§4.3.3 Metrical duration encoding</a> to represent
-various combinations of the MusicXML child elements of <code><a data-link-type="element">time-modification</a></code>.
-It is thus more expressive in terms of permitting ratios including dots and
-dissimilar actual and normal note values. These encodings also permit
-reasonable defaulting of beam and rest groups inside the tuplet based on
-the notional subdivisions.</p>
+   <p>A <code><a data-link-type="element">tuplet</a></code> uses the two attributes <code>actual</code> and <code>normal</code> making use of <a href="#metrical-duration-encoding">§4.3.3 Metrical duration encoding</a> to represent the tuplet ratio.
+It thus combines the function of MusicXML’s <code><a data-link-type="element">tuplet</a></code> and <code><a data-link-type="element">time-modification</a></code> elements into a single construct: the contained elements are automatically
+subject to time modification, and CSS styling can control the appearance of
+the tuplet.</p>
    <p>Numerals and brackets may or may not be shown in conjunction with a <code><a data-link-type="element">tuplet</a></code>, by using the relevant MusicXML attributes which carry over into MNX.</p>
    <p>Here’s an example of an eighth-note triplet:</p>
 <pre class="language-xml highlight"><span class="nt">&lt;sequence</span><span class="nt">></span>
@@ -2055,7 +2054,10 @@ classification problem yet.)</p>
 terms of a <em>start element</em> and an <em>stop element</em>. These elements
 may be any element that occurs inside a <code><a data-link-type="element">sequence</a></code> (most often, <code><a data-link-type="element">event</a></code> or <code><a data-link-type="element">space</a></code>).</p>
    <p>The start element of a spanning notation is specified by including the span
-directly in the start element as a child. The stop element is specified via an <code>ref</code> attribute on the span that supplies the stop element’s ID.</p>
+directly in the start element as a child. The stop element is specified via an <code>ref</code> attribute on the span that supplies the stop element’s ID. Thus,
+spanning notations "point to" the notation where they will end. This is different
+from MusicXML, in which the stop point refers back to the spanning notation’s
+number.</p>
    <p>Thus there is no use of MusicXML’s <code>number=N</code> or <code>type="start"</code> and <code>type="stop"</code> attributes.</p>
    <p>Here’s an example, showing a slur that connects two non-adjacent chords in the
 same measure (the situation is very similar for events in different measures):</p>
@@ -2310,6 +2312,7 @@ by an explicit unit:</p>
     <dd data-md="">
      <p>MIDI ticks (1024th notes)</p>
    </dl>
+   <p class="issue" id="issue-40727229"><a class="self-link" href="#issue-40727229"></a> Pick a tick value with nicer divisors (perhaps a 240th of a quarter note?).</p>
    <h3 class="heading settled" data-level="5.5" id="css-property-usage"><span class="secno">5.5. </span><span class="content">CSS property usage</span><a class="self-link" href="#css-property-usage"></a></h3>
    <h4 class="heading settled" data-level="5.5.1" id="standard-css-properties"><span class="secno">5.5.1. </span><span class="content">Standard CSS properties</span><a class="self-link" href="#standard-css-properties"></a></h4>
    <p>Certain CSS standard properties will replace the corresponding MusicXML
@@ -2341,15 +2344,14 @@ general house style supplied by a score-wide stylesheet.</p>
    </ul>
    <p>In keeping with CSS conventions, MusicXML’s values of <code>yes</code> and <code>no</code> will be
 generally replaced with <code>true</code> and <code>false</code>.</p>
-   <h4 class="heading settled" data-level="5.5.4" id="new-mnx-properties"><span class="secno">5.5.4. </span><span class="content">New MNX properties</span><a class="self-link" href="#new-mnx-properties"></a></h4>
-   <p>MNX will also define new properties for useful concepts not previously
-addressed in MusicXML. For example, MNX could introduce a property forcing
-measures to be flowed within the same system ("keep with next").</p>
-   <p>Another useful property would distinguish elements that are intended to appear
-in both full-score and part views.</p>
    <p class="issue" id="issue-d9033513"><a class="self-link" href="#issue-d9033513"></a> MNX should define the meaning of <code>default</code> and <code>relative</code> more clearly and
 propose a tight set of requirements on positioning, while leaving lots of wiggle room
 for competition between implementations.</p>
+   <h4 class="heading settled" data-level="5.5.4" id="new-mnx-properties"><span class="secno">5.5.4. </span><span class="content">New MNX properties</span><a class="self-link" href="#new-mnx-properties"></a></h4>
+   <p>MNX will also define new properties for useful concepts not previously
+addressed in MusicXML.</p>
+   <p>As one example, an <strong>part-display: all</strong> property could distinguish elements
+that are intended to appear in both full-score and part views.</p>
    <h3 class="heading settled" data-level="5.6" id="media-queries-and-parts"><span class="secno">5.6. </span><span class="content">Media queries and parts</span><a class="self-link" href="#media-queries-and-parts"></a></h3>
    <p>CSS defines a notion of <a data-link-type="dfn" href="https://drafts.csswg.org/mediaqueries-4/#media-query">media queries</a> which permit stylesheet definitions
 to apply in only certain contexts. For web pages, this is used to vary the appearance
@@ -2461,11 +2463,13 @@ in the stylesheet, rather than appearance classes.</p>
     <span class="nt">&lt;/score></span>
 <span class="nt">&lt;/mnx></span>
 </pre>
-   <p class="note" role="note"><span>Note:</span> The reason for separating <code>pclass</code> from <code>class</code> is that there are CSS rules
-for superimposing different classes in the same attribute, and it seems
-undesirable to have both sets of rules working at the same time. It may also
-be a good thing for implementations to be able to ignore all interpretation-
-related style information if it’s not relevant.</p>
+   <p class="note" role="note"><span>Note:</span> <code><a data-link-type="element">style</a></code> is used to define stylesheets that govern both appearance and
+interpretation: there is only one set of stylesheets. The reason for
+separating <code>pclass</code> from <code>class</code> is that there are CSS rules for superimposing
+different classes in the same attribute, and it seems undesirable to have both
+sets of rules working at the same time. It may also be a good thing for
+implementations to be able to ignore all interpretation- related style
+information if it’s not relevant.</p>
    <h3 class="heading settled" data-level="6.2" id="interpretation-properties"><span class="secno">6.2. </span><span class="content">Interpretation properties</span><a class="self-link" href="#interpretation-properties"></a></h3>
    <p>Here are some significant interpretation properties, but not an exhaustive list
 of course:</p>
@@ -2536,12 +2540,13 @@ notes with spaces to create streams of simple events:</p>
     <dd data-md="">
      <p>A C major arpeggio with the duration of a quarter note, sounding at the event’s default offset.</p>
    </dl>
-   <p>In this example, a regularly notated C triad is played as an arpeggiated C
-chord. Note that the styling is applied to the entire <code><a data-link-type="element">event</a></code>, replacing the
-interpretation of all contained elements:</p>
+   <p>In this example, a regularly notated C-G dyad is actually played as an
+arpeggiated C major triad, as part of an exercise in aural triad
+identification (the prompt might be, "what’s the middle note?".) Note that the
+styling is applied to the entire <code><a data-link-type="element">event</a></code>, replacing the interpretation of
+all contained elements:</p>
 <pre class="language-xml highlight"><span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span> <span class="na">perform=</span><span class="s">"play: note(0, C4, 4) note(1/32, E4, 7/32) note(2/32, G4, 6/32);"</span><span class="nt">></span>
     <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span>
-    <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E4"</span><span class="nt">/></span>
     <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"G4"</span><span class="nt">/></span>
 <span class="nt">&lt;/event></span>
 </pre>
@@ -2777,6 +2782,7 @@ sequencing rule in MusicXML makes sense when putting these things together
 in the same <code><a data-link-type="element">direction</a></code>, but it makes sense for text-like things.<a href="#issue-caf40334"> ↵ </a></div>
    <div class="issue"> Text with embedded style/font runs should be dealt with using <code><a data-link-type="element">span</a></code> tags and CSS styling, rather than a sequence of separate direction-types.<a href="#issue-41d7faa8"> ↵ </a></div>
    <div class="issue"> How should paragraph-style interpolated blocks be dealt with?<a href="#issue-83fe9539"> ↵ </a></div>
+   <div class="issue"> Pick a tick value with nicer divisors (perhaps a 240th of a quarter note?).<a href="#issue-40727229"> ↵ </a></div>
    <div class="issue"> MNX should define the meaning of <code>default</code> and <code>relative</code> more clearly and
 propose a tight set of requirements on positioning, while leaving lots of wiggle room
 for competition between implementations.<a href="#issue-d9033513"> ↵ </a></div>
