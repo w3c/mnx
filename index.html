@@ -1386,7 +1386,7 @@ Possible extra rowspan handling
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Overview (Draft Proposal)</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-03-09">9 March 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-03-10">10 March 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1399,7 +1399,7 @@ Possible extra rowspan handling
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 9 March 2017,
+In addition, as of 10 March 2017,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1485,7 +1485,8 @@ Examples are used rather than specification language.</p>
       <li><a href="#inline-interpretation"><span class="secno">6.1</span> <span class="content">Inline interpretation</span></a>
       <li><a href="#interpretation-properties"><span class="secno">6.2</span> <span class="content">Interpretation properties</span></a>
       <li><a href="#interpretation-flow"><span class="secno">6.3</span> <span class="content">Interpretation flow</span></a>
-      <li><a href="#musical-selectors"><span class="secno">6.4</span> <span class="content">Musical Selectors</span></a>
+      <li><a href="#performance-events-and-event-streams"><span class="secno">6.4</span> <span class="content">Performance events and event streams</span></a>
+      <li><a href="#musical-selectors"><span class="secno">6.5</span> <span class="content">Musical Selectors</span></a>
      </ol>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
@@ -1770,7 +1771,8 @@ encoded in these ways:</p>
 equal to a single occurrence of the note value</p>
     <li data-md="">
      <p>A real number followed by <code>/</code> and a note value encoding specifies a duration equal to the
-given number of note value units.</p>
+given number of note value units. The note value is subject to any contextual
+time modification due to tuplets.</p>
     <li data-md="">
      <p>A real number followed by the special suffix <code>t</code> (for ticks) specifies the given number
 of 1024th notes (1/256 of the value of a quarter note).</p>
@@ -2261,7 +2263,10 @@ by an explicit unit:</p>
      <p>display pixels (same unit as in SVG or HTML)</p>
     <dt data-md=""><code>/</code><em>note-value</em>
     <dd data-md="">
-     <p>displacement based on metrical time within a measure (i.e. property is a metrical duration encoding)</p>
+     <p>displacement based on metrical time within the containing measure or tuplet.</p>
+    <dt data-md=""><code>//</code><em>note-value</em>
+    <dd data-md="">
+     <p>displacement based on metrical time within the containing measure, <em>disregarding any containing tuplets</em>.</p>
     <dt data-md=""><code>t</code>
     <dd data-md="">
      <p>MIDI ticks (1024th notes)</p>
@@ -2445,25 +2450,62 @@ as a sixteenth note regardless.</p>
      <p>Volume expressed as MIDI velocity (same as the MusicXML attribute of <code><a data-link-type="element">sound</a></code>?)</p>
     <dt data-md=""><code>tempo</code>
     <dd data-md="">
-     <p>Tempo expressed as quarter notes per minute by default. May be followed by an
-  optional note value encoding to denote the unit (e.g. <strong>tempo: 120/4</strong>).</p>
+     <p>Tempo expressed as a metrical duration encoding, e.g. <strong>tempo: 120/4</strong>. (same as
+MusicXML, but doesn’t require quarter note units).</p>
    </dl>
    <p class="note" role="note"><span>Note:</span> There is no <code>tied</code> property. It is not clear that one is needed, since
 the sounded duration of a tied note should take the semantic <code>tie</code> information into account.</p>
-   <p class="issue" id="issue-01fcc9a2"><a class="self-link" href="#issue-01fcc9a2"></a> It is desirable to be able to specify an entire sequence of notes as
-the interpretation of a single note, or of a voice, or of an entire passage.
-Consider the interpretations of early music ornaments as one such example.
-Might this be able to be specified as a single style property? It seems
-feasible, and one beneficial result would be stylesheets that govern the
-interpretation of ornaments (corresponding to the kind of front matter one
-often sees in editions of such music).</p>
    <h3 class="heading settled" data-level="6.3" id="interpretation-flow"><span class="secno">6.3. </span><span class="content">Interpretation flow</span><a class="self-link" href="#interpretation-flow"></a></h3>
    <p>In the same way that indenting text flow with certain CSS properties has follow-on effects
 that continue down the page, altering interpretation with CSS has follow-on effects too.</p>
    <p>For example, <code>tempo</code> and <code>dynamics</code> clearly make sense to flow forward into successor
 events. On the other hand, <code>pitch</code> probably does not.</p>
-   <p>The flow behavior of intepreration properties needs to be carefully characterized.</p>
-   <h3 class="heading settled" data-level="6.4" id="musical-selectors"><span class="secno">6.4. </span><span class="content">Musical Selectors</span><a class="self-link" href="#musical-selectors"></a></h3>
+   <p>The flow behavior of interpretation properties needs to be carefully characterized.</p>
+   <h3 class="heading settled" data-level="6.4" id="performance-events-and-event-streams"><span class="secno">6.4. </span><span class="content">Performance events and event streams</span><a class="self-link" href="#performance-events-and-event-streams"></a></h3>
+   <p>It is useful to combine the values found in the <code>offset</code>, <code>pitch</code> and <code>duration</code> and <code>dynamics</code> properties into a single styling construct called a <em>performance event</em>, using the simple syntaxes <code>note(offset, pitch, duration)</code> or <code>note(offset, pitch, duration, dynamics)</code>. Think of these as syntactically
+similar to <code>rgb()</code> or <code>rgba()</code> colors. Some examples:</p>
+   <dl>
+    <dt data-md=""><code>note(0, C4, 1/4)</code>
+    <dd data-md="">
+     <p>A middle C sounding at the event’s default offset for a duration of one quarter note.</p>
+    <dt data-md=""><code>note(0, C4, 1/4, 127)</code>
+    <dd data-md="">
+     <p>The same note, but at a MIDI velocity of 127.</p>
+    <dt data-md=""><code>note(0, C4, 1//4)</code>
+    <dd data-md="">
+     <p>The same note with a quarter note duration, <em>disregarding any effective time modification</em></p>
+   </dl>
+   <p>This permits the useful interpretation property <code>play</code>, which overrides the
+entire default interpreation of whatever MNX element it is applied to. Here’s
+a quarter note C3 that is supposed to actually be played as a 16th note C4:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span>
+    <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C3"</span> <span class="na">perform=</span><span class="s">"play: note(0, C4, 16);"</span><span class="nt">/></span>
+<span class="nt">&lt;/event></span>
+</pre>
+   <p>The real point of this feature is not syntactic sugar, but to make it practical
+to specify more complex performance events. One can do this by separating
+notes with spaces to create streams of simple events:</p>
+   <dl>
+    <dt data-md=""><code>note(0, C4, 1/4) note(0, E4, 1/4) note(0, G4, 1/4)</code>
+    <dd data-md="">
+     <p>A C major triad with the duration of a quarter note, sounding at the event’s default offset.</p>
+    <dt data-md=""><code>note(0, C4, 0.33/4) note(0.33/4, E4, 0.33/4) note(0.67/4, G4, 0.33/4)</code>
+    <dd data-md="">
+     <p>A C major arpeggio with the duration of a quarter note, sounding at the event’s default offset.</p>
+   </dl>
+   <p>In this example, a regularly notated C triad is played as an arpeggiated C
+chord. Note that the styling is applied to the entire <code><a data-link-type="element">event</a></code>, replacing the
+interpretation of all contained elements:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span> <span class="na">perform=</span><span class="s">"play: note(0, C4, 4) note(1/32, E4, 7/32) note(2/32, G4, 6/32);"</span><span class="nt">></span>
+    <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span>
+    <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E4"</span><span class="nt">/></span>
+    <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"G4"</span><span class="nt">/></span>
+<span class="nt">&lt;/event></span>
+</pre>
+   <p>One can style <code><a data-link-type="element">measure</a></code> or <code><a data-link-type="element">voice</a></code> elements with the <code>play</code> property,
+replacing the entire default interpretation of measures or voices if so
+desired.</p>
+   <h3 class="heading settled" data-level="6.5" id="musical-selectors"><span class="secno">6.5. </span><span class="content">Musical Selectors</span><a class="self-link" href="#musical-selectors"></a></h3>
    <p>Special CSS selectors can be defined for MNX to make it easier to achieve
 useful interpretation results with styling.</p>
    <p>Consider these two useful hypothetical selectors:</p>
@@ -2686,11 +2728,4 @@ in the same <code><a data-link-type="element">direction</a></code>, but it makes
    <div class="issue"> MNX should define the meaning of <code>default</code> and <code>relative</code> more clearly and
 propose a tight set of requirements on positioning, while leaving lots of wiggle room
 for competition between implementations.<a href="#issue-d9033513"> ↵ </a></div>
-   <div class="issue"> It is desirable to be able to specify an entire sequence of notes as
-the interpretation of a single note, or of a voice, or of an entire passage.
-Consider the interpretations of early music ornaments as one such example.
-Might this be able to be specified as a single style property? It seems
-feasible, and one beneficial result would be stylesheets that govern the
-interpretation of ornaments (corresponding to the kind of front matter one
-often sees in editions of such music).<a href="#issue-01fcc9a2"> ↵ </a></div>
   </div>

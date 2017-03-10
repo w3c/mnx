@@ -333,7 +333,8 @@ encoded in these ways:
 - A note value encoding standing alone, specifies a duration
     equal to a single occurrence of the note value
 - A real number followed by `/` and a note value encoding specifies a duration equal to the
-    given number of note value units.
+    given number of note value units. The note value is subject to any contextual
+    time modification due to tuplets.
 - A real number followed by the special suffix `t` (for ticks) specifies the given number
     of 1024th notes (1/256 of the value of a quarter note).
 
@@ -924,7 +925,9 @@ by an explicit unit:
 : `px`
 :: display pixels (same unit as in SVG or HTML)
 : `/`*note-value*
-:: displacement based on metrical time within a measure (i.e. property is a metrical duration encoding)
+:: displacement based on metrical time within the containing measure or tuplet.
+: `//`*note-value*
+:: displacement based on metrical time within the containing measure, *disregarding any containing tuplets*.
 : `t`
 :: MIDI ticks (1024th notes)
 
@@ -1149,20 +1152,12 @@ of course:
 : `dynamics`
 :: Volume expressed as MIDI velocity (same as the MusicXML attribute of <{sound}>?)
 : `tempo`
-:: Tempo expressed as quarter notes per minute by default. May be followed by an
-      optional note value encoding to denote the unit (e.g. **tempo: 120/4**).
+:: Tempo expressed as a metrical duration encoding, e.g. **tempo: 120/4**. (same as
+    MusicXML, but doesn't require quarter note units).
 
 Note: There is no `tied` property. It is not clear that one is needed, since
 the sounded duration of a tied note should take the semantic `tie`
 information into account.
-
-Issue: It is desirable to be able to specify an entire sequence of notes as
-the interpretation of a single note, or of a voice, or of an entire passage.
-Consider the interpretations of early music ornaments as one such example.
-Might this be able to be specified as a single style property? It seems
-feasible, and one beneficial result would be stylesheets that govern the
-interpretation of ornaments (corresponding to the kind of front matter one
-often sees in editions of such music).
 
 ## Interpretation flow
 
@@ -1172,7 +1167,57 @@ that continue down the page, altering interpretation with CSS has follow-on effe
 For example, `tempo` and `dynamics` clearly make sense to flow forward into successor
 events. On the other hand, `pitch` probably does not.
 
-The flow behavior of intepreration properties needs to be carefully characterized.
+The flow behavior of interpretation properties needs to be carefully characterized.
+
+## Performance events and event streams
+
+It is useful to combine the values found in the `offset`, `pitch` and
+`duration` and `dynamics` properties into a single styling construct called a
+*performance event*, using the simple syntaxes `note(offset, pitch, duration)` or
+`note(offset, pitch, duration, dynamics)`. Think of these as syntactically
+similar to `rgb()` or `rgba()` colors. Some examples:
+
+: `note(0, C4, 1/4)`
+:: A middle C sounding at the event's default offset for a duration of one quarter note.
+: `note(0, C4, 1/4, 127)`
+:: The same note, but at a MIDI velocity of 127.
+: `note(0, C4, 1//4)`
+:: The same note with a quarter note duration, *disregarding any effective time modification*
+
+This permits the useful interpretation property `play`, which overrides the
+entire default interpreation of whatever MNX element it is applied to. Here's
+a quarter note C3 that is supposed to actually be played as a 16th note C4:
+
+```xml
+<event value="4">
+    <note pitch="C3" perform="play: note(0, C4, 16);"/>
+</event>
+```
+
+The real point of this feature is not syntactic sugar, but to make it practical
+to specify more complex performance events. One can do this by separating
+notes with spaces to create streams of simple events:
+
+: `note(0, C4, 1/4) note(0, E4, 1/4) note(0, G4, 1/4)`
+:: A C major triad with the duration of a quarter note, sounding at the event's default offset.
+: `note(0, C4, 0.33/4) note(0.33/4, E4, 0.33/4) note(0.67/4, G4, 0.33/4)`
+:: A C major arpeggio with the duration of a quarter note, sounding at the event's default offset.
+
+In this example, a regularly notated C triad is played as an arpeggiated C
+chord. Note that the styling is applied to the entire <{event}>, replacing the
+interpretation of all contained elements:
+
+```xml
+<event value="4" perform="play: note(0, C4, 4) note(1/32, E4, 7/32) note(2/32, G4, 6/32);">
+    <note pitch="C4"/>
+    <note pitch="E4"/>
+    <note pitch="G4"/>
+</event>
+```
+
+One can style <{measure}> or <{voice}> elements with the `play` property,
+replacing the entire default interpretation of measures or voices if so
+desired.
 
 ## Musical Selectors
 
