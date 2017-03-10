@@ -2125,16 +2125,55 @@ as an eighth note might include <code>appearance="8*"</code> to force the appear
     <li data-md="">
      <p>visually align this event with some other arbitrary event in the same
 measure (e.g. line up a regular sixteenth note with the last note in some
-other voice’s sixteenth-note triplet). A <code>position-ref</code> attribute
+other voice’s sixteenth-note triplet). An <code>offset-ref</code> attribute
 specifies an IDREF for target event with which to align.</p>
    </ul>
-   <p>TBD: include fragment of Chopin Op. 15 no. 2 encoding here to illustrate.
-Encoding using technique 1 yields an upper voice that is semantically based on
-the quintuplet flow in the lower voice, but appears to use a 16th-note flow.
-Technique 2 yields an upper voice that is semantically based on an independent
-16th-note flow, but still aligns visually with points in the lower voice’s
-quintuplet flow. Both techniques look identical - but playback and post-import
-editing behavior will be different.</p>
+   <p>For example, consider the following Chopin-esque example of a two-voice passage.
+The upper staff contains a dotted-8th and sixteenth note; the lower voice
+contains quintuplet 16th notes. However, the two final notes of both voices are
+to be displayed in alignment.</p>
+   <p>There are at least two different ways to encode this, which look identical but
+convey different rhythmic intent. One way is to consider the upper voice to
+actually be denoting a quintuplet-based rhythm, but make it look like a non-
+tuplet rhythm:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;measure</span><span class="nt">></span>
+    <span class="nt">&lt;sequence</span> <span class="na">staff=</span><span class="s">"1"</span><span class="nt">></span>
+        <span class="nt">&lt;tuplet</span> <span class="na">actual=</span><span class="s">"5/16"</span> <span class="na">normal=</span><span class="s">"1/4"</span> <span class="na">bracket=</span><span class="s">"no"</span> <span class="na">show-number=</span><span class="s">"no"</span><span class="nt">></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span> <span class="na">appearance=</span><span class="s">"8*"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"1/16"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;/tuplet></span>
+    <span class="nt">&lt;/sequence></span>
+    <span class="nt">&lt;sequence</span> <span class="na">staff=</span><span class="s">"1"</span><span class="nt">></span>
+        <span class="nt">&lt;tuplet</span> <span class="na">actual=</span><span class="s">"5/16"</span> <span class="na">normal=</span><span class="s">"1/4"</span><span class="nt">></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"1/16"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"1/16"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"1/16"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"1/16"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"1/16"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;/tuplet></span>
+    <span class="nt">&lt;/sequence></span>
+<span class="nt">&lt;/measure></span>
+</pre>
+   <p>A second approach conveys truly independent rhythms at the semantic level, but shows them aligned
+in the prescribed fashion:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;measure</span><span class="nt">></span>
+    <span class="nt">&lt;sequence</span> <span class="na">staff=</span><span class="s">"1"</span><span class="nt">></span>
+        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8*"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"1/16"</span> <span class="na">offset-ref=</span><span class="s">"n5"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+    <span class="nt">&lt;/sequence></span>
+    <span class="nt">&lt;sequence</span> <span class="na">staff=</span><span class="s">"1"</span><span class="nt">></span>
+        <span class="nt">&lt;tuplet</span> <span class="na">actual=</span><span class="s">"5/16"</span> <span class="na">normal=</span><span class="s">"1/4"</span><span class="nt">></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"1/16"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"1/16"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"1/16"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"1/16"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+            <span class="nt">&lt;event</span> <span class="na">id=</span><span class="s">"n5"</span> <span class="na">value=</span><span class="s">"1/16"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;/tuplet></span>
+    <span class="nt">&lt;/sequence></span>
+<span class="nt">&lt;/measure></span>
+</pre>
+   <p>Independent of these editorial decisions, it is also possible to prescribe any
+desired performance rhythm using the <a href="#interpretation">§6 Interpretation</a> features of MNX.</p>
    <h2 class="heading settled" data-level="5" id="styling"><span class="secno">5. </span><span class="content">Styling</span><a class="self-link" href="#styling"></a></h2>
    <p>MNX employs CSS style properties to describe the appearance layer of a score.
 The property vocabulary used by MNX is not the same as for HTML or SVG,

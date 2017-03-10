@@ -338,7 +338,6 @@ encoded in these ways:
 - A real number followed by the special suffix `t` (for ticks) specifies the given number
     of 1024th notes (1/256 of the value of a quarter note).
 
-
 Examples:
 
 : `4`
@@ -765,16 +764,62 @@ either or both of the following:
 
 - visually align this event with some other arbitrary event in the same
     measure (e.g. line up a regular sixteenth note with the last note in some
-    other voice's sixteenth-note triplet). A `position-ref` attribute
+    other voice's sixteenth-note triplet). An `offset-ref` attribute
     specifies an IDREF for target event with which to align.
 
-TBD: include fragment of Chopin Op. 15 no. 2 encoding here to illustrate.
-Encoding using technique 1 yields an upper voice that is semantically based on
-the quintuplet flow in the lower voice, but appears to use a 16th-note flow.
-Technique 2 yields an upper voice that is semantically based on an independent
-16th-note flow, but still aligns visually with points in the lower voice's
-quintuplet flow. Both techniques look identical - but playback and post-import
-editing behavior will be different.
+For example, consider the following Chopin-esque example of a two-voice passage.
+The upper staff contains a dotted-8th and sixteenth note; the lower voice
+contains quintuplet 16th notes. However, the two final notes of both voices are
+to be displayed in alignment.
+
+There are at least two different ways to encode this, which look identical but
+convey different rhythmic intent. One way is to consider the upper voice to
+actually be denoting a quintuplet-based rhythm, but make it look like a non-
+tuplet rhythm:
+
+```xml
+<measure>
+    <sequence staff="1">
+        <tuplet actual="5/16" normal="1/4" bracket="no" show-number="no">
+            <event value="4" appearance="8*">...</event>
+            <event value="1/16">...</event>
+        </tuplet>
+    </sequence>
+    <sequence staff="1">
+        <tuplet actual="5/16" normal="1/4">
+            <event value="1/16">...</event>
+            <event value="1/16">...</event>
+            <event value="1/16">...</event>
+            <event value="1/16">...</event>
+            <event value="1/16">...</event>
+        </tuplet>
+    </sequence>
+</measure>
+```
+
+A second approach conveys truly independent rhythms at the semantic level, but shows them aligned
+in the prescribed fashion:
+
+```xml
+<measure>
+    <sequence staff="1">
+        <event value="8*">...</event>
+        <event value="1/16" offset-ref="n5">...</event>
+    </sequence>
+    <sequence staff="1">
+        <tuplet actual="5/16" normal="1/4">
+            <event value="1/16">...</event>
+            <event value="1/16">...</event>
+            <event value="1/16">...</event>
+            <event value="1/16">...</event>
+            <event id="n5" value="1/16">...</event>
+        </tuplet>
+    </sequence>
+</measure>
+```
+
+Independent of these editorial decisions, it is also possible to prescribe any
+desired performance rhythm using the [[#interpretation]] features of MNX.
 
 # Styling
 
