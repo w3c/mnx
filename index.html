@@ -1486,7 +1486,7 @@ Examples are used rather than specification language.</p>
       <li><a href="#interpretation-properties"><span class="secno">6.2</span> <span class="content">Interpretation properties</span></a>
       <li><a href="#interpretation-flow"><span class="secno">6.3</span> <span class="content">Interpretation flow</span></a>
       <li><a href="#performance-events-and-event-streams"><span class="secno">6.4</span> <span class="content">Performance events and event streams</span></a>
-      <li><a href="#musical-selectors"><span class="secno">6.5</span> <span class="content">Musical Selectors</span></a>
+      <li><a href="#rhythmic-template-selectors"><span class="secno">6.5</span> <span class="content">Rhythmic template selectors</span></a>
      </ol>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
@@ -2544,28 +2544,37 @@ interpretation of all contained elements:</p>
    <p>One can style <code><a data-link-type="element">measure</a></code> or <code><a data-link-type="element">voice</a></code> elements with the <code>play</code> property,
 replacing the entire default interpretation of measures or voices if so
 desired.</p>
-   <h3 class="heading settled" data-level="6.5" id="musical-selectors"><span class="secno">6.5. </span><span class="content">Musical Selectors</span><a class="self-link" href="#musical-selectors"></a></h3>
+   <h3 class="heading settled" data-level="6.5" id="rhythmic-template-selectors"><span class="secno">6.5. </span><span class="content">Rhythmic template selectors</span><a class="self-link" href="#rhythmic-template-selectors"></a></h3>
    <p>Special CSS selectors can be defined for MNX to make it easier to achieve
 useful interpretation results with styling.</p>
-   <p>Consider these two useful hypothetical selectors:</p>
+   <p>Consider these two useful selectors:</p>
    <ul>
     <li data-md="">
-     <p><code>:subdivides(4, 1/8)</code> will match any event that occurs one eighth-
+     <p><code>:occurs-within(4, 1/8)</code> will match any event that occurs one eighth-
 note into any quarter-note subdivision.</p>
     <li data-md="">
      <p><code>:value(8)</code> will match any event whose note value is 8.</p>
    </ul>
    <p>Now we can have a stylesheet definition that specifies a swing percentage of 10%:</p>
-<pre class="language-css highlight"><span class="nt">:subdivides(4, 0) :value(8) </span><span class="p">{</span>
+<pre class="language-css highlight"><span class="nt">:occurs-within(4, 0) :value(8) </span><span class="p">{</span>
     <span class="k">duration</span><span class="p">:</span> <span class="m">110</span><span class="l">%</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nt">:subdivides(4, 1/8) :value(8) </span><span class="p">{</span>
+<span class="nt">:occurs-within(4, 1/8) :value(8) </span><span class="p">{</span>
     <span class="k">offset</span><span class="p">:</span> <span class="m">10</span><span class="l">%</span><span class="p">;</span>
     <span class="k">duration</span><span class="p">:</span> <span class="m">90</span><span class="l">%</span><span class="p">;</span>
 <span class="p">}</span>
 </pre>
-   <p>Here we conveniently assume that percentage values for note-interpretation
-properties refer to fractions of the note’s duration.</p>
+   <p>It’s also possible to specify the interpretation of a French-style dotted
+baroque rhythm using exactly the same mechanism. In this example,
+all notated dotted eighths are performed as double-dotted:</p>
+<pre class="language-css highlight"><span class="nt">:occurs-within(4, 0) :value(8*) </span><span class="p">{</span>
+    <span class="k">duration</span><span class="p">:</span> <span class="m">7</span><span class="p">/</span><span class="m">32</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">:occurs-within(4, 8*) :value(16) </span><span class="p">{</span>
+    <span class="k">offset</span><span class="p">:</span> <span class="m">1</span><span class="p">/</span><span class="m">32</span><span class="p">;</span>
+    <span class="k">duration</span><span class="p">:</span> <span class="m">1</span><span class="p">/</span><span class="m">32</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
   </main>
   <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2>

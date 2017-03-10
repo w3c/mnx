@@ -1264,14 +1264,14 @@ One can style <{measure}> or <{voice}> elements with the `play` property,
 replacing the entire default interpretation of measures or voices if so
 desired.
 
-## Musical Selectors
+## Rhythmic template selectors
 
 Special CSS selectors can be defined for MNX to make it easier to achieve
 useful interpretation results with styling.
 
-Consider these two useful hypothetical selectors:
+Consider these two useful selectors:
 
-- `:subdivides(4, 1/8)` will match any event that occurs one eighth-
+- `:occurs-within(4, 1/8)` will match any event that occurs one eighth-
 note into any quarter-note subdivision.
 
 - `:value(8)` will match any event whose note value is 8.
@@ -1279,16 +1279,28 @@ note into any quarter-note subdivision.
 Now we can have a stylesheet definition that specifies a swing percentage of 10%:
 
 ```css
-:subdivides(4, 0) :value(8) {
+:occurs-within(4, 0) :value(8) {
     duration: 110%;
 }
-:subdivides(4, 1/8) :value(8) {
+:occurs-within(4, 1/8) :value(8) {
     offset: 10%;
     duration: 90%;
 }
 
 ```
 
-Here we conveniently assume that percentage values for note-interpretation
-properties refer to fractions of the note's duration.
+It's also possible to specify the interpretation of a French-style dotted
+baroque rhythm using exactly the same mechanism. In this example,
+all notated dotted eighths are performed as double-dotted:
+
+```css
+:occurs-within(4, 0) :value(8*) {
+    duration: 7/32;
+}
+:occurs-within(4, 8*) :value(16) {
+    offset: 1/32;
+    duration: 1/32;
+}
+
+```
 
