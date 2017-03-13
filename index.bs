@@ -1272,6 +1272,13 @@ One can style <{measure}> or <{voice}> elements with the `play` property,
 replacing the entire default interpretation of measures or voices if so
 desired.
 
+Note: There are two reasons that this event representation is not directly
+tied to MIDI concepts. First, it's expected that many applications will make
+use of their own internal sound engines to render performances, and we cannot
+assume that these engines make use of MIDI constructs internally. Second, the
+parameters governing the interpretation layer are very conveniently expressed
+in terms of the same units as the semantic layer.
+
 ## Rhythmic template selectors
 
 Special CSS selectors can be defined for MNX to make it easier to achieve

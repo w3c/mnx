@@ -1386,7 +1386,7 @@ Possible extra rowspan handling
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Overview (Draft Proposal)</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-03-10">10 March 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-03-13">13 March 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1399,7 +1399,7 @@ Possible extra rowspan handling
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 10 March 2017,
+In addition, as of 13 March 2017,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2552,6 +2552,12 @@ all contained elements:</p>
    <p>One can style <code><a data-link-type="element">measure</a></code> or <code><a data-link-type="element">voice</a></code> elements with the <code>play</code> property,
 replacing the entire default interpretation of measures or voices if so
 desired.</p>
+   <p class="note" role="note"><span>Note:</span> There are two reasons that this event representation is not directly
+tied to MIDI concepts. First, it’s expected that many applications will make
+use of their own internal sound engines to render performances, and we cannot
+assume that these engines make use of MIDI constructs internally. Second, the
+parameters governing the interpretation layer are very conveniently expressed
+in terms of the same units as the semantic layer.</p>
    <h3 class="heading settled" data-level="6.5" id="rhythmic-template-selectors"><span class="secno">6.5. </span><span class="content">Rhythmic template selectors</span><a class="self-link" href="#rhythmic-template-selectors"></a></h3>
    <p>Special CSS selectors can be defined for MNX to make it easier to achieve
 useful interpretation results with styling.</p>
