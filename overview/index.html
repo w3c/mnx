@@ -1964,26 +1964,19 @@ possess a number or any other label. It can, however, be assigned a label via
 the optional <code><a data-link-type="element-sub">name</a></code> attribute that declares continuity between
 identically named/numbered sequences in successive measures of the same part.</p>
    <div class="note" role="note">
-     Note: A chief motivation for this style of specifying timeline events is
-that within a <code><a data-link-type="element">sequence</a></code>, overlapping events cannot exist. The notated
-metrical time of each element of a sequence increases monotonically within the
-sequence, and the next element cannot begin before the previous one ends. Thus
-a sequence constitutes a coherent musical "layer" within a measure. Where
-music contains polyphonic voices, a sequence is naturally used to represent
-each voice. 
-    <p>While there is still a notion of time cursor, significant constraints
-distinguish MNX’s cursors from MusicXML:</p>
+     Note: While there is still a notion of time cursor, significant constraints
+distinguish MNX’s cursors from MusicXML: 
     <ul>
      <li data-md="">
       <p>The cursor must progress in a forward direction</p>
      <li data-md="">
       <p>The cursor may only progress in units that are expressible in CMN (rather than any number of divisions)</p>
      <li data-md="">
-      <p>Events within the cursor’s timeline always belong to the same "voice" or "layer"</p>
+      <p>Events within the cursor’s timeline always belong to the same polyphonic voice or "layer"</p>
      <li data-md="">
       <p>Events cannot overlap</p>
     </ul>
-    <p>The no-overlaps constraint is semantic only. It does <em>not</em> apply to
+    <p>These constraints are semantic only. It does <em>not</em> apply to
 either the appearance or interpretation of the sequence.</p>
    </div>
    <h4 class="heading settled" data-level="4.3.5" id="pitch-encoding"><span class="secno">4.3.5. </span><span class="content">Pitch encoding</span><a class="self-link" href="#pitch-encoding"></a></h4>
