@@ -247,9 +247,88 @@ omitted for brevity.
 
 ## CWMN Score structure
 
-For a CWMN score, the <{score}> element is equivalent to the
+For a CWMN score, the <{score}> element is roughly equivalent to the
 <{score-partwise}> element in MusicXML. MusicXML's <{score-timewise}> element
 is not used in MNX's CWMN support.
+
+### Unifying <{score-part}> and <{part}>
+
+In MNX, the contents of the <{score-part}> element are simply included below <{part}>.
+This leaves the <{part}> element as the single place in the document that provides
+part-related information.
+
+### System notations
+
+A number of notational concepts can be scoped to the entire system in a
+semantic sense, not only to a single part. Examples include:
+
+- Key signatures
+- Time signatures
+- Tempo indications
+- Rehearsal marks
+- Barlines
+- System and page breaks (see [[#system-and-page-flow]])
+- Musical form indications
+
+In some cases (key signatures, for example) the concept is encoded
+separately in each MusicXML part, yet they are expected to semantically agree
+across all parts. While such agreement is not necessarily the case, it is
+nearly always the case. It seems desirable to allow this agreement to be
+expressed in a single encoding, somewhere in the document.
+
+In other cases (e.g. tempo indications) the concept typically is encoded in
+the first visible MusicXML part. Yet, if the document were rendered showing
+only some other part in the score, there would still be an expectation that
+the tempo indications encoded in the topmost part would be shown. MusicXML
+documents produced by different engravers vary widely in this respect.
+
+A goal of MNX is to encode such system notations singly, rather than multiple
+times, in a way that clarifies their score-wide applicability.  Two such
+mechanisms are proposed (which are not exclusive):
+
+1. Include a new <{system}> element analogous to <{part}>, which precedes all
+<{part}> elements in the score. This contains <{measures}> whose contents are
+understood to apply to all parts. Parts need only include such elements to
+the extent that they are overridden. No performance events like notes
+or rests may be included in the measures within <{system}>.
+
+2. Identify elements within existing parts that are understood to apply to the
+system as a whole, by calling them out with a `scope="system"` attribute or 
+its equivalent.
+
+Issue: These approaches should be studied in more detail and if possible
+reduced to a single unified approach. <{system}> obliges implementations to
+merge its information into other visible parts as needed. On the other hand, a
+scope marker can scatter system-wide information to be freely among
+parts with no constraints on their occurrence or relationships.
+
+An example MNX/CMN score skeleton could thus look like this:
+
+```xml
+<mnx xmlns="http://www.w3.org/mnx">
+    <head>...</head>
+    <score content="cwmn">
+        <system>
+            ...measures describing system-wide features...
+        </system>
+        <part>
+            ...descriptive info for part 1...
+            ...measures describing part 1...
+        </part>
+        <part>
+            ...descriptive info for part 2...
+            ...measures describing part 2...
+        </part>
+        ...additional parts...
+    </score>
+</mnx>
+```
+
+### Concert and transposed pitch
+
+Issue: We need to decide the pitch frame in which parts are encoded. Both
+concert pitch and transposed pitch (used by MusicXML) have advantages and
+disadvantages.
 
 ## Element IDs
 
@@ -282,7 +361,7 @@ MusicXML, though. The differences are driven by the following design goals:
 - Eliminate the need for complex book-keeping and post-processing when
     parsing measures of music.
 
-### Specialized text encodings
+### Specialized value encodings
 
 For compactness and readability, MNX represents note values, metrical
 durations and pitches as single textual attributes. Compactness and
@@ -297,7 +376,8 @@ make sense of the succeeding examples.
 There are a variety of situations in which a note value needs to be supplied
 for an element. MNX uses a text encoding to represent such durations; in
 general, this replaces some arbitrary combination of MusicXMLs <{type}> and
-<{dot}> elements with no difference in semantics at all.
+<{dot}> elements with no difference in semantics at all. The values are always
+implicitly subject to any tuplet time modification that may be in effect.
 
 The note value encoding scheme consists of a unit, expressed as a power-of-two
 division of a whole note, similar to the denominator of a time signature, with
@@ -321,6 +401,30 @@ avoid confusion with a decimal point). Examples follow:
 In general, the attribute name `value` is used to supply this information
 for various MNX elements.
 
+<div class="note">
+Note: The motivation here is to provide a terse but readable encoding that is
+equivalent to rational numbers, but whose syntax constrains the encoding to
+only permit note values expressible within the framework of CWMN:
+
+- power-of-two denominators (i.e. standard note values)
+- no use of ad hoc additional factors like 1/3, 1/5, etc unless these are applied as part of a tuplet grouping
+- (2^n)-1 numerators (1, 3, 7... in other words, only numerators achievable with dots)
+
+While it would be possible to use a full-on rational-number notation, this
+would permit the specification of arbitrary non-CMN values and complicate
+validation and parsing.
+
+Retaining the more verbose approach of separate <{type}> and <{dot}> elements,
+on the other hand, makes it harder to embed note values in other strings such
+as time or position offsets.
+
+Also, a pure rational number does not maps cleanly onto what one sees in
+notated music. This encoding attempts an obvious mapping between the semantic
+layer and a naïvely notated score. Rational numbers that combine the notion of
+note values, dots and tuplets into a single number take us further from this
+ideal.
+</div>
+
 ### Metrical duration encoding
 
 There are also situations in which a metrical duration needs to be supplied,
@@ -336,8 +440,6 @@ encoded in these ways:
 - A real number followed by `/` and a note value encoding specifies a duration equal to the
     given number of note value units. The note value is subject to any contextual
     time modification due to tuplets.
-- A real number followed by the special suffix `t` specifies the given number
-    of ticks, where a tick is 1/960 of a quarter note.
 
 Examples:
 
@@ -349,8 +451,6 @@ Examples:
 :: three-and-a-half quarter notes
 : `3/8*`
 :: three dotted quarter notes (this form can be useful for arbitrary [[#tuplets]])
-: `15.2t`
-:: 15.2 ticks
 
 In general, the attribute name `duration` is used to supply these specifications
 for various MNX elements.
@@ -388,10 +488,16 @@ represented by <{sequence}> elements.
 </measure>
 ```
 
-The notated metrical time of each element of a sequence increases
-monotonically within the sequence. Thus it constitutes a coherent musical
-"layer" within a measure. Where music contains polyphonic voices, a sequence
-is naturally used to represent each voice.
+One of the chief motivations for this style of specifying timeline events is
+that within a <{sequence}>, overlapping events cannot exist. The notated
+metrical time of each element of a sequence increases monotonically within the
+sequence, and the next element cannot begin before the previous one ends. Thus
+a sequence constitutes a coherent musical "layer" within a measure. Where
+music contains polyphonic voices, a sequence is naturally used to represent
+each voice.
+
+Note: The no-overlaps constraint is semantic only. It does *not* apply to
+either the appearance or interpretation of the sequence.
 
 The optional <{sequence/orientation}> attribute may assume the values <code>up</code>
 or <code>down</code>, affecting the default placement of stems, articulations,
@@ -459,6 +565,9 @@ The `pitch` attribute is used to supply pitch encodings where appropriate, typic
 for <{note}> elements.
 
 Pitch encodings are used also in [[#interpretation]].
+
+Issue: permit some sort of rational number option here for just-intonation
+temperaments and their variants.
 
 ### Events
 
@@ -692,7 +801,7 @@ same measure (the situation is very similar for events in different measures):
         <event value="4">
             <note pitch="C5"/>
             <note pitch="Eb5"/>
-            <slur ref="a1"/>
+            <slur end-ref="a1"/>
         </event>
         <event value="4">
             <note pitch="D5"/>
@@ -734,7 +843,12 @@ Issue: do we really care what order the reference and the target occur in?
 
 ## Text and directions
 
-(Section TBD)
+(TBD)
+
+MNX will include strong semantic types for different musical purposes of text.
+Dynamics, tempo markings, lyrics, playing instructions/techniques, etc. will
+all have proper types and may be freely included in <{sequence}> and <{event}>
+elements.
 
 Issue: Should MNX split directions out into text-like (durationless) direction types
 and span-like direction types? It doesn't appear that the left-to-right
@@ -745,6 +859,19 @@ Issue: Text with embedded style/font runs should be dealt with using <{span}>
 tags and CSS styling, rather than a sequence of separate direction-types.
 
 Issue: How should paragraph-style interpolated blocks be dealt with?
+
+## Pagination, credits and page-level text
+
+(TBD)
+
+We need to study the CSS specification as it is currently evolving to
+represent pagination to meet the needs of digital publishing overall, not only
+music publishing.
+
+MusicXML's page-level elements such as <{credit-words}> and others need to be
+reconsidered in light of this evolution. There is currently a tension in the
+existing corpus of MusicXML documents between the use of explicitly placed
+<{credit}> elements and the metadata found in the <{information}> element.
 
 ## Semantic layout overrides
 
@@ -961,7 +1088,7 @@ It's often useful to separate stylesheet definitions in a separate `.css` file. 
 </mnx>
 ```
 
-## Unit abbreviations
+## Units
 
 Properties representing a visual displacement or distance must use a number followed
 by an explicit unit:
@@ -973,11 +1100,34 @@ by an explicit unit:
 : `px`
 :: display pixels (same unit as in SVG or HTML)
 : `/`*note-value*
-:: displacement based on metrical time within the containing measure or tuplet.
+:: displacement based on contextual time within the containing measure or tuplet.
 : `//`*note-value*
-:: displacement based on metrical time within the containing measure, *disregarding any containing tuplets*.
+:: displacement based on measure-level time, *disregarding any containing tuplets*.
 : `t`
-:: MIDI ticks (1/960 of a quarter note)
+:: MIDI ticks (1/960 of a measure-level quarter note)
+
+The default unit for all time displacements is measure-level quarter notes (equivalent to `//4`).
+
+Rational numbers may be employed for time displacements. These are expressed
+using `:` to separate the numerator and denominator.
+
+Examples:
+
+: `1sl`
+:: One staff line
+: `5st`
+:: 0.5 staff lines
+: `1/8`
+:: a contextual eighth note
+: `1//8`
+:: a measure-level eighth note
+: `481t`
+:: one tick longer than a measure-level eighthnote
+: `1:3`
+:: a triplet 8th note (1/3 of a quarter note)
+: `1:3//4`
+:: same as above
+
 
 ## CSS property usage
 
@@ -1098,13 +1248,17 @@ space in the layout, and it may be sensitive to pointer events.
 
 ## System and page flow
 
-The MNX style properties `new-page` and `new-system` control page and system
-flow. The styles are specified at the <{measure}> level, but they act on the
-entire system or page regardless of which part they occur in.
+The MNX style properties `new-page` and `new-system` (as well as others)
+control page and system flow. Such styles are specified at the <{measure}> or
+<{event}> level.
 
-Using [[#media-queries-and-parts]] it is possible to apply these system/page
-flow properties selectively to the display of specific parts. This allows page
-and system breaks to be customized for each part within a document.
+These properties act across the system, but may be defined differently in
+full-score formats as opposed to single-part formats; it is very uncommon for such
+breaks to be identical across all views of a score. Thus they will participate
+in whatever solution is arrived at for [[#system-notations]].
+
+Media queries can further be used to specialize system and page flow for viewing
+and printing different formats on different devices.
 
 ## Styling grace and cue notes
 

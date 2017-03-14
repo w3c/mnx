@@ -1440,12 +1440,18 @@ Examples are used rather than specification language.</p>
     <li>
      <a href="#semantic-markup"><span class="secno">4</span> <span class="content">Semantic markup</span></a>
      <ol class="toc">
-      <li><a href="#cwmn-score-structure"><span class="secno">4.1</span> <span class="content">CWMN Score structure</span></a>
+      <li>
+       <a href="#cwmn-score-structure"><span class="secno">4.1</span> <span class="content">CWMN Score structure</span></a>
+       <ol class="toc">
+        <li><a href="#unifying-score-part-and-part"><span class="secno">4.1.1</span> <span class="content">Unifying <code><span>score-part</span></code> and <code><span>part</span></code></span></a>
+        <li><a href="#system-notations"><span class="secno">4.1.2</span> <span class="content">System notations</span></a>
+        <li><a href="#concert-and-transposed-pitch"><span class="secno">4.1.3</span> <span class="content">Concert and transposed pitch</span></a>
+       </ol>
       <li><a href="#element-ids"><span class="secno">4.2</span> <span class="content">Element IDs</span></a>
       <li>
        <a href="#musical-timelines"><span class="secno">4.3</span> <span class="content">Musical timelines</span></a>
        <ol class="toc">
-        <li><a href="#specialized-text-encodings"><span class="secno">4.3.1</span> <span class="content">Specialized text encodings</span></a>
+        <li><a href="#specialized-value-encodings"><span class="secno">4.3.1</span> <span class="content">Specialized value encodings</span></a>
         <li><a href="#note-value-encoding"><span class="secno">4.3.2</span> <span class="content">Note value encoding</span></a>
         <li><a href="#metrical-duration-encoding"><span class="secno">4.3.3</span> <span class="content">Metrical duration encoding</span></a>
         <li><a href="#sequences-timelines-within-measures"><span class="secno">4.3.4</span> <span class="content">Sequences: timelines within measures</span></a>
@@ -1457,7 +1463,8 @@ Examples are used rather than specification language.</p>
        </ol>
       <li><a href="#spanning-notations"><span class="secno">4.4</span> <span class="content">Spanning notations</span></a>
       <li><a href="#text-and-directions"><span class="secno">4.5</span> <span class="content">Text and directions</span></a>
-      <li><a href="#semantic-layout-overrides"><span class="secno">4.6</span> <span class="content">Semantic layout overrides</span></a>
+      <li><a href="#pagination-credits-and-page-level-text"><span class="secno">4.6</span> <span class="content">Pagination, credits and page-level text</span></a>
+      <li><a href="#semantic-layout-overrides"><span class="secno">4.7</span> <span class="content">Semantic layout overrides</span></a>
      </ol>
     <li>
      <a href="#styling"><span class="secno">5</span> <span class="content">Styling</span></a>
@@ -1465,7 +1472,7 @@ Examples are used rather than specification language.</p>
       <li><a href="#css-and-style-properties"><span class="secno">5.1</span> <span class="content">CSS and style properties</span></a>
       <li><a href="#stylesheets"><span class="secno">5.2</span> <span class="content">Stylesheets</span></a>
       <li><a href="#external-stylesheets"><span class="secno">5.3</span> <span class="content">External stylesheets</span></a>
-      <li><a href="#unit-abbreviations"><span class="secno">5.4</span> <span class="content">Unit abbreviations</span></a>
+      <li><a href="#units"><span class="secno">5.4</span> <span class="content">Units</span></a>
       <li>
        <a href="#css-property-usage"><span class="secno">5.5</span> <span class="content">CSS property usage</span></a>
        <ol class="toc">
@@ -1692,8 +1699,83 @@ the standard profile.</p>
    <p class="note" role="note"><span>Note:</span> In most of the examples that follow, the MNX container elements are
 omitted for brevity.</p>
    <h3 class="heading settled" data-level="4.1" id="cwmn-score-structure"><span class="secno">4.1. </span><span class="content">CWMN Score structure</span><a class="self-link" href="#cwmn-score-structure"></a></h3>
-   <p>For a CWMN score, the <code><a data-link-type="element">score</a></code> element is equivalent to the <code><a data-link-type="element">score-partwise</a></code> element in MusicXML. MusicXML’s <code><a data-link-type="element">score-timewise</a></code> element
+   <p>For a CWMN score, the <code><a data-link-type="element">score</a></code> element is roughly equivalent to the <code><a data-link-type="element">score-partwise</a></code> element in MusicXML. MusicXML’s <code><a data-link-type="element">score-timewise</a></code> element
 is not used in MNX’s CWMN support.</p>
+   <h4 class="heading settled" data-level="4.1.1" id="unifying-score-part-and-part"><span class="secno">4.1.1. </span><span class="content">Unifying <code><a data-link-type="element">score-part</a></code> and <code><a data-link-type="element">part</a></code></span><a class="self-link" href="#unifying-score-part-and-part"></a></h4>
+   <p>In MNX, the contents of the <code><a data-link-type="element">score-part</a></code> element are simply included below <code><a data-link-type="element">part</a></code>.
+This leaves the <code><a data-link-type="element">part</a></code> element as the single place in the document that provides
+part-related information.</p>
+   <h4 class="heading settled" data-level="4.1.2" id="system-notations"><span class="secno">4.1.2. </span><span class="content">System notations</span><a class="self-link" href="#system-notations"></a></h4>
+   <p>A number of notational concepts can be scoped to the entire system in a
+semantic sense, not only to a single part. Examples include:</p>
+   <ul>
+    <li data-md="">
+     <p>Key signatures</p>
+    <li data-md="">
+     <p>Time signatures</p>
+    <li data-md="">
+     <p>Tempo indications</p>
+    <li data-md="">
+     <p>Rehearsal marks</p>
+    <li data-md="">
+     <p>Barlines</p>
+    <li data-md="">
+     <p>System and page breaks (see <a href="#system-and-page-flow">§5.8 System and page flow</a>)</p>
+    <li data-md="">
+     <p>Musical form indications</p>
+   </ul>
+   <p>In some cases (key signatures, for example) the concept is encoded
+separately in each MusicXML part, yet they are expected to semantically agree
+across all parts. While such agreement is not necessarily the case, it is
+nearly always the case. It seems desirable to allow this agreement to be
+expressed in a single encoding, somewhere in the document.</p>
+   <p>In other cases (e.g. tempo indications) the concept typically is encoded in
+the first visible MusicXML part. Yet, if the document were rendered showing
+only some other part in the score, there would still be an expectation that
+the tempo indications encoded in the topmost part would be shown. MusicXML
+documents produced by different engravers vary widely in this respect.</p>
+   <p>A goal of MNX is to encode such system notations singly, rather than multiple
+times, in a way that clarifies their score-wide applicability.  Two such
+mechanisms are proposed (which are not exclusive):</p>
+   <ol>
+    <li data-md="">
+     <p>Include a new <code><a data-link-type="element">system</a></code> element analogous to <code><a data-link-type="element">part</a></code>, which precedes all <code><a data-link-type="element">part</a></code> elements in the score. This contains <code><a data-link-type="element">measures</a></code> whose contents are
+understood to apply to all parts. Parts need only include such elements to
+the extent that they are overridden. No performance events like notes
+or rests may be included in the measures within <code><a data-link-type="element">system</a></code>.</p>
+    <li data-md="">
+     <p>Identify elements within existing parts that are understood to apply to the
+system as a whole, by calling them out with a <code>scope="system"</code> attribute or 
+its equivalent.</p>
+   </ol>
+   <p class="issue" id="issue-b8fd9a57"><a class="self-link" href="#issue-b8fd9a57"></a> These approaches should be studied in more detail and if possible
+reduced to a single unified approach. <code><a data-link-type="element">system</a></code> obliges implementations to
+merge its information into other visible parts as needed. On the other hand, a
+scope marker can scatter system-wide information to be freely among
+parts with no constraints on their occurrence or relationships.</p>
+   <p>An example MNX/CMN score skeleton could thus look like this:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;mnx</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/mnx"</span><span class="nt">></span>
+    <span class="nt">&lt;head</span><span class="nt">></span>...<span class="nt">&lt;/head></span>
+    <span class="nt">&lt;score</span> <span class="na">content=</span><span class="s">"cwmn"</span><span class="nt">></span>
+        <span class="nt">&lt;system</span><span class="nt">></span>
+            ...measures describing system-wide features...
+        <span class="nt">&lt;/system></span>
+        <span class="nt">&lt;part</span><span class="nt">></span>
+            ...descriptive info for part 1...
+            ...measures describing part 1...
+        <span class="nt">&lt;/part></span>
+        <span class="nt">&lt;part</span><span class="nt">></span>
+            ...descriptive info for part 2...
+            ...measures describing part 2...
+        <span class="nt">&lt;/part></span>
+        ...additional parts...
+    <span class="nt">&lt;/score></span>
+<span class="nt">&lt;/mnx></span>
+</pre>
+   <h4 class="heading settled" data-level="4.1.3" id="concert-and-transposed-pitch"><span class="secno">4.1.3. </span><span class="content">Concert and transposed pitch</span><a class="self-link" href="#concert-and-transposed-pitch"></a></h4>
+   <p class="issue" id="issue-59982743"><a class="self-link" href="#issue-59982743"></a> We need to decide the pitch frame in which parts are encoded. Both
+concert pitch and transposed pitch (used by MusicXML) have advantages and
+disadvantages.</p>
    <h3 class="heading settled" data-level="4.2" id="element-ids"><span class="secno">4.2. </span><span class="content">Element IDs</span><a class="self-link" href="#element-ids"></a></h3>
    <p>Any element whatsoever in MNX markup may possess a regular <code>id</code> attribute as defined for the XML namespace. References to elements form a
 backbone principle of key aspects of MNX, for example <a href="#spanning-notations">§4.4 Spanning notations</a>.</p>
@@ -1721,7 +1803,7 @@ simply inserting a <code><a data-link-type="element">note</a></code> element in 
      <p>Eliminate the need for complex book-keeping and post-processing when
 parsing measures of music.</p>
    </ul>
-   <h4 class="heading settled" data-level="4.3.1" id="specialized-text-encodings"><span class="secno">4.3.1. </span><span class="content">Specialized text encodings</span><a class="self-link" href="#specialized-text-encodings"></a></h4>
+   <h4 class="heading settled" data-level="4.3.1" id="specialized-value-encodings"><span class="secno">4.3.1. </span><span class="content">Specialized value encodings</span><a class="self-link" href="#specialized-value-encodings"></a></h4>
    <p>For compactness and readability, MNX represents note values, metrical
 durations and pitches as single textual attributes. Compactness and
 readability are desirable because encodings are documented, read and talked
@@ -1731,7 +1813,8 @@ make sense of the succeeding examples.</p>
    <h4 class="heading settled" data-level="4.3.2" id="note-value-encoding"><span class="secno">4.3.2. </span><span class="content">Note value encoding</span><a class="self-link" href="#note-value-encoding"></a></h4>
    <p>There are a variety of situations in which a note value needs to be supplied
 for an element. MNX uses a text encoding to represent such durations; in
-general, this replaces some arbitrary combination of MusicXMLs <code><a data-link-type="element">type</a></code> and <code><a data-link-type="element">dot</a></code> elements with no difference in semantics at all.</p>
+general, this replaces some arbitrary combination of MusicXMLs <code><a data-link-type="element">type</a></code> and <code><a data-link-type="element">dot</a></code> elements with no difference in semantics at all. The values are always
+implicitly subject to any tuplet time modification that may be in effect.</p>
    <p>The note value encoding scheme consists of a unit, expressed as a power-of-two
 division of a whole note, similar to the denominator of a time signature, with
 textual exceptions for large antique units. This may be optionally followed by
@@ -1759,6 +1842,30 @@ avoid confusion with a decimal point). Examples follow:</p>
    </dl>
    <p>In general, the attribute name <code>value</code> is used to supply this information
 for various MNX elements.</p>
+   <div class="note" role="note">
+     Note: The motivation here is to provide a terse but readable encoding that is
+equivalent to rational numbers, but whose syntax constrains the encoding to
+only permit note values expressible within the framework of CWMN: 
+    <ul>
+     <li data-md="">
+      <p>power-of-two denominators (i.e. standard note values)</p>
+     <li data-md="">
+      <p>no use of ad hoc additional factors like 1/3, 1/5, etc unless these are applied as part of a tuplet grouping</p>
+     <li data-md="">
+      <p>(2^n)-1 numerators (1, 3, 7... in other words, only numerators achievable with dots)</p>
+    </ul>
+    <p>While it would be possible to use a full-on rational-number notation, this
+would permit the specification of arbitrary non-CMN values and complicate
+validation and parsing.</p>
+    <p>Retaining the more verbose approach of separate <code><a data-link-type="element">type</a></code> and <code><a data-link-type="element">dot</a></code> elements,
+on the other hand, makes it harder to embed note values in other strings such
+as time or position offsets.</p>
+    <p>Also, a pure rational number does not maps cleanly onto what one sees in
+notated music. This encoding attempts an obvious mapping between the semantic
+layer and a naïvely notated score. Rational numbers that combine the notion of
+note values, dots and tuplets into a single number take us further from this
+ideal.</p>
+   </div>
    <h4 class="heading settled" data-level="4.3.3" id="metrical-duration-encoding"><span class="secno">4.3.3. </span><span class="content">Metrical duration encoding</span><a class="self-link" href="#metrical-duration-encoding"></a></h4>
    <p>There are also situations in which a metrical duration needs to be supplied,
 as a real-valued number expressed in terms of a note value unit. There is no
@@ -1774,9 +1881,6 @@ equal to a single occurrence of the note value</p>
      <p>A real number followed by <code>/</code> and a note value encoding specifies a duration equal to the
 given number of note value units. The note value is subject to any contextual
 time modification due to tuplets.</p>
-    <li data-md="">
-     <p>A real number followed by the special suffix <code>t</code> specifies the given number
-of ticks, where a tick is 1/960 of a quarter note.</p>
    </ul>
    <p>Examples:</p>
    <dl>
@@ -1792,9 +1896,6 @@ of ticks, where a tick is 1/960 of a quarter note.</p>
     <dt data-md=""><code>3/8*</code>
     <dd data-md="">
      <p>three dotted quarter notes (this form can be useful for arbitrary <a href="#tuplets">§4.3.9 Tuplets</a>)</p>
-    <dt data-md=""><code>15.2t</code>
-    <dd data-md="">
-     <p>15.2 ticks</p>
    </dl>
    <p>In general, the attribute name <code>duration</code> is used to supply these specifications
 for various MNX elements.</p>
@@ -1825,10 +1926,15 @@ represented by <code><a data-link-type="element">sequence</a></code> elements.</
     <span class="nt">&lt;/sequence></span>
 <span class="nt">&lt;/measure></span>
 </pre>
-   <p>The notated metrical time of each element of a sequence increases
-monotonically within the sequence. Thus it constitutes a coherent musical
-"layer" within a measure. Where music contains polyphonic voices, a sequence
-is naturally used to represent each voice.</p>
+   <p>One of the chief motivations for this style of specifying timeline events is
+that within a <code><a data-link-type="element">sequence</a></code>, overlapping events cannot exist. The notated
+metrical time of each element of a sequence increases monotonically within the
+sequence, and the next element cannot begin before the previous one ends. Thus
+a sequence constitutes a coherent musical "layer" within a measure. Where
+music contains polyphonic voices, a sequence is naturally used to represent
+each voice.</p>
+   <p class="note" role="note"><span>Note:</span> The no-overlaps constraint is semantic only. It does <em>not</em> apply to
+either the appearance or interpretation of the sequence.</p>
    <p>The optional <code><a data-link-type="element-sub">orientation</a></code> attribute may assume the values <code>up</code> or <code>down</code>, affecting the default placement of stems, articulations,
 ornaments and other voice-specific objects within a sequence.</p>
    <p>The optional <code>staff</code> attribute may furthermore default the staff assignment
@@ -1889,6 +1995,8 @@ an <code>accidental</code> value, if provided.</p>
    <p>The <code>pitch</code> attribute is used to supply pitch encodings where appropriate, typically
 for <code><a data-link-type="element">note</a></code> elements.</p>
    <p>Pitch encodings are used also in <a href="#interpretation">§6 Interpretation</a>.</p>
+   <p class="issue" id="issue-8dde6b97"><a class="self-link" href="#issue-8dde6b97"></a> permit some sort of rational number option here for just-intonation
+temperaments and their variants.</p>
    <h4 class="heading settled" data-level="4.3.6" id="events"><span class="secno">4.3.6. </span><span class="content">Events</span><a class="self-link" href="#events"></a></h4>
    <p>The new MNX element <code><a data-link-type="element">event</a></code> represents the related concepts of rest, note
 or chord depending on its contents. It supplies information that is common to
@@ -2066,7 +2174,7 @@ same measure (the situation is very similar for events in different measures):</
         <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span>
             <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C5"</span><span class="nt">/></span>
             <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"Eb5"</span><span class="nt">/></span>
-            <span class="nt">&lt;slur</span> <span class="na">ref=</span><span class="s">"a1"</span><span class="nt">/></span>
+            <span class="nt">&lt;slur</span> <span class="na">end-ref=</span><span class="s">"a1"</span><span class="nt">/></span>
         <span class="nt">&lt;/event></span>
         <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span>
             <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D5"</span><span class="nt">/></span>
@@ -2101,14 +2209,25 @@ and its <code>length</code> attribute supplies its overall length in the score.<
 in terms of offset or X increments.</p>
    <p class="issue" id="issue-bccbb797"><a class="self-link" href="#issue-bccbb797"></a> do we really care what order the reference and the target occur in?</p>
    <h3 class="heading settled" data-level="4.5" id="text-and-directions"><span class="secno">4.5. </span><span class="content">Text and directions</span><a class="self-link" href="#text-and-directions"></a></h3>
-   <p>(Section TBD)</p>
+   <p>(TBD)</p>
+   <p>MNX will include strong semantic types for different musical purposes of text.
+Dynamics, tempo markings, lyrics, playing instructions/techniques, etc. will
+all have proper types and may be freely included in <code><a data-link-type="element">sequence</a></code> and <code><a data-link-type="element">event</a></code> elements.</p>
    <p class="issue" id="issue-caf40334"><a class="self-link" href="#issue-caf40334"></a> Should MNX split directions out into text-like (durationless) direction types
 and span-like direction types? It doesn’t appear that the left-to-right
 sequencing rule in MusicXML makes sense when putting these things together
 in the same <code><a data-link-type="element">direction</a></code>, but it makes sense for text-like things.</p>
    <p class="issue" id="issue-41d7faa8"><a class="self-link" href="#issue-41d7faa8"></a> Text with embedded style/font runs should be dealt with using <code><a data-link-type="element">span</a></code> tags and CSS styling, rather than a sequence of separate direction-types.</p>
    <p class="issue" id="issue-83fe9539"><a class="self-link" href="#issue-83fe9539"></a> How should paragraph-style interpolated blocks be dealt with?</p>
-   <h3 class="heading settled" data-level="4.6" id="semantic-layout-overrides"><span class="secno">4.6. </span><span class="content">Semantic layout overrides</span><a class="self-link" href="#semantic-layout-overrides"></a></h3>
+   <h3 class="heading settled" data-level="4.6" id="pagination-credits-and-page-level-text"><span class="secno">4.6. </span><span class="content">Pagination, credits and page-level text</span><a class="self-link" href="#pagination-credits-and-page-level-text"></a></h3>
+   <p>(TBD)</p>
+   <p>We need to study the CSS specification as it is currently evolving to
+represent pagination to meet the needs of digital publishing overall, not only
+music publishing.</p>
+   <p>MusicXML’s page-level elements such as <code><a data-link-type="element">credit-words</a></code> and others need to be
+reconsidered in light of this evolution. There is currently a tension in the
+existing corpus of MusicXML documents between the use of explicitly placed <code><a data-link-type="element">credit</a></code> elements and the metadata found in the <code><a data-link-type="element">information</a></code> element.</p>
+   <h3 class="heading settled" data-level="4.7" id="semantic-layout-overrides"><span class="secno">4.7. </span><span class="content">Semantic layout overrides</span><a class="self-link" href="#semantic-layout-overrides"></a></h3>
    <p>The CWMN canon has many examples of notation in which notes do not add up
 metrically to yield the duration of a measure or tuplet, or in which notes in one
 voices align with notes in another, in spite of the dissimilar points in time
@@ -2289,7 +2408,7 @@ the <a href="https://drafts.csswg.org/selectors-4/">CSS Selectors Level 4</a> dr
     <span class="nt">&lt;/score></span>
 <span class="nt">&lt;/mnx></span>
 </pre>
-   <h3 class="heading settled" data-level="5.4" id="unit-abbreviations"><span class="secno">5.4. </span><span class="content">Unit abbreviations</span><a class="self-link" href="#unit-abbreviations"></a></h3>
+   <h3 class="heading settled" data-level="5.4" id="units"><span class="secno">5.4. </span><span class="content">Units</span><a class="self-link" href="#units"></a></h3>
    <p>Properties representing a visual displacement or distance must use a number followed
 by an explicit unit:</p>
    <dl>
@@ -2304,13 +2423,40 @@ by an explicit unit:</p>
      <p>display pixels (same unit as in SVG or HTML)</p>
     <dt data-md=""><code>/</code><em>note-value</em>
     <dd data-md="">
-     <p>displacement based on metrical time within the containing measure or tuplet.</p>
+     <p>displacement based on contextual time within the containing measure or tuplet.</p>
     <dt data-md=""><code>//</code><em>note-value</em>
     <dd data-md="">
-     <p>displacement based on metrical time within the containing measure, <em>disregarding any containing tuplets</em>.</p>
+     <p>displacement based on measure-level time, <em>disregarding any containing tuplets</em>.</p>
     <dt data-md=""><code>t</code>
     <dd data-md="">
-     <p>MIDI ticks (1/960 of a quarter note)</p>
+     <p>MIDI ticks (1/960 of a measure-level quarter note)</p>
+   </dl>
+   <p>The default unit for all time displacements is measure-level quarter notes (equivalent to <code>//4</code>).</p>
+   <p>Rational numbers may be employed for time displacements. These are expressed
+using <code>:</code> to separate the numerator and denominator.</p>
+   <p>Examples:</p>
+   <dl>
+    <dt data-md=""><code>1sl</code>
+    <dd data-md="">
+     <p>One staff line</p>
+    <dt data-md=""><code>5st</code>
+    <dd data-md="">
+     <p>0.5 staff lines</p>
+    <dt data-md=""><code>1/8</code>
+    <dd data-md="">
+     <p>a contextual eighth note</p>
+    <dt data-md=""><code>1//8</code>
+    <dd data-md="">
+     <p>a measure-level eighth note</p>
+    <dt data-md=""><code>481t</code>
+    <dd data-md="">
+     <p>one tick longer than a measure-level eighthnote</p>
+    <dt data-md=""><code>1:3</code>
+    <dd data-md="">
+     <p>a triplet 8th note (1/3 of a quarter note)</p>
+    <dt data-md=""><code>1:3//4</code>
+    <dd data-md="">
+     <p>same as above</p>
    </dl>
    <h3 class="heading settled" data-level="5.5" id="css-property-usage"><span class="secno">5.5. </span><span class="content">CSS property usage</span><a class="self-link" href="#css-property-usage"></a></h3>
    <h4 class="heading settled" data-level="5.5.1" id="standard-css-properties"><span class="secno">5.5.1. </span><span class="content">Standard CSS properties</span><a class="self-link" href="#standard-css-properties"></a></h4>
@@ -2406,12 +2552,14 @@ from the layout’s point of view.</p>
    <p>Setting <strong>visibility: hidden</strong> on an element causes it not to be painted. However it still takes up
 space in the layout, and it may be sensitive to pointer events.</p>
    <h3 class="heading settled" data-level="5.8" id="system-and-page-flow"><span class="secno">5.8. </span><span class="content">System and page flow</span><a class="self-link" href="#system-and-page-flow"></a></h3>
-   <p>The MNX style properties <code>new-page</code> and <code>new-system</code> control page and system
-flow. The styles are specified at the <code><a data-link-type="element">measure</a></code> level, but they act on the
-entire system or page regardless of which part they occur in.</p>
-   <p>Using <a href="#media-queries-and-parts">§5.6 Media queries and parts</a> it is possible to apply these system/page
-flow properties selectively to the display of specific parts. This allows page
-and system breaks to be customized for each part within a document.</p>
+   <p>The MNX style properties <code>new-page</code> and <code>new-system</code> (as well as others)
+control page and system flow. Such styles are specified at the <code><a data-link-type="element">measure</a></code> or <code><a data-link-type="element">event</a></code> level.</p>
+   <p>These properties act across the system, but may be defined differently in
+full-score formats as opposed to single-part formats; it is very uncommon for such
+breaks to be identical across all views of a score. Thus they will participate
+in whatever solution is arrived at for <a href="#system-notations">§4.1.2 System notations</a>.</p>
+   <p>Media queries can further be used to specialize system and page flow for viewing
+and printing different formats on different devices.</p>
    <h3 class="heading settled" data-level="5.9" id="styling-grace-and-cue-notes"><span class="secno">5.9. </span><span class="content">Styling grace and cue notes</span><a class="self-link" href="#styling-grace-and-cue-notes"></a></h3>
    <p>The CSS Selectors Level 4 draft specification includes the specification of a new <code>has:()</code> pseudo selector that can test for the presence of a child element.</p>
    <p>This provides a useful way to style grace and cue notes, for example:</p>
@@ -2778,6 +2926,16 @@ all notated dotted eighths are performed as double-dotted:</p>
   </dl>
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
+   <div class="issue"> These approaches should be studied in more detail and if possible
+reduced to a single unified approach. <code><a data-link-type="element">system</a></code> obliges implementations to
+merge its information into other visible parts as needed. On the other hand, a
+scope marker can scatter system-wide information to be freely among
+parts with no constraints on their occurrence or relationships.<a href="#issue-b8fd9a57"> ↵ </a></div>
+   <div class="issue"> We need to decide the pitch frame in which parts are encoded. Both
+concert pitch and transposed pitch (used by MusicXML) have advantages and
+disadvantages.<a href="#issue-59982743"> ↵ </a></div>
+   <div class="issue"> permit some sort of rational number option here for just-intonation
+temperaments and their variants.<a href="#issue-8dde6b97"> ↵ </a></div>
    <div class="issue"> Other attributes are needed to supply adjustments to spanning notation positions
 in terms of offset or X increments.<a href="#issue-b1c5172b"> ↵ </a></div>
    <div class="issue"> do we really care what order the reference and the target occur in?<a href="#issue-bccbb797"> ↵ </a></div>
