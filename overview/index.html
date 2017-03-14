@@ -1432,6 +1432,7 @@ Examples are used rather than specification language.</p>
         <li><a href="#a-simple-cwmn-score"><span class="secno">2.1.1</span> <span class="content">A simple CWMN score</span></a>
         <li><a href="#a-simple-graphical-score"><span class="secno">2.1.2</span> <span class="content">A simple graphical score</span></a>
         <li><a href="#compound-mnx-documents"><span class="secno">2.1.3</span> <span class="content">Compound MNX documents</span></a>
+        <li><a href="#inclusion-by-reference"><span class="secno">2.1.4</span> <span class="content">Inclusion by reference</span></a>
        </ol>
       <li><a href="#profiles"><span class="secno">2.2</span> <span class="content">Profiles</span></a>
       <li><a href="#metadata-and-attribution"><span class="secno">2.3</span> <span class="content">Metadata and Attribution</span></a>
@@ -1533,23 +1534,24 @@ carry over to MNX unchanged, or in an obvious and analogous fashion.</p>
 mechanism of <a href="#the-container-document">§2.1 The container document</a>.</p>
    <h3 class="heading settled" data-level="1.3" id="compatibility-with-musicxml"><span class="secno">1.3. </span><span class="content">Compatibility with MusicXML</span><a class="self-link" href="#compatibility-with-musicxml"></a></h3>
    <p>MNX does not attempt to be backward-compatible with MusicXML, nor is it a
-superset of MusicXML. However, a large number of MusicXML markup is expected
-to be preserved In these examples. MusicXML constructs are used freely
+superset of MusicXML. However, a large proportion of MusicXML markup is expected
+to be preserved. In these examples, MusicXML constructs are used freely
 throughout as a way to show how proposed new concepts dovetail with existing
 ones.</p>
-   <p>It is however, a goal to be able to machine-translate MusicXML into MNX.</p>
+   <p>Backward compatibility aside, it is a goal to be able to machine-translate
+MusicXML into MNX. This is essential for migration purposes.</p>
    <h2 class="heading settled" data-level="2" id="document-organization"><span class="secno">2. </span><span class="content">Document organization</span><a class="self-link" href="#document-organization"></a></h2>
    <p class="note" role="note"><span>Note:</span> This section applies to all content types, CWMN or otherwise.</p>
    <h3 class="heading settled" data-level="2.1" id="the-container-document"><span class="secno">2.1. </span><span class="content">The container document</span><a class="self-link" href="#the-container-document"></a></h3>
    <p>MNX documents act as general-purpose containers, which may be arbitrarily
-subdivided into separate components which collectively make up the document as
-a whole.</p>
+subdivided into a hierarchy of components which collectively make up the
+document as a whole.</p>
    <h4 class="heading settled" data-level="2.1.1" id="a-simple-cwmn-score"><span class="secno">2.1.1. </span><span class="content">A simple CWMN score</span><a class="self-link" href="#a-simple-cwmn-score"></a></h4>
    <p>Here’s an example of the simplest structure, where an MNX document contains a
 single CWMN score. The <code><a data-link-type="element">head</a></code> element includes descriptive information,
 while the <code><a data-link-type="element">score</a></code> element contains the score contents.</p>
-   <p>One other significant element occurs here: the <code><a data-link-type="element">style</a></code> element, which includes
-information relevant to the document’s appearance and interpretation:</p>
+   <p>A significant MNX-specific element occurs here: the <code><a data-link-type="element">style</a></code> element, which
+includes information relevant to the document’s appearance and interpretation:</p>
 <pre class="language-xml highlight"><span class="nt">&lt;mnx</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/mnx"</span><span class="nt">></span>
     <span class="nt">&lt;head</span><span class="nt">></span>
         <span class="nt">&lt;identification</span><span class="nt">></span>
@@ -1585,6 +1587,7 @@ a specific proposal):</p>
     <span class="nt">&lt;/score></span>
 <span class="nt">&lt;/mnx></span>
 </pre>
+   <p>The MNX specification will maintain a registry of recognized values for <code>content</code>.</p>
    <h4 class="heading settled" data-level="2.1.3" id="compound-mnx-documents"><span class="secno">2.1.3. </span><span class="content">Compound MNX documents</span><a class="self-link" href="#compound-mnx-documents"></a></h4>
    <p>It’s also possible to combine different representations of music in the same
 MNX document by using the <code><a data-link-type="element">collection</a></code> element to combine  multiple chunks
@@ -1625,6 +1628,8 @@ that some of these could employ non-CWMN encodings as well.)</p>
     <span class="nt">&lt;/collection></span>
 <span class="nt">&lt;/mnx></span>
 </pre>
+   <h4 class="heading settled" data-level="2.1.4" id="inclusion-by-reference"><span class="secno">2.1.4. </span><span class="content">Inclusion by reference</span><a class="self-link" href="#inclusion-by-reference"></a></h4>
+   <p>The HTML <code><a data-link-type="element">link</a></code> element may be used to include a score by reference.</p>
    <h3 class="heading settled" data-level="2.2" id="profiles"><span class="secno">2.2. </span><span class="content">Profiles</span><a class="self-link" href="#profiles"></a></h3>
    <p>A <code><a data-link-type="element">score</a></code> element may employ the <code><a data-link-type="element-sub">profile</a></code> attribute to indicate
 that it conforms to a particular set of expectations regarding its contents. A
@@ -1647,6 +1652,8 @@ include:</p>
      <p>The metrical content of a tuplet does not exceed its duration</p>
     <li data-md="">
      <p>All displayed accidentals are encoded in the document using <code><a data-link-type="element">accidental</a></code></p>
+    <li data-md="">
+     <p>All parts of a score agree with respect to form, time and key signatures and barring.</p>
    </ul>
    <p>This profile mechanism replaces the <code><a data-link-type="element">supports</a></code> feature of MusicXML.</p>
    <h3 class="heading settled" data-level="2.3" id="metadata-and-attribution"><span class="secno">2.3. </span><span class="content">Metadata and Attribution</span><a class="self-link" href="#metadata-and-attribution"></a></h3>
@@ -1724,11 +1731,11 @@ semantic sense, not only to a single part. Examples include:</p>
     <li data-md="">
      <p>Musical form indications</p>
    </ul>
-   <p>In some cases (key signatures, for example) the concept is encoded
-separately in each MusicXML part, yet they are expected to semantically agree
-across all parts. While such agreement is not necessarily the case, it is
-nearly always the case. It seems desirable to allow this agreement to be
-expressed in a single encoding, somewhere in the document.</p>
+   <p>In some cases (key signatures, for example) multiple instances of a notation
+are encoded separately in each MusicXML part, yet they are expected to
+semantically agree across all parts. While such agreement is not necessarily
+the case, it is nearly always the case. It seems desirable to allow this
+agreement to be expressed in a single instance, somewhere in the document.</p>
    <p>In other cases (e.g. tempo indications) the concept typically is encoded in
 the first visible MusicXML part. Yet, if the document were rendered showing
 only some other part in the score, there would still be an expectation that
@@ -1796,12 +1803,17 @@ of a whole (e.g. notes in a chord).</p>
      <p>Give parent elements responsibility for expressing concepts that are
 logically shared by the children (e.g. the stem shared by notes in a chord).</p>
     <li data-md="">
-     <p>Make it easy to alter the content of a MNX document using simple DOM
-operations such as node insertion and deleting (e.g. add a note to a chord by
-simply inserting a <code><a data-link-type="element">note</a></code> element in the appropriate parent).</p>
+     <p>Wherever possible, make it impossible to encode invalid constructs.</p>
+    <li data-md="">
+     <p>Preserve a common-sense mapping between encodings and a "naïve engraving" of
+the same music.</p>
     <li data-md="">
      <p>Eliminate the need for complex book-keeping and post-processing when
 parsing measures of music.</p>
+    <li data-md="">
+     <p>Make it easy to alter the content of a MNX document using simple DOM
+operations such as node insertion and deleting (e.g. add a note to a chord by
+simply inserting a <code><a data-link-type="element">note</a></code> element in the appropriate parent).</p>
    </ul>
    <h4 class="heading settled" data-level="4.3.1" id="specialized-value-encodings"><span class="secno">4.3.1. </span><span class="content">Specialized value encodings</span><a class="self-link" href="#specialized-value-encodings"></a></h4>
    <p>For compactness and readability, MNX represents note values, metrical
@@ -1845,7 +1857,7 @@ for various MNX elements.</p>
    <div class="note" role="note">
      Note: The motivation here is to provide a terse but readable encoding that is
 equivalent to rational numbers, but whose syntax constrains the encoding to
-only permit note values expressible within the framework of CWMN: 
+note values expressible within the framework of CWMN: 
     <ul>
      <li data-md="">
       <p>power-of-two denominators (i.e. standard note values)</p>
@@ -1854,7 +1866,7 @@ only permit note values expressible within the framework of CWMN:
      <li data-md="">
       <p>(2^n)-1 numerators (1, 3, 7... in other words, only numerators achievable with dots)</p>
     </ul>
-    <p>While it would be possible to use a full-on rational-number notation, this
+    <p>While it would be possible to use full-blown rational numbers, this
 would permit the specification of arbitrary non-CMN values and complicate
 validation and parsing.</p>
     <p>Retaining the more verbose approach of separate <code><a data-link-type="element">type</a></code> and <code><a data-link-type="element">dot</a></code> elements,
@@ -2008,6 +2020,8 @@ all three:</p>
      <p>stem orientation, length, etc. if applicable</p>
     <li data-md="">
      <p>flag and beam description</p>
+    <li data-md="">
+     <p>articulations or directions that apply to all contained notes</p>
     <li data-md="">
      <p>styling data (e.g. horizontal displacement)</p>
     <li data-md="">
