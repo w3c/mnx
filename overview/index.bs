@@ -287,14 +287,14 @@ times, in a way that clarifies their score-wide applicability.  Two such
 mechanisms are proposed (which are not exclusive):
 
 1. Include a new <{system}> element analogous to <{part}>, which precedes all
-<{part}> elements in the score. This contains <{measures}> whose contents are
-understood to apply to all parts. Parts need only include such elements to
-the extent that they are overridden. No performance events like notes
-or rests may be included in the measures within <{system}>.
+    <{part}> elements in the score. This contains <{measures}> whose contents are
+    understood to apply to all parts. Parts need only include such elements to
+    the extent that they are overridden. No performance events like notes
+    or rests may be included in the measures within <{system}>.
 
 2. Identify elements within existing parts that are understood to apply to the
-system as a whole, by calling them out with a `scope="system"` attribute or 
-its equivalent.
+    system as a whole, by calling them out with a `scope="system"` attribute or 
+    its equivalent.
 
 Issue: These approaches should be studied in more detail and if possible
 reduced to a single unified approach. <{system}> obliges implementations to
