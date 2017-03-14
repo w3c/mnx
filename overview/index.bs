@@ -469,9 +469,10 @@ Examples:
 In general, the attribute name `duration` is used to supply these specifications
 for various MNX elements.
 
-### Sequences: timelines within measures
+### Sequences
 
-A <{measure}> can have any number of independent sequential timelines within it.
+The <{sequence}> element represents an independent sequential timeline within a
+measures. A <{measure}> can have any number of timelines within it.
 
 Each <{sequence}> child of the measure contains its own child elements in
 chronological sequence, starting from the beginning of the measure. These may
@@ -502,17 +503,6 @@ represented by <{sequence}> elements.
 </measure>
 ```
 
-One of the chief motivations for this style of specifying timeline events is
-that within a <{sequence}>, overlapping events cannot exist. The notated
-metrical time of each element of a sequence increases monotonically within the
-sequence, and the next element cannot begin before the previous one ends. Thus
-a sequence constitutes a coherent musical "layer" within a measure. Where
-music contains polyphonic voices, a sequence is naturally used to represent
-each voice.
-
-Note: The no-overlaps constraint is semantic only. It does *not* apply to
-either the appearance or interpretation of the sequence.
-
 The optional <{sequence/orientation}> attribute may assume the values <code>up</code>
 or <code>down</code>, affecting the default placement of stems, articulations,
 ornaments and other voice-specific objects within a sequence.
@@ -542,6 +532,27 @@ Unlike the MusicXML <{voice}> element, the MNX <{sequence}> element need not
 possess a number or any other label. It can, however, be assigned a label via
 the optional <{sequence/name}> attribute that declares continuity between
 identically named/numbered sequences in successive measures of the same part.
+
+<div class="note">
+Note: A chief motivation for this style of specifying timeline events is
+that within a <{sequence}>, overlapping events cannot exist. The notated
+metrical time of each element of a sequence increases monotonically within the
+sequence, and the next element cannot begin before the previous one ends. Thus
+a sequence constitutes a coherent musical "layer" within a measure. Where
+music contains polyphonic voices, a sequence is naturally used to represent
+each voice.
+
+While there is still a notion of time cursor, significant constraints
+distinguish MNX's cursors from MusicXML:
+
+- The cursor must progress in a forward direction
+- The cursor may only progress in units that are expressible in CMN (rather than any number of divisions)
+- Events within the cursor's timeline always belong to the same "voice" or "layer"
+- Events cannot overlap
+
+The no-overlaps constraint is semantic only. It does *not* apply to
+either the appearance or interpretation of the sequence.
+</div>
 
 ### Pitch encoding
 

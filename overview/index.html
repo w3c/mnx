@@ -1455,7 +1455,7 @@ Examples are used rather than specification language.</p>
         <li><a href="#specialized-value-encodings"><span class="secno">4.3.1</span> <span class="content">Specialized value encodings</span></a>
         <li><a href="#note-value-encoding"><span class="secno">4.3.2</span> <span class="content">Note value encoding</span></a>
         <li><a href="#metrical-duration-encoding"><span class="secno">4.3.3</span> <span class="content">Metrical duration encoding</span></a>
-        <li><a href="#sequences-timelines-within-measures"><span class="secno">4.3.4</span> <span class="content">Sequences: timelines within measures</span></a>
+        <li><a href="#sequences"><span class="secno">4.3.4</span> <span class="content">Sequences</span></a>
         <li><a href="#pitch-encoding"><span class="secno">4.3.5</span> <span class="content">Pitch encoding</span></a>
         <li><a href="#events"><span class="secno">4.3.6</span> <span class="content">Events</span></a>
         <li><a href="#spaces"><span class="secno">4.3.7</span> <span class="content">Spaces</span></a>
@@ -1911,8 +1911,9 @@ time modification due to tuplets.</p>
    </dl>
    <p>In general, the attribute name <code>duration</code> is used to supply these specifications
 for various MNX elements.</p>
-   <h4 class="heading settled" data-level="4.3.4" id="sequences-timelines-within-measures"><span class="secno">4.3.4. </span><span class="content">Sequences: timelines within measures</span><a class="self-link" href="#sequences-timelines-within-measures"></a></h4>
-   <p>A <code><a data-link-type="element">measure</a></code> can have any number of independent sequential timelines within it.</p>
+   <h4 class="heading settled" data-level="4.3.4" id="sequences"><span class="secno">4.3.4. </span><span class="content">Sequences</span><a class="self-link" href="#sequences"></a></h4>
+   <p>The <code><a data-link-type="element">sequence</a></code> element represents an independent sequential timeline within a
+measures. A <code><a data-link-type="element">measure</a></code> can have any number of timelines within it.</p>
    <p>Each <code><a data-link-type="element">sequence</a></code> child of the measure contains its own child elements in
 chronological sequence, starting from the beginning of the measure. These may
 include such notations as rests, nodes, chords, performance directions,
@@ -1938,15 +1939,6 @@ represented by <code><a data-link-type="element">sequence</a></code> elements.</
     <span class="nt">&lt;/sequence></span>
 <span class="nt">&lt;/measure></span>
 </pre>
-   <p>One of the chief motivations for this style of specifying timeline events is
-that within a <code><a data-link-type="element">sequence</a></code>, overlapping events cannot exist. The notated
-metrical time of each element of a sequence increases monotonically within the
-sequence, and the next element cannot begin before the previous one ends. Thus
-a sequence constitutes a coherent musical "layer" within a measure. Where
-music contains polyphonic voices, a sequence is naturally used to represent
-each voice.</p>
-   <p class="note" role="note"><span>Note:</span> The no-overlaps constraint is semantic only. It does <em>not</em> apply to
-either the appearance or interpretation of the sequence.</p>
    <p>The optional <code><a data-link-type="element-sub">orientation</a></code> attribute may assume the values <code>up</code> or <code>down</code>, affecting the default placement of stems, articulations,
 ornaments and other voice-specific objects within a sequence.</p>
    <p>The optional <code>staff</code> attribute may furthermore default the staff assignment
@@ -1971,6 +1963,29 @@ overridden within the sequence, of course.</p>
 possess a number or any other label. It can, however, be assigned a label via
 the optional <code><a data-link-type="element-sub">name</a></code> attribute that declares continuity between
 identically named/numbered sequences in successive measures of the same part.</p>
+   <div class="note" role="note">
+     Note: A chief motivation for this style of specifying timeline events is
+that within a <code><a data-link-type="element">sequence</a></code>, overlapping events cannot exist. The notated
+metrical time of each element of a sequence increases monotonically within the
+sequence, and the next element cannot begin before the previous one ends. Thus
+a sequence constitutes a coherent musical "layer" within a measure. Where
+music contains polyphonic voices, a sequence is naturally used to represent
+each voice. 
+    <p>While there is still a notion of time cursor, significant constraints
+distinguish MNX’s cursors from MusicXML:</p>
+    <ul>
+     <li data-md="">
+      <p>The cursor must progress in a forward direction</p>
+     <li data-md="">
+      <p>The cursor may only progress in units that are expressible in CMN (rather than any number of divisions)</p>
+     <li data-md="">
+      <p>Events within the cursor’s timeline always belong to the same "voice" or "layer"</p>
+     <li data-md="">
+      <p>Events cannot overlap</p>
+    </ul>
+    <p>The no-overlaps constraint is semantic only. It does <em>not</em> apply to
+either the appearance or interpretation of the sequence.</p>
+   </div>
    <h4 class="heading settled" data-level="4.3.5" id="pitch-encoding"><span class="secno">4.3.5. </span><span class="content">Pitch encoding</span><a class="self-link" href="#pitch-encoding"></a></h4>
    <p>MNX introduces a text encoding of pitches, which represents a combination of
 MusicXML’s <code><a data-link-type="element">step</a></code>, <code><a data-link-type="element">octave</a></code> and <code><a data-link-type="element">alter</a></code> elements. This is done to
