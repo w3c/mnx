@@ -552,7 +552,7 @@ These constraints are semantic only. It does *not* apply to
 either the appearance or interpretation of the sequence.
 
 See [[#sequence-positions]] for a discussion of an alternative approach
-requiring positions to be attached to all elements in sequences.
+allowing positions to be attached to elements in sequences.
 </div>
 
 ### Pitch encoding
@@ -659,6 +659,45 @@ Note that the `type` attribute is used to indicate this, rather than `value`:
 </event>
 ```
 
+### Sequence positions
+
+It's also possible to use a `position` attribute for notations or events in a
+sequence. This can provide an alternative to [[#spaces]], or even replace it
+outright (if mandated for all position-dependent elements). This may have
+significant advantages particularly in sparse sequences such as those used for
+[[#system-notations]] where many ugly <{spaces}> might be necessary.
+
+A question that comes up for such positions is, what does a zero position
+correspond to, and in what units are positions expressed? Some alternatives
+include:
+
+- The start of the containing sequence or tuplet (in which case all positions remain constrained to CWMN note values)
+- The start of the measure (in which case positions within a tuplet become more complex)
+- The start of the score (yielding complex positions that require adjustment when measures are moved)
+
+If `position` is optional, it makes sense for it to default to zero, or to the
+ending position of the prior element in the sequence if one exists.
+
+Here is a prior example from [[#sequences]], recast with the use of
+an optional `position` attribute relative to the containing measure or tuplet.
+
+```xml
+<measure>
+    <sequence>
+        <direction>...</direction>
+        <direction position="1/2">...</direction>
+    </sequence>
+    <sequence>
+        <event value="2">...</event>
+        <event position="2/4" value="1">...</event>
+        <event position="3/4" value="1">...</event>
+    </sequence>
+    <sequence>
+        <event value="2*">...</event>
+        <event position="3/4" value="1">...</event>
+    </sequence>
+</measure>
+```
 
 ### Spaces
 
@@ -724,24 +763,6 @@ Spaces may omit the <{length}> attribute, in which case they possess zero
 duration. This is useful for creating anchor points for [[#spanning-
 notations]], for example, allowing lines or slurs to originate or terminate in
 places where there is no note.
-
-### Sequence positions
-
-<div class="issue">
-Issue: Is it simpler and clearer to have a `position` attribute for
-notation or events? This could either provide an alternative to <{space}>, or
-replace it outright. This may have significant advantages particularly in
-sparse sequences such as those used for [[#system-notations]] where many
-ugly <{spaces}> might be necessary.
-
-A question that comes up for such positions is, what does a zero position
-correspond to, and in what units are positions expressed? Some alternatives
-include:
-
-- The start of the measure (in which case positions within a tuplet become more complex)
-- The start of the containing sequence or tuplet (in which all positions remain constrained to CWMN note values)
-- The start of the score (yielding complex positions that require adjustment when measures are moved)
-</div>
 
 ### Tuplets
 

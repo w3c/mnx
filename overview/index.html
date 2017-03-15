@@ -1459,9 +1459,9 @@ Examples are used rather than specification language.</p>
         <li><a href="#sequences"><span class="secno">4.3.4</span> <span class="content">Sequences</span></a>
         <li><a href="#pitch-encoding"><span class="secno">4.3.5</span> <span class="content">Pitch encoding</span></a>
         <li><a href="#events"><span class="secno">4.3.6</span> <span class="content">Events</span></a>
-        <li><a href="#spaces"><span class="secno">4.3.7</span> <span class="content">Spaces</span></a>
-        <li><a href="#anchor-spaces"><span class="secno">4.3.8</span> <span class="content">Anchor spaces</span></a>
-        <li><a href="#sequence-positions"><span class="secno">4.3.9</span> <span class="content">Sequence positions</span></a>
+        <li><a href="#sequence-positions"><span class="secno">4.3.7</span> <span class="content">Sequence positions</span></a>
+        <li><a href="#spaces"><span class="secno">4.3.8</span> <span class="content">Spaces</span></a>
+        <li><a href="#anchor-spaces"><span class="secno">4.3.9</span> <span class="content">Anchor spaces</span></a>
         <li><a href="#tuplets"><span class="secno">4.3.10</span> <span class="content">Tuplets</span></a>
        </ol>
       <li><a href="#spanning-notations"><span class="secno">4.4</span> <span class="content">Spanning notations</span></a>
@@ -1984,8 +1984,8 @@ distinguish MNX’s cursors from MusicXML:
     </ul>
     <p>These constraints are semantic only. It does <em>not</em> apply to
 either the appearance or interpretation of the sequence.</p>
-    <p>See <a href="#sequence-positions">§4.3.9 Sequence positions</a> for a discussion of an alternative approach
-requiring positions to be attached to all elements in sequences.</p>
+    <p>See <a href="#sequence-positions">§4.3.7 Sequence positions</a> for a discussion of an alternative approach
+allowing positions to be attached to elements in sequences.</p>
    </div>
    <h4 class="heading settled" data-level="4.3.5" id="pitch-encoding"><span class="secno">4.3.5. </span><span class="content">Pitch encoding</span><a class="self-link" href="#pitch-encoding"></a></h4>
    <p>MNX introduces a text encoding of pitches, which represents a combination of
@@ -2081,7 +2081,43 @@ Note that the <code>type</code> attribute is used to indicate this, rather than 
   <span class="nt">&lt;rest</span><span class="nt">/></span>
 <span class="nt">&lt;/event></span>
 </pre>
-   <h4 class="heading settled" data-level="4.3.7" id="spaces"><span class="secno">4.3.7. </span><span class="content">Spaces</span><a class="self-link" href="#spaces"></a></h4>
+   <h4 class="heading settled" data-level="4.3.7" id="sequence-positions"><span class="secno">4.3.7. </span><span class="content">Sequence positions</span><a class="self-link" href="#sequence-positions"></a></h4>
+   <p>It’s also possible to use a <code>position</code> attribute for notations or events in a
+sequence. This can provide an alternative to <a href="#spaces">§4.3.8 Spaces</a>, or even replace it
+outright (if mandated for all position-dependent elements). This may have
+significant advantages particularly in sparse sequences such as those used for <a href="#system-notations">§4.1.2 System notations</a> where many ugly <code><a data-link-type="element">spaces</a></code> might be necessary.</p>
+   <p>A question that comes up for such positions is, what does a zero position
+correspond to, and in what units are positions expressed? Some alternatives
+include:</p>
+   <ul>
+    <li data-md="">
+     <p>The start of the containing sequence or tuplet (in which case all positions remain constrained to CWMN note values)</p>
+    <li data-md="">
+     <p>The start of the measure (in which case positions within a tuplet become more complex)</p>
+    <li data-md="">
+     <p>The start of the score (yielding complex positions that require adjustment when measures are moved)</p>
+   </ul>
+   <p>If <code>position</code> is optional, it makes sense for it to default to zero, or to the
+ending position of the prior element in the sequence if one exists.</p>
+   <p>Here is a prior example from <a href="#sequences">§4.3.4 Sequences</a>, recast with the use of
+an optional <code>position</code> attribute relative to the containing measure or tuplet.</p>
+<pre class="language-xml highlight"><span class="nt">&lt;measure</span><span class="nt">></span>
+    <span class="nt">&lt;sequence</span><span class="nt">></span>
+        <span class="nt">&lt;direction</span><span class="nt">></span>...<span class="nt">&lt;/direction></span>
+        <span class="nt">&lt;direction</span> <span class="na">position=</span><span class="s">"1/2"</span><span class="nt">></span>...<span class="nt">&lt;/direction></span>
+    <span class="nt">&lt;/sequence></span>
+    <span class="nt">&lt;sequence</span><span class="nt">></span>
+        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;event</span> <span class="na">position=</span><span class="s">"2/4"</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;event</span> <span class="na">position=</span><span class="s">"3/4"</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+    <span class="nt">&lt;/sequence></span>
+    <span class="nt">&lt;sequence</span><span class="nt">></span>
+        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2*"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;event</span> <span class="na">position=</span><span class="s">"3/4"</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+    <span class="nt">&lt;/sequence></span>
+<span class="nt">&lt;/measure></span>
+</pre>
+   <h4 class="heading settled" data-level="4.3.8" id="spaces"><span class="secno">4.3.8. </span><span class="content">Spaces</span><a class="self-link" href="#spaces"></a></h4>
    <p>A <code><a data-link-type="element">space</a></code> is a way of specifying a metrical time interval that does not
 contain any notation. MNX uses <code><a data-link-type="element">space</a></code> elements to explicitly represent such
 gaps. (In MusicXML, these gaps were often created using the <code><a data-link-type="element">forward</a></code> and <code><a data-link-type="element">backward</a></code> elements or with hidden rests, and could only be determined after
@@ -2120,30 +2156,11 @@ to be anchored at a point one quarter note into the given measure:</p>
   <span class="nt">&lt;/sequence></span>
 <span class="nt">&lt;/measure></span>
 </pre>
-   <h4 class="heading settled" data-level="4.3.8" id="anchor-spaces"><span class="secno">4.3.8. </span><span class="content">Anchor spaces</span><a class="self-link" href="#anchor-spaces"></a></h4>
+   <h4 class="heading settled" data-level="4.3.9" id="anchor-spaces"><span class="secno">4.3.9. </span><span class="content">Anchor spaces</span><a class="self-link" href="#anchor-spaces"></a></h4>
    <p>Spaces may omit the <code><a data-link-type="element">length</a></code> attribute, in which case they possess zero
 duration. This is useful for creating anchor points for [[#spanning-
 notations]], for example, allowing lines or slurs to originate or terminate in
 places where there is no note.</p>
-   <h4 class="heading settled" data-level="4.3.9" id="sequence-positions"><span class="secno">4.3.9. </span><span class="content">Sequence positions</span><a class="self-link" href="#sequence-positions"></a></h4>
-   <div class="issue" id="issue-86ed2a7a">
-    <a class="self-link" href="#issue-86ed2a7a"></a> Issue: Is it simpler and clearer to have a <code>position</code> attribute for
-notation or events? This could either provide an alternative to <code><a data-link-type="element">space</a></code>, or
-replace it outright. This may have significant advantages particularly in
-sparse sequences such as those used for <a href="#system-notations">§4.1.2 System notations</a> where many
-ugly <code><a data-link-type="element">spaces</a></code> might be necessary. 
-    <p>A question that comes up for such positions is, what does a zero position
-correspond to, and in what units are positions expressed? Some alternatives
-include:</p>
-    <ul>
-     <li data-md="">
-      <p>The start of the measure (in which case positions within a tuplet become more complex)</p>
-     <li data-md="">
-      <p>The start of the containing sequence or tuplet (in which all positions remain constrained to CWMN note values)</p>
-     <li data-md="">
-      <p>The start of the score (yielding complex positions that require adjustment when measures are moved)</p>
-    </ul>
-   </div>
    <h4 class="heading settled" data-level="4.3.10" id="tuplets"><span class="secno">4.3.10. </span><span class="content">Tuplets</span><a class="self-link" href="#tuplets"></a></h4>
    <p>In MNX, the <code><a data-link-type="element">tuplet</a></code> element applies a time modification to all of its child
 elements, which are the same as those allowed in <code><a data-link-type="element">sequence</a></code>. In fact, <code><a data-link-type="element">tuplet</a></code> is very much like a nested <code><a data-link-type="element">sequence</a></code> element, with an implicit time
@@ -2985,25 +3002,6 @@ concert pitch and transposed pitch (used by MusicXML) have advantages and
 disadvantages.<a href="#issue-59982743"> ↵ </a></div>
    <div class="issue"> permit some sort of rational number option here for just-intonation
 temperaments and their variants.<a href="#issue-8dde6b97"> ↵ </a></div>
-   <div class="issue">
-     Issue: Is it simpler and clearer to have a <code>position</code> attribute for
-notation or events? This could either provide an alternative to <code><a data-link-type="element">space</a></code>, or
-replace it outright. This may have significant advantages particularly in
-sparse sequences such as those used for <a href="#system-notations">§4.1.2 System notations</a> where many
-ugly <code><a data-link-type="element">spaces</a></code> might be necessary. 
-    <p>A question that comes up for such positions is, what does a zero position
-correspond to, and in what units are positions expressed? Some alternatives
-include:</p>
-    <ul>
-     <li data-md="">
-      <p>The start of the measure (in which case positions within a tuplet become more complex)</p>
-     <li data-md="">
-      <p>The start of the containing sequence or tuplet (in which all positions remain constrained to CWMN note values)</p>
-     <li data-md="">
-      <p>The start of the score (yielding complex positions that require adjustment when measures are moved)</p>
-    </ul>
-    <a href="#issue-86ed2a7a"> ↵ </a>
-   </div>
    <div class="issue"> Other attributes are needed to supply adjustments to spanning notation positions
 in terms of offset or X increments.<a href="#issue-b1c5172b"> ↵ </a></div>
    <div class="issue"> do we really care what order the reference and the target occur in?<a href="#issue-bccbb797"> ↵ </a></div>
