@@ -544,6 +544,9 @@ distinguish MNX's cursors from MusicXML:
 
 These constraints are semantic only. It does *not* apply to
 either the appearance or interpretation of the sequence.
+
+See [[#sequence-positions]] for a discussion of an alternative approach
+requiring positions to be attached to all elements in sequences.
 </div>
 
 ### Pitch encoding
@@ -715,6 +718,24 @@ Spaces may omit the <{length}> attribute, in which case they possess zero
 duration. This is useful for creating anchor points for [[#spanning-
 notations]], for example, allowing lines or slurs to originate or terminate in
 places where there is no note.
+
+### Sequence positions
+
+<div class="issue">
+Issue: Is it simpler and clearer to have a `position` attribute for
+notation or events? This could either provide an alternative to <{space}>, or
+replace it outright. This may have significant advantages particularly in
+sparse sequences such as those used for [[#system-notations]] where many
+ugly <{spaces}> might be necessary.
+
+A question that comes up for such positions is, what does a zero position
+correspond to, and in what units are positions expressed? Some alternatives
+include:
+
+- The start of the measure (in which case positions within a tuplet become more complex)
+- The start of the containing sequence or tuplet (in which all positions remain constrained to CWMN note values)
+- The start of the score (yielding complex positions that require adjustment when measures are moved)
+</div>
 
 ### Tuplets
 
