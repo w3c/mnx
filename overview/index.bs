@@ -609,7 +609,7 @@ Direction elements have no effect on the sequence cursor.
 There are two motivations for the cursor:
 
 - to permit a terse and straightforward
-    encoding of music in which all events and directions assume standard metrical
+    encoding of music wherever events and directions assume standard metrical
     positions.
 
 - to afford encoding of music which uses standard note values, but not any standard interpretation
@@ -631,6 +631,10 @@ Events or tuplets are allowed to specify a *metrical position*, reflecting
 this constraint within standard CMN.
 
 Directions may specify a *general position*.
+
+MNX prohibits the use of out-of-order elements within a sequence or tuplet element.
+While cursor-based positioning can't violate this constraint, explicit positions
+can, so care must be taken to sort elements properly when encoding.
 
 Here is the prior example from [[#sequences]], recast with the use of
 a `position` attribute relative to the containing measure or tuplet.

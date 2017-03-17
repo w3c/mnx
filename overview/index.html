@@ -2035,7 +2035,7 @@ Direction elements have no effect on the sequence cursor.</p>
    <ul>
     <li data-md="">
      <p>to permit a terse and straightforward
-encoding of music in which all events and directions assume standard metrical
+encoding of music wherever events and directions assume standard metrical
 positions.</p>
     <li data-md="">
      <p>to afford encoding of music which uses standard note values, but not any standard interpretation
@@ -2058,6 +2058,9 @@ sequence.</p>
    <p>Events or tuplets are allowed to specify a <em>metrical position</em>, reflecting
 this constraint within standard CMN.</p>
    <p>Directions may specify a <em>general position</em>.</p>
+   <p>MNX prohibits the use of out-of-order elements within a sequence or tuplet element.
+While cursor-based positioning can’t violate this constraint, explicit positions
+can, so care must be taken to sort elements properly when encoding.</p>
    <p>Here is the prior example from <a href="#sequences">§4.3.6 Sequences</a>, recast with the use of
 a <code>position</code> attribute relative to the containing measure or tuplet.</p>
 <pre class="language-xml highlight"><span class="nt">&lt;measure</span><span class="nt">></span>
