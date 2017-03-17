@@ -285,7 +285,7 @@ semantic sense, not only to a single part. Examples include:
 - System and page breaks (see [[#system-and-page-flow]])
 - Musical form indications
 
-In some cases (key signatures, for example) multiple instances of a notation
+In some cases (time signatures, for example) multiple instances of a notation
 are encoded separately in each MusicXML part, yet they are expected to
 semantically agree across all parts. While such agreement is not necessarily
 the case, it is nearly always the case. It seems desirable to allow this
@@ -711,7 +711,7 @@ all three:
 - styling data (e.g. horizontal displacement)
 - grace/cue markers
 - lyrics
-- slurs and other event-oriented spanning notations
+- slurs and other event-oriented [[#spanning-notations]]
 
 Here's a middle C as a dotted half note.
 
@@ -762,7 +762,29 @@ Note that the `type` attribute is used to indicate this, rather than `value`:
   <rest/>
 </event>
 ```
-    
+
+### Directions
+
+The MNX <{direction}> element carries over the features of the MusicXML
+<{direction}> element.
+
+This proposal does not yet attempt to examine how MNX directions will work in
+detail or how they differ from MusicXML directions.    
+
+MNX is, however, expected to include strong semantic types for different
+musical purposes of text. Dynamics, tempo markings, lyrics, playing
+instructions/techniques, etc. will all have proper types and may be freely
+included in <{sequence}> and <{event}> elements.
+
+Issue: Should MNX split directions out into text-like (durationless) direction types
+and span-like direction types? What is the relationship between these two, e.g.
+for labeled lines?
+
+Issue: Text with embedded style/font runs should be dealt with using <{span}>
+tags and CSS styling, rather than a sequence of separate direction-types.
+
+Issue: How should paragraph-style interpolated blocks be dealt with?
+
 ### Tuplets
 
 In MNX, the <{tuplet}> element applies a time modification to all of its child
@@ -831,7 +853,7 @@ some number of measures in a given part. Some examples are:
 - slurs
 - dynamic wedges (hairpins)
 - 8va lines
-- performance directions like "let vibrate"
+- performance directions like *cresc. poco a poco*
 
 Essentially all the elements described by a combination
 of MusicXML's <code>number="N"</code> and <code>type="start|stop"</code> fall into
@@ -845,7 +867,7 @@ may be any element that occurs inside a <{sequence}>.
 
 The start element of a spanning notation is specified by including the span
 directly in the start element as a child. The stop element is specified via an
-<code>ref</code> attribute on the span that supplies the stop element's ID. Thus,
+<code>end-ref</code> attribute on the span that supplies the stop element's ID. Thus,
 spanning notations "point to" the notation where they will end. This is different
 from MusicXML, in which the stop point refers back to the spanning notation's
 number.
@@ -902,25 +924,6 @@ in terms of offset or X increments.
 
 Issue: do we really care what order the reference and the target occur in?
 
-## Text and directions
-
-(TBD)
-
-MNX will include strong semantic types for different musical purposes of text.
-Dynamics, tempo markings, lyrics, playing instructions/techniques, etc. will
-all have proper types and may be freely included in <{sequence}> and <{event}>
-elements.
-
-Issue: Should MNX split directions out into text-like (durationless) direction types
-and span-like direction types? It doesn't appear that the left-to-right
-sequencing rule in MusicXML makes sense when putting these things together
-in the same <{direction}>, but it makes sense for text-like things.
-
-Issue: Text with embedded style/font runs should be dealt with using <{span}>
-tags and CSS styling, rather than a sequence of separate direction-types.
-
-Issue: How should paragraph-style interpolated blocks be dealt with?
-
 ## Pagination, credits and page-level text
 
 (TBD)
@@ -932,7 +935,7 @@ music publishing.
 MusicXML's page-level elements such as <{credit-words}> and others need to be
 reconsidered in light of this evolution. There is currently a tension in the
 existing corpus of MusicXML documents between the use of explicitly placed
-<{credit}> elements and the metadata found in the <{information}> element.
+<{credit}> elements and the metadata found in the <{identification}> element.
 
 ## Semantic layout overrides
 
@@ -1403,7 +1406,7 @@ of course:
     For example, **duration: 1/16** would cause the note to be played
     as a sixteenth note regardless.
 : `dynamics`
-:: Volume expressed as MIDI velocity (same as the MusicXML attribute of <{sound}>?)
+:: Volume expressed as percentage of *forte* dynamic (same as MusicXML)
 : `tempo`
 :: Tempo expressed as a metrical timespan, e.g. **tempo: 120/4**. (same as
     MusicXML, but doesn't require quarter note units).

@@ -1463,12 +1463,12 @@ Examples are used rather than specification language.</p>
         <li><a href="#explicit-positions"><span class="secno">4.3.8</span> <span class="content">Explicit positions</span></a>
         <li><a href="#pitch-encoding"><span class="secno">4.3.9</span> <span class="content">Pitch encoding</span></a>
         <li><a href="#events"><span class="secno">4.3.10</span> <span class="content">Events</span></a>
-        <li><a href="#tuplets"><span class="secno">4.3.11</span> <span class="content">Tuplets</span></a>
+        <li><a href="#directions"><span class="secno">4.3.11</span> <span class="content">Directions</span></a>
+        <li><a href="#tuplets"><span class="secno">4.3.12</span> <span class="content">Tuplets</span></a>
        </ol>
       <li><a href="#spanning-notations"><span class="secno">4.4</span> <span class="content">Spanning notations</span></a>
-      <li><a href="#text-and-directions"><span class="secno">4.5</span> <span class="content">Text and directions</span></a>
-      <li><a href="#pagination-credits-and-page-level-text"><span class="secno">4.6</span> <span class="content">Pagination, credits and page-level text</span></a>
-      <li><a href="#semantic-layout-overrides"><span class="secno">4.7</span> <span class="content">Semantic layout overrides</span></a>
+      <li><a href="#pagination-credits-and-page-level-text"><span class="secno">4.5</span> <span class="content">Pagination, credits and page-level text</span></a>
+      <li><a href="#semantic-layout-overrides"><span class="secno">4.6</span> <span class="content">Semantic layout overrides</span></a>
      </ol>
     <li>
      <a href="#styling"><span class="secno">5</span> <span class="content">Styling</span></a>
@@ -1738,7 +1738,7 @@ semantic sense, not only to a single part. Examples include:</p>
     <li data-md="">
      <p>Musical form indications</p>
    </ul>
-   <p>In some cases (key signatures, for example) multiple instances of a notation
+   <p>In some cases (time signatures, for example) multiple instances of a notation
 are encoded separately in each MusicXML part, yet they are expected to
 semantically agree across all parts. While such agreement is not necessarily
 the case, it is nearly always the case. It seems desirable to allow this
@@ -1904,7 +1904,7 @@ multiples.</p>
      <p>three quarter notes</p>
     <dt data-md=""><code>3/8*</code>
     <dd data-md="">
-     <p>three dotted quarter notes (this form can be useful for specification of <a href="#tuplets">§4.3.11 Tuplets</a>)</p>
+     <p>three dotted quarter notes (this form can be useful for specification of <a href="#tuplets">§4.3.12 Tuplets</a>)</p>
    </dl>
    <p>Like an individual note value, a metrical timespan is always subject to any
 contextual time modification due to tuplets. For example, inside an 8-th note
@@ -2139,7 +2139,7 @@ all three:</p>
     <li data-md="">
      <p>lyrics</p>
     <li data-md="">
-     <p>slurs and other event-oriented spanning notations</p>
+     <p>slurs and other event-oriented <a href="#spanning-notations">§4.4 Spanning notations</a></p>
    </ul>
    <p>Here’s a middle C as a dotted half note.</p>
 <pre class="language-xml highlight"><span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2*"</span><span class="nt">></span>
@@ -2175,7 +2175,20 @@ Note that the <code>type</code> attribute is used to indicate this, rather than 
   <span class="nt">&lt;rest</span><span class="nt">/></span>
 <span class="nt">&lt;/event></span>
 </pre>
-   <h4 class="heading settled" data-level="4.3.11" id="tuplets"><span class="secno">4.3.11. </span><span class="content">Tuplets</span><a class="self-link" href="#tuplets"></a></h4>
+   <h4 class="heading settled" data-level="4.3.11" id="directions"><span class="secno">4.3.11. </span><span class="content">Directions</span><a class="self-link" href="#directions"></a></h4>
+   <p>The MNX <code><a data-link-type="element">direction</a></code> element carries over the features of the MusicXML <code><a data-link-type="element">direction</a></code> element.</p>
+   <p>This proposal does not yet attempt to examine how MNX directions will work in
+detail or how they differ from MusicXML directions.</p>
+   <p>MNX is, however, expected to include strong semantic types for different
+musical purposes of text. Dynamics, tempo markings, lyrics, playing
+instructions/techniques, etc. will all have proper types and may be freely
+included in <code><a data-link-type="element">sequence</a></code> and <code><a data-link-type="element">event</a></code> elements.</p>
+   <p class="issue" id="issue-536bc451"><a class="self-link" href="#issue-536bc451"></a> Should MNX split directions out into text-like (durationless) direction types
+and span-like direction types? What is the relationship between these two, e.g.
+for labeled lines?</p>
+   <p class="issue" id="issue-41d7faa8"><a class="self-link" href="#issue-41d7faa8"></a> Text with embedded style/font runs should be dealt with using <code><a data-link-type="element">span</a></code> tags and CSS styling, rather than a sequence of separate direction-types.</p>
+   <p class="issue" id="issue-83fe9539"><a class="self-link" href="#issue-83fe9539"></a> How should paragraph-style interpolated blocks be dealt with?</p>
+   <h4 class="heading settled" data-level="4.3.12" id="tuplets"><span class="secno">4.3.12. </span><span class="content">Tuplets</span><a class="self-link" href="#tuplets"></a></h4>
    <p>In MNX, the <code><a data-link-type="element">tuplet</a></code> element applies a time modification to all of its child
 elements, which are the same as those allowed in <code><a data-link-type="element">sequence</a></code>. In fact, <code><a data-link-type="element">tuplet</a></code> is very much like a nested <code><a data-link-type="element">sequence</a></code> element, with an implicit
 time signature representing the notated duration inside the tuplet. It
@@ -2227,7 +2240,7 @@ some number of measures in a given part. Some examples are:</p>
     <li data-md="">
      <p>8va lines</p>
     <li data-md="">
-     <p>performance directions like "let vibrate"</p>
+     <p>performance directions like <em>cresc. poco a poco</em></p>
    </ul>
    <p>Essentially all the elements described by a combination
 of MusicXML’s <code>number="N"</code> and <code>type="start|stop"</code> fall into
@@ -2238,7 +2251,7 @@ classification problem yet.)</p>
 terms of a <em>start element</em> and an <em>stop element</em>. These elements
 may be any element that occurs inside a <code><a data-link-type="element">sequence</a></code>.</p>
    <p>The start element of a spanning notation is specified by including the span
-directly in the start element as a child. The stop element is specified via an <code>ref</code> attribute on the span that supplies the stop element’s ID. Thus,
+directly in the start element as a child. The stop element is specified via an <code>end-ref</code> attribute on the span that supplies the stop element’s ID. Thus,
 spanning notations "point to" the notation where they will end. This is different
 from MusicXML, in which the stop point refers back to the spanning notation’s
 number.</p>
@@ -2284,26 +2297,15 @@ and its <code>length</code> attribute supplies its overall length in the score.<
    <p class="issue" id="issue-b1c5172b"><a class="self-link" href="#issue-b1c5172b"></a> Other attributes are needed to supply adjustments to spanning notation positions
 in terms of offset or X increments.</p>
    <p class="issue" id="issue-bccbb797"><a class="self-link" href="#issue-bccbb797"></a> do we really care what order the reference and the target occur in?</p>
-   <h3 class="heading settled" data-level="4.5" id="text-and-directions"><span class="secno">4.5. </span><span class="content">Text and directions</span><a class="self-link" href="#text-and-directions"></a></h3>
-   <p>(TBD)</p>
-   <p>MNX will include strong semantic types for different musical purposes of text.
-Dynamics, tempo markings, lyrics, playing instructions/techniques, etc. will
-all have proper types and may be freely included in <code><a data-link-type="element">sequence</a></code> and <code><a data-link-type="element">event</a></code> elements.</p>
-   <p class="issue" id="issue-caf40334"><a class="self-link" href="#issue-caf40334"></a> Should MNX split directions out into text-like (durationless) direction types
-and span-like direction types? It doesn’t appear that the left-to-right
-sequencing rule in MusicXML makes sense when putting these things together
-in the same <code><a data-link-type="element">direction</a></code>, but it makes sense for text-like things.</p>
-   <p class="issue" id="issue-41d7faa8"><a class="self-link" href="#issue-41d7faa8"></a> Text with embedded style/font runs should be dealt with using <code><a data-link-type="element">span</a></code> tags and CSS styling, rather than a sequence of separate direction-types.</p>
-   <p class="issue" id="issue-83fe9539"><a class="self-link" href="#issue-83fe9539"></a> How should paragraph-style interpolated blocks be dealt with?</p>
-   <h3 class="heading settled" data-level="4.6" id="pagination-credits-and-page-level-text"><span class="secno">4.6. </span><span class="content">Pagination, credits and page-level text</span><a class="self-link" href="#pagination-credits-and-page-level-text"></a></h3>
+   <h3 class="heading settled" data-level="4.5" id="pagination-credits-and-page-level-text"><span class="secno">4.5. </span><span class="content">Pagination, credits and page-level text</span><a class="self-link" href="#pagination-credits-and-page-level-text"></a></h3>
    <p>(TBD)</p>
    <p>We need to study the CSS specification as it is currently evolving to
 represent pagination to meet the needs of digital publishing overall, not only
 music publishing.</p>
    <p>MusicXML’s page-level elements such as <code><a data-link-type="element">credit-words</a></code> and others need to be
 reconsidered in light of this evolution. There is currently a tension in the
-existing corpus of MusicXML documents between the use of explicitly placed <code><a data-link-type="element">credit</a></code> elements and the metadata found in the <code><a data-link-type="element">information</a></code> element.</p>
-   <h3 class="heading settled" data-level="4.7" id="semantic-layout-overrides"><span class="secno">4.7. </span><span class="content">Semantic layout overrides</span><a class="self-link" href="#semantic-layout-overrides"></a></h3>
+existing corpus of MusicXML documents between the use of explicitly placed <code><a data-link-type="element">credit</a></code> elements and the metadata found in the <code><a data-link-type="element">identification</a></code> element.</p>
+   <h3 class="heading settled" data-level="4.6" id="semantic-layout-overrides"><span class="secno">4.6. </span><span class="content">Semantic layout overrides</span><a class="self-link" href="#semantic-layout-overrides"></a></h3>
    <p>The CWMN canon has many examples of notation in which notes do not add up
 metrically to yield the duration of a measure or tuplet, or in which notes in one
 voices align with notes in another, in spite of the dissimilar points in time
@@ -2699,7 +2701,7 @@ For example, <strong>duration: 1/16</strong> would cause the note to be played
 as a sixteenth note regardless.</p>
     <dt data-md=""><code>dynamics</code>
     <dd data-md="">
-     <p>Volume expressed as MIDI velocity (same as the MusicXML attribute of <code><a data-link-type="element">sound</a></code>?)</p>
+     <p>Volume expressed as percentage of <em>forte</em> dynamic (same as MusicXML)</p>
     <dt data-md=""><code>tempo</code>
     <dd data-md="">
      <p>Tempo expressed as a metrical timespan, e.g. <strong>tempo: 120/4</strong>. (same as
@@ -2998,15 +3000,14 @@ concert pitch and transposed pitch (used by MusicXML) have advantages and
 disadvantages.<a href="#issue-59982743"> ↵ </a></div>
    <div class="issue"> permit some sort of rational number option here for just-intonation
 temperaments and their variants.<a href="#issue-8dde6b97"> ↵ </a></div>
+   <div class="issue"> Should MNX split directions out into text-like (durationless) direction types
+and span-like direction types? What is the relationship between these two, e.g.
+for labeled lines?<a href="#issue-536bc451"> ↵ </a></div>
+   <div class="issue"> Text with embedded style/font runs should be dealt with using <code><a data-link-type="element">span</a></code> tags and CSS styling, rather than a sequence of separate direction-types.<a href="#issue-41d7faa8"> ↵ </a></div>
+   <div class="issue"> How should paragraph-style interpolated blocks be dealt with?<a href="#issue-83fe9539"> ↵ </a></div>
    <div class="issue"> Other attributes are needed to supply adjustments to spanning notation positions
 in terms of offset or X increments.<a href="#issue-b1c5172b"> ↵ </a></div>
    <div class="issue"> do we really care what order the reference and the target occur in?<a href="#issue-bccbb797"> ↵ </a></div>
-   <div class="issue"> Should MNX split directions out into text-like (durationless) direction types
-and span-like direction types? It doesn’t appear that the left-to-right
-sequencing rule in MusicXML makes sense when putting these things together
-in the same <code><a data-link-type="element">direction</a></code>, but it makes sense for text-like things.<a href="#issue-caf40334"> ↵ </a></div>
-   <div class="issue"> Text with embedded style/font runs should be dealt with using <code><a data-link-type="element">span</a></code> tags and CSS styling, rather than a sequence of separate direction-types.<a href="#issue-41d7faa8"> ↵ </a></div>
-   <div class="issue"> How should paragraph-style interpolated blocks be dealt with?<a href="#issue-83fe9539"> ↵ </a></div>
    <div class="issue"> MNX should define the meaning of <code>default</code> and <code>relative</code> more clearly and
 propose a tight set of requirements on positioning, while leaving lots of wiggle room
 for competition between implementations.<a href="#issue-d9033513"> ↵ </a></div>
