@@ -381,23 +381,24 @@ MusicXML, though. The differences are driven by the following design goals:
     operations such as node insertion and deleting (e.g. add a note to a chord by
     simply inserting a <{note}> element in the appropriate parent).
 
-### Specialized value encodings
+### Specialized encodings
 
-For compactness and readability, MNX represents note values, metrical
-durations and pitches as single textual attributes. Compactness and
-readability are desirable because encodings are documented, read and talked
-about, not only parsed and generated.
+For compactness and readability, MNX represents note values, timespans and
+pitches as single textual attributes. Compactness and readability are
+desirable because encodings are documented, read and talked about, not only
+parsed and generated.
 
 These will be covered first, before timelines are described, since they help
 make sense of the succeeding examples.
 
-### Note value encoding
+### Note values
 
-There are a variety of situations in which a note value needs to be supplied
-for an element. MNX uses a text encoding to represent such durations; in
-general, this replaces some arbitrary combination of MusicXMLs <{type}> and
-<{dot}> elements with no difference in semantics at all. The values are always
-implicitly subject to any tuplet time modification that may be in effect.
+There are a variety of situations in which the note value of a musical event
+needs to be supplied for an element. MNX uses a text encoding to represent
+such durations; in general, this replaces some arbitrary combination of
+MusicXMLs <{type}> and <{dot}> elements, with no difference in semantics at
+all. The values are always implicitly subject to any tuplet time modification
+that may be in effect.
 
 The note value encoding scheme consists of a unit, expressed as a power-of-two
 division of a whole note, similar to the denominator of a time signature, with
@@ -445,66 +446,129 @@ note values, dots and tuplets into a single number take us further from this
 ideal.
 </div>
 
-### Metrical duration encoding
+### Metrical timespans
 
-There are also situations in which a metrical duration needs to be supplied,
-as a real-valued number expressed in terms of a note value unit. There is no
-exact corresponding construct in MusicXML, although as will be seen, this
-capability eliminates the need to define `divisions`.
+There are also situations in which a *metrical timespan* needs to be supplied,
+as an exact multiple of a note value. There is no exact corresponding
+construct in MusicXML.
 
-A metrical duration is very similar to a time signature, but more general. It may be
-encoded in these ways:
-
-- A note value encoding standing alone, specifies a duration
-    equal to a single occurrence of the note value
-- A real number followed by `/` and a note value encoding specifies a duration equal to the
-    given number of note value units. The note value is subject to any contextual
-    time modification due to tuplets.
+A metrical timespan is very similar to a time signature, but more general. It
+is encoded as an integer, followed by `/` and a note value encoding. This
+specifies a timespan equal to the given number of note value units. Metrical
+timespans are used in MNX to represent either time intervals or positions
+relative to some origin, which must be constrained to exact note value
+multiples.
 
 Examples:
 
-: `4`
-:: a quarter note
 : `3/4`
 :: three quarter notes
-: `3.5/4`
-:: three-and-a-half quarter notes
 : `3/8*`
-:: three dotted quarter notes (this form can be useful for arbitrary [[#tuplets]])
+:: three dotted quarter notes (this form can be useful for specification of [[#tuplets]])
 
-In general, the attribute name `duration` is used to supply these specifications
-for various MNX elements.
+Like an individual note value, a metrical timespan is always subject to any
+contextual time modification due to tuplets. For example, inside an 8-th note
+triplet, the timespan `1/8` refers to an eighth-note triplet.
+
+### General timespans
+
+MNX has a less constrained notion of a *general timespan* which is used in
+situations where no constraint to an exact note value multiple is desired.
+
+General timespans are encoded as a real number followed by one of the following
+suffixes. 
+
+: `/`*note-value*
+:: displacement based on contextual time within the containing measure or tuplet.
+: `//`*note-value*
+:: displacement based on measure-level time, *disregarding any containing tuplets*.
+: `t`
+:: MIDI ticks (1/960 of a measure-level quarter note)
+
+Arbitrary denominators may also be used in general timespans.
+
+Examples:
+
+: `1/8`
+:: a contextual eighth note
+: `1//8`
+:: a measure-level eighth note
+: `480t`
+:: also a measure-level eighth note
+: `490t`
+:: 10 ticks longer than a measure-level eighth note
+: `2.42//4`
+:: 2.42 measure-level quarter notes
+: `1/12`
+:: a triplet 8th note (1/3 of a quarter note)
+
+Note: This concept replaces the MusicXML notion of `divisions` (and is
+capable of expressing arbitrary divisions if so desired).
+
+### Positions and timespans
+
+Any timespan can also express a *position* within a sequence or tuplet. In these
+cases, the timespan has the meaning of "timespan from some origin". Just as
+there are metrical and general timespans, so are there metrical and general
+positions.
+
+Positions expressed as timespans using contextual note values (e.g. `3/8`),
+are always relative to the start of the containing sequence or tuplet.
+Positions expressed in terms of measure-level note values (`3//8`) are always
+relative to the start of the containing measure.
 
 ### Sequences
 
-The <{sequence}> element represents an independent sequential timeline within a
-measures. A <{measure}> can have any number of timelines within it.
+The <{sequence}> element represents an independent sequential timeline within
+a measure. A <{measure}> can have any number of timelines within it.
 
-Each <{sequence}> child of the measure contains its own child elements in
+Each <{sequence}> child of the measure orders its child elements in
 chronological sequence, starting from the beginning of the measure. These may
-include such notations as rests, nodes, chords, performance directions,
-barlines, clefs, and so forth.
+include such elements as rests, nodes, chords, performance directions,
+barlines, clefs, and so forth. They also may include tuplets, which effectively
+act as nested sequences.
 
-Here's an example measure that shows several flavors of sequences. In the
+Its children may be of these kinds:
+
+- *event* children are notes or rests which possess a specific note value
+    and occupy the corresponding timespan within the sequence.
+    Events may not overlap, and they must occur at *metrical positions*
+    within their containing elements.
+
+- *direction* children are elements that occupy a zero timespan
+    within the sequence (although they have visual extent).
+    Directions are allowed to temporally overlap any other elements, and may occur at
+    *general positions*.
+
+- *tuplet* children are sub-sequences that apply a time modification ratio
+    to their children, which in turn may be nested events, directions or tuplets.
+    Like events, they must occur at *metrical positions*.
+
+Here's an example measure that shows several key aspects of sequences. In the
 first <{sequence}> there are two direction elements, separated by a half-note
 gap in metrical time. There are also two independent melodic voices
-represented by <{sequence}> elements.
+represented by <{sequence}> elements. The second voice includes an 8th-note
+triplet.
 
 ```xml
 <measure>
     <sequence>
         <direction>...</direction>
-        <space value="2"/>
-        <direction>...</direction>
+        <direction position="2/4">...</direction>
     </sequence>
     <sequence>
         <event value="2">...</event>
-        <event value="1">...</event>
-        <event value="1">...</event>
+        <event value="4">...</event>
+        <direction>...</direction>
+        <event value="4">...</event>
     </sequence>
     <sequence>
         <event value="2*">...</event>
-        <event value="1">...</event>
+        <tuplet actual="3/8" normal="1/4">
+            <event value="8">...</event>
+            <event value="8">...</event>
+            <event value="8">...</event>
+        </tuplet>
     </sequence>
 </measure>
 ```
@@ -515,22 +579,15 @@ ornaments and other voice-specific objects within a sequence.
 
 The optional `staff` attribute may furthermore default the staff assignment
 of all events within the voice for a given <{sequence}>. This may be selectively
-overridden within the sequence, of course.
+overridden within the sequence, of course. For example, consider these
+4 sequences set up for an SATB-style grand staff:
 
 ```xml
 <measure>
-    <sequence orientation="up">
-        <event>
-            <note>...</note>
-        </event>
-        ...
-    </sequence>
-    <sequence orientation="down">
-        <event>
-            <note>...</note>
-        </event>
-        ...
-    </sequence>
+    <sequence orientation="up" staff="1">...</sequence>
+    <sequence orientation="down" staff="1">...</sequence>
+    <sequence orientation="up" staff="2">...</sequence>
+    <sequence orientation="down" staff="2">...</sequence>
 </measure>
 ```
 
@@ -539,21 +596,68 @@ possess a number or any other label. It can, however, be assigned a label via
 the optional <{sequence/name}> attribute that declares continuity between
 identically named/numbered sequences in successive measures of the same part.
 
-<div class="note">
-Note: While there is still a notion of time cursor, significant constraints
-distinguish MNX's cursors from MusicXML:
+### The sequence cursor
+
+Elements of a sequence can be assigned an explicit position, but need not be.
+In the absence of an explicit `position` attribute on an event, direction, or
+tuplet, the current value of the *sequence cursor* is used.
+
+In the `standard` profile, the final tag of an <{event}> or <{tuplet}> element
+assigns the temporal endpoint of that element to the sequence cursor.
+Direction elements have no effect on the sequence cursor.
+
+There are two motivations for the cursor:
+
+- to permit a terse and straightforward
+    encoding of music in which all events and directions assume standard metrical
+    positions.
+
+- to afford encoding of music which uses standard note values, but not any standard interpretation
+    of event positions
+
+Significant constraints distinguish MNX's sequence cursor from MusicXML:
 
 - The cursor must progress in a forward direction
-- The cursor may only progress in units that are expressible in CMN (rather than any number of divisions)
+- The cursor only progresses in units that are expressible in CMN (rather than any number of divisions)
 - Events within the cursor's timeline always belong to the same polyphonic voice or "layer"
 - Events cannot overlap
 
-These constraints are semantic only. It does *not* apply to
-either the appearance or interpretation of the sequence.
+### Explicit positions
 
-See [[#sequence-positions]] for a discussion of an alternative approach
-allowing positions to be attached to elements in sequences.
-</div>
+It's also possible to use a `position` attribute for any element of a
+sequence.
+
+Events or tuplets are allowed to specify a *metrical position*, reflecting
+this constraint within standard CMN.
+
+Directions may specify a *general position*.
+
+Here is the prior example from [[#sequences]], recast with the use of
+a `position` attribute relative to the containing measure or tuplet.
+
+```xml
+<measure>
+    <sequence>
+        <direction>...</direction>
+        <direction position="100t">...</direction>
+    </sequence>
+    <sequence>
+        <event value="2">...</event>
+        <direction position="2/4">...</direction>
+        <event position="2/4" value="4">...</event>
+        <event position="3/4" value="4">...</event>
+    </sequence>
+    <sequence>
+        <event value="2*">...</event>
+        <tuplet position="3/4" actual="3/8" normal="1/4">
+            <event value="8">...</event>
+            <event position="1/8" value="8">...</event>
+            <event position="2/8" value="8">...</event>
+        </tuplet>
+    </sequence>
+</measure>
+
+```
 
 ### Pitch encoding
 
@@ -586,7 +690,6 @@ Examples:
 : `C#4-0.5`
 :: The pitch one quarter-tone above middle C (identical to the above)
 
-
 The `pitch` attribute is used to supply pitch encodings where appropriate, typically
 for <{note}> elements.
 
@@ -601,7 +704,7 @@ The new MNX element <{event}> represents the related concepts of rest, note
 or chord depending on its contents. It supplies information that is common to
 all three:
 
-- metrical duration, expressed in terms of note value and dot count
+- event duration, expressed in terms of note value and dot count
 - stem orientation, length, etc. if applicable
 - flag and beam description
 - articulations or directions that apply to all contained notes
@@ -638,11 +741,10 @@ Here's a whole note rest:
 </event>
 ```
 
-And a grace note chord; the <{grace}> element belongs to the <{event}>:
+And a grace note chord; the `grace` attribute belongs to the <{event}>.
 
 ```xml
-<event value="8">
-  <grace/>
+<event value="8" grace="true">
   <stem>up</stem>
   <note pitch="C4"/>
   <note pitch="E4"/>
@@ -650,7 +752,9 @@ And a grace note chord; the <{grace}> element belongs to the <{event}>:
 </event>
 ```
 
-As a special case, the following event encodes a <em>whole-measure</em> rest.
+Note: grace notes do not advance the sequence cursor.
+
+As one special case, the following event encodes a <em>whole-measure</em> rest.
 Note that the `type` attribute is used to indicate this, rather than `value`:
 
 ```xml
@@ -658,123 +762,19 @@ Note that the `type` attribute is used to indicate this, rather than `value`:
   <rest/>
 </event>
 ```
-
-### Sequence positions
-
-It's also possible to use a `position` attribute for notations or events in a
-sequence. This can provide an alternative to [[#spaces]], or even replace it
-outright (if mandated for all position-dependent elements). This may have
-significant advantages particularly in sparse sequences such as those used for
-[[#system-notations]] where many ugly <{spaces}> might be necessary.
-
-A question that comes up for such positions is, what does a zero position
-correspond to, and in what units are positions expressed? Some alternatives
-include:
-
-- The start of the containing sequence or tuplet (in which case all positions remain constrained to CWMN note values)
-- The start of the measure (in which case positions within a tuplet become more complex)
-- The start of the score (yielding complex positions that require adjustment when measures are moved)
-
-If `position` is optional, it makes sense for it to default to zero, or to the
-ending position of the prior element in the sequence if one exists.
-
-Here is a prior example from [[#sequences]], recast with the use of
-an optional `position` attribute relative to the containing measure or tuplet.
-
-```xml
-<measure>
-    <sequence>
-        <direction>...</direction>
-        <direction position="1/2">...</direction>
-    </sequence>
-    <sequence>
-        <event value="2">...</event>
-        <event position="2/4" value="1">...</event>
-        <event position="3/4" value="1">...</event>
-    </sequence>
-    <sequence>
-        <event value="2*">...</event>
-        <event position="3/4" value="1">...</event>
-    </sequence>
-</measure>
-```
-
-### Spaces
-
-A <{space}> is a way of specifying a metrical time interval that does not
-contain any notation. MNX uses <{space}> elements to explicitly represent such
-gaps. (In MusicXML, these gaps were often created using the <{forward}> and
-<{backward}> elements or with hidden rests, and could only be determined after
-complete parsing of a measure's contents.)
-
-Because of the use of the <{sequence}> element to organize notations in
-chronological sequence, and because non-notated gaps within a sequence can be
-explicitly represented, MNX does not need MusicXML's <{forward}> and
-<{backward}> elements. Instead, <{space}> serves the purpose of <{forward}>,
-while picking up a few additional useful characteristics. The contents of a
-sequence can always be expressed as a sequence of contiguous elements starting
-at the beginning of the measure and proceeding forward in metrical time.
-
-Accordingly, the concept of <code>divisions</code> also becomes
-unnecessary in MNX. To the extent that arbitrary durations are needed, they
-can always be expressed as multiples of some normal musical time unit.
-(See [[#tuplets]] for more information on how spaces work
-to take up space in tuplets -- divisions aren't needed here either.)
-
-A <{space}> takes a `length` attribute to specify its metrical duration (see
-[[#metrical-duration-encoding]]):
-
-```xml
-<space length="4*"/>
-```
-
-The following space is equivalent to 5 eighth notes:
-
-```xml
-<space length="5/8"/>
-```
-
-And so is this one:
-
-```xml
-<space length="2.5/4"/>
-```
-
-Spaces are useful for causing a non-metrical notation like text to appear at a certain
-metrically anchored place within a measure. For example, the following causes text
-to be anchored at a point one quarter note into the given measure:
-
-```xml
-<measure>
-  <sequence>
-      <space length="4"/>
-      <direction placement="above">
-        <direction-type>
-          <words>And then...</words>
-        </direction-type>
-      </direction>
-  </sequence>
-</measure>
-```
-
-### Anchor spaces
-
-Spaces may omit the <{length}> attribute, in which case they possess zero
-duration. This is useful for creating anchor points for [[#spanning-
-notations]], for example, allowing lines or slurs to originate or terminate in
-places where there is no note.
-
+    
 ### Tuplets
 
 In MNX, the <{tuplet}> element applies a time modification to all of its child
 elements, which are the same as those allowed in <{sequence}>. In fact,
-<{tuplet}> is very much like a nested <{sequence}> element, with an implicit time
-signature representing the notated duration inside the tuplet. It functions
-just like an <{event}> or <{space}> element, in that it takes up a known duration
-within its parent.
+<{tuplet}> is very much like a nested <{sequence}> element, with an implicit
+time signature representing the notated duration inside the tuplet. It
+functions just like an <{event}> element, in that it takes up a known duration
+within its parent, and is not allowed to overlap with other <{event}> or
+<{tuplet}> elements.
 
 A <{tuplet}> uses the two attributes `actual` and `normal` making use of
-[[#metrical-duration-encoding]] to represent the tuplet ratio.
+[[#metrical-timespans]] to represent the tuplet ratio.
 It thus combines the function of MusicXML's <{tuplet}> and <{time-modification}>
 elements into a single construct: the contained elements are automatically
 subject to time modification, and CSS styling can control the appearance of
@@ -789,17 +789,13 @@ Here's an example of an eighth-note triplet:
 <sequence>
     ...preceding events in sequence...
     <tuplet actual="3/8" normal="1/4">
-        <time-modification />
-        <event>
-            <type>eighth</type>
+        <event value="8">
             <note>...</note>
         </event>
-        <event>
-            <type>eighth</type>
+        <event value="8">
             <note>...</note>
         </event>
-        <event>
-            <type>eighth</type>
+        <event value="8">
             <note>...</note>
         </event>
     </tuplet>
@@ -810,8 +806,8 @@ Here's an example of an eighth-note triplet:
 (The tag `<tuplet actual="3/8" normal="2/8">` would work exactly the same. There
 is no semantic difference.)
 
-One can of course include spaces, text, directions, and so on in tuplets as
-well. Not to mention nesting tuplets within tuplets.
+One can include directions in tuplets as well. And, naturally, tuplets
+may be included within tuplets.
 
 Other examples of tuplets:
 
@@ -845,8 +841,7 @@ classification problem yet.)
 
 In MNX, the preferred way to describe such <em>spanning notations</em> is in
 terms of a <em>start element</em> and an <em>stop element</em>. These elements
-may be any element that occurs inside a <{sequence}> (most often, <{event}> or
-<{space}>).
+may be any element that occurs inside a <{sequence}>.
 
 The start element of a spanning notation is specified by including the span
 directly in the start element as a child. The stop element is specified via an
@@ -1165,17 +1160,8 @@ by an explicit unit:
 :: staff tenths (same unit as in MusicXML)
 : `px`
 :: display pixels (same unit as in SVG or HTML)
-: `/`*note-value*
-:: displacement based on contextual time within the containing measure or tuplet.
-: `//`*note-value*
-:: displacement based on measure-level time, *disregarding any containing tuplets*.
-: `t`
-:: MIDI ticks (1/960 of a measure-level quarter note)
 
-The default unit for all time displacements is measure-level quarter notes (equivalent to `//4`).
-
-Rational numbers may be employed for time displacements. These are expressed
-using `:` to separate the numerator and denominator.
+Also, [[#general-timespans]] may be used as style units.
 
 Examples:
 
@@ -1189,10 +1175,8 @@ Examples:
 :: a measure-level eighth note
 : `481t`
 :: one tick longer than a measure-level eighthnote
-: `1:3`
-:: a triplet 8th note (1/3 of a quarter note)
 : `1:3//4`
-:: same as above
+:: a triplet 8th note (1/3 of a quarter note)
 
 
 ## CSS property usage
@@ -1407,7 +1391,7 @@ Here are some significant interpretation properties, but not an exhaustive list
 of course:
 
 : `offset`
-:: A playback offset expressed as a metrical duration relative to the
+:: A playback offset expressed as a general timespan relative to the
     default offset. For example, **offset: -1/16**
     would play the given note one sixteenth note earlier. **offset: 10t** would play
     it 10 MIDI ticks later.
@@ -1415,13 +1399,13 @@ of course:
 :: A pitch to be used for playback instead of the notated pitch, expressed
     as a pitch encoding (e.g. **pitch: C#4+0.1**).
 : `duration`
-:: A note duration to be used for playback, expressed as a metrical duration
-    encoding. For example, **duration: 1/16** would cause the note to be played
+:: A note duration to be used for playback, expressed as a general timespan.
+    For example, **duration: 1/16** would cause the note to be played
     as a sixteenth note regardless.
 : `dynamics`
 :: Volume expressed as MIDI velocity (same as the MusicXML attribute of <{sound}>?)
 : `tempo`
-:: Tempo expressed as a metrical duration encoding, e.g. **tempo: 120/4**. (same as
+:: Tempo expressed as a metrical timespan, e.g. **tempo: 120/4**. (same as
     MusicXML, but doesn't require quarter note units).
 : `playback`
 :: Controls whether interpretation occurs at all. **playback: none** will suppress

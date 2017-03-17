@@ -1386,7 +1386,7 @@ Possible extra rowspan handling
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Overview (Draft Proposal)</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-03-15">15 March 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-03-17">17 March 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1399,7 +1399,7 @@ Possible extra rowspan handling
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 15 March 2017,
+In addition, as of 17 March 2017,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1453,16 +1453,17 @@ Examples are used rather than specification language.</p>
       <li>
        <a href="#musical-timelines"><span class="secno">4.3</span> <span class="content">Musical timelines</span></a>
        <ol class="toc">
-        <li><a href="#specialized-value-encodings"><span class="secno">4.3.1</span> <span class="content">Specialized value encodings</span></a>
-        <li><a href="#note-value-encoding"><span class="secno">4.3.2</span> <span class="content">Note value encoding</span></a>
-        <li><a href="#metrical-duration-encoding"><span class="secno">4.3.3</span> <span class="content">Metrical duration encoding</span></a>
-        <li><a href="#sequences"><span class="secno">4.3.4</span> <span class="content">Sequences</span></a>
-        <li><a href="#pitch-encoding"><span class="secno">4.3.5</span> <span class="content">Pitch encoding</span></a>
-        <li><a href="#events"><span class="secno">4.3.6</span> <span class="content">Events</span></a>
-        <li><a href="#sequence-positions"><span class="secno">4.3.7</span> <span class="content">Sequence positions</span></a>
-        <li><a href="#spaces"><span class="secno">4.3.8</span> <span class="content">Spaces</span></a>
-        <li><a href="#anchor-spaces"><span class="secno">4.3.9</span> <span class="content">Anchor spaces</span></a>
-        <li><a href="#tuplets"><span class="secno">4.3.10</span> <span class="content">Tuplets</span></a>
+        <li><a href="#specialized-encodings"><span class="secno">4.3.1</span> <span class="content">Specialized encodings</span></a>
+        <li><a href="#note-values"><span class="secno">4.3.2</span> <span class="content">Note values</span></a>
+        <li><a href="#metrical-timespans"><span class="secno">4.3.3</span> <span class="content">Metrical timespans</span></a>
+        <li><a href="#general-timespans"><span class="secno">4.3.4</span> <span class="content">General timespans</span></a>
+        <li><a href="#positions-and-timespans"><span class="secno">4.3.5</span> <span class="content">Positions and timespans</span></a>
+        <li><a href="#sequences"><span class="secno">4.3.6</span> <span class="content">Sequences</span></a>
+        <li><a href="#the-sequence-cursor"><span class="secno">4.3.7</span> <span class="content">The sequence cursor</span></a>
+        <li><a href="#explicit-positions"><span class="secno">4.3.8</span> <span class="content">Explicit positions</span></a>
+        <li><a href="#pitch-encoding"><span class="secno">4.3.9</span> <span class="content">Pitch encoding</span></a>
+        <li><a href="#events"><span class="secno">4.3.10</span> <span class="content">Events</span></a>
+        <li><a href="#tuplets"><span class="secno">4.3.11</span> <span class="content">Tuplets</span></a>
        </ol>
       <li><a href="#spanning-notations"><span class="secno">4.4</span> <span class="content">Spanning notations</span></a>
       <li><a href="#text-and-directions"><span class="secno">4.5</span> <span class="content">Text and directions</span></a>
@@ -1821,18 +1822,20 @@ parsing measures of music.</p>
 operations such as node insertion and deleting (e.g. add a note to a chord by
 simply inserting a <code><a data-link-type="element">note</a></code> element in the appropriate parent).</p>
    </ul>
-   <h4 class="heading settled" data-level="4.3.1" id="specialized-value-encodings"><span class="secno">4.3.1. </span><span class="content">Specialized value encodings</span><a class="self-link" href="#specialized-value-encodings"></a></h4>
-   <p>For compactness and readability, MNX represents note values, metrical
-durations and pitches as single textual attributes. Compactness and
-readability are desirable because encodings are documented, read and talked
-about, not only parsed and generated.</p>
+   <h4 class="heading settled" data-level="4.3.1" id="specialized-encodings"><span class="secno">4.3.1. </span><span class="content">Specialized encodings</span><a class="self-link" href="#specialized-encodings"></a></h4>
+   <p>For compactness and readability, MNX represents note values, timespans and
+pitches as single textual attributes. Compactness and readability are
+desirable because encodings are documented, read and talked about, not only
+parsed and generated.</p>
    <p>These will be covered first, before timelines are described, since they help
 make sense of the succeeding examples.</p>
-   <h4 class="heading settled" data-level="4.3.2" id="note-value-encoding"><span class="secno">4.3.2. </span><span class="content">Note value encoding</span><a class="self-link" href="#note-value-encoding"></a></h4>
-   <p>There are a variety of situations in which a note value needs to be supplied
-for an element. MNX uses a text encoding to represent such durations; in
-general, this replaces some arbitrary combination of MusicXMLs <code><a data-link-type="element">type</a></code> and <code><a data-link-type="element">dot</a></code> elements with no difference in semantics at all. The values are always
-implicitly subject to any tuplet time modification that may be in effect.</p>
+   <h4 class="heading settled" data-level="4.3.2" id="note-values"><span class="secno">4.3.2. </span><span class="content">Note values</span><a class="self-link" href="#note-values"></a></h4>
+   <p>There are a variety of situations in which the note value of a musical event
+needs to be supplied for an element. MNX uses a text encoding to represent
+such durations; in general, this replaces some arbitrary combination of
+MusicXMLs <code><a data-link-type="element">type</a></code> and <code><a data-link-type="element">dot</a></code> elements, with no difference in semantics at
+all. The values are always implicitly subject to any tuplet time modification
+that may be in effect.</p>
    <p>The note value encoding scheme consists of a unit, expressed as a power-of-two
 division of a whole note, similar to the denominator of a time signature, with
 textual exceptions for large antique units. This may be optionally followed by
@@ -1884,64 +1887,123 @@ layer and a naïvely notated score. Rational numbers that combine the notion of
 note values, dots and tuplets into a single number take us further from this
 ideal.</p>
    </div>
-   <h4 class="heading settled" data-level="4.3.3" id="metrical-duration-encoding"><span class="secno">4.3.3. </span><span class="content">Metrical duration encoding</span><a class="self-link" href="#metrical-duration-encoding"></a></h4>
-   <p>There are also situations in which a metrical duration needs to be supplied,
-as a real-valued number expressed in terms of a note value unit. There is no
-exact corresponding construct in MusicXML, although as will be seen, this
-capability eliminates the need to define <code>divisions</code>.</p>
-   <p>A metrical duration is very similar to a time signature, but more general. It may be
-encoded in these ways:</p>
-   <ul>
-    <li data-md="">
-     <p>A note value encoding standing alone, specifies a duration
-equal to a single occurrence of the note value</p>
-    <li data-md="">
-     <p>A real number followed by <code>/</code> and a note value encoding specifies a duration equal to the
-given number of note value units. The note value is subject to any contextual
-time modification due to tuplets.</p>
-   </ul>
+   <h4 class="heading settled" data-level="4.3.3" id="metrical-timespans"><span class="secno">4.3.3. </span><span class="content">Metrical timespans</span><a class="self-link" href="#metrical-timespans"></a></h4>
+   <p>There are also situations in which a <em>metrical timespan</em> needs to be supplied,
+as an exact multiple of a note value. There is no exact corresponding
+construct in MusicXML.</p>
+   <p>A metrical timespan is very similar to a time signature, but more general. It
+is encoded as an integer, followed by <code>/</code> and a note value encoding. This
+specifies a timespan equal to the given number of note value units. Metrical
+timespans are used in MNX to represent either time intervals or positions
+relative to some origin, which must be constrained to exact note value
+multiples.</p>
    <p>Examples:</p>
    <dl>
-    <dt data-md=""><code>4</code>
-    <dd data-md="">
-     <p>a quarter note</p>
     <dt data-md=""><code>3/4</code>
     <dd data-md="">
      <p>three quarter notes</p>
-    <dt data-md=""><code>3.5/4</code>
-    <dd data-md="">
-     <p>three-and-a-half quarter notes</p>
     <dt data-md=""><code>3/8*</code>
     <dd data-md="">
-     <p>three dotted quarter notes (this form can be useful for arbitrary <a href="#tuplets">§4.3.10 Tuplets</a>)</p>
+     <p>three dotted quarter notes (this form can be useful for specification of <a href="#tuplets">§4.3.11 Tuplets</a>)</p>
    </dl>
-   <p>In general, the attribute name <code>duration</code> is used to supply these specifications
-for various MNX elements.</p>
-   <h4 class="heading settled" data-level="4.3.4" id="sequences"><span class="secno">4.3.4. </span><span class="content">Sequences</span><a class="self-link" href="#sequences"></a></h4>
-   <p>The <code><a data-link-type="element">sequence</a></code> element represents an independent sequential timeline within a
-measures. A <code><a data-link-type="element">measure</a></code> can have any number of timelines within it.</p>
-   <p>Each <code><a data-link-type="element">sequence</a></code> child of the measure contains its own child elements in
+   <p>Like an individual note value, a metrical timespan is always subject to any
+contextual time modification due to tuplets. For example, inside an 8-th note
+triplet, the timespan <code>1/8</code> refers to an eighth-note triplet.</p>
+   <h4 class="heading settled" data-level="4.3.4" id="general-timespans"><span class="secno">4.3.4. </span><span class="content">General timespans</span><a class="self-link" href="#general-timespans"></a></h4>
+   <p>MNX has a less constrained notion of a <em>general timespan</em> which is used in
+situations where no constraint to an exact note value multiple is desired.</p>
+   <p>General timespans are encoded as a real number followed by one of the following
+suffixes.</p>
+   <dl>
+    <dt data-md=""><code>/</code><em>note-value</em>
+    <dd data-md="">
+     <p>displacement based on contextual time within the containing measure or tuplet.</p>
+    <dt data-md=""><code>//</code><em>note-value</em>
+    <dd data-md="">
+     <p>displacement based on measure-level time, <em>disregarding any containing tuplets</em>.</p>
+    <dt data-md=""><code>t</code>
+    <dd data-md="">
+     <p>MIDI ticks (1/960 of a measure-level quarter note)</p>
+   </dl>
+   <p>Arbitrary denominators may also be used in general timespans.</p>
+   <p>Examples:</p>
+   <dl>
+    <dt data-md=""><code>1/8</code>
+    <dd data-md="">
+     <p>a contextual eighth note</p>
+    <dt data-md=""><code>1//8</code>
+    <dd data-md="">
+     <p>a measure-level eighth note</p>
+    <dt data-md=""><code>480t</code>
+    <dd data-md="">
+     <p>also a measure-level eighth note</p>
+    <dt data-md=""><code>490t</code>
+    <dd data-md="">
+     <p>10 ticks longer than a measure-level eighth note</p>
+    <dt data-md=""><code>2.42//4</code>
+    <dd data-md="">
+     <p>2.42 measure-level quarter notes</p>
+    <dt data-md=""><code>1/12</code>
+    <dd data-md="">
+     <p>a triplet 8th note (1/3 of a quarter note)</p>
+   </dl>
+   <p class="note" role="note"><span>Note:</span> This concept replaces the MusicXML notion of <code>divisions</code> (and is
+capable of expressing arbitrary divisions if so desired).</p>
+   <h4 class="heading settled" data-level="4.3.5" id="positions-and-timespans"><span class="secno">4.3.5. </span><span class="content">Positions and timespans</span><a class="self-link" href="#positions-and-timespans"></a></h4>
+   <p>Any timespan can also express a <em>position</em> within a sequence or tuplet. In these
+cases, the timespan has the meaning of "timespan from some origin". Just as
+there are metrical and general timespans, so are there metrical and general
+positions.</p>
+   <p>Positions expressed as timespans using contextual note values (e.g. <code>3/8</code>),
+are always relative to the start of the containing sequence or tuplet.
+Positions expressed in terms of measure-level note values (<code>3//8</code>) are always
+relative to the start of the containing measure.</p>
+   <h4 class="heading settled" data-level="4.3.6" id="sequences"><span class="secno">4.3.6. </span><span class="content">Sequences</span><a class="self-link" href="#sequences"></a></h4>
+   <p>The <code><a data-link-type="element">sequence</a></code> element represents an independent sequential timeline within
+a measure. A <code><a data-link-type="element">measure</a></code> can have any number of timelines within it.</p>
+   <p>Each <code><a data-link-type="element">sequence</a></code> child of the measure orders its child elements in
 chronological sequence, starting from the beginning of the measure. These may
-include such notations as rests, nodes, chords, performance directions,
-barlines, clefs, and so forth.</p>
-   <p>Here’s an example measure that shows several flavors of sequences. In the
+include such elements as rests, nodes, chords, performance directions,
+barlines, clefs, and so forth. They also may include tuplets, which effectively
+act as nested sequences.</p>
+   <p>Its children may be of these kinds:</p>
+   <ul>
+    <li data-md="">
+     <p><em>event</em> children are notes or rests which possess a specific note value
+and occupy the corresponding timespan within the sequence.
+Events may not overlap, and they must occur at <em>metrical positions</em> within their containing elements.</p>
+    <li data-md="">
+     <p><em>direction</em> children are elements that occupy a zero timespan
+within the sequence (although they have visual extent).
+Directions are allowed to temporally overlap any other elements, and may occur at <em>general positions</em>.</p>
+    <li data-md="">
+     <p><em>tuplet</em> children are sub-sequences that apply a time modification ratio
+to their children, which in turn may be nested events, directions or tuplets.
+Like events, they must occur at <em>metrical positions</em>.</p>
+   </ul>
+   <p>Here’s an example measure that shows several key aspects of sequences. In the
 first <code><a data-link-type="element">sequence</a></code> there are two direction elements, separated by a half-note
 gap in metrical time. There are also two independent melodic voices
-represented by <code><a data-link-type="element">sequence</a></code> elements.</p>
+represented by <code><a data-link-type="element">sequence</a></code> elements. The second voice includes an 8th-note
+triplet.</p>
 <pre class="language-xml highlight"><span class="nt">&lt;measure</span><span class="nt">></span>
     <span class="nt">&lt;sequence</span><span class="nt">></span>
         <span class="nt">&lt;direction</span><span class="nt">></span>...<span class="nt">&lt;/direction></span>
-        <span class="nt">&lt;space</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">/></span>
-        <span class="nt">&lt;direction</span><span class="nt">></span>...<span class="nt">&lt;/direction></span>
+        <span class="nt">&lt;direction</span> <span class="na">position=</span><span class="s">"2/4"</span><span class="nt">></span>...<span class="nt">&lt;/direction></span>
     <span class="nt">&lt;/sequence></span>
     <span class="nt">&lt;sequence</span><span class="nt">></span>
         <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
-        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
-        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;direction</span><span class="nt">></span>...<span class="nt">&lt;/direction></span>
+        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
     <span class="nt">&lt;/sequence></span>
     <span class="nt">&lt;sequence</span><span class="nt">></span>
         <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2*"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
-        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;tuplet</span> <span class="na">actual=</span><span class="s">"3/8"</span> <span class="na">normal=</span><span class="s">"1/4"</span><span class="nt">></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;/tuplet></span>
     <span class="nt">&lt;/sequence></span>
 <span class="nt">&lt;/measure></span>
 </pre>
@@ -1949,45 +2011,77 @@ represented by <code><a data-link-type="element">sequence</a></code> elements.</
 ornaments and other voice-specific objects within a sequence.</p>
    <p>The optional <code>staff</code> attribute may furthermore default the staff assignment
 of all events within the voice for a given <code><a data-link-type="element">sequence</a></code>. This may be selectively
-overridden within the sequence, of course.</p>
+overridden within the sequence, of course. For example, consider these
+4 sequences set up for an SATB-style grand staff:</p>
 <pre class="language-xml highlight"><span class="nt">&lt;measure</span><span class="nt">></span>
-    <span class="nt">&lt;sequence</span> <span class="na">orientation=</span><span class="s">"up"</span><span class="nt">></span>
-        <span class="nt">&lt;event</span><span class="nt">></span>
-            <span class="nt">&lt;note</span><span class="nt">></span>...<span class="nt">&lt;/note></span>
-        <span class="nt">&lt;/event></span>
-        ...
-    <span class="nt">&lt;/sequence></span>
-    <span class="nt">&lt;sequence</span> <span class="na">orientation=</span><span class="s">"down"</span><span class="nt">></span>
-        <span class="nt">&lt;event</span><span class="nt">></span>
-            <span class="nt">&lt;note</span><span class="nt">></span>...<span class="nt">&lt;/note></span>
-        <span class="nt">&lt;/event></span>
-        ...
-    <span class="nt">&lt;/sequence></span>
+    <span class="nt">&lt;sequence</span> <span class="na">orientation=</span><span class="s">"up"</span> <span class="na">staff=</span><span class="s">"1"</span><span class="nt">></span>...<span class="nt">&lt;/sequence></span>
+    <span class="nt">&lt;sequence</span> <span class="na">orientation=</span><span class="s">"down"</span> <span class="na">staff=</span><span class="s">"1"</span><span class="nt">></span>...<span class="nt">&lt;/sequence></span>
+    <span class="nt">&lt;sequence</span> <span class="na">orientation=</span><span class="s">"up"</span> <span class="na">staff=</span><span class="s">"2"</span><span class="nt">></span>...<span class="nt">&lt;/sequence></span>
+    <span class="nt">&lt;sequence</span> <span class="na">orientation=</span><span class="s">"down"</span> <span class="na">staff=</span><span class="s">"2"</span><span class="nt">></span>...<span class="nt">&lt;/sequence></span>
 <span class="nt">&lt;/measure></span>
 </pre>
    <p>Unlike the MusicXML <code><a data-link-type="element">voice</a></code> element, the MNX <code><a data-link-type="element">sequence</a></code> element need not
 possess a number or any other label. It can, however, be assigned a label via
 the optional <code><a data-link-type="element-sub">name</a></code> attribute that declares continuity between
 identically named/numbered sequences in successive measures of the same part.</p>
-   <div class="note" role="note">
-     Note: While there is still a notion of time cursor, significant constraints
-distinguish MNX’s cursors from MusicXML: 
-    <ul>
-     <li data-md="">
-      <p>The cursor must progress in a forward direction</p>
-     <li data-md="">
-      <p>The cursor may only progress in units that are expressible in CMN (rather than any number of divisions)</p>
-     <li data-md="">
-      <p>Events within the cursor’s timeline always belong to the same polyphonic voice or "layer"</p>
-     <li data-md="">
-      <p>Events cannot overlap</p>
-    </ul>
-    <p>These constraints are semantic only. It does <em>not</em> apply to
-either the appearance or interpretation of the sequence.</p>
-    <p>See <a href="#sequence-positions">§4.3.7 Sequence positions</a> for a discussion of an alternative approach
-allowing positions to be attached to elements in sequences.</p>
-   </div>
-   <h4 class="heading settled" data-level="4.3.5" id="pitch-encoding"><span class="secno">4.3.5. </span><span class="content">Pitch encoding</span><a class="self-link" href="#pitch-encoding"></a></h4>
+   <h4 class="heading settled" data-level="4.3.7" id="the-sequence-cursor"><span class="secno">4.3.7. </span><span class="content">The sequence cursor</span><a class="self-link" href="#the-sequence-cursor"></a></h4>
+   <p>Elements of a sequence can be assigned an explicit position, but need not be.
+In the absence of an explicit <code>position</code> attribute on an event, direction, or
+tuplet, the current value of the <em>sequence cursor</em> is used.</p>
+   <p>In the <code>standard</code> profile, the final tag of an <code><a data-link-type="element">event</a></code> or <code><a data-link-type="element">tuplet</a></code> element
+assigns the temporal endpoint of that element to the sequence cursor.
+Direction elements have no effect on the sequence cursor.</p>
+   <p>There are two motivations for the cursor:</p>
+   <ul>
+    <li data-md="">
+     <p>to permit a terse and straightforward
+encoding of music in which all events and directions assume standard metrical
+positions.</p>
+    <li data-md="">
+     <p>to afford encoding of music which uses standard note values, but not any standard interpretation
+of event positions</p>
+   </ul>
+   <p>Significant constraints distinguish MNX’s sequence cursor from MusicXML:</p>
+   <ul>
+    <li data-md="">
+     <p>The cursor must progress in a forward direction</p>
+    <li data-md="">
+     <p>The cursor only progresses in units that are expressible in CMN (rather than any number of divisions)</p>
+    <li data-md="">
+     <p>Events within the cursor’s timeline always belong to the same polyphonic voice or "layer"</p>
+    <li data-md="">
+     <p>Events cannot overlap</p>
+   </ul>
+   <h4 class="heading settled" data-level="4.3.8" id="explicit-positions"><span class="secno">4.3.8. </span><span class="content">Explicit positions</span><a class="self-link" href="#explicit-positions"></a></h4>
+   <p>It’s also possible to use a <code>position</code> attribute for any element of a
+sequence.</p>
+   <p>Events or tuplets are allowed to specify a <em>metrical position</em>, reflecting
+this constraint within standard CMN.</p>
+   <p>Directions may specify a <em>general position</em>.</p>
+   <p>Here is the prior example from <a href="#sequences">§4.3.6 Sequences</a>, recast with the use of
+a <code>position</code> attribute relative to the containing measure or tuplet.</p>
+<pre class="language-xml highlight"><span class="nt">&lt;measure</span><span class="nt">></span>
+    <span class="nt">&lt;sequence</span><span class="nt">></span>
+        <span class="nt">&lt;direction</span><span class="nt">></span>...<span class="nt">&lt;/direction></span>
+        <span class="nt">&lt;direction</span> <span class="na">position=</span><span class="s">"100t"</span><span class="nt">></span>...<span class="nt">&lt;/direction></span>
+    <span class="nt">&lt;/sequence></span>
+    <span class="nt">&lt;sequence</span><span class="nt">></span>
+        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;direction</span> <span class="na">position=</span><span class="s">"2/4"</span><span class="nt">></span>...<span class="nt">&lt;/direction></span>
+        <span class="nt">&lt;event</span> <span class="na">position=</span><span class="s">"2/4"</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;event</span> <span class="na">position=</span><span class="s">"3/4"</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+    <span class="nt">&lt;/sequence></span>
+    <span class="nt">&lt;sequence</span><span class="nt">></span>
+        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2*"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;tuplet</span> <span class="na">position=</span><span class="s">"3/4"</span> <span class="na">actual=</span><span class="s">"3/8"</span> <span class="na">normal=</span><span class="s">"1/4"</span><span class="nt">></span>
+            <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+            <span class="nt">&lt;event</span> <span class="na">position=</span><span class="s">"1/8"</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+            <span class="nt">&lt;event</span> <span class="na">position=</span><span class="s">"2/8"</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+        <span class="nt">&lt;/tuplet></span>
+    <span class="nt">&lt;/sequence></span>
+<span class="nt">&lt;/measure></span>
+</pre>
+   <h4 class="heading settled" data-level="4.3.9" id="pitch-encoding"><span class="secno">4.3.9. </span><span class="content">Pitch encoding</span><a class="self-link" href="#pitch-encoding"></a></h4>
    <p>MNX introduces a text encoding of pitches, which represents a combination of
 MusicXML’s <code><a data-link-type="element">step</a></code>, <code><a data-link-type="element">octave</a></code> and <code><a data-link-type="element">alter</a></code> elements. This is done to
 address issues of readability and compactness in MusicXML and makes no
@@ -2025,13 +2119,13 @@ for <code><a data-link-type="element">note</a></code> elements.</p>
    <p>Pitch encodings are used also in <a href="#interpretation">§6 Interpretation</a>.</p>
    <p class="issue" id="issue-8dde6b97"><a class="self-link" href="#issue-8dde6b97"></a> permit some sort of rational number option here for just-intonation
 temperaments and their variants.</p>
-   <h4 class="heading settled" data-level="4.3.6" id="events"><span class="secno">4.3.6. </span><span class="content">Events</span><a class="self-link" href="#events"></a></h4>
+   <h4 class="heading settled" data-level="4.3.10" id="events"><span class="secno">4.3.10. </span><span class="content">Events</span><a class="self-link" href="#events"></a></h4>
    <p>The new MNX element <code><a data-link-type="element">event</a></code> represents the related concepts of rest, note
 or chord depending on its contents. It supplies information that is common to
 all three:</p>
    <ul>
     <li data-md="">
-     <p>metrical duration, expressed in terms of note value and dot count</p>
+     <p>event duration, expressed in terms of note value and dot count</p>
     <li data-md="">
      <p>stem orientation, length, etc. if applicable</p>
     <li data-md="">
@@ -2066,108 +2160,28 @@ all three:</p>
   <span class="nt">&lt;rest</span><span class="nt">/></span>
 <span class="nt">&lt;/event></span>
 </pre>
-   <p>And a grace note chord; the <code><a data-link-type="element">grace</a></code> element belongs to the <code><a data-link-type="element">event</a></code>:</p>
-<pre class="language-xml highlight"><span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span>
-  <span class="nt">&lt;grace</span><span class="nt">/></span>
+   <p>And a grace note chord; the <code>grace</code> attribute belongs to the <code><a data-link-type="element">event</a></code>.</p>
+<pre class="language-xml highlight"><span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span> <span class="na">grace=</span><span class="s">"true"</span><span class="nt">></span>
   <span class="nt">&lt;stem</span><span class="nt">></span>up<span class="nt">&lt;/stem></span>
   <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span>
   <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E4"</span><span class="nt">/></span>
   <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"G4"</span><span class="nt">/></span>
 <span class="nt">&lt;/event></span>
 </pre>
-   <p>As a special case, the following event encodes a <em>whole-measure</em> rest.
+   <p class="note" role="note"><span>Note:</span> grace notes do not advance the sequence cursor.</p>
+   <p>As one special case, the following event encodes a <em>whole-measure</em> rest.
 Note that the <code>type</code> attribute is used to indicate this, rather than <code>value</code>:</p>
 <pre class="language-xml highlight"><span class="nt">&lt;event</span> <span class="na">type=</span><span class="s">"measure"</span><span class="nt">></span>
   <span class="nt">&lt;rest</span><span class="nt">/></span>
 <span class="nt">&lt;/event></span>
 </pre>
-   <h4 class="heading settled" data-level="4.3.7" id="sequence-positions"><span class="secno">4.3.7. </span><span class="content">Sequence positions</span><a class="self-link" href="#sequence-positions"></a></h4>
-   <p>It’s also possible to use a <code>position</code> attribute for notations or events in a
-sequence. This can provide an alternative to <a href="#spaces">§4.3.8 Spaces</a>, or even replace it
-outright (if mandated for all position-dependent elements). This may have
-significant advantages particularly in sparse sequences such as those used for <a href="#system-notations">§4.1.2 System notations</a> where many ugly <code><a data-link-type="element">spaces</a></code> might be necessary.</p>
-   <p>A question that comes up for such positions is, what does a zero position
-correspond to, and in what units are positions expressed? Some alternatives
-include:</p>
-   <ul>
-    <li data-md="">
-     <p>The start of the containing sequence or tuplet (in which case all positions remain constrained to CWMN note values)</p>
-    <li data-md="">
-     <p>The start of the measure (in which case positions within a tuplet become more complex)</p>
-    <li data-md="">
-     <p>The start of the score (yielding complex positions that require adjustment when measures are moved)</p>
-   </ul>
-   <p>If <code>position</code> is optional, it makes sense for it to default to zero, or to the
-ending position of the prior element in the sequence if one exists.</p>
-   <p>Here is a prior example from <a href="#sequences">§4.3.4 Sequences</a>, recast with the use of
-an optional <code>position</code> attribute relative to the containing measure or tuplet.</p>
-<pre class="language-xml highlight"><span class="nt">&lt;measure</span><span class="nt">></span>
-    <span class="nt">&lt;sequence</span><span class="nt">></span>
-        <span class="nt">&lt;direction</span><span class="nt">></span>...<span class="nt">&lt;/direction></span>
-        <span class="nt">&lt;direction</span> <span class="na">position=</span><span class="s">"1/2"</span><span class="nt">></span>...<span class="nt">&lt;/direction></span>
-    <span class="nt">&lt;/sequence></span>
-    <span class="nt">&lt;sequence</span><span class="nt">></span>
-        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
-        <span class="nt">&lt;event</span> <span class="na">position=</span><span class="s">"2/4"</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
-        <span class="nt">&lt;event</span> <span class="na">position=</span><span class="s">"3/4"</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
-    <span class="nt">&lt;/sequence></span>
-    <span class="nt">&lt;sequence</span><span class="nt">></span>
-        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2*"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
-        <span class="nt">&lt;event</span> <span class="na">position=</span><span class="s">"3/4"</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
-    <span class="nt">&lt;/sequence></span>
-<span class="nt">&lt;/measure></span>
-</pre>
-   <h4 class="heading settled" data-level="4.3.8" id="spaces"><span class="secno">4.3.8. </span><span class="content">Spaces</span><a class="self-link" href="#spaces"></a></h4>
-   <p>A <code><a data-link-type="element">space</a></code> is a way of specifying a metrical time interval that does not
-contain any notation. MNX uses <code><a data-link-type="element">space</a></code> elements to explicitly represent such
-gaps. (In MusicXML, these gaps were often created using the <code><a data-link-type="element">forward</a></code> and <code><a data-link-type="element">backward</a></code> elements or with hidden rests, and could only be determined after
-complete parsing of a measure’s contents.)</p>
-   <p>Because of the use of the <code><a data-link-type="element">sequence</a></code> element to organize notations in
-chronological sequence, and because non-notated gaps within a sequence can be
-explicitly represented, MNX does not need MusicXML’s <code><a data-link-type="element">forward</a></code> and <code><a data-link-type="element">backward</a></code> elements. Instead, <code><a data-link-type="element">space</a></code> serves the purpose of <code><a data-link-type="element">forward</a></code>,
-while picking up a few additional useful characteristics. The contents of a
-sequence can always be expressed as a sequence of contiguous elements starting
-at the beginning of the measure and proceeding forward in metrical time.</p>
-   <p>Accordingly, the concept of <code>divisions</code> also becomes
-unnecessary in MNX. To the extent that arbitrary durations are needed, they
-can always be expressed as multiples of some normal musical time unit.
-(See <a href="#tuplets">§4.3.10 Tuplets</a> for more information on how spaces work
-to take up space in tuplets -- divisions aren’t needed here either.)</p>
-   <p>A <code><a data-link-type="element">space</a></code> takes a <code>length</code> attribute to specify its metrical duration (see <a href="#metrical-duration-encoding">§4.3.3 Metrical duration encoding</a>):</p>
-<pre class="language-xml highlight"><span class="nt">&lt;space</span> <span class="na">length=</span><span class="s">"4*"</span><span class="nt">/></span>
-</pre>
-   <p>The following space is equivalent to 5 eighth notes:</p>
-<pre class="language-xml highlight"><span class="nt">&lt;space</span> <span class="na">length=</span><span class="s">"5/8"</span><span class="nt">/></span>
-</pre>
-   <p>And so is this one:</p>
-<pre class="language-xml highlight"><span class="nt">&lt;space</span> <span class="na">length=</span><span class="s">"2.5/4"</span><span class="nt">/></span>
-</pre>
-   <p>Spaces are useful for causing a non-metrical notation like text to appear at a certain
-metrically anchored place within a measure. For example, the following causes text
-to be anchored at a point one quarter note into the given measure:</p>
-<pre class="language-xml highlight"><span class="nt">&lt;measure</span><span class="nt">></span>
-  <span class="nt">&lt;sequence</span><span class="nt">></span>
-      <span class="nt">&lt;space</span> <span class="na">length=</span><span class="s">"4"</span><span class="nt">/></span>
-      <span class="nt">&lt;direction</span> <span class="na">placement=</span><span class="s">"above"</span><span class="nt">></span>
-        <span class="nt">&lt;direction-type</span><span class="nt">></span>
-          <span class="nt">&lt;words</span><span class="nt">></span>And then...<span class="nt">&lt;/words></span>
-        <span class="nt">&lt;/direction-type></span>
-      <span class="nt">&lt;/direction></span>
-  <span class="nt">&lt;/sequence></span>
-<span class="nt">&lt;/measure></span>
-</pre>
-   <h4 class="heading settled" data-level="4.3.9" id="anchor-spaces"><span class="secno">4.3.9. </span><span class="content">Anchor spaces</span><a class="self-link" href="#anchor-spaces"></a></h4>
-   <p>Spaces may omit the <code><a data-link-type="element">length</a></code> attribute, in which case they possess zero
-duration. This is useful for creating anchor points for [[#spanning-
-notations]], for example, allowing lines or slurs to originate or terminate in
-places where there is no note.</p>
-   <h4 class="heading settled" data-level="4.3.10" id="tuplets"><span class="secno">4.3.10. </span><span class="content">Tuplets</span><a class="self-link" href="#tuplets"></a></h4>
+   <h4 class="heading settled" data-level="4.3.11" id="tuplets"><span class="secno">4.3.11. </span><span class="content">Tuplets</span><a class="self-link" href="#tuplets"></a></h4>
    <p>In MNX, the <code><a data-link-type="element">tuplet</a></code> element applies a time modification to all of its child
-elements, which are the same as those allowed in <code><a data-link-type="element">sequence</a></code>. In fact, <code><a data-link-type="element">tuplet</a></code> is very much like a nested <code><a data-link-type="element">sequence</a></code> element, with an implicit time
-signature representing the notated duration inside the tuplet. It functions
-just like an <code><a data-link-type="element">event</a></code> or <code><a data-link-type="element">space</a></code> element, in that it takes up a known duration
-within its parent.</p>
-   <p>A <code><a data-link-type="element">tuplet</a></code> uses the two attributes <code>actual</code> and <code>normal</code> making use of <a href="#metrical-duration-encoding">§4.3.3 Metrical duration encoding</a> to represent the tuplet ratio.
+elements, which are the same as those allowed in <code><a data-link-type="element">sequence</a></code>. In fact, <code><a data-link-type="element">tuplet</a></code> is very much like a nested <code><a data-link-type="element">sequence</a></code> element, with an implicit
+time signature representing the notated duration inside the tuplet. It
+functions just like an <code><a data-link-type="element">event</a></code> element, in that it takes up a known duration
+within its parent, and is not allowed to overlap with other <code><a data-link-type="element">event</a></code> or <code><a data-link-type="element">tuplet</a></code> elements.</p>
+   <p>A <code><a data-link-type="element">tuplet</a></code> uses the two attributes <code>actual</code> and <code>normal</code> making use of <a href="#metrical-timespans">§4.3.3 Metrical timespans</a> to represent the tuplet ratio.
 It thus combines the function of MusicXML’s <code><a data-link-type="element">tuplet</a></code> and <code><a data-link-type="element">time-modification</a></code> elements into a single construct: the contained elements are automatically
 subject to time modification, and CSS styling can control the appearance of
 the tuplet.</p>
@@ -2176,17 +2190,13 @@ the tuplet.</p>
 <pre class="language-xml highlight"><span class="nt">&lt;sequence</span><span class="nt">></span>
     ...preceding events in sequence...
     <span class="nt">&lt;tuplet</span> <span class="na">actual=</span><span class="s">"3/8"</span> <span class="na">normal=</span><span class="s">"1/4"</span><span class="nt">></span>
-        <span class="nt">&lt;time-modification</span> <span class="nt">/></span>
-        <span class="nt">&lt;event</span><span class="nt">></span>
-            <span class="nt">&lt;type</span><span class="nt">></span>eighth<span class="nt">&lt;/type></span>
+        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span>
             <span class="nt">&lt;note</span><span class="nt">></span>...<span class="nt">&lt;/note></span>
         <span class="nt">&lt;/event></span>
-        <span class="nt">&lt;event</span><span class="nt">></span>
-            <span class="nt">&lt;type</span><span class="nt">></span>eighth<span class="nt">&lt;/type></span>
+        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span>
             <span class="nt">&lt;note</span><span class="nt">></span>...<span class="nt">&lt;/note></span>
         <span class="nt">&lt;/event></span>
-        <span class="nt">&lt;event</span><span class="nt">></span>
-            <span class="nt">&lt;type</span><span class="nt">></span>eighth<span class="nt">&lt;/type></span>
+        <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span>
             <span class="nt">&lt;note</span><span class="nt">></span>...<span class="nt">&lt;/note></span>
         <span class="nt">&lt;/event></span>
     <span class="nt">&lt;/tuplet></span>
@@ -2195,8 +2205,8 @@ the tuplet.</p>
 </pre>
    <p>(The tag <code>&lt;tuplet actual="3/8" normal="2/8"></code> would work exactly the same. There
 is no semantic difference.)</p>
-   <p>One can of course include spaces, text, directions, and so on in tuplets as
-well. Not to mention nesting tuplets within tuplets.</p>
+   <p>One can include directions in tuplets as well. And, naturally, tuplets
+may be included within tuplets.</p>
    <p>Other examples of tuplets:</p>
 <pre class="language-xml highlight"><span class="nt">&lt;tuplet</span> <span class="na">actual=</span><span class="s">"5/8"</span> <span class="na">normal=</span><span class="s">"11/16"</span><span class="nt">></span>
     ...a tuplet that displays 5 eighth notes in the space of 11 sixteenths...
@@ -2226,7 +2236,7 @@ others are considered <code><a data-link-type="element">direction-type</a></code
 classification problem yet.)</p>
    <p>In MNX, the preferred way to describe such <em>spanning notations</em> is in
 terms of a <em>start element</em> and an <em>stop element</em>. These elements
-may be any element that occurs inside a <code><a data-link-type="element">sequence</a></code> (most often, <code><a data-link-type="element">event</a></code> or <code><a data-link-type="element">space</a></code>).</p>
+may be any element that occurs inside a <code><a data-link-type="element">sequence</a></code>.</p>
    <p>The start element of a spanning notation is specified by including the span
 directly in the start element as a child. The stop element is specified via an <code>ref</code> attribute on the span that supplies the stop element’s ID. Thus,
 spanning notations "point to" the notation where they will end. This is different
@@ -2487,19 +2497,8 @@ by an explicit unit:</p>
     <dt data-md=""><code>px</code>
     <dd data-md="">
      <p>display pixels (same unit as in SVG or HTML)</p>
-    <dt data-md=""><code>/</code><em>note-value</em>
-    <dd data-md="">
-     <p>displacement based on contextual time within the containing measure or tuplet.</p>
-    <dt data-md=""><code>//</code><em>note-value</em>
-    <dd data-md="">
-     <p>displacement based on measure-level time, <em>disregarding any containing tuplets</em>.</p>
-    <dt data-md=""><code>t</code>
-    <dd data-md="">
-     <p>MIDI ticks (1/960 of a measure-level quarter note)</p>
    </dl>
-   <p>The default unit for all time displacements is measure-level quarter notes (equivalent to <code>//4</code>).</p>
-   <p>Rational numbers may be employed for time displacements. These are expressed
-using <code>:</code> to separate the numerator and denominator.</p>
+   <p>Also, <a href="#general-timespans">§4.3.4 General timespans</a> may be used as style units.</p>
    <p>Examples:</p>
    <dl>
     <dt data-md=""><code>1sl</code>
@@ -2517,12 +2516,9 @@ using <code>:</code> to separate the numerator and denominator.</p>
     <dt data-md=""><code>481t</code>
     <dd data-md="">
      <p>one tick longer than a measure-level eighthnote</p>
-    <dt data-md=""><code>1:3</code>
-    <dd data-md="">
-     <p>a triplet 8th note (1/3 of a quarter note)</p>
     <dt data-md=""><code>1:3//4</code>
     <dd data-md="">
-     <p>same as above</p>
+     <p>a triplet 8th note (1/3 of a quarter note)</p>
    </dl>
    <h3 class="heading settled" data-level="5.5" id="css-property-usage"><span class="secno">5.5. </span><span class="content">CSS property usage</span><a class="self-link" href="#css-property-usage"></a></h3>
    <h4 class="heading settled" data-level="5.5.1" id="standard-css-properties"><span class="secno">5.5.1. </span><span class="content">Standard CSS properties</span><a class="self-link" href="#standard-css-properties"></a></h4>
@@ -2689,7 +2685,7 @@ of course:</p>
    <dl>
     <dt data-md=""><code>offset</code>
     <dd data-md="">
-     <p>A playback offset expressed as a metrical duration relative to the
+     <p>A playback offset expressed as a general timespan relative to the
 default offset. For example, <strong>offset: -1/16</strong> would play the given note one sixteenth note earlier. <strong>offset: 10t</strong> would play
 it 10 MIDI ticks later.</p>
     <dt data-md=""><code>pitch</code>
@@ -2698,15 +2694,15 @@ it 10 MIDI ticks later.</p>
 as a pitch encoding (e.g. <strong>pitch: C#4+0.1</strong>).</p>
     <dt data-md=""><code>duration</code>
     <dd data-md="">
-     <p>A note duration to be used for playback, expressed as a metrical duration
-encoding. For example, <strong>duration: 1/16</strong> would cause the note to be played
+     <p>A note duration to be used for playback, expressed as a general timespan.
+For example, <strong>duration: 1/16</strong> would cause the note to be played
 as a sixteenth note regardless.</p>
     <dt data-md=""><code>dynamics</code>
     <dd data-md="">
      <p>Volume expressed as MIDI velocity (same as the MusicXML attribute of <code><a data-link-type="element">sound</a></code>?)</p>
     <dt data-md=""><code>tempo</code>
     <dd data-md="">
-     <p>Tempo expressed as a metrical duration encoding, e.g. <strong>tempo: 120/4</strong>. (same as
+     <p>Tempo expressed as a metrical timespan, e.g. <strong>tempo: 120/4</strong>. (same as
 MusicXML, but doesn’t require quarter note units).</p>
     <dt data-md=""><code>playback</code>
     <dd data-md="">
