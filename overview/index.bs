@@ -629,10 +629,18 @@ Significant constraints distinguish MNX's sequence cursor from MusicXML:
 It's also possible to use a `position` attribute for any element of a
 sequence.
 
-Events or tuplets are allowed to specify a *metrical position*, reflecting
-this constraint within standard CMN.
+This is most useful for directions.  Directions may specify a *general
+position* since their positions are not constrained by CMN rules.
 
-Directions may specify a *general position*.
+It is also possible for events to take an explicit *metrical position*.
+
+Issue: The use of explicit positions may be in conflict with, or redundant
+with respect to, a cursor-based model (although these models need not be
+exclusive).  The use of [[#spaces]] can perhaps mitigate the need for them
+altogether, particularly in the case of <{event}> elements. 
+However, in the case of <{direction}> elements located at
+arbitrary general positions, a cursor model may be unwieldy. This needs
+further investigation and discussion.
 
 MNX prohibits the use of out-of-order elements within a sequence or tuplet element.
 While cursor-based positioning can't violate this constraint, explicit positions
@@ -666,6 +674,67 @@ a `position` attribute relative to the containing measure or tuplet.
 
 Note: explicit positions, where provided for events or tuplets, do affect consequent
 sequence cursor values.
+
+### Spaces
+
+A <{space}> is a way of specifying a metrical time interval that does not
+contain any notation. MNX uses <{space}> elements to explicitly represent such
+gaps. (In MusicXML, these gaps were often created using the <{forward}> and
+<{backward}> elements or with hidden rests, and could only be determined after
+complete parsing of a measure's contents.)
+
+Because of the use of the <{sequence}> element to organize notations in
+chronological sequence, and because non-notated gaps within a sequence can be
+explicitly represented, MNX does not need MusicXML's <{forward}> and
+<{backward}> elements. Instead, <{space}> serves the purpose of <{forward}>,
+while picking up a few additional useful characteristics. The contents of a
+sequence can always be expressed as a sequence of contiguous elements starting
+at the beginning of the measure and proceeding forward in metrical time.
+
+Accordingly, the concept of <code>divisions</code> also becomes
+unnecessary in MNX. To the extent that arbitrary durations are needed, they
+can always be expressed as multiples of some normal musical time unit.
+(See [[#tuplets]] for more information on how spaces work
+to take up space in tuplets -- divisions aren't needed here either.)
+
+A <{space}> takes a `length` attribute to specify its metrical duration (see
+[[#metrical-duration-encoding]]):
+
+```xml
+<space length="4*"/>
+```
+
+The following space is equivalent to 5 eighth notes:
+
+```xml
+<space length="5/8"/>
+```
+
+And so is this one:
+
+```xml
+<space length="2.5/4"/>
+```
+
+Spaces are useful for causing a non-metrical notation like text to appear at a certain
+metrically anchored place within a measure. For example, the following causes text
+to be anchored at a point one quarter note into the given measure:
+
+```xml
+<measure>
+  <sequence>
+      <space length="4"/>
+      <direction placement="above">
+        <direction-type>
+          <words>And then...</words>
+        </direction-type>
+      </direction>
+  </sequence>
+</measure>
+```
+
+Issue: This element may not be needed, if events are allowed to be specified
+with explicit `position` attributes.
 
 ### Pitch encoding
 

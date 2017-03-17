@@ -1461,10 +1461,11 @@ Examples are used rather than specification language.</p>
         <li><a href="#sequences"><span class="secno">4.3.6</span> <span class="content">Sequences</span></a>
         <li><a href="#the-sequence-cursor"><span class="secno">4.3.7</span> <span class="content">The sequence cursor</span></a>
         <li><a href="#explicit-positions"><span class="secno">4.3.8</span> <span class="content">Explicit positions</span></a>
-        <li><a href="#pitch-encoding"><span class="secno">4.3.9</span> <span class="content">Pitch encoding</span></a>
-        <li><a href="#events"><span class="secno">4.3.10</span> <span class="content">Events</span></a>
-        <li><a href="#directions"><span class="secno">4.3.11</span> <span class="content">Directions</span></a>
-        <li><a href="#tuplets"><span class="secno">4.3.12</span> <span class="content">Tuplets</span></a>
+        <li><a href="#spaces"><span class="secno">4.3.9</span> <span class="content">Spaces</span></a>
+        <li><a href="#pitch-encoding"><span class="secno">4.3.10</span> <span class="content">Pitch encoding</span></a>
+        <li><a href="#events"><span class="secno">4.3.11</span> <span class="content">Events</span></a>
+        <li><a href="#directions"><span class="secno">4.3.12</span> <span class="content">Directions</span></a>
+        <li><a href="#tuplets"><span class="secno">4.3.13</span> <span class="content">Tuplets</span></a>
        </ol>
       <li><a href="#spanning-notations"><span class="secno">4.4</span> <span class="content">Spanning notations</span></a>
       <li><a href="#pagination-credits-and-page-level-text"><span class="secno">4.5</span> <span class="content">Pagination, credits and page-level text</span></a>
@@ -1904,7 +1905,7 @@ multiples.</p>
      <p>three quarter notes</p>
     <dt data-md=""><code>3/8*</code>
     <dd data-md="">
-     <p>three dotted quarter notes (this form can be useful for specification of <a href="#tuplets">§4.3.12 Tuplets</a>)</p>
+     <p>three dotted quarter notes (this form can be useful for specification of <a href="#tuplets">§4.3.13 Tuplets</a>)</p>
    </dl>
    <p>Like an individual note value, a metrical timespan is always subject to any
 contextual time modification due to tuplets. For example, inside an 8-th note
@@ -2056,9 +2057,16 @@ of event positions</p>
    <h4 class="heading settled" data-level="4.3.8" id="explicit-positions"><span class="secno">4.3.8. </span><span class="content">Explicit positions</span><a class="self-link" href="#explicit-positions"></a></h4>
    <p>It’s also possible to use a <code>position</code> attribute for any element of a
 sequence.</p>
-   <p>Events or tuplets are allowed to specify a <em>metrical position</em>, reflecting
-this constraint within standard CMN.</p>
-   <p>Directions may specify a <em>general position</em>.</p>
+   <p>This is most useful for directions.  Directions may specify a <em>general
+position</em> since their positions are not constrained by CMN rules.</p>
+   <p>It is also possible for events to take an explicit <em>metrical position</em>.</p>
+   <p class="issue" id="issue-ea04df2f"><a class="self-link" href="#issue-ea04df2f"></a> The use of explicit positions may be in conflict with, or redundant
+with respect to, a cursor-based model (although these models need not be
+exclusive).  The use of <a href="#spaces">§4.3.9 Spaces</a> can perhaps mitigate the need for them
+altogether, particularly in the case of <code><a data-link-type="element">event</a></code> elements. 
+However, in the case of <code><a data-link-type="element">direction</a></code> elements located at
+arbitrary general positions, a cursor model may be unwieldy. This needs
+further investigation and discussion.</p>
    <p>MNX prohibits the use of out-of-order elements within a sequence or tuplet element.
 While cursor-based positioning can’t violate this constraint, explicit positions
 can, so care must be taken to sort elements properly when encoding.</p>
@@ -2087,7 +2095,48 @@ a <code>position</code> attribute relative to the containing measure or tuplet.<
 </pre>
    <p class="note" role="note"><span>Note:</span> explicit positions, where provided for events or tuplets, do affect consequent
 sequence cursor values.</p>
-   <h4 class="heading settled" data-level="4.3.9" id="pitch-encoding"><span class="secno">4.3.9. </span><span class="content">Pitch encoding</span><a class="self-link" href="#pitch-encoding"></a></h4>
+   <h4 class="heading settled" data-level="4.3.9" id="spaces"><span class="secno">4.3.9. </span><span class="content">Spaces</span><a class="self-link" href="#spaces"></a></h4>
+   <p>A <code><a data-link-type="element">space</a></code> is a way of specifying a metrical time interval that does not
+contain any notation. MNX uses <code><a data-link-type="element">space</a></code> elements to explicitly represent such
+gaps. (In MusicXML, these gaps were often created using the <code><a data-link-type="element">forward</a></code> and <code><a data-link-type="element">backward</a></code> elements or with hidden rests, and could only be determined after
+complete parsing of a measure’s contents.)</p>
+   <p>Because of the use of the <code><a data-link-type="element">sequence</a></code> element to organize notations in
+chronological sequence, and because non-notated gaps within a sequence can be
+explicitly represented, MNX does not need MusicXML’s <code><a data-link-type="element">forward</a></code> and <code><a data-link-type="element">backward</a></code> elements. Instead, <code><a data-link-type="element">space</a></code> serves the purpose of <code><a data-link-type="element">forward</a></code>,
+while picking up a few additional useful characteristics. The contents of a
+sequence can always be expressed as a sequence of contiguous elements starting
+at the beginning of the measure and proceeding forward in metrical time.</p>
+   <p>Accordingly, the concept of <code>divisions</code> also becomes
+unnecessary in MNX. To the extent that arbitrary durations are needed, they
+can always be expressed as multiples of some normal musical time unit.
+(See <a href="#tuplets">§4.3.13 Tuplets</a> for more information on how spaces work
+to take up space in tuplets -- divisions aren’t needed here either.)</p>
+   <p>A <code><a data-link-type="element">space</a></code> takes a <code>length</code> attribute to specify its metrical duration (see <a href="#metrical-duration-encoding"></a>):</p>
+<pre class="language-xml highlight"><span class="nt">&lt;space</span> <span class="na">length=</span><span class="s">"4*"</span><span class="nt">/></span>
+</pre>
+   <p>The following space is equivalent to 5 eighth notes:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;space</span> <span class="na">length=</span><span class="s">"5/8"</span><span class="nt">/></span>
+</pre>
+   <p>And so is this one:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;space</span> <span class="na">length=</span><span class="s">"2.5/4"</span><span class="nt">/></span>
+</pre>
+   <p>Spaces are useful for causing a non-metrical notation like text to appear at a certain
+metrically anchored place within a measure. For example, the following causes text
+to be anchored at a point one quarter note into the given measure:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;measure</span><span class="nt">></span>
+  <span class="nt">&lt;sequence</span><span class="nt">></span>
+      <span class="nt">&lt;space</span> <span class="na">length=</span><span class="s">"4"</span><span class="nt">/></span>
+      <span class="nt">&lt;direction</span> <span class="na">placement=</span><span class="s">"above"</span><span class="nt">></span>
+        <span class="nt">&lt;direction-type</span><span class="nt">></span>
+          <span class="nt">&lt;words</span><span class="nt">></span>And then...<span class="nt">&lt;/words></span>
+        <span class="nt">&lt;/direction-type></span>
+      <span class="nt">&lt;/direction></span>
+  <span class="nt">&lt;/sequence></span>
+<span class="nt">&lt;/measure></span>
+</pre>
+   <p class="issue" id="issue-75776799"><a class="self-link" href="#issue-75776799"></a> This element may not be needed, if events are allowed to be specified
+with explicit <code>position</code> attributes.</p>
+   <h4 class="heading settled" data-level="4.3.10" id="pitch-encoding"><span class="secno">4.3.10. </span><span class="content">Pitch encoding</span><a class="self-link" href="#pitch-encoding"></a></h4>
    <p>MNX introduces a text encoding of pitches, which represents a combination of
 MusicXML’s <code><a data-link-type="element">step</a></code>, <code><a data-link-type="element">octave</a></code> and <code><a data-link-type="element">alter</a></code> elements. This is done to
 address issues of readability and compactness in MusicXML and makes no
@@ -2125,7 +2174,7 @@ for <code><a data-link-type="element">note</a></code> elements.</p>
    <p>Pitch encodings are used also in <a href="#interpretation">§6 Interpretation</a>.</p>
    <p class="issue" id="issue-8dde6b97"><a class="self-link" href="#issue-8dde6b97"></a> permit some sort of rational number option here for just-intonation
 temperaments and their variants.</p>
-   <h4 class="heading settled" data-level="4.3.10" id="events"><span class="secno">4.3.10. </span><span class="content">Events</span><a class="self-link" href="#events"></a></h4>
+   <h4 class="heading settled" data-level="4.3.11" id="events"><span class="secno">4.3.11. </span><span class="content">Events</span><a class="self-link" href="#events"></a></h4>
    <p>The new MNX element <code><a data-link-type="element">event</a></code> represents the related concepts of rest, note
 or chord depending on its contents. It supplies information that is common to
 all three:</p>
@@ -2181,7 +2230,7 @@ Note that the <code>type</code> attribute is used to indicate this, rather than 
   <span class="nt">&lt;rest</span><span class="nt">/></span>
 <span class="nt">&lt;/event></span>
 </pre>
-   <h4 class="heading settled" data-level="4.3.11" id="directions"><span class="secno">4.3.11. </span><span class="content">Directions</span><a class="self-link" href="#directions"></a></h4>
+   <h4 class="heading settled" data-level="4.3.12" id="directions"><span class="secno">4.3.12. </span><span class="content">Directions</span><a class="self-link" href="#directions"></a></h4>
    <p>The MNX <code><a data-link-type="element">direction</a></code> element carries over the features of the MusicXML <code><a data-link-type="element">direction</a></code> element.</p>
    <p>This proposal does not yet attempt to examine how MNX directions will work in
 detail or how they differ from MusicXML directions.</p>
@@ -2194,7 +2243,7 @@ and span-like direction types? What is the relationship between these two, e.g.
 for labeled lines?</p>
    <p class="issue" id="issue-41d7faa8"><a class="self-link" href="#issue-41d7faa8"></a> Text with embedded style/font runs should be dealt with using <code><a data-link-type="element">span</a></code> tags and CSS styling, rather than a sequence of separate direction-types.</p>
    <p class="issue" id="issue-83fe9539"><a class="self-link" href="#issue-83fe9539"></a> How should paragraph-style interpolated blocks be dealt with?</p>
-   <h4 class="heading settled" data-level="4.3.12" id="tuplets"><span class="secno">4.3.12. </span><span class="content">Tuplets</span><a class="self-link" href="#tuplets"></a></h4>
+   <h4 class="heading settled" data-level="4.3.13" id="tuplets"><span class="secno">4.3.13. </span><span class="content">Tuplets</span><a class="self-link" href="#tuplets"></a></h4>
    <p>In MNX, the <code><a data-link-type="element">tuplet</a></code> element applies a time modification to all of its child
 elements, which are the same as those allowed in <code><a data-link-type="element">sequence</a></code>. In fact, <code><a data-link-type="element">tuplet</a></code> is very much like a nested <code><a data-link-type="element">sequence</a></code> element, with an implicit
 time signature representing the notated duration inside the tuplet. It
@@ -3004,6 +3053,15 @@ parts with no constraints on their occurrence or relationships.<a href="#issue-b
    <div class="issue"> We need to decide the pitch frame in which parts are encoded. Both
 concert pitch and transposed pitch (used by MusicXML) have advantages and
 disadvantages.<a href="#issue-59982743"> ↵ </a></div>
+   <div class="issue"> The use of explicit positions may be in conflict with, or redundant
+with respect to, a cursor-based model (although these models need not be
+exclusive).  The use of <a href="#spaces">§4.3.9 Spaces</a> can perhaps mitigate the need for them
+altogether, particularly in the case of <code><a data-link-type="element">event</a></code> elements. 
+However, in the case of <code><a data-link-type="element">direction</a></code> elements located at
+arbitrary general positions, a cursor model may be unwieldy. This needs
+further investigation and discussion.<a href="#issue-ea04df2f"> ↵ </a></div>
+   <div class="issue"> This element may not be needed, if events are allowed to be specified
+with explicit <code>position</code> attributes.<a href="#issue-75776799"> ↵ </a></div>
    <div class="issue"> permit some sort of rational number option here for just-intonation
 temperaments and their variants.<a href="#issue-8dde6b97"> ↵ </a></div>
    <div class="issue"> Should MNX split directions out into text-like (durationless) direction types
