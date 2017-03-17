@@ -602,8 +602,10 @@ Elements of a sequence can be assigned an explicit position, but need not be.
 In the absence of an explicit `position` attribute on an event, direction, or
 tuplet, the current value of the *sequence cursor* is used.
 
-In the `standard` profile, the final tag of an <{event}> or <{tuplet}> element
-assigns the temporal endpoint of that element to the sequence cursor.
+In the `standard` profile, the start tag of an <{event}> or <{tuplet}> element
+assigns the temporal start point of that element to the sequence cursor; the
+end tag of the element assigns the element's temporal end point to the cursor.
+
 Direction elements have no effect on the sequence cursor.
 
 There are two motivations for the cursor:
@@ -660,8 +662,10 @@ a `position` attribute relative to the containing measure or tuplet.
         </tuplet>
     </sequence>
 </measure>
-
 ```
+
+Note: explicit positions, where provided for events or tuplets, do affect consequent
+sequence cursor values.
 
 ### Pitch encoding
 

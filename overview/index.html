@@ -2028,9 +2028,10 @@ identically named/numbered sequences in successive measures of the same part.</p
    <p>Elements of a sequence can be assigned an explicit position, but need not be.
 In the absence of an explicit <code>position</code> attribute on an event, direction, or
 tuplet, the current value of the <em>sequence cursor</em> is used.</p>
-   <p>In the <code>standard</code> profile, the final tag of an <code><a data-link-type="element">event</a></code> or <code><a data-link-type="element">tuplet</a></code> element
-assigns the temporal endpoint of that element to the sequence cursor.
-Direction elements have no effect on the sequence cursor.</p>
+   <p>In the <code>standard</code> profile, the start tag of an <code><a data-link-type="element">event</a></code> or <code><a data-link-type="element">tuplet</a></code> element
+assigns the temporal start point of that element to the sequence cursor; the
+end tag of the element assigns the element’s temporal end point to the cursor.</p>
+   <p>Direction elements have no effect on the sequence cursor.</p>
    <p>There are two motivations for the cursor:</p>
    <ul>
     <li data-md="">
@@ -2084,6 +2085,8 @@ a <code>position</code> attribute relative to the containing measure or tuplet.<
     <span class="nt">&lt;/sequence></span>
 <span class="nt">&lt;/measure></span>
 </pre>
+   <p class="note" role="note"><span>Note:</span> explicit positions, where provided for events or tuplets, do affect consequent
+sequence cursor values.</p>
    <h4 class="heading settled" data-level="4.3.9" id="pitch-encoding"><span class="secno">4.3.9. </span><span class="content">Pitch encoding</span><a class="self-link" href="#pitch-encoding"></a></h4>
    <p>MNX introduces a text encoding of pitches, which represents a combination of
 MusicXML’s <code><a data-link-type="element">step</a></code>, <code><a data-link-type="element">octave</a></code> and <code><a data-link-type="element">alter</a></code> elements. This is done to
