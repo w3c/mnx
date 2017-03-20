@@ -38,11 +38,17 @@ included.
 Having said that, where not explicitly called out, assume that MusicXML features may
 carry over to MNX unchanged, or in an obvious and analogous fashion.
 
-## Support for notation systems
+## Support for CWMN and other notation systems
 
-This proposal is focused on how MNX will support Common Western Music Notation
-(CWMN). However, MNX can support diverse notation systems through the
-mechanism of [[#the-container-document]].
+This proposal is focused on how MNX will support Conventional Western Music
+Notation (CWMN), which we will roughly define as "notation in which the
+requirements do not significantly extend beyond those of music of the 19th and
+early 20th centuries." [Gerald Warfield, *Writings on
+Contemporary Music Notation* (Ann Arbor: Music Library Association, 1976),
+ii.]
+
+However, MNX is able to support diverse other systems for encoding music
+notation, through the mechanism of [[#the-container-document]].
 
 
 ## Compatibility with MusicXML
