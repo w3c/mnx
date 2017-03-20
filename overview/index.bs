@@ -455,9 +455,9 @@ construct in MusicXML.
 A metrical timespan is very similar to a time signature, but more general. It
 is encoded as an integer, followed by `/` and a note value encoding. This
 specifies a timespan equal to the given number of note value units. Metrical
-timespans are used in MNX to represent either time intervals or positions
-relative to some origin, which must be constrained to exact note value
-multiples.
+timespans are used in MNX to represent time intervals which must be
+constrained to exact note value multiples, such as note positions relative
+to the origin of a containing sequence.
 
 Examples:
 
@@ -634,14 +634,6 @@ position* since their positions are not constrained by CMN rules.
 
 It is also possible for events to take an explicit *metrical position*.
 
-Issue: The use of explicit positions may be in conflict with, or redundant
-with respect to, a cursor-based model (although these models need not be
-exclusive).  The use of [[#spaces]] can perhaps mitigate the need for them
-altogether, particularly in the case of <{event}> elements. 
-However, in the case of <{direction}> elements located at
-arbitrary general positions, a cursor model may be unwieldy. This needs
-further investigation and discussion.
-
 MNX prohibits the use of out-of-order elements within a sequence or tuplet element.
 While cursor-based positioning can't violate this constraint, explicit positions
 can, so care must be taken to sort elements properly when encoding.
@@ -672,8 +664,49 @@ a `position` attribute relative to the containing measure or tuplet.
 </measure>
 ```
 
-Note: explicit positions, where provided for events or tuplets, do affect consequent
-sequence cursor values.
+<div class="issue">
+The use of explicit positions may present an approach which conflicts with a
+cursor-based model (although these models need not be exclusive, and  indeed
+coexist in this proposal).  The use of [[#spaces]] can mitigate the need for
+explicit positions on <{event}> elements.  However, in the case of
+<{direction}> elements located at arbitrary general positions, a cursor model
+alone does not solve all the problems in play.
+
+Consider the case of a whole note in a 6/4 measure, with a direction element
+occurring halfway through the measure (for example, a performance technique
+or chord symbol applying only in the latter half of the note).  A half note
+follows the whole note.
+
+MusicXML has at least two different ways of dealing with this issue, neither of
+which feels entirely satisfying. One is to use `offset` (we'll assume
+240 divisions per quarter note here):
+
+- whole note at cursor position 0
+- direction at cursor position 4/4, with an offset of -480 divisions
+- half note at cursor position 4/4
+
+Another MusicXML technique would be to move the cursor (and some applications
+actually do this):
+
+- whole note at cursor position 0
+- move cursor backwards by 480 divisions, to 2/4
+- direction at cursor position 2/4, with no offset
+- move cursor forwards by 480 divisions, to 4/4
+- half note at cursor position 4/4
+
+If MNX relies on explicit positions, this would be expressed as follows:
+
+- note at cursor position 0
+- direction at explicit position 2/4 (no offset needed)
+- note at cursor position 4/4 (direction does not affect the cursor)
+
+Of course, explicit positions are not entirely satisfying either.
+
+Note that MNX does propose an `offset` *style*, but this is not helpful here:
+it lives in the appearance layer rather than the semantic layer. Using the
+appearance layer to specify the performance timing of some notated element
+violates the purpose of the layers.
+</div>
 
 ### Spaces
 
@@ -698,7 +731,7 @@ can always be expressed as multiples of some normal musical time unit.
 to take up space in tuplets -- divisions aren't needed here either.)
 
 A <{space}> takes a `length` attribute to specify its metrical duration (see
-[[#metrical-duration-encoding]]):
+[[#metrical-timespans]]):
 
 ```xml
 <space length="4*"/>

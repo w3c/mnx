@@ -1386,7 +1386,7 @@ Possible extra rowspan handling
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Overview (Draft Proposal)</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-03-17">17 March 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-03-20">20 March 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1399,7 +1399,7 @@ Possible extra rowspan handling
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 17 March 2017,
+In addition, as of 20 March 2017,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1895,9 +1895,9 @@ construct in MusicXML.</p>
    <p>A metrical timespan is very similar to a time signature, but more general. It
 is encoded as an integer, followed by <code>/</code> and a note value encoding. This
 specifies a timespan equal to the given number of note value units. Metrical
-timespans are used in MNX to represent either time intervals or positions
-relative to some origin, which must be constrained to exact note value
-multiples.</p>
+timespans are used in MNX to represent time intervals which must be
+constrained to exact note value multiples, such as note positions relative
+to the origin of a containing sequence.</p>
    <p>Examples:</p>
    <dl>
     <dt data-md=""><code>3/4</code>
@@ -2060,13 +2060,6 @@ sequence.</p>
    <p>This is most useful for directions.  Directions may specify a <em>general
 position</em> since their positions are not constrained by CMN rules.</p>
    <p>It is also possible for events to take an explicit <em>metrical position</em>.</p>
-   <p class="issue" id="issue-ea04df2f"><a class="self-link" href="#issue-ea04df2f"></a> The use of explicit positions may be in conflict with, or redundant
-with respect to, a cursor-based model (although these models need not be
-exclusive).  The use of <a href="#spaces">§4.3.9 Spaces</a> can perhaps mitigate the need for them
-altogether, particularly in the case of <code><a data-link-type="element">event</a></code> elements. 
-However, in the case of <code><a data-link-type="element">direction</a></code> elements located at
-arbitrary general positions, a cursor model may be unwieldy. This needs
-further investigation and discussion.</p>
    <p>MNX prohibits the use of out-of-order elements within a sequence or tuplet element.
 While cursor-based positioning can’t violate this constraint, explicit positions
 can, so care must be taken to sort elements properly when encoding.</p>
@@ -2093,8 +2086,56 @@ a <code>position</code> attribute relative to the containing measure or tuplet.<
     <span class="nt">&lt;/sequence></span>
 <span class="nt">&lt;/measure></span>
 </pre>
-   <p class="note" role="note"><span>Note:</span> explicit positions, where provided for events or tuplets, do affect consequent
-sequence cursor values.</p>
+   <div class="issue" id="issue-a4c8795d">
+    <a class="self-link" href="#issue-a4c8795d"></a> The use of explicit positions may present an approach which conflicts with a
+cursor-based model (although these models need not be exclusive, and  indeed
+coexist in this proposal).  The use of <a href="#spaces">§4.3.9 Spaces</a> can mitigate the need for
+explicit positions on <code><a data-link-type="element">event</a></code> elements.  However, in the case of <code><a data-link-type="element">direction</a></code> elements located at arbitrary general positions, a cursor model
+alone does not solve all the problems in play. 
+    <p>Consider the case of a whole note in a 6/4 measure, with a direction element
+occurring halfway through the measure (for example, a performance technique
+or chord symbol applying only in the latter half of the note).  A half note
+follows the whole note.</p>
+    <p>MusicXML has at least two different ways of dealing with this issue, neither of
+which feels entirely satisfying. One is to use <code>offset</code> (we’ll assume
+240 divisions per quarter note here):</p>
+    <ul>
+     <li data-md="">
+      <p>whole note at cursor position 0</p>
+     <li data-md="">
+      <p>direction at cursor position 4/4, with an offset of -480 divisions</p>
+     <li data-md="">
+      <p>half note at cursor position 4/4</p>
+    </ul>
+    <p>Another MusicXML technique would be to move the cursor (and some applications
+actually do this):</p>
+    <ul>
+     <li data-md="">
+      <p>whole note at cursor position 0</p>
+     <li data-md="">
+      <p>move cursor backwards by 480 divisions, to 2/4</p>
+     <li data-md="">
+      <p>direction at cursor position 2/4, with no offset</p>
+     <li data-md="">
+      <p>move cursor forwards by 480 divisions, to 4/4</p>
+     <li data-md="">
+      <p>half note at cursor position 4/4</p>
+    </ul>
+    <p>If MNX relies on explicit positions, this would be expressed as follows:</p>
+    <ul>
+     <li data-md="">
+      <p>note at cursor position 0</p>
+     <li data-md="">
+      <p>direction at explicit position 2/4 (no offset needed)</p>
+     <li data-md="">
+      <p>note at cursor position 4/4 (direction does not affect the cursor)</p>
+    </ul>
+    <p>Of course, explicit positions are not entirely satisfying either.</p>
+    <p>Note that MNX does propose an <code>offset</code> <em>style</em>, but this is not helpful here:
+it lives in the appearance layer rather than the semantic layer. Using the
+appearance layer to specify the performance timing of some notated element
+violates the purpose of the layers.</p>
+   </div>
    <h4 class="heading settled" data-level="4.3.9" id="spaces"><span class="secno">4.3.9. </span><span class="content">Spaces</span><a class="self-link" href="#spaces"></a></h4>
    <p>A <code><a data-link-type="element">space</a></code> is a way of specifying a metrical time interval that does not
 contain any notation. MNX uses <code><a data-link-type="element">space</a></code> elements to explicitly represent such
@@ -2111,7 +2152,7 @@ unnecessary in MNX. To the extent that arbitrary durations are needed, they
 can always be expressed as multiples of some normal musical time unit.
 (See <a href="#tuplets">§4.3.13 Tuplets</a> for more information on how spaces work
 to take up space in tuplets -- divisions aren’t needed here either.)</p>
-   <p>A <code><a data-link-type="element">space</a></code> takes a <code>length</code> attribute to specify its metrical duration (see <a href="#metrical-duration-encoding"></a>):</p>
+   <p>A <code><a data-link-type="element">space</a></code> takes a <code>length</code> attribute to specify its metrical duration (see <a href="#metrical-timespans">§4.3.3 Metrical timespans</a>):</p>
 <pre class="language-xml highlight"><span class="nt">&lt;space</span> <span class="na">length=</span><span class="s">"4*"</span><span class="nt">/></span>
 </pre>
    <p>The following space is equivalent to 5 eighth notes:</p>
@@ -3053,13 +3094,57 @@ parts with no constraints on their occurrence or relationships.<a href="#issue-b
    <div class="issue"> We need to decide the pitch frame in which parts are encoded. Both
 concert pitch and transposed pitch (used by MusicXML) have advantages and
 disadvantages.<a href="#issue-59982743"> ↵ </a></div>
-   <div class="issue"> The use of explicit positions may be in conflict with, or redundant
-with respect to, a cursor-based model (although these models need not be
-exclusive).  The use of <a href="#spaces">§4.3.9 Spaces</a> can perhaps mitigate the need for them
-altogether, particularly in the case of <code><a data-link-type="element">event</a></code> elements. 
-However, in the case of <code><a data-link-type="element">direction</a></code> elements located at
-arbitrary general positions, a cursor model may be unwieldy. This needs
-further investigation and discussion.<a href="#issue-ea04df2f"> ↵ </a></div>
+   <div class="issue">
+     The use of explicit positions may present an approach which conflicts with a
+cursor-based model (although these models need not be exclusive, and  indeed
+coexist in this proposal).  The use of <a href="#spaces">§4.3.9 Spaces</a> can mitigate the need for
+explicit positions on <code><a data-link-type="element">event</a></code> elements.  However, in the case of <code><a data-link-type="element">direction</a></code> elements located at arbitrary general positions, a cursor model
+alone does not solve all the problems in play. 
+    <p>Consider the case of a whole note in a 6/4 measure, with a direction element
+occurring halfway through the measure (for example, a performance technique
+or chord symbol applying only in the latter half of the note).  A half note
+follows the whole note.</p>
+    <p>MusicXML has at least two different ways of dealing with this issue, neither of
+which feels entirely satisfying. One is to use <code>offset</code> (we’ll assume
+240 divisions per quarter note here):</p>
+    <ul>
+     <li data-md="">
+      <p>whole note at cursor position 0</p>
+     <li data-md="">
+      <p>direction at cursor position 4/4, with an offset of -480 divisions</p>
+     <li data-md="">
+      <p>half note at cursor position 4/4</p>
+    </ul>
+    <p>Another MusicXML technique would be to move the cursor (and some applications
+actually do this):</p>
+    <ul>
+     <li data-md="">
+      <p>whole note at cursor position 0</p>
+     <li data-md="">
+      <p>move cursor backwards by 480 divisions, to 2/4</p>
+     <li data-md="">
+      <p>direction at cursor position 2/4, with no offset</p>
+     <li data-md="">
+      <p>move cursor forwards by 480 divisions, to 4/4</p>
+     <li data-md="">
+      <p>half note at cursor position 4/4</p>
+    </ul>
+    <p>If MNX relies on explicit positions, this would be expressed as follows:</p>
+    <ul>
+     <li data-md="">
+      <p>note at cursor position 0</p>
+     <li data-md="">
+      <p>direction at explicit position 2/4 (no offset needed)</p>
+     <li data-md="">
+      <p>note at cursor position 4/4 (direction does not affect the cursor)</p>
+    </ul>
+    <p>Of course, explicit positions are not entirely satisfying either.</p>
+    <p>Note that MNX does propose an <code>offset</code> <em>style</em>, but this is not helpful here:
+it lives in the appearance layer rather than the semantic layer. Using the
+appearance layer to specify the performance timing of some notated element
+violates the purpose of the layers.</p>
+     <a href="#issue-a4c8795d"> ↵ </a>
+   </div>
    <div class="issue"> This element may not be needed, if events are allowed to be specified
 with explicit <code>position</code> attributes.<a href="#issue-75776799"> ↵ </a></div>
    <div class="issue"> permit some sort of rational number option here for just-intonation
