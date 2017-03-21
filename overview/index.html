@@ -1386,7 +1386,7 @@ Possible extra rowspan handling
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Proposal Overview</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-03-20">20 March 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-03-21">21 March 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1399,7 +1399,7 @@ Possible extra rowspan handling
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 20 March 2017,
+In addition, as of 21 March 2017,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1424,81 +1424,82 @@ Examples are used rather than specification language.</p>
       <li><a href="#compatibility-with-musicxml"><span class="secno">1.3</span> <span class="content">Compatibility with MusicXML</span></a>
       <li><a href="#use-case-concordance"><span class="secno">1.4</span> <span class="content">Use case concordance</span></a>
      </ol>
+    <li><a href="#a-brief-example"><span class="secno">2</span> <span class="content">A brief example</span></a>
     <li>
-     <a href="#document-organization"><span class="secno">2</span> <span class="content">Document organization</span></a>
+     <a href="#document-organization"><span class="secno">3</span> <span class="content">Document organization</span></a>
      <ol class="toc">
       <li>
-       <a href="#the-container-document"><span class="secno">2.1</span> <span class="content">The container document</span></a>
+       <a href="#the-container-document"><span class="secno">3.1</span> <span class="content">The container document</span></a>
        <ol class="toc">
-        <li><a href="#a-simple-cwmn-score"><span class="secno">2.1.1</span> <span class="content">A simple CWMN score</span></a>
-        <li><a href="#a-simple-graphical-score"><span class="secno">2.1.2</span> <span class="content">A simple graphical score</span></a>
-        <li><a href="#compound-mnx-documents"><span class="secno">2.1.3</span> <span class="content">Compound MNX documents</span></a>
-        <li><a href="#inclusion-by-reference"><span class="secno">2.1.4</span> <span class="content">Inclusion by reference</span></a>
+        <li><a href="#a-simple-cwmn-score"><span class="secno">3.1.1</span> <span class="content">A simple CWMN score</span></a>
+        <li><a href="#a-simple-graphical-score"><span class="secno">3.1.2</span> <span class="content">A simple graphical score</span></a>
+        <li><a href="#compound-mnx-documents"><span class="secno">3.1.3</span> <span class="content">Compound MNX documents</span></a>
+        <li><a href="#inclusion-by-reference"><span class="secno">3.1.4</span> <span class="content">Inclusion by reference</span></a>
        </ol>
-      <li><a href="#profiles"><span class="secno">2.2</span> <span class="content">Profiles</span></a>
-      <li><a href="#metadata-and-attribution"><span class="secno">2.3</span> <span class="content">Metadata and Attribution</span></a>
+      <li><a href="#profiles"><span class="secno">3.2</span> <span class="content">Profiles</span></a>
+      <li><a href="#metadata-and-attribution"><span class="secno">3.3</span> <span class="content">Metadata and Attribution</span></a>
      </ol>
-    <li><a href="#semantics-appearance-and-interpretation"><span class="secno">3</span> <span class="content">Semantics, Appearance and Interpretation</span></a>
+    <li><a href="#semantics-appearance-and-interpretation"><span class="secno">4</span> <span class="content">Semantics, Appearance and Interpretation</span></a>
     <li>
-     <a href="#semantic-markup"><span class="secno">4</span> <span class="content">Semantic markup</span></a>
+     <a href="#semantic-markup"><span class="secno">5</span> <span class="content">Semantic markup</span></a>
      <ol class="toc">
       <li>
-       <a href="#cwmn-score-structure"><span class="secno">4.1</span> <span class="content">CWMN Score structure</span></a>
+       <a href="#cwmn-score-structure"><span class="secno">5.1</span> <span class="content">CWMN Score structure</span></a>
        <ol class="toc">
-        <li><a href="#unifying-score-part-and-part"><span class="secno">4.1.1</span> <span class="content">Unifying <code><span>score-part</span></code> and <code><span>part</span></code></span></a>
-        <li><a href="#system-notations"><span class="secno">4.1.2</span> <span class="content">System notations</span></a>
-        <li><a href="#concert-and-transposed-pitch"><span class="secno">4.1.3</span> <span class="content">Concert and transposed pitch</span></a>
+        <li><a href="#unifying-score-part-and-part"><span class="secno">5.1.1</span> <span class="content">Unifying <code><span>score-part</span></code> and <code><span>part</span></code></span></a>
+        <li><a href="#system-notations"><span class="secno">5.1.2</span> <span class="content">System notations</span></a>
+        <li><a href="#concert-and-transposed-pitch"><span class="secno">5.1.3</span> <span class="content">Concert and transposed pitch</span></a>
        </ol>
-      <li><a href="#element-ids"><span class="secno">4.2</span> <span class="content">Element IDs</span></a>
+      <li><a href="#element-ids"><span class="secno">5.2</span> <span class="content">Element IDs</span></a>
       <li>
-       <a href="#musical-timelines"><span class="secno">4.3</span> <span class="content">Musical timelines</span></a>
+       <a href="#musical-timelines"><span class="secno">5.3</span> <span class="content">Musical timelines</span></a>
        <ol class="toc">
-        <li><a href="#specialized-encodings"><span class="secno">4.3.1</span> <span class="content">Specialized encodings</span></a>
-        <li><a href="#note-values"><span class="secno">4.3.2</span> <span class="content">Note values</span></a>
-        <li><a href="#metrical-timespans"><span class="secno">4.3.3</span> <span class="content">Metrical timespans</span></a>
-        <li><a href="#general-timespans"><span class="secno">4.3.4</span> <span class="content">General timespans</span></a>
-        <li><a href="#positions-and-timespans"><span class="secno">4.3.5</span> <span class="content">Positions and timespans</span></a>
-        <li><a href="#sequences"><span class="secno">4.3.6</span> <span class="content">Sequences</span></a>
-        <li><a href="#the-sequence-cursor"><span class="secno">4.3.7</span> <span class="content">The sequence cursor</span></a>
-        <li><a href="#explicit-positions"><span class="secno">4.3.8</span> <span class="content">Explicit positions</span></a>
-        <li><a href="#spaces"><span class="secno">4.3.9</span> <span class="content">Spaces</span></a>
-        <li><a href="#pitch-encoding"><span class="secno">4.3.10</span> <span class="content">Pitch encoding</span></a>
-        <li><a href="#events"><span class="secno">4.3.11</span> <span class="content">Events</span></a>
-        <li><a href="#directions"><span class="secno">4.3.12</span> <span class="content">Directions</span></a>
-        <li><a href="#tuplets"><span class="secno">4.3.13</span> <span class="content">Tuplets</span></a>
+        <li><a href="#specialized-encodings"><span class="secno">5.3.1</span> <span class="content">Specialized encodings</span></a>
+        <li><a href="#note-values"><span class="secno">5.3.2</span> <span class="content">Note values</span></a>
+        <li><a href="#metrical-timespans"><span class="secno">5.3.3</span> <span class="content">Metrical timespans</span></a>
+        <li><a href="#general-timespans"><span class="secno">5.3.4</span> <span class="content">General timespans</span></a>
+        <li><a href="#positions-and-timespans"><span class="secno">5.3.5</span> <span class="content">Positions and timespans</span></a>
+        <li><a href="#sequences"><span class="secno">5.3.6</span> <span class="content">Sequences</span></a>
+        <li><a href="#the-sequence-cursor"><span class="secno">5.3.7</span> <span class="content">The sequence cursor</span></a>
+        <li><a href="#explicit-positions"><span class="secno">5.3.8</span> <span class="content">Explicit positions</span></a>
+        <li><a href="#spaces"><span class="secno">5.3.9</span> <span class="content">Spaces</span></a>
+        <li><a href="#pitch-encoding"><span class="secno">5.3.10</span> <span class="content">Pitch encoding</span></a>
+        <li><a href="#events"><span class="secno">5.3.11</span> <span class="content">Events</span></a>
+        <li><a href="#directions"><span class="secno">5.3.12</span> <span class="content">Directions</span></a>
+        <li><a href="#tuplets"><span class="secno">5.3.13</span> <span class="content">Tuplets</span></a>
        </ol>
-      <li><a href="#spanning-notations"><span class="secno">4.4</span> <span class="content">Spanning notations</span></a>
-      <li><a href="#pagination-credits-and-page-level-text"><span class="secno">4.5</span> <span class="content">Pagination, credits and page-level text</span></a>
-      <li><a href="#semantic-layout-overrides"><span class="secno">4.6</span> <span class="content">Semantic layout overrides</span></a>
-     </ol>
-    <li>
-     <a href="#styling"><span class="secno">5</span> <span class="content">Styling</span></a>
-     <ol class="toc">
-      <li><a href="#css-and-style-properties"><span class="secno">5.1</span> <span class="content">CSS and style properties</span></a>
-      <li><a href="#stylesheets"><span class="secno">5.2</span> <span class="content">Stylesheets</span></a>
-      <li><a href="#external-stylesheets"><span class="secno">5.3</span> <span class="content">External stylesheets</span></a>
-      <li><a href="#units"><span class="secno">5.4</span> <span class="content">Units</span></a>
-      <li>
-       <a href="#css-property-usage"><span class="secno">5.5</span> <span class="content">CSS property usage</span></a>
-       <ol class="toc">
-        <li><a href="#standard-css-properties"><span class="secno">5.5.1</span> <span class="content">Standard CSS properties</span></a>
-        <li><a href="#document-properties"><span class="secno">5.5.2</span> <span class="content">Document properties</span></a>
-        <li><a href="#notation-properties"><span class="secno">5.5.3</span> <span class="content">Notation properties</span></a>
-        <li><a href="#new-mnx-properties"><span class="secno">5.5.4</span> <span class="content">New MNX properties</span></a>
-       </ol>
-      <li><a href="#media-queries-and-parts"><span class="secno">5.6</span> <span class="content">Media queries and parts</span></a>
-      <li><a href="#controlling-visibility"><span class="secno">5.7</span> <span class="content">Controlling visibility</span></a>
-      <li><a href="#system-and-page-flow"><span class="secno">5.8</span> <span class="content">System and page flow</span></a>
-      <li><a href="#styling-grace-and-cue-notes"><span class="secno">5.9</span> <span class="content">Styling grace and cue notes</span></a>
+      <li><a href="#spanning-notations"><span class="secno">5.4</span> <span class="content">Spanning notations</span></a>
+      <li><a href="#pagination-credits-and-page-level-text"><span class="secno">5.5</span> <span class="content">Pagination, credits and page-level text</span></a>
+      <li><a href="#semantic-layout-overrides"><span class="secno">5.6</span> <span class="content">Semantic layout overrides</span></a>
      </ol>
     <li>
-     <a href="#interpretation"><span class="secno">6</span> <span class="content">Interpretation</span></a>
+     <a href="#styling"><span class="secno">6</span> <span class="content">Styling</span></a>
      <ol class="toc">
-      <li><a href="#inline-interpretation"><span class="secno">6.1</span> <span class="content">Inline interpretation</span></a>
-      <li><a href="#interpretation-properties"><span class="secno">6.2</span> <span class="content">Interpretation properties</span></a>
-      <li><a href="#interpretation-flow"><span class="secno">6.3</span> <span class="content">Interpretation flow</span></a>
-      <li><a href="#performance-events-and-event-streams"><span class="secno">6.4</span> <span class="content">Performance events and event streams</span></a>
-      <li><a href="#rhythmic-template-selectors"><span class="secno">6.5</span> <span class="content">Rhythmic template selectors</span></a>
+      <li><a href="#css-and-style-properties"><span class="secno">6.1</span> <span class="content">CSS and style properties</span></a>
+      <li><a href="#stylesheets"><span class="secno">6.2</span> <span class="content">Stylesheets</span></a>
+      <li><a href="#external-stylesheets"><span class="secno">6.3</span> <span class="content">External stylesheets</span></a>
+      <li><a href="#units"><span class="secno">6.4</span> <span class="content">Units</span></a>
+      <li>
+       <a href="#css-property-usage"><span class="secno">6.5</span> <span class="content">CSS property usage</span></a>
+       <ol class="toc">
+        <li><a href="#standard-css-properties"><span class="secno">6.5.1</span> <span class="content">Standard CSS properties</span></a>
+        <li><a href="#document-properties"><span class="secno">6.5.2</span> <span class="content">Document properties</span></a>
+        <li><a href="#notation-properties"><span class="secno">6.5.3</span> <span class="content">Notation properties</span></a>
+        <li><a href="#new-mnx-properties"><span class="secno">6.5.4</span> <span class="content">New MNX properties</span></a>
+       </ol>
+      <li><a href="#media-queries-and-parts"><span class="secno">6.6</span> <span class="content">Media queries and parts</span></a>
+      <li><a href="#controlling-visibility"><span class="secno">6.7</span> <span class="content">Controlling visibility</span></a>
+      <li><a href="#system-and-page-flow"><span class="secno">6.8</span> <span class="content">System and page flow</span></a>
+      <li><a href="#styling-grace-and-cue-notes"><span class="secno">6.9</span> <span class="content">Styling grace and cue notes</span></a>
+     </ol>
+    <li>
+     <a href="#interpretation"><span class="secno">7</span> <span class="content">Interpretation</span></a>
+     <ol class="toc">
+      <li><a href="#inline-interpretation"><span class="secno">7.1</span> <span class="content">Inline interpretation</span></a>
+      <li><a href="#interpretation-properties"><span class="secno">7.2</span> <span class="content">Interpretation properties</span></a>
+      <li><a href="#interpretation-flow"><span class="secno">7.3</span> <span class="content">Interpretation flow</span></a>
+      <li><a href="#performance-events-and-event-streams"><span class="secno">7.4</span> <span class="content">Performance events and event streams</span></a>
+      <li><a href="#rhythmic-template-selectors"><span class="secno">7.5</span> <span class="content">Rhythmic template selectors</span></a>
      </ol>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
@@ -1540,7 +1541,7 @@ early 20th centuries." [Gerald Warfield, <em>Writings on
 Contemporary Music Notation</em> (Ann Arbor: Music Library Association, 1976),
 ii.]</p>
    <p>However, MNX is able to support diverse other systems for encoding music
-notation, through the mechanism of <a href="#the-container-document">§2.1 The container document</a>.</p>
+notation, through the mechanism of <a href="#the-container-document">§3.1 The container document</a>.</p>
    <h3 class="heading settled" data-level="1.3" id="compatibility-with-musicxml"><span class="secno">1.3. </span><span class="content">Compatibility with MusicXML</span><a class="self-link" href="#compatibility-with-musicxml"></a></h3>
    <p>MNX does not attempt to be backward-compatible with MusicXML, nor is it a
 superset of MusicXML. However, a large proportion of MusicXML markup is expected
@@ -1553,13 +1554,82 @@ MusicXML into MNX. This is essential for migration purposes.</p>
    <p>A companion document details a set of <a href="../use-cases/index.html">known use cases for music notation</a>.
 The use cases have links back to relevant sections of this document, where support
 can be demonstrated.</p>
-   <h2 class="heading settled" data-level="2" id="document-organization"><span class="secno">2. </span><span class="content">Document organization</span><a class="self-link" href="#document-organization"></a></h2>
+   <h2 class="heading settled" data-level="2" id="a-brief-example"><span class="secno">2. </span><span class="content">A brief example</span><a class="self-link" href="#a-brief-example"></a></h2>
+   <p>To satisfy immediate curiosity up front, here is an MNX encoding of the
+timeless song, <em>Hot Cross Buns</em>. This encoding is purely semantic, and
+includes no information on appearance or interpretation.</p>
+<pre class="language-xml highlight"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="nt">&lt;mnx</span><span class="nt">></span>
+    <span class="nt">&lt;head</span><span class="nt">></span>
+        <span class="nt">&lt;identification</span><span class="nt">></span>
+            <span class="nt">&lt;title</span><span class="nt">></span>Hot Cross Buns<span class="nt">&lt;/title></span>
+        <span class="nt">&lt;/identification></span>
+    <span class="nt">&lt;/head></span>
+    <span class="nt">&lt;score</span> <span class="na">content=</span><span class="s">"cwmn"</span><span class="nt">></span>
+        <span class="nt">&lt;system</span><span class="nt">></span>
+            <span class="nt">&lt;measure</span><span class="nt">></span>
+                <span class="nt">&lt;attributes</span><span class="nt">></span>
+                    <span class="nt">&lt;tempo</span> <span class="na">bpm=</span><span class="s">"120/4"</span><span class="nt">/></span>
+                    <span class="nt">&lt;time</span> <span class="na">signature=</span><span class="s">"3/4"</span><span class="nt">/></span>
+                <span class="nt">&lt;/attributes></span>
+            <span class="nt">&lt;/measure></span>
+            <span class="nt">&lt;measure</span><span class="nt">/></span>
+            <span class="nt">&lt;measure</span><span class="nt">/></span>
+            <span class="nt">&lt;measure</span><span class="nt">/></span>
+        <span class="nt">&lt;/system></span>
+        <span class="nt">&lt;part</span><span class="nt">></span>
+            <span class="nt">&lt;part-name</span><span class="nt">></span>Melody<span class="nt">&lt;/part-name></span>
+            <span class="nt">&lt;measure</span><span class="nt">></span>
+                <span class="nt">&lt;attributes</span><span class="nt">></span>
+                    <span class="nt">&lt;clef</span> <span class="na">sign=</span><span class="s">"G"</span> <span class="na">line=</span><span class="s">"2"</span><span class="nt">/></span>
+                <span class="nt">&lt;/attributes></span>
+                <span class="nt">&lt;sequence</span><span class="nt">></span>
+                    <span class="nt">&lt;direction</span> <span class="na">placement=</span><span class="s">"above"</span><span class="nt">></span>
+                        <span class="nt">&lt;words</span><span class="nt">></span>With heavy irony<span class="nt">&lt;/words></span>
+                    <span class="nt">&lt;/direction></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                <span class="nt">&lt;/sequence></span>
+            <span class="nt">&lt;/measure></span>
+            <span class="nt">&lt;measure</span><span class="nt">></span>
+                <span class="nt">&lt;sequence</span><span class="nt">></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;rest</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                <span class="nt">&lt;/sequence></span>
+            <span class="nt">&lt;/measure></span>
+            <span class="nt">&lt;measure</span><span class="nt">></span>
+                <span class="nt">&lt;sequence</span><span class="nt">></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                <span class="nt">&lt;/sequence></span>
+            <span class="nt">&lt;/measure></span>
+            <span class="nt">&lt;measure</span><span class="nt">></span>
+                <span class="nt">&lt;sequence</span><span class="nt">></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                <span class="nt">&lt;/sequence></span>
+            <span class="nt">&lt;/measure></span>
+        <span class="nt">&lt;/part></span>
+    <span class="nt">&lt;/score></span>
+<span class="nt">&lt;/mnx></span>
+</pre>
+   <h2 class="heading settled" data-level="3" id="document-organization"><span class="secno">3. </span><span class="content">Document organization</span><a class="self-link" href="#document-organization"></a></h2>
    <p class="note" role="note"><span>Note:</span> This section applies to all content types, CWMN or otherwise.</p>
-   <h3 class="heading settled" data-level="2.1" id="the-container-document"><span class="secno">2.1. </span><span class="content">The container document</span><a class="self-link" href="#the-container-document"></a></h3>
+   <h3 class="heading settled" data-level="3.1" id="the-container-document"><span class="secno">3.1. </span><span class="content">The container document</span><a class="self-link" href="#the-container-document"></a></h3>
    <p>MNX documents act as general-purpose containers, which may be arbitrarily
 subdivided into a hierarchy of components which collectively make up the
 document as a whole.</p>
-   <h4 class="heading settled" data-level="2.1.1" id="a-simple-cwmn-score"><span class="secno">2.1.1. </span><span class="content">A simple CWMN score</span><a class="self-link" href="#a-simple-cwmn-score"></a></h4>
+   <h4 class="heading settled" data-level="3.1.1" id="a-simple-cwmn-score"><span class="secno">3.1.1. </span><span class="content">A simple CWMN score</span><a class="self-link" href="#a-simple-cwmn-score"></a></h4>
    <p>Here’s an example of the simplest structure, where an MNX document contains a
 single CWMN score. The <code><a data-link-type="element">head</a></code> element includes descriptive information,
 while the <code><a data-link-type="element">score</a></code> element contains the score contents.</p>
@@ -1580,7 +1650,7 @@ includes information relevant to the document’s appearance and interpretation:
     <span class="nt">&lt;/score></span>
 <span class="nt">&lt;/mnx></span>
 </pre>
-   <h4 class="heading settled" data-level="2.1.2" id="a-simple-graphical-score"><span class="secno">2.1.2. </span><span class="content">A simple graphical score</span><a class="self-link" href="#a-simple-graphical-score"></a></h4>
+   <h4 class="heading settled" data-level="3.1.2" id="a-simple-graphical-score"><span class="secno">3.1.2. </span><span class="content">A simple graphical score</span><a class="self-link" href="#a-simple-graphical-score"></a></h4>
    <p>The <code><a data-link-type="element">score</a></code> element can be qualified by a <code><a data-link-type="element-sub">content</a></code> attribute that
 describes the encoding of the content. It defaults to <code>content="cwmn"</code> and may include values from a registry of MNX
 musical content types. This example shows a score using an alternate markup
@@ -1601,7 +1671,7 @@ a specific proposal):</p>
 <span class="nt">&lt;/mnx></span>
 </pre>
    <p>The MNX specification will maintain a registry of recognized values for <code>content</code>.</p>
-   <h4 class="heading settled" data-level="2.1.3" id="compound-mnx-documents"><span class="secno">2.1.3. </span><span class="content">Compound MNX documents</span><a class="self-link" href="#compound-mnx-documents"></a></h4>
+   <h4 class="heading settled" data-level="3.1.3" id="compound-mnx-documents"><span class="secno">3.1.3. </span><span class="content">Compound MNX documents</span><a class="self-link" href="#compound-mnx-documents"></a></h4>
    <p>It’s also possible to combine different representations of music in the same
 MNX document by using the <code><a data-link-type="element">collection</a></code> element to combine  multiple chunks
 of music into a single chunk.  Each chunk may possess a distinct encoding. <code><a data-link-type="element">collection</a></code> elements can be nested, allowing a subordinate collection to be 
@@ -1641,9 +1711,9 @@ that some of these could employ non-CWMN encodings as well.)</p>
     <span class="nt">&lt;/collection></span>
 <span class="nt">&lt;/mnx></span>
 </pre>
-   <h4 class="heading settled" data-level="2.1.4" id="inclusion-by-reference"><span class="secno">2.1.4. </span><span class="content">Inclusion by reference</span><a class="self-link" href="#inclusion-by-reference"></a></h4>
+   <h4 class="heading settled" data-level="3.1.4" id="inclusion-by-reference"><span class="secno">3.1.4. </span><span class="content">Inclusion by reference</span><a class="self-link" href="#inclusion-by-reference"></a></h4>
    <p>The HTML <code><a data-link-type="element">link</a></code> element may be used to include a score by reference.</p>
-   <h3 class="heading settled" data-level="2.2" id="profiles"><span class="secno">2.2. </span><span class="content">Profiles</span><a class="self-link" href="#profiles"></a></h3>
+   <h3 class="heading settled" data-level="3.2" id="profiles"><span class="secno">3.2. </span><span class="content">Profiles</span><a class="self-link" href="#profiles"></a></h3>
    <p>A <code><a data-link-type="element">score</a></code> element may employ the <code><a data-link-type="element-sub">profile</a></code> attribute to indicate
 that it conforms to a particular set of expectations regarding its contents. A
 registry of valid profile names for each allowed score encoding is maintained
@@ -1669,7 +1739,7 @@ include:</p>
      <p>All parts of a score agree with respect to form, time and key signatures and barring.</p>
    </ul>
    <p>This profile mechanism replaces the <code><a data-link-type="element">supports</a></code> feature of MusicXML.</p>
-   <h3 class="heading settled" data-level="2.3" id="metadata-and-attribution"><span class="secno">2.3. </span><span class="content">Metadata and Attribution</span><a class="self-link" href="#metadata-and-attribution"></a></h3>
+   <h3 class="heading settled" data-level="3.3" id="metadata-and-attribution"><span class="secno">3.3. </span><span class="content">Metadata and Attribution</span><a class="self-link" href="#metadata-and-attribution"></a></h3>
    <p>The <code><a data-link-type="element">identification</a></code> element in MNX is used to supply descriptive and
 bibliographic information, as it is in MusicXML.</p>
    <p>Its contents are similar to MusicXML, but it can be included in a variety of
@@ -1684,7 +1754,7 @@ parent elements for greater flexibility:</p>
    </ul>
    <p>Other parent elements will no doubt make sense as the specification is
 developed.</p>
-   <h2 class="heading settled" data-level="3" id="semantics-appearance-and-interpretation"><span class="secno">3. </span><span class="content">Semantics, Appearance and Interpretation</span><a class="self-link" href="#semantics-appearance-and-interpretation"></a></h2>
+   <h2 class="heading settled" data-level="4" id="semantics-appearance-and-interpretation"><span class="secno">4. </span><span class="content">Semantics, Appearance and Interpretation</span><a class="self-link" href="#semantics-appearance-and-interpretation"></a></h2>
    <p class="note" role="note"><span>Note:</span> Except where otherwise stated, the remainder of this proposal pertains
 only to the CWMN content type in MNX, using the <code>standard</code> profile.</p>
    <p>MNX makes a very clear distinction between the following layers of musical
@@ -1695,37 +1765,37 @@ information:</p>
 inform any potential rendering of that work. MNX encodes all semantic
 information as XML markup like <code><a data-link-type="element">measure</a></code>, <code><a data-link-type="element">note</a></code> and so on. There is no
 concept of "selective encoding" in this layer: without the required core of
-semantic elements, the document is not valid. See <a href="#semantic-markup">§4 Semantic markup</a>.</p>
+semantic elements, the document is not valid. See <a href="#semantic-markup">§5 Semantic markup</a>.</p>
     <li data-md="">
      <p><em>Appearance</em>, a layer of visual attributes and formatting that describes how
 a work appears to the reader, independent of the other two layers. Where this
 layer is absent, implementations are expected to supply a default appearance based
 on the semantic layer. MNX encodes all appearance information using CSS styles
-and properties. See <a href="#styling">§5 Styling</a> for more information.</p>
+and properties. See <a href="#styling">§6 Styling</a> for more information.</p>
     <li data-md="">
      <p><em>Interpretation</em>, a layer of performance information that describes how a work
 sounds to the listener, independent of the other two layers. Where this
 layer is absent, implementations are expected to supply a default interpretation based
 on the semantic layer. Where this layer is present, MNX
 encodes all interpretation information in the form of CSS styles also.
-See <a href="#interpretation">§6 Interpretation</a> for more information.</p>
+See <a href="#interpretation">§7 Interpretation</a> for more information.</p>
    </ul>
    <p>Since only the semantic layer is encoded in MNX markup, these distinctions are
 made very concrete in MNX documents. Furthermore, ambiguities arising from
 combining the layers in MusicXML (such as the near-duplication of <code>tie</code> and <code>tied</code>) can disappear.</p>
-   <h2 class="heading settled" data-level="4" id="semantic-markup"><span class="secno">4. </span><span class="content">Semantic markup</span><a class="self-link" href="#semantic-markup"></a></h2>
+   <h2 class="heading settled" data-level="5" id="semantic-markup"><span class="secno">5. </span><span class="content">Semantic markup</span><a class="self-link" href="#semantic-markup"></a></h2>
    <p>This section describes how MNX treats the semantic layer of a CWMN document in
 the standard profile.</p>
    <p class="note" role="note"><span>Note:</span> In most of the examples that follow, the MNX container elements are
 omitted for brevity.</p>
-   <h3 class="heading settled" data-level="4.1" id="cwmn-score-structure"><span class="secno">4.1. </span><span class="content">CWMN Score structure</span><a class="self-link" href="#cwmn-score-structure"></a></h3>
+   <h3 class="heading settled" data-level="5.1" id="cwmn-score-structure"><span class="secno">5.1. </span><span class="content">CWMN Score structure</span><a class="self-link" href="#cwmn-score-structure"></a></h3>
    <p>For a CWMN score, the <code><a data-link-type="element">score</a></code> element is roughly equivalent to the <code><a data-link-type="element">score-partwise</a></code> element in MusicXML. MusicXML’s <code><a data-link-type="element">score-timewise</a></code> element
 is not used in MNX’s CWMN support.</p>
-   <h4 class="heading settled" data-level="4.1.1" id="unifying-score-part-and-part"><span class="secno">4.1.1. </span><span class="content">Unifying <code><a data-link-type="element">score-part</a></code> and <code><a data-link-type="element">part</a></code></span><a class="self-link" href="#unifying-score-part-and-part"></a></h4>
+   <h4 class="heading settled" data-level="5.1.1" id="unifying-score-part-and-part"><span class="secno">5.1.1. </span><span class="content">Unifying <code><a data-link-type="element">score-part</a></code> and <code><a data-link-type="element">part</a></code></span><a class="self-link" href="#unifying-score-part-and-part"></a></h4>
    <p>In MNX, the contents of the <code><a data-link-type="element">score-part</a></code> element are simply included below <code><a data-link-type="element">part</a></code>.
 This leaves the <code><a data-link-type="element">part</a></code> element as the single place in the document that provides
 part-related information.</p>
-   <h4 class="heading settled" data-level="4.1.2" id="system-notations"><span class="secno">4.1.2. </span><span class="content">System notations</span><a class="self-link" href="#system-notations"></a></h4>
+   <h4 class="heading settled" data-level="5.1.2" id="system-notations"><span class="secno">5.1.2. </span><span class="content">System notations</span><a class="self-link" href="#system-notations"></a></h4>
    <p>A number of notational concepts can be scoped to the entire system in a
 semantic sense, not only to a single part. Examples include:</p>
    <ul>
@@ -1740,7 +1810,7 @@ semantic sense, not only to a single part. Examples include:</p>
     <li data-md="">
      <p>Barlines</p>
     <li data-md="">
-     <p>System and page breaks (see <a href="#system-and-page-flow">§5.8 System and page flow</a>)</p>
+     <p>System and page breaks (see <a href="#system-and-page-flow">§6.8 System and page flow</a>)</p>
     <li data-md="">
      <p>Musical form indications</p>
    </ul>
@@ -1792,18 +1862,18 @@ parts with no constraints on their occurrence or relationships.</p>
     <span class="nt">&lt;/score></span>
 <span class="nt">&lt;/mnx></span>
 </pre>
-   <h4 class="heading settled" data-level="4.1.3" id="concert-and-transposed-pitch"><span class="secno">4.1.3. </span><span class="content">Concert and transposed pitch</span><a class="self-link" href="#concert-and-transposed-pitch"></a></h4>
+   <h4 class="heading settled" data-level="5.1.3" id="concert-and-transposed-pitch"><span class="secno">5.1.3. </span><span class="content">Concert and transposed pitch</span><a class="self-link" href="#concert-and-transposed-pitch"></a></h4>
    <p class="issue" id="issue-59982743"><a class="self-link" href="#issue-59982743"></a> We need to decide the pitch frame in which parts are encoded. Both
 concert pitch and transposed pitch (used by MusicXML) have advantages and
 disadvantages.</p>
-   <h3 class="heading settled" data-level="4.2" id="element-ids"><span class="secno">4.2. </span><span class="content">Element IDs</span><a class="self-link" href="#element-ids"></a></h3>
+   <h3 class="heading settled" data-level="5.2" id="element-ids"><span class="secno">5.2. </span><span class="content">Element IDs</span><a class="self-link" href="#element-ids"></a></h3>
    <p>Any element whatsoever in MNX markup may possess a regular <code>id</code> attribute as defined for the XML namespace. References to elements form a
-backbone principle of key aspects of MNX, for example <a href="#spanning-notations">§4.4 Spanning notations</a>.</p>
+backbone principle of key aspects of MNX, for example <a href="#spanning-notations">§5.4 Spanning notations</a>.</p>
    <p>These attributes are of type <code>ID</code>, not <code>IDREF</code> and thus
 fully conform to the XML standard.  Existing uses of <code>id</code> in
 MusicXML that are in conflict with this usage, and which carry over to MNX,
 will be renamed.</p>
-   <h3 class="heading settled" data-level="4.3" id="musical-timelines"><span class="secno">4.3. </span><span class="content">Musical timelines</span><a class="self-link" href="#musical-timelines"></a></h3>
+   <h3 class="heading settled" data-level="5.3" id="musical-timelines"><span class="secno">5.3. </span><span class="content">Musical timelines</span><a class="self-link" href="#musical-timelines"></a></h3>
    <p>MNX makes use of a different element structure than MusicXML to represent
 timelines of musical notations and events, always in chronological sequence.
 The elements of these timelines are essentially the same as those found in
@@ -1828,14 +1898,14 @@ parsing measures of music.</p>
 operations such as node insertion and deleting (e.g. add a note to a chord by
 simply inserting a <code><a data-link-type="element">note</a></code> element in the appropriate parent).</p>
    </ul>
-   <h4 class="heading settled" data-level="4.3.1" id="specialized-encodings"><span class="secno">4.3.1. </span><span class="content">Specialized encodings</span><a class="self-link" href="#specialized-encodings"></a></h4>
+   <h4 class="heading settled" data-level="5.3.1" id="specialized-encodings"><span class="secno">5.3.1. </span><span class="content">Specialized encodings</span><a class="self-link" href="#specialized-encodings"></a></h4>
    <p>For compactness and readability, MNX represents note values, timespans and
 pitches as single textual attributes. Compactness and readability are
 desirable because encodings are documented, read and talked about, not only
 parsed and generated.</p>
    <p>These will be covered first, before timelines are described, since they help
 make sense of the succeeding examples.</p>
-   <h4 class="heading settled" data-level="4.3.2" id="note-values"><span class="secno">4.3.2. </span><span class="content">Note values</span><a class="self-link" href="#note-values"></a></h4>
+   <h4 class="heading settled" data-level="5.3.2" id="note-values"><span class="secno">5.3.2. </span><span class="content">Note values</span><a class="self-link" href="#note-values"></a></h4>
    <p>There are a variety of situations in which the note value of a musical event
 needs to be supplied for an element. MNX uses a text encoding to represent
 such durations; in general, this replaces some arbitrary combination of
@@ -1893,7 +1963,7 @@ layer and a naïvely notated score. Rational numbers that combine the notion of
 note values, dots and tuplets into a single number take us further from this
 ideal.</p>
    </div>
-   <h4 class="heading settled" data-level="4.3.3" id="metrical-timespans"><span class="secno">4.3.3. </span><span class="content">Metrical timespans</span><a class="self-link" href="#metrical-timespans"></a></h4>
+   <h4 class="heading settled" data-level="5.3.3" id="metrical-timespans"><span class="secno">5.3.3. </span><span class="content">Metrical timespans</span><a class="self-link" href="#metrical-timespans"></a></h4>
    <p>There are also situations in which a <em>metrical timespan</em> needs to be supplied,
 as an exact multiple of a note value. There is no exact corresponding
 construct in MusicXML.</p>
@@ -1910,12 +1980,12 @@ to the origin of a containing sequence.</p>
      <p>three quarter notes</p>
     <dt data-md=""><code>3/8*</code>
     <dd data-md="">
-     <p>three dotted quarter notes (this form can be useful for specification of <a href="#tuplets">§4.3.13 Tuplets</a>)</p>
+     <p>three dotted quarter notes (this form can be useful for specification of <a href="#tuplets">§5.3.13 Tuplets</a>)</p>
    </dl>
    <p>Like an individual note value, a metrical timespan is always subject to any
 contextual time modification due to tuplets. For example, inside an 8-th note
 triplet, the timespan <code>1/8</code> refers to an eighth-note triplet.</p>
-   <h4 class="heading settled" data-level="4.3.4" id="general-timespans"><span class="secno">4.3.4. </span><span class="content">General timespans</span><a class="self-link" href="#general-timespans"></a></h4>
+   <h4 class="heading settled" data-level="5.3.4" id="general-timespans"><span class="secno">5.3.4. </span><span class="content">General timespans</span><a class="self-link" href="#general-timespans"></a></h4>
    <p>MNX has a less constrained notion of a <em>general timespan</em> which is used in
 situations where no constraint to an exact note value multiple is desired.</p>
    <p>General timespans are encoded as a real number followed by one of the following
@@ -1955,7 +2025,7 @@ suffixes.</p>
    </dl>
    <p class="note" role="note"><span>Note:</span> This concept replaces the MusicXML notion of <code>divisions</code> (and is
 capable of expressing arbitrary divisions if so desired).</p>
-   <h4 class="heading settled" data-level="4.3.5" id="positions-and-timespans"><span class="secno">4.3.5. </span><span class="content">Positions and timespans</span><a class="self-link" href="#positions-and-timespans"></a></h4>
+   <h4 class="heading settled" data-level="5.3.5" id="positions-and-timespans"><span class="secno">5.3.5. </span><span class="content">Positions and timespans</span><a class="self-link" href="#positions-and-timespans"></a></h4>
    <p>Any timespan can also express a <em>position</em> within a sequence or tuplet. In these
 cases, the timespan has the meaning of "timespan from some origin". Just as
 there are metrical and general timespans, so are there metrical and general
@@ -1964,7 +2034,7 @@ positions.</p>
 are always relative to the start of the containing sequence or tuplet.
 Positions expressed in terms of measure-level note values (<code>3//8</code>) are always
 relative to the start of the containing measure.</p>
-   <h4 class="heading settled" data-level="4.3.6" id="sequences"><span class="secno">4.3.6. </span><span class="content">Sequences</span><a class="self-link" href="#sequences"></a></h4>
+   <h4 class="heading settled" data-level="5.3.6" id="sequences"><span class="secno">5.3.6. </span><span class="content">Sequences</span><a class="self-link" href="#sequences"></a></h4>
    <p>The <code><a data-link-type="element">sequence</a></code> element represents an independent sequential timeline within
 a measure. A <code><a data-link-type="element">measure</a></code> can have any number of timelines within it.</p>
    <p>Each <code><a data-link-type="element">sequence</a></code> child of the measure orders its child elements in
@@ -2030,7 +2100,7 @@ overridden within the sequence, of course. For example, consider these
 possess a number or any other label. It can, however, be assigned a label via
 the optional <code><a data-link-type="element-sub">name</a></code> attribute that declares continuity between
 identically named/numbered sequences in successive measures of the same part.</p>
-   <h4 class="heading settled" data-level="4.3.7" id="the-sequence-cursor"><span class="secno">4.3.7. </span><span class="content">The sequence cursor</span><a class="self-link" href="#the-sequence-cursor"></a></h4>
+   <h4 class="heading settled" data-level="5.3.7" id="the-sequence-cursor"><span class="secno">5.3.7. </span><span class="content">The sequence cursor</span><a class="self-link" href="#the-sequence-cursor"></a></h4>
    <p>Elements of a sequence can be assigned an explicit position, but need not be.
 In the absence of an explicit <code>position</code> attribute on an event, direction, or
 tuplet, the current value of the <em>sequence cursor</em> is used.</p>
@@ -2059,7 +2129,7 @@ of event positions</p>
     <li data-md="">
      <p>Events cannot overlap</p>
    </ul>
-   <h4 class="heading settled" data-level="4.3.8" id="explicit-positions"><span class="secno">4.3.8. </span><span class="content">Explicit positions</span><a class="self-link" href="#explicit-positions"></a></h4>
+   <h4 class="heading settled" data-level="5.3.8" id="explicit-positions"><span class="secno">5.3.8. </span><span class="content">Explicit positions</span><a class="self-link" href="#explicit-positions"></a></h4>
    <p>It’s also possible to use a <code>position</code> attribute for any element of a
 sequence.</p>
    <p>This is most useful for directions.  Directions may specify a <em>general
@@ -2068,7 +2138,7 @@ position</em> since their positions are not constrained by CMN rules.</p>
    <p>MNX prohibits the use of out-of-order elements within a sequence or tuplet element.
 While cursor-based positioning can’t violate this constraint, explicit positions
 can, so care must be taken to sort elements properly when encoding.</p>
-   <p>Here is the prior example from <a href="#sequences">§4.3.6 Sequences</a>, recast with the use of
+   <p>Here is the prior example from <a href="#sequences">§5.3.6 Sequences</a>, recast with the use of
 a <code>position</code> attribute relative to the containing measure or tuplet.</p>
 <pre class="language-xml highlight"><span class="nt">&lt;measure</span><span class="nt">></span>
     <span class="nt">&lt;sequence</span><span class="nt">></span>
@@ -2094,7 +2164,7 @@ a <code>position</code> attribute relative to the containing measure or tuplet.<
    <div class="issue" id="issue-a4c8795d">
     <a class="self-link" href="#issue-a4c8795d"></a> The use of explicit positions may present an approach which conflicts with a
 cursor-based model (although these models need not be exclusive, and  indeed
-coexist in this proposal).  The use of <a href="#spaces">§4.3.9 Spaces</a> can mitigate the need for
+coexist in this proposal).  The use of <a href="#spaces">§5.3.9 Spaces</a> can mitigate the need for
 explicit positions on <code><a data-link-type="element">event</a></code> elements.  However, in the case of <code><a data-link-type="element">direction</a></code> elements located at arbitrary general positions, a cursor model
 alone does not solve all the problems in play. 
     <p>Consider the case of a whole note in a 6/4 measure, with a direction element
@@ -2141,7 +2211,7 @@ it lives in the appearance layer rather than the semantic layer. Using the
 appearance layer to specify the performance timing of some notated element
 violates the purpose of the layers.</p>
    </div>
-   <h4 class="heading settled" data-level="4.3.9" id="spaces"><span class="secno">4.3.9. </span><span class="content">Spaces</span><a class="self-link" href="#spaces"></a></h4>
+   <h4 class="heading settled" data-level="5.3.9" id="spaces"><span class="secno">5.3.9. </span><span class="content">Spaces</span><a class="self-link" href="#spaces"></a></h4>
    <p>A <code><a data-link-type="element">space</a></code> is a way of specifying a metrical time interval that does not
 contain any notation. MNX uses <code><a data-link-type="element">space</a></code> elements to explicitly represent such
 gaps. (In MusicXML, these gaps were often created using the <code><a data-link-type="element">forward</a></code> and <code><a data-link-type="element">backward</a></code> elements or with hidden rests, and could only be determined after
@@ -2155,9 +2225,9 @@ at the beginning of the measure and proceeding forward in metrical time.</p>
    <p>Accordingly, the concept of <code>divisions</code> also becomes
 unnecessary in MNX. To the extent that arbitrary durations are needed, they
 can always be expressed as multiples of some normal musical time unit.
-(See <a href="#tuplets">§4.3.13 Tuplets</a> for more information on how spaces work
+(See <a href="#tuplets">§5.3.13 Tuplets</a> for more information on how spaces work
 to take up space in tuplets -- divisions aren’t needed here either.)</p>
-   <p>A <code><a data-link-type="element">space</a></code> takes a <code>length</code> attribute to specify its metrical duration (see <a href="#metrical-timespans">§4.3.3 Metrical timespans</a>):</p>
+   <p>A <code><a data-link-type="element">space</a></code> takes a <code>length</code> attribute to specify its metrical duration (see <a href="#metrical-timespans">§5.3.3 Metrical timespans</a>):</p>
 <pre class="language-xml highlight"><span class="nt">&lt;space</span> <span class="na">length=</span><span class="s">"4*"</span><span class="nt">/></span>
 </pre>
    <p>The following space is equivalent to 5 eighth notes:</p>
@@ -2182,7 +2252,7 @@ to be anchored at a point one quarter note into the given measure:</p>
 </pre>
    <p class="issue" id="issue-75776799"><a class="self-link" href="#issue-75776799"></a> This element may not be needed, if events are allowed to be specified
 with explicit <code>position</code> attributes.</p>
-   <h4 class="heading settled" data-level="4.3.10" id="pitch-encoding"><span class="secno">4.3.10. </span><span class="content">Pitch encoding</span><a class="self-link" href="#pitch-encoding"></a></h4>
+   <h4 class="heading settled" data-level="5.3.10" id="pitch-encoding"><span class="secno">5.3.10. </span><span class="content">Pitch encoding</span><a class="self-link" href="#pitch-encoding"></a></h4>
    <p>MNX introduces a text encoding of pitches, which represents a combination of
 MusicXML’s <code><a data-link-type="element">step</a></code>, <code><a data-link-type="element">octave</a></code> and <code><a data-link-type="element">alter</a></code> elements. This is done to
 address issues of readability and compactness in MusicXML and makes no
@@ -2217,10 +2287,10 @@ an <code>accidental</code> value, if provided.</p>
    </dl>
    <p>The <code>pitch</code> attribute is used to supply pitch encodings where appropriate, typically
 for <code><a data-link-type="element">note</a></code> elements.</p>
-   <p>Pitch encodings are used also in <a href="#interpretation">§6 Interpretation</a>.</p>
+   <p>Pitch encodings are used also in <a href="#interpretation">§7 Interpretation</a>.</p>
    <p class="issue" id="issue-8dde6b97"><a class="self-link" href="#issue-8dde6b97"></a> permit some sort of rational number option here for just-intonation
 temperaments and their variants.</p>
-   <h4 class="heading settled" data-level="4.3.11" id="events"><span class="secno">4.3.11. </span><span class="content">Events</span><a class="self-link" href="#events"></a></h4>
+   <h4 class="heading settled" data-level="5.3.11" id="events"><span class="secno">5.3.11. </span><span class="content">Events</span><a class="self-link" href="#events"></a></h4>
    <p>The new MNX element <code><a data-link-type="element">event</a></code> represents the related concepts of rest, note
 or chord depending on its contents. It supplies information that is common to
 all three:</p>
@@ -2240,7 +2310,7 @@ all three:</p>
     <li data-md="">
      <p>lyrics</p>
     <li data-md="">
-     <p>slurs and other event-oriented <a href="#spanning-notations">§4.4 Spanning notations</a></p>
+     <p>slurs and other event-oriented <a href="#spanning-notations">§5.4 Spanning notations</a></p>
    </ul>
    <p>Here’s a middle C as a dotted half note.</p>
 <pre class="language-xml highlight"><span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2*"</span><span class="nt">></span>
@@ -2276,7 +2346,7 @@ Note that the <code>type</code> attribute is used to indicate this, rather than 
   <span class="nt">&lt;rest</span><span class="nt">/></span>
 <span class="nt">&lt;/event></span>
 </pre>
-   <h4 class="heading settled" data-level="4.3.12" id="directions"><span class="secno">4.3.12. </span><span class="content">Directions</span><a class="self-link" href="#directions"></a></h4>
+   <h4 class="heading settled" data-level="5.3.12" id="directions"><span class="secno">5.3.12. </span><span class="content">Directions</span><a class="self-link" href="#directions"></a></h4>
    <p>The MNX <code><a data-link-type="element">direction</a></code> element carries over the features of the MusicXML <code><a data-link-type="element">direction</a></code> element.</p>
    <p>This proposal does not yet attempt to examine how MNX directions will work in
 detail or how they differ from MusicXML directions.</p>
@@ -2289,13 +2359,13 @@ and span-like direction types? What is the relationship between these two, e.g.
 for labeled lines?</p>
    <p class="issue" id="issue-41d7faa8"><a class="self-link" href="#issue-41d7faa8"></a> Text with embedded style/font runs should be dealt with using <code><a data-link-type="element">span</a></code> tags and CSS styling, rather than a sequence of separate direction-types.</p>
    <p class="issue" id="issue-83fe9539"><a class="self-link" href="#issue-83fe9539"></a> How should paragraph-style interpolated blocks be dealt with?</p>
-   <h4 class="heading settled" data-level="4.3.13" id="tuplets"><span class="secno">4.3.13. </span><span class="content">Tuplets</span><a class="self-link" href="#tuplets"></a></h4>
+   <h4 class="heading settled" data-level="5.3.13" id="tuplets"><span class="secno">5.3.13. </span><span class="content">Tuplets</span><a class="self-link" href="#tuplets"></a></h4>
    <p>In MNX, the <code><a data-link-type="element">tuplet</a></code> element applies a time modification to all of its child
 elements, which are the same as those allowed in <code><a data-link-type="element">sequence</a></code>. In fact, <code><a data-link-type="element">tuplet</a></code> is very much like a nested <code><a data-link-type="element">sequence</a></code> element, with an implicit
 time signature representing the notated duration inside the tuplet. It
 functions just like an <code><a data-link-type="element">event</a></code> element, in that it takes up a known duration
 within its parent, and is not allowed to overlap with other <code><a data-link-type="element">event</a></code> or <code><a data-link-type="element">tuplet</a></code> elements.</p>
-   <p>A <code><a data-link-type="element">tuplet</a></code> uses the two attributes <code>actual</code> and <code>normal</code> making use of <a href="#metrical-timespans">§4.3.3 Metrical timespans</a> to represent the tuplet ratio.
+   <p>A <code><a data-link-type="element">tuplet</a></code> uses the two attributes <code>actual</code> and <code>normal</code> making use of <a href="#metrical-timespans">§5.3.3 Metrical timespans</a> to represent the tuplet ratio.
 It thus combines the function of MusicXML’s <code><a data-link-type="element">tuplet</a></code> and <code><a data-link-type="element">time-modification</a></code> elements into a single construct: the contained elements are automatically
 subject to time modification, and CSS styling can control the appearance of
 the tuplet.</p>
@@ -2330,7 +2400,7 @@ may be included within tuplets.</p>
     ...a tuplet that displays 7 dotted eighth notes in the space of 4 dotted quarters...
 <span class="nt">&lt;/tuplet></span>
 </pre>
-   <h3 class="heading settled" data-level="4.4" id="spanning-notations"><span class="secno">4.4. </span><span class="content">Spanning notations</span><a class="self-link" href="#spanning-notations"></a></h3>
+   <h3 class="heading settled" data-level="5.4" id="spanning-notations"><span class="secno">5.4. </span><span class="content">Spanning notations</span><a class="self-link" href="#spanning-notations"></a></h3>
    <p>Many notations occupy an arbitrary span of time in a score, across
 some number of measures in a given part. Some examples are:</p>
    <ul>
@@ -2398,7 +2468,7 @@ and its <code>length</code> attribute supplies its overall length in the score.<
    <p class="issue" id="issue-b1c5172b"><a class="self-link" href="#issue-b1c5172b"></a> Other attributes are needed to supply adjustments to spanning notation positions
 in terms of offset or X increments.</p>
    <p class="issue" id="issue-bccbb797"><a class="self-link" href="#issue-bccbb797"></a> do we really care what order the reference and the target occur in?</p>
-   <h3 class="heading settled" data-level="4.5" id="pagination-credits-and-page-level-text"><span class="secno">4.5. </span><span class="content">Pagination, credits and page-level text</span><a class="self-link" href="#pagination-credits-and-page-level-text"></a></h3>
+   <h3 class="heading settled" data-level="5.5" id="pagination-credits-and-page-level-text"><span class="secno">5.5. </span><span class="content">Pagination, credits and page-level text</span><a class="self-link" href="#pagination-credits-and-page-level-text"></a></h3>
    <p>(TBD)</p>
    <p>We need to study the CSS specification as it is currently evolving to
 represent pagination to meet the needs of digital publishing overall, not only
@@ -2406,7 +2476,7 @@ music publishing.</p>
    <p>MusicXML’s page-level elements such as <code><a data-link-type="element">credit-words</a></code> and others need to be
 reconsidered in light of this evolution. There is currently a tension in the
 existing corpus of MusicXML documents between the use of explicitly placed <code><a data-link-type="element">credit</a></code> elements and the metadata found in the <code><a data-link-type="element">identification</a></code> element.</p>
-   <h3 class="heading settled" data-level="4.6" id="semantic-layout-overrides"><span class="secno">4.6. </span><span class="content">Semantic layout overrides</span><a class="self-link" href="#semantic-layout-overrides"></a></h3>
+   <h3 class="heading settled" data-level="5.6" id="semantic-layout-overrides"><span class="secno">5.6. </span><span class="content">Semantic layout overrides</span><a class="self-link" href="#semantic-layout-overrides"></a></h3>
    <p>The CWMN canon has many examples of notation in which notes do not add up
 metrically to yield the duration of a measure or tuplet, or in which notes in one
 voices align with notes in another, in spite of the dissimilar points in time
@@ -2473,8 +2543,8 @@ in the prescribed fashion:</p>
 <span class="nt">&lt;/measure></span>
 </pre>
    <p>Independent of these editorial decisions, it is also possible to prescribe any
-desired performance rhythm using the <a href="#interpretation">§6 Interpretation</a> features of MNX.</p>
-   <h2 class="heading settled" data-level="5" id="styling"><span class="secno">5. </span><span class="content">Styling</span><a class="self-link" href="#styling"></a></h2>
+desired performance rhythm using the <a href="#interpretation">§7 Interpretation</a> features of MNX.</p>
+   <h2 class="heading settled" data-level="6" id="styling"><span class="secno">6. </span><span class="content">Styling</span><a class="self-link" href="#styling"></a></h2>
    <p>MNX employs CSS style properties to describe the appearance layer of a score.
 The property vocabulary used by MNX is not the same as for HTML or SVG,
 although it has some overlap. A large part of the work to specify MNX will
@@ -2510,7 +2580,7 @@ line</em> (analogous to typical CSS units such as <code>1px</code> for <em>1 pix
 supply some degree of basic style information (e.g. measure widths). The
 position of this proposal is that such requirements are optional and ride on
 top of the <code>standard</code> profile, rather than constituting standard behavior.</p>
-   <h3 class="heading settled" data-level="5.1" id="css-and-style-properties"><span class="secno">5.1. </span><span class="content">CSS and style properties</span><a class="self-link" href="#css-and-style-properties"></a></h3>
+   <h3 class="heading settled" data-level="6.1" id="css-and-style-properties"><span class="secno">6.1. </span><span class="content">CSS and style properties</span><a class="self-link" href="#css-and-style-properties"></a></h3>
    <p>As in HTML or SVG, CSS properties can be specified in several distinct ways:</p>
    <ul>
     <li data-md="">
@@ -2528,7 +2598,7 @@ selector for <code>.alternate</code>.</p>
 to the selectors in the CSS specification. For example a stylesheet might
 include a <code>.note</code> selector specifying the default appearance of all notes.</p>
    </ul>
-   <h3 class="heading settled" data-level="5.2" id="stylesheets"><span class="secno">5.2. </span><span class="content">Stylesheets</span><a class="self-link" href="#stylesheets"></a></h3>
+   <h3 class="heading settled" data-level="6.2" id="stylesheets"><span class="secno">6.2. </span><span class="content">Stylesheets</span><a class="self-link" href="#stylesheets"></a></h3>
    <p>Stylesheets allow visual style properties to be declared using <a data-link-type="dfn">selectors</a>, that provide both implicit and explicit ways of applying
 styles to elements in the markup. These work exactly as in CSS for HTML or
 SVG, except where extended in MNX-specific ways.</p>
@@ -2574,7 +2644,7 @@ the <a href="https://drafts.csswg.org/selectors-4/">CSS Selectors Level 4</a> dr
     <span class="nt">&lt;/score></span>
 <span class="nt">&lt;/mnx></span>
 </pre>
-   <h3 class="heading settled" data-level="5.3" id="external-stylesheets"><span class="secno">5.3. </span><span class="content">External stylesheets</span><a class="self-link" href="#external-stylesheets"></a></h3>
+   <h3 class="heading settled" data-level="6.3" id="external-stylesheets"><span class="secno">6.3. </span><span class="content">External stylesheets</span><a class="self-link" href="#external-stylesheets"></a></h3>
    <p>It’s often useful to separate stylesheet definitions in a separate <code>.css</code> file. The <code>@import</code> directive serves this purpose:</p>
 <pre class="language-xml highlight"><span class="nt">&lt;mnx</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/mnx"</span><span class="nt">></span>
     <span class="nt">&lt;head</span><span class="nt">></span>
@@ -2587,7 +2657,7 @@ the <a href="https://drafts.csswg.org/selectors-4/">CSS Selectors Level 4</a> dr
     <span class="nt">&lt;/score></span>
 <span class="nt">&lt;/mnx></span>
 </pre>
-   <h3 class="heading settled" data-level="5.4" id="units"><span class="secno">5.4. </span><span class="content">Units</span><a class="self-link" href="#units"></a></h3>
+   <h3 class="heading settled" data-level="6.4" id="units"><span class="secno">6.4. </span><span class="content">Units</span><a class="self-link" href="#units"></a></h3>
    <p>Properties representing a visual displacement or distance must use a number followed
 by an explicit unit:</p>
    <dl>
@@ -2601,7 +2671,7 @@ by an explicit unit:</p>
     <dd data-md="">
      <p>display pixels (same unit as in SVG or HTML)</p>
    </dl>
-   <p>Also, <a href="#general-timespans">§4.3.4 General timespans</a> may be used as style units.</p>
+   <p>Also, <a href="#general-timespans">§5.3.4 General timespans</a> may be used as style units.</p>
    <p>Examples:</p>
    <dl>
     <dt data-md=""><code>1sl</code>
@@ -2623,17 +2693,17 @@ by an explicit unit:</p>
     <dd data-md="">
      <p>a triplet 8th note (1/3 of a quarter note)</p>
    </dl>
-   <h3 class="heading settled" data-level="5.5" id="css-property-usage"><span class="secno">5.5. </span><span class="content">CSS property usage</span><a class="self-link" href="#css-property-usage"></a></h3>
-   <h4 class="heading settled" data-level="5.5.1" id="standard-css-properties"><span class="secno">5.5.1. </span><span class="content">Standard CSS properties</span><a class="self-link" href="#standard-css-properties"></a></h4>
+   <h3 class="heading settled" data-level="6.5" id="css-property-usage"><span class="secno">6.5. </span><span class="content">CSS property usage</span><a class="self-link" href="#css-property-usage"></a></h3>
+   <h4 class="heading settled" data-level="6.5.1" id="standard-css-properties"><span class="secno">6.5.1. </span><span class="content">Standard CSS properties</span><a class="self-link" href="#standard-css-properties"></a></h4>
    <p>Certain CSS standard properties will replace the corresponding MusicXML
 properties, to avoid conflict with other web standards. Notably, the CSS <a class="property" data-link-type="propdesc" href="https://drafts.csswg.org/css-display-3/#propdef-display">display</a> and <a class="property" data-link-type="propdesc" href="https://drafts.csswg.org/css2/visufx.html#propdef-visibility">visibility</a> replace MusicXML’s <code>print-object</code> attribute.  All
 CSS properties relating to fonts and typography (<a class="property" data-link-type="propdesc" href="https://drafts.csswg.org/css-fonts-3/#propdef-font-family">font-family</a>, <a class="property" data-link-type="propdesc" href="https://drafts.csswg.org/css-fonts-3/#propdef-font-weight">font-weight</a>, <a class="property" data-link-type="propdesc" href="https://drafts.csswg.org/css-fonts-3/#propdef-font-style">font-style</a> and so forth) will also replace corresponding features in
 MusicXML. <code>color</code> has roughly the same meaning in both.</p>
-   <h4 class="heading settled" data-level="5.5.2" id="document-properties"><span class="secno">5.5.2. </span><span class="content">Document properties</span><a class="self-link" href="#document-properties"></a></h4>
+   <h4 class="heading settled" data-level="6.5.2" id="document-properties"><span class="secno">6.5.2. </span><span class="content">Document properties</span><a class="self-link" href="#document-properties"></a></h4>
    <p>Virtually all of the values in the MusicXML <code><a data-link-type="element">defaults</a></code> element can also
 be transferred to CSS properties, permitting stylesheet control of these
 important settings as well.</p>
-   <h4 class="heading settled" data-level="5.5.3" id="notation-properties"><span class="secno">5.5.3. </span><span class="content">Notation properties</span><a class="self-link" href="#notation-properties"></a></h4>
+   <h4 class="heading settled" data-level="6.5.3" id="notation-properties"><span class="secno">6.5.3. </span><span class="content">Notation properties</span><a class="self-link" href="#notation-properties"></a></h4>
    <p>The expectation is that almost all other MusicXML attributes and elements
 governing visual rendition will simply migrate to CSS properties with no
 change except for the units used. These include positioning tweaks as well
@@ -2657,12 +2727,12 @@ generally replaced with <code>true</code> and <code>false</code>.</p>
    <p class="issue" id="issue-d9033513"><a class="self-link" href="#issue-d9033513"></a> MNX should define the meaning of <code>default</code> and <code>relative</code> more clearly and
 propose a tight set of requirements on positioning, while leaving lots of wiggle room
 for competition between implementations.</p>
-   <h4 class="heading settled" data-level="5.5.4" id="new-mnx-properties"><span class="secno">5.5.4. </span><span class="content">New MNX properties</span><a class="self-link" href="#new-mnx-properties"></a></h4>
+   <h4 class="heading settled" data-level="6.5.4" id="new-mnx-properties"><span class="secno">6.5.4. </span><span class="content">New MNX properties</span><a class="self-link" href="#new-mnx-properties"></a></h4>
    <p>MNX will also define new properties for useful concepts not previously
 addressed in MusicXML.</p>
    <p>As one example, an <strong>part-display: all</strong> property could distinguish elements
 that are intended to appear in both full-score and part views.</p>
-   <h3 class="heading settled" data-level="5.6" id="media-queries-and-parts"><span class="secno">5.6. </span><span class="content">Media queries and parts</span><a class="self-link" href="#media-queries-and-parts"></a></h3>
+   <h3 class="heading settled" data-level="6.6" id="media-queries-and-parts"><span class="secno">6.6. </span><span class="content">Media queries and parts</span><a class="self-link" href="#media-queries-and-parts"></a></h3>
    <p>CSS defines a notion of <a data-link-type="dfn" href="https://drafts.csswg.org/mediaqueries-4/#media-query">media queries</a> which permit stylesheet definitions
 to apply in only certain contexts. For web pages, this is used to vary the appearance
 according to whether a page is viewed on, say, a mobile device, or a laptop screen,
@@ -2708,7 +2778,7 @@ whose text can be used as an identifier in a media query:</p>
 </pre>
    <p>More than one part can use the same media name, allowing multiple parts to be formatted according to
 the same rules.</p>
-   <h3 class="heading settled" data-level="5.7" id="controlling-visibility"><span class="secno">5.7. </span><span class="content">Controlling visibility</span><a class="self-link" href="#controlling-visibility"></a></h3>
+   <h3 class="heading settled" data-level="6.7" id="controlling-visibility"><span class="secno">6.7. </span><span class="content">Controlling visibility</span><a class="self-link" href="#controlling-visibility"></a></h3>
    <p>As previously mentioned, the standard CSS <a class="property" data-link-type="propdesc" href="https://drafts.csswg.org/css2/visufx.html#propdef-visibility">visibility</a> and <a class="property" data-link-type="propdesc" href="https://drafts.csswg.org/css-display-3/#propdef-display">display</a> properties control whether
 a given element is seen or not.</p>
    <p>Setting <strong>display: none</strong> on an element prevents it from being seen and causes the layout to act
@@ -2716,16 +2786,16 @@ as though it does not exist in any way; the space occupied by the element will d
 from the layout’s point of view.</p>
    <p>Setting <strong>visibility: hidden</strong> on an element causes it not to be painted. However it still takes up
 space in the layout, and it may be sensitive to pointer events.</p>
-   <h3 class="heading settled" data-level="5.8" id="system-and-page-flow"><span class="secno">5.8. </span><span class="content">System and page flow</span><a class="self-link" href="#system-and-page-flow"></a></h3>
+   <h3 class="heading settled" data-level="6.8" id="system-and-page-flow"><span class="secno">6.8. </span><span class="content">System and page flow</span><a class="self-link" href="#system-and-page-flow"></a></h3>
    <p>The MNX style properties <code>new-page</code> and <code>new-system</code> (as well as others)
 control page and system flow. Such styles are specified at the <code><a data-link-type="element">measure</a></code> or <code><a data-link-type="element">event</a></code> level.</p>
    <p>These properties act across the system, but may be defined differently in
 full-score formats as opposed to single-part formats; it is very uncommon for such
 breaks to be identical across all views of a score. Thus they will participate
-in whatever solution is arrived at for <a href="#system-notations">§4.1.2 System notations</a>.</p>
+in whatever solution is arrived at for <a href="#system-notations">§5.1.2 System notations</a>.</p>
    <p>Media queries can further be used to specialize system and page flow for viewing
 and printing different formats on different devices.</p>
-   <h3 class="heading settled" data-level="5.9" id="styling-grace-and-cue-notes"><span class="secno">5.9. </span><span class="content">Styling grace and cue notes</span><a class="self-link" href="#styling-grace-and-cue-notes"></a></h3>
+   <h3 class="heading settled" data-level="6.9" id="styling-grace-and-cue-notes"><span class="secno">6.9. </span><span class="content">Styling grace and cue notes</span><a class="self-link" href="#styling-grace-and-cue-notes"></a></h3>
    <p>The CSS Selectors Level 4 draft specification includes the specification of a new <code>has:()</code> pseudo selector that can test for the presence of a child element.</p>
    <p>This provides a useful way to style grace and cue notes, for example:</p>
 <pre class="language-css highlight"><span class="nt">note:has(> grace) </span><span class="p">{</span>
@@ -2738,7 +2808,7 @@ and printing different formats on different devices.</p>
     <span class="k">note-size</span><span class="p">:</span> <span class="m">50</span><span class="l">%</span><span class="p">;</span> <span class="c">/*</span><span class="c"> </span><span class="c">c</span><span class="c">o</span><span class="c">m</span><span class="c">b</span><span class="c">i</span><span class="c">n</span><span class="c">a</span><span class="c">t</span><span class="c">i</span><span class="c">o</span><span class="c">n</span><span class="c"> </span><span class="c">o</span><span class="c">f</span><span class="c"> </span><span class="c">g</span><span class="c">r</span><span class="c">a</span><span class="c">c</span><span class="c">e</span><span class="c"> </span><span class="c">a</span><span class="c">n</span><span class="c">d</span><span class="c"> </span><span class="c">c</span><span class="c">u</span><span class="c">e</span><span class="c"> </span><span class="c">*/</span>
 <span class="p">}</span>
 </pre>
-   <h2 class="heading settled" data-level="6" id="interpretation"><span class="secno">6. </span><span class="content">Interpretation</span><a class="self-link" href="#interpretation"></a></h2>
+   <h2 class="heading settled" data-level="7" id="interpretation"><span class="secno">7. </span><span class="content">Interpretation</span><a class="self-link" href="#interpretation"></a></h2>
    <p>The performance interpretation of semantic markup in MNX is also carried out
 using CSS properties, rather than through the content of MusicXML’s <code><a data-link-type="element">sound</a></code> element. The various attributes and child elements of <code><a data-link-type="element">sound</a></code> therefore
 become new sound-oriented CSS properties in MNX. These are driven from
@@ -2749,7 +2819,7 @@ appearance layers.</p>
 can always infer a default interpretation from the semantic layer, using
 built-in default interpretation properties as required. This replaces the
 notion of "selective encoding" in MusicXML.</p>
-   <h3 class="heading settled" data-level="6.1" id="inline-interpretation"><span class="secno">6.1. </span><span class="content">Inline interpretation</span><a class="self-link" href="#inline-interpretation"></a></h3>
+   <h3 class="heading settled" data-level="7.1" id="inline-interpretation"><span class="secno">7.1. </span><span class="content">Inline interpretation</span><a class="self-link" href="#inline-interpretation"></a></h3>
    <p>Any performable element may possess a <code>perform</code> attribute, analogous to <code>style</code>. This attribute
 specifies a set of CSS properties affecting playback. For example:</p>
 <pre class="language-xml highlight"><span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span>
@@ -2782,7 +2852,7 @@ different classes in the same attribute, and it seems undesirable to have both
 sets of rules working at the same time. It may also be a good thing for
 implementations to be able to ignore all interpretation- related style
 information if it’s not relevant.</p>
-   <h3 class="heading settled" data-level="6.2" id="interpretation-properties"><span class="secno">6.2. </span><span class="content">Interpretation properties</span><a class="self-link" href="#interpretation-properties"></a></h3>
+   <h3 class="heading settled" data-level="7.2" id="interpretation-properties"><span class="secno">7.2. </span><span class="content">Interpretation properties</span><a class="self-link" href="#interpretation-properties"></a></h3>
    <p>Here are some significant interpretation properties, but not an exhaustive list
 of course:</p>
    <dl>
@@ -2814,13 +2884,13 @@ the interpretation of all events with this property.</p>
    </dl>
    <p class="note" role="note"><span>Note:</span> There is no <code>tied</code> property. It is not clear that one is needed, since
 the sounded duration of a tied note should take the semantic <code>tie</code> information into account.</p>
-   <h3 class="heading settled" data-level="6.3" id="interpretation-flow"><span class="secno">6.3. </span><span class="content">Interpretation flow</span><a class="self-link" href="#interpretation-flow"></a></h3>
+   <h3 class="heading settled" data-level="7.3" id="interpretation-flow"><span class="secno">7.3. </span><span class="content">Interpretation flow</span><a class="self-link" href="#interpretation-flow"></a></h3>
    <p>In the same way that indenting text flow with certain CSS properties has follow-on effects
 that continue down the page, altering interpretation with CSS has follow-on effects too.</p>
    <p>For example, <code>tempo</code> and <code>dynamics</code> clearly make sense to flow forward into successor
 events. On the other hand, <code>pitch</code> probably does not.</p>
    <p>The flow behavior of interpretation properties needs to be carefully characterized.</p>
-   <h3 class="heading settled" data-level="6.4" id="performance-events-and-event-streams"><span class="secno">6.4. </span><span class="content">Performance events and event streams</span><a class="self-link" href="#performance-events-and-event-streams"></a></h3>
+   <h3 class="heading settled" data-level="7.4" id="performance-events-and-event-streams"><span class="secno">7.4. </span><span class="content">Performance events and event streams</span><a class="self-link" href="#performance-events-and-event-streams"></a></h3>
    <p>It is useful to combine the values found in the <code>offset</code>, <code>pitch</code> and <code>duration</code> and <code>dynamics</code> properties into a single styling construct called a <em>performance event</em>, using the simple syntaxes <code>note(offset, pitch, duration)</code> or <code>note(offset, pitch, duration, dynamics)</code>. Think of these as syntactically
 similar to <code>rgb()</code> or <code>rgba()</code> colors. Some examples:</p>
    <dl>
@@ -2871,7 +2941,7 @@ use of their own internal sound engines to render performances, and we cannot
 assume that these engines make use of MIDI constructs internally. Second, the
 parameters governing the interpretation layer are very conveniently expressed
 in terms of the same units as the semantic layer.</p>
-   <h3 class="heading settled" data-level="6.5" id="rhythmic-template-selectors"><span class="secno">6.5. </span><span class="content">Rhythmic template selectors</span><a class="self-link" href="#rhythmic-template-selectors"></a></h3>
+   <h3 class="heading settled" data-level="7.5" id="rhythmic-template-selectors"><span class="secno">7.5. </span><span class="content">Rhythmic template selectors</span><a class="self-link" href="#rhythmic-template-selectors"></a></h3>
    <p>Special CSS selectors can be defined for MNX to make it easier to achieve
 useful interpretation results with styling.</p>
    <p>Consider these two useful selectors:</p>
@@ -3102,7 +3172,7 @@ disadvantages.<a href="#issue-59982743"> ↵ </a></div>
    <div class="issue">
      The use of explicit positions may present an approach which conflicts with a
 cursor-based model (although these models need not be exclusive, and  indeed
-coexist in this proposal).  The use of <a href="#spaces">§4.3.9 Spaces</a> can mitigate the need for
+coexist in this proposal).  The use of <a href="#spaces">§5.3.9 Spaces</a> can mitigate the need for
 explicit positions on <code><a data-link-type="element">event</a></code> elements.  However, in the case of <code><a data-link-type="element">direction</a></code> elements located at arbitrary general positions, a cursor model
 alone does not solve all the problems in play. 
     <p>Consider the case of a whole note in a 6/4 measure, with a direction element
