@@ -1314,8 +1314,15 @@ As in HTML or SVG, CSS properties can be specified in several distinct ways:
     selector for `.alternate`.
 
 - They can be inferred implicitly from the element's characteristics, according
-    to the selectors in the CSS specification. For example a stylesheet might
-    include a `.note` selector specifying the default appearance of all notes.
+    to the <a href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/">selectors</a> in the CSS specification. For example a stylesheet might
+    include a `note` selector specifying the default appearance of all <{note}> elements,
+    or an `.alternate` selector specifying the appearance of all elements
+    flagged as belonging to the `alternate` style class.
+
+This flexibility and generality is the primary motivator for using CSS as part
+of MNX. It allows a spectrum of expression for style properties that ranges
+from the very general (a house style) to the very specific (an exception for
+just one element in the document).
 
 ## Stylesheets
 

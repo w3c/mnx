@@ -2642,9 +2642,15 @@ allowing that appearance to be specified exactly once in the stylesheet
 selector for <code>.alternate</code>.</p>
     <li data-md="">
      <p>They can be inferred implicitly from the element’s characteristics, according
-to the selectors in the CSS specification. For example a stylesheet might
-include a <code>.note</code> selector specifying the default appearance of all notes.</p>
+to the <a href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/">selectors</a> in the CSS specification. For example a stylesheet might
+include a <code>note</code> selector specifying the default appearance of all <code><a data-link-type="element">note</a></code> elements,
+or an <code>.alternate</code> selector specifying the appearance of all elements
+flagged as belonging to the <code>alternate</code> style class.</p>
    </ul>
+   <p>This flexibility and generality is the primary motivator for using CSS as part
+of MNX. It allows a spectrum of expression for style properties that ranges
+from the very general (a house style) to the very specific (an exception for
+just one element in the document).</p>
    <h3 class="heading settled" data-level="6.2" id="stylesheets"><span class="secno">6.2. </span><span class="content">Stylesheets</span><a class="self-link" href="#stylesheets"></a></h3>
    <p>Stylesheets allow visual style properties to be declared using <a data-link-type="dfn">selectors</a>, that provide both implicit and explicit ways of applying
 styles to elements in the markup. These work exactly as in CSS for HTML or
