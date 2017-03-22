@@ -38,6 +38,9 @@ included.
 Having said that, where not explicitly called out, assume that MusicXML features may
 carry over to MNX unchanged, or in an obvious and analogous fashion.
 
+MNX stands for "Music Notation X", where "X" suggests "XML", "eXtended",
+and potentially other X-related things as may come to mind.
+
 ## Support for CWMN and other notation systems
 
 This proposal is focused on how MNX will support Conventional Western Music
@@ -503,16 +506,17 @@ MusicXML, though. The differences are driven by the following design goals:
 - Eliminate the need for complex book-keeping and post-processing when
     parsing measures of music.
 
-- Make it easy to alter the content of a MNX document using simple DOM
-    operations such as node insertion and deleting (e.g. add a note to a chord by
+- Make it easy to alter the content of a MNX document using simple <a href="https://dom.spec.whatwg.org/">DOM
+    (Document Object Model)</a>
+    operations such as node insertion and deletion (e.g. add a note to a chord by
     simply inserting a <{note}> element in the appropriate parent).
 
 ### Specialized encodings
 
-For compactness and readability, MNX represents note values, timespans and
-pitches as single textual attributes. Compactness and readability are
-desirable because encodings are documented, read and talked about, not only
-parsed and generated.
+For compactness and readability, MNX can represent concepts such as note
+values, timespans and pitches as simple strings, usually encoded as XML
+attributes. Compactness and readability are desirable because encodings are
+documented, read and talked about, not only parsed and generated.
 
 These will be covered first, before timelines are described, since they help
 make sense of the succeeding examples.
@@ -745,7 +749,7 @@ Significant constraints distinguish MNX's sequence cursor from MusicXML:
 - The cursor must progress in a forward direction
 - The cursor only progresses in units that are expressible in CMN (rather than any number of divisions)
 - Events within the cursor's timeline always belong to the same polyphonic voice or "layer"
-- Events cannot overlap
+- Events cannot temporally overlap (and all notes within an event are simultaneous)
 
 ### Explicit positions
 
@@ -921,7 +925,7 @@ Examples:
 :: The pitch one semitone above middle C (identical to the above)
 : `C4+0.5`
 :: The pitch one quarter-tone above middle C
-: `B4+1.5`
+: `B3+1.5`
 :: The pitch one quarter-tone above middle C (identical to the above)
 : `C#4-0.5`
 :: The pitch one quarter-tone above middle C (identical to the above)

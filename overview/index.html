@@ -1533,6 +1533,8 @@ important ones. Many other changes and improvements are expected to be
 included.</p>
    <p>Having said that, where not explicitly called out, assume that MusicXML features may
 carry over to MNX unchanged, or in an obvious and analogous fashion.</p>
+   <p>MNX stands for "Music Notation X", where "X" suggests "XML", "eXtended",
+and potentially other X-related things as may come to mind.</p>
    <h3 class="heading settled" data-level="1.2" id="support-for-cwmn-and-other-notation-systems"><span class="secno">1.2. </span><span class="content">Support for CWMN and other notation systems</span><a class="self-link" href="#support-for-cwmn-and-other-notation-systems"></a></h3>
    <p>This proposal is focused on how MNX will support Conventional Western Music
 Notation (CWMN), which we will roughly define as "notation in which the
@@ -1941,15 +1943,15 @@ the same music.</p>
      <p>Eliminate the need for complex book-keeping and post-processing when
 parsing measures of music.</p>
     <li data-md="">
-     <p>Make it easy to alter the content of a MNX document using simple DOM
-operations such as node insertion and deleting (e.g. add a note to a chord by
+     <p>Make it easy to alter the content of a MNX document using simple <a href="https://dom.spec.whatwg.org/">DOM
+(Document Object Model)</a> operations such as node insertion and deletion (e.g. add a note to a chord by
 simply inserting a <code><a data-link-type="element">note</a></code> element in the appropriate parent).</p>
    </ul>
    <h4 class="heading settled" data-level="5.3.1" id="specialized-encodings"><span class="secno">5.3.1. </span><span class="content">Specialized encodings</span><a class="self-link" href="#specialized-encodings"></a></h4>
-   <p>For compactness and readability, MNX represents note values, timespans and
-pitches as single textual attributes. Compactness and readability are
-desirable because encodings are documented, read and talked about, not only
-parsed and generated.</p>
+   <p>For compactness and readability, MNX can represent concepts such as note
+values, timespans and pitches as simple strings, usually encoded as XML
+attributes. Compactness and readability are desirable because encodings are
+documented, read and talked about, not only parsed and generated.</p>
    <p>These will be covered first, before timelines are described, since they help
 make sense of the succeeding examples.</p>
    <h4 class="heading settled" data-level="5.3.2" id="note-values"><span class="secno">5.3.2. </span><span class="content">Note values</span><a class="self-link" href="#note-values"></a></h4>
@@ -2167,7 +2169,7 @@ of event positions</p>
     <li data-md="">
      <p>Events within the cursor’s timeline always belong to the same polyphonic voice or "layer"</p>
     <li data-md="">
-     <p>Events cannot overlap</p>
+     <p>Events cannot temporally overlap (and all notes within an event are simultaneous)</p>
    </ul>
    <h4 class="heading settled" data-level="5.3.8" id="explicit-positions"><span class="secno">5.3.8. </span><span class="content">Explicit positions</span><a class="self-link" href="#explicit-positions"></a></h4>
    <p>It’s also possible to use a <code>position</code> attribute for any element of a
@@ -2319,7 +2321,7 @@ an <code>accidental</code> value, if provided.</p>
     <dt data-md=""><code>C4+0.5</code>
     <dd data-md="">
      <p>The pitch one quarter-tone above middle C</p>
-    <dt data-md=""><code>B4+1.5</code>
+    <dt data-md=""><code>B3+1.5</code>
     <dd data-md="">
      <p>The pitch one quarter-tone above middle C (identical to the above)</p>
     <dt data-md=""><code>C#4-0.5</code>
@@ -3269,6 +3271,7 @@ violates the purpose of the layers.</p>
    </div>
    <div class="issue"> This element may not be needed, if events are allowed to be specified
 with explicit <code>position</code> attributes.<a href="#issue-75776799"> ↵ </a></div>
+   <div class="issue"> Would it be more elegant to encode <code><a data-link-type="element">space</a></code> as simply a null (empty) <code><a data-link-type="element">event</a></code> element? This may also simplify future DOM programming.<a href="#issue-53a88da9"> ↵ </a></div>
    <div class="issue"> permit some sort of rational number option here for just-intonation
 temperaments and their variants.<a href="#issue-8dde6b97"> ↵ </a></div>
    <div class="issue"> Should MNX split directions out into text-like (durationless) direction types
