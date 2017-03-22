@@ -892,6 +892,9 @@ to be anchored at a point one quarter note into the given measure:
 Issue: This element may not be needed, if events are allowed to be specified
 with explicit `position` attributes.
 
+Issue: Would it be more elegant to encode <{space}> as simply a null (empty) <{event}>
+element? This may also simplify future DOM programming.
+
 ### Pitch encoding
 
 MNX introduces a text encoding of pitches, which represents a combination of

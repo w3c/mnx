@@ -2292,6 +2292,7 @@ to be anchored at a point one quarter note into the given measure:</p>
 </pre>
    <p class="issue" id="issue-75776799"><a class="self-link" href="#issue-75776799"></a> This element may not be needed, if events are allowed to be specified
 with explicit <code>position</code> attributes.</p>
+   <p class="issue" id="issue-53a88da9"><a class="self-link" href="#issue-53a88da9"></a> Would it be more elegant to encode <code><a data-link-type="element">space</a></code> as simply a null (empty) <code><a data-link-type="element">event</a></code> element? This may also simplify future DOM programming.</p>
    <h4 class="heading settled" data-level="5.3.10" id="pitch-encoding"><span class="secno">5.3.10. </span><span class="content">Pitch encoding</span><a class="self-link" href="#pitch-encoding"></a></h4>
    <p>MNX introduces a text encoding of pitches, which represents a combination of
 MusicXML’s <code><a data-link-type="element">step</a></code>, <code><a data-link-type="element">octave</a></code> and <code><a data-link-type="element">alter</a></code> elements. This is done to
