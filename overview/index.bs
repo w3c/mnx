@@ -549,27 +549,22 @@ In general, the attribute name `value` is used to supply this information
 for various MNX elements.
 
 <div class="note">
-Note: The motivation here is to provide a terse but readable encoding that is
-equivalent to rational numbers, but whose syntax constrains the encoding to
-note values expressible within the framework of CWMN:
+Note: The motivation here is to provide a terse but readable encoding which is
+constrained to note values expressible within the framework of CWMN.
 
-- power-of-two denominators (i.e. standard note values)
-- no use of ad hoc additional factors like 1/3, 1/5, etc unless these are applied as part of a tuplet grouping
-- (2^n)-1 numerators (1, 3, 7... in other words, only numerators achievable with dots)
+While it would be possible to use full-blown rational numbers with arbitrary
+denominators, this would permit the specification of arbitrary non-CMN values
+and complicate validation and parsing.
 
-While it would be possible to use full-blown rational numbers, this
-would permit the specification of arbitrary non-CMN values and complicate
-validation and parsing.
+Retaining the more verbose MusicXML approach of separate <{type}> and <{dot}>
+elements, on the other hand, makes it harder to embed note values in other
+strings such as time or position offsets.
 
-Retaining the more verbose approach of separate <{type}> and <{dot}> elements,
-on the other hand, makes it harder to embed note values in other strings such
-as time or position offsets.
-
-Also, a pure rational number does not maps cleanly onto what one sees in
+Finally, a rational number does not map cleanly onto what one sees in
 notated music. This encoding attempts an obvious mapping between the semantic
 layer and a naïvely notated score. Rational numbers that combine the notion of
-note values, dots and tuplets into a single number take us further from this
-ideal.
+note values, dots and tuplets into a single number would take us further from
+this ideal.
 </div>
 
 ### Metrical timespans
@@ -590,7 +585,9 @@ Examples:
 : `3/4`
 :: three quarter notes
 : `3/8*`
-:: three dotted quarter notes (this form can be useful for specification of [[#tuplets]])
+:: three dotted eighth notes (this form can be useful for specification of [[#tuplets]])
+: `9/16`
+:: the same timespan as above, only expressed in sixteenth note units
 
 Like an individual note value, a metrical timespan is always subject to any
 contextual time modification due to tuplets. For example, inside an 8-th note
@@ -1314,10 +1311,10 @@ As in HTML or SVG, CSS properties can be specified in several distinct ways:
     selector for `.alternate`.
 
 - They can be inferred implicitly from the element's characteristics, according
-    to the <a href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/">selectors</a> in the CSS specification. For example a stylesheet might
-    include a `note` selector specifying the default appearance of all <{note}> elements,
-    or an `.alternate` selector specifying the appearance of all elements
-    flagged as belonging to the `alternate` style class.
+    to the <a href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/">selectors</a> in the CSS specification. For example, a stylesheet might
+    include a `note` selector specifying the default appearance of all <{note}> elements.
+    An `.alternate` selector in the stylesheet, would specify the appearance of all elements
+    marked as belonging to the `alternate` style class.
 
 This flexibility and generality is the primary motivator for using CSS as part
 of MNX. It allows a spectrum of expression for style properties that ranges
@@ -1401,7 +1398,7 @@ Properties representing a visual displacement or distance must use a number foll
 by an explicit unit:
 
 : `sl`
-:: staff lines
+:: the space between two standard staff lines
 : `st`
 :: staff tenths (same unit as in MusicXML)
 : `px`

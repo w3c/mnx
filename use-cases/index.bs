@@ -110,7 +110,7 @@ Revisions to the piece by another composer or editor C2 may result in these perf
 <h4 id="MC8">MC8: Composer wants to interleave textual and musical content.</h4>
 C has composed a strophic song in which one verse of lyrics are fully notated within the music, and all the others are supplied in a sequence of pure-text verses. C wishes to create a digital encoding of this song that incorporates the other verses in a way that is aware of their status as numbered song verses, rather than arbitrary text.
 
-<h4 id="MC9">MC9: Composer wants to distinguish text associated with a whole ensemble (e.g. tempo indications) from text associated with a single part (</h4>prformance instructions for a single instrument).
+<h4 id="MC9">MC9: Composer wants to distinguish text associated with a whole ensemble (e.g. tempo indications) from text associated with a single part (performance instructions for a single instrument).</h4>
 C is writing a piece for large ensemble. Some textual directions are associated with the entire score and are intended to be reproduced in every part. Other directions are part-specific. Digital encodings may be used downstream by C's publisher PU to create both individual parts and the full score, so this distinction is essential to show the correct text in the correct context.
 
 *Support:* <a>system notations</a>
@@ -149,14 +149,14 @@ E does not enter the whole transcription from scratch but works in two steps. In
 
 OMR outputs need to provide hints for user review: confidence in each symbol, abnormal voice durations, detected incompatibilities, missing barlines, significant  objects with no interpretation, etc, in order to call user attention on these points. Visual data is key to easily relate any given music symbol to the precise location in the initial image.
 
-E should use an "OMR UI" specifically meant for OMR validation / correction. As opposed to standard music edition UI, such OMR UI should focus on fidelity with initial image, avoid any over-interpretation of user actions, even switch off validation while a series of user actions is not explicitly completed.
+E should use an "OMR UI" specifically meant for OMR validation / correction. As opposed to standard music editing UI, such OMR UI should focus on fidelity with initial image, avoid any over-interpretation of user actions, even switch off validation while a series of user actions is not explicitly completed.
 
 *Support:* <a>MNX</a> for the encoding exclusive of any OMR processing. <a>Styling</a> permits E to perform wholesale changes in appearance in step 2 by changing stylesheet information.
 
 <h4 id="MT2">MT2: Editor wants to transcribe sheet music to digital encoding format without manual intervention</h4>
 This can be seen as a variant of MT1 without step 2 (review). However, it must be considered as a use-case on its own because, for large libraries with millions of pages, having human beings spend several minutes on each page review is out of reach. See SIMSSA project regarding the use of OMR (not perfect) data as a hidden navigation layer on top of source image display.
 
-A side advantage in by-passing human review, is that is allows to re-launch at minor cost a campaign of transcription if significant progress is made in OMR technology. Such progress is helped by the openness and modular architecture of the OMR pipeline software...
+A side advantage in by-passing human review, is that is allows to re-launch at minor cost a campaign of transcription if significant progress is made in OMR technology. Such progress is helped by the openness and modular architecture of the OMR pipeline software.
 
 *Support:* <a>MNX</a> for the encoding exclusive of any OMR processing.
 
@@ -279,7 +279,7 @@ PF is practicing a bassoon part in an orchestral work. PF would like to hear a r
 
 The publisher PU for this piece has previously prepared an encoding of the piece along with an audio or video recording, which does not follow a uniform tempo. PU was able to create (automatically or manually) an encoding of the mapping between the musical form of the piece and regions of the audio recording, allowing the two to be synchronized. PF's application is likewise able to employ this same mapping to maintain the correspondence.
 
-<h4 id="LP9">RLP9: Performer wants to hear a synthesized audio rendition of the music being displayed, where the musical form is not present in a standard </h4>rpresentation
+<h4 id="RLP9">RLP9: Performer wants to hear a synthesized audio rendition of the music being displayed, where the musical form is not present in a standard representation</h4>
 PF is playing a piece in which the order of playback of measures in the score is not completely determined by symbolic notation or common textual directions. The piece includes unusual repeat instructions (as text in the native language of the composer). Yet, the form was actually known to the composer and is accurately captured in the digital encoding of the piece alongside the textual, so that PF hears the playback order as the composer intended.
 
 <h4 id="RLP10">RLP10: Performer wants to listen at slower tempo than written to focus on a difficult portion of music</h4>
@@ -297,7 +297,7 @@ PF would like to practice a musical score on a digital display and avoid the inc
 PF1 is the first French Horn player in an orchestra section. PF1 wants to edit and annotate PF's part as well as those of the other players PF2, PF3 in the section to add specific breath marks, phrasing, dynamics and articulation. Over the course of several rehearsals, these annotations are developed, and persist from session to a session even as PF and PF's colleagues delete or change them. It is desirable to PF2 and PF3 that PF1's additions be visually distinguishable from those in the original score.
 
 <h4 id="RLP14">RLP14: Performer wants to apply cuts, then share the modifications with fellow performers</h4>
-PF1 as a conductor adapts a score for a particular performance by a particular set of musicians. It's common in choral and opera performances to cut entire sections. It's common to discover incorrect notes (missing accidental or wrong duration) and fix them. It's common to ask one voice section to supplement another (e.g. Alto 2's or Bass 1's to sing parts of the Tenor part). The Performer making these adaptations wants to share them with the other Performers in this group for this performance, so they don't have to dictate the changes verbally and have each other Performer make the changes individually (and perhaps wrongly). The changes can be distributed either as a modified complete score or as a set of modifications to an original score.
+PF1 as a conductor adapts a score for a particular performance by a particular set of musicians. It's common in choral and opera performances to cut entire sections. PF1 discovers incorrect notes (missing accidental or wrong duration) and fixes them. PF1 asks one voice section to supplement another (e.g. Alto 2's or Bass 1's to sing parts of the Tenor part). The Performer making these adaptations wants to share them with the other Performers in this group for this performance, so they don't have to dictate the changes verbally and have each other Performer make the changes individually (and perhaps wrongly). The changes can be distributed either as a modified complete score or as a set of modifications to an original score.
 
 <h4 id="RLP15">RLP15: Performer wants to take advantage of annotations made by other musicians or conductor/section leader</h4>
 PF1 as a conductor wants to collect individual annotations made by PF1 and also colleagues PF2, PF3 etc. on their parts in the course of rehearsing an ensemble score. PF1 wants to merge all of these annotations back into a single score that represents all of this individual work so it can be made available to others in the future.
