@@ -1386,7 +1386,7 @@ Possible extra rowspan handling
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Proposal Overview</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-03-21">21 March 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-03-22">22 March 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1399,7 +1399,7 @@ Possible extra rowspan handling
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 21 March 2017,
+In addition, as of 22 March 2017,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1556,8 +1556,10 @@ The use cases have links back to relevant sections of this document, where suppo
 can be demonstrated.</p>
    <h2 class="heading settled" data-level="2" id="a-brief-example"><span class="secno">2. </span><span class="content">A brief example</span><a class="self-link" href="#a-brief-example"></a></h2>
    <p>To satisfy immediate curiosity up front, here is an MNX encoding of the
-timeless song, <em>Hot Cross Buns</em>. This encoding is purely semantic, and
-includes no information on appearance or interpretation.</p>
+timeless song <em>Hot Cross Buns</em>, in a simple grand-staff piano arrangement.
+This encoding is purely semantic, and includes no information on appearance or
+interpretation.</p>
+   <div style="font-size: .75em;">
 <pre class="language-xml highlight"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="nt">&lt;mnx</span><span class="nt">></span>
     <span class="nt">&lt;head</span><span class="nt">></span>
@@ -1572,57 +1574,102 @@ includes no information on appearance or interpretation.</p>
                     <span class="nt">&lt;tempo</span> <span class="na">bpm=</span><span class="s">"120/4"</span><span class="nt">/></span>
                     <span class="nt">&lt;time</span> <span class="na">signature=</span><span class="s">"4/4"</span><span class="nt">/></span>
                 <span class="nt">&lt;/attributes></span>
+                <span class="nt">&lt;direction</span> <span class="na">placement=</span><span class="s">"above"</span><span class="nt">></span>
+                    <span class="nt">&lt;words</span><span class="nt">></span>With heavy irony<span class="nt">&lt;/words></span>
+                <span class="nt">&lt;/direction></span>
             <span class="nt">&lt;/measure></span>
             <span class="nt">&lt;measure</span><span class="nt">/></span>
             <span class="nt">&lt;measure</span><span class="nt">/></span>
             <span class="nt">&lt;measure</span><span class="nt">/></span>
         <span class="nt">&lt;/system></span>
         <span class="nt">&lt;part</span><span class="nt">></span>
-            <span class="nt">&lt;part-name</span><span class="nt">></span>Melody<span class="nt">&lt;/part-name></span>
+            <span class="nt">&lt;part-name</span><span class="nt">></span>Piano<span class="nt">&lt;/part-name></span>
             <span class="nt">&lt;measure</span><span class="nt">></span>
                 <span class="nt">&lt;attributes</span><span class="nt">></span>
+                    <span class="nt">&lt;staves</span><span class="nt">></span>2<span class="nt">&lt;/staves></span>
                     <span class="nt">&lt;clef</span> <span class="na">sign=</span><span class="s">"G"</span> <span class="na">line=</span><span class="s">"2"</span><span class="nt">/></span>
+                    <span class="nt">&lt;clef</span> <span class="na">sign=</span><span class="s">"F"</span> <span class="na">line=</span><span class="s">"4"</span><span class="nt">/></span>
                 <span class="nt">&lt;/attributes></span>
-                <span class="nt">&lt;sequence</span><span class="nt">></span>
-                    <span class="nt">&lt;direction</span> <span class="na">placement=</span><span class="s">"above"</span><span class="nt">></span>
-                        <span class="nt">&lt;words</span><span class="nt">></span>With heavy irony<span class="nt">&lt;/words></span>
+                <span class="nt">&lt;sequence</span> <span class="na">staff=</span><span class="s">"1"</span><span class="nt">></span>
+                    <span class="nt">&lt;direction</span><span class="nt">></span>
+                        <span class="nt">&lt;dynamics</span><span class="nt">></span><span class="nt">&lt;f</span><span class="nt">/></span><span class="nt">&lt;/dynamics></span>
                     <span class="nt">&lt;/direction></span>
                     <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
                     <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
                     <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
                 <span class="nt">&lt;/sequence></span>
-            <span class="nt">&lt;/measure></span>
-            <span class="nt">&lt;measure</span><span class="nt">></span>
-                <span class="nt">&lt;sequence</span><span class="nt">></span>
-                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
-                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
-                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
-                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;rest</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                <span class="nt">&lt;sequence</span> <span class="na">staff=</span><span class="s">"2"</span><span class="nt">></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2*"</span><span class="nt">></span><span class="nt">&lt;rest</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;direction</span><span class="nt">></span>
+                        <span class="nt">&lt;dynamics</span><span class="nt">></span><span class="nt">&lt;p</span><span class="nt">/></span><span class="nt">&lt;/dynamics></span>
+                    <span class="nt">&lt;/direction></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span>
+                        <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C3"</span><span class="nt">/></span>
+                        <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E3"</span><span class="nt">/></span>
+                        <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"G3"</span><span class="nt">/></span>
+                    <span class="nt">&lt;/event></span>
                 <span class="nt">&lt;/sequence></span>
             <span class="nt">&lt;/measure></span>
             <span class="nt">&lt;measure</span><span class="nt">></span>
-                <span class="nt">&lt;sequence</span><span class="nt">></span>
-                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
-                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
-                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
-                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
-                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
-                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
-                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
-                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
-                <span class="nt">&lt;/sequence></span>
-            <span class="nt">&lt;/measure></span>
-            <span class="nt">&lt;measure</span><span class="nt">></span>
-                <span class="nt">&lt;sequence</span><span class="nt">></span>
+                <span class="nt">&lt;sequence</span> <span class="na">staff=</span><span class="s">"1"</span><span class="nt">></span>
                     <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
                     <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
                     <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                <span class="nt">&lt;/sequence></span>
+                <span class="nt">&lt;sequence</span> <span class="na">staff=</span><span class="s">"2"</span><span class="nt">></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2*"</span><span class="nt">></span><span class="nt">&lt;rest</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span>
+                        <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C3"</span><span class="nt">/></span>
+                        <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E3"</span><span class="nt">/></span>
+                        <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"G3"</span><span class="nt">/></span>
+                    <span class="nt">&lt;/event></span>
+                <span class="nt">&lt;/sequence></span>
+            <span class="nt">&lt;/measure></span>
+            <span class="nt">&lt;measure</span><span class="nt">></span>
+                <span class="nt">&lt;sequence</span> <span class="na">staff=</span><span class="s">"1"</span><span class="nt">></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"8"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                <span class="nt">&lt;/sequence></span>
+                <span class="nt">&lt;sequence</span> <span class="na">staff=</span><span class="s">"2"</span><span class="nt">></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;rest</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span>
+                        <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C3"</span><span class="nt">/></span>
+                        <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E3"</span><span class="nt">/></span>
+                        <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"G3"</span><span class="nt">/></span>
+                    <span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;rest</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span>
+                        <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"G3"</span><span class="nt">/></span>
+                        <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"B3"</span><span class="nt">/></span>
+                    <span class="nt">&lt;/event></span>
+                <span class="nt">&lt;/sequence></span>
+            <span class="nt">&lt;/measure></span>
+            <span class="nt">&lt;measure</span><span class="nt">></span>
+                <span class="nt">&lt;sequence</span> <span class="na">staff=</span><span class="s">"1"</span><span class="nt">></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">></span><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                <span class="nt">&lt;/sequence></span>
+                <span class="nt">&lt;sequence</span> <span class="na">staff=</span><span class="s">"2"</span><span class="nt">></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"2*"</span><span class="nt">></span><span class="nt">&lt;rest</span><span class="nt">/></span><span class="nt">&lt;/event></span>
+                    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span>
+                        <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C3"</span><span class="nt">/></span>
+                        <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E3"</span><span class="nt">/></span>
+                        <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"G3"</span><span class="nt">/></span>
+                    <span class="nt">&lt;/event></span>
                 <span class="nt">&lt;/sequence></span>
             <span class="nt">&lt;/measure></span>
         <span class="nt">&lt;/part></span>
     <span class="nt">&lt;/score></span>
 <span class="nt">&lt;/mnx></span>
 </pre>
+   </div>
    <h2 class="heading settled" data-level="3" id="document-organization"><span class="secno">3. </span><span class="content">Document organization</span><a class="self-link" href="#document-organization"></a></h2>
    <p class="note" role="note"><span>Note:</span> This section applies to all content types, CWMN or otherwise.</p>
    <h3 class="heading settled" data-level="3.1" id="the-container-document"><span class="secno">3.1. </span><span class="content">The container document</span><a class="self-link" href="#the-container-document"></a></h3>
