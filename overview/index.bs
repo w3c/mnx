@@ -106,9 +106,12 @@ interpretation.
             <part-name>Piano</part-name>
             <measure>
                 <attributes>
-                    <staves>2</staves>
-                    <clef sign="G" line="2"/>
-                    <clef sign="F" line="4"/>
+                    <staff>
+                        <clef sign="G" line="2"/>
+                    </staff>
+                    <staff>
+                        <clef sign="F" line="4"/>
+                    </staff>
                 </attributes>
                 <sequence staff="1">
                     <direction>

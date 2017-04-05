@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Note: page-layout-related information and implied stem directions have been removed from this example -->
+<mnx>
+  <head>
+    <identification>
+      <title>Après un rêve</title>
+      <subtitle>Op. 7, No. 1 (measures 1-4)</subtitle>
+      <creator type="composer">Gabriel Fauré</creator>
+      <creator type="lyricist">Romain Bussine</creator>
+      <rights>Copyright © 2002 Recordare LLC</rights>
+    </identification>
+    <style>
+      score {
+        staff-distance: 80st;
+        staff-line-spacing: 18px;
+        font-family: Times New Roman;
+        font-size: 10px;
+        music-font-family: Maestro;
+      }
+
+      direction {
+        placement: above;
+        default-y: 15st;
+        font-size: 9px;
+        font-style: italic;
+      }
+
+      direction.tempo-indication {
+        font-size: 10.5px;
+        font-weight: bold;
+        font-style: normal;
+      }
+
+      note:has(>grace) note:has(> cue) {
+        note-size: 66%;
+      }
+      <!-- other metrics are supplied by SMuFL font -->
+    </style>
+  </head>
+  <score content="cwmn" profile="standard">
+    <!-- system pseudo-part -->
+    <system>
+      <measure>
+        <attributes>
+          <tempo bpm="60/4"/>
+          <time signature="3/4"/>
+          <key fifths="-3" mode="major"/>
+        </attributes>
+        <direction class="tempo-indication">
+          <words>Andantino</words>
+        </direction>
+      </measure>
+    </system>
+    <!-- P1 =======================================================-->
+    <part>
+      <part-name>Voice</part-name>
+      <score-instrument>
+        <instrument-name>Choir Aahs</instrument-name>
+      </score-instrument>
+      <midi-instrument>
+        <midi-channel>1</midi-channel>
+        <midi-program>53</midi-program>
+        <volume>80</volume>
+        <pan>0</pan>
+      </midi-instrument>
+      <!-- m1 =======================================================-->
+      <measure>
+        <attributes>
+            <staff>
+              <clef sign="G" line="2"/>
+            </staff>
+        </attributes>
+        <sequence>
+          <event type="measure">
+            <rest/>
+          </event>
+        </sequence>
+      </measure>
+      <!-- m2 =======================================================-->
+      <measure>
+        <direction>
+          <words>dolce</words>
+        </direction>
+        <sequence>
+          <event value="4">
+            <note pitch="G4"/>
+            <lyric>
+              <syllabic>single</syllabic>
+              <text>Dans</text>
+            </lyric>
+          </event>
+          <direction>
+            <wedge type="crescendo" end-ref="p1m3" style="start-x: -0.33/4; default-y: 20st; end-x: -0.39/4"/>
+          </direction>
+          <event value="4">
+            <note pitch="C5"/>
+            <lyric>
+              <syllabic>single</syllabic>
+              <text>un</text>
+            </lyric>
+          </event>
+          <event value="4">
+            <note pitch="D5"/>
+            <lyric>
+              <syllabic>begin</syllabic>
+              <text>som</text>
+            </lyric>
+          </event>
+        </sequence>
+      </measure>
+      <!-- m3 =======================================================-->
+      <measure id="p1m3">
+        <sequence>
+          <event value="4">
+            <note pitch="Eb5" tie="true"/>
+            <lyric>
+              <syllabic>end</syllabic>
+              <text>meil</text>
+              <extend/>
+            </lyric>
+          </event>
+          <tuplet actual="3/8" normal="2/8" style="tuplet-bracket: none; placement: above;">
+            <event value="8">
+              <beam number="1">begin</beam>
+              <note pitch="Eb5"/>
+            </event>
+            <event value="8">
+              <beam number="1">continue</beam>
+              <note pitch="D5"/>
+              <lyric>
+                <syllabic>single</syllabic>
+                <text>que</text>
+              </lyric>
+            </event>
+            <event value="8">
+              <beam number="1">end</beam>
+              <note pitch="C5"/>
+              <lyric>
+                <syllabic>begin</syllabic>
+                <text>char</text>
+              </lyric>
+            </event>
+          </tuplet>
+          <tuplet actual="3/8" normal="2/8" style="tuplet-bracket: none; placement: above;">
+            <event value="8">
+              <beam number="1">begin</beam>
+              <note pitch="Eb5"/>
+              <lyric>
+                <syllabic>end</syllabic>
+                <text>mait</text>
+              </lyric>
+            </event>
+            <event value="8">
+              <note pitch="D5"/>
+              <lyric>
+                <syllabic>single</syllabic>
+                <text>ton</text>
+              </lyric>
+            </event>
+            <event value="8">
+              <beam number="1">end</beam>
+              <note pitch="C5"/>
+              <lyric>
+                <syllabic>begin</syllabic>
+                <text>i</text>
+              </lyric>
+            </event>
+          </tuplet>
+        </sequence>
+      </measure>
+      <!-- m4 =======================================================-->
+      <measure>
+        <sequence>
+          <direction>
+            <wedge type="diminuendo" end-ref="p1m4n2" style="start-x: -0.125/4; default-y: 20st; end-x: 0.1/4"/>
+          </direction>
+          <event value="2">
+            <note pitch="C5"/>
+            <lyric>
+              <syllabic>middle</syllabic>
+              <text>ma</text>
+            </lyric>
+          </event>
+          <event id="p1m4n2">
+            <note pitch="Bb4"/>
+            <lyric>
+              <syllabic>end</syllabic>
+              <text>ge</text>
+            </lyric>
+          </event>
+        </sequence>
+      </measure>
+    </part>
+    <!-- P2 =========================================================-->
+    <part style="measure-numbering: none;">
+      <part-name>Piano</part-name>
+      <score-instrument id="P2-I1">
+        <instrument-name>Grand Piano</instrument-name>
+      </score-instrument>
+      <midi-instrument id="P2-I1">
+        <midi-channel>2</midi-channel>
+        <midi-program>1</midi-program>
+        <volume>80</volume>
+        <pan>0</pan>
+      </midi-instrument>
+      <!-- m1 =========================================================-->
+      <measure>
+        <attributes>
+          <staff style="padding-top: 65st;">
+              <clef sign="G" line="2"/>
+          </staff>
+          <staff style="padding-top: 48st;">
+              <clef sign="F" line="4"/>
+          </staff>
+        </attributes>
+        <sequence staff="1">
+          <direction>
+            <dynamics style="default-y: -75st; placement: below; horizontal-align: left;">
+              <pp/>
+            </dynamics>
+            </direction-type>
+            <staff>1</staff>
+            <sound dynamics="40"/>
+          </direction>
+          <event value="8">
+            <beam number="1">begin</beam>
+            <note pitch="C4"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+          <event value="8">
+            <note pitch="C4"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+          <event value="8">
+            <note pitch="C4"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+          <event value="8">
+            <note pitch="C4"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+          <event value="8">
+            <note pitch="C4"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+          <event value="8">
+            <beam number="1">end</beam>
+            <note pitch="C4"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+        </sequence>
+        <sequence staff="2">
+          <event type="measure">
+            <rest/>
+          </event>
+        </sequence>
+      </measure>
+      <!-- m2 =========================================================-->
+      <measure>
+        <attributes>
+          <staff style="padding-top: 65st;">
+              <clef sign="G" line="2"/>
+          </staff>
+          <staff style="padding-top: 48st;">
+              <clef sign="F" line="4"/>
+          </staff>
+        </attributes>
+        <sequence staff="1">
+          <direction>
+            <dynamics style="default-y: -75st; placement: below; horizontal-align: left;">
+              <pp/>
+            </dynamics>
+            </direction-type>
+            <staff>1</staff>
+            <sound dynamics="40"/>
+          </direction>
+          <event value="8">
+            <beam number="1">begin</beam>
+            <note pitch="C4"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+          <event value="8">
+            <note pitch="C4"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+          <event value="8">
+            <note pitch="C4"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+          <event value="8">
+            <note pitch="C4"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+          <event value="8">
+            <note pitch="C4"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+          <event value="8">
+            <beam number="1">end</beam>
+            <note pitch="C4"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+        </sequence>
+        <sequence staff="2">
+          <event type="measure">
+            <rest/>
+          </event>
+        </sequence>
+      </measure>
+      <!-- m3 =======================================================-->
+      <measure>
+        <sequence staff="1" orientation="up">
+          <event value="8">
+            <beam number="1">begin</beam>
+            <note pitch="A3" accidental="natural" staff="2"/>
+            <note pitch="C4" staff="2"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+          <event value="8">
+            <note pitch="A3" staff="2"/>
+            <note pitch="C4" staff="2"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+          <event value="8">
+            <note pitch="A3" staff="2"/>
+            <note pitch="C4" staff="2"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+          <event value="8">
+            <note pitch="A3" staff="2"/>
+            <note pitch="C4" staff="2"/>
+            <note pitch="Eb4"/>
+            <note pitch="G4"/>
+          </event>
+          <event value="8">
+            <note pitch="A3" staff="2"/>
+            <note pitch="C4" staff="2"/>
+            <note pitch="Eb4"/>
+            <note pitch="F4"/>
+          </event>
+          <event value="8">
+            <beam number="1">end</beam>
+            <note pitch="A3" staff="2"/>
+            <note pitch="C4" staff="2"/>
+            <note pitch="Eb4"/>
+            <note pitch="F4"/>
+          </event>
+        </sequence>
+        <sequence staff="2" orientation="down">
+          <event value="2*">
+            <note pitch="F1"/>
+            <note pitch="F2"/>
+          </event>
+        </sequence>
+      </measure>
+      <!-- m4 =======================================================-->
+      <measure>
+        <sequence staff="2" orientation="up">
+          <event value="8">
+            <beam number="1">begin</beam>
+            <note pitch="Ab3" accidental="flat"/>
+            <note pitch="C4"/>
+            <note pitch="D4"/>
+            <note pitch="F4" staff="1"/>
+          </event>
+          <event value="8">
+            <note pitch="Ab3"/>
+            <note pitch="C4"/>
+            <note pitch="D4"/>
+            <note pitch="F4" staff="1"/>
+          </event>
+          <event value="8">
+            <note pitch="Ab3"/>
+            <note pitch="C4"/>
+            <note pitch="D4"/>
+            <note pitch="F4" staff="1"/>
+          </event>
+          <event value="8">
+            <note pitch="Ab3"/>
+            <note pitch="C4"/>
+            <note pitch="D4"/>
+            <note pitch="F4" staff="1"/>
+          </event>
+          <event value="8">
+            <note pitch="Ab3"/>
+            <note pitch="C4"/>
+            <note pitch="D4"/>
+            <note pitch="F4" staff="1"/>
+          </event>
+          <event value="8">
+            <beam number="1">end</beam>
+            <note pitch="Ab3"/>
+            <note pitch="C4"/>
+            <note pitch="D4"/>
+            <note pitch="F4" staff="1"/>
+          </event>
+        </sequence>
+        <sequence staff="2" orientation="down">
+          <event value="2*">
+            <note pitch="Bb1"/>
+            <note pitch="Bb2"/>
+          </event>
+        </sequence>
+      </measure>
+    </part>
+  </score>
+</mnx>
