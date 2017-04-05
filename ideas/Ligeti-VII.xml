@@ -227,7 +227,11 @@
       </measure>
       <!-- m5 -->
       <measure id="m5" style="barline: none;">
-        <sequence staff="2" style="note-size: 66%;">
+        <!-- This final LH measure proposes a `play-repeat` interpretation style, to indicate
+        that content of the measure should be repeated indefinitely with a period of
+        7/8 (the length of the repeating group). This is conceptually very similar to
+        `background-repeat`, its visual cousin in CSS that uses an image to tile an area. -->
+        <sequence staff="2" style="note-size: 66%;" perform="play-repeat: 7/8;">
           <event value="8">
             <beam>start</beam>
             <note pitch="F3"/>
@@ -282,13 +286,16 @@
           </event>
         </sequence>
         <!--
-          MNX interpretation styling is used to prescribe a repeating sequence
-          that continues the previous 7/8 pattern at the preceding tempo, over and over.
+          MNX interpretation styling is used to disable playback of the first note of the
+          LH group, which serves for Ligeti as a visual placeholder. The previous application
+          of `play-repeat` actually causes this note to be heard anyway, along with the rest
+          of the ostinato.
+
           The notation here is completely ordinary, just a dangling beam that goes nowhere
           which is not uncommon.
         -->
 
-        <sequence staff="2" style="note-size: 66%;" perform="play-tempo: 88/8; play-repeat: 7/8; play: note(0,F3,1/8) note(1/8,C3,1/8) note(2/8,Eb3,1/8) note(3/8,Bb3,1/8) note(4/8,C3,1/8) note(5/8,G2,1/8) note(6/8,F2,1/8)">
+        <sequence staff="2" style="note-size: 66%;" perform="playback: none;">
           <event value="8">
             <beam>start</beam>
             <note pitch="F3"/>
