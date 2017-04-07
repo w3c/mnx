@@ -1386,7 +1386,7 @@ Possible extra rowspan handling
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Proposal Overview</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-04-05">5 April 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-04-07">7 April 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1399,7 +1399,7 @@ Possible extra rowspan handling
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 5 April 2017,
+In addition, as of 7 April 2017,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2878,9 +2878,7 @@ specifies a set of CSS properties affecting playback. For example:</p>
     <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span> <span class="na">perform=</span><span class="s">"dynamics: 40;"</span><span class="nt">/></span>
 <span class="nt">&lt;/event></span>
 </pre>
-   <p>Naturally, one might wish to use CSS classes to specify this. The <code>pclass</code> attribute
-is analogous to <code>class</code>, but it supplies interpretation classes to be looked up
-in the stylesheet, rather than appearance classes.</p>
+   <p>Naturally, one might wish to use CSS classes to specify this:</p>
 <pre class="language-xml highlight"><span class="nt">&lt;mnx</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/mnx"</span><span class="nt">></span>
     <span class="nt">&lt;head</span><span class="nt">></span>
         <span class="nt">&lt;style</span><span class="nt">></span>
@@ -2892,21 +2890,13 @@ in the stylesheet, rather than appearance classes.</p>
     <span class="nt">&lt;score</span><span class="nt">></span>
         ...
             <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">></span>
-                <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span> <span class="na">pclass=</span><span class="s">"forte"</span><span class="nt">/></span>
+                <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span> <span class="na">class=</span><span class="s">"forte"</span><span class="nt">/></span>
             <span class="nt">&lt;/event></span>
     <span class="nt">&lt;/score></span>
 <span class="nt">&lt;/mnx></span>
 </pre>
-   <p class="note" role="note"><span>Note:</span> <code><a data-link-type="element">style</a></code> is used to define stylesheets that govern both appearance and
-interpretation: there is only one set of stylesheets. The reason for
-separating <code>pclass</code> from <code>class</code> is that there are CSS rules for superimposing
-different classes in the same attribute, and it seems undesirable to have both
-sets of rules working at the same time. It may also be a good thing for
-implementations to be able to ignore all interpretation- related style
-information if it’s not relevant.</p>
    <h3 class="heading settled" data-level="7.2" id="interpretation-properties"><span class="secno">7.2. </span><span class="content">Interpretation properties</span><a class="self-link" href="#interpretation-properties"></a></h3>
-   <p>Here are some significant interpretation properties, but not an exhaustive list
-of course:</p>
+   <p>Here are some significant interpretation properties, but not an exhaustive list:</p>
    <dl>
     <dt data-md=""><code>offset</code>
     <dd data-md="">

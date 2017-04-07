@@ -1608,9 +1608,7 @@ specifies a set of CSS properties affecting playback. For example:
 </event>
 ```
 
-Naturally, one might wish to use CSS classes to specify this. The `pclass` attribute
-is analogous to `class`, but it supplies interpretation classes to be looked up
-in the stylesheet, rather than appearance classes.
+Naturally, one might wish to use CSS classes to specify this:
 
 ```xml
 <mnx xmlns="http://www.w3.org/mnx">
@@ -1624,24 +1622,15 @@ in the stylesheet, rather than appearance classes.
     <score>
         ...
             <event value="4">
-                <note pitch="C4" pclass="forte"/>
+                <note pitch="C4" class="forte"/>
             </event>
     </score>
 </mnx>
 ```
 
-Note: <{style}> is used to define stylesheets that govern both appearance and
-interpretation: there is only one set of stylesheets. The reason for
-separating `pclass` from `class` is that there are CSS rules for superimposing
-different classes in the same attribute, and it seems undesirable to have both
-sets of rules working at the same time. It may also be a good thing for
-implementations to be able to ignore all interpretation- related style
-information if it's not relevant.
-
 ## Interpretation properties
 
-Here are some significant interpretation properties, but not an exhaustive list
-of course:
+Here are some significant interpretation properties, but not an exhaustive list:
 
 : `offset`
 :: A playback offset expressed as a general timespan relative to the
