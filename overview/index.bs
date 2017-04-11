@@ -91,7 +91,7 @@ interpretation.
         <system>
             <measure>
                 <attributes>
-                    <tempo bpm="120/4"/>
+                    <tempo bpm="120" value="4"/>
                     <time signature="4/4"/>
                 </attributes>
                 <direction placement="above">
@@ -1209,8 +1209,7 @@ The upper staff contains a dotted-8th and sixteenth note; the lower voice
 contains quintuplet 16th notes. However, the two final notes of both voices are
 to be displayed in alignment.
 
-There are at least two different ways to encode this, which look identical but
-convey different rhythmic intent. One way is to consider the upper voice to
+One way to encode this is to consider the upper voice to
 actually be denoting a quintuplet-based rhythm, but make it look like a non-
 tuplet rhythm:
 
@@ -1234,28 +1233,7 @@ tuplet rhythm:
 </measure>
 ```
 
-A second approach conveys truly independent rhythms at the semantic level, but shows them aligned
-in the prescribed fashion:
-
-```xml
-<measure>
-    <sequence staff="1">
-        <event value="8*">...</event>
-        <event value="1/16" offset-ref="n5">...</event>
-    </sequence>
-    <sequence staff="1">
-        <tuplet actual="5/16" normal="1/4">
-            <event value="1/16">...</event>
-            <event value="1/16">...</event>
-            <event value="1/16">...</event>
-            <event value="1/16">...</event>
-            <event id="n5" value="1/16">...</event>
-        </tuplet>
-    </sequence>
-</measure>
-```
-
-Independent of these editorial decisions, it is also possible to prescribe any
+Independent of such editorial decisions, it is also possible to prescribe any
 desired performance rhythm using the [[#interpretation]] features of MNX.
 
 # Styling
