@@ -54,21 +54,13 @@
     <!-- P1 =======================================================-->
     <part>
       <part-name>Voice</part-name>
-      <score-instrument>
-        <instrument-name>Choir Aahs</instrument-name>
-      </score-instrument>
-      <midi-instrument>
-        <midi-channel>1</midi-channel>
-        <midi-program>53</midi-program>
-        <volume>80</volume>
-        <pan>0</pan>
-      </midi-instrument>
       <!-- m1 =======================================================-->
       <measure>
         <attributes>
             <staff>
               <clef sign="G" line="2"/>
             </staff>
+            <instrument-sound>voice.aa</instrument-sound>
         </attributes>
         <sequence>
           <event type="measure">
@@ -194,15 +186,6 @@
     <!-- P2 =========================================================-->
     <part style="measure-numbering: none;">
       <part-name>Piano</part-name>
-      <score-instrument id="P2-I1">
-        <instrument-name>Grand Piano</instrument-name>
-      </score-instrument>
-      <midi-instrument id="P2-I1">
-        <midi-channel>2</midi-channel>
-        <midi-program>1</midi-program>
-        <volume>80</volume>
-        <pan>0</pan>
-      </midi-instrument>
       <!-- m1 =========================================================-->
       <measure>
         <attributes>
@@ -212,6 +195,7 @@
           <staff style="padding-top: 48st;">
               <clef sign="F" line="4"/>
           </staff>
+          <instrument-sound>keyboard.piano</instrument-sound>
         </attributes>
         <sequence staff="1">
           <direction>
