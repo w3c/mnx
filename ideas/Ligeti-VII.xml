@@ -41,7 +41,7 @@
       -->
       <measure style="barline: none;">
         <attributes>
-          <tempo bpm="88/8"/>
+          <tempo bpm="88" value="8"/>
           <!-- Here we invent some style properties that apply parentheses and
                restrict the time signature display to the RH staff only. The signature
                in this section is actually 7/8, but is displayed as "(3/4)" (see below).
@@ -271,7 +271,7 @@
       -->
       <measure style="barline-staves: 1;">
         <attributes>
-          <tempo bpm="116/4"/>
+          <tempo bpm="116" value="4"/>
           <time signature="3/4" style="display: none;"/>
         </attributes>
         <sequence staff="1">
