@@ -41,18 +41,61 @@ carry over to MNX unchanged, or in an obvious and analogous fashion.
 MNX stands for "Music Notation X", where "X" suggests "XML", "eXtended",
 and potentially other X-related things as may come to mind.
 
-## Support for CWMN and other notation systems
+## Goals and Tradeoffs
 
-This proposal is focused on how MNX will support Conventional Western Music
-Notation (CWMN), which we will roughly define as "notation in which the
+MNX seeks to provide a high degree of interoperability and exchange between
+different applications working with music notation. This emphasis on interoperability
+is a differentiator between MNX and other notation encoding approaches,
+and takes it in a different direction from its predecessors.
+
+MNX is designed with a few core beliefs in mind:
+
+- Limits are needed on either semantic
+    richness or universality. An encoding that seeks to represent an
+    established notational system will want rich and specific semantics,
+    tailored to represent that system's ideals and concepts, which are by
+    definition not universal in scope. On the other hand, a universal system
+    that can encompass literally any graphical and sonic expression of music,
+    is most interoperable when the semantics of notation are
+    set aside.
+
+- There are no culturally privileged notational systems. Consequently it must be possible to extend
+    MNX to accommodate multiple such systems.
+
+- Within any given notational system, some limits on expressiveness are necessary
+    in order to make the implementation effort manageable.
+
+Note: we use the term <em>semantics</em> here to refer to concepts
+with an understood meaning in some musical culture, as distinct from their
+graphical or sonic instantiations. For example, in conventional Western music,
+we consider the shared idea of "quarter note" to be a semantic one; a quarter note
+can be instantiated as many different shapes, or as many different sounds.
+
+## MNX Score Types
+
+MNX can support multiple types of score encoding, which can be bundled
+together through the mechanism of [[#the-container-document]] into a single
+composite document.
+
+The present proposal focuses on two distinct types of MNX score, which represent
+opposite poles in the tradeoff described above between semantic richness and
+universality. The expectation is that others will be created over time,
+particularly those which target specific notational systems.
+
+The first score type is
+<a href="#cwmnx">CWMNX</a>, which encodes Conventional Western Music Notation (CWMN) in a
+semantically rich fashion. It inherits many ideas and concepts from MusicXML.
+
+The second is <a href="#gmnx">GMNX</a>, where "G" is for
+<strong>G</strong>eneral. It serves as a kind of universal encoding for
+scores having arbitary graphical and audio content. In consequence, it is
+relatively free of semantics.
+
+Note: Our working definition for CWMN is "notation in which the
 requirements do not significantly extend beyond those of music of the 19th and
 early 20th centuries." [Gerald Warfield, *Writings on
 Contemporary Music Notation* (Ann Arbor: Music Library Association, 1976),
 ii.]
-
-However, MNX is able to support diverse other systems for encoding music
-notation, through the mechanism of [[#the-container-document]].
-
 
 ## Compatibility with MusicXML
 
@@ -225,20 +268,19 @@ includes information relevant to the document's appearance and interpretation:
             @import url(mystyles.css);
         </style>
     </head>
-    <score>
-        ...CWMN score contents here...
+    <score content="cwmn">
+        // CWMNX score contents here...
     </score>
 </mnx>
 ```
 
-### A simple graphical score
+### A simple general score
 
 The <{score}> element can be qualified by a <{score/content}> attribute that
 describes the encoding of the content. It defaults to
 <code>content="cwmn"</code> and may include values from a registry of MNX
-musical content types. This example shows a score using an alternate markup
-system, such as SVG (which is included merely as a plausible approach, not as
-a specific proposal):
+musical content types. This example shows a score using the GMNX
+type of `general`:
 
 ```xml
 <mnx xmlns="http://www.w3.org/mnx">
@@ -248,10 +290,8 @@ a specific proposal):
             <creator type="composer">Alan Smithee</creator>
         </identification>
     </head>
-    <score content="svg">
-        <svg xmlns="http://www.w3.org/2000/svg">
-            ...graphically notated SVG section of score...
-        </svg>
+    <score content="general">
+        // GMNX score contents here...
     </score>
 </mnx>
 ```
@@ -277,14 +317,14 @@ that some of these could employ non-CWMN encodings as well.)
 ```xml
 <mnx xmlns="http://www.w3.org/mnx">
     <head>
-        ...
+        // 
     </head>
     <collection>
         <score type="section" content="cwmn">
             <identification>
                 <title>Section 1</title>
             </identification>
-            ...CWMN markup...
+            // CWMN markup...
         </score>
         <collection type="section">
             <identification>
@@ -294,13 +334,13 @@ that some of these could employ non-CWMN encodings as well.)
                 <identification>
                     <title>Section 2, Movement 1 (for Solo Flute)</title>
                 </identification>
-                ...CWMN markup...
+                // CWMN markup...
             </score>
             <score type="movement" content="cwmn">
                 <identification>
                     <title>Section 2, Movement 2 (for String Orchestra)</title>
                 </identification>
-                ...CWMN markup...
+                // CWMN markup...
             </score>
         </collection>
     </collection>
@@ -352,56 +392,75 @@ parent elements for greater flexibility:
 Other parent elements will no doubt make sense as the specification is
 developed.
 
-# Semantics, Appearance and Interpretation
+<h2 id="cwmnx">CWMNX: Encoding Conventional Western Music</h2>
 
-Note: Except where otherwise stated, the remainder of this proposal pertains
-only to the CWMN content type in MNX, using the <code>standard</code> profile.
+CWMNX is the MNX score type denoted by a `content` attribute of `cwmn`. It is
+intended specifically for encoding conventional Western music notation. It is
+a vehicle for representing the semantics of such musical scores, with the
+ability to weave appearance and interpretation data into these semantics by
+means of CSS properties.
 
-MNX makes a very clear distinction between the following layers of musical
+## CWMNX Goals
+
+CWMNX is intended to support a wide range of applications which <em>must</em>
+have a semantic description of music notation and which <em>may</em> make use
+of appearance and performance information alongside this.
+
+Some examples of applications suited to using CWMNX include:
+
+- CWMN-based notation editors
+- CWMN readers which dynamically render or play music
+- tools for analysis or transformation of CWMN music
+- OMR applications that produce encodings of CWMN
+- educational applications requiring a knowledge of underlying CWMN structure
+
+## CWMNX Layers
+
+CWMNX makes a very clear distinction between the following layers of musical
 information:
 
-- <em>Semantics</em>, the core stratum of notational data in a CWMN work that must
-    inform any potential rendering of that work. MNX encodes all semantic
+- <strong>Semantics</strong>, the core stratum of notational data in a CWMN work that must
+    inform any potential rendering of that work. CWMNX encodes all semantic
     information as XML markup like <{measure}>, <{note}> and so on. There is no
     concept of "selective encoding" in this layer: without the required core of
     semantic elements, the document is not valid. See [[#semantic-markup]].
 
-- <em>Appearance</em>, a layer of visual attributes and formatting that describes how
+- <strong>Appearance</strong>, a layer of visual attributes and formatting that describes how
     a work appears to the reader, independent of the other two layers. Where this
     layer is absent, implementations are expected to supply a default appearance based
-    on the semantic layer. MNX encodes all appearance information using CSS styles
+    on the semantic layer. CWMNX encodes all appearance information using CSS styles
     and properties. See [[#styling]] for more information.
 
-- <em>Interpretation</em>, a layer of performance information that describes how a work
+- <strong>Interpretation</strong>, a layer of performance information that describes how a work
     sounds to the listener, independent of the other two layers. Where this
     layer is absent, implementations are expected to supply a default interpretation based
-    on the semantic layer. Where this layer is present, MNX
+    on the semantic layer. Where this layer is present, CWMNX
     encodes all interpretation information in the form of CSS styles also.
     See [[#interpretation]] for more information.
 
-Since only the semantic layer is encoded in MNX markup, these distinctions are
-made very concrete in MNX documents. Furthermore, ambiguities arising from
-combining the layers in MusicXML (such as the near-duplication of <code>tie</code>
-and <code>tied</code>) can disappear.
+Since only the semantic layer is encoded in XML markup and the rest is CSS,
+these distinctions are made very concrete. Furthermore, ambiguities arising
+from combining the layers in MusicXML (such as the near-duplication of
+<code>tie</code> and <code>tied</code>) can disappear.
 
 
-# Semantic markup
+<h2 id="semantic-markup">CWMNX Semantic markup</h2>
 
-This section describes how MNX treats the semantic layer of a CWMN document in
+This section describes how CWMNX treats the semantic layer of a CWMN document in
 the standard profile.
 
 Note: In most of the examples that follow, the MNX container elements are
 omitted for brevity.
 
-## CWMN Score structure
+## Score structure
 
 For a CWMN score, the <{score}> element is roughly equivalent to the
 <{score-partwise}> element in MusicXML. MusicXML's <{score-timewise}> element
-is not used in MNX's CWMN support.
+is not used in CWMNX.
 
 ### Unifying <{score-part}> and <{part}>
 
-In MNX, the contents of the <{score-part}> element are simply included below <{part}>.
+In CWMNX, the contents of the <{score-part}> element are simply included below <{part}>.
 This leaves the <{part}> element as the single place in the document that provides
 part-related information.
 
@@ -450,24 +509,24 @@ merge its information into other visible parts as needed. On the other hand, a
 scope marker can scatter system-wide information to be freely among
 parts with no constraints on their occurrence or relationships.
 
-An example MNX/CMN score skeleton could thus look like this:
+An example CWMNX score skeleton could thus look like this:
 
 ```xml
 <mnx xmlns="http://www.w3.org/mnx">
     <head>...</head>
     <score content="cwmn">
         <system>
-            ...measures describing system-wide features...
+            // measures describing system-wide features...
         </system>
         <part>
-            ...descriptive info for part 1...
-            ...measures describing part 1...
+            // descriptive info for part 1...
+            // measures describing part 1...
         </part>
         <part>
-            ...descriptive info for part 2...
-            ...measures describing part 2...
+            // descriptive info for part 2...
+            // measures describing part 2...
         </part>
-        ...additional parts...
+        // additional parts...
     </score>
 </mnx>
 ```
@@ -482,7 +541,7 @@ disadvantages.
 
 Any element whatsoever in MNX markup may possess a regular <code>id</code>
 attribute as defined for the XML namespace. References to elements form a
-backbone principle of key aspects of MNX, for example [[#spanning-notations]].
+backbone principle of key aspects of CWMNX, for example [[#spanning-notations]].
 
 These attributes are of type <code>ID</code>, not <code>IDREF</code> and thus
 fully conform to the XML standard.  Existing uses of <code>id</code> in
@@ -491,7 +550,7 @@ will be renamed.
 
 ## Musical timelines
 
-MNX makes use of a different element structure than MusicXML to represent
+CWMNX makes use of a different element structure than MusicXML to represent
 timelines of musical notations and events, always in chronological sequence.
 The elements of these timelines are essentially the same as those found in
 MusicXML, though. The differences are driven by the following design goals:
@@ -510,14 +569,14 @@ MusicXML, though. The differences are driven by the following design goals:
 - Eliminate the need for complex book-keeping and post-processing when
     parsing measures of music.
 
-- Make it easy to alter the content of a MNX document using simple <a href="https://dom.spec.whatwg.org/">DOM
+- Make it easy to alter the content of a CWMNX document using simple <a href="https://dom.spec.whatwg.org/">DOM
     (Document Object Model)</a>
     operations such as node insertion and deletion (e.g. add a note to a chord by
     simply inserting a <{note}> element in the appropriate parent).
 
 ### Specialized encodings
 
-For compactness and readability, MNX can represent concepts such as note
+For compactness and readability, CWMNX can represent concepts such as note
 values, timespans and pitches as simple strings, usually encoded as XML
 attributes. Compactness and readability are desirable because encodings are
 documented, read and talked about, not only parsed and generated.
@@ -528,7 +587,7 @@ make sense of the succeeding examples.
 ### Note values
 
 There are a variety of situations in which the note value of a musical event
-needs to be supplied for an element. MNX uses a text encoding to represent
+needs to be supplied for an element. CWMNX uses a text encoding to represent
 such durations; in general, this replaces some arbitrary combination of
 MusicXMLs <{type}> and <{dot}> elements, with no difference in semantics at
 all. The values are always implicitly subject to any tuplet time modification
@@ -554,7 +613,7 @@ avoid confusion with a decimal point). Examples follow:
 :: a dotted breve
 
 In general, the attribute name `value` is used to supply this information
-for various MNX elements.
+for various CWMNX elements.
 
 <div class="note">
 Note: The motivation here is to provide a terse but readable encoding which is
@@ -584,7 +643,7 @@ construct in MusicXML.
 A metrical timespan is very similar to a time signature, but more general. It
 is encoded as an integer, followed by `/` and a note value encoding. This
 specifies a timespan equal to the given number of note value units. Metrical
-timespans are used in MNX to represent time intervals which must be
+timespans are used in CWMNX to represent time intervals which must be
 constrained to exact note value multiples, such as note positions relative
 to the origin of a containing sequence.
 
@@ -722,7 +781,7 @@ overridden within the sequence, of course. For example, consider these
 </measure>
 ```
 
-Unlike the MusicXML <{voice}> element, the MNX <{sequence}> element need not
+Unlike the MusicXML <{voice}> element, the CWMNX <{sequence}> element need not
 possess a number or any other label. It can, however, be assigned a label via
 the optional <{sequence/name}> attribute that declares continuity between
 identically named/numbered sequences in successive measures of the same part.
@@ -748,7 +807,7 @@ There are two motivations for the cursor:
 - to afford encoding of music which uses standard note values, but not any standard interpretation
     of event positions
 
-Significant constraints distinguish MNX's sequence cursor from MusicXML:
+Significant constraints distinguish CWMNX's sequence cursor from MusicXML:
 
 - The cursor must progress in a forward direction
 - The cursor only progresses in units that are expressible in CMN (rather than any number of divisions)
@@ -825,7 +884,7 @@ actually do this):
 - move cursor forwards by 480 divisions, to 4/4
 - half note at cursor position 4/4
 
-If MNX relies on explicit positions, this would be expressed as follows:
+If CWMNX relies on explicit positions, this would be expressed as follows:
 
 - note at cursor position 0
 - direction at explicit position 2/4 (no offset needed)
@@ -833,7 +892,7 @@ If MNX relies on explicit positions, this would be expressed as follows:
 
 Of course, explicit positions are not entirely satisfying either.
 
-Note that MNX does propose an `offset` *style*, but this is not helpful here:
+Note that CWMNX does propose an `offset` *style*, but this is not helpful here:
 it lives in the appearance layer rather than the semantic layer. Using the
 appearance layer to specify the performance timing of some notated element
 violates the purpose of the layers.
@@ -842,21 +901,21 @@ violates the purpose of the layers.
 ### Spaces
 
 A <{space}> is a way of specifying a metrical time interval that does not
-contain any notation. MNX uses <{space}> elements to explicitly represent such
+contain any notation. CWMNX uses <{space}> elements to explicitly represent such
 gaps. (In MusicXML, these gaps were often created using the <{forward}> and
 <{backward}> elements or with hidden rests, and could only be determined after
 complete parsing of a measure's contents.)
 
 Because of the use of the <{sequence}> element to organize notations in
 chronological sequence, and because non-notated gaps within a sequence can be
-explicitly represented, MNX does not need MusicXML's <{forward}> and
+explicitly represented, CWMNX does not need MusicXML's <{forward}> and
 <{backward}> elements. Instead, <{space}> serves the purpose of <{forward}>,
 while picking up a few additional useful characteristics. The contents of a
 sequence can always be expressed as a sequence of contiguous elements starting
 at the beginning of the measure and proceeding forward in metrical time.
 
 Accordingly, the concept of <code>divisions</code> also becomes
-unnecessary in MNX. To the extent that arbitrary durations are needed, they
+unnecessary in CWMNX. To the extent that arbitrary durations are needed, they
 can always be expressed as multiples of some normal musical time unit.
 (See [[#tuplets]] for more information on how spaces work
 to take up space in tuplets -- divisions aren't needed here either.)
@@ -905,7 +964,7 @@ element? This may also simplify future DOM programming.
 
 ### Pitch encoding
 
-MNX introduces a text encoding of pitches, which represents a combination of
+CWMNX introduces a text encoding of pitches, which represents a combination of
 MusicXML's <{step}>, <{octave}> and <{alter}> elements. This is done to
 address issues of readability and compactness in MusicXML and makes no
 semantic difference.
@@ -944,7 +1003,7 @@ temperaments and their variants.
 
 ### Events
 
-The new MNX element <{event}> represents the related concepts of rest, note
+The new CWMNX element <{event}> represents the related concepts of rest, note
 or chord depending on its contents. It supplies information that is common to
 all three:
 
@@ -1009,18 +1068,18 @@ Note that the `type` attribute is used to indicate this, rather than `value`:
 
 ### Directions
 
-The MNX <{direction}> element carries over the features of the MusicXML
+The CWMNX <{direction}> element carries over the features of the MusicXML
 <{direction}> element.
 
-This proposal does not yet attempt to examine how MNX directions will work in
+This proposal does not yet attempt to examine how CWMNX directions will work in
 detail or how they differ from MusicXML directions.    
 
-MNX is, however, expected to include strong semantic types for different
+CWMNX is, however, expected to include strong semantic types for different
 musical purposes of text. Dynamics, tempo markings, lyrics, playing
 instructions/techniques, etc. will all have proper types and may be freely
 included in <{sequence}> and <{event}> elements.
 
-Issue: Should MNX split directions out into text-like (durationless) direction types
+Issue: Should CWMNX split directions out into text-like (durationless) direction types
 and span-like direction types? What is the relationship between these two, e.g.
 for labeled lines?
 
@@ -1031,7 +1090,7 @@ Issue: How should paragraph-style interpolated blocks be dealt with?
 
 ### Tuplets
 
-In MNX, the <{tuplet}> element applies a time modification to all of its child
+In CWMNX, the <{tuplet}> element applies a time modification to all of its child
 elements, which are the same as those allowed in <{sequence}>. In fact,
 <{tuplet}> is very much like a nested <{sequence}> element, with an implicit
 time signature representing the notated duration inside the tuplet. It
@@ -1047,13 +1106,13 @@ subject to time modification, and CSS styling can control the appearance of
 the tuplet. 
 
 Numerals and brackets may or may not be shown in conjunction with a
-<{tuplet}>, by using the relevant MusicXML attributes which carry over into MNX.
+<{tuplet}>, by using the relevant MusicXML attributes which carry over into CWMNX.
 
 Here's an example of an eighth-note triplet:
 
 ```xml
 <sequence>
-    ...preceding events in sequence...
+    // preceding events in sequence...
     <tuplet actual="3/8" normal="1/4">
         <event value="8">
             <note>...</note>
@@ -1065,7 +1124,7 @@ Here's an example of an eighth-note triplet:
             <note>...</note>
         </event>
     </tuplet>
-    ...remaining events in sequence...
+    // remaining events in sequence...
 </sequence>
 ```
 
@@ -1079,13 +1138,13 @@ Other examples of tuplets:
 
 ```xml
 <tuplet actual="5/8" normal="11/16">
-    ...a tuplet that displays 5 eighth notes in the space of 11 sixteenths...
+    // a tuplet that displays 5 eighth notes in the space of 11 sixteenths...
 </tuplet>
 ```
 
 ```xml
 <tuplet actual="7/8*" normal="4/4*">
-    ...a tuplet that displays 7 dotted eighth notes in the space of 4 dotted quarters...
+    // a tuplet that displays 7 dotted eighth notes in the space of 4 dotted quarters...
 </tuplet>
 ```
 
@@ -1105,7 +1164,7 @@ this category. (Some of these are considered <{notations}> in MusicXML and
 others are considered <{direction-type}>s. We won't deal with this
 classification problem yet.)
 
-In MNX, the preferred way to describe such <em>spanning notations</em> is in
+In CWMNX, the preferred way to describe such <em>spanning notations</em> is in
 terms of a <em>start element</em> and an <em>stop element</em>. These elements
 may be any element that occurs inside a <{sequence}>.
 
@@ -1188,7 +1247,7 @@ metrically to yield the duration of a measure or tuplet, or in which notes in on
 voices align with notes in another, in spite of the dissimilar points in time
 at which they would appear to be specified by their notated duration.
 
-MNX addresses these problems by allowing any <{event}> to optionally specify
+CWMNX addresses these problems by allowing any <{event}> to optionally specify
 either or both of the following:
 
 - render this event using the visual conventions for an arbitrary duration
@@ -1235,13 +1294,13 @@ tuplet rhythm:
 ```
 
 Independent of such editorial decisions, it is also possible to prescribe any
-desired performance rhythm using the [[#interpretation]] features of MNX.
+desired performance rhythm using the [[#interpretation]] features of CWMNX.
 
-# Styling
+<h2 id="styling">CWMNX Styling</h2>
 
-MNX employs CSS style properties to describe the appearance layer of a score.
-The property vocabulary used by MNX is not the same as for HTML or SVG,
-although it has some overlap. A large part of the work to specify MNX will
+CWMNX employs CSS style properties to describe the appearance layer of a score.
+The property vocabulary used by CWMNX is not the same as for HTML or SVG,
+although it has some overlap. A large part of the work to specify CWMNX will
 involve figuring out the new set of properties that we need to drive music
 rendering and appearance.
 
@@ -1257,7 +1316,7 @@ MusicXML: appearance styles may be supplied optionally, but they are never
 necessary.
 
 Here's a quick example to set the stage for more discussion, showing the
-application of color and positioning details to various MNX elements. In this
+application of color and positioning details to various CWMNX elements. In this
 example, the `color` property is self-explanatory, and the `relative-y`
 property is the same as found in MusicXML. The value `1sl` means *1 staff
 line* (analogous to typical CSS units such as `1px` for *1 pixel*).
@@ -1376,7 +1435,7 @@ It's often useful to separate stylesheet definitions in a separate `.css` file. 
         </style>
     </head>
     <score>
-        ...
+        // 
     </score>
 </mnx>
 ```
@@ -1449,13 +1508,13 @@ Examples of migrated MusicXML properties from notation markup include:
 In keeping with CSS conventions, MusicXML's values of `yes` and `no` will be
 generally replaced with `true` and `false`. 
 
-Issue: MNX should define the meaning of `default` and `relative` more clearly and
+Issue: CWMNX should define the meaning of `default` and `relative` more clearly and
 propose a tight set of requirements on positioning, while leaving lots of wiggle room
 for competition between implementations.
 
-### New MNX properties
+### New CWMNX properties
 
-MNX will also define new properties for useful concepts not previously
+CWMNX will also define new properties for useful concepts not previously
 addressed in MusicXML.
 
 As one example, an **part-display: all** property could distinguish elements
@@ -1481,7 +1540,7 @@ or on printed paper.
 }
 ```
 
-In MNX, media queries can be used in exactly the same way, but they 
+In CWMNX, media queries can be used in exactly the same way, but they 
 can also be used to govern how parts are displayed. This permits high quality
 parts to be generated from the same document as the full score, formatted in a
 specialized way.
@@ -1530,7 +1589,7 @@ space in the layout, and it may be sensitive to pointer events.
 
 ## System and page flow
 
-The MNX style properties `new-page` and `new-system` (as well as others)
+The CWMNX style properties `new-page` and `new-system` (as well as others)
 control page and system flow. Such styles are specified at the <{measure}> or
 <{event}> level.
 
@@ -1561,12 +1620,12 @@ note:has(>grace) note:has(> cue) {
 }
 ```
 
-# Interpretation
+<h2 id="interpretation">CWMNX Interpretation</h2>
 
-The performance interpretation of semantic markup in MNX is also carried out
+The performance interpretation of semantic markup in CWMNX is also carried out
 using CSS properties, rather than through the content of MusicXML's <{sound}>
 element. The various attributes and child elements of <{sound}> therefore
-become new sound-oriented CSS properties in MNX. These are driven from
+become new sound-oriented CSS properties in CWMNX. These are driven from
 stylesheets and inline specifications in much the same way as visual
 properties, thus separating interpretation cleanly from both semantic and
 appearance layers.
@@ -1599,7 +1658,7 @@ Naturally, one might wish to use CSS classes to specify this:
         </style>
     </head>
     <score>
-        ...
+        // 
             <event value="4">
                 <note pitch="C4" class="forte"/>
             </event>
@@ -1662,7 +1721,7 @@ similar to `rgb()` or `rgba()` colors. Some examples:
 :: The same note with a quarter note duration, *disregarding any effective time modification*
 
 This permits the useful interpretation property `play`, which overrides the
-entire default interpreation of whatever MNX element it is applied to. Here's
+entire default interpreation of whatever CWMNX element it is applied to. Here's
 a quarter note C3 that is supposed to actually be played as a 16th note C4:
 
 ```xml
@@ -1706,7 +1765,7 @@ in terms of the same units as the semantic layer.
 
 ## Rhythmic template selectors
 
-Special CSS selectors can be defined for MNX to make it easier to achieve
+Special CSS selectors can be defined for CWMNX to make it easier to achieve
 useful interpretation results with styling.
 
 Consider these two useful selectors:
@@ -1744,3 +1803,276 @@ all notated dotted eighths are performed as double-dotted:
 
 ```
 
+<h2 id="gmnx">GMNX: Encoding Scores with General Content</h2>
+
+GMNX is the MNX score type denoted by a `content` attribute of `general`.
+It is intended as a general medium for representing scores in terms of
+abstract visual, performance and audio information. There is no attempt
+to represent semantics directly in GMNX, although GMNX may cross-reference
+elements in a separate, semantic document for traceability.
+
+Advisement: This entire section is a rough sketch of a possible approach and 
+needs considerable work.
+
+## GMNX Goals
+
+GMNX is intended to support applications which <em>must</em> be able to
+faithfully execute a visual and/or audible rendition of a score, with an
+awareness of the relationship between what is seen and what is heard.
+
+There are no dependencies on any particular notational schema for music.
+Because of the lack of semantics, applications <em>must not</em> rely on
+information about the notational content of the score beyond the purposely
+limited vocabulary of GMNX. As a corollary, GMNX applications <em>need
+not</em> be concerned with transforming semantic data into musically
+acceptable graphics or audio, which can simplify their development.
+
+The only constraints on the nature of the score are:
+
+1. The visual content of the score must be encoded in SVG.
+
+1. The audible content of the score must be encoded either in audio media,
+    or in a GMNX <{performance-events}> element.
+
+Some applications well-suited for GMNX usage include:
+
+- Lightweight music viewers/players that employ standard libraries for rendering graphics and audio media,
+    instead of doing custom rendering of semantic data.
+
+- Music viewers/players that wish to handle any kind of musical content, not just CWMN.
+
+- Music viewers/players which display a score exactly as it was
+    depicted in a specific edition or manuscript.
+
+- Highly individual or unusual notation editors that want to export music in a format
+    that can be consumed by other applications for viewing and playback.
+
+## GMNX Structure
+
+A GMNX document contains two kinds of data: visual content and performance
+content.
+
+### Visual Content
+
+The visual content piece of a GMNX document is a set of SVG elements
+representing the score. Each element constitutes a single page of the score,
+where "page" is defined as a two-dimensional canvas of arbitrary dimension
+whose contents can be viewed independently of other pages.
+
+A GMNX document is required to contain visual content, since it is music
+notation of some kind.
+
+SVG elements are labeled with IDs, allowing them to be referenced within the
+performance content.
+
+GMNX permits special <{flow}> and <{flow-path}> elements to be embedded within
+SVG to describe regions in the visual content having a directional flow which
+can be mapped to time in a musical performance. This is strictly optional.
+
+Please refer to the <a href="https://www.w3.org/TR/SVG/Overview.html">SVG
+specification</a> for information on what SVG is able to represent. For all
+practical purposes, any combination of vector and raster graphics is
+encodable in SVG.
+
+### Performance Content
+
+A GMNX document can contain any number of <em>performances</em>, which are
+taken to be musical embodiments of the visual content. Each performance is
+represented either through separate, conventionally-encoded audio media files
+or by encoding as a <{performance-events}> element that is similar in spirit
+to a MIDI file, but is more compatible with CWMNX sequences and events.
+
+No matter how it is encoded, a "performance" takes place in the time
+dimension. GMNX allows ranges and points in a performance to be mapped onto
+various elements in the visual SVG content. These mappings define a two-way
+correspondence between the visual score and the content of each performance.
+
+This correspondence is general in nature and not dependent on any particular
+approach to notation.
+
+Performances are optional in GMNX. Any number of performances may be provided,
+since there is no concept of a canonical performance in GMNX.
+
+## Mapping Between Position and Time
+
+What makes GMNX more powerful than just a combination of images and audio is its
+ability to describe correspondences between the two. These correspondences
+are not necessary to use GMNX, but can be provided wherever they are known.
+
+All of these mappings are optional, and applications may not count on their
+presence. While they make sense for most CWMN, there are many kinds of music
+notation that cannot supply them.
+
+### Performance Regions
+
+A <em>performance region</em> consists of two pieces of information:
+
+1. The ID of a particular SVG element corresponding to the region.
+1. A time range within some performance content.
+
+Where provided, this information allows applications to do the following:
+
+- highlight the element (or its bounding box) in conjunction with performance of the given time range
+- interpret user interaction with the element as referring to the performance time range
+
+Note that the mapping is many-to-many: a given graphical region may be mapped to any number
+of performance time ranges, and vice versa. This is necessary to accommodate
+the varied possibilities of music notation, which include among others:
+
+- disjoint and non-aligned regions that describe the same range of music (e.g. medieval partbooks)
+- a region that is repeated multiple times in performance
+- a region that is repeated with temporal overlap, or at varying speeds (e.g. rounds)
+- a region that is read in more than one direction or orientation (e.g. puzzle canons)
+- a region that may or may not be performed
+
+### Performance Flows
+
+<em>Performance flows</em> are a special kind of performance region,
+in which a geometric cursor tracks the flow of performance time by moving
+along a path through the region.  Each flow includes the following information:
+
+1. The ID of a particular SVG element corresponding to the region.
+1. A geometric path that is followed smoothly by an imaginary cursor line within the SVG element,
+    as defined by a <{flow}> child element.
+1. A time range within some performance content.
+
+Flows are more powerful than regions, because every point in the region can be mapped
+to a specific performance time within the range, and every performance time can be mapped
+to a specific cursor position.
+
+Flows thus allow applications to:
+
+- position a cursor over the score in conjunction with an exact performance time
+- interpret user interaction with the region as indicating an exact performance time
+
+### Performance Events
+
+<em>Performance events</em> are the final type of mapping supplied by GMNX,
+whose purpose is to describe a discrete musical event. It includes
+the following information:
+
+1. The ID of a particular SVG element corresponding to the event.
+1. A description of the event within a <{performance-events}> element,
+    supplying its onset, duration and performance attributes such as
+    pitch, dynamics, etc.
+
+Performance event mappings can thus connect an arbitrary graphic
+representation in the visual content, to a description of the sound that it
+makes. Obviously, the richness of attributes like pitch, velocity and
+performance techniques must be limited for reasons of interoperability.
+Consequently, audio media remain the ultimate general vehicle for describing
+sounds in their own native terms, in which case events refer to a time range
+(or perhaps to a particular audio channel).
+
+Performance event mappings allow applications to:
+- identify specific graphics within the score in conjunction with their occurrence in a performance
+- interpret user interaction with these graphics as indicating specific musical events in the performance
+    such as notes or time ranges.
+
+## A GMNX Example
+
+Here is a simple example of the earlier CWMNX example, but structured as a
+GMNX document and reduced to a single staff for clarity. This example illustrates
+two kinds of mapping: performance flows and performance events.
+
+There is absolutely no requirement that music be structured as systems,
+or staves, or use a rectangle-based layout, or have a left-to-right orientation.
+This example merely uses a CWMN score because it's familiar material.
+
+<div style="font-size: .75em;">
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<mnx>
+    <head>
+        <identification>
+            <title>Hot Cross Buns</title>
+        </identification>
+    </head>
+    <score content="general">
+        <svg id="page1">
+            <g>
+                <g>
+                    // staff prefix: clefs, time signatures, etc...
+                </g>
+                <g id="m1" transform="translate(20,0)">
+                    // Describe a time flow in terms of an arbitrary notation position, mapped to local coordinates.
+                    // The flow is an imaginary cursor that moves smoothly along a path described
+                    // using the same commands as the SVG <path> element. The `pos` ranges 
+                    // are in notation position units (which here are quarter notes), not time or pixels.
+                    <mnx:flow cursor="0 40">
+                        <flow-path d="M 0 0 h 15" pos="0 1"/>
+                        <flow-path d="h 15" pos="1 2"/>
+                        <flow-path d="h 35" pos="2 4"/>
+                    </mnx:flow>
+                    <path id="note1" d="..."/>
+                    <path id="note2" d="..."/>
+                    <path id="note3" d="..."/>
+                </g>
+                <g id="m2" transform="translate(100,0)">
+                    <mnx:flow>
+                        // similar to above
+                    </mnx:flow>
+                    <path id="note4" d="..."/>
+                    <path id="note5" d="..."/>
+                    <path id="note6" d="..."/>
+                </g>
+                <g id="m3" transform="translate(200,0)">
+                    // measure 3...
+                </g>
+                <g id="m4" transform="translate(300,0)">
+                    // measure 4...
+                </g>
+            </g>
+        </svg>
+        <performance>
+            <performance-name>Audio recording</performance-name>
+            <performance-media>
+                <media-file src="hot-cross-buns.mp4"/>
+            </performance-media>
+            <performance-regions>                
+                <region-flow graphic="#m1" time="0 1.8" pos="0 4"/>
+                <region-flow graphic="#m2" time="1.8 3.61" pos="0 4"/>
+                <region-flow graphic="#m3" time="3.61 5.38" pos="0 4"/>
+                <region-flow graphic="#m4" time="5.38 7.23" pos="0 4"/>
+            </performance-regions>
+        </performance>
+        <performance>
+            <performance-name>Event sequence</performance-name>
+            <performance-events>
+                <part>
+                    <instrument-sound>keyboard.piano</instrument-sound>
+                    // Note that all units here are in seconds: this is a mechanical description of sound.
+                    <sequence>
+                        <event graphic="#note1" start="0" duration="0.25">
+                            <note pitch="E4" dynamics="100"/>
+                        </event>
+                        <event graphic="#note2" start="0.25" duration="0.25">
+                            <note pitch="D4"/>
+                        </event>
+                        <event graphic="#note3" start="0.5" duration="0.5">
+                            <note pitch="C4"/>
+                        </event>
+                        <event graphic="#note4" start="1" duration="0.25">
+                            <note pitch="E4"/>
+                        </event>
+                        <event graphic="#note5" start="1.25" duration="0.25">
+                            <note pitch="D4"/>
+                        </event>
+                        <event graphic="#note6" start="1.5" duration="0.5">
+                            <note pitch="C4"/>
+                        </event>
+                        // remaining events in song...
+                    </sequence>
+                </part>
+            </performance-events>
+            <performance-regions>                
+                <region-flow graphic="#m1" time="0 1" pos="0 4"/>
+                <region-flow graphic="#m2" time="1 2" pos="0 4"/>
+                <region-flow graphic="#m3" time="2 3" pos="0 4"/>
+                <region-flow graphic="#m4" time="3 4" pos="0 4"/>
+            </performance-regions>
+        </performance>
+    </score>
+</mnx>
+```
+</div>
