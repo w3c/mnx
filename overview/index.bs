@@ -2082,3 +2082,13 @@ This example merely uses a CWMN score because it's familiar material.
 </mnx>
 ```
 </div>
+
+## Compilation to GMNX
+
+Because of the generality of GMNX, semantic flavors of MNX (like CWMNX) can be
+fairly easily "compiled" to GMNX, by any application able to render them into
+graphics and either audio or performance events.
+
+This likely has value as a bridge between applications that have a semantic
+understanding of some type of music, and applications that do not (but which can
+still profit from the packaging and mappings provided by a GMNX document).
