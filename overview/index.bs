@@ -1128,7 +1128,7 @@ Here's an example of an eighth-note triplet:
 </sequence>
 ```
 
-(The tag `<tuplet actual="3/8" normal="2/8">` would work exactly the same. There
+(The tag `<tuplet actual="3/8" normal="2/8">...</tuplet>` would work exactly the same. There
 is no semantic difference.)
 
 One can include directions in tuplets as well. And, naturally, tuplets
@@ -1854,7 +1854,7 @@ content.
 
 ### Visual Content
 
-The visual content piece of a GMNX document is a set of SVG elements
+The visual content piece of a GMNX document is a set of <{svg}> elements
 representing the score. Each element constitutes a single page of the score,
 where "page" is defined as a two-dimensional canvas of arbitrary dimension
 whose contents can be viewed independently of other pages.
@@ -1865,9 +1865,10 @@ notation of some kind.
 SVG elements are labeled with IDs, allowing them to be referenced within the
 performance content.
 
-GMNX permits special <{flow}> and <{flow-path}> elements to be embedded within
-SVG to describe regions in the visual content having a directional flow which
-can be mapped to time in a musical performance. This is strictly optional.
+GMNX permits special elements to be embedded within SVG to describe regions in
+the visual content having a directional flow which can be mapped to time in a
+musical performance. This optional feature is described below under <a href
+="#performance-flows">performance flows</a>.
 
 Please refer to the <a href="https://www.w3.org/TR/SVG/Overview.html">SVG
 specification</a> for information on what SVG is able to represent. For all
@@ -1893,7 +1894,109 @@ approach to notation.
 Performances are optional in GMNX. Any number of performances may be provided,
 since there is no concept of a canonical performance in GMNX.
 
-## Mapping Between Position and Time
+#### Audio Media
+
+A single performance represented by audio media can be described with a
+<{performance}> element that includes any number of media file references.
+Here's a simple example:
+
+```xml
+<performance>
+    <performance-name>Piano performance</performance-name>
+    <performance-media>
+        <media-file src="hot-cross-buns.mp4"/>
+    </performance-media>
+</performance>
+```
+
+The performance media may be further described in terms of channels. This is
+important in <a href="#mapping"></a>. An example follows:
+
+```xml
+<performance>
+    <performance-name>Piano performance</performance-name>
+    <performance-media>
+        <media-file src="hot-cross-buns.mp4">
+            <channel index="0">
+                <name>Piano LH</name>
+            </channel>
+            <channel index="1">
+                <name>Piano RH</name>
+            </channel>
+        </media-file>
+    </performance-media>
+</performance>
+```
+
+Multiple media files may also be referenced, indicating that they together supply
+a multitrack performance when played in synchronization. Here a stereo piano
+recording is synchronized with a mono recording of a trumpet track:
+
+```xml
+<performance>
+    <performance-name>Piano performance</performance-name>
+    <performance-media>
+        <media-file src="hot-cross-buns-piano.mp4">
+            <channel index="0">
+                <name>Piano LH</name>
+            </channel>
+            <channel index="1">
+                <name>Piano RH</name>
+            </channel>
+        </media-file>
+        <media-file src="hot-cross-buns-trumpet.mp4">
+            <channel index="0">
+                <name>Trumpet</name>
+            </channel>
+        </media-file>
+    </performance-media>
+</performance>
+```
+
+#### Event Sequences
+
+Alternately, a performance may be represented by a sequence of discrete events
+having these properties:
+
+- onset (in seconds from start of performance)
+- duration (in seconds)
+- instrument (described by MusicXML sound ID)
+- pitch (as in CWMNX)
+- dynamics (as in CWMNX)
+- technique
+
+There is no tempo information in an event list. Adjustment of playback speed
+by an implementation may be accomplished by proportionally adjusting onset and
+duration times.
+
+This information can be used for synthesis, analysis, or any other purpose by
+the application. However it is specifically not intended to represent semantic
+notational content. For example, a CWMN staccato quarter note might
+be represented as an event with the effective duration of a 16th note.
+
+The <{performance-events}> element supplies this information:
+
+```xml
+<performance>
+    <performance-name>Event sequence</performance-name>
+    <performance-events>
+        <part>
+            <instrument-sound>keyboard.piano</instrument-sound>
+            <sequence>
+                <event graphic="#note1" start="0" duration="0.25">
+                    <note pitch="E4" dynamics="100"/>
+                </event>
+                <event graphic="#note2" start="0.25" duration="0.25">
+                    <note pitch="D4"/>
+                </event>
+                // ...and so on
+            </sequence>
+        </part>
+    </performance-events>
+</performance>
+```
+
+<h3 id="mapping">Mapping Between Position and Time</h3>
 
 What makes GMNX more powerful than just a combination of images and audio is its
 ability to describe correspondences between the two. These correspondences
@@ -1912,18 +2015,48 @@ A <em>performance region</em> consists of two pieces of information:
 
 Where provided, this information allows applications to do the following:
 
-- highlight the element (or its bounding box) in conjunction with performance of the given time range
+- modify the appearance of the element (e.g. by highlighting it) in conjunction with performance of the given time range
 - interpret user interaction with the element as referring to the performance time range
 
-Note that the mapping is many-to-many: a given graphical region may be mapped to any number
-of performance time ranges, and vice versa. This is necessary to accommodate
-the varied possibilities of music notation, which include among others:
+Performance regions are identified by listing them in a performance's
+<{performance-regions}> element. The `graphic` attribute refers to the SVG element
+for the region, while the `time` attribute supplies a time range within the performance
+given in seconds since start.
+
+```xml
+<performance-regions>                
+    <region graphic="#m1" time="0 1.8"/>
+    <region graphic="#m2" time="1.8 3.61"/>
+    <region graphic="#m3" time="3.61 5.38"/>
+    <region graphic="#m4" time="5.38 7.23"/>
+</performance-regions>
+```
+
+Region shapes can thus be any closed shape definable in SVG. Examples include
+rectangles, polygons, ellipses, polylines, polysplines, shapes with hollow
+cutouts... literally, anything.
+
+Region mappings are many-to-many in character: a given graphical
+region may be mapped to any number of performance time ranges, and vice versa.
+This is necessary to accommodate the varied possibilities of music notation,
+which include among others:
 
 - disjoint and non-aligned regions that describe the same range of music (e.g. medieval partbooks)
 - a region that is repeated multiple times in performance
 - a region that is repeated with temporal overlap, or at varying speeds (e.g. rounds)
 - a region that is read in more than one direction or orientation (e.g. puzzle canons)
 - a region that may or may not be performed
+
+Thus, one can have region lists like this:
+
+```xml
+<performance-regions>                
+    <region graphic="#m1part1" time="0 1.8"/>
+    <region graphic="#m1part2" time="0 1.8"/>     // two regions exist for this time range
+    <region graphic="#m1part1" time="1.8 3.61"/>  // same region is repeated in performance
+</performance-regions>
+```
+
 
 ### Performance Flows
 
@@ -1944,6 +2077,37 @@ Flows thus allow applications to:
 
 - position a cursor over the score in conjunction with an exact performance time
 - interpret user interaction with the region as indicating an exact performance time
+
+Within an SVG region, the <{flow}> and <{flow-path}> elements define the extent
+and path of this cursor. The `pos` attributes define "position" ranges for the cursor
+expressed in arbitrary time coordinates.
+
+```xml
+<flow cursor="0 40">    // cursor is a (0,40) vector in local coordinates
+    <flow-path d="M 0 0 h 15" pos="0 1"/>   // Move (0,0), horizontal(+15) over 0..1 position range
+    <flow-path d="h 15" pos="1 2"/>
+    <flow-path d="h 35" pos="2 4"/>
+</flow>
+```
+
+With the SVG path approach shown above, cursors may progress in any desired fashion
+through an arbitrarily shaped region. The cursor implicitly rotates as the tangent
+vector of the path changes.
+
+Within a performance, the <{region-flow}> element identifies a region with a
+flow. It's just like <{region}> but it includes a position range; as the
+performance progresses from the region's start time to its end time, the
+position of the flow cursor is advanced from its starting value to its ending
+value:
+
+```xml
+<performance-regions>                
+    <region-flow graphic="#m1" time="0 1.8" pos="0 4"/>
+    <region-flow graphic="#m2" time="1.8 3.61" pos="0 4"/>
+    <region-flow graphic="#m3" time="3.61 5.38" pos="0 4"/>
+    <region-flow graphic="#m4" time="5.38 7.23" pos="0 4"/>
+</performance-regions>
+```
 
 ### Performance Events
 
@@ -1975,13 +2139,22 @@ required by GMNX. Many simple notational ideas are not susceptible to event
 descriptions, for example textual or graphical instructions to an improvising
 performer, or color gradients as opposed to discrete symbols.
 
+Event mappings are effected by supplying a `graphic` attribute on an
+<{event}> or <{note}> element in an event sequence:
+
+```xml
+<event graphic="#note1" start="0" duration="0.25">
+    <note pitch="E4" dynamics="100"/>
+</event>
+```
+
 ## A GMNX Example
 
 Here is a simple example of the earlier CWMNX example, but structured as a
 GMNX document and reduced to a single staff for clarity. This example illustrates
 two kinds of mapping: performance flows and performance events.
 
-There is absolutely no requirement that music be structured as systems,
+Note: There is absolutely no requirement that music be structured as systems,
 or staves, or use a rectangle-based layout, or have a left-to-right orientation.
 This example merely uses a CWMN score because it's familiar material.
 
@@ -2089,6 +2262,11 @@ Because of the generality of GMNX, semantic flavors of MNX (like CWMNX) can be
 fairly easily "compiled" to GMNX, by any application able to render them into
 graphics and either audio or performance events.
 
-This likely has value as a bridge between applications that have a semantic
+This has value as a bridge between applications that have a semantic
 understanding of some type of music, and applications that do not (but which can
 still profit from the packaging and mappings provided by a GMNX document).
+
+Where compilation occurs, <em>semantic traceability</em> is recommended as a
+best practice by including the `mnx:semantic` attribute to point to the
+semantic element in the original source from which a GMNX document was
+compiled.

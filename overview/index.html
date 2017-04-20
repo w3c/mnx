@@ -1386,7 +1386,7 @@ Possible extra rowspan handling
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Proposal Overview</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-04-19">19 April 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-04-20">20 April 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1399,7 +1399,7 @@ Possible extra rowspan handling
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 19 April 2017,
+In addition, as of 20 April 2017,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1515,10 +1515,15 @@ Examples are used rather than specification language.</p>
        <a href="#gmnx-structure"><span class="secno">8.2</span> <span class="content">GMNX Structure</span></a>
        <ol class="toc">
         <li><a href="#visual-content"><span class="secno">8.2.1</span> <span class="content">Visual Content</span></a>
-        <li><a href="#performance-content"><span class="secno">8.2.2</span> <span class="content">Performance Content</span></a>
+        <li>
+         <a href="#performance-content"><span class="secno">8.2.2</span> <span class="content">Performance Content</span></a>
+         <ol class="toc">
+          <li><a href="#audio-media"><span class="secno">8.2.2.1</span> <span class="content">Audio Media</span></a>
+          <li><a href="#event-sequences"><span class="secno">8.2.2.2</span> <span class="content">Event Sequences</span></a>
+         </ol>
        </ol>
       <li>
-       <a href="#mapping-between-position-and-time"><span class="secno">8.3</span> <span class="content">Mapping Between Position and Time</span></a>
+       <a href="#mapping"><span class="secno">8.3</span> <span class="content">Mapping Between Position and Time</span></a>
        <ol class="toc">
         <li><a href="#performance-regions"><span class="secno">8.3.1</span> <span class="content">Performance Regions</span></a>
         <li><a href="#performance-flows"><span class="secno">8.3.2</span> <span class="content">Performance Flows</span></a>
@@ -2514,7 +2519,7 @@ the tuplet.</p>
     // remaining events in sequence...
 <span class="nt">&lt;/sequence></span>
 </pre>
-   <p>(The tag <code>&lt;tuplet actual="3/8" normal="2/8"></code> would work exactly the same. There
+   <p>(The tag <code>&lt;tuplet actual="3/8" normal="2/8">...&lt;/tuplet></code> would work exactly the same. There
 is no semantic difference.)</p>
    <p>One can include directions in tuplets as well. And, naturally, tuplets
 may be included within tuplets.</p>
@@ -3120,7 +3125,7 @@ that can be consumed by other applications for viewing and playback.</p>
    <p>A GMNX document contains two kinds of data: visual content and performance
 content.</p>
    <h4 class="heading settled" data-level="8.2.1" id="visual-content"><span class="secno">8.2.1. </span><span class="content">Visual Content</span><a class="self-link" href="#visual-content"></a></h4>
-   <p>The visual content piece of a GMNX document is a set of SVG elements
+   <p>The visual content piece of a GMNX document is a set of <code><a data-link-type="element">svg</a></code> elements
 representing the score. Each element constitutes a single page of the score,
 where "page" is defined as a two-dimensional canvas of arbitrary dimension
 whose contents can be viewed independently of other pages.</p>
@@ -3128,9 +3133,9 @@ whose contents can be viewed independently of other pages.</p>
 notation of some kind.</p>
    <p>SVG elements are labeled with IDs, allowing them to be referenced within the
 performance content.</p>
-   <p>GMNX permits special <code><a data-link-type="element">flow</a></code> and <code><a data-link-type="element">flow-path</a></code> elements to be embedded within
-SVG to describe regions in the visual content having a directional flow which
-can be mapped to time in a musical performance. This is strictly optional.</p>
+   <p>GMNX permits special elements to be embedded within SVG to describe regions in
+the visual content having a directional flow which can be mapped to time in a
+musical performance. This optional feature is described below under <a href="#performance-flows">performance flows</a>.</p>
    <p>Please refer to the <a href="https://www.w3.org/TR/SVG/Overview.html">SVG
 specification</a> for information on what SVG is able to represent. For all
 practical purposes, any combination of vector and raster graphics is
@@ -3149,7 +3154,98 @@ correspondence between the visual score and the content of each performance.</p>
 approach to notation.</p>
    <p>Performances are optional in GMNX. Any number of performances may be provided,
 since there is no concept of a canonical performance in GMNX.</p>
-   <h3 class="heading settled" data-level="8.3" id="mapping-between-position-and-time"><span class="secno">8.3. </span><span class="content">Mapping Between Position and Time</span><a class="self-link" href="#mapping-between-position-and-time"></a></h3>
+   <h5 class="heading settled" data-level="8.2.2.1" id="audio-media"><span class="secno">8.2.2.1. </span><span class="content">Audio Media</span><a class="self-link" href="#audio-media"></a></h5>
+   <p>A single performance represented by audio media can be described with a <code><a data-link-type="element">performance</a></code> element that includes any number of media file references.
+Here’s a simple example:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;performance</span><span class="nt">></span>
+    <span class="nt">&lt;performance-name</span><span class="nt">></span>Piano performance<span class="nt">&lt;/performance-name></span>
+    <span class="nt">&lt;performance-media</span><span class="nt">></span>
+        <span class="nt">&lt;media-file</span> <span class="na">src=</span><span class="s">"hot-cross-buns.mp4"</span><span class="nt">/></span>
+    <span class="nt">&lt;/performance-media></span>
+<span class="nt">&lt;/performance></span>
+</pre>
+   <p>The performance media may be further described in terms of channels. This is
+important in <a href="#mapping">§8.3 Mapping Between Position and Time</a>. An example follows:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;performance</span><span class="nt">></span>
+    <span class="nt">&lt;performance-name</span><span class="nt">></span>Piano performance<span class="nt">&lt;/performance-name></span>
+    <span class="nt">&lt;performance-media</span><span class="nt">></span>
+        <span class="nt">&lt;media-file</span> <span class="na">src=</span><span class="s">"hot-cross-buns.mp4"</span><span class="nt">></span>
+            <span class="nt">&lt;channel</span> <span class="na">index=</span><span class="s">"0"</span><span class="nt">></span>
+                <span class="nt">&lt;name</span><span class="nt">></span>Piano LH<span class="nt">&lt;/name></span>
+            <span class="nt">&lt;/channel></span>
+            <span class="nt">&lt;channel</span> <span class="na">index=</span><span class="s">"1"</span><span class="nt">></span>
+                <span class="nt">&lt;name</span><span class="nt">></span>Piano RH<span class="nt">&lt;/name></span>
+            <span class="nt">&lt;/channel></span>
+        <span class="nt">&lt;/media-file></span>
+    <span class="nt">&lt;/performance-media></span>
+<span class="nt">&lt;/performance></span>
+</pre>
+   <p>Multiple media files may also be referenced, indicating that they together supply
+a multitrack performance when played in synchronization. Here a stereo piano
+recording is synchronized with a mono recording of a trumpet track:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;performance</span><span class="nt">></span>
+    <span class="nt">&lt;performance-name</span><span class="nt">></span>Piano performance<span class="nt">&lt;/performance-name></span>
+    <span class="nt">&lt;performance-media</span><span class="nt">></span>
+        <span class="nt">&lt;media-file</span> <span class="na">src=</span><span class="s">"hot-cross-buns-piano.mp4"</span><span class="nt">></span>
+            <span class="nt">&lt;channel</span> <span class="na">index=</span><span class="s">"0"</span><span class="nt">></span>
+                <span class="nt">&lt;name</span><span class="nt">></span>Piano LH<span class="nt">&lt;/name></span>
+            <span class="nt">&lt;/channel></span>
+            <span class="nt">&lt;channel</span> <span class="na">index=</span><span class="s">"1"</span><span class="nt">></span>
+                <span class="nt">&lt;name</span><span class="nt">></span>Piano RH<span class="nt">&lt;/name></span>
+            <span class="nt">&lt;/channel></span>
+        <span class="nt">&lt;/media-file></span>
+        <span class="nt">&lt;media-file</span> <span class="na">src=</span><span class="s">"hot-cross-buns-trumpet.mp4"</span><span class="nt">></span>
+            <span class="nt">&lt;channel</span> <span class="na">index=</span><span class="s">"0"</span><span class="nt">></span>
+                <span class="nt">&lt;name</span><span class="nt">></span>Trumpet<span class="nt">&lt;/name></span>
+            <span class="nt">&lt;/channel></span>
+        <span class="nt">&lt;/media-file></span>
+    <span class="nt">&lt;/performance-media></span>
+<span class="nt">&lt;/performance></span>
+</pre>
+   <h5 class="heading settled" data-level="8.2.2.2" id="event-sequences"><span class="secno">8.2.2.2. </span><span class="content">Event Sequences</span><a class="self-link" href="#event-sequences"></a></h5>
+   <p>Alternately, a performance may be represented by a sequence of discrete events
+having these properties:</p>
+   <ul>
+    <li data-md="">
+     <p>onset (in seconds from start of performance)</p>
+    <li data-md="">
+     <p>duration (in seconds)</p>
+    <li data-md="">
+     <p>instrument (described by MusicXML sound ID)</p>
+    <li data-md="">
+     <p>pitch (as in CWMNX)</p>
+    <li data-md="">
+     <p>dynamics (as in CWMNX)</p>
+    <li data-md="">
+     <p>technique</p>
+   </ul>
+   <p>There is no tempo information in an event list. Adjustment of playback speed
+by an implementation may be accomplished by proportionally adjusting onset and
+duration times.</p>
+   <p>This information can be used for synthesis, analysis, or any other purpose by
+the application. However it is specifically not intended to represent semantic
+notational content. For example, a CWMN staccato quarter note might
+be represented as an event with the effective duration of a 16th note.</p>
+   <p>The <code><a data-link-type="element">performance-events</a></code> element supplies this information:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;performance</span><span class="nt">></span>
+    <span class="nt">&lt;performance-name</span><span class="nt">></span>Event sequence<span class="nt">&lt;/performance-name></span>
+    <span class="nt">&lt;performance-events</span><span class="nt">></span>
+        <span class="nt">&lt;part</span><span class="nt">></span>
+            <span class="nt">&lt;instrument-sound</span><span class="nt">></span>keyboard.piano<span class="nt">&lt;/instrument-sound></span>
+            <span class="nt">&lt;sequence</span><span class="nt">></span>
+                <span class="nt">&lt;event</span> <span class="na">graphic=</span><span class="s">"#note1"</span> <span class="na">start=</span><span class="s">"0"</span> <span class="na">duration=</span><span class="s">"0.25"</span><span class="nt">></span>
+                    <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E4"</span> <span class="na">dynamics=</span><span class="s">"100"</span><span class="nt">/></span>
+                <span class="nt">&lt;/event></span>
+                <span class="nt">&lt;event</span> <span class="na">graphic=</span><span class="s">"#note2"</span> <span class="na">start=</span><span class="s">"0.25"</span> <span class="na">duration=</span><span class="s">"0.25"</span><span class="nt">></span>
+                    <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"D4"</span><span class="nt">/></span>
+                <span class="nt">&lt;/event></span>
+                // ...and so on
+            <span class="nt">&lt;/sequence></span>
+        <span class="nt">&lt;/part></span>
+    <span class="nt">&lt;/performance-events></span>
+<span class="nt">&lt;/performance></span>
+</pre>
+   <h3 class="heading settled" data-level="8.3" id="mapping"><span class="secno">8.3. </span><span class="content">Mapping Between Position and Time</span><a class="self-link" href="#mapping"></a></h3>
    <p>What makes GMNX more powerful than just a combination of images and audio is its
 ability to describe correspondences between the two. These correspondences
 are not necessary to use GMNX, but can be provided wherever they are known.</p>
@@ -3167,13 +3263,27 @@ notation that cannot supply them.</p>
    <p>Where provided, this information allows applications to do the following:</p>
    <ul>
     <li data-md="">
-     <p>highlight the element (or its bounding box) in conjunction with performance of the given time range</p>
+     <p>modify the appearance of the element (e.g. by highlighting it) in conjunction with performance of the given time range</p>
     <li data-md="">
      <p>interpret user interaction with the element as referring to the performance time range</p>
    </ul>
-   <p>Note that the mapping is many-to-many: a given graphical region may be mapped to any number
-of performance time ranges, and vice versa. This is necessary to accommodate
-the varied possibilities of music notation, which include among others:</p>
+   <p>Performance regions are identified by listing them in a performance’s <code><a data-link-type="element">performance-regions</a></code> element. The <code>graphic</code> attribute refers to the SVG element
+for the region, while the <code>time</code> attribute supplies a time range within the performance
+given in seconds since start.</p>
+<pre class="language-xml highlight"><span class="nt">&lt;performance-regions</span><span class="nt">></span>                
+    <span class="nt">&lt;region</span> <span class="na">graphic=</span><span class="s">"#m1"</span> <span class="na">time=</span><span class="s">"0 1.8"</span><span class="nt">/></span>
+    <span class="nt">&lt;region</span> <span class="na">graphic=</span><span class="s">"#m2"</span> <span class="na">time=</span><span class="s">"1.8 3.61"</span><span class="nt">/></span>
+    <span class="nt">&lt;region</span> <span class="na">graphic=</span><span class="s">"#m3"</span> <span class="na">time=</span><span class="s">"3.61 5.38"</span><span class="nt">/></span>
+    <span class="nt">&lt;region</span> <span class="na">graphic=</span><span class="s">"#m4"</span> <span class="na">time=</span><span class="s">"5.38 7.23"</span><span class="nt">/></span>
+<span class="nt">&lt;/performance-regions></span>
+</pre>
+   <p>Region shapes can thus be any closed shape definable in SVG. Examples include
+rectangles, polygons, ellipses, polylines, polysplines, shapes with hollow
+cutouts... literally, anything.</p>
+   <p>Region mappings are many-to-many in character: a given graphical
+region may be mapped to any number of performance time ranges, and vice versa.
+This is necessary to accommodate the varied possibilities of music notation,
+which include among others:</p>
    <ul>
     <li data-md="">
      <p>disjoint and non-aligned regions that describe the same range of music (e.g. medieval partbooks)</p>
@@ -3186,6 +3296,13 @@ the varied possibilities of music notation, which include among others:</p>
     <li data-md="">
      <p>a region that may or may not be performed</p>
    </ul>
+   <p>Thus, one can have region lists like this:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;performance-regions</span><span class="nt">></span>                
+    <span class="nt">&lt;region</span> <span class="na">graphic=</span><span class="s">"#m1part1"</span> <span class="na">time=</span><span class="s">"0 1.8"</span><span class="nt">/></span>
+    <span class="nt">&lt;region</span> <span class="na">graphic=</span><span class="s">"#m1part2"</span> <span class="na">time=</span><span class="s">"0 1.8"</span><span class="nt">/></span>     // two regions exist for this time range
+    <span class="nt">&lt;region</span> <span class="na">graphic=</span><span class="s">"#m1part1"</span> <span class="na">time=</span><span class="s">"1.8 3.61"</span><span class="nt">/></span>  // same region is repeated in performance
+<span class="nt">&lt;/performance-regions></span>
+</pre>
    <h4 class="heading settled" data-level="8.3.2" id="performance-flows"><span class="secno">8.3.2. </span><span class="content">Performance Flows</span><a class="self-link" href="#performance-flows"></a></h4>
    <p><em>Performance flows</em> are a special kind of performance region,
 in which a geometric cursor tracks the flow of performance time by moving
@@ -3209,6 +3326,30 @@ to a specific cursor position.</p>
     <li data-md="">
      <p>interpret user interaction with the region as indicating an exact performance time</p>
    </ul>
+   <p>Within an SVG region, the <code><a data-link-type="element">flow</a></code> and <code><a data-link-type="element">flow-path</a></code> elements define the extent
+and path of this cursor. The <code>pos</code> attributes define "position" ranges for the cursor
+expressed in arbitrary time coordinates.</p>
+<pre class="language-xml highlight"><span class="nt">&lt;flow</span> <span class="na">cursor=</span><span class="s">"0 40"</span><span class="nt">></span>    // cursor is a (0,40) vector in local coordinates
+    <span class="nt">&lt;flow-path</span> <span class="na">d=</span><span class="s">"M 0 0 h 15"</span> <span class="na">pos=</span><span class="s">"0 1"</span><span class="nt">/></span>   // Move (0,0), horizontal(+15) over 0..1 position range
+    <span class="nt">&lt;flow-path</span> <span class="na">d=</span><span class="s">"h 15"</span> <span class="na">pos=</span><span class="s">"1 2"</span><span class="nt">/></span>
+    <span class="nt">&lt;flow-path</span> <span class="na">d=</span><span class="s">"h 35"</span> <span class="na">pos=</span><span class="s">"2 4"</span><span class="nt">/></span>
+<span class="nt">&lt;/flow></span>
+</pre>
+   <p>With the SVG path approach shown above, cursors may progress in any desired fashion
+through an arbitrarily shaped region. The cursor implicitly rotates as the tangent
+vector of the path changes.</p>
+   <p>Within a performance, the <code><a data-link-type="element">region-flow</a></code> element identifies a region with a
+flow. It’s just like <code><a data-link-type="element">region</a></code> but it includes a position range; as the
+performance progresses from the region’s start time to its end time, the
+position of the flow cursor is advanced from its starting value to its ending
+value:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;performance-regions</span><span class="nt">></span>                
+    <span class="nt">&lt;region-flow</span> <span class="na">graphic=</span><span class="s">"#m1"</span> <span class="na">time=</span><span class="s">"0 1.8"</span> <span class="na">pos=</span><span class="s">"0 4"</span><span class="nt">/></span>
+    <span class="nt">&lt;region-flow</span> <span class="na">graphic=</span><span class="s">"#m2"</span> <span class="na">time=</span><span class="s">"1.8 3.61"</span> <span class="na">pos=</span><span class="s">"0 4"</span><span class="nt">/></span>
+    <span class="nt">&lt;region-flow</span> <span class="na">graphic=</span><span class="s">"#m3"</span> <span class="na">time=</span><span class="s">"3.61 5.38"</span> <span class="na">pos=</span><span class="s">"0 4"</span><span class="nt">/></span>
+    <span class="nt">&lt;region-flow</span> <span class="na">graphic=</span><span class="s">"#m4"</span> <span class="na">time=</span><span class="s">"5.38 7.23"</span> <span class="na">pos=</span><span class="s">"0 4"</span><span class="nt">/></span>
+<span class="nt">&lt;/performance-regions></span>
+</pre>
    <h4 class="heading settled" data-level="8.3.3" id="performance-events"><span class="secno">8.3.3. </span><span class="content">Performance Events</span><a class="self-link" href="#performance-events"></a></h4>
    <p><em>Performance events</em> are the final type of mapping supplied by GMNX,
 whose purpose is to describe a discrete musical event. It includes
@@ -3241,11 +3382,16 @@ deal of contemporary Western music, they are not universal and so are not
 required by GMNX. Many simple notational ideas are not susceptible to event
 descriptions, for example textual or graphical instructions to an improvising
 performer, or color gradients as opposed to discrete symbols.</p>
+   <p>Event mappings are effected by supplying a <code>graphic</code> attribute on an <code><a data-link-type="element">event</a></code> or <code><a data-link-type="element">note</a></code> element in an event sequence:</p>
+<pre class="language-xml highlight"><span class="nt">&lt;event</span> <span class="na">graphic=</span><span class="s">"#note1"</span> <span class="na">start=</span><span class="s">"0"</span> <span class="na">duration=</span><span class="s">"0.25"</span><span class="nt">></span>
+    <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E4"</span> <span class="na">dynamics=</span><span class="s">"100"</span><span class="nt">/></span>
+<span class="nt">&lt;/event></span>
+</pre>
    <h3 class="heading settled" data-level="8.4" id="a-gmnx-example"><span class="secno">8.4. </span><span class="content">A GMNX Example</span><a class="self-link" href="#a-gmnx-example"></a></h3>
    <p>Here is a simple example of the earlier CWMNX example, but structured as a
 GMNX document and reduced to a single staff for clarity. This example illustrates
 two kinds of mapping: performance flows and performance events.</p>
-   <p>There is absolutely no requirement that music be structured as systems,
+   <p class="note" role="note"><span>Note:</span> There is absolutely no requirement that music be structured as systems,
 or staves, or use a rectangle-based layout, or have a left-to-right orientation.
 This example merely uses a CWMN score because it’s familiar material.</p>
    <div style="font-size: .75em;">
@@ -3348,9 +3494,13 @@ This example merely uses a CWMN score because it’s familiar material.</p>
    <p>Because of the generality of GMNX, semantic flavors of MNX (like CWMNX) can be
 fairly easily "compiled" to GMNX, by any application able to render them into
 graphics and either audio or performance events.</p>
-   <p>This likely has value as a bridge between applications that have a semantic
+   <p>This has value as a bridge between applications that have a semantic
 understanding of some type of music, and applications that do not (but which can
 still profit from the packaging and mappings provided by a GMNX document).</p>
+   <p>Where compilation occurs, <em>semantic traceability</em> is recommended as a
+best practice by including the <code>mnx:semantic</code> attribute to point to the
+semantic element in the original source from which a GMNX document was
+compiled.</p>
   </main>
   <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2>
