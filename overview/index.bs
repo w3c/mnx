@@ -2085,12 +2085,14 @@ Thus, one can have region lists like this:
 </performance-regions>
 ```
 
+TODO: Add note on scoped regions within parts or channels
 
 ### Performance Flows
 
-<em>Performance flows</em> are a special kind of performance region,
-in which a geometric cursor tracks the flow of performance time by moving
-along a path through the region.  Each flow includes the following information:
+A <em>performance flow</em> is a special kind of performance region, in which
+a smooth, continuous two-way mapping exists between each spatial point in the
+region and a corresponding point in performance time. Each flow includes the
+following information:
 
 1. The ID of a particular SVG element corresponding to the region.
 1. A geometric path that is followed smoothly by an imaginary cursor line within the SVG element,

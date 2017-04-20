@@ -3327,10 +3327,12 @@ which include among others:</p>
     <span class="nt">&lt;region</span> <span class="na">graphic=</span><span class="s">"#m1part1"</span> <span class="na">time=</span><span class="s">"1.8 3.61"</span><span class="nt">/></span>  // same region is repeated in performance
 <span class="nt">&lt;/performance-regions></span>
 </pre>
+   <p>TODO: Add note on scoped regions within parts or channels</p>
    <h4 class="heading settled" data-level="8.3.2" id="performance-flows"><span class="secno">8.3.2. </span><span class="content">Performance Flows</span><a class="self-link" href="#performance-flows"></a></h4>
-   <p><em>Performance flows</em> are a special kind of performance region,
-in which a geometric cursor tracks the flow of performance time by moving
-along a path through the region.  Each flow includes the following information:</p>
+   <p>A <em>performance flow</em> is a special kind of performance region, in which
+a smooth, continuous two-way mapping exists between each spatial point in the
+region and a corresponding point in performance time. Each flow includes the
+following information:</p>
    <ol>
     <li data-md="">
      <p>The ID of a particular SVG element corresponding to the region.</p>
