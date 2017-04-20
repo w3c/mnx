@@ -1422,8 +1422,9 @@ Examples are used rather than specification language.</p>
       <li><a href="#about-mnx"><span class="secno">1.1</span> <span class="content">About MNX</span></a>
       <li><a href="#goals-and-tradeoffs"><span class="secno">1.2</span> <span class="content">Goals and Tradeoffs</span></a>
       <li><a href="#mnx-score-types"><span class="secno">1.3</span> <span class="content">MNX Score Types</span></a>
-      <li><a href="#compatibility-with-musicxml"><span class="secno">1.4</span> <span class="content">Compatibility with MusicXML</span></a>
-      <li><a href="#use-case-concordance"><span class="secno">1.5</span> <span class="content">Use case concordance</span></a>
+      <li><a href="#comparisons-with-other-notation-standards"><span class="secno">1.4</span> <span class="content">Comparisons with other notation standards</span></a>
+      <li><a href="#compatibility-with-musicxml"><span class="secno">1.5</span> <span class="content">Compatibility with MusicXML</span></a>
+      <li><a href="#use-case-concordance"><span class="secno">1.6</span> <span class="content">Use case concordance</span></a>
      </ol>
     <li><a href="#a-brief-example"><span class="secno">2</span> <span class="content">A brief example</span></a>
     <li>
@@ -1612,7 +1613,27 @@ requirements do not significantly extend beyond those of music of the 19th and
 early 20th centuries." [Gerald Warfield, <em>Writings on
 Contemporary Music Notation</em> (Ann Arbor: Music Library Association, 1976),
 ii.]</p>
-   <h3 class="heading settled" data-level="1.4" id="compatibility-with-musicxml"><span class="secno">1.4. </span><span class="content">Compatibility with MusicXML</span><a class="self-link" href="#compatibility-with-musicxml"></a></h3>
+   <h3 class="heading settled" data-level="1.4" id="comparisons-with-other-notation-standards"><span class="secno">1.4. </span><span class="content">Comparisons with other notation standards</span><a class="self-link" href="#comparisons-with-other-notation-standards"></a></h3>
+   <p>CWMNX is a lineal descendant of MusicXML, and employs many of the same
+concepts. However it sacrifices some features and flexibility in favor of
+tighter interoperability, and simplifies the element structure considerably.
+It also moves all non-semantic information into CSS properties. The features
+in GMNX have no analogue in MusicXML.</p>
+   <p>MEI is a very general and expressive medium for encoding arbitrary musical
+documents, with particular attention to the needs of scholars. Due to its
+extreme plasticity, MEI is perhaps better described as a powerful framework
+for building customized documents and applications, than as a single encoding
+method. As such, interoperability has not been a main goal of MEI to date.
+However there are efforts underway to define a clean MEI subset as an
+interoperable medium for encoding CWMN (sometimes known as "MEI Go").</p>
+   <p>IEEE 1599 is a specification that has paid unique attention to the
+relationships between different layers of musical information. Its Logic layer
+is similar in content to CWMNX, while its Notational, Performance and Audio
+layers answer some of the same concerns as GWMNX. GMNX takes a different
+approach to connecting these layers, and does not attempt to fully
+unify semantic information with visual and performance data. It relies
+to a greater degree on SVG, and to a lesser degree on MIDI.</p>
+   <h3 class="heading settled" data-level="1.5" id="compatibility-with-musicxml"><span class="secno">1.5. </span><span class="content">Compatibility with MusicXML</span><a class="self-link" href="#compatibility-with-musicxml"></a></h3>
    <p>MNX does not attempt to be backward-compatible with MusicXML, nor is it a
 superset of MusicXML. However, a large proportion of MusicXML markup is expected
 to be preserved. In these examples, MusicXML constructs are used freely
@@ -1620,7 +1641,7 @@ throughout as a way to show how proposed new concepts dovetail with existing
 ones.</p>
    <p>Backward compatibility aside, it is a goal to be able to machine-translate
 MusicXML into MNX. This is essential for migration purposes.</p>
-   <h3 class="heading settled" data-level="1.5" id="use-case-concordance"><span class="secno">1.5. </span><span class="content">Use case concordance</span><a class="self-link" href="#use-case-concordance"></a></h3>
+   <h3 class="heading settled" data-level="1.6" id="use-case-concordance"><span class="secno">1.6. </span><span class="content">Use case concordance</span><a class="self-link" href="#use-case-concordance"></a></h3>
    <p>A companion document details a set of <a href="../use-cases/index.html">known use cases for music notation</a>.
 The use cases have links back to relevant sections of this document, where support
 can be demonstrated.</p>

@@ -97,6 +97,30 @@ early 20th centuries." [Gerald Warfield, *Writings on
 Contemporary Music Notation* (Ann Arbor: Music Library Association, 1976),
 ii.]
 
+## Comparisons with other notation standards
+
+CWMNX is a lineal descendant of MusicXML, and employs many of the same
+concepts. However it sacrifices some features and flexibility in favor of
+tighter interoperability, and simplifies the element structure considerably.
+It also moves all non-semantic information into CSS properties. The features
+in GMNX have no analogue in MusicXML.
+
+MEI is a very general and expressive medium for encoding arbitrary musical
+documents, with particular attention to the needs of scholars. Due to its
+extreme plasticity, MEI is perhaps better described as a powerful framework
+for building customized documents and applications, than as a single encoding
+method. As such, interoperability has not been a main goal of MEI to date.
+However there are efforts underway to define a clean MEI subset as an
+interoperable medium for encoding CWMN (sometimes known as "MEI Go").
+
+IEEE 1599 is a specification that has paid unique attention to the
+relationships between different layers of musical information. Its Logic layer
+is similar in content to CWMNX, while its Notational, Performance and Audio
+layers answer some of the same concerns as GWMNX. GMNX takes a different
+approach to connecting these layers, and does not attempt to fully
+unify semantic information with visual and performance data. It relies
+to a greater degree on SVG, and to a lesser degree on MIDI.
+
 ## Compatibility with MusicXML
 
 MNX does not attempt to be backward-compatible with MusicXML, nor is it a
