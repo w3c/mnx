@@ -2297,6 +2297,5 @@ understanding of some type of music, and applications that do not (but which can
 still profit from the packaging and mappings provided by a GMNX document).
 
 Where compilation occurs, <em>semantic traceability</em> is recommended as a
-best practice by including the `mnx:semantic` attribute to point to the
-semantic element in the original source from which a GMNX document was
-compiled.
+best practice by including an `mnx:semantic` attribute in each SVG element
+that points to a corresponding semantic element in the original source.
