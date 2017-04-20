@@ -3188,18 +3188,18 @@ Here’s a simple example:</p>
     <span class="nt">&lt;/performance-media></span>
 <span class="nt">&lt;/performance></span>
 </pre>
-   <p>The performance media may be further described in terms of channels. This is
+   <p>The performance media may be further described in terms of tracks. This is
 important in <a href="#mapping">§8.3 Mapping Between Position and Time</a>. An example follows:</p>
 <pre class="language-xml highlight"><span class="nt">&lt;performance</span><span class="nt">></span>
     <span class="nt">&lt;performance-name</span><span class="nt">></span>Piano performance<span class="nt">&lt;/performance-name></span>
     <span class="nt">&lt;performance-media</span><span class="nt">></span>
         <span class="nt">&lt;media-file</span> <span class="na">src=</span><span class="s">"hot-cross-buns.mp4"</span><span class="nt">></span>
-            <span class="nt">&lt;channel</span> <span class="na">index=</span><span class="s">"0"</span><span class="nt">></span>
+            <span class="nt">&lt;track</span> <span class="na">index=</span><span class="s">"0"</span><span class="nt">></span>
                 <span class="nt">&lt;name</span><span class="nt">></span>Piano LH<span class="nt">&lt;/name></span>
-            <span class="nt">&lt;/channel></span>
-            <span class="nt">&lt;channel</span> <span class="na">index=</span><span class="s">"1"</span><span class="nt">></span>
+            <span class="nt">&lt;/track></span>
+            <span class="nt">&lt;track</span> <span class="na">index=</span><span class="s">"1"</span><span class="nt">></span>
                 <span class="nt">&lt;name</span><span class="nt">></span>Piano RH<span class="nt">&lt;/name></span>
-            <span class="nt">&lt;/channel></span>
+            <span class="nt">&lt;/track></span>
         <span class="nt">&lt;/media-file></span>
     <span class="nt">&lt;/performance-media></span>
 <span class="nt">&lt;/performance></span>
@@ -3211,17 +3211,17 @@ recording is synchronized with a mono recording of a trumpet track:</p>
     <span class="nt">&lt;performance-name</span><span class="nt">></span>Piano performance<span class="nt">&lt;/performance-name></span>
     <span class="nt">&lt;performance-media</span><span class="nt">></span>
         <span class="nt">&lt;media-file</span> <span class="na">src=</span><span class="s">"hot-cross-buns-piano.mp4"</span><span class="nt">></span>
-            <span class="nt">&lt;channel</span> <span class="na">index=</span><span class="s">"0"</span><span class="nt">></span>
+            <span class="nt">&lt;track</span> <span class="na">index=</span><span class="s">"0"</span><span class="nt">></span>
                 <span class="nt">&lt;name</span><span class="nt">></span>Piano LH<span class="nt">&lt;/name></span>
-            <span class="nt">&lt;/channel></span>
-            <span class="nt">&lt;channel</span> <span class="na">index=</span><span class="s">"1"</span><span class="nt">></span>
+            <span class="nt">&lt;/track></span>
+            <span class="nt">&lt;track</span> <span class="na">index=</span><span class="s">"1"</span><span class="nt">></span>
                 <span class="nt">&lt;name</span><span class="nt">></span>Piano RH<span class="nt">&lt;/name></span>
-            <span class="nt">&lt;/channel></span>
+            <span class="nt">&lt;/track></span>
         <span class="nt">&lt;/media-file></span>
         <span class="nt">&lt;media-file</span> <span class="na">src=</span><span class="s">"hot-cross-buns-trumpet.mp4"</span><span class="nt">></span>
-            <span class="nt">&lt;channel</span> <span class="na">index=</span><span class="s">"0"</span><span class="nt">></span>
+            <span class="nt">&lt;track</span> <span class="na">index=</span><span class="s">"0"</span><span class="nt">></span>
                 <span class="nt">&lt;name</span><span class="nt">></span>Trumpet<span class="nt">&lt;/name></span>
-            <span class="nt">&lt;/channel></span>
+            <span class="nt">&lt;/track></span>
         <span class="nt">&lt;/media-file></span>
     <span class="nt">&lt;/performance-media></span>
 <span class="nt">&lt;/performance></span>
@@ -3254,7 +3254,7 @@ be represented as an event with the effective duration of a 16th note.</p>
 <pre class="language-xml highlight"><span class="nt">&lt;performance</span><span class="nt">></span>
     <span class="nt">&lt;performance-name</span><span class="nt">></span>Event sequence<span class="nt">&lt;/performance-name></span>
     <span class="nt">&lt;performance-events</span><span class="nt">></span>
-        <span class="nt">&lt;part</span><span class="nt">></span>
+        <span class="nt">&lt;track</span><span class="nt">></span>
             <span class="nt">&lt;instrument-sound</span><span class="nt">></span>keyboard.piano<span class="nt">&lt;/instrument-sound></span>
             <span class="nt">&lt;sequence</span><span class="nt">></span>
                 <span class="nt">&lt;event</span> <span class="na">graphic=</span><span class="s">"#note1"</span> <span class="na">start=</span><span class="s">"0"</span> <span class="na">duration=</span><span class="s">"0.25"</span><span class="nt">></span>
@@ -3265,7 +3265,7 @@ be represented as an event with the effective duration of a 16th note.</p>
                 <span class="nt">&lt;/event></span>
                 // ...and so on
             <span class="nt">&lt;/sequence></span>
-        <span class="nt">&lt;/part></span>
+        <span class="nt">&lt;/track></span>
     <span class="nt">&lt;/performance-events></span>
 <span class="nt">&lt;/performance></span>
 </pre>
@@ -3327,7 +3327,9 @@ which include among others:</p>
     <span class="nt">&lt;region</span> <span class="na">graphic=</span><span class="s">"#m1part1"</span> <span class="na">time=</span><span class="s">"1.8 3.61"</span><span class="nt">/></span>  // same region is repeated in performance
 <span class="nt">&lt;/performance-regions></span>
 </pre>
-   <p>TODO: Add note on scoped regions within parts or channels</p>
+   <p>A <code><a data-link-type="element">performance-regions</a></code> element can also include one or more optional <code><a data-link-type="element">track-ref</a></code> elements that identify a set of specific tracks in the performance. Such regions
+are taken as specific to the musical material in these tracks, rather than to the
+material in the performance as a whole.</p>
    <h4 class="heading settled" data-level="8.3.2" id="performance-flows"><span class="secno">8.3.2. </span><span class="content">Performance Flows</span><a class="self-link" href="#performance-flows"></a></h4>
    <p>A <em>performance flow</em> is a special kind of performance region, in which
 a smooth, continuous two-way mapping exists between each spatial point in the
@@ -3393,8 +3395,7 @@ representation in the visual content, to a description of the sound that it
 makes. Obviously, the richness of attributes like pitch, velocity and
 performance techniques must be limited for reasons of interoperability.
 Consequently, audio media remain the ultimate general vehicle for describing
-sounds in their own native terms, in which case events refer to a time range
-(or perhaps to a particular audio channel).</p>
+sounds in their own native terms, in which case events refer to a time range.</p>
    <p>Performance event mappings allow applications to:</p>
    <ul>
     <li data-md="">

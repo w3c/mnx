@@ -1937,7 +1937,7 @@ Here's a simple example:
 </performance>
 ```
 
-The performance media may be further described in terms of channels. This is
+The performance media may be further described in terms of tracks. This is
 important in <a href="#mapping"></a>. An example follows:
 
 ```xml
@@ -1945,12 +1945,12 @@ important in <a href="#mapping"></a>. An example follows:
     <performance-name>Piano performance</performance-name>
     <performance-media>
         <media-file src="hot-cross-buns.mp4">
-            <channel index="0">
+            <track index="0">
                 <name>Piano LH</name>
-            </channel>
-            <channel index="1">
+            </track>
+            <track index="1">
                 <name>Piano RH</name>
-            </channel>
+            </track>
         </media-file>
     </performance-media>
 </performance>
@@ -1965,17 +1965,17 @@ recording is synchronized with a mono recording of a trumpet track:
     <performance-name>Piano performance</performance-name>
     <performance-media>
         <media-file src="hot-cross-buns-piano.mp4">
-            <channel index="0">
+            <track index="0">
                 <name>Piano LH</name>
-            </channel>
-            <channel index="1">
+            </track>
+            <track index="1">
                 <name>Piano RH</name>
-            </channel>
+            </track>
         </media-file>
         <media-file src="hot-cross-buns-trumpet.mp4">
-            <channel index="0">
+            <track index="0">
                 <name>Trumpet</name>
-            </channel>
+            </track>
         </media-file>
     </performance-media>
 </performance>
@@ -2008,7 +2008,7 @@ The <{performance-events}> element supplies this information:
 <performance>
     <performance-name>Event sequence</performance-name>
     <performance-events>
-        <part>
+        <track>
             <instrument-sound>keyboard.piano</instrument-sound>
             <sequence>
                 <event graphic="#note1" start="0" duration="0.25">
@@ -2019,7 +2019,7 @@ The <{performance-events}> element supplies this information:
                 </event>
                 // ...and so on
             </sequence>
-        </part>
+        </track>
     </performance-events>
 </performance>
 ```
@@ -2085,7 +2085,10 @@ Thus, one can have region lists like this:
 </performance-regions>
 ```
 
-TODO: Add note on scoped regions within parts or channels
+A <{performance-regions}> element can also include one or more optional <{track-ref}>
+elements that identify a set of specific tracks in the performance. Such regions
+are taken as specific to the musical material in these tracks, rather than to the
+material in the performance as a whole.
 
 ### Performance Flows
 
@@ -2155,8 +2158,7 @@ representation in the visual content, to a description of the sound that it
 makes. Obviously, the richness of attributes like pitch, velocity and
 performance techniques must be limited for reasons of interoperability.
 Consequently, audio media remain the ultimate general vehicle for describing
-sounds in their own native terms, in which case events refer to a time range
-(or perhaps to a particular audio channel).
+sounds in their own native terms, in which case events refer to a time range.
 
 Performance event mappings allow applications to:
 - identify specific graphics within the score in conjunction with their occurrence in a performance
