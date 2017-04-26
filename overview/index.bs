@@ -513,25 +513,11 @@ only some other part in the score, there would still be an expectation that
 the tempo indications encoded in the topmost part would be shown. MusicXML
 documents produced by different engravers vary widely in this respect.
 
-A goal of MNX is to encode such system notations singly, rather than multiple
-times, in a way that clarifies their score-wide applicability.  Two such
-mechanisms are proposed (which are not exclusive):
-
-1. Include a new <{system}> element analogous to <{part}>, which precedes all
-    <{part}> elements in the score. This contains <{measures}> whose contents are
-    understood to apply to all parts. Parts need only include such elements to
-    the extent that they are overridden. No performance events like notes
-    or rests may be included in the measures within <{system}>.
-
-2. Identify elements within existing parts that are understood to apply to the
-    system as a whole, by calling them out with a `scope="system"` attribute or 
-    its equivalent.
-
-Issue: These approaches should be studied in more detail and if possible
-reduced to a single unified approach. <{system}> obliges implementations to
-merge its information into other visible parts as needed. On the other hand, a
-scope marker can scatter system-wide information to be freely among
-parts with no constraints on their occurrence or relationships.
+MNX includes a new <{system}> element analogous to <{part}>, which precedes all
+<{part}> elements in the score. This contains <{measures}> whose contents are
+understood to apply to all parts. Parts need only include such elements to
+the extent that they are overridden. No performance events like notes
+or rests may be included in the measures within <{system}>.
 
 An example CWMNX score skeleton could thus look like this:
 
@@ -557,9 +543,7 @@ An example CWMNX score skeleton could thus look like this:
 
 ### Concert and transposed pitch
 
-Issue: We need to decide the pitch frame in which parts are encoded. Both
-concert pitch and transposed pitch (used by MusicXML) have advantages and
-disadvantages.
+Advisement: TBD pending resolution of issue.
 
 ## Element IDs
 
@@ -878,50 +862,6 @@ a `position` attribute relative to the containing measure or tuplet.
 </measure>
 ```
 
-<div class="issue">
-The use of explicit positions may present an approach which conflicts with a
-cursor-based model (although these models need not be exclusive, and  indeed
-coexist in this proposal).  The use of [[#spaces]] can mitigate the need for
-explicit positions on <{event}> elements.  However, in the case of
-<{direction}> elements located at arbitrary general positions, a cursor model
-alone does not solve all the problems in play.
-
-Consider the case of a whole note in a 6/4 measure, with a direction element
-occurring halfway through the measure (for example, a performance technique
-or chord symbol applying only in the latter half of the note).  A half note
-follows the whole note.
-
-MusicXML has at least two different ways of dealing with this issue, neither of
-which feels entirely satisfying. One is to use `offset` (we'll assume
-240 divisions per quarter note here):
-
-- whole note at cursor position 0
-- direction at cursor position 4/4, with an offset of -480 divisions
-- half note at cursor position 4/4
-
-Another MusicXML technique would be to move the cursor (and some applications
-actually do this):
-
-- whole note at cursor position 0
-- move cursor backwards by 480 divisions, to 2/4
-- direction at cursor position 2/4, with no offset
-- move cursor forwards by 480 divisions, to 4/4
-- half note at cursor position 4/4
-
-If CWMNX relies on explicit positions, this would be expressed as follows:
-
-- note at cursor position 0
-- direction at explicit position 2/4 (no offset needed)
-- note at cursor position 4/4 (direction does not affect the cursor)
-
-Of course, explicit positions are not entirely satisfying either.
-
-Note that CWMNX does propose an `offset` *style*, but this is not helpful here:
-it lives in the appearance layer rather than the semantic layer. Using the
-appearance layer to specify the performance timing of some notated element
-violates the purpose of the layers.
-</div>
-
 ### Spaces
 
 A <{space}> is a way of specifying a metrical time interval that does not
@@ -980,12 +920,6 @@ to be anchored at a point one quarter note into the given measure:
 </measure>
 ```
 
-Issue: This element may not be needed, if events are allowed to be specified
-with explicit `position` attributes.
-
-Issue: Would it be more elegant to encode <{space}> as simply a null (empty) <{event}>
-element? This may also simplify future DOM programming.
-
 ### Pitch encoding
 
 CWMNX introduces a text encoding of pitches, which represents a combination of
@@ -1021,9 +955,6 @@ The `pitch` attribute is used to supply pitch encodings where appropriate, typic
 for <{note}> elements.
 
 Pitch encodings are used also in [[#interpretation]].
-
-Issue: permit some sort of rational number option here for just-intonation
-temperaments and their variants.
 
 ### Events
 
@@ -1102,15 +1033,6 @@ CWMNX is, however, expected to include strong semantic types for different
 musical purposes of text. Dynamics, tempo markings, lyrics, playing
 instructions/techniques, etc. will all have proper types and may be freely
 included in <{sequence}> and <{event}> elements.
-
-Issue: Should CWMNX split directions out into text-like (durationless) direction types
-and span-like direction types? What is the relationship between these two, e.g.
-for labeled lines?
-
-Issue: Text with embedded style/font runs should be dealt with using <{span}>
-tags and CSS styling, rather than a sequence of separate direction-types.
-
-Issue: How should paragraph-style interpolated blocks be dealt with?
 
 ### Tuplets
 
@@ -1245,11 +1167,6 @@ and its `length` attribute supplies its overall length in the score.
     </sequence>
 </measure>
 ```
-
-Issue: Other attributes are needed to supply adjustments to spanning notation positions
-in terms of offset or X increments.
-
-Issue: do we really care what order the reference and the target occur in?
 
 ## Pagination, credits and page-level text
 
@@ -1531,10 +1448,6 @@ Examples of migrated MusicXML properties from notation markup include:
 
 In keeping with CSS conventions, MusicXML's values of `yes` and `no` will be
 generally replaced with `true` and `false`. 
-
-Issue: CWMNX should define the meaning of `default` and `relative` more clearly and
-propose a tight set of requirements on positioning, while leaving lots of wiggle room
-for competition between implementations.
 
 ### New CWMNX properties
 
