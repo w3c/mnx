@@ -1,0 +1,101 @@
+<pre class="metadata">
+Status: LD
+Title: MNX Draft Specification
+Shortname: cwmnx-draft
+Level: 1
+Editor: Joe Berkovitz, Noteflight / Hal Leonard Corporation
+Abstract: A draft specification for the MNX music notation document format.
+Markup Shorthands: markdown yes
+Repository: w3c/mnx
+!Participate: <a href="https://github.com/w3c/mnx/issues/new">File an issue</a> (<a href="https://github.com/w3c/mnx/issues">open issues</a>)
+</pre>
+
+<pre class="anchors">
+url: https://www.w3.org/TR/REC-xml-names#NT-QName; type: dfn;
+    text: QName;
+url: https://www.w3.org/TR/1999/REC-xpath-19991116#dt-expanded-name; type: dfn;
+    text: expanded-name;
+urlPrefix: https://www.w3.org/TR/css3-syntax/; type: dfn; spec: css3-syntax;
+    text: consume a component value
+    text: component value
+    text: environment encoding
+url: https://www.w3.org/TR/css-style-attr/#syntax; type: dfn; spec: css-style-attr;
+    text: style attribute
+
+<!-- ******************************** CSS SELECTORS ******************************************** -->
+
+urlPrefix: https://www.w3.org/TR/selectors4/#; type: dfn; spec: SELECTORS4
+    text: type selector
+    text: attribute selector
+    text: pseudo-class
+
+<!-- ********************************** CSS CASCADE ******************************************** -->
+
+urlPrefix: https://www.w3.org/TR/css-cascade-4/#; type: dfn; spec: CSS-CASCADE-4
+    text: specified value
+    text: computed value
+
+
+<!-- ****************************** XML (and related) ****************************************** -->
+
+urlPrefix: https://www.w3.org/TR/xml/#; spec: XML; for: xml
+    type: dfn; url: NT-Name; text: Name
+    type: element-attr;
+        url: sec-white-space; text: space
+
+urlPrefix: https://www.w3.org/TR/xlink11/#; spec: XLINK; for: xlink; type: element-attr
+    text: actuate; url: actuate-att
+    text: href; url: link-locators
+    url: link-semantics
+        text: arcrole
+        text: role
+        text: title
+    text: show; url: show-att
+    text: type; url: link-types
+    text: xlink; url: att-method
+
+urlPrefix: https://www.w3.org/TR/xml-names/#; spec: XML-NAMES; for: xmlns; type: element-attr
+    text: xmlns; url: ns-decl
+</pre>
+<!-- 
+<pre class="link-defaults">
+spec:css22
+    type:property
+        text:border-collapse
+        text:border-spacing
+        text:color
+    type:value
+        for:position; text:none
+        for:text-align
+            text:center
+            text:left
+            text:right
+</pre>
+ -->
+
+<pre class="include">
+path: sections/introduction.bs
+</pre>
+<pre class="include">
+path: sections/document.bs
+</pre>
+<pre class="include">
+path: sections/cwmnx.include
+</pre>
+<pre class="include">
+path: sections/gmnx.include
+</pre>
+<section>
+<div data-fill-with="index"></div>
+
+<!-- <pre class="include">
+path: sections/elements.include
+</pre>
+
+ -->
+</section>
+
+<!--  -->
+<section>
+<div data-fill-with="issues-index"></div>
+</section>

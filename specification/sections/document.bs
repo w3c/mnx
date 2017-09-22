@@ -1,0 +1,29 @@
+<h2 id="document">Document Organization</h2>
+
+<h3>The container document</h3>
+
+Each MNX document acts as a <dfn>container document</dfn>, which contains a
+hierarchy of components which collectively make up the
+document as a whole.
+
+<!--
+### A simple CWMN score
+
+### A simple general score
+
+### Compound MNX documents
+
+It's also possible to combine different representations of music in the same
+MNX document by using the <{collection}> element to combine  multiple chunks
+of music into a single chunk.  Each chunk may possess a distinct encoding.
+<{collection}> elements can be nested, allowing a subordinate collection to be 
+embedded in a higher-level one.
+
+Metadata elements such as <{identification}> or formatting elements like
+<{style}> may be included at any level of the resulting structure, causing
+them to apply them only to those parts of the document.
+
+Here's an example that includes a hierarchy of collections and scores. (Note
+that some of these could employ non-CWMN encodings as well.)
+
+-->

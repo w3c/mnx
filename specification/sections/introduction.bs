@@ -1,0 +1,199 @@
+<h2 id="introduction">Introduction</h2>
+
+<h3 id="background">Background</h3>
+
+  <em>This section is non-normative.</em>
+
+  MNX is a proposed music notation markup standard, which seeks to provide a
+  high degree of interoperability and exchange between different applications
+  working with music notation. This emphasis on interoperability is a
+  differentiator between MNX and other notation encoding approaches, and takes
+  it in a different direction from its predecessors.
+
+  MNX stands for "Music Notation X", where "X" suggests "XML", "eXtended",
+  and potentially other X-related things as may come to mind.
+
+<h3>MNX Score Types</h3>
+
+  <em>This section is non-normative.</em>
+
+MNX can support multiple <dfn>score types</dfn>. Each score type is a specific encoding that applies
+to some portion of a <a>container document</a>.
+
+The present draft of this specification deals with two <a>score types</a>:
+
+<ul>
+  <li><a href="#cwmnx">CWMNX</a>, which encodes Conventional Western Music Notation (CWMN) in a
+  semantically rich fashion. It inherits many ideas and concepts from MusicXML.</li>
+
+  <li><a href="#gmnx">GMNX</a>, where "G" is for
+  <strong>G</strong>eneral. It serves as a kind of universal encoding for
+  scores having arbitary graphical and audio content. In consequence, it is
+  relatively free of semantics.</li>
+</ul>
+
+<h3 id="comparisons">Comparisons with other notation standards</h3>
+
+  <em>This section is non-normative.</em>
+
+The CWMNX score type of MNX is a lineal descendant of MusicXML, and employs
+many of the same concepts. However it sacrifices some features and flexibility
+in favor of tighter interoperability, and simplifies the element structure
+considerably. It also moves all non-semantic information into CSS properties.
+The features in GMNX have no analogue in MusicXML.
+
+MEI is a very general and expressive medium for encoding arbitrary musical
+documents, with particular attention to the needs of scholars. Due to its
+extreme plasticity, MEI is perhaps better described as a powerful framework
+for building customized documents and applications, than as a single encoding
+method. As such, interoperability has not been a main goal of MEI to date.
+However there are efforts underway to define a clean MEI subset as an
+interoperable medium for encoding CWMN (sometimes known as "MEI Go").
+
+IEEE 1599 is a specification that has paid unique attention to the
+relationships between different layers of musical information. Its Logic layer
+is similar in content to CWMNX, while its Notational, Performance and Audio
+layers answer some of the same concerns as GWMNX. GMNX takes a different
+approach to connecting these layers, and does not attempt to fully
+unify semantic information with visual and performance data. It relies
+to a greater degree on SVG, and to a lesser degree on MIDI.
+
+<h3 id="compatibility">Compatibility with MusicXML</h3>
+
+  <em>This section is non-normative.</em>
+
+MNX uses MusicXML as a point of departure in many ways, but it does not
+attempt to be backward-compatible with MusicXML, nor is it a superset of
+MusicXML. However, a large proportion of MusicXML markup is expected to be
+preserved. In these examples, MusicXML constructs are used freely throughout
+as a way to show how proposed new concepts dovetail with existing ones.
+
+Backward compatibility aside, it is a goal to be able to machine-translate
+MusicXML into MNX. This is essential for migration purposes.
+
+<h3 id="use-cases">Use cases</h3>
+
+  <em>This section is non-normative.</em>
+
+A companion document details a set of [known use cases for music notation](../use-cases/index.html).
+
+<h3 id="audience">Audience</h3>
+
+  <em>This section is non-normative.</em>
+
+  This specification is intended for authors of documents and applications that use the features defined
+  in this specification, implementors of tools that operate on documents that use the
+  features defined in this specification, and individuals wishing to establish the correctness of
+  documents or implementations with respect to the requirements of this specification.
+
+  This document is probably not suited to readers who do not already have at least a passing
+  familiarity with XML technologies. In places it sacrifices clarity for precision, and brevity
+  for completeness. More approachable tutorials and authoring guides can provide a gentler
+  introduction to the topic.
+
+<h3 id="history">History</h3>
+
+  <em>This section is non-normative.</em>
+
+  <em>Content TBD</em>
+
+
+<h3 id="design-notes">Design notes</h3>
+
+  <em>This section is non-normative.</em>
+
+  <em>Content TBD</em>
+
+<h4 id="design-notes-extensibility">Extensibility</h4>
+
+  <em>This section is non-normative.</em>
+
+  <em>Content TBD</em>
+
+<h3 id="structure-of-this-specification">Structure of this specification</h3>
+
+  <em>This section is non-normative.</em>
+
+  This specification is divided into the following major sections:
+
+  <div dfn-for="spec">
+    : [[#introduction]]
+    :: Non-normative materials providing a context for the HTML specification.
+    : [[#cwmnx-semantics]]
+    :: Each element has a predefined meaning, which is explained in this section. Rules for authors
+        on how to use the element, along with user agent requirements for how to
+        handle each element, are also given. This includes large signature features of HTML
+        such as video playback and subtitles, form controls and form submission, and a 2D graphics
+        API known as the HTML canvas.
+    : [[#cwmnx-rendering]]
+    :: This section defines the default rendering rules for Web browsers.
+  </div>
+
+<h4 id="how-to-read-this-specification">How to read this specification</h4>
+
+  As described in the conformance requirements section below, this specification describes
+  conformance criteria for a variety of conformance classes. In particular, there are conformance
+  requirements that apply to <em>producers</em>, for example authors and the documents they create,
+  and there are conformance requirements that apply to <em>consumers</em>, for example Web browsers.
+  They can be distinguished by what they are requiring: a requirement on a producer states what is
+  allowed, while a requirement on a consumer states how software is to act.
+
+  <div class="example">
+    For example, "the <code>foo</code> attribute's value must be a <a>valid integer</a>" is a
+    requirement on producers, as it lays out the allowed values; in contrast, the requirement "the
+    <code>foo</code> attribute's value must be parsed using the <a>rules for parsing integers</a>"
+    is a requirement on consumers, as it describes how to process the content.
+  </div>
+
+  <strong>Requirements on producers have no bearing whatsoever on consumers.</strong>
+
+
+<h4 id="typographic-conventions">Typographic conventions</h4>
+
+  <div>
+    This is a definition, requirement, or explanation.
+
+    <p class="note">This is a note.</p>
+
+    <p class="example">This is an example.</p>
+
+    <p class="&#x0058;&#x0058;&#x0058;">This is an open issue.</p>
+
+    <p class="warning">This is a warning.</p>
+
+    <pre class="css" highlight="css">/* this is a CSS fragment */</pre>
+
+    The defining instance of a term is marked up like <dfn noexport>this</dfn>.
+    Uses of that term are marked up like [=this=] or like <a><i>this</i></a>.
+
+    The defining instance of an element, attribute, or API is marked up like
+    <dfn element noexport><code>this</code></dfn>. References to that element, attribute, or API are
+    marked up like <{this}>.
+
+    Other code fragments are marked up <code>like this</code>.
+
+    Byte sequences with bytes in the range 0x00 to 0x7F, inclusive, are marked up like
+    `this`.
+
+    Variables are marked up like <var>this</var>.
+
+    In some cases, requirements are given in the form of lists with conditions and corresponding
+    requirements. In such cases, the requirements that apply to a condition are always the first set
+    of requirements that follow the condition, even in the case of there being multiple sets of
+    conditions for those requirements. Such cases are presented as follows:
+
+    <dl class="switch">
+      <dt>This is a condition</dt>
+      <dt>This is another condition</dt>
+      <dd>This is the requirement that applies to the conditions above.</dd>
+      <dt>This is a third condition</dt>
+      <dd>This is the requirement that applies to the third condition.</dd>
+    </dl>
+  </div>
+
+
+<h3 id="suggested-reading">Suggested reading</h3>
+
+  <em>This section is non-normative.</em>
+
+  The following documents might be of interest to readers of this specification.
