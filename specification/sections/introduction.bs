@@ -13,7 +13,7 @@
   MNX stands for "Music Notation X", where "X" suggests "XML", "eXtended",
   and potentially other X-related things as may come to mind.
 
-<h3>MNX Score Types</h3>
+<h3 id="mnx-score-types">MNX Score Types</h3>
 
   <em>This section is non-normative.</em>
 
@@ -139,9 +139,9 @@ A companion document details a set of [known use cases for music notation](../us
   allowed, while a requirement on a consumer states how software is to act.
 
   <div class="example">
-    For example, "the <code>foo</code> attribute's value must be a <a>valid integer</a>" is a
+    For example, "the <code>foo</code> attribute's value must be a valid integer" is a
     requirement on producers, as it lays out the allowed values; in contrast, the requirement "the
-    <code>foo</code> attribute's value must be parsed using the <a>rules for parsing integers</a>"
+    <code>foo</code> attribute's value must be parsed using the rules for parsing integers"
     is a requirement on consumers, as it describes how to process the content.
   </div>
 
@@ -175,7 +175,7 @@ A companion document details a set of [known use cases for music notation](../us
     Byte sequences with bytes in the range 0x00 to 0x7F, inclusive, are marked up like
     `this`.
 
-    Variables are marked up like <var>this</var>.
+    Variables are marked up like <var ignore>this</var>.
 
     In some cases, requirements are given in the form of lists with conditions and corresponding
     requirements. In such cases, the requirements that apply to a condition are always the first set
