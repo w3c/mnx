@@ -1,28 +1,45 @@
-<section>
 <h3 id="cwmnx-semantics">Semantics</h3>
 
-<h4 id="the-measure-element">The <dfn element><code>measure</code></dfn> element</h4>
+<h4 id="cwmnx-semantics-elements">Elements</h3>
 
-Test reference to <{sequence}>.
+<h5 id="cwmnx-content-types">Content Models</h4>
 
-Test reference to 'stem'.
+<h6 id="cwmnx-sequence-content">Sequence content</h6>
 
-Test reference to ''stem/up'' and ''stem/down''.
+<dfn>Sequence content</dfn> supplies a series of musical events that are performed in the given order at distinct times, including:
 
-Test reference to <{event}>.
+- <{event}>
+- <{tuplet}>
+- <{grace}>
 
-Test reference to <{event/value}>.
+<h6 id="cwmnx-direction-content">Direction content</h6>
 
+<dfn>Direction content</dfn> consists of some number of musical directions that modify or accompany the performance of events and which have a temporal position relative to elements within sequence content. These include:
 
-<h4 id="the-sequence-element">The <dfn element><code>sequence</code></dfn> element</h4>
+- <{dirgroup}>
+- <{dynamics}>
+- <{harmony}>
+- <{instruction}>
+- <{expression}>
+- <{wedge}>
+- <{pedal}>
+- <{bracket}>
+- <{coda}>
+- <{segno}>
+- ...TBD...
 
-<h4 id="the-event-element">The <dfn element><code>event</code></dfn> element</h4>
+<h6 id="cwmnx-event-content">Event content</h6>
 
-<section dfn-for="event">
+<dfn>Event content</dfn> comprises elements that describe the musical content of a single event that is performed at a distinct time. These include:
 
-Events have a <dfn element-attr>value</dfn> attribute describing their
-duration in the containing rhythmic context.
-
-</section>
-
-</section>
+- <{note}>
+- <{rest}>
+- <{lyric}>
+- <{slur}>
+- <{glissando}>
+- <{slide}>
+- <{ornaments}>
+- <{articulations}>
+- <{technical}>
+- All <a>direction content</a>
+- ...TBD...

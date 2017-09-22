@@ -1487,16 +1487,31 @@ Parts of this work may be from another specification document.  If so, those par
       <li>
        <a href="#cwmnx-semantics"><span class="secno">3.3</span> <span class="content">Semantics</span></a>
        <ol class="toc">
-        <li><a href="#the-measure-element"><span class="secno">3.3.1</span> <span class="content">The <span><code>measure</code></span> element</span></a>
-        <li><a href="#the-sequence-element"><span class="secno">3.3.2</span> <span class="content">The <span><code>sequence</code></span> element</span></a>
-        <li><a href="#the-event-element"><span class="secno">3.3.3</span> <span class="content">The <span><code>event</code></span> element</span></a>
+        <li>
+         <a href="#cwmnx-semantics-elements"><span class="secno">3.3.1</span> <span class="content">Elements</span></a>
+         <ol class="toc">
+          <li>
+           <a href="#cwmnx-content-types"><span class="secno">3.3.1.1</span> <span class="content">Content Models</span></a>
+           <ol class="toc">
+            <li><a href="#cwmnx-sequence-content"><span class="secno">3.3.1.1.1</span> <span class="content">Sequence content</span></a>
+            <li><a href="#cwmnx-direction-content"><span class="secno">3.3.1.1.2</span> <span class="content">Direction content</span></a>
+            <li><a href="#cwmnx-event-content"><span class="secno">3.3.1.1.3</span> <span class="content">Event content</span></a>
+           </ol>
+         </ol>
        </ol>
       <li>
-       <a href="#cwmnx-rendering"><span class="secno">3.4</span> <span class="content">Rendering</span></a>
+       <a href="#cwmnx-elements"><span class="secno">3.4</span> <span class="content">Elements</span></a>
        <ol class="toc">
-        <li><a href="#cwmnx-stem"><span class="secno">3.4.1</span> <span class="content">The <span><code>stem</code></span> property</span></a>
+        <li><a href="#the-measure-element"><span class="secno">3.4.1</span> <span class="content">The <span><code>measure</code></span> element</span></a>
+        <li><a href="#the-sequence-element"><span class="secno">3.4.2</span> <span class="content">The <span><code>sequence</code></span> element</span></a>
+        <li><a href="#the-event-element"><span class="secno">3.4.3</span> <span class="content">The <span><code>event</code></span> element</span></a>
        </ol>
-      <li><a href="#cwmnx-interpretation"><span class="secno">3.5</span> <span class="content">Interpretation</span></a>
+      <li>
+       <a href="#cwmnx-rendering"><span class="secno">3.5</span> <span class="content">Rendering</span></a>
+       <ol class="toc">
+        <li><a href="#cwmnx-stem"><span class="secno">3.5.1</span> <span class="content">The <span><code>stem</code></span> property</span></a>
+       </ol>
+      <li><a href="#cwmnx-interpretation"><span class="secno">3.6</span> <span class="content">Interpretation</span></a>
      </ol>
     <li><a href="#gmnx"><span class="secno">4</span> <span class="content">GMNX</span></a>
     <li>
@@ -1602,7 +1617,7 @@ on how to use the element, along with user agent requirements for how to
 handle each element, are also given. This includes large signature features of HTML
 such as video playback and subtitles, form controls and form submission, and a 2D graphics
 API known as the HTML canvas.</p>
-     <dt data-md=""><a href="#cwmnx-rendering">§3.4 Rendering</a>
+     <dt data-md=""><a href="#cwmnx-rendering">§3.5 Rendering</a>
      <dd data-md="">
       <p>This section defines the default rendering rules for Web browsers.</p>
     </dl>
@@ -1662,29 +1677,94 @@ document as a whole.</p>
    <section>
     <h3 class="heading settled" data-level="3.2" id="cwmnx-infrastructure"><span class="secno">3.2. </span><span class="content">Infrastructure</span><a class="self-link" href="#cwmnx-infrastructure"></a></h3>
    </section>
+   <h3 class="heading settled" data-level="3.3" id="cwmnx-semantics"><span class="secno">3.3. </span><span class="content">Semantics</span><a class="self-link" href="#cwmnx-semantics"></a></h3>
+   <h4 class="heading settled" data-level="3.3.1" id="cwmnx-semantics-elements"><span class="secno">3.3.1. </span><span class="content">Elements</span><a class="self-link" href="#cwmnx-semantics-elements"></a></h4>
+   <h5 class="heading settled" data-level="3.3.1.1" id="cwmnx-content-types"><span class="secno">3.3.1.1. </span><span class="content">Content Models</span><a class="self-link" href="#cwmnx-content-types"></a></h5>
+   <h6 class="heading settled" data-level="3.3.1.1.1" id="cwmnx-sequence-content"><span class="secno">3.3.1.1.1. </span><span class="content">Sequence content</span><a class="self-link" href="#cwmnx-sequence-content"></a></h6>
+   <p><dfn data-dfn-type="dfn" data-noexport="" id="sequence-content">Sequence content<a class="self-link" href="#sequence-content"></a></dfn> supplies a series of musical events that are performed in the given order at distinct times, including:</p>
+   <ul>
+    <li data-md="">
+     <p><code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event-1">event</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">tuplet</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">grace</a></code></p>
+   </ul>
+   <h6 class="heading settled" data-level="3.3.1.1.2" id="cwmnx-direction-content"><span class="secno">3.3.1.1.2. </span><span class="content">Direction content</span><a class="self-link" href="#cwmnx-direction-content"></a></h6>
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="direction-content">Direction content</dfn> consists of some number of musical directions that modify or accompany the performance of events and which have a temporal position relative to elements within sequence content. These include:</p>
+   <ul>
+    <li data-md="">
+     <p><code><a data-link-type="element">dirgroup</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">dynamics</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">harmony</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">instruction</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">expression</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">wedge</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">pedal</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">bracket</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">coda</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">segno</a></code></p>
+    <li data-md="">
+     <p>...TBD...</p>
+   </ul>
+   <h6 class="heading settled" data-level="3.3.1.1.3" id="cwmnx-event-content"><span class="secno">3.3.1.1.3. </span><span class="content">Event content</span><a class="self-link" href="#cwmnx-event-content"></a></h6>
+   <p><dfn data-dfn-type="dfn" data-noexport="" id="event-content">Event content<a class="self-link" href="#event-content"></a></dfn> comprises elements that describe the musical content of a single event that is performed at a distinct time. These include:</p>
+   <ul>
+    <li data-md="">
+     <p><code><a data-link-type="element">note</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">rest</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">lyric</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">slur</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">glissando</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">slide</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">ornaments</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">articulations</a></code></p>
+    <li data-md="">
+     <p><code><a data-link-type="element">technical</a></code></p>
+    <li data-md="">
+     <p>All <a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content-1">direction content</a></p>
+    <li data-md="">
+     <p>...TBD...</p>
+   </ul>
    <section>
-    <h3 class="heading settled" data-level="3.3" id="cwmnx-semantics"><span class="secno">3.3. </span><span class="content">Semantics</span><a class="self-link" href="#cwmnx-semantics"></a></h3>
-    <h4 class="heading settled" data-level="3.3.1" id="the-measure-element"><span class="secno">3.3.1. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-measure"><code>measure</code><a class="self-link" href="#elementdef-measure"></a></dfn> element</span><a class="self-link" href="#the-measure-element"></a></h4>
+    <h3 class="heading settled" data-level="3.4" id="cwmnx-elements"><span class="secno">3.4. </span><span class="content">Elements</span><a class="self-link" href="#cwmnx-elements"></a></h3>
+    <h4 class="heading settled" data-level="3.4.1" id="the-measure-element"><span class="secno">3.4.1. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-measure"><code>measure</code><a class="self-link" href="#elementdef-measure"></a></dfn> element</span><a class="self-link" href="#the-measure-element"></a></h4>
     <p>Test reference to <code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence-1">sequence</a></code>.</p>
     <p>Test reference to <a class="property" data-link-type="propdesc" href="#propdef-stem" id="ref-for-propdef-stem-1">stem</a>.</p>
     <p>Test reference to <a class="css" data-link-type="maybe" href="#valdef-stem-up" id="ref-for-valdef-stem-up-1">up</a> and <a class="css" data-link-type="maybe" href="#valdef-stem-down" id="ref-for-valdef-stem-down-1">down</a>.</p>
-    <p>Test reference to <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event-1">event</a></code>.</p>
+    <p>Test reference to <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event-2">event</a></code>.</p>
     <p>Test reference to <code><a data-link-type="element-sub" href="#element-attrdef-event-value" id="ref-for-element-attrdef-event-value-1">value</a></code>.</p>
-    <h4 class="heading settled" data-level="3.3.2" id="the-sequence-element"><span class="secno">3.3.2. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-sequence"><code>sequence</code></dfn> element</span><a class="self-link" href="#the-sequence-element"></a></h4>
-    <h4 class="heading settled" data-level="3.3.3" id="the-event-element"><span class="secno">3.3.3. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-event"><code>event</code></dfn> element</span><a class="self-link" href="#the-event-element"></a></h4>
+    <h4 class="heading settled" data-level="3.4.2" id="the-sequence-element"><span class="secno">3.4.2. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-sequence"><code>sequence</code></dfn> element</span><a class="self-link" href="#the-sequence-element"></a></h4>
+    <h4 class="heading settled" data-level="3.4.3" id="the-event-element"><span class="secno">3.4.3. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-event"><code>event</code></dfn> element</span><a class="self-link" href="#the-event-element"></a></h4>
     <section>
      <p>Events have a <dfn class="dfn-paneled" data-dfn-for="event" data-dfn-type="element-attr" data-export="" id="element-attrdef-event-value">value</dfn> attribute describing their
 duration in the containing rhythmic context.</p>
     </section>
    </section>
-   <h3 class="heading settled" data-level="3.4" id="cwmnx-rendering"><span class="secno">3.4. </span><span class="content">Rendering</span><a class="self-link" href="#cwmnx-rendering"></a></h3>
-   <h4 class="heading settled" data-level="3.4.1" id="cwmnx-stem"><span class="secno">3.4.1. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-stem"><code>stem</code></dfn> property</span><a class="self-link" href="#cwmnx-stem"></a></h4>
+   <h3 class="heading settled" data-level="3.5" id="cwmnx-rendering"><span class="secno">3.5. </span><span class="content">Rendering</span><a class="self-link" href="#cwmnx-rendering"></a></h3>
+   <h4 class="heading settled" data-level="3.5.1" id="cwmnx-stem"><span class="secno">3.5.1. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-stem"><code>stem</code></dfn> property</span><a class="self-link" href="#cwmnx-stem"></a></h4>
    <section>
     <p>The value <dfn class="dfn-paneled css" data-dfn-for="stem" data-dfn-type="value" data-export="" id="valdef-stem-up">up</dfn> causes an event’s stem to be rendered pointing upwards.</p>
     <p>The value <dfn class="dfn-paneled css" data-dfn-for="stem" data-dfn-type="value" data-export="" id="valdef-stem-down">down</dfn> causes an event’s stem to be rendered pointing downwards.</p>
    </section>
    <section>
-    <h3 class="heading settled" data-level="3.5" id="cwmnx-interpretation"><span class="secno">3.5. </span><span class="content">Interpretation</span><a class="self-link" href="#cwmnx-interpretation"></a></h3>
+    <h3 class="heading settled" data-level="3.6" id="cwmnx-interpretation"><span class="secno">3.6. </span><span class="content">Interpretation</span><a class="self-link" href="#cwmnx-interpretation"></a></h3>
    </section>
    <h2 class="heading settled" data-level="4" id="gmnx"><span class="secno">4. </span><span class="content">GMNX</span><a class="self-link" href="#gmnx"></a></h2>
    <section>
@@ -1693,20 +1773,23 @@ duration in the containing rhythmic context.</p>
      <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
      <ul class="index">
       <li><a href="#container-document">container document</a><span>, in §2.1</span>
-      <li><a href="#valdef-stem-down">down</a><span>, in §3.4.1</span>
-      <li><a href="#elementdef-event">event</a><span>, in §3.3.3</span>
-      <li><a href="#elementdef-measure">measure</a><span>, in §3.3.1</span>
+      <li><a href="#direction-content">Direction content</a><span>, in §3.3.1.1.2</span>
+      <li><a href="#valdef-stem-down">down</a><span>, in §3.5.1</span>
+      <li><a href="#elementdef-event">event</a><span>, in §3.4.3</span>
+      <li><a href="#event-content">Event content</a><span>, in §3.3.1.1.3</span>
+      <li><a href="#elementdef-measure">measure</a><span>, in §3.4.1</span>
       <li><a href="#score-types">score types</a><span>, in §1.2</span>
-      <li><a href="#elementdef-sequence">sequence</a><span>, in §3.3.2</span>
-      <li><a href="#propdef-stem">stem</a><span>, in §3.4.1</span>
+      <li><a href="#elementdef-sequence">sequence</a><span>, in §3.4.2</span>
+      <li><a href="#sequence-content">Sequence content</a><span>, in §3.3.1.1.1</span>
+      <li><a href="#propdef-stem">stem</a><span>, in §3.5.1</span>
       <li>
        this
        <ul>
         <li><a href="#this">definition of</a><span>, in §1.9.2</span>
         <li><a href="#elementdef-this">(element)</a><span>, in §1.9.2</span>
        </ul>
-      <li><a href="#valdef-stem-up">up</a><span>, in §3.4.1</span>
-      <li><a href="#element-attrdef-event-value">value</a><span>, in §3.3.3</span>
+      <li><a href="#valdef-stem-up">up</a><span>, in §3.5.1</span>
+      <li><a href="#element-attrdef-event-value">value</a><span>, in §3.4.3</span>
      </ul>
     </div>
    </section>
@@ -1890,40 +1973,47 @@ duration in the containing rhythmic context.</p>
     <li><a href="#ref-for-container-document-1">1.2. MNX Score Types</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="direction-content">
+   <b><a href="#direction-content">#direction-content</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-direction-content-1">3.3.1.1.3. Event content</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="elementdef-sequence">
    <b><a href="#elementdef-sequence">#elementdef-sequence</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-sequence-1">3.3.1. The measure element</a>
+    <li><a href="#ref-for-elementdef-sequence-1">3.4.1. The measure element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-event">
    <b><a href="#elementdef-event">#elementdef-event</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-event-1">3.3.1. The measure element</a>
+    <li><a href="#ref-for-elementdef-event-1">3.3.1.1.1. Sequence content</a>
+    <li><a href="#ref-for-elementdef-event-2">3.4.1. The measure element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-event-value">
    <b><a href="#element-attrdef-event-value">#element-attrdef-event-value</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-event-value-1">3.3.1. The measure element</a>
+    <li><a href="#ref-for-element-attrdef-event-value-1">3.4.1. The measure element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="propdef-stem">
    <b><a href="#propdef-stem">#propdef-stem</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-propdef-stem-1">3.3.1. The measure element</a>
+    <li><a href="#ref-for-propdef-stem-1">3.4.1. The measure element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valdef-stem-up">
    <b><a href="#valdef-stem-up">#valdef-stem-up</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-valdef-stem-up-1">3.3.1. The measure element</a>
+    <li><a href="#ref-for-valdef-stem-up-1">3.4.1. The measure element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valdef-stem-down">
    <b><a href="#valdef-stem-down">#valdef-stem-down</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-valdef-stem-down-1">3.3.1. The measure element</a>
+    <li><a href="#ref-for-valdef-stem-down-1">3.4.1. The measure element</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
