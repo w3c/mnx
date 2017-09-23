@@ -1478,9 +1478,31 @@ Parts of this work may be from another specification document.  If so, those par
      <a href="#infrastructure"><span class="secno">2</span> <span class="content">Infrastructure</span></a>
      <ol class="toc">
       <li>
-       <a href="#common-syntax"><span class="secno">2.1</span> <span class="content">Syntax</span></a>
+       <a href="#terminology"><span class="secno">2.1</span> <span class="content">Terminology</span></a>
        <ol class="toc">
-        <li><a href="#note-values"><span class="secno">2.1.1</span> <span class="content">Note Values</span></a>
+        <li>
+         <a href="#notational-idioms"><span class="secno">2.1.1</span> <span class="content">Notational Idioms</span></a>
+         <ol class="toc">
+          <li><a href="#cwmn"><span class="secno">2.1.1.1</span> <span class="content">Conventional Western Music Notation (CWMN)</span></a>
+         </ol>
+       </ol>
+      <li>
+       <a href="#common-syntaxes"><span class="secno">2.2</span> <span class="content">Common Syntaxes</span></a>
+       <ol class="toc">
+        <li><a href="#common-parser-idioms"><span class="secno">2.2.1</span> <span class="content">Common parser idioms</span></a>
+        <li>
+         <a href="#numbers"><span class="secno">2.2.2</span> <span class="content">Numbers</span></a>
+         <ol class="toc">
+          <li><a href="#signed-integers"><span class="secno">2.2.2.1</span> <span class="content">Signed integers</span></a>
+          <li><a href="#non-negative-integers"><span class="secno">2.2.2.2</span> <span class="content">Non-negative integers</span></a>
+          <li><a href="#floating-point-numbers"><span class="secno">2.2.2.3</span> <span class="content">Floating-point numbers</span></a>
+          <li><a href="#percentages-and-dimensions"><span class="secno">2.2.2.4</span> <span class="content">Percentages and lengths</span></a>
+          <li><a href="#non-zero-percentages-and-lengths"><span class="secno">2.2.2.5</span> <span class="content">Non-zero percentages and lengths</span></a>
+          <li><a href="#lists-of-floating-point-numbers"><span class="secno">2.2.2.6</span> <span class="content">Lists of floating-point numbers</span></a>
+         </ol>
+        <li><a href="#space-separated-tokens"><span class="secno">2.2.3</span> <span class="content">Space-separated tokens</span></a>
+        <li><a href="#comma-separated-tokens"><span class="secno">2.2.4</span> <span class="content">Comma-separated tokens</span></a>
+        <li><a href="#note-values"><span class="secno">2.2.5</span> <span class="content">CWMN Note Values</span></a>
        </ol>
      </ol>
     <li>
@@ -1698,9 +1720,623 @@ API known as the HTML canvas.</p>
    <p>The following documents might be of interest to readers of this specification.</p>
    <section>
     <h2 class="heading settled" data-level="2" id="infrastructure"><span class="secno">2. </span><span class="content">Infrastructure</span><a class="self-link" href="#infrastructure"></a></h2>
-    <h3 class="heading settled" data-level="2.1" id="common-syntax"><span class="secno">2.1. </span><span class="content">Syntax</span><a class="self-link" href="#common-syntax"></a></h3>
-    <h4 class="heading settled" data-level="2.1.1" id="note-values"><span class="secno">2.1.1. </span><span class="content">Note Values</span><a class="self-link" href="#note-values"></a></h4>
-    <p></p>
+    <h3 class="heading settled" data-level="2.1" id="terminology"><span class="secno">2.1. </span><span class="content">Terminology</span><a class="self-link" href="#terminology"></a></h3>
+    <h4 class="heading settled" data-level="2.1.1" id="notational-idioms"><span class="secno">2.1.1. </span><span class="content">Notational Idioms</span><a class="self-link" href="#notational-idioms"></a></h4>
+    <h5 class="heading settled" data-level="2.1.1.1" id="cwmn"><span class="secno">2.1.1.1. </span><span class="content">Conventional Western Music Notation (CWMN)</span><a class="self-link" href="#cwmn"></a></h5>
+    <h3 class="heading settled" data-level="2.2" id="common-syntaxes"><span class="secno">2.2. </span><span class="content">Common Syntaxes</span><a class="self-link" href="#common-syntaxes"></a></h3>
+    <p>There are various places in MNX that accept particular data types, such as
+note values, numbers or durations. This section describes the conformance
+criteria for content in those formats, and how to parse them.</p>
+    <h4 class="heading settled" data-level="2.2.1" id="common-parser-idioms"><span class="secno">2.2.1. </span><span class="content">Common parser idioms</span><a class="self-link" href="#common-parser-idioms"></a></h4>
+    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="space-characters">space characters</dfn>, for the purposes of this specification, are U+0020 SPACE, U+0009
+  CHARACTER TABULATION (tab), U+000A LINE FEED (LF), U+000C FORM FEED (FF), and U+000D CARRIAGE
+  RETURN (CR).</p>
+    <p>The <dfn data-dfn-type="dfn" data-lt="white_space|white_space characters" data-noexport="" id="white_space">White_Space characters<a class="self-link" href="#white_space"></a></dfn> are those that have the Unicode property "White_Space" in
+  the Unicode <code>PropList.txt</code> data file. <a data-link-type="biblio" href="#biblio-unicode">[UNICODE]</a></p>
+    <p class="note" role="note"> This should not be confused with the "White_Space" value (abbreviated "WS") of the "Bidi_Class"
+    property in the <code>Unicode.txt</code> data file. </p>
+    <p>The <dfn data-dfn-type="dfn" data-export="" id="control-characters">control characters<a class="self-link" href="#control-characters"></a></dfn> are those whose Unicode "General_Category" property has the
+  value "Cc" in the Unicode <code>UnicodeData.txt</code> data file. <a data-link-type="biblio" href="#biblio-unicode">[UNICODE]</a></p>
+    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="uppercase-ascii-letters">uppercase ASCII letters</dfn> are the characters in the range U+0041 LATIN CAPITAL LETTER
+  A to U+005A LATIN CAPITAL LETTER Z.</p>
+    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="lowercase-ascii-letters">lowercase ASCII letters</dfn> are the characters in the range U+0061 LATIN SMALL LETTER A
+  to U+007A LATIN SMALL LETTER Z.</p>
+    <p>The <dfn data-dfn-type="dfn" data-export="" id="ascii-letters">ASCII letters<a class="self-link" href="#ascii-letters"></a></dfn> are the characters that are either <a data-link-type="dfn" href="#uppercase-ascii-letters" id="ref-for-uppercase-ascii-letters-1">uppercase ASCII letters</a> or <a data-link-type="dfn" href="#lowercase-ascii-letters" id="ref-for-lowercase-ascii-letters-1">lowercase ASCII letters</a>.</p>
+    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="ascii-digits">ASCII digits</dfn> are the characters in the range U+0030 DIGIT ZERO (0) to U+0039 DIGIT
+  NINE (9).</p>
+    <p>The <dfn data-dfn-type="dfn" data-export="" id="alphanumeric-ascii-characters">alphanumeric ASCII characters<a class="self-link" href="#alphanumeric-ascii-characters"></a></dfn> are those that are either <a data-link-type="dfn" href="#uppercase-ascii-letters" id="ref-for-uppercase-ascii-letters-2">uppercase ASCII letters</a>, <a data-link-type="dfn" href="#lowercase-ascii-letters" id="ref-for-lowercase-ascii-letters-2">lowercase ASCII letters</a>, or <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-1">ASCII digits</a>.</p>
+    <p>The <dfn data-dfn-type="dfn" data-export="" id="ascii-hex-digits">ASCII hex digits<a class="self-link" href="#ascii-hex-digits"></a></dfn> are the characters in the ranges U+0030 DIGIT ZERO (0) to U+0039
+  DIGIT NINE (9), U+0041 LATIN CAPITAL LETTER A to U+0046 LATIN CAPITAL LETTER F, and U+0061 LATIN
+  SMALL LETTER A to U+0066 LATIN SMALL LETTER F.</p>
+    <p>The <dfn data-dfn-type="dfn" data-export="" id="uppercase-ascii-hex-digits">uppercase ASCII hex digits<a class="self-link" href="#uppercase-ascii-hex-digits"></a></dfn> are the characters in the ranges U+0030 DIGIT ZERO (0)
+  to U+0039 DIGIT NINE (9) and U+0041 LATIN CAPITAL LETTER A to U+0046 LATIN CAPITAL LETTER F only.</p>
+    <p>The <dfn data-dfn-type="dfn" data-export="" id="lowercase-ascii-hex-digits">lowercase ASCII hex digits<a class="self-link" href="#lowercase-ascii-hex-digits"></a></dfn> are the characters in the ranges U+0030 DIGIT ZERO (0)
+  to U+0039 DIGIT NINE (9) and U+0061 LATIN SMALL LETTER A to U+0066 LATIN SMALL LETTER F only.</p>
+    <p>Some of the micro-parsers described below follow the pattern of having an <var>input</var> variable that holds the string being parsed, and having a <var>position</var> variable pointing at
+  the next character to parse in <var>input</var>.</p>
+    <p>For parsers based on this pattern, a step that requires the consumer to <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="collect a sequence of characters" data-noexport="" id="collect-a-sequence-of-characters">collect a sequence
+  of characters</dfn> means that the following algorithm must be run, with <var>characters</var> being the set of characters that can be collected:</p>
+    <ol>
+     <li data-md="">
+      <p>Let <var>input</var> and <var>position</var> be the same variables as those of the same name in
+  the algorithm that invoked these steps.</p>
+     <li data-md="">
+      <p>Let <var>result</var> be the empty string.</p>
+     <li data-md="">
+      <p>While <var>position</var> doesn’t point past the end of <var>input</var> and the character at <var>position</var> is one of the <var>characters</var>, append that character to the end of <var>result</var> and advance <var>position</var> to the next character in <var>input</var>.</p>
+     <li data-md="">
+      <p>Return <var>result</var>.</p>
+    </ol>
+    <p>The step <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="skip-white-space">skip white space</dfn> means that the consumer must <a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters-1">collect a sequence of characters</a> that are <a data-link-type="dfn" href="#space-characters" id="ref-for-space-characters-1">space characters</a>. The collected characters
+  are not used.</p>
+    <p>When a consumer is to <dfn data-dfn-type="dfn" data-lt="stripped line breaks|strip line breaks" data-noexport="" id="stripped-line-breaks">strip line breaks<a class="self-link" href="#stripped-line-breaks"></a></dfn> from a string, the consumer must remove
+  any U+000A LINE FEED (LF) and U+000D CARRIAGE RETURN (CR) characters from that string.</p>
+    <p>When a consumer is to <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="strip leading and trailing white space|stripping leading and trailing white space|leading and trailing white space stripped" data-noexport="" id="strip-leading-and-trailing-white-space">strip leading and trailing white space</dfn> from a string, the
+  consumer must remove all <a data-link-type="dfn" href="#space-characters" id="ref-for-space-characters-2">space characters</a> that are at the start or end of the string.</p>
+    <p>When a consumer is to <dfn data-dfn-type="dfn" data-lt="stripping and collapsing white space|strip and collapse white space" data-noexport="" id="stripping-and-collapsing-white-space">strip and collapse white space<a class="self-link" href="#stripping-and-collapsing-white-space"></a></dfn> in a string, it must replace any
+  sequence of one or more consecutive <a data-link-type="dfn" href="#space-characters" id="ref-for-space-characters-3">space characters</a> in that string with a single U+0020
+  SPACE character, and then <a data-link-type="dfn" href="#strip-leading-and-trailing-white-space" id="ref-for-strip-leading-and-trailing-white-space-1">strip leading and trailing white space</a> from that string.</p>
+    <p>When a consumer has to <dfn data-dfn-type="dfn" data-lt="strictly splitting the string|strictly split a string|strictly split" data-noexport="" id="strictly-splitting-the-string">strictly split a string<a class="self-link" href="#strictly-splitting-the-string"></a></dfn> on a particular delimiter character <var>delimiter</var>, it must use the following algorithm:</p>
+    <ol>
+     <li data-md="">
+      <p>Let <var>input</var> be the string being parsed.</p>
+     <li data-md="">
+      <p>Let <var>position</var> be a pointer into <var>input</var>, initially
+  pointing at the start of the string.</p>
+     <li data-md="">
+      <p>Let <var>tokens</var> be an ordered list of tokens, initially empty.</p>
+     <li data-md="">
+      <p>While <var>position</var> is not past the end of <var>input</var>:</p>
+      <ol>
+       <li data-md="">
+        <p><a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters-2">Collect a sequence of characters</a> that are not the <var>delimiter</var> character.</p>
+       <li data-md="">
+        <p>Append the string collected in the previous step to <var>tokens</var>.</p>
+       <li data-md="">
+        <p>Advance <var>position</var> to the next character in <var>input</var>.</p>
+      </ol>
+     <li data-md="">
+      <p>Return <var>tokens</var>.</p>
+    </ol>
+    <p class="note" role="note"> For the special cases of splitting a string <a data-link-type="dfn" href="#split-a-string-on-spaces" id="ref-for-split-a-string-on-spaces-1">on spaces</a> and <a data-link-type="dfn" href="#split-a-string-on-commas" id="ref-for-split-a-string-on-commas-1">on commas</a>, this
+    algorithm does not apply (those algorithms also perform <a data-link-type="dfn" href="#strip-leading-and-trailing-white-space" id="ref-for-strip-leading-and-trailing-white-space-2">white space trimming</a>). </p>
+    <h4 class="heading settled" data-level="2.2.2" id="numbers"><span class="secno">2.2.2. </span><span class="content">Numbers</span><a class="self-link" href="#numbers"></a></h4>
+    <h5 class="heading settled" data-level="2.2.2.1" id="signed-integers"><span class="secno">2.2.2.1. </span><span class="content">Signed integers</span><a class="self-link" href="#signed-integers"></a></h5>
+    <p>A string is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="valid integer|valid integers" data-noexport="" id="valid-integer">valid integer</dfn> if it consists of one or more <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-2">ASCII digits</a>,
+  optionally prefixed with a U+002D HYPHEN-MINUS character (-).</p>
+    <p>A <a data-link-type="dfn" href="#valid-integer" id="ref-for-valid-integer-1">valid integer</a> without a U+002D HYPHEN-MINUS (-) prefix represents the number that is
+  represented in base ten by that string of digits. A <a data-link-type="dfn" href="#valid-integer" id="ref-for-valid-integer-2">valid integer</a> <em>with</em> a U+002D
+  HYPHEN-MINUS (-) prefix represents the number represented in base ten by the string of digits that
+  follows the U+002D HYPHEN-MINUS, subtracted from zero.</p>
+    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="parse token as an integer|parse it as an integer|rules for parsing integers|rules for parsing integer|rules for parsing signed integers" data-noexport="" id="parse-token-as-an-integer">rules for parsing integers</dfn> are as given in the following algorithm. When
+  invoked, the steps must be followed in the order given, aborting at the first step that returns
+  a value. This algorithm will return either an integer or an error.</p>
+    <ol>
+     <li data-md="">
+      <p>Let <var>input</var> be the string being parsed.</p>
+     <li data-md="">
+      <p>Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the
+  start of the string.</p>
+     <li data-md="">
+      <p>Let <var>sign</var> have the value "positive".</p>
+     <li data-md="">
+      <p><a data-link-type="dfn" href="#skip-white-space" id="ref-for-skip-white-space-1">Skip white space</a>.</p>
+     <li data-md="">
+      <p>If <var>position</var> is past the end of <var>input</var>, return an error.</p>
+     <li data-md="">
+      <p>If the character indicated by <var>position</var> (the first character) is a U+002D
+  HYPHEN-MINUS character (-):</p>
+      <ol>
+       <li data-md="">
+        <p>Let <var>sign</var> be "negative".</p>
+       <li data-md="">
+        <p>Advance <var>position</var> to the next character.</p>
+       <li data-md="">
+        <p>If <var>position</var> is past the end of <var>input</var>, return an error.</p>
+      </ol>
+      <p>Otherwise, if the character indicated by <var>position</var> (the first character) is a
+  U+002B PLUS SIGN character (+):</p>
+      <ol>
+       <li data-md="">
+        <p>Advance <var>position</var> to the next character. (The "<code>+</code>" is ignored, but
+  it is not conforming.)</p>
+       <li data-md="">
+        <p>If <var>position</var> is past the end of <var>input</var>, return an error.</p>
+      </ol>
+     <li data-md="">
+      <p>If the character indicated by <var>position</var> is not an <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-3">ASCII digit</a>, then return
+  an error.</p>
+     <li data-md="">
+      <p><a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters-3">Collect a sequence of characters</a> that are <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-4">ASCII digits</a>, and interpret the
+  resulting sequence as a base-ten integer. Let <var>value</var> be that integer.</p>
+     <li data-md="">
+      <p>If <var>sign</var> is "positive", return <var>value</var>, otherwise return the result of
+  subtracting <var>value</var> from zero.</p>
+    </ol>
+    <h5 class="heading settled" data-level="2.2.2.2" id="non-negative-integers"><span class="secno">2.2.2.2. </span><span class="content">Non-negative integers</span><a class="self-link" href="#non-negative-integers"></a></h5>
+    <p>A string is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="valid-non-negative-integer">valid non-negative integer</dfn> if it consists of one or more <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-5">ASCII digits</a>.</p>
+    <p>A <a data-link-type="dfn" href="#valid-non-negative-integer" id="ref-for-valid-non-negative-integer-1">valid non-negative integer</a> represents the number that is represented in base ten by that
+  string of digits.</p>
+    <p>The <dfn data-dfn-type="dfn" data-lt="parse that attribute’s value|rules for parsing non-negative integers" data-noexport="" id="parse-that-attributes-value">rules for parsing non-negative integers<a class="self-link" href="#parse-that-attributes-value"></a></dfn> are as given in the following algorithm.
+  When invoked, the steps must be followed in the order given, aborting at the first step that
+  returns a value. This algorithm will return either zero, a positive integer, or an error.</p>
+    <ol>
+     <li data-md="">
+      <p>Let <var>input</var> be the string being parsed.</p>
+     <li data-md="">
+      <p>Let <var>value</var> be the result of parsing <var>input</var> using the <a data-link-type="dfn" href="#parse-token-as-an-integer" id="ref-for-parse-token-as-an-integer-1">rules for parsing integers</a>.</p>
+     <li data-md="">
+      <p>If <var>value</var> is an error, return an error.</p>
+     <li data-md="">
+      <p>If <var>value</var> is less than zero, return an error.</p>
+     <li data-md="">
+      <p>Return <var>value</var>.</p>
+    </ol>
+    <h5 class="heading settled" data-level="2.2.2.3" id="floating-point-numbers"><span class="secno">2.2.2.3. </span><span class="content">Floating-point numbers</span><a class="self-link" href="#floating-point-numbers"></a></h5>
+    <p>A string is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="valid-floating-point-number">valid floating-point number</dfn> if it consists of:</p>
+    <ol>
+     <li data-md="">
+      <p>Optionally, a U+002D HYPHEN-MINUS character (-).</p>
+     <li data-md="">
+      <p>One or both of the following, in the given order:</p>
+      <ol>
+       <li data-md="">
+        <p>A series of one or more <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-6">ASCII digits</a>.</p>
+       <li data-md="">
+        <p>Both of the following, in the given order:</p>
+        <ol>
+         <li data-md="">
+          <p>A single U+002E FULL STOP character (.).</p>
+         <li data-md="">
+          <p>A series of one or more <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-7">ASCII digits</a>.</p>
+        </ol>
+      </ol>
+     <li data-md="">
+      <p>Optionally:</p>
+      <ol>
+       <li data-md="">
+        <p>Either a U+0065 LATIN SMALL LETTER E character (e) or a U+0045 LATIN CAPITAL LETTER E
+  character (E).</p>
+       <li data-md="">
+        <p>Optionally, a U+002D HYPHEN-MINUS character (-) or U+002B PLUS SIGN character (+).</p>
+       <li data-md="">
+        <p>A series of one or more <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-8">ASCII digits</a>.</p>
+      </ol>
+    </ol>
+    <p>A <a data-link-type="dfn" href="#valid-floating-point-number" id="ref-for-valid-floating-point-number-1">valid floating-point number</a> represents the number obtained by multiplying the significand
+  by ten raised to the power of the exponent, where the significand is the first number, interpreted
+  as base ten (including the decimal point and the number after the decimal point, if any, and
+  interpreting the significand as a negative number if the whole string starts with a U+002D
+  HYPHEN-MINUS character (-) and the number is not zero), and where the exponent is the number after
+  the E, if any (interpreted as a negative number if there is a U+002D HYPHEN-MINUS character (-)
+  between the E and the number and the number is not zero, or else ignoring a U+002B PLUS SIGN
+  character (+) between the E and the number if there is one). If there is no E, then the exponent
+  is treated as zero.</p>
+    <p class="note" role="note">The Infinity and Not-a-Number (NaN) values are not <a data-link-type="dfn" href="#valid-floating-point-number" id="ref-for-valid-floating-point-number-2">valid floating-point numbers</a>.</p>
+    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="rules-for-parsing-floating-point-number-values">rules for parsing floating-point number values</dfn> are as given in the following
+  algorithm. This algorithm must be aborted at the first step that returns something. This
+  algorithm will return either a number or an error.</p>
+    <ol>
+     <li data-md="">
+      <p>Let <var>input</var> be the string being parsed.</p>
+     <li data-md="">
+      <p>Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start
+  of the string.</p>
+     <li data-md="">
+      <p>Let <var>value</var> have the value 1.</p>
+     <li data-md="">
+      <p>Let <var>divisor</var> have the value 1.</p>
+     <li data-md="">
+      <p>Let <var>exponent</var> have the value 1.</p>
+     <li data-md="">
+      <p><a data-link-type="dfn" href="#skip-white-space" id="ref-for-skip-white-space-2">Skip white space</a>.</p>
+     <li data-md="">
+      <p>If <var>position</var> is past the end of <var>input</var>, return an error.</p>
+     <li data-md="">
+      <p>If the character indicated by <var>position</var> is a U+002D HYPHEN-MINUS character (-):</p>
+      <ol>
+       <li data-md="">
+        <p>Change <var>value</var> and <var>divisor</var> to -1.</p>
+       <li data-md="">
+        <p>Advance <var>position</var> to the next character.</p>
+       <li data-md="">
+        <p>If <var>position</var> is past the end of <var>input</var>, return an error.</p>
+      </ol>
+      <p>Otherwise, if the character indicated by <var>position</var> (the first character) is a
+  U+002B PLUS SIGN character (+):</p>
+      <ol>
+       <li data-md="">
+        <p>Advance <var>position</var> to the next character. (The "<code>+</code>" is ignored, but
+  it is not conforming.)</p>
+       <li data-md="">
+        <p>If <var>position</var> is past the end of <var>input</var>, return an error.</p>
+      </ol>
+     <li data-md="">
+      <p>If the character indicated by <var>position</var> is a U+002E FULL STOP (.), and that is not
+  the last character in <var>input</var>, and the character after the character indicated by <var>position</var> is an <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-9">ASCII digit</a>, then set <var>value</var> to zero and jump to the step labeled <i>fraction</i>.</p>
+     <li data-md="">
+      <p>If the character indicated by <var>position</var> is not an <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-10">ASCII digit</a>, then return
+  an error.</p>
+     <li data-md="">
+      <p><a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters-4">Collect a sequence of characters</a> that are <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-11">ASCII digits</a>, and interpret the
+  resulting sequence as a base-ten integer. Multiply <var>value</var> by that integer.</p>
+     <li data-md="">
+      <p>If <var>position</var> is past the end of <var>input</var>, jump to the step labeled <i>conversion</i>.</p>
+     <li data-md="">
+      <p><i>Fraction</i>: If the character indicated by <var>position</var> is a U+002E FULL STOP
+  (.), run these substeps:</p>
+      <ol>
+       <li data-md="">
+        <p>Advance <var>position</var> to the next character.</p>
+       <li data-md="">
+        <p>If <var>position</var> is past the end of <var>input</var>, or if the character indicated
+  by <var>position</var> is not an <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-12">ASCII digit</a>, U+0065 LATIN SMALL LETTER E (e), or
+  U+0045 LATIN CAPITAL LETTER E (E), then jump to the step labeled <i>conversion</i>.</p>
+       <li data-md="">
+        <p>If the character indicated by <var>position</var> is a U+0065 LATIN SMALL LETTER E
+  character (e) or a U+0045 LATIN CAPITAL LETTER E character (E), skip the remainder of
+  these substeps.</p>
+       <li data-md="">
+        <p><i>Fraction loop</i>: Multiply <var>divisor</var> by ten.</p>
+       <li data-md="">
+        <p>Add the value of the character indicated by <var>position</var>, interpreted as a
+  base-ten digit (0..9) and divided by <var>divisor</var>, to <var>value</var>.</p>
+       <li data-md="">
+        <p>Advance <var>position</var> to the next character.</p>
+       <li data-md="">
+        <p>If <var>position</var> is past the end of <var>input</var>, then jump to the step labeled <i>conversion</i>.</p>
+       <li data-md="">
+        <p>If the character indicated by <var>position</var> is an <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-13">ASCII digit</a>, jump back to
+  the step labeled <i>fraction loop</i> in these substeps.</p>
+      </ol>
+     <li data-md="">
+      <p>If the character indicated by <var>position</var> is a U+0065 LATIN SMALL LETTER E character
+  (e) or a U+0045 LATIN CAPITAL LETTER E character (E), run these substeps:</p>
+      <ol>
+       <li data-md="">
+        <p>Advance <var>position</var> to the next character.</p>
+       <li data-md="">
+        <p>If <var>position</var> is past the end of <var>input</var>, then jump to the step labeled <i>conversion</i>.</p>
+       <li data-md="">
+        <p>If the character indicated by <var>position</var> is a U+002D HYPHEN-MINUS character (-):</p>
+        <ol>
+         <li data-md="">
+          <p>Change <var>exponent</var> to -1.</p>
+         <li data-md="">
+          <p>Advance <var>position</var> to the next character.</p>
+         <li data-md="">
+          <p>If <var>position</var> is past the end of <var>input</var>, then jump to the step
+  labeled <i>conversion</i>.</p>
+        </ol>
+        <p>Otherwise, if the character indicated by <var>position</var> is a U+002B PLUS SIGN character
+  (+):</p>
+        <ol>
+         <li data-md="">
+          <p>Advance <var>position</var> to the next character.</p>
+         <li data-md="">
+          <p>If <var>position</var> is past the end of <var>input</var>, then jump to the step
+  labeled <i>conversion</i>.</p>
+        </ol>
+       <li data-md="">
+        <p>If the character indicated by <var>position</var> is not an <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-14">ASCII digit</a>, then jump
+  to the step labeled <i>conversion</i>.</p>
+       <li data-md="">
+        <p><a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters-5">Collect a sequence of characters</a> that are <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-15">ASCII digits</a>, and interpret the
+  resulting sequence as a base-ten integer. Multiply <var>exponent</var> by that integer.</p>
+       <li data-md="">
+        <p>Multiply <var>value</var> by ten raised to the <var>exponent</var>th power.</p>
+      </ol>
+     <li data-md="">
+      <p><i>Conversion</i>: Let <var>S</var> be the set of finite IEEE 754 double-precision
+  floating-point values except -0, but with two special values added: 2<sup>1024</sup> and -2<sup>1024</sup>.</p>
+     <li data-md="">
+      <p>Let <var>rounded-value</var> be the number in <var>S</var> that is closest to <var>value</var>, selecting the number with an even significand if there are two equally
+  close values. (The two special values 2<sup>1024</sup> and -2<sup>1024</sup> are
+  considered to have even significands for this purpose.)</p>
+     <li data-md="">
+      <p>If <var>rounded-value</var> is 2<sup>1024</sup> or -2<sup>1024</sup>, return an error.</p>
+     <li data-md="">
+      <p>Return <var>rounded-value</var>.</p>
+    </ol>
+    <h5 class="heading settled" data-level="2.2.2.4" id="percentages-and-dimensions"><span class="secno">2.2.2.4. </span><span class="content">Percentages and lengths</span><a class="self-link" href="#percentages-and-dimensions"></a></h5>
+    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="rules-for-parsing-dimension-values">rules for parsing dimension values</dfn> are as given in the following algorithm. When
+  invoked, the steps must be followed in the order given, aborting at the first step that returns
+  a value. This algorithm will return either a number greater than or equal to 0.0, or an error;
+  if a number is returned, then it is further categorized as either a percentage or a length.</p>
+    <ol>
+     <li data-md="">
+      <p>Let <var>input</var> be the string being parsed.</p>
+     <li data-md="">
+      <p>Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start
+  of the string.</p>
+     <li data-md="">
+      <p><a data-link-type="dfn" href="#skip-white-space" id="ref-for-skip-white-space-3">Skip white space</a>.</p>
+     <li data-md="">
+      <p>If <var>position</var> is past the end of <var>input</var>, return an error.</p>
+     <li data-md="">
+      <p>If the character indicated by <var>position</var> is a U+002B PLUS SIGN character (+),
+  advance <var>position</var> to the next character.</p>
+     <li data-md="">
+      <p>If <var>position</var> is past the end of <var>input</var>, return an error.</p>
+     <li data-md="">
+      <p>If the character indicated by <var>position</var> is not an <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-16">ASCII digit</a>, then return
+  an error.</p>
+     <li data-md="">
+      <p><a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters-6">Collect a sequence of characters</a> that are <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-17">ASCII digits</a>, and interpret the
+  resulting sequence as a base-ten integer. Let <var>value</var> be that number.</p>
+     <li data-md="">
+      <p>If <var>position</var> is past the end of <var>input</var>, return <var>value</var> as a
+  length.</p>
+     <li data-md="">
+      <p>If the character indicated by <var>position</var> is a U+002E FULL STOP character (.):</p>
+      <ol>
+       <li data-md="">
+        <p>Advance <var>position</var> to the next character.</p>
+       <li data-md="">
+        <p>If <var>position</var> is past the end of <var>input</var>, or if the character indicated
+  by <var>position</var> is not an <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-18">ASCII digit</a>, then return <var>value</var> as a
+  length.</p>
+       <li data-md="">
+        <p>Let <var>divisor</var> have the value 1.</p>
+       <li data-md="">
+        <p><i>Fraction loop</i>: Multiply <var>divisor</var> by ten.</p>
+       <li data-md="">
+        <p>Add the value of the character indicated by <var>position</var>, interpreted as a
+  base-ten digit (0..9) and divided by <var>divisor</var>, to <var>value</var>.</p>
+       <li data-md="">
+        <p>Advance <var>position</var> to the next character.</p>
+       <li data-md="">
+        <p>If <var>position</var> is past the end of <var>input</var>, then return <var>value</var> as a length.</p>
+       <li data-md="">
+        <p>If the character indicated by <var>position</var> is an <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-19">ASCII digit</a>, return to the
+  step labeled <i>fraction loop</i> in these substeps.</p>
+      </ol>
+     <li data-md="">
+      <p>If <var>position</var> is past the end of <var>input</var>, return <var>value</var> as a
+  length.</p>
+     <li data-md="">
+      <p>If the character indicated by <var>position</var> is a U+0025 PERCENT SIGN character (%),
+  return <var>value</var> as a percentage.</p>
+     <li data-md="">
+      <p>Return <var>value</var> as a length.</p>
+    </ol>
+    <h5 class="heading settled" data-level="2.2.2.5" id="non-zero-percentages-and-lengths"><span class="secno">2.2.2.5. </span><span class="content">Non-zero percentages and lengths</span><a class="self-link" href="#non-zero-percentages-and-lengths"></a></h5>
+    <p>The <dfn data-dfn-type="dfn" data-export="" id="rules-for-parsing-non-zero-dimension-values">rules for parsing non-zero dimension values<a class="self-link" href="#rules-for-parsing-non-zero-dimension-values"></a></dfn> are as given in the following
+  algorithm. When invoked, the steps must be followed in the order given, aborting at the first
+  step that returns a value. This algorithm will return either a number greater than 0.0, or an
+  error; if a number is returned, then it is further categorized as either a percentage or a
+  length.</p>
+    <ol>
+     <li data-md="">
+      <p>Let <var>input</var> be the string being parsed.</p>
+     <li data-md="">
+      <p>Let <var>value</var> be the result of parsing <var>input</var> using the <a data-link-type="dfn" href="#rules-for-parsing-dimension-values" id="ref-for-rules-for-parsing-dimension-values-1">rules for parsing dimension values</a>.</p>
+     <li data-md="">
+      <p>If <var>value</var> is an error, return an error.</p>
+     <li data-md="">
+      <p>If <var>value</var> is zero, return an error.</p>
+     <li data-md="">
+      <p>If <var>value</var> is a percentage, return <var>value</var> as a percentage.</p>
+     <li data-md="">
+      <p>Return <var>value</var> as a length.</p>
+    </ol>
+    <h5 class="heading settled" data-level="2.2.2.6" id="lists-of-floating-point-numbers"><span class="secno">2.2.2.6. </span><span class="content">Lists of floating-point numbers</span><a class="self-link" href="#lists-of-floating-point-numbers"></a></h5>
+    <p>A <dfn data-dfn-type="dfn" data-export="" id="valid-list-of-floating-point-numbers">valid list of floating-point numbers<a class="self-link" href="#valid-list-of-floating-point-numbers"></a></dfn> is a number of <a data-link-type="dfn" href="#valid-floating-point-number" id="ref-for-valid-floating-point-number-3">valid floating-point numbers</a> separated by U+002C COMMA characters, with no other characters
+  (e.g. no <a data-link-type="dfn" href="#space-characters" id="ref-for-space-characters-4">space characters</a>). In addition, there might be restrictions on the number of
+  floating-point numbers that can be given, or on the range of values allowed.</p>
+    <p>The <dfn data-dfn-type="dfn" data-export="" id="rules-for-parsing-a-list-of-floating-point-numbers">rules for parsing a list of floating-point numbers<a class="self-link" href="#rules-for-parsing-a-list-of-floating-point-numbers"></a></dfn> are as follows:</p>
+    <ol>
+     <li data-md="">
+      <p>Let <var>input</var> be the string being parsed.</p>
+     <li data-md="">
+      <p>Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
+  the string.</p>
+     <li data-md="">
+      <p>Let <var>numbers</var> be an initially empty list of floating-point numbers. This list will be
+  the result of this algorithm.</p>
+     <li data-md="">
+      <p><a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters-7">Collect a sequence of characters</a> that are <a data-link-type="dfn" href="#space-characters" id="ref-for-space-characters-5">space characters</a>, U+002C COMMA, or
+  U+003B SEMICOLON characters. This skips past any leading delimiters.</p>
+     <li data-md="">
+      <p>While <var>position</var> is not past the end of <var>input</var>:</p>
+      <ol>
+       <li data-md="">
+        <p><a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters-8">Collect a sequence of characters</a> that are not <a data-link-type="dfn" href="#space-characters" id="ref-for-space-characters-6">space characters</a>, U+002C COMMA,
+  U+003B SEMICOLON, <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-20">ASCII digits</a>, U+002E FULL STOP, or U+002D HYPHEN-MINUS
+  characters. This skips past leading garbage.</p>
+       <li data-md="">
+        <p><a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters-9">Collect a sequence of characters</a> that are not <a data-link-type="dfn" href="#space-characters" id="ref-for-space-characters-7">space characters</a>, U+002C COMMA,
+  or U+003B SEMICOLON characters, and let <var>unparsed number</var> be the result.</p>
+       <li data-md="">
+        <p>Let <var>number</var> be the result of parsing <var>unparsed number</var> using the <a data-link-type="dfn" href="#rules-for-parsing-floating-point-number-values" id="ref-for-rules-for-parsing-floating-point-number-values-1">rules for parsing floating-point number values</a>.</p>
+       <li data-md="">
+        <p>If <var>number</var> is an error, set <var>number</var> to zero.</p>
+       <li data-md="">
+        <p>Append <var>number</var> to <var>numbers</var>.</p>
+       <li data-md="">
+        <p><a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters-10">Collect a sequence of characters</a> that are <a data-link-type="dfn" href="#space-characters" id="ref-for-space-characters-8">space characters</a>, U+002C COMMA, or
+  U+003B SEMICOLON characters. This skips past the delimiter.</p>
+      </ol>
+     <li data-md="">
+      <p>Return <var>numbers</var>.</p>
+    </ol>
+    <h4 class="heading settled" data-level="2.2.3" id="space-separated-tokens"><span class="secno">2.2.3. </span><span class="content">Space-separated tokens</span><a class="self-link" href="#space-separated-tokens"></a></h4>
+    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="set-of-space-separated-tokens">set of space-separated tokens</dfn> is a string containing zero or more words (known as
+  tokens) separated by one or more <a data-link-type="dfn" href="#space-characters" id="ref-for-space-characters-9">space characters</a>, where words consist of any string of one
+  or more characters, none of which are <a data-link-type="dfn" href="#space-characters" id="ref-for-space-characters-10">space characters</a>.</p>
+    <p>A string containing a <a data-link-type="dfn" href="#set-of-space-separated-tokens" id="ref-for-set-of-space-separated-tokens-1">set of space-separated tokens</a> may have leading or trailing <a data-link-type="dfn" href="#space-characters" id="ref-for-space-characters-11">space characters</a>.</p>
+    <p>An <dfn data-dfn-type="dfn" data-export="" id="unordered-set-of-unique-space-separated-tokens">unordered set of unique space-separated tokens<a class="self-link" href="#unordered-set-of-unique-space-separated-tokens"></a></dfn> is a <a data-link-type="dfn" href="#set-of-space-separated-tokens" id="ref-for-set-of-space-separated-tokens-2">set of space-separated tokens</a> where none of the tokens are duplicated.</p>
+    <p>An <dfn data-dfn-type="dfn" data-export="" id="ordered-set-of-unique-space-separated-tokens">ordered set of unique space-separated tokens<a class="self-link" href="#ordered-set-of-unique-space-separated-tokens"></a></dfn> is a <a data-link-type="dfn" href="#set-of-space-separated-tokens" id="ref-for-set-of-space-separated-tokens-3">set of space-separated tokens</a> where none of the tokens are duplicated but where the order
+  of the tokens is meaningful.</p>
+    <p><a data-link-type="dfn" href="#set-of-space-separated-tokens" id="ref-for-set-of-space-separated-tokens-4">Sets of space-separated tokens</a> sometimes have a defined set of allowed values. When a set
+  of allowed values is defined, the tokens must all be from that list of allowed values; other
+  values are non-conforming. If no such set of allowed values is provided, then all values are
+  conforming.</p>
+    <p class="note" role="note"> How tokens in a <a data-link-type="dfn" href="#set-of-space-separated-tokens" id="ref-for-set-of-space-separated-tokens-5">set of space-separated tokens</a> are to be compared (e.g., case-sensitively
+    or not) is defined on a per-set basis. </p>
+    <p>When a consumer has to <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="split-a-string-on-spaces">split a string on spaces</dfn>, it must use the following
+  algorithm:</p>
+    <ol>
+     <li data-md="">
+      <p>Let <var>input</var> be the string being parsed.</p>
+     <li data-md="">
+      <p>Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start
+  of the string.</p>
+     <li data-md="">
+      <p>Let <var>tokens</var> be an ordered list of tokens, initially empty.</p>
+     <li data-md="">
+      <p><a data-link-type="dfn" href="#skip-white-space" id="ref-for-skip-white-space-4">Skip white space</a></p>
+     <li data-md="">
+      <p>While <var>position</var> is not past the end of <var>input</var>:</p>
+      <ol>
+       <li data-md="">
+        <p><a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters-11">Collect a sequence of characters</a> that are not <a data-link-type="dfn" href="#space-characters" id="ref-for-space-characters-12">space characters</a>.</p>
+       <li data-md="">
+        <p>Append the string collected in the previous step to <var>tokens</var>.</p>
+       <li data-md="">
+        <p><a data-link-type="dfn" href="#skip-white-space" id="ref-for-skip-white-space-5">Skip white space</a></p>
+      </ol>
+     <li data-md="">
+      <p>Return <var>tokens</var>.</p>
+    </ol>
+    <h4 class="heading settled" data-level="2.2.4" id="comma-separated-tokens"><span class="secno">2.2.4. </span><span class="content">Comma-separated tokens</span><a class="self-link" href="#comma-separated-tokens"></a></h4>
+    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="set-of-comma-separated-tokens">set of comma-separated tokens</dfn> is a string containing zero or more tokens each
+  separated from the next by a single U+002C COMMA character (,), where tokens consist of any string
+  of zero or more characters, neither beginning nor ending with <a data-link-type="dfn" href="#space-characters" id="ref-for-space-characters-13">space characters</a>, nor
+  containing any U+002C COMMA characters (,), and optionally surrounded by <a data-link-type="dfn" href="#space-characters" id="ref-for-space-characters-14">space characters</a>.</p>
+    <p class="example" id="example-ecca8888"><a class="self-link" href="#example-ecca8888"></a> For instance, the string "<code> a ,b, ,d d </code>" consists of four tokens:
+    "a", "b", the empty string, and "d d". Leading and trailing white space around each token
+    doesn’t count as part of the token, and the empty string can be a token. </p>
+    <p><a data-link-type="dfn" href="#set-of-comma-separated-tokens" id="ref-for-set-of-comma-separated-tokens-1">Sets of comma-separated tokens</a> sometimes have further restrictions on what consists a valid
+  token. When such restrictions are defined, the tokens must all fit within those restrictions;
+  other values are non-conforming. If no such restrictions are specified, then all values are
+  conforming.</p>
+    <p>When a consumer has to <dfn class="dfn-paneled" data-dfn-type="dfn" data-export="" id="split-a-string-on-commas">split a string on commas</dfn>, it must use the following algorithm:</p>
+    <ol>
+     <li data-md="">
+      <p>Let <var>input</var> be the string being parsed.</p>
+     <li data-md="">
+      <p>Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start
+  of the string.</p>
+     <li data-md="">
+      <p>Let <var>tokens</var> be an ordered list of tokens, initially empty.</p>
+     <li data-md="">
+      <p><i>Token</i>: If <var>position</var> is past the end of <var>input</var>, jump to the last
+  step.</p>
+     <li data-md="">
+      <p><a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters-12">Collect a sequence of characters</a> that are not U+002C COMMA characters (,). Let <var>s</var> be the resulting sequence (which might be the empty string).</p>
+     <li data-md="">
+      <p><a data-link-type="dfn" href="#strip-leading-and-trailing-white-space" id="ref-for-strip-leading-and-trailing-white-space-3">Strip leading and trailing white space</a> from <var>s</var>.</p>
+     <li data-md="">
+      <p>Append <var>s</var> to <var>tokens</var>.</p>
+     <li data-md="">
+      <p>If <var>position</var> is not past the end of <var>input</var>, then the character at <var>position</var> is a U+002C COMMA character (,); advance <var>position</var> past that
+  character.</p>
+     <li data-md="">
+      <p>Jump back to the step labeled <i>token</i>.</p>
+     <li data-md="">
+      <p>Return <var>tokens</var>.</p>
+    </ol>
+    <h4 class="heading settled" data-level="2.2.5" id="note-values"><span class="secno">2.2.5. </span><span class="content">CWMN Note Values</span><a class="self-link" href="#note-values"></a></h4>
+    <p>There are a variety of situations in which the <dfn data-dfn-type="dfn" data-noexport="" id="note-value">note value<a class="self-link" href="#note-value"></a></dfn> of a
+musical event needs to be decscribed, in terms of some fraction or multiple of
+a nominal whole-note unit.</p>
+    <p>In CWMN, fractions for undotted <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="base-note-values">base note values</dfn> are constrained to
+be exact powers of two.  The most common note values of whole, half, quarter,
+etc. correspond to whole-note fractions expressed by the non-negative powers
+2<sup>0</sup>, 2<sup>-1</sup>, 2<sup>-2</sup>. The less frequently used note
+values of breve, longa, etc. are expressed by the positive powers
+2<sup>1</sup>, 2<sup>2</sup>, ...</p>
+    <p>In the broader case of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="general-note-values">general note values</dfn>, some <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="number-of-dots">number of dots</dfn> act as a multiplier on the <a data-link-type="dfn" href="#base-note-values" id="ref-for-base-note-values-1">base note value</a>. These multipliers take the form
+(2<sup><em>n</em>+1</sup>-1) / 2<sup><em>n</em></sup>, where <em>n</em> is the <a data-link-type="dfn" href="#number-of-dots" id="ref-for-number-of-dots-1">number of dots</a>.</p>
+    <p>MNX provides a microsyntax for encoding note values whose syntactic
+constraints map to the above requirements. The syntax for <a data-link-type="dfn" href="#base-note-values" id="ref-for-base-note-values-2">base note values</a> consists of either of the following forms:</p>
+    <ol>
+     <li data-md="">
+      <p>For values less than or equal to a whole note:</p>
+      <ol>
+       <li data-md="">
+        <p>The character U+002F SLASH</p>
+       <li data-md="">
+        <p>One or more <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-21">ASCII digits</a> encoding the <a data-link-type="dfn" href="#base-note-values" id="ref-for-base-note-values-3">base note value</a> as a power-of-two fractional denominator</p>
+      </ol>
+     <li data-md="">
+      <p>For values greater than a whole note:</p>
+      <ol>
+       <li data-md="">
+        <p>The character U+002A ASTERISK</p>
+       <li data-md="">
+        <p>One or more <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-22">ASCII digits</a> encoding the <a data-link-type="dfn" href="#base-note-values" id="ref-for-base-note-values-4">base note value</a> as a power-of-two multiplying factor</p>
+      </ol>
+    </ol>
+    <p>The syntax for <a data-link-type="dfn" href="#general-note-values" id="ref-for-general-note-values-1">general note values</a> consists of these components:</p>
+    <ol>
+     <li data-md="">
+      <p>Zero or more occurrences of U+002E FULL STOP (.) characters. The number of occurrences
+  supply the <a data-link-type="dfn" href="#number-of-dots" id="ref-for-number-of-dots-2">number of dots</a>.</p>
+     <li data-md="">
+      <p>A <a data-link-type="dfn" href="#base-note-values" id="ref-for-base-note-values-5">base note value</a> encoding.</p>
+    </ol>
+    <p>To parse a note value, use the following procedure:</p>
+    <ol>
+     <li data-md="">
+      <p>Let <var>input</var> be the string being parsed.</p>
+     <li data-md="">
+      <p>Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
+  the string.</p>
+     <li data-md="">
+      <p>Let <var>number of dots</var> be 0.</p>
+     <li data-md="">
+      <p>If parsing a general note value, <a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters-13">collect a sequence of characters</a> that are U+002E FULL STOP
+  characters. Set <var>number of dots</var> to the length of this sequence.</p>
+     <li data-md="">
+      <p>If the character indicated by <var>position</var> is a U+002A ASTERISK character (*), let <var>fractional</var> be <code>false</code> and advance <var>position</var> by 1.</p>
+     <li data-md="">
+      <p>Else, if the character indicated by <var>position</var> is a U+002E SLASH character (/), let <var>fractional</var> be <code>true</code> and advance <var>position</var> by 1.</p>
+     <li data-md="">
+      <p>Else, return an error.</p>
+     <li data-md="">
+      <p><a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters-14">Collect a sequence of characters</a> that are <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits-23">ASCII digits</a> only and let <var>unparsed number</var> be the result.</p>
+     <li data-md="">
+      <p>Let <var>base value</var> be the result of parsing <var>unparsed number</var> using the <a data-link-type="dfn" href="#parse-token-as-an-integer" id="ref-for-parse-token-as-an-integer-2">rules for parsing integers</a>.</p>
+     <li data-md="">
+      <p>If <var>base value</var> is not equal to a power of 2, return an error.</p>
+     <li data-md="">
+      <p>If <var>base value</var> is equal to 1 and <var>fractional</var> is false, return an error.</p>
+     <li data-md="">
+      <p>If <var>fractional</var> is true, set <var>base value</var> to (1 / <var>base value</var>).</p>
+     <li data-md="">
+      <p>If <var>number of dots</var> is greater than zero, multiply <var>base value</var> by
+  (2<sup>(<var>number of dots</var>+1)</sup>-1) / 2<sup>(<var>number of dots</var>)</sup>.</p>
+     <li data-md="">
+      <p>Return <var>base value</var>.</p>
+    </ol>
+    <div class="example" id="example-78e2030d">
+     <a class="self-link" href="#example-78e2030d"></a> Here are some instances of the note value syntax: 
+     <dl>
+      <dt data-md=""><code>/1</code>
+      <dd data-md="">
+       <p>a whole note</p>
+      <dt data-md=""><code>/4</code>
+      <dd data-md="">
+       <p>a quarter note</p>
+      <dt data-md=""><code>/8</code>
+      <dd data-md="">
+       <p>an eighth quarter note</p>
+      <dt data-md=""><code>./8</code>
+      <dd data-md="">
+       <p>a dotted eighth note</p>
+      <dt data-md=""><code>../8</code>
+      <dd data-md="">
+       <p>a double-dotted eighth note</p>
+      <dt data-md=""><code>*2</code>
+      <dd data-md="">
+       <p>a breve (double whole note)</p>
+      <dt data-md=""><code>.*2</code>
+      <dd data-md="">
+       <p>a dotted breve</p>
+     </dl>
+    </div>
    </section>
    <h2 class="heading settled" data-level="3" id="document"><span class="secno">3. </span><span class="content">Document Organization</span><a class="self-link" href="#document"></a></h2>
    <h3 class="heading settled" data-level="3.1" id="the-container-document"><span class="secno">3.1. </span><span class="content">The container document</span><a class="self-link" href="#the-container-document"></a></h3>
@@ -1853,10 +2489,17 @@ duration in the containing rhythmic context.</p>
      <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
      <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
      <ul class="index">
+      <li><a href="#alphanumeric-ascii-characters">alphanumeric ASCII characters</a><span>, in §2.2.1</span>
       <li><a href="#elementdef-articulations">articulations</a><span>, in §4.3.1.21</span>
+      <li><a href="#ascii-digits">ASCII digits</a><span>, in §2.2.1</span>
+      <li><a href="#ascii-hex-digits">ASCII hex digits</a><span>, in §2.2.1</span>
+      <li><a href="#ascii-letters">ASCII letters</a><span>, in §2.2.1</span>
+      <li><a href="#base-note-values">base note values</a><span>, in §2.2.5</span>
       <li><a href="#elementdef-bracket">bracket</a><span>, in §4.3.1.11</span>
       <li><a href="#elementdef-coda">coda</a><span>, in §4.3.1.12</span>
+      <li><a href="#collect-a-sequence-of-characters">collect a sequence of characters</a><span>, in §2.2.1</span>
       <li><a href="#container-document">container document</a><span>, in §3.1</span>
+      <li><a href="#control-characters">control characters</a><span>, in §2.2.1</span>
       <li><a href="#direction-content">Direction content</a><span>, in §4.2.1.1.2</span>
       <li><a href="#elementdef-dirgroup">dirgroup</a><span>, in §4.3.1.4</span>
       <li><a href="#valdef-stem-down">down</a><span>, in §4.4.1</span>
@@ -1864,23 +2507,56 @@ duration in the containing rhythmic context.</p>
       <li><a href="#elementdef-event">event</a><span>, in §4.3.1.3</span>
       <li><a href="#event-content">Event content</a><span>, in §4.2.1.1.3</span>
       <li><a href="#elementdef-expression">expression</a><span>, in §4.3.1.8</span>
+      <li><a href="#general-note-values">general note values</a><span>, in §2.2.5</span>
       <li><a href="#elementdef-glissando">glissando</a><span>, in §4.3.1.18</span>
       <li><a href="#elementdef-grace">grace</a><span>, in §4.3.1.24</span>
       <li><a href="#elementdef-harmony">harmony</a><span>, in §4.3.1.6</span>
       <li><a href="#elementdef-instruction">instruction</a><span>, in §4.3.1.7</span>
+      <li><a href="#strip-leading-and-trailing-white-space">leading and trailing white space stripped</a><span>, in §2.2.1</span>
+      <li><a href="#lowercase-ascii-hex-digits">lowercase ASCII hex digits</a><span>, in §2.2.1</span>
+      <li><a href="#lowercase-ascii-letters">lowercase ASCII letters</a><span>, in §2.2.1</span>
       <li><a href="#elementdef-lyric">lyric</a><span>, in §4.3.1.16</span>
       <li><a href="#elementdef-measure">measure</a><span>, in §4.3.1.1</span>
       <li><a href="#elementdef-note">note</a><span>, in §4.3.1.14</span>
+      <li><a href="#note-value">note value</a><span>, in §2.2.5</span>
+      <li><a href="#number-of-dots">number of dots</a><span>, in §2.2.5</span>
+      <li><a href="#ordered-set-of-unique-space-separated-tokens">ordered set of unique space-separated tokens</a><span>, in §2.2.3</span>
       <li><a href="#elementdef-ornaments">ornaments</a><span>, in §4.3.1.20</span>
+      <li><a href="#parse-token-as-an-integer">parse it as an integer</a><span>, in §2.2.2.1</span>
+      <li><a href="#parse-that-attributes-value">parse that attribute’s value</a><span>, in §2.2.2.2</span>
+      <li><a href="#parse-token-as-an-integer">parse token as an integer</a><span>, in §2.2.2.1</span>
       <li><a href="#elementdef-pedal">pedal</a><span>, in §4.3.1.10</span>
       <li><a href="#elementdef-rest">rest</a><span>, in §4.3.1.15</span>
+      <li><a href="#rules-for-parsing-a-list-of-floating-point-numbers">rules for parsing a list of floating-point numbers</a><span>, in §2.2.2.6</span>
+      <li><a href="#rules-for-parsing-dimension-values">rules for parsing dimension values</a><span>, in §2.2.2.4</span>
+      <li><a href="#rules-for-parsing-floating-point-number-values">rules for parsing floating-point number values</a><span>, in §2.2.2.3</span>
+      <li><a href="#parse-token-as-an-integer">rules for parsing integer</a><span>, in §2.2.2.1</span>
+      <li><a href="#parse-token-as-an-integer">rules for parsing integers</a><span>, in §2.2.2.1</span>
+      <li><a href="#parse-that-attributes-value">rules for parsing non-negative integers</a><span>, in §2.2.2.2</span>
+      <li><a href="#rules-for-parsing-non-zero-dimension-values">rules for parsing non-zero dimension values</a><span>, in §2.2.2.5</span>
+      <li><a href="#parse-token-as-an-integer">rules for parsing signed integers</a><span>, in §2.2.2.1</span>
       <li><a href="#score-types">score types</a><span>, in §1.2</span>
       <li><a href="#elementdef-segno">segno</a><span>, in §4.3.1.13</span>
       <li><a href="#elementdef-sequence">sequence</a><span>, in §4.3.1.2</span>
       <li><a href="#sequence-content">Sequence content</a><span>, in §4.2.1.1.1</span>
+      <li><a href="#set-of-comma-separated-tokens">set of comma-separated tokens</a><span>, in §2.2.4</span>
+      <li><a href="#set-of-space-separated-tokens">set of space-separated tokens</a><span>, in §2.2.3</span>
+      <li><a href="#skip-white-space">skip white space</a><span>, in §2.2.1</span>
       <li><a href="#elementdef-slide">slide</a><span>, in §4.3.1.19</span>
       <li><a href="#elementdef-slur">slur</a><span>, in §4.3.1.17</span>
+      <li><a href="#space-characters">space characters</a><span>, in §2.2.1</span>
+      <li><a href="#split-a-string-on-commas">split a string on commas</a><span>, in §2.2.4</span>
+      <li><a href="#split-a-string-on-spaces">split a string on spaces</a><span>, in §2.2.3</span>
       <li><a href="#propdef-stem">stem</a><span>, in §4.4.1</span>
+      <li><a href="#strictly-splitting-the-string">strictly split</a><span>, in §2.2.1</span>
+      <li><a href="#strictly-splitting-the-string">strictly split a string</a><span>, in §2.2.1</span>
+      <li><a href="#strictly-splitting-the-string">strictly splitting the string</a><span>, in §2.2.1</span>
+      <li><a href="#stripping-and-collapsing-white-space">strip and collapse white space</a><span>, in §2.2.1</span>
+      <li><a href="#strip-leading-and-trailing-white-space">strip leading and trailing white space</a><span>, in §2.2.1</span>
+      <li><a href="#stripped-line-breaks">strip line breaks</a><span>, in §2.2.1</span>
+      <li><a href="#stripped-line-breaks">stripped line breaks</a><span>, in §2.2.1</span>
+      <li><a href="#stripping-and-collapsing-white-space">stripping and collapsing white space</a><span>, in §2.2.1</span>
+      <li><a href="#strip-leading-and-trailing-white-space">stripping leading and trailing white space</a><span>, in §2.2.1</span>
       <li><a href="#elementdef-technical">technical</a><span>, in §4.3.1.22</span>
       <li>
        this
@@ -1889,9 +2565,19 @@ duration in the containing rhythmic context.</p>
         <li><a href="#elementdef-this">(element)</a><span>, in §1.9.2</span>
        </ul>
       <li><a href="#elementdef-tuplet">tuplet</a><span>, in §4.3.1.23</span>
+      <li><a href="#unordered-set-of-unique-space-separated-tokens">unordered set of unique space-separated tokens</a><span>, in §2.2.3</span>
       <li><a href="#valdef-stem-up">up</a><span>, in §4.4.1</span>
+      <li><a href="#uppercase-ascii-hex-digits">uppercase ASCII hex digits</a><span>, in §2.2.1</span>
+      <li><a href="#uppercase-ascii-letters">uppercase ASCII letters</a><span>, in §2.2.1</span>
+      <li><a href="#valid-floating-point-number">valid floating-point number</a><span>, in §2.2.2.3</span>
+      <li><a href="#valid-integer">valid integer</a><span>, in §2.2.2.1</span>
+      <li><a href="#valid-integer">valid integers</a><span>, in §2.2.2.1</span>
+      <li><a href="#valid-list-of-floating-point-numbers">valid list of floating-point numbers</a><span>, in §2.2.2.6</span>
+      <li><a href="#valid-non-negative-integer">valid non-negative integer</a><span>, in §2.2.2.2</span>
       <li><a href="#element-attrdef-event-value">value</a><span>, in §4.3.1.3</span>
       <li><a href="#elementdef-wedge">wedge</a><span>, in §4.3.1.9</span>
+      <li><a href="#white_space">white_space</a><span>, in §2.2.1</span>
+      <li><a href="#white_space">white_space characters</a><span>, in §2.2.1</span>
      </ul>
     </div>
    </section>
@@ -2050,6 +2736,8 @@ duration in the containing rhythmic context.</p>
   <dl>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
+   <dt id="biblio-unicode">[UNICODE]
+   <dd><a href="http://www.unicode.org/versions/latest/">The Unicode Standard</a>. URL: <a href="http://www.unicode.org/versions/latest/">http://www.unicode.org/versions/latest/</a>
   </dl>
   <aside class="dfn-panel" data-for="score-types">
    <b><a href="#score-types">#score-types</a></b><b>Referenced in:</b>
@@ -2067,6 +2755,148 @@ duration in the containing rhythmic context.</p>
    <b><a href="#elementdef-this">#elementdef-this</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-elementdef-this-1">1.9.2. Typographic conventions</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="space-characters">
+   <b><a href="#space-characters">#space-characters</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-space-characters-1">2.2.1. Common parser idioms</a> <a href="#ref-for-space-characters-2">(2)</a> <a href="#ref-for-space-characters-3">(3)</a>
+    <li><a href="#ref-for-space-characters-4">2.2.2.6. Lists of floating-point numbers</a> <a href="#ref-for-space-characters-5">(2)</a> <a href="#ref-for-space-characters-6">(3)</a> <a href="#ref-for-space-characters-7">(4)</a> <a href="#ref-for-space-characters-8">(5)</a>
+    <li><a href="#ref-for-space-characters-9">2.2.3. Space-separated tokens</a> <a href="#ref-for-space-characters-10">(2)</a> <a href="#ref-for-space-characters-11">(3)</a> <a href="#ref-for-space-characters-12">(4)</a>
+    <li><a href="#ref-for-space-characters-13">2.2.4. Comma-separated tokens</a> <a href="#ref-for-space-characters-14">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="uppercase-ascii-letters">
+   <b><a href="#uppercase-ascii-letters">#uppercase-ascii-letters</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-uppercase-ascii-letters-1">2.2.1. Common parser idioms</a> <a href="#ref-for-uppercase-ascii-letters-2">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="lowercase-ascii-letters">
+   <b><a href="#lowercase-ascii-letters">#lowercase-ascii-letters</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-lowercase-ascii-letters-1">2.2.1. Common parser idioms</a> <a href="#ref-for-lowercase-ascii-letters-2">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="ascii-digits">
+   <b><a href="#ascii-digits">#ascii-digits</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-ascii-digits-1">2.2.1. Common parser idioms</a>
+    <li><a href="#ref-for-ascii-digits-2">2.2.2.1. Signed integers</a> <a href="#ref-for-ascii-digits-3">(2)</a> <a href="#ref-for-ascii-digits-4">(3)</a>
+    <li><a href="#ref-for-ascii-digits-5">2.2.2.2. Non-negative integers</a>
+    <li><a href="#ref-for-ascii-digits-6">2.2.2.3. Floating-point numbers</a> <a href="#ref-for-ascii-digits-7">(2)</a> <a href="#ref-for-ascii-digits-8">(3)</a> <a href="#ref-for-ascii-digits-9">(4)</a> <a href="#ref-for-ascii-digits-10">(5)</a> <a href="#ref-for-ascii-digits-11">(6)</a> <a href="#ref-for-ascii-digits-12">(7)</a> <a href="#ref-for-ascii-digits-13">(8)</a> <a href="#ref-for-ascii-digits-14">(9)</a> <a href="#ref-for-ascii-digits-15">(10)</a>
+    <li><a href="#ref-for-ascii-digits-16">2.2.2.4. Percentages and lengths</a> <a href="#ref-for-ascii-digits-17">(2)</a> <a href="#ref-for-ascii-digits-18">(3)</a> <a href="#ref-for-ascii-digits-19">(4)</a>
+    <li><a href="#ref-for-ascii-digits-20">2.2.2.6. Lists of floating-point numbers</a>
+    <li><a href="#ref-for-ascii-digits-21">2.2.5. CWMN Note Values</a> <a href="#ref-for-ascii-digits-22">(2)</a> <a href="#ref-for-ascii-digits-23">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="collect-a-sequence-of-characters">
+   <b><a href="#collect-a-sequence-of-characters">#collect-a-sequence-of-characters</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-collect-a-sequence-of-characters-1">2.2.1. Common parser idioms</a> <a href="#ref-for-collect-a-sequence-of-characters-2">(2)</a>
+    <li><a href="#ref-for-collect-a-sequence-of-characters-3">2.2.2.1. Signed integers</a>
+    <li><a href="#ref-for-collect-a-sequence-of-characters-4">2.2.2.3. Floating-point numbers</a> <a href="#ref-for-collect-a-sequence-of-characters-5">(2)</a>
+    <li><a href="#ref-for-collect-a-sequence-of-characters-6">2.2.2.4. Percentages and lengths</a>
+    <li><a href="#ref-for-collect-a-sequence-of-characters-7">2.2.2.6. Lists of floating-point numbers</a> <a href="#ref-for-collect-a-sequence-of-characters-8">(2)</a> <a href="#ref-for-collect-a-sequence-of-characters-9">(3)</a> <a href="#ref-for-collect-a-sequence-of-characters-10">(4)</a>
+    <li><a href="#ref-for-collect-a-sequence-of-characters-11">2.2.3. Space-separated tokens</a>
+    <li><a href="#ref-for-collect-a-sequence-of-characters-12">2.2.4. Comma-separated tokens</a>
+    <li><a href="#ref-for-collect-a-sequence-of-characters-13">2.2.5. CWMN Note Values</a> <a href="#ref-for-collect-a-sequence-of-characters-14">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="skip-white-space">
+   <b><a href="#skip-white-space">#skip-white-space</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-skip-white-space-1">2.2.2.1. Signed integers</a>
+    <li><a href="#ref-for-skip-white-space-2">2.2.2.3. Floating-point numbers</a>
+    <li><a href="#ref-for-skip-white-space-3">2.2.2.4. Percentages and lengths</a>
+    <li><a href="#ref-for-skip-white-space-4">2.2.3. Space-separated tokens</a> <a href="#ref-for-skip-white-space-5">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="strip-leading-and-trailing-white-space">
+   <b><a href="#strip-leading-and-trailing-white-space">#strip-leading-and-trailing-white-space</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-strip-leading-and-trailing-white-space-1">2.2.1. Common parser idioms</a> <a href="#ref-for-strip-leading-and-trailing-white-space-2">(2)</a>
+    <li><a href="#ref-for-strip-leading-and-trailing-white-space-3">2.2.4. Comma-separated tokens</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="valid-integer">
+   <b><a href="#valid-integer">#valid-integer</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-valid-integer-1">2.2.2.1. Signed integers</a> <a href="#ref-for-valid-integer-2">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="parse-token-as-an-integer">
+   <b><a href="#parse-token-as-an-integer">#parse-token-as-an-integer</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-parse-token-as-an-integer-1">2.2.2.2. Non-negative integers</a>
+    <li><a href="#ref-for-parse-token-as-an-integer-2">2.2.5. CWMN Note Values</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="valid-non-negative-integer">
+   <b><a href="#valid-non-negative-integer">#valid-non-negative-integer</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-valid-non-negative-integer-1">2.2.2.2. Non-negative integers</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="valid-floating-point-number">
+   <b><a href="#valid-floating-point-number">#valid-floating-point-number</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-valid-floating-point-number-1">2.2.2.3. Floating-point numbers</a> <a href="#ref-for-valid-floating-point-number-2">(2)</a>
+    <li><a href="#ref-for-valid-floating-point-number-3">2.2.2.6. Lists of floating-point numbers</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="rules-for-parsing-floating-point-number-values">
+   <b><a href="#rules-for-parsing-floating-point-number-values">#rules-for-parsing-floating-point-number-values</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-rules-for-parsing-floating-point-number-values-1">2.2.2.6. Lists of floating-point numbers</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="rules-for-parsing-dimension-values">
+   <b><a href="#rules-for-parsing-dimension-values">#rules-for-parsing-dimension-values</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-rules-for-parsing-dimension-values-1">2.2.2.5. Non-zero percentages and lengths</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="set-of-space-separated-tokens">
+   <b><a href="#set-of-space-separated-tokens">#set-of-space-separated-tokens</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-set-of-space-separated-tokens-1">2.2.3. Space-separated tokens</a> <a href="#ref-for-set-of-space-separated-tokens-2">(2)</a> <a href="#ref-for-set-of-space-separated-tokens-3">(3)</a> <a href="#ref-for-set-of-space-separated-tokens-4">(4)</a> <a href="#ref-for-set-of-space-separated-tokens-5">(5)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="split-a-string-on-spaces">
+   <b><a href="#split-a-string-on-spaces">#split-a-string-on-spaces</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-split-a-string-on-spaces-1">2.2.1. Common parser idioms</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="set-of-comma-separated-tokens">
+   <b><a href="#set-of-comma-separated-tokens">#set-of-comma-separated-tokens</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-set-of-comma-separated-tokens-1">2.2.4. Comma-separated tokens</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="split-a-string-on-commas">
+   <b><a href="#split-a-string-on-commas">#split-a-string-on-commas</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-split-a-string-on-commas-1">2.2.1. Common parser idioms</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="base-note-values">
+   <b><a href="#base-note-values">#base-note-values</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-base-note-values-1">2.2.5. CWMN Note Values</a> <a href="#ref-for-base-note-values-2">(2)</a> <a href="#ref-for-base-note-values-3">(3)</a> <a href="#ref-for-base-note-values-4">(4)</a> <a href="#ref-for-base-note-values-5">(5)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="general-note-values">
+   <b><a href="#general-note-values">#general-note-values</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-general-note-values-1">2.2.5. CWMN Note Values</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="number-of-dots">
+   <b><a href="#number-of-dots">#number-of-dots</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-number-of-dots-1">2.2.5. CWMN Note Values</a> <a href="#ref-for-number-of-dots-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="container-document">
