@@ -920,10 +920,25 @@ order in which they are played by a performer.
 
 <h5 id="cwmnx-sequence-content">Sequence content</h5>
 
-<dfn>Sequence content</dfn> supplies a series of musical events that are performed in the given order at distinct times, including:
+<dfn>Sequence content</dfn> supplies a series of musical events that are
+both presented and performed in a given order, each at a distinct time. Such
+events express the concepts of chords, notes and rests.
 
+Within sequence content, each <{event}> descendant except for those below a
+<{grace}> element possesses a well-defined <dfn>metrical position</dfn>,
+giving its notated time onset expressed as a rational number of whole note
+durations after the start of its containing measure. This position may be
+thought of as the event's "address" within its containing sequence, and plays
+a determining role in the normative rendering and performance of events.
+
+Events below a <{grace}> element do not have a metrical position. They merely
+have a well-defined notational ordering relative to other events in the
+measure.
+
+Elements occuring in sequence content include:
 - <{event}>
 - <{tuplet}>
+- <{grace}>
 
 <h5 id="cwmnx-direction-content">Direction content</h5>
 
@@ -931,12 +946,23 @@ order in which they are played by a performer.
 that modify or accompany the performance of events within the sequence content
 of one or more measures.
 
-The effect of direction content is scoped in a way that depends on where it is placed:
+Valid direction content must either possess either an explicit <a>metrical
+position</a>, or must be directly associated with an <{event}>.
+
+A direction with an explicit metrical position, is called a <dfn>positional
+direction</dfn>. It is considered to start at its given position within its
+measure relative to other elements. Such directions are <dfn lt="direction
+scope">scoped</dfn> in a way that depends on where they are placed:
 
 - Direction content in a <{measure}> within the <{system}> element applies to all sequences of the measure in all parts.
 - Direction content in a <{measure}> within a <{part}> element applies to all sequences of the measure in a given part.
 - Direction content in a <{sequence}> applies to the sequence in which it occurs.
-- Direction content in an <{event}> applies to the sequence which contains that event.
+
+Direction content that placed in an <{event}> is called an <dfn>event
+direction</dfn>, and its <a>notational position</a> is the same as this event.
+If the event has a <a>metrical position</a>, the behavior of the direction is
+the same as a <a>positional direction</a> with that position. Event directions
+always apply to the sequence contining the event in which they occur.
 
 Direction content includes these elements:
 
@@ -1156,6 +1182,11 @@ duration in the containing rhythmic context.
 <h5 id="the-tuplet-element">The <dfn element><code>tuplet</code></dfn> element</h5>
 <section dfn-for="tuplet">
 </section>
+
+<h5 id="the-grace-element">The <dfn element><code>grace</code></dfn> element</h5>
+<section dfn-for="grace">
+</section>
+
 
 <h5 id="the-part-name-element">The <dfn element><code>part-name</code></dfn> element</h5>
 <section dfn-for="part-name">
