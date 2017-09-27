@@ -1423,7 +1423,7 @@ Possible extra rowspan handling
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Draft Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-09-23">23 September 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-09-27">27 September 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1437,7 +1437,7 @@ Possible extra rowspan handling
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 23 September 2017,
+In addition, as of 27 September 2017,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2250,7 +2250,10 @@ values of breve, longa, etc. are expressed by the positive powers
     <p>In the broader case of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="general-note-values">general note values</dfn>, some <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="number-of-dots">number of dots</dfn> act as a multiplier on the <a data-link-type="dfn" href="#base-note-values" id="ref-for-base-note-values-1">base note value</a>. These multipliers take the form
 (2<sup><em>n</em>+1</sup>-1) / 2<sup><em>n</em></sup>, where <em>n</em> is the <a data-link-type="dfn" href="#number-of-dots" id="ref-for-number-of-dots-1">number of dots</a>.</p>
     <p>MNX provides a microsyntax for encoding note values whose syntactic
-constraints map to the above requirements. The syntax for <a data-link-type="dfn" href="#base-note-values" id="ref-for-base-note-values-2">base note values</a> consists of either of the following forms:</p>
+constraints map to the above requirements. Its syntax is designed to be
+distinguishable from other syntaxes for integers, floating point numbers or
+rational numbers.  The syntax for <a data-link-type="dfn" href="#base-note-values" id="ref-for-base-note-values-2">base note values</a> consists of either
+of the following forms:</p>
     <ol>
      <li data-md="">
       <p>For values less than or equal to a whole note:</p>
@@ -2343,7 +2346,6 @@ constraints map to the above requirements. The syntax for <a data-link-type="dfn
    <p>Each MNX document acts as a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="container-document">container document</dfn>, which contains a
 hierarchy of components which collectively make up the
 document as a whole.</p>
-   <p></p>
    <h2 class="heading settled" data-level="4" id="cwmnx"><span class="secno">4. </span><span class="content">CWMNX</span><a class="self-link" href="#cwmnx"></a></h2>
    <section>
     <h3 class="heading settled" data-level="4.1" id="cwmnx-scope"><span class="secno">4.1. </span><span class="content">Scope</span><a class="self-link" href="#cwmnx-scope"></a></h3>
@@ -2472,7 +2474,6 @@ duration in the containing rhythmic context.</p>
     <section></section>
     <h5 class="heading settled" data-level="4.3.1.24" id="the-grace-element"><span class="secno">4.3.1.24. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-grace"><code>grace</code></dfn> element</span><a class="self-link" href="#the-grace-element"></a></h5>
     <section></section>
-    <p></p>
    </section>
    <h3 class="heading settled" data-level="4.4" id="cwmnx-rendering"><span class="secno">4.4. </span><span class="content">Rendering</span><a class="self-link" href="#cwmnx-rendering"></a></h3>
    <h4 class="heading settled" data-level="4.4.1" id="cwmnx-stem"><span class="secno">4.4.1. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-stem"><code>stem</code></dfn> property</span><a class="self-link" href="#cwmnx-stem"></a></h4>
@@ -2483,7 +2484,9 @@ duration in the containing rhythmic context.</p>
    <section>
     <h3 class="heading settled" data-level="4.5" id="cwmnx-interpretation"><span class="secno">4.5. </span><span class="content">Interpretation</span><a class="self-link" href="#cwmnx-interpretation"></a></h3>
    </section>
-   <h2 class="heading settled" data-level="5" id="gmnx"><span class="secno">5. </span><span class="content">GMNX</span><a class="self-link" href="#gmnx"></a></h2>
+   <section>
+    <h2 class="heading settled" data-level="5" id="gmnx"><span class="secno">5. </span><span class="content">GMNX</span><a class="self-link" href="#gmnx"></a></h2>
+   </section>
    <section>
     <div data-fill-with="index">
      <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>

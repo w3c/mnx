@@ -73,21 +73,958 @@ spec:css22
 </pre>
  -->
 
-<pre class="include">
-path: sections/introduction.bs
-</pre>
-<pre class="include">
-path: sections/infrastructure.bs
-</pre>
-<pre class="include">
-path: sections/document.bs
-</pre>
-<pre class="include">
-path: sections/cwmnx.include
-</pre>
-<pre class="include">
-path: sections/gmnx.include
-</pre>
+<h2 id="introduction">Introduction</h2>
+
+<h3 id="background">Background</h3>
+
+  <em>This section is non-normative.</em>
+
+  MNX is a proposed music notation markup standard, which seeks to provide a
+  high degree of interoperability and exchange between different applications
+  working with music notation. This emphasis on interoperability is a
+  differentiator between MNX and other notation encoding approaches, and takes
+  it in a different direction from its predecessors.
+
+  MNX stands for "Music Notation X", where "X" suggests "XML", "eXtended",
+  and potentially other X-related things as may come to mind.
+
+<h3 id="mnx-score-types">MNX Score Types</h3>
+
+  <em>This section is non-normative.</em>
+
+MNX can support multiple <dfn>score types</dfn>. Each score type is a specific encoding that applies
+to some portion of a <a>container document</a>.
+
+The present draft of this specification deals with two <a>score types</a>:
+
+<ul>
+  <li><a href="#cwmnx">CWMNX</a>, which encodes Conventional Western Music Notation (CWMN) in a
+  semantically rich fashion. It inherits many ideas and concepts from MusicXML.</li>
+
+  <li><a href="#gmnx">GMNX</a>, where "G" is for
+  <strong>G</strong>eneral. It serves as a kind of universal encoding for
+  scores having arbitary graphical and audio content. In consequence, it is
+  relatively free of semantics.</li>
+</ul>
+
+<h3 id="comparisons">Comparisons with other notation standards</h3>
+
+  <em>This section is non-normative.</em>
+
+The CWMNX score type of MNX is a lineal descendant of MusicXML, and employs
+many of the same concepts. However it sacrifices some features and flexibility
+in favor of tighter interoperability, and simplifies the element structure
+considerably. It also moves all non-semantic information into CSS properties.
+The features in GMNX have no analogue in MusicXML.
+
+MEI is a very general and expressive medium for encoding arbitrary musical
+documents, with particular attention to the needs of scholars. Due to its
+extreme plasticity, MEI is perhaps better described as a powerful framework
+for building customized documents and applications, than as a single encoding
+method. As such, interoperability has not been a main goal of MEI to date.
+However there are efforts underway to define a clean MEI subset as an
+interoperable medium for encoding CWMN (sometimes known as "MEI Go").
+
+IEEE 1599 is a specification that has paid unique attention to the
+relationships between different layers of musical information. Its Logic layer
+is similar in content to CWMNX, while its Notational, Performance and Audio
+layers answer some of the same concerns as GWMNX. GMNX takes a different
+approach to connecting these layers, and does not attempt to fully
+unify semantic information with visual and performance data. It relies
+to a greater degree on SVG, and to a lesser degree on MIDI.
+
+<h3 id="compatibility">Compatibility with MusicXML</h3>
+
+  <em>This section is non-normative.</em>
+
+MNX uses MusicXML as a point of departure in many ways, but it does not
+attempt to be backward-compatible with MusicXML, nor is it a superset of
+MusicXML. However, a large proportion of MusicXML markup is expected to be
+preserved. In these examples, MusicXML constructs are used freely throughout
+as a way to show how proposed new concepts dovetail with existing ones.
+
+Backward compatibility aside, it is a goal to be able to machine-translate
+MusicXML into MNX. This is essential for migration purposes.
+
+<h3 id="use-cases">Use cases</h3>
+
+  <em>This section is non-normative.</em>
+
+A companion document details a set of [known use cases for music notation](../use-cases/index.html).
+
+<h3 id="audience">Audience</h3>
+
+  <em>This section is non-normative.</em>
+
+  This specification is intended for authors of documents and applications that use the features defined
+  in this specification, implementors of tools that operate on documents that use the
+  features defined in this specification, and individuals wishing to establish the correctness of
+  documents or implementations with respect to the requirements of this specification.
+
+  This document is probably not suited to readers who do not already have at least a passing
+  familiarity with XML technologies. In places it sacrifices clarity for precision, and brevity
+  for completeness. More approachable tutorials and authoring guides can provide a gentler
+  introduction to the topic.
+
+<h3 id="history">History</h3>
+
+  <em>This section is non-normative.</em>
+
+  <em>Content TBD</em>
+
+
+<h3 id="design-notes">Design notes</h3>
+
+  <em>This section is non-normative.</em>
+
+  <em>Content TBD</em>
+
+<h4 id="design-notes-extensibility">Extensibility</h4>
+
+  <em>This section is non-normative.</em>
+
+  <em>Content TBD</em>
+
+<h3 id="structure-of-this-specification">Structure of this specification</h3>
+
+  <em>This section is non-normative.</em>
+
+  This specification is divided into the following major sections:
+
+  <div dfn-for="spec">
+    : [[#introduction]]
+    :: Non-normative materials providing a context for the HTML specification.
+    : [[#cwmnx-semantics]]
+    :: Each element has a predefined meaning, which is explained in this section. Rules for authors
+        on how to use the element, along with user agent requirements for how to
+        handle each element, are also given. This includes large signature features of HTML
+        such as video playback and subtitles, form controls and form submission, and a 2D graphics
+        API known as the HTML canvas.
+    : [[#cwmnx-rendering]]
+    :: This section defines the default rendering rules for Web browsers.
+  </div>
+
+<h4 id="how-to-read-this-specification">How to read this specification</h4>
+
+  As described in the conformance requirements section below, this specification describes
+  conformance criteria for a variety of conformance classes. In particular, there are conformance
+  requirements that apply to <em>producers</em>, for example authors and the documents they create,
+  and there are conformance requirements that apply to <em>consumers</em>, for example Web browsers.
+  They can be distinguished by what they are requiring: a requirement on a producer states what is
+  allowed, while a requirement on a consumer states how software is to act.
+
+  <div class="example">
+    For example, "the <code>foo</code> attribute's value must be a valid integer" is a
+    requirement on producers, as it lays out the allowed values; in contrast, the requirement "the
+    <code>foo</code> attribute's value must be parsed using the rules for parsing integers"
+    is a requirement on consumers, as it describes how to process the content.
+  </div>
+
+  <strong>Requirements on producers have no bearing whatsoever on consumers.</strong>
+
+
+<h4 id="typographic-conventions">Typographic conventions</h4>
+
+  <div>
+    This is a definition, requirement, or explanation.
+
+    <p class="note">This is a note.</p>
+
+    <p class="example">This is an example.</p>
+
+    <p class="&#x0058;&#x0058;&#x0058;">This is an open issue.</p>
+
+    <p class="warning">This is a warning.</p>
+
+    <pre class="css" highlight="css">/* this is a CSS fragment */</pre>
+
+    The defining instance of a term is marked up like <dfn noexport>this</dfn>.
+    Uses of that term are marked up like [=this=] or like <a><i>this</i></a>.
+
+    The defining instance of an element, attribute, or API is marked up like
+    <dfn element noexport><code>this</code></dfn>. References to that element, attribute, or API are
+    marked up like <{this}>.
+
+    Other code fragments are marked up <code>like this</code>.
+
+    Byte sequences with bytes in the range 0x00 to 0x7F, inclusive, are marked up like
+    `this`.
+
+    Variables are marked up like <var ignore>this</var>.
+
+    In some cases, requirements are given in the form of lists with conditions and corresponding
+    requirements. In such cases, the requirements that apply to a condition are always the first set
+    of requirements that follow the condition, even in the case of there being multiple sets of
+    conditions for those requirements. Such cases are presented as follows:
+
+    <dl class="switch">
+      <dt>This is a condition</dt>
+      <dt>This is another condition</dt>
+      <dd>This is the requirement that applies to the conditions above.</dd>
+      <dt>This is a third condition</dt>
+      <dd>This is the requirement that applies to the third condition.</dd>
+    </dl>
+  </div>
+
+
+<h3 id="suggested-reading">Suggested reading</h3>
+
+  <em>This section is non-normative.</em>
+
+  The following documents might be of interest to readers of this specification.
+
+<section>
+<h2 id="infrastructure">Infrastructure</h2>
+
+<h3 id="terminology">Terminology</h3>
+
+<h4 id="notational-idioms">Notational Idioms</h4>
+
+<h5 id="cwmn">Conventional Western Music Notation (CWMN)</h5>
+
+<h3 id="common-syntaxes">Common Syntaxes</h3>
+
+There are various places in MNX that accept particular data types, such as
+note values, numbers or durations. This section describes the conformance
+criteria for content in those formats, and how to parse them.
+
+<h4 id="common-parser-idioms">Common parser idioms</h4>
+
+  The <dfn export>space characters</dfn>, for the purposes of this specification, are U+0020 SPACE, U+0009
+  CHARACTER TABULATION (tab), U+000A LINE FEED (LF), U+000C FORM FEED (FF), and U+000D CARRIAGE
+  RETURN (CR).
+
+  The <dfn lt="white_space|white_space characters">White_Space characters</dfn> are those that have the Unicode property "White_Space" in
+  the Unicode <code>PropList.txt</code> data file. [[!UNICODE]]
+
+  <p class="note">
+    This should not be confused with the "White_Space" value (abbreviated "WS") of the "Bidi_Class"
+    property in the <code>Unicode.txt</code> data file.
+  </p>
+
+  The <dfn export>control characters</dfn> are those whose Unicode "General_Category" property has the
+  value "Cc" in the Unicode <code>UnicodeData.txt</code> data file. [[!UNICODE]]
+
+  The <dfn export>uppercase ASCII letters</dfn> are the characters in the range U+0041 LATIN CAPITAL LETTER
+  A to U+005A LATIN CAPITAL LETTER Z.
+
+  The <dfn export>lowercase ASCII letters</dfn> are the characters in the range U+0061 LATIN SMALL LETTER A
+  to U+007A LATIN SMALL LETTER Z.
+
+  The <dfn export>ASCII letters</dfn> are the characters that are either [=uppercase ASCII letters=] or
+  [=lowercase ASCII letters=].
+
+  The <dfn export>ASCII digits</dfn> are the characters in the range U+0030 DIGIT ZERO (0) to U+0039 DIGIT
+  NINE (9).
+
+  The <dfn export>alphanumeric ASCII characters</dfn> are those that are either
+  <a>uppercase ASCII letters</a>, <a>lowercase ASCII letters</a>, or <a>ASCII digits</a>.
+
+  The <dfn export>ASCII hex digits</dfn> are the characters in the ranges U+0030 DIGIT ZERO (0) to U+0039
+  DIGIT NINE (9), U+0041 LATIN CAPITAL LETTER A to U+0046 LATIN CAPITAL LETTER F, and U+0061 LATIN
+  SMALL LETTER A to U+0066 LATIN SMALL LETTER F.
+
+  The <dfn export>uppercase ASCII hex digits</dfn> are the characters in the ranges U+0030 DIGIT ZERO (0)
+  to U+0039 DIGIT NINE (9) and U+0041 LATIN CAPITAL LETTER A to U+0046 LATIN CAPITAL LETTER F only.
+
+  The <dfn export>lowercase ASCII hex digits</dfn> are the characters in the ranges U+0030 DIGIT ZERO (0)
+  to U+0039 DIGIT NINE (9) and U+0061 LATIN SMALL LETTER A to U+0066 LATIN SMALL LETTER F only.
+
+  Some of the micro-parsers described below follow the pattern of having an <var>input</var>
+  variable that holds the string being parsed, and having a <var>position</var> variable pointing at
+  the next character to parse in <var>input</var>.
+
+  For parsers based on this pattern, a step that requires the consumer to <dfn>collect a sequence
+  of characters</dfn> means that the following algorithm must be run, with <var>characters</var>
+  being the set of characters that can be collected:
+
+  1. Let <var>input</var> and <var>position</var> be the same variables as those of the same name in
+      the algorithm that invoked these steps.
+  2. Let <var>result</var> be the empty string.
+  3. While <var>position</var> doesn't point past the end of <var>input</var> and the character at
+      <var>position</var> is one of the <var>characters</var>, append that character to the end of
+      <var>result</var> and advance <var>position</var> to the next character in <var>input</var>.
+  4. Return <var>result</var>.
+
+  The step <dfn>skip white space</dfn> means that the consumer must
+  <a>collect a sequence of characters</a> that are [=space characters=]. The collected characters
+  are not used.
+
+  When a consumer is to <dfn lt="stripped line breaks|strip line breaks">strip line breaks</dfn> from a string, the consumer must remove
+  any U+000A LINE FEED (LF) and U+000D CARRIAGE RETURN (CR) characters from that string.
+
+  When a consumer is to <dfn lt="strip leading and trailing white space|stripping leading and trailing white space|leading and trailing white space stripped">strip leading and trailing white space</dfn> from a string, the
+  consumer must remove all [=space characters=] that are at the start or end of the string.
+
+  When a consumer is to <dfn lt="stripping and collapsing white space|strip and collapse white space">strip and collapse white space</dfn> in a string, it must replace any
+  sequence of one or more consecutive [=space characters=] in that string with a single U+0020
+  SPACE character, and then <a>strip leading and trailing white space</a> from that string.
+
+  When a consumer has to <dfn lt="strictly splitting the string|strictly split a string|strictly split">strictly split a string</dfn> on a particular delimiter character
+  <var>delimiter</var>, it must use the following algorithm:
+
+  1. Let <var>input</var> be the string being parsed.
+  2. Let <var>position</var> be a pointer into <var>input</var>, initially
+      pointing at the start of the string.
+  3. Let <var>tokens</var> be an ordered list of tokens, initially empty.
+  4. While <var>position</var> is not past the end of <var>input</var>:
+      1. <a>Collect a sequence of characters</a> that are not the <var>delimiter</var> character.
+      2. Append the string collected in the previous step to <var>tokens</var>.
+      3. Advance <var>position</var> to the next character in <var>input</var>.
+  5. Return <var>tokens</var>.
+
+  <p class="note">
+    For the special cases of splitting a string <a lt="split a string on spaces">on spaces</a> and <a lt="split a string on commas">on commas</a>, this
+    algorithm does not apply (those algorithms also perform <a lt="strip leading and trailing white space">white space trimming</a>).
+  </p>
+
+<h4 id="numbers">Numbers</h4>
+
+<h5 id="signed-integers">Signed integers</h5>
+
+  A string is a <dfn lt="valid integer|valid integers">valid integer</dfn> if it consists of one or more <a>ASCII digits</a>,
+  optionally prefixed with a U+002D HYPHEN-MINUS character (-).
+
+  A <a>valid integer</a> without a U+002D HYPHEN-MINUS (-) prefix represents the number that is
+  represented in base ten by that string of digits. A <a>valid integer</a> <em>with</em> a U+002D
+  HYPHEN-MINUS (-) prefix represents the number represented in base ten by the string of digits that
+  follows the U+002D HYPHEN-MINUS, subtracted from zero.
+
+  The <dfn lt="parse token as an integer|parse it as an integer|rules for parsing integers|rules for parsing integer|rules for parsing signed integers">rules for parsing integers</dfn> are as given in the following algorithm. When
+  invoked, the steps must be followed in the order given, aborting at the first step that returns
+  a value. This algorithm will return either an integer or an error.
+
+  1. Let <var>input</var> be the string being parsed.
+  2. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the
+      start of the string.
+  3. Let <var>sign</var> have the value "positive".
+  4. <a>Skip white space</a>.
+  5. If <var>position</var> is past the end of <var>input</var>, return an error.
+  6. If the character indicated by <var>position</var> (the first character) is a U+002D
+      HYPHEN-MINUS character (-):
+      1. Let <var>sign</var> be "negative".
+      2. Advance <var>position</var> to the next character.
+      3. If <var>position</var> is past the end of <var>input</var>, return an error.
+
+      Otherwise, if the character indicated by <var>position</var> (the first character) is a
+      U+002B PLUS SIGN character (+):
+
+      1. Advance <var>position</var> to the next character. (The "<code>+</code>" is ignored, but
+          it is not conforming.)
+      2. If <var>position</var> is past the end of <var>input</var>, return an error.
+  7. If the character indicated by <var>position</var> is not an <a>ASCII digit</a>, then return
+      an error.
+  8. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a>, and interpret the
+      resulting sequence as a base-ten integer. Let <var>value</var> be that integer.
+  9. If <var>sign</var> is "positive", return <var>value</var>, otherwise return the result of
+      subtracting <var>value</var> from zero.
+
+
+<h5 id="non-negative-integers">Non-negative integers</h5>
+
+  A string is a <dfn export>valid non-negative integer</dfn> if it consists of one or more
+  <a>ASCII digits</a>.
+
+  A <a>valid non-negative integer</a> represents the number that is represented in base ten by that
+  string of digits.
+
+  The <dfn lt="parse that attribute's value|rules for parsing non-negative integers">rules for parsing non-negative integers</dfn> are as given in the following algorithm.
+  When invoked, the steps must be followed in the order given, aborting at the first step that
+  returns a value. This algorithm will return either zero, a positive integer, or an error.
+
+  1. Let <var>input</var> be the string being parsed.
+  2. Let <var>value</var> be the result of parsing <var>input</var> using the
+      <a>rules for parsing integers</a>.
+  3. If <var>value</var> is an error, return an error.
+  4. If <var>value</var> is less than zero, return an error.
+  5. Return <var>value</var>.
+
+<h5 id="floating-point-numbers">Floating-point numbers</h5>
+
+  A string is a <dfn export>valid floating-point number</dfn> if it consists of:
+
+  1. Optionally, a U+002D HYPHEN-MINUS character (-).
+  2. One or both of the following, in the given order:
+      1. A series of one or more <a>ASCII digits</a>.
+      2. Both of the following, in the given order:
+          1. A single U+002E FULL STOP character (.).
+          2. A series of one or more <a>ASCII digits</a>.
+  3. Optionally:
+      1. Either a U+0065 LATIN SMALL LETTER E character (e) or a U+0045 LATIN CAPITAL LETTER E
+          character (E).
+      2. Optionally, a U+002D HYPHEN-MINUS character (-) or U+002B PLUS SIGN character (+).
+      3. A series of one or more <a>ASCII digits</a>.
+
+  A <a>valid floating-point number</a> represents the number obtained by multiplying the significand
+  by ten raised to the power of the exponent, where the significand is the first number, interpreted
+  as base ten (including the decimal point and the number after the decimal point, if any, and
+  interpreting the significand as a negative number if the whole string starts with a U+002D
+  HYPHEN-MINUS character (-) and the number is not zero), and where the exponent is the number after
+  the E, if any (interpreted as a negative number if there is a U+002D HYPHEN-MINUS character (-)
+  between the E and the number and the number is not zero, or else ignoring a U+002B PLUS SIGN
+  character (+) between the E and the number if there is one). If there is no E, then the exponent
+  is treated as zero.
+
+  <p class="note">The Infinity and Not-a-Number (NaN) values are not <a>valid floating-point numbers</a>.</p>
+
+  The <dfn export>rules for parsing floating-point number values</dfn> are as given in the following
+  algorithm. This algorithm must be aborted at the first step that returns something. This
+  algorithm will return either a number or an error.
+
+  1. Let <var>input</var> be the string being parsed.
+  2. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start
+      of the string.
+  3. Let <var>value</var> have the value 1.
+  4. Let <var>divisor</var> have the value 1.
+  5. Let <var>exponent</var> have the value 1.
+  6. <a>Skip white space</a>.
+  7. If <var>position</var> is past the end of <var>input</var>, return an error.
+  8. If the character indicated by <var>position</var> is a U+002D HYPHEN-MINUS character (-):
+      1. Change <var>value</var> and <var>divisor</var> to -1.
+      2. Advance <var>position</var> to the next character.
+      3. If <var>position</var> is past the end of <var>input</var>, return an error.
+
+      Otherwise, if the character indicated by <var>position</var> (the first character) is a
+      U+002B PLUS SIGN character (+):
+
+      1. Advance <var>position</var> to the next character. (The "<code>+</code>" is ignored, but
+          it is not conforming.)
+      2. If <var>position</var> is past the end of <var>input</var>, return an error.
+
+  9. If the character indicated by <var>position</var> is a U+002E FULL STOP (.), and that is not
+      the last character in <var>input</var>, and the character after the character indicated by
+      <var>position</var> is an <a>ASCII digit</a>, then set
+      <var>value</var> to zero and jump to the step labeled <i>fraction</i>.
+  10. If the character indicated by <var>position</var> is not an <a>ASCII digit</a>, then return
+      an error.
+  11. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a>, and interpret the
+      resulting sequence as a base-ten integer. Multiply <var>value</var> by that integer.
+  12. If <var>position</var> is past the end of <var>input</var>, jump to the step labeled
+      <i>conversion</i>.
+  13. <i>Fraction</i>: If the character indicated by <var>position</var> is a U+002E FULL STOP
+      (.), run these substeps:
+      1. Advance <var>position</var> to the next character.
+      2. If <var>position</var> is past the end of <var>input</var>, or if the character indicated
+          by <var>position</var> is not an <a>ASCII digit</a>, U+0065 LATIN SMALL LETTER E (e), or
+          U+0045 LATIN CAPITAL LETTER E (E), then jump to the step labeled <i>conversion</i>.
+      3. If the character indicated by <var>position</var> is a U+0065 LATIN SMALL LETTER E
+          character (e) or a U+0045 LATIN CAPITAL LETTER E character (E), skip the remainder of
+          these substeps.
+      4. <i>Fraction loop</i>: Multiply <var>divisor</var> by ten.
+      5. Add the value of the character indicated by <var>position</var>, interpreted as a
+          base-ten digit (0..9) and divided by <var>divisor</var>, to <var>value</var>.
+      6. Advance <var>position</var> to the next character.
+      7. If <var>position</var> is past the end of <var>input</var>, then jump to the step labeled
+          <i>conversion</i>.
+      8. If the character indicated by <var>position</var> is an <a>ASCII digit</a>, jump back to
+          the step labeled <i>fraction loop</i> in these substeps.
+  14. If the character indicated by <var>position</var> is a U+0065 LATIN SMALL LETTER E character
+      (e) or a U+0045 LATIN CAPITAL LETTER E character (E), run these substeps:
+      1. Advance <var>position</var> to the next character.
+      2. If <var>position</var> is past the end of <var>input</var>, then jump to the step labeled
+          <i>conversion</i>.
+      3. If the character indicated by <var>position</var> is a U+002D HYPHEN-MINUS character (-):
+          1. Change <var>exponent</var> to -1.
+          2. Advance <var>position</var> to the next character.
+          3. If <var>position</var> is past the end of <var>input</var>, then jump to the step
+              labeled <i>conversion</i>.
+
+          Otherwise, if the character indicated by <var>position</var> is a U+002B PLUS SIGN character
+          (+):
+
+          1. Advance <var>position</var> to the next character.
+          2. If <var>position</var> is past the end of <var>input</var>, then jump to the step
+              labeled <i>conversion</i>.
+      4. If the character indicated by <var>position</var> is not an <a>ASCII digit</a>, then jump
+          to the step labeled <i>conversion</i>.
+      5. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a>, and interpret the
+          resulting sequence as a base-ten integer. Multiply <var>exponent</var> by that integer.
+      6. Multiply <var>value</var> by ten raised to the <var>exponent</var>th power.
+  15. <i>Conversion</i>: Let <var>S</var> be the set of finite IEEE 754 double-precision
+      floating-point values except -0, but with two special values added: 2<sup>1024</sup>
+      and -2<sup>1024</sup>.
+  16. Let <var>rounded-value</var> be the number in <var>S</var> that is closest to
+      <var>value</var>, selecting the number with an even significand if there are two equally
+      close values. (The two special values 2<sup>1024</sup> and -2<sup>1024</sup> are
+      considered to have even significands for this purpose.)
+  17. If <var>rounded-value</var> is 2<sup>1024</sup> or -2<sup>1024</sup>, return an error.
+  18. Return <var>rounded-value</var>.
+
+<h5 id="percentages-and-dimensions">Percentages and lengths</h5>
+
+  The <dfn export>rules for parsing dimension values</dfn> are as given in the following algorithm. When
+  invoked, the steps must be followed in the order given, aborting at the first step that returns
+  a value. This algorithm will return either a number greater than or equal to 0.0, or an error;
+  if a number is returned, then it is further categorized as either a percentage or a length.
+
+  1. Let <var>input</var> be the string being parsed.
+  2. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start
+      of the string.
+  3. <a>Skip white space</a>.
+  4. If <var>position</var> is past the end of <var>input</var>, return an error.
+  5. If the character indicated by <var>position</var> is a U+002B PLUS SIGN character (+),
+      advance <var>position</var> to the next character.
+  6. If <var>position</var> is past the end of <var>input</var>, return an error.
+  7. If the character indicated by <var>position</var> is not an <a>ASCII digit</a>, then return
+      an error.
+  8. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a>, and interpret the
+      resulting sequence as a base-ten integer. Let <var>value</var> be that number.
+  9. If <var>position</var> is past the end of <var>input</var>, return <var>value</var> as a
+      length.
+  10. If the character indicated by <var>position</var> is a U+002E FULL STOP character (.):
+      1. Advance <var>position</var> to the next character.
+      2. If <var>position</var> is past the end of <var>input</var>, or if the character indicated
+          by <var>position</var> is not an <a>ASCII digit</a>, then return <var>value</var> as a
+          length.
+      3. Let <var>divisor</var> have the value 1.
+      4. <i>Fraction loop</i>: Multiply <var>divisor</var> by ten.
+      5. Add the value of the character indicated by <var>position</var>, interpreted as a
+          base-ten digit (0..9) and divided by <var>divisor</var>, to <var>value</var>.
+      6. Advance <var>position</var> to the next character.
+      7. If <var>position</var> is past the end of <var>input</var>, then return <var>value</var>
+          as a length.
+      8. If the character indicated by <var>position</var> is an <a>ASCII digit</a>, return to the
+          step labeled <i>fraction loop</i> in these substeps.
+  11. If <var>position</var> is past the end of <var>input</var>, return <var>value</var> as a
+      length.
+  12. If the character indicated by <var>position</var> is a U+0025 PERCENT SIGN character (%),
+      return <var>value</var> as a percentage.
+  13. Return <var>value</var> as a length.
+
+<h5 id="non-zero-percentages-and-lengths">Non-zero percentages and lengths</h5>
+
+  The <dfn export>rules for parsing non-zero dimension values</dfn> are as given in the following
+  algorithm. When invoked, the steps must be followed in the order given, aborting at the first
+  step that returns a value. This algorithm will return either a number greater than 0.0, or an
+  error; if a number is returned, then it is further categorized as either a percentage or a
+  length.
+
+  1. Let <var>input</var> be the string being parsed.
+  2. Let <var>value</var> be the result of parsing <var>input</var> using the
+      <a>rules for parsing dimension values</a>.
+  3. If <var>value</var> is an error, return an error.
+  4. If <var>value</var> is zero, return an error.
+  5. If <var>value</var> is a percentage, return <var>value</var> as a percentage.
+  6. Return <var>value</var> as a length.
+
+<h5 id="lists-of-floating-point-numbers">Lists of floating-point numbers</h5>
+
+  A <dfn export>valid list of floating-point numbers</dfn> is a number of
+  <a>valid floating-point numbers</a> separated by U+002C COMMA characters, with no other characters
+  (e.g. no [=space characters=]). In addition, there might be restrictions on the number of
+  floating-point numbers that can be given, or on the range of values allowed.
+
+  The <dfn export>rules for parsing a list of floating-point numbers</dfn> are as follows:
+
+  1. Let <var>input</var> be the string being parsed.
+  2. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
+      the string.
+  3. Let <var>numbers</var> be an initially empty list of floating-point numbers. This list will be
+      the result of this algorithm.
+  4. <a>Collect a sequence of characters</a> that are [=space characters=], U+002C COMMA, or
+      U+003B SEMICOLON characters. This skips past any leading delimiters.
+  5. While <var>position</var> is not past the end of <var>input</var>:
+      1. <a>Collect a sequence of characters</a> that are not [=space characters=], U+002C COMMA,
+          U+003B SEMICOLON, <a>ASCII digits</a>, U+002E FULL STOP, or U+002D HYPHEN-MINUS
+          characters. This skips past leading garbage.
+      2. <a>Collect a sequence of characters</a> that are not [=space characters=], U+002C COMMA,
+          or U+003B SEMICOLON characters, and let <var>unparsed number</var> be the result.
+      3. Let <var>number</var> be the result of parsing <var>unparsed number</var> using the
+          <a>rules for parsing floating-point number values</a>.
+      4. If <var>number</var> is an error, set <var>number</var> to zero.
+      5. Append <var>number</var> to <var>numbers</var>.
+      6. <a>Collect a sequence of characters</a> that are [=space characters=], U+002C COMMA, or
+          U+003B SEMICOLON characters. This skips past the delimiter.
+  6. Return <var>numbers</var>.
+
+<h4 id="space-separated-tokens">Space-separated tokens</h4>
+
+  A <dfn export>set of space-separated tokens</dfn> is a string containing zero or more words (known as
+  tokens) separated by one or more [=space characters=], where words consist of any string of one
+  or more characters, none of which are [=space characters=].
+
+  A string containing a <a>set of space-separated tokens</a> may have leading or trailing
+  [=space characters=].
+
+  An <dfn export>unordered set of unique space-separated tokens</dfn> is a
+  <a>set of space-separated tokens</a> where none of the tokens are duplicated.
+
+  An <dfn export>ordered set of unique space-separated tokens</dfn> is a
+  <a>set of space-separated tokens</a> where none of the tokens are duplicated but where the order
+  of the tokens is meaningful.
+
+  <a lt="set of space-separated tokens">Sets of space-separated tokens</a> sometimes have a defined set of allowed values. When a set
+  of allowed values is defined, the tokens must all be from that list of allowed values; other
+  values are non-conforming. If no such set of allowed values is provided, then all values are
+  conforming.
+
+  <p class="note">
+    How tokens in a <a>set of space-separated tokens</a> are to be compared (e.g., case-sensitively
+    or not) is defined on a per-set basis.
+  </p>
+
+  When a consumer has to <dfn export>split a string on spaces</dfn>, it must use the following
+  algorithm:
+
+  1. Let <var>input</var> be the string being parsed.
+  2. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start
+      of the string.
+  3. Let <var>tokens</var> be an ordered list of tokens, initially empty.
+  4. <a>Skip white space</a>
+  5. While <var>position</var> is not past the end of <var>input</var>:
+      1. <a>Collect a sequence of characters</a> that are not [=space characters=].
+      2. Append the string collected in the previous step to <var>tokens</var>.
+      3. <a>Skip white space</a>
+  6. Return <var>tokens</var>.
+
+<h4 id="comma-separated-tokens">Comma-separated tokens</h4>
+
+  A <dfn export>set of comma-separated tokens</dfn> is a string containing zero or more tokens each
+  separated from the next by a single U+002C COMMA character (,), where tokens consist of any string
+  of zero or more characters, neither beginning nor ending with [=space characters=], nor
+  containing any U+002C COMMA characters (,), and optionally surrounded by [=space characters=].
+
+  <p class="example">
+    For instance, the string "<code>&nbsp;a&nbsp;,b, ,d&nbsp;d&nbsp;</code>" consists of four tokens:
+    "a", "b", the empty string, and "d&nbsp;d". Leading and trailing white space around each token
+    doesn't count as part of the token, and the empty string can be a token.
+  </p>
+
+  <a lt="set of comma-separated tokens">Sets of comma-separated tokens</a> sometimes have further restrictions on what consists a valid
+  token. When such restrictions are defined, the tokens must all fit within those restrictions;
+  other values are non-conforming. If no such restrictions are specified, then all values are
+  conforming.
+
+  When a consumer has to <dfn export>split a string on commas</dfn>, it must use the following algorithm:
+
+  1. Let <var>input</var> be the string being parsed.
+  2. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start
+      of the string.
+  3. Let <var>tokens</var> be an ordered list of tokens, initially empty.
+  4. <i>Token</i>: If <var>position</var> is past the end of <var>input</var>, jump to the last
+      step.
+  5. <a>Collect a sequence of characters</a> that are not U+002C COMMA characters (,). Let
+      <var>s</var> be the resulting sequence (which might be the empty string).
+  6. <a>Strip leading and trailing white space</a> from <var>s</var>.
+  7. Append <var>s</var> to <var>tokens</var>.
+  8. If <var>position</var> is not past the end of <var>input</var>, then the character at
+      <var>position</var> is a U+002C COMMA character (,); advance <var>position</var> past that
+      character.
+  9. Jump back to the step labeled <i>token</i>.
+  10. Return <var>tokens</var>.
+
+<h4 id="note-values">CWMN Note Values</h4>
+
+There are a variety of situations in which the <dfn>note value</dfn> of a
+musical event needs to be decscribed, in terms of some fraction or multiple of
+a nominal whole-note unit.
+
+In CWMN, fractions for undotted <dfn>base note values</dfn> are constrained to
+be exact powers of two.  The most common note values of whole, half, quarter,
+etc. correspond to whole-note fractions expressed by the non-negative powers
+2<sup>0</sup>, 2<sup>-1</sup>, 2<sup>-2</sup>. The less frequently used note
+values of breve, longa, etc. are expressed by the positive powers
+2<sup>1</sup>, 2<sup>2</sup>, ...
+
+In the broader case of <dfn>general note values</dfn>, some <dfn>number of dots</dfn>
+act as a multiplier on the <a>base note value</a>. These multipliers take the form
+(2<sup><em>n</em>+1</sup>-1) / 2<sup><em>n</em></sup>, where <em>n</em> is the
+<a>number of dots</a>.
+
+MNX provides a microsyntax for encoding note values whose syntactic
+constraints map to the above requirements. Its syntax is designed to be
+distinguishable from other syntaxes for integers, floating point numbers or
+rational numbers.  The syntax for <a>base note values</a> consists of either
+of the following forms:
+
+1. For values less than or equal to a whole note:
+    1. The character U+002F SLASH
+    1. One or more <a>ASCII digits</a> encoding the <a>base note value</a> as a power-of-two fractional denominator
+1. For values greater than a whole note:
+    1. The character U+002A ASTERISK
+    1. One or more <a>ASCII digits</a> encoding the <a>base note value</a> as a power-of-two multiplying factor
+
+The syntax for <a>general note values</a> consists of these components:
+
+1. Zero or more occurrences of U+002E FULL STOP (.) characters. The number of occurrences
+      supply the <a>number of dots</a>.
+1. A <a>base note value</a> encoding.
+
+To parse a note value, use the following procedure:
+
+  1. Let <var>input</var> be the string being parsed.
+  1. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
+      the string.
+  1. Let <var>number of dots</var> be 0.
+  1. If parsing a general note value, <a>collect a sequence of characters</a> that are U+002E FULL STOP
+      characters. Set <var>number of dots</var> to the length of this sequence.
+  1. If the character indicated by <var>position</var> is a U+002A ASTERISK character (*), let <var>fractional</var>
+      be <code>false</code> and advance <var>position</var> by 1.
+  1. Else, if the character indicated by <var>position</var> is a U+002E SLASH character (/), let <var>fractional</var>
+      be <code>true</code> and advance <var>position</var> by 1.
+  1. Else, return an error.
+  1. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a> only and let <var>unparsed number</var>
+      be the result.
+  1. Let <var>base value</var> be the result of parsing <var>unparsed number</var> using the
+      <a>rules for parsing integers</a>.
+  1. If <var>base value</var> is not equal to a power of 2, return an error.
+  1. If <var>base value</var> is equal to 1 and <var>fractional</var> is false, return an error.
+  1. If <var>fractional</var> is true, set <var>base value</var> to (1 / <var>base value</var>).
+  1. If <var>number of dots</var> is greater than zero, multiply <var>base value</var> by
+      (2<sup>(<var>number of dots</var>+1)</sup>-1) / 2<sup>(<var>number of dots</var>)</sup>.
+  1. Return <var>base value</var>.
+
+<div class="example">
+Here are some instances of the note value syntax:
+
+: `/1`
+:: a whole note
+: `/4`
+:: a quarter note
+: `/8`
+:: an eighth quarter note
+: `./8`
+:: a dotted eighth note
+: `../8`
+:: a double-dotted eighth note
+: `*2`
+:: a breve (double whole note)
+: `.*2`
+:: a dotted breve
+
+</div>
+
+</section>
+
+<h2 id="document">Document Organization</h2>
+
+<h3 id="the-container-document">The container document</h3>
+
+Each MNX document acts as a <dfn>container document</dfn>, which contains a
+hierarchy of components which collectively make up the
+document as a whole.
+
+<!--
+### A simple CWMN score
+
+### A simple general score
+
+### Compound MNX documents
+
+It's also possible to combine different representations of music in the same
+MNX document by using the <{collection}> element to combine  multiple chunks
+of music into a single chunk.  Each chunk may possess a distinct encoding.
+<{collection}> elements can be nested, allowing a subordinate collection to be 
+embedded in a higher-level one.
+
+Metadata elements such as <{identification}> or formatting elements like
+<{style}> may be included at any level of the resulting structure, causing
+them to apply them only to those parts of the document.
+
+Here's an example that includes a hierarchy of collections and scores. (Note
+that some of these could employ non-CWMN encodings as well.)
+
+-->
+
+
+<h2 id="cwmnx">CWMNX</h2>
+
+
+<section>
+<h3 id="cwmnx-scope">Scope</h3>
+
+  <em>This section is non-normative.</em>
+
+</section>
+
+<h3 id="cwmnx-semantics">Semantics</h3>
+
+<h4 id="cwmnx-semantics-elements">Elements</h3>
+
+<h5 id="cwmnx-content-types">Content Models</h4>
+
+<h6 id="cwmnx-sequence-content">Sequence content</h6>
+
+<dfn>Sequence content</dfn> supplies a series of musical events that are performed in the given order at distinct times, including:
+
+- <{event}>
+- <{tuplet}>
+- <{grace}>
+
+<h6 id="cwmnx-direction-content">Direction content</h6>
+
+<dfn>Direction content</dfn> consists of some number of musical directions that modify or accompany the performance of events and which have a temporal position relative to elements within sequence content. These include:
+
+- <{dirgroup}>
+- <{dynamics}>
+- <{harmony}>
+- <{instruction}>
+- <{expression}>
+- <{wedge}>
+- <{pedal}>
+- <{bracket}>
+- <{coda}>
+- <{segno}>
+- ...TBD...
+
+<h6 id="cwmnx-event-content">Event content</h6>
+
+<dfn>Event content</dfn> comprises elements that describe the musical content of a single event that is performed at a distinct time. These include:
+
+- <{note}>
+- <{rest}>
+- <{lyric}>
+- <{slur}>
+- <{glissando}>
+- <{slide}>
+- <{ornaments}>
+- <{articulations}>
+- <{technical}>
+- All <a>direction content</a>
+- ...TBD...
+
+<section>
+<h3 id="cwmnx-elements">Elements</h3>
+
+<h4 id="cwmnx-elements-general">General Elements</h4>
+
+TBD: refine categories
+
+<h5 id="the-measure-element">The <dfn element><code>measure</code></dfn> element</h5>
+
+Test reference to <{sequence}>.
+
+Test reference to 'stem'.
+
+Test reference to ''stem/up'' and ''stem/down''.
+
+Test reference to <{event}>.
+
+Test reference to <{event/value}>.
+
+
+<h5 id="the-sequence-element">The <dfn element><code>sequence</code></dfn> element</h5>
+<h5 id="the-event-element">The <dfn element><code>event</code></dfn> element</h5>
+<section dfn-for="event">
+
+Events have a <dfn element-attr>value</dfn> attribute describing their
+duration in the containing rhythmic context.
+</section>
+
+
+<h5 id="the-dirgroup-element">The <dfn element><code>dirgroup</code></dfn> element</h5>
+<section dfn-for="dirgroup">
+</section>
+
+<h5 id="the-dynamics-element">The <dfn element><code>dynamics</code></dfn> element</h5>
+<section dfn-for="dynamics">
+</section>
+
+<h5 id="the-harmony-element">The <dfn element><code>harmony</code></dfn> element</h5>
+<section dfn-for="harmony">
+</section>
+
+<h5 id="the-instruction-element">The <dfn element><code>instruction</code></dfn> element</h5>
+<section dfn-for="instruction">
+</section>
+
+<h5 id="the-expression-element">The <dfn element><code>expression</code></dfn> element</h5>
+<section dfn-for="expression">
+</section>
+
+<h5 id="the-wedge-element">The <dfn element><code>wedge</code></dfn> element</h5>
+<section dfn-for="wedge">
+</section>
+
+<h5 id="the-pedal-element">The <dfn element><code>pedal</code></dfn> element</h5>
+<section dfn-for="pedal">
+</section>
+
+<h5 id="the-bracket-element">The <dfn element><code>bracket</code></dfn> element</h5>
+<section dfn-for="bracket">
+</section>
+
+<h5 id="the-coda-element">The <dfn element><code>coda</code></dfn> element</h5>
+<section dfn-for="coda">
+</section>
+
+<h5 id="the-segno-element">The <dfn element><code>segno</code></dfn> element</h5>
+<section dfn-for="segno">
+</section>
+
+<h5 id="the-note-element">The <dfn element><code>note</code></dfn> element</h5>
+<section dfn-for="note">
+</section>
+
+<h5 id="the-rest-element">The <dfn element><code>rest</code></dfn> element</h5>
+<section dfn-for="rest">
+</section>
+
+<h5 id="the-lyric-element">The <dfn element><code>lyric</code></dfn> element</h5>
+<section dfn-for="lyric">
+</section>
+
+<h5 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h5>
+<section dfn-for="slur">
+</section>
+
+<h5 id="the-glissando-element">The <dfn element><code>glissando</code></dfn> element</h5>
+<section dfn-for="glissando">
+</section>
+
+<h5 id="the-slide-element">The <dfn element><code>slide</code></dfn> element</h5>
+<section dfn-for="slide">
+</section>
+
+<h5 id="the-ornaments-element">The <dfn element><code>ornaments</code></dfn> element</h5>
+<section dfn-for="ornaments">
+</section>
+
+<h5 id="the-articulations-element">The <dfn element><code>articulations</code></dfn> element</h5>
+<section dfn-for="articulations">
+</section>
+
+<h5 id="the-technical-element">The <dfn element><code>technical</code></dfn> element</h5>
+<section dfn-for="technical">
+</section>
+
+<h5 id="the-tuplet-element">The <dfn element><code>tuplet</code></dfn> element</h5>
+<section dfn-for="tuplet">
+</section>
+
+<h5 id="the-grace-element">The <dfn element><code>grace</code></dfn> element</h5>
+<section dfn-for="grace">
+</section>
+
+<!--
+    To generate these from bullet-points like "- <{elementname}>", use this regexp substitution:
+    Find:
+        - <{(\w+)}>
+    Replace:
+        <h5 id="the-$1-element">The <dfn element><code>$1</code></dfn> element</h5>\n<section dfn-for="$1">\n</section>\n
+-->
+</section>
+
+<h3 id="cwmnx-rendering">Rendering</h3>
+
+<h4 id="cwmnx-stem">The <dfn property><code>stem</code></dfn> property</h4>
+
+<section dfn-for="stem">
+
+The value <dfn value>up</dfn> causes an event's stem to be rendered pointing upwards.
+
+The value <dfn value>down</dfn> causes an event's stem to be rendered pointing downwards.
+
+</section>
+
+<section>
+<h3 id="cwmnx-interpretation">Interpretation</h3>
+</section>
+
+<section>
+<h2 id="gmnx">GMNX</h2>
+</section>
+
 <section>
 <div data-fill-with="index"></div>
 
