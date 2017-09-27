@@ -1,0 +1,45 @@
+<h3 id="cwmnx-semantics">Semantics</h3>
+
+<h4 id="cwmnx-semantics-elements">Elements</h3>
+
+<h5 id="cwmnx-content-types">Content Models</h4>
+
+<h6 id="cwmnx-sequence-content">Sequence content</h6>
+
+<dfn>Sequence content</dfn> supplies a series of musical events that are performed in the given order at distinct times, including:
+
+- <{event}>
+- <{tuplet}>
+- <{grace}>
+
+<h6 id="cwmnx-direction-content">Direction content</h6>
+
+<dfn>Direction content</dfn> consists of some number of musical directions that modify or accompany the performance of events and which have a temporal position relative to elements within sequence content. These include:
+
+- <{dirgroup}>
+- <{dynamics}>
+- <{harmony}>
+- <{instruction}>
+- <{expression}>
+- <{wedge}>
+- <{pedal}>
+- <{bracket}>
+- <{coda}>
+- <{segno}>
+- ...TBD...
+
+<h6 id="cwmnx-event-content">Event content</h6>
+
+<dfn>Event content</dfn> comprises elements that describe the musical content of a single event that is performed at a distinct time. These include:
+
+- <{note}>
+- <{rest}>
+- <{lyric}>
+- <{slur}>
+- <{glissando}>
+- <{slide}>
+- <{ornaments}>
+- <{articulations}>
+- <{technical}>
+- All <a>direction content</a>
+- ...TBD...
