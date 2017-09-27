@@ -57,21 +57,9 @@ urlPrefix: https://www.w3.org/TR/xlink11/#; spec: XLINK; for: xlink; type: eleme
 urlPrefix: https://www.w3.org/TR/xml-names/#; spec: XML-NAMES; for: xmlns; type: element-attr
     text: xmlns; url: ns-decl
 </pre>
-<!-- 
 <pre class="link-defaults">
-spec:css22
-    type:property
-        text:border-collapse
-        text:border-spacing
-        text:color
-    type:value
-        for:position; text:none
-        for:text-align
-            text:center
-            text:left
-            text:right
+spec:dom; type:dfn; text:attribute
 </pre>
- -->
 
 <h2 id="introduction">Introduction</h2>
 
@@ -222,7 +210,6 @@ A companion document details a set of [known use cases for music notation](../us
 
   <strong>Requirements on producers have no bearing whatsoever on consumers.</strong>
 
-
 <h4 id="typographic-conventions">Typographic conventions</h4>
 
   <div>
@@ -280,7 +267,17 @@ A companion document details a set of [known use cases for music notation](../us
 
 <h4 id="notational-idioms">Notational Idioms</h4>
 
+A <dfn>notational idiom</dfn> is a set of rules in the world for encoding
+music as some set of visual markings, which can be interpreted by musicians to
+produce an audible performance.
+
 <h5 id="cwmn">Conventional Western Music Notation (CWMN)</h5>
+
+<h4 id="score profiles">Score Profiles</h4>
+
+A <dfn>score profile</dfn> is a set of constraints on the rules in a notational idiom.
+Score profiles are designed to narrow the set of constructs that can be produced or consumed
+in MNX to a practical scope.
 
 <h3 id="common-syntaxes">Common Syntaxes</h3>
 
@@ -826,9 +823,64 @@ that some of these could employ non-CWMN encodings as well.)
 
 -->
 
+<h3 id="content-models">Content Models and Categories</h3>
+
+  Each element in MNX falls into zero or more <dfn lt="content
+  categories|content category">categories</dfn> that group elements with
+  similar characteristics together. The following broad categories are used in
+  this specification:
+
+<h4 id="element-definitions">Element definitions</h4>
+
+  Each element in this specification has a definition that includes the following information:
+
+  : <dfn>Categories</dfn>
+  :: A list of [=categories=] to which the element belongs. These are used when defining the
+      [=content models=] for each element.
+
+  : <dfn>Contexts in which this element can be used</dfn>
+  :: A <em>non-normative</em> description of where the element can be used. This information is
+      redundant with the content models of elements that allow this one as a child, and is provided
+      only as a convenience.
+
+  : <dfn>Content model</dfn>
+  :: A normative description of what content must be included as children and descendants of the
+      element.
+
+  : <dfn>Content attributes</dfn>
+  :: A normative list of attributes that may be specified on the element (except where otherwise
+      disallowed), along with non-normative descriptions of those attributes. (The content to the
+      left of the dash is normative, the content to the right of the dash is not.)
+
+  This is then followed by a description of what the element represents, along with any
+  additional normative conformance criteria that may apply to producers and consumers
+  and implementations. Examples are sometimes also included.
+
+<h2 id="mnx-container">MNX Container</h2>
+
+<section>
+<h3 id="mnx-scope">Scope</h3>
+
+  <em>This section is non-normative.</em>
+
+  The MNX <dfn>container</dfn> is a top-level XML document that contains one or more scores accompanied by
+  metadata.
+
+</section>
+
+<h3 id="mnx-semantics-elements">Semantics</h3>
+
+<h4 id="mnx-content-types">Content Types</h4>
+
+<h5 id="mnx-metadata-content">Metadata content</h5>
+
+<h5 id="mnx-musical body">Musical body content</h5>
+
+A <dfn lt="musical body|musical bodies|musical body content">musical
+body</dfn> consists of a score in some <a>notational idiom</a> supplying
+concrete musical content that can be rendered and/or performed.
 
 <h2 id="cwmnx">CWMNX</h2>
-
 
 <section>
 <h3 id="cwmnx-scope">Scope</h3>
@@ -839,21 +891,54 @@ that some of these could employ non-CWMN encodings as well.)
 
 <h3 id="cwmnx-semantics">Semantics</h3>
 
-<h4 id="cwmnx-semantics-elements">Elements</h3>
+<h4 id="cwmnx-content-types">Content Types</h4>
 
-<h5 id="cwmnx-content-types">Content Models</h4>
+<h5 id="cwmnx-metadata-content">Metadata content</h5>
 
-<h6 id="cwmnx-sequence-content">Sequence content</h6>
+<dfn>Metadata content</dfn> may be included in many elements to supply
+bibliographic data and other descriptive information.
+
+<em>Elements TBD</em>
+
+<h5 id="cwmnx-part-description-content">Part description content</h5>
+
+<dfn>Part description content</dfn> supplies information describing a part. It may include:
+
+- <{part-name}>
+- <{part-abbreviation}>
+- <{instrument-sound}>
+
+<h5 id="cwmnx-system-content">System content</h5>
+
+<dfn>System content</dfn> supplies a sequence of <{measure}> elements, each of
+which supplies musical content for a time interval within a score.
+
+The placement of the measures in system content constitutes their <dfn>score
+order</dfn>, which is the order in which they are logically presented to a
+reader. This is distinct from their <dfn>performance order</dfn>, which is the
+order in which they are played by a performer.
+
+<h5 id="cwmnx-sequence-content">Sequence content</h5>
 
 <dfn>Sequence content</dfn> supplies a series of musical events that are performed in the given order at distinct times, including:
 
 - <{event}>
 - <{tuplet}>
-- <{grace}>
 
-<h6 id="cwmnx-direction-content">Direction content</h6>
+<h5 id="cwmnx-direction-content">Direction content</h5>
 
-<dfn>Direction content</dfn> consists of some number of musical directions that modify or accompany the performance of events and which have a temporal position relative to elements within sequence content. These include:
+<dfn>Direction content</dfn> consists of some number of musical directions
+that modify or accompany the performance of events within the sequence content
+of one or more measures.
+
+The effect of direction content is scoped in a way that depends on where it is placed:
+
+- Direction content in a <{measure}> within the <{system}> element applies to all sequences of the measure in all parts.
+- Direction content in a <{measure}> within a <{part}> element applies to all sequences of the measure in a given part.
+- Direction content in a <{sequence}> applies to the sequence in which it occurs.
+- Direction content in an <{event}> applies to the sequence which contains that event.
+
+Direction content includes these elements:
 
 - <{dirgroup}>
 - <{dynamics}>
@@ -867,7 +952,23 @@ that some of these could employ non-CWMN encodings as well.)
 - <{segno}>
 - ...TBD...
 
-<h6 id="cwmnx-event-content">Event content</h6>
+<h5 id="cwmnx-staff-content">Staff content</h5>
+
+<dfn>Staff content</dfn> describes the properties of a staff on which events are placed. These include:
+
+- <{dirgroup}>
+- <{dynamics}>
+- <{harmony}>
+- <{instruction}>
+- <{expression}>
+- <{wedge}>
+- <{pedal}>
+- <{bracket}>
+- <{coda}>
+- <{segno}>
+- ...TBD...
+
+<h5 id="cwmnx-event-content">Event content</h5>
 
 <dfn>Event content</dfn> comprises elements that describe the musical content of a single event that is performed at a distinct time. These include:
 
@@ -880,28 +981,92 @@ that some of these could employ non-CWMN encodings as well.)
 - <{ornaments}>
 - <{articulations}>
 - <{technical}>
-- All <a>direction content</a>
+- Any <a>direction content</a>
 - ...TBD...
 
 <section>
-<h3 id="cwmnx-elements">Elements</h3>
+<h4 id="cwmnx-body">Body Elements</h4>
+
+These elements of a CWMNX score supply its high-level description and structure.
+
+<h5 id="the-cwmnx-element">The <dfn element><code>cwmnx</code></dfn> element</h5>
+
+<section dfn-for="cwmnx">
+
+  <dl class="def">
+    <dt><a lt="content categories">Categories</a>:</dt>
+    <dd><a>Musical body content</a> in an MNX <a>container</a>.</dd>
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd>Wherever a <a>musical body</a> is expected.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a>.</dd>
+    <dd>Exactly one <{system}> element - <a>system content</a> that is common to all parts within the score</dd>
+    <dd>One or more <{part}> elements - description and <a>system content</a> of each part in the score.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{cwmnx/profile}> — profile describing constraints on the contents of this score</dd>
+  </dl>
+
+The <{cwmnx}> element is a <a>musical body</a> that describes a CWMNX
+score as a whole.
+
+The <dfn element-attr><code>profile</code></dfn> attribute declares a <a>score
+profile</a> that supplies constraints to which the score is expected to obey.
+
+The following values of <{cwmnx/profile}> are supported, along with the
+constraints that they represent:
+
+<dl dfn-for="cwmnx/profile">
+    <dt><dfn value><code>standard</code></dfn></dt>
+    <dd>The <a>system content</a> in all <{system}> or <{part}> elements consists of an identical number of measures.</dd>
+    <dd>Time and key signatures only occur in measures within the <{system}> element.</dd>
+</dl>
+
+</section>
+
+<section>
+<h5 id="the-system-element">The <dfn element><code>system</code></dfn> element</h5>
+<section dfn-for="system">
+  <dl class="def">
+    <dt><a lt="content categories">Categories</a>:</dt>
+    <dd>None.</dd>
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd><{cwmnx}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>System content</a></dd>
+  </dl>
+</section>
+
+<h5 id="the-part-element">The <dfn element><code>part</code></dfn> element</h5>
+<section dfn-for="part">
+  <dl class="def">
+    <dt><a lt="content categories">Categories</a>:</dt>
+    <dd>None.</dd>
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd><{cwmnx}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Part description content</a></dd>
+    <dd><a>System content</a></dd>
+  </dl>
+</section>
+
+<h4 id="cwmnx-elements-system">System Elements</h4>
+
+<h5 id="the-measure-element">The <dfn element><code>measure</code></dfn> element</h5>
+<section dfn-for="measure">
+  <dl class="def">
+    <dt><a lt="content categories">Categories</a>:</dt>
+    <dd>System content.</dd>
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd><{system}>, <{part}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Direction content</a></dd>
+    <dd><a>Sequence content</a></dd>
+  </dl>
+</section>
 
 <h4 id="cwmnx-elements-general">General Elements</h4>
 
 TBD: refine categories
-
-<h5 id="the-measure-element">The <dfn element><code>measure</code></dfn> element</h5>
-
-Test reference to <{sequence}>.
-
-Test reference to 'stem'.
-
-Test reference to ''stem/up'' and ''stem/down''.
-
-Test reference to <{event}>.
-
-Test reference to <{event/value}>.
-
 
 <h5 id="the-sequence-element">The <dfn element><code>sequence</code></dfn> element</h5>
 <h5 id="the-event-element">The <dfn element><code>event</code></dfn> element</h5>
@@ -992,14 +1157,23 @@ duration in the containing rhythmic context.
 <section dfn-for="tuplet">
 </section>
 
-<h5 id="the-grace-element">The <dfn element><code>grace</code></dfn> element</h5>
-<section dfn-for="grace">
+<h5 id="the-part-name-element">The <dfn element><code>part-name</code></dfn> element</h5>
+<section dfn-for="part-name">
 </section>
+
+<h5 id="the-part-abbreviation-element">The <dfn element><code>part-abbreviation</code></dfn> element</h5>
+<section dfn-for="part-abbreviation">
+</section>
+
+<h5 id="the-instrument-sound-element">The <dfn element><code>instrument-sound</code></dfn> element</h5>
+<section dfn-for="instrument-sound">
+</section>
+
 
 <!--
     To generate these from bullet-points like "- <{elementname}>", use this regexp substitution:
     Find:
-        - <{(\w+)}>
+        - <{([a-z-]+)}>
     Replace:
         <h5 id="the-$1-element">The <dfn element><code>$1</code></dfn> element</h5>\n<section dfn-for="$1">\n</section>\n
 -->
