@@ -1423,7 +1423,7 @@ Possible extra rowspan handling
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Draft Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-11-06">6 November 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-12-05">5 December 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1437,7 +1437,7 @@ Possible extra rowspan handling
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 6 November 2017,
+In addition, as of 5 December 2017,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1455,7 +1455,7 @@ Parts of this work may be from another specification document.  If so, those par
      <a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
      <ol class="toc">
       <li><a href="#background"><span class="secno">1.1</span> <span class="content">Background</span></a>
-      <li><a href="#mnx-score-types"><span class="secno">1.2</span> <span class="content">MNX Score Types</span></a>
+      <li><a href="#mnx-score-types"><span class="secno">1.2</span> <span class="content">MNX score types</span></a>
       <li><a href="#comparisons"><span class="secno">1.3</span> <span class="content">Comparisons with other notation standards</span></a>
       <li><a href="#compatibility"><span class="secno">1.4</span> <span class="content">Compatibility with MusicXML</span></a>
       <li><a href="#use-cases"><span class="secno">1.5</span> <span class="content">Use cases</span></a>
@@ -1481,14 +1481,14 @@ Parts of this work may be from another specification document.  If so, those par
        <a href="#terminology"><span class="secno">2.1</span> <span class="content">Terminology</span></a>
        <ol class="toc">
         <li>
-         <a href="#notational-idioms"><span class="secno">2.1.1</span> <span class="content">Notational Idioms</span></a>
+         <a href="#notational-idioms"><span class="secno">2.1.1</span> <span class="content">Notational idioms</span></a>
          <ol class="toc">
-          <li><a href="#cwmn"><span class="secno">2.1.1.1</span> <span class="content">Conventional Western Music Notation (CWMN)</span></a>
+          <li><a href="#cwmn"><span class="secno">2.1.1.1</span> <span class="content">Conventional Western music notation (CWMN)</span></a>
          </ol>
-        <li><a href="#score profiles"><span class="secno">2.1.2</span> <span class="content">Score Profiles</span></a>
+        <li><a href="#score profiles"><span class="secno">2.1.2</span> <span class="content">Score profiles</span></a>
        </ol>
       <li>
-       <a href="#common-syntaxes"><span class="secno">2.2</span> <span class="content">Common Syntaxes</span></a>
+       <a href="#common-syntaxes"><span class="secno">2.2</span> <span class="content">Common syntaxes</span></a>
        <ol class="toc">
         <li><a href="#common-parser-idioms"><span class="secno">2.2.1</span> <span class="content">Common parser idioms</span></a>
         <li>
@@ -1503,28 +1503,28 @@ Parts of this work may be from another specification document.  If so, those par
          </ol>
         <li><a href="#space-separated-tokens"><span class="secno">2.2.3</span> <span class="content">Space-separated tokens</span></a>
         <li><a href="#comma-separated-tokens"><span class="secno">2.2.4</span> <span class="content">Comma-separated tokens</span></a>
-        <li><a href="#element-locations"><span class="secno">2.2.5</span> <span class="content">Element Locations</span></a>
+        <li><a href="#element-locations"><span class="secno">2.2.5</span> <span class="content">Element locations</span></a>
        </ol>
      </ol>
     <li>
-     <a href="#document"><span class="secno">3</span> <span class="content">Document Organization</span></a>
+     <a href="#document"><span class="secno">3</span> <span class="content">Document organization</span></a>
      <ol class="toc">
       <li><a href="#the-container-document"><span class="secno">3.1</span> <span class="content">The container document</span></a>
       <li>
-       <a href="#content-models"><span class="secno">3.2</span> <span class="content">Content Models and Categories</span></a>
+       <a href="#content-models"><span class="secno">3.2</span> <span class="content">Content models and categories</span></a>
        <ol class="toc">
         <li><a href="#element-definitions"><span class="secno">3.2.1</span> <span class="content">Element definitions</span></a>
        </ol>
      </ol>
     <li>
-     <a href="#mnx-container"><span class="secno">4</span> <span class="content">MNX Container</span></a>
+     <a href="#mnx-container"><span class="secno">4</span> <span class="content">MNX container</span></a>
      <ol class="toc">
       <li><a href="#mnx-scope"><span class="secno">4.1</span> <span class="content">Scope</span></a>
       <li>
        <a href="#mnx-semantics-elements"><span class="secno">4.2</span> <span class="content">Semantics</span></a>
        <ol class="toc">
         <li>
-         <a href="#mnx-content-types"><span class="secno">4.2.1</span> <span class="content">Content Types</span></a>
+         <a href="#mnx-content-types"><span class="secno">4.2.1</span> <span class="content">Content types</span></a>
          <ol class="toc">
           <li><a href="#mnx-metadata-content"><span class="secno">4.2.1.1</span> <span class="content">Metadata content</span></a>
           <li><a href="#mnx-musical body"><span class="secno">4.2.1.2</span> <span class="content">Musical body content</span></a>
@@ -1539,84 +1539,90 @@ Parts of this work may be from another specification document.  If so, those par
        <a href="#cwmnx-semantics"><span class="secno">5.2</span> <span class="content">Semantics</span></a>
        <ol class="toc">
         <li>
-         <a href="#cwmnx-notational-concepts"><span class="secno">5.2.1</span> <span class="content">Notational Concepts</span></a>
+         <a href="#cwmnx-notational-concepts"><span class="secno">5.2.1</span> <span class="content">Notational concepts</span></a>
          <ol class="toc">
-          <li><a href="#cwmnx-parts-staves"><span class="secno">5.2.1.1</span> <span class="content">Parts and Staves</span></a>
-          <li><a href="#cwmnx-notated-events"><span class="secno">5.2.1.2</span> <span class="content">Notated Events</span></a>
+          <li><a href="#cwmnx-parts-staves"><span class="secno">5.2.1.1</span> <span class="content">Parts and staves</span></a>
+          <li><a href="#cwmnx-notated-events"><span class="secno">5.2.1.2</span> <span class="content">Notated events</span></a>
           <li><a href="#cwmnx-directions"><span class="secno">5.2.1.3</span> <span class="content">Directions</span></a>
-          <li><a href="#sequence"><span class="secno">5.2.1.4</span> <span class="content">Notated Sequences</span></a>
+          <li><a href="#sequence"><span class="secno">5.2.1.4</span> <span class="content">Notated sequences</span></a>
           <li><a href="#cwmnx-performance-interpretation"><span class="secno">5.2.1.5</span> <span class="content">Performance Interpretation</span></a>
-          <li><a href="#cwmnx-performance-events"><span class="secno">5.2.1.6</span> <span class="content">Performance Events</span></a>
-          <li><a href="#note-values"><span class="secno">5.2.1.7</span> <span class="content">Note Values</span></a>
+          <li><a href="#cwmnx-performance-events"><span class="secno">5.2.1.6</span> <span class="content">Performance events</span></a>
+          <li><a href="#note-values"><span class="secno">5.2.1.7</span> <span class="content">Note values</span></a>
           <li><a href="#orientation"><span class="secno">5.2.1.8</span> <span class="content">Orientation</span></a>
          </ol>
         <li>
-         <a href="#cwmnx-notational-syntaxes"><span class="secno">5.2.2</span> <span class="content">Notational Syntaxes</span></a>
+         <a href="#cwmnx-notational-syntaxes"><span class="secno">5.2.2</span> <span class="content">Notational syntaxes</span></a>
          <ol class="toc">
-          <li><a href="#note-value-syntax"><span class="secno">5.2.2.1</span> <span class="content">Note Value Syntax</span></a>
-          <li><a href="#measure-locations"><span class="secno">5.2.2.2</span> <span class="content">Measure Locations</span></a>
+          <li><a href="#note-value-syntax"><span class="secno">5.2.2.1</span> <span class="content">Note value syntax</span></a>
+          <li><a href="#measure-locations"><span class="secno">5.2.2.2</span> <span class="content">Measure locations</span></a>
          </ol>
         <li>
-         <a href="#cwmnx-content-types"><span class="secno">5.2.3</span> <span class="content">Content Types</span></a>
+         <a href="#cwmnx-body"><span class="secno">5.2.3</span> <span class="content">CWMNX body content</span></a>
          <ol class="toc">
-          <li><a href="#cwmnx-metadata-content"><span class="secno">5.2.3.1</span> <span class="content">Metadata content</span></a>
-          <li><a href="#cwmnx-style-properties"><span class="secno">5.2.3.2</span> <span class="content">Style properties</span></a>
-          <li><a href="#cwmnx-interpretation-content"><span class="secno">5.2.3.3</span> <span class="content">Interpretation content</span></a>
-          <li><a href="#cwmnx-part-description-content"><span class="secno">5.2.3.4</span> <span class="content">Part description content</span></a>
-          <li><a href="#cwmnx-system-content"><span class="secno">5.2.3.5</span> <span class="content">System content</span></a>
-          <li><a href="#cwmnx-measure-content"><span class="secno">5.2.3.6</span> <span class="content">Measure content</span></a>
-          <li><a href="#cwmnx-sequence-content"><span class="secno">5.2.3.7</span> <span class="content">Sequence content</span></a>
-          <li><a href="#cwmnx-direction-content"><span class="secno">5.2.3.8</span> <span class="content">Direction content</span></a>
-          <li><a href="#cwmnx-staff-content"><span class="secno">5.2.3.9</span> <span class="content">Staff content</span></a>
-          <li><a href="#cwmnx-event-content"><span class="secno">5.2.3.10</span> <span class="content">Event content</span></a>
+          <li><a href="#the-cwmnx-element"><span class="secno">5.2.3.1</span> <span class="content">The <span><code>cwmnx</code></span> element</span></a>
+          <li><a href="#the-system-element"><span class="secno">5.2.3.2</span> <span class="content">The <span><code>system</code></span> element</span></a>
+          <li><a href="#the-part-element"><span class="secno">5.2.3.3</span> <span class="content">The <span><code>part</code></span> element</span></a>
          </ol>
         <li>
-         <a href="#cwmnx-body"><span class="secno">5.2.4</span> <span class="content">Body Elements</span></a>
+         <a href="#cwmnx-system-content"><span class="secno">5.2.4</span> <span class="content">System content</span></a>
          <ol class="toc">
-          <li><a href="#the-cwmnx-element"><span class="secno">5.2.4.1</span> <span class="content">The <span><code>cwmnx</code></span> element</span></a>
-          <li><a href="#the-system-element"><span class="secno">5.2.4.2</span> <span class="content">The <span><code>system</code></span> element</span></a>
-          <li><a href="#the-part-element"><span class="secno">5.2.4.3</span> <span class="content">The <span><code>part</code></span> element</span></a>
+          <li><a href="#the-measure-element"><span class="secno">5.2.4.1</span> <span class="content">The <span><code>measure</code></span> element</span></a>
          </ol>
         <li>
-         <a href="#cwmnx-elements-system"><span class="secno">5.2.5</span> <span class="content">System Elements</span></a>
+         <a href="#cwmnx-measure-content"><span class="secno">5.2.5</span> <span class="content">Measure content</span></a>
          <ol class="toc">
-          <li><a href="#the-measure-element"><span class="secno">5.2.5.1</span> <span class="content">The <span><code>measure</code></span> element</span></a>
+          <li><a href="#the-sequence-element"><span class="secno">5.2.5.1</span> <span class="content">The <span><code>sequence</code></span> element</span></a>
          </ol>
         <li>
-         <a href="#cwmnx-elements-general"><span class="secno">5.2.6</span> <span class="content">General Elements</span></a>
+         <a href="#cwmnx-sequence-content"><span class="secno">5.2.6</span> <span class="content">Sequence content</span></a>
          <ol class="toc">
-          <li><a href="#the-sequence-element"><span class="secno">5.2.6.1</span> <span class="content">The <span><code>sequence</code></span> element</span></a>
-          <li><a href="#the-event-element"><span class="secno">5.2.6.2</span> <span class="content">The <span><code>event</code></span> element</span></a>
-          <li><a href="#the-dirgroup-element"><span class="secno">5.2.6.3</span> <span class="content">The <span><code>dirgroup</code></span> element</span></a>
-          <li><a href="#the-dynamics-element"><span class="secno">5.2.6.4</span> <span class="content">The <span><code>dynamics</code></span> element</span></a>
-          <li><a href="#the-wedge-element"><span class="secno">5.2.6.5</span> <span class="content">The <span><code>wedge</code></span> element</span></a>
-          <li><a href="#the-harmony-element"><span class="secno">5.2.6.6</span> <span class="content">The <span><code>harmony</code></span> element</span></a>
-          <li><a href="#the-instruction-element"><span class="secno">5.2.6.7</span> <span class="content">The <span><code>instruction</code></span> element</span></a>
-          <li><a href="#the-expression-element"><span class="secno">5.2.6.8</span> <span class="content">The <span><code>expression</code></span> element</span></a>
-          <li><a href="#the-pedal-element"><span class="secno">5.2.6.9</span> <span class="content">The <span><code>pedal</code></span> element</span></a>
-          <li><a href="#the-bracket-element"><span class="secno">5.2.6.10</span> <span class="content">The <span><code>bracket</code></span> element</span></a>
-          <li><a href="#the-coda-element"><span class="secno">5.2.6.11</span> <span class="content">The <span><code>coda</code></span> element</span></a>
-          <li><a href="#the-segno-element"><span class="secno">5.2.6.12</span> <span class="content">The <span><code>segno</code></span> element</span></a>
-          <li><a href="#the-note-element"><span class="secno">5.2.6.13</span> <span class="content">The <span><code>note</code></span> element</span></a>
-          <li><a href="#the-rest-element"><span class="secno">5.2.6.14</span> <span class="content">The <span><code>rest</code></span> element</span></a>
-          <li><a href="#the-lyric-element"><span class="secno">5.2.6.15</span> <span class="content">The <span><code>lyric</code></span> element</span></a>
-          <li><a href="#the-slur-element"><span class="secno">5.2.6.16</span> <span class="content">The <span><code>slur</code></span> element</span></a>
-          <li><a href="#the-glissando-element"><span class="secno">5.2.6.17</span> <span class="content">The <span><code>glissando</code></span> element</span></a>
-          <li><a href="#the-slide-element"><span class="secno">5.2.6.18</span> <span class="content">The <span><code>slide</code></span> element</span></a>
-          <li><a href="#the-ornaments-element"><span class="secno">5.2.6.19</span> <span class="content">The <span><code>ornaments</code></span> element</span></a>
-          <li><a href="#the-articulations-element"><span class="secno">5.2.6.20</span> <span class="content">The <span><code>articulations</code></span> element</span></a>
-          <li><a href="#the-technical-element"><span class="secno">5.2.6.21</span> <span class="content">The <span><code>technical</code></span> element</span></a>
-          <li><a href="#the-tuplet-element"><span class="secno">5.2.6.22</span> <span class="content">The <span><code>tuplet</code></span> element</span></a>
-          <li><a href="#the-grace-element"><span class="secno">5.2.6.23</span> <span class="content">The <span><code>grace</code></span> element</span></a>
-          <li><a href="#the-part-name-element"><span class="secno">5.2.6.24</span> <span class="content">The <span><code>part-name</code></span> element</span></a>
-          <li><a href="#the-part-abbreviation-element"><span class="secno">5.2.6.25</span> <span class="content">The <span><code>part-abbreviation</code></span> element</span></a>
-          <li><a href="#the-instrument-sound-element"><span class="secno">5.2.6.26</span> <span class="content">The <span><code>instrument-sound</code></span> element</span></a>
+          <li><a href="#the-event-element"><span class="secno">5.2.6.1</span> <span class="content">The <span><code>event</code></span> element</span></a>
+          <li><a href="#the-tuplet-element"><span class="secno">5.2.6.2</span> <span class="content">The <span><code>tuplet</code></span> element</span></a>
+          <li><a href="#the-grace-element"><span class="secno">5.2.6.3</span> <span class="content">The <span><code>grace</code></span> element</span></a>
          </ol>
+        <li><a href="#cwmnx-direction-content"><span class="secno">5.2.7</span> <span class="content">Direction content</span></a>
+        <li>
+         <a href="#cwmnx-event-content"><span class="secno">5.2.8</span> <span class="content">Event content</span></a>
+         <ol class="toc">
+          <li><a href="#the-note-element"><span class="secno">5.2.8.1</span> <span class="content">The <span><code>note</code></span> element</span></a>
+          <li><a href="#the-rest-element"><span class="secno">5.2.8.2</span> <span class="content">The <span><code>rest</code></span> element</span></a>
+          <li><a href="#the-lyric-element"><span class="secno">5.2.8.3</span> <span class="content">The <span><code>lyric</code></span> element</span></a>
+          <li><a href="#the-slur-element"><span class="secno">5.2.8.4</span> <span class="content">The <span><code>slur</code></span> element</span></a>
+          <li><a href="#the-glissando-element"><span class="secno">5.2.8.5</span> <span class="content">The <span><code>glissando</code></span> element</span></a>
+          <li><a href="#the-slide-element"><span class="secno">5.2.8.6</span> <span class="content">The <span><code>slide</code></span> element</span></a>
+          <li><a href="#the-ornaments-element"><span class="secno">5.2.8.7</span> <span class="content">The <span><code>ornaments</code></span> element</span></a>
+          <li><a href="#the-articulations-element"><span class="secno">5.2.8.8</span> <span class="content">The <span><code>articulations</code></span> element</span></a>
+          <li><a href="#the-technical-element"><span class="secno">5.2.8.9</span> <span class="content">The <span><code>technical</code></span> element</span></a>
+          <li><a href="#the-dirgroup-element"><span class="secno">5.2.8.10</span> <span class="content">The <span><code>dirgroup</code></span> element</span></a>
+          <li><a href="#the-dynamics-element"><span class="secno">5.2.8.11</span> <span class="content">The <span><code>dynamics</code></span> element</span></a>
+          <li><a href="#the-wedge-element"><span class="secno">5.2.8.12</span> <span class="content">The <span><code>wedge</code></span> element</span></a>
+          <li><a href="#the-harmony-element"><span class="secno">5.2.8.13</span> <span class="content">The <span><code>harmony</code></span> element</span></a>
+          <li><a href="#the-instruction-element"><span class="secno">5.2.8.14</span> <span class="content">The <span><code>instruction</code></span> element</span></a>
+          <li><a href="#the-expression-element"><span class="secno">5.2.8.15</span> <span class="content">The <span><code>expression</code></span> element</span></a>
+          <li><a href="#the-pedal-element"><span class="secno">5.2.8.16</span> <span class="content">The <span><code>pedal</code></span> element</span></a>
+          <li><a href="#the-bracket-element"><span class="secno">5.2.8.17</span> <span class="content">The <span><code>bracket</code></span> element</span></a>
+          <li><a href="#the-coda-element"><span class="secno">5.2.8.18</span> <span class="content">The <span><code>coda</code></span> element</span></a>
+          <li><a href="#the-segno-element"><span class="secno">5.2.8.19</span> <span class="content">The <span><code>segno</code></span> element</span></a>
+         </ol>
+        <li><a href="#cwmnx-staff-content"><span class="secno">5.2.9</span> <span class="content">Staff content</span></a>
+        <li>
+         <a href="#cwmnx-part-description-content"><span class="secno">5.2.10</span> <span class="content">Part description content</span></a>
+         <ol class="toc">
+          <li><a href="#the-part-name-element"><span class="secno">5.2.10.1</span> <span class="content">The <span><code>part-name</code></span> element</span></a>
+          <li><a href="#the-part-abbreviation-element"><span class="secno">5.2.10.2</span> <span class="content">The <span><code>part-abbreviation</code></span> element</span></a>
+          <li><a href="#the-instrument-sound-element"><span class="secno">5.2.10.3</span> <span class="content">The <span><code>instrument-sound</code></span> element</span></a>
+         </ol>
+        <li><a href="#cwmnx-interpretation-content"><span class="secno">5.2.11</span> <span class="content">Interpretation content</span></a>
        </ol>
       <li>
-       <a href="#cwmnx-rendering"><span class="secno">5.3</span> <span class="content">Rendering</span></a>
+       <a href="#cwmnx-style-properties"><span class="secno">5.3</span> <span class="content">Style properties</span></a>
        <ol class="toc">
-        <li><a href="#cwmnx-stem"><span class="secno">5.3.1</span> <span class="content">The <span><code>stem</code></span> property</span></a>
+        <li><a href="#the-style-element"><span class="secno">5.3.1</span> <span class="content">The <span><code>style</code></span> element</span></a>
+        <li>
+         <a href="#cwmnx-rendering"><span class="secno">5.3.2</span> <span class="content">Rendering Properties</span></a>
+         <ol class="toc">
+          <li><a href="#cwmnx-stem"><span class="secno">5.3.2.1</span> <span class="content">The <span><code>stem</code></span> property</span></a>
+         </ol>
        </ol>
       <li><a href="#cwmnx-interpretation"><span class="secno">5.4</span> <span class="content">Interpretation</span></a>
      </ol>
@@ -1646,7 +1652,7 @@ Parts of this work may be from another specification document.  If so, those par
   it in a different direction from its predecessors.</p>
    <p>MNX stands for "Music Notation X", where "X" suggests "XML", "eXtended",
   and potentially other X-related things as may come to mind.</p>
-   <h3 class="heading settled" data-level="1.2" id="mnx-score-types"><span class="secno">1.2. </span><span class="content">MNX Score Types</span><a class="self-link" href="#mnx-score-types"></a></h3>
+   <h3 class="heading settled" data-level="1.2" id="mnx-score-types"><span class="secno">1.2. </span><span class="content">MNX score types</span><a class="self-link" href="#mnx-score-types"></a></h3>
    <p><em>This section is non-normative.</em></p>
    <p>MNX can support multiple <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="score-types">score types</dfn>. Each score type is a specific encoding that applies
 to some portion of a <a data-link-type="dfn" href="#container-document" id="ref-for-container-document-1">container document</a>.</p>
@@ -1725,7 +1731,7 @@ on how to use the element, along with user agent requirements for how to
 handle each element, are also given. This includes large signature features of HTML
 such as video playback and subtitles, form controls and form submission, and a 2D graphics
 API known as the HTML canvas.</p>
-     <dt data-md=""><a href="#cwmnx-rendering">§5.3 Rendering</a>
+     <dt data-md=""><a href="#cwmnx-rendering">§5.3.2 Rendering Properties</a>
      <dd data-md="">
       <p>This section defines the default rendering rules for Web browsers.</p>
     </dl>
@@ -1774,16 +1780,16 @@ API known as the HTML canvas.</p>
    <section>
     <h2 class="heading settled" data-level="2" id="infrastructure"><span class="secno">2. </span><span class="content">Infrastructure</span><a class="self-link" href="#infrastructure"></a></h2>
     <h3 class="heading settled" data-level="2.1" id="terminology"><span class="secno">2.1. </span><span class="content">Terminology</span><a class="self-link" href="#terminology"></a></h3>
-    <h4 class="heading settled" data-level="2.1.1" id="notational-idioms"><span class="secno">2.1.1. </span><span class="content">Notational Idioms</span><a class="self-link" href="#notational-idioms"></a></h4>
+    <h4 class="heading settled" data-level="2.1.1" id="notational-idioms"><span class="secno">2.1.1. </span><span class="content">Notational idioms</span><a class="self-link" href="#notational-idioms"></a></h4>
     <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="notational-idiom">notational idiom</dfn> is a set of rules in the world for encoding
 music as some set of visual markings, which can be interpreted by musicians to
 produce an audible performance.</p>
-    <h5 class="heading settled" data-level="2.1.1.1" id="cwmn"><span class="secno">2.1.1.1. </span><span class="content">Conventional Western Music Notation (CWMN)</span><a class="self-link" href="#cwmn"></a></h5>
-    <h4 class="heading settled" data-level="2.1.2" id="score profiles"><span class="secno">2.1.2. </span><span class="content">Score Profiles</span><a class="self-link" href="#score%20profiles"></a></h4>
+    <h5 class="heading settled" data-level="2.1.1.1" id="cwmn"><span class="secno">2.1.1.1. </span><span class="content">Conventional Western music notation (CWMN)</span><a class="self-link" href="#cwmn"></a></h5>
+    <h4 class="heading settled" data-level="2.1.2" id="score profiles"><span class="secno">2.1.2. </span><span class="content">Score profiles</span><a class="self-link" href="#score%20profiles"></a></h4>
     <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="score-profile">score profile</dfn> is a set of constraints on the rules in a notational idiom.
 Score profiles are designed to narrow the set of constructs that can be produced or consumed
 in MNX to a practical scope.</p>
-    <h3 class="heading settled" data-level="2.2" id="common-syntaxes"><span class="secno">2.2. </span><span class="content">Common Syntaxes</span><a class="self-link" href="#common-syntaxes"></a></h3>
+    <h3 class="heading settled" data-level="2.2" id="common-syntaxes"><span class="secno">2.2. </span><span class="content">Common syntaxes</span><a class="self-link" href="#common-syntaxes"></a></h3>
     <p>There are various places in MNX that accept particular data types, such as
 note values, numbers or durations. This section describes the conformance
 criteria for content in those formats, and how to parse them.</p>
@@ -2297,16 +2303,16 @@ criteria for content in those formats, and how to parse them.</p>
      <li data-md="">
       <p>Return <var>tokens</var>.</p>
     </ol>
-    <h4 class="heading settled" data-level="2.2.5" id="element-locations"><span class="secno">2.2.5. </span><span class="content">Element Locations</span><a class="self-link" href="#element-locations"></a></h4>
+    <h4 class="heading settled" data-level="2.2.5" id="element-locations"><span class="secno">2.2.5. </span><span class="content">Element locations</span><a class="self-link" href="#element-locations"></a></h4>
     <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="element-location">element location</dfn> is the character <code>#</code>, immediately followed by the XML ID
 of an element within the document.</p>
    </section>
-   <h2 class="heading settled" data-level="3" id="document"><span class="secno">3. </span><span class="content">Document Organization</span><a class="self-link" href="#document"></a></h2>
+   <h2 class="heading settled" data-level="3" id="document"><span class="secno">3. </span><span class="content">Document organization</span><a class="self-link" href="#document"></a></h2>
    <h3 class="heading settled" data-level="3.1" id="the-container-document"><span class="secno">3.1. </span><span class="content">The container document</span><a class="self-link" href="#the-container-document"></a></h3>
    <p>Each MNX document acts as a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="container-document">container document</dfn>, which contains a
 hierarchy of components which collectively make up the
 document as a whole.</p>
-   <h3 class="heading settled" data-level="3.2" id="content-models"><span class="secno">3.2. </span><span class="content">Content Models and Categories</span><a class="self-link" href="#content-models"></a></h3>
+   <h3 class="heading settled" data-level="3.2" id="content-models"><span class="secno">3.2. </span><span class="content">Content models and categories</span><a class="self-link" href="#content-models"></a></h3>
    <p>Each element in MNX falls into zero or more <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="content
   categories|content category" data-noexport="" id="content-categories">categories</dfn> that group elements with
   similar characteristics together. The following broad categories are used in
@@ -2335,7 +2341,7 @@ document as a whole.</p>
    <p>This is then followed by a description of what the element represents, along with any
   additional normative conformance criteria that may apply to producers and consumers
   and implementations. Examples are sometimes also included.</p>
-   <h2 class="heading settled" data-level="4" id="mnx-container"><span class="secno">4. </span><span class="content">MNX Container</span><a class="self-link" href="#mnx-container"></a></h2>
+   <h2 class="heading settled" data-level="4" id="mnx-container"><span class="secno">4. </span><span class="content">MNX container</span><a class="self-link" href="#mnx-container"></a></h2>
    <section>
     <h3 class="heading settled" data-level="4.1" id="mnx-scope"><span class="secno">4.1. </span><span class="content">Scope</span><a class="self-link" href="#mnx-scope"></a></h3>
     <p><em>This section is non-normative.</em></p>
@@ -2343,8 +2349,11 @@ document as a whole.</p>
   metadata.</p>
    </section>
    <h3 class="heading settled" data-level="4.2" id="mnx-semantics-elements"><span class="secno">4.2. </span><span class="content">Semantics</span><a class="self-link" href="#mnx-semantics-elements"></a></h3>
-   <h4 class="heading settled" data-level="4.2.1" id="mnx-content-types"><span class="secno">4.2.1. </span><span class="content">Content Types</span><a class="self-link" href="#mnx-content-types"></a></h4>
+   <h4 class="heading settled" data-level="4.2.1" id="mnx-content-types"><span class="secno">4.2.1. </span><span class="content">Content types</span><a class="self-link" href="#mnx-content-types"></a></h4>
    <h5 class="heading settled" data-level="4.2.1.1" id="mnx-metadata-content"><span class="secno">4.2.1.1. </span><span class="content">Metadata content</span><a class="self-link" href="#mnx-metadata-content"></a></h5>
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="metadata-content">Metadata content</dfn> may be included in many elements to supply
+bibliographic data and other descriptive information.</p>
+   <p><em>List of elements TBD</em></p>
    <h5 class="heading settled" data-level="4.2.1.2" id="mnx-musical body"><span class="secno">4.2.1.2. </span><span class="content">Musical body content</span><a class="self-link" href="#mnx-musical%20body"></a></h5>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="musical body|musical bodies|musical body content" data-noexport="" id="musical-body">musical
 body</dfn> consists of a score in some <a data-link-type="dfn" href="#notational-idiom" id="ref-for-notational-idiom-1">notational idiom</a> supplying
@@ -2355,13 +2364,14 @@ concrete musical content that can be rendered and/or performed.</p>
     <p><em>This section is non-normative.</em></p>
    </section>
    <h3 class="heading settled" data-level="5.2" id="cwmnx-semantics"><span class="secno">5.2. </span><span class="content">Semantics</span><a class="self-link" href="#cwmnx-semantics"></a></h3>
-   <h4 class="heading settled" data-level="5.2.1" id="cwmnx-notational-concepts"><span class="secno">5.2.1. </span><span class="content">Notational Concepts</span><a class="self-link" href="#cwmnx-notational-concepts"></a></h4>
+   <h4 class="heading settled" data-level="5.2.1" id="cwmnx-notational-concepts"><span class="secno">5.2.1. </span><span class="content">Notational concepts</span><a class="self-link" href="#cwmnx-notational-concepts"></a></h4>
+   <p><em>This section is non-normative.</em></p>
    <p>This section describes various foundational concepts in music notation that
-are frequently referenced by this specification. These descriptions are non-
-normative but serve to clarify the CWMN concepts represented by MNX markup,
-and they frame and constrain these concepts in terms that are built upon by
+are frequently referenced by this specification. While these descriptions are
+not normative, they serve to clarify the CWMN concepts represented by MNX
+markup and provide a vocabulary for talking about the semantics behind
 the normative material.</p>
-   <h5 class="heading settled" data-level="5.2.1.1" id="cwmnx-parts-staves"><span class="secno">5.2.1.1. </span><span class="content">Parts and Staves</span><a class="self-link" href="#cwmnx-parts-staves"></a></h5>
+   <h5 class="heading settled" data-level="5.2.1.1" id="cwmnx-parts-staves"><span class="secno">5.2.1.1. </span><span class="content">Parts and staves</span><a class="self-link" href="#cwmnx-parts-staves"></a></h5>
    <p>A score consists of multiple <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="parts">parts</dfn>.  Each <a data-link-type="dfn" href="#parts" id="ref-for-parts-1">part</a> is a grouping
 of related musical material that relates to a single performer or set of
 performer.  It has the same temporal extent as the score overall, but presents
@@ -2376,7 +2386,7 @@ additional information supplied by a <dfn data-dfn-type="dfn" data-noexport="" i
    <p>Staves in CWMN are identified within a part by a unique <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="staff index" data-noexport="" id="staff-index">staff
 index</dfn>. The topmost staff in a part has a staff index of 1; staves below
 the topmost staff are identified with successively increasing indices.</p>
-   <h5 class="heading settled" data-level="5.2.1.2" id="cwmnx-notated-events"><span class="secno">5.2.1.2. </span><span class="content">Notated Events</span><a class="self-link" href="#cwmnx-notated-events"></a></h5>
+   <h5 class="heading settled" data-level="5.2.1.2" id="cwmnx-notated-events"><span class="secno">5.2.1.2. </span><span class="content">Notated events</span><a class="self-link" href="#cwmnx-notated-events"></a></h5>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="notated-event">notated event</dfn> in CWMN is a discrete action in the score with a
 notated duration. It has an onset that is relative to the start of its
 containing sequence as well as to other elements in that sequence, subject to
@@ -2406,7 +2416,7 @@ notation in the score that is understood to terminate it. An example is a <em>pi
    <p><dfn data-dfn-type="dfn" data-noexport="" id="span">Span<a class="self-link" href="#span"></a></dfn> directions begin at a point in time in some part and
 end at a later point within the same part. A common example of a span direction
 is a slur.</p>
-   <h5 class="heading settled" data-level="5.2.1.4" id="sequence"><span class="secno">5.2.1.4. </span><span class="content">Notated Sequences</span><a class="self-link" href="#sequence"></a></h5>
+   <h5 class="heading settled" data-level="5.2.1.4" id="sequence"><span class="secno">5.2.1.4. </span><span class="content">Notated sequences</span><a class="self-link" href="#sequence"></a></h5>
    <p>A <dfn data-dfn-type="dfn" data-noexport="" id="notated-sequence">notated sequence<a class="self-link" href="#notated-sequence"></a></dfn> is a set of <a data-link-type="dfn" href="#notated-event" id="ref-for-notated-event-1">notated events</a> whose notional
 time intervals do not overlap, and which occur at progressively greater temporal
 offsets within a measure.</p>
@@ -2419,7 +2429,7 @@ by reading music, while MNX consumers will generally do this algorithmically.</p
 the document.  In CWMNX, a consumer will typically employ a set of rules that
 mimic the actions of a human performer, overriding these with exact
 performance events where these are explicitly supplied within the document.</p>
-   <h5 class="heading settled" data-level="5.2.1.6" id="cwmnx-performance-events"><span class="secno">5.2.1.6. </span><span class="content">Performance Events</span><a class="self-link" href="#cwmnx-performance-events"></a></h5>
+   <h5 class="heading settled" data-level="5.2.1.6" id="cwmnx-performance-events"><span class="secno">5.2.1.6. </span><span class="content">Performance events</span><a class="self-link" href="#cwmnx-performance-events"></a></h5>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="performance-event">performance event</dfn> is a description of a single timed
 element of a musical performance with specific attributes for its onset,
 duration, pitch, dynamics, articulation and instrument. Unlike a notated
@@ -2427,7 +2437,7 @@ event, these attributes are specific and not subject to interpretation, and
 they are independent of any notational concepts.</p>
    <p>Performance events in MNX are used to describe the exact <a data-link-type="dfn" href="#performance-interpretation" id="ref-for-performance-interpretation-1">performance
 interpretation</a> of some or all of a score, as distinct from its notation.</p>
-   <h5 class="heading settled" data-level="5.2.1.7" id="note-values"><span class="secno">5.2.1.7. </span><span class="content">Note Values</span><a class="self-link" href="#note-values"></a></h5>
+   <h5 class="heading settled" data-level="5.2.1.7" id="note-values"><span class="secno">5.2.1.7. </span><span class="content">Note values</span><a class="self-link" href="#note-values"></a></h5>
    <p>There are a variety of situations in which the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="note-value">note value</dfn> of a
 musical event needs to be described, in terms of some fraction or multiple of
 a CWMN whole-note unit.</p>
@@ -2449,8 +2459,8 @@ and articulations accordingly.
     <li>An orientation of <em>down</em> orients note stems pointing upwards, and places beams, directions
 and articulations accordingly.
    </ul>
-   <h4 class="heading settled" data-level="5.2.2" id="cwmnx-notational-syntaxes"><span class="secno">5.2.2. </span><span class="content">Notational Syntaxes</span><a class="self-link" href="#cwmnx-notational-syntaxes"></a></h4>
-   <h5 class="heading settled" data-level="5.2.2.1" id="note-value-syntax"><span class="secno">5.2.2.1. </span><span class="content">Note Value Syntax</span><a class="self-link" href="#note-value-syntax"></a></h5>
+   <h4 class="heading settled" data-level="5.2.2" id="cwmnx-notational-syntaxes"><span class="secno">5.2.2. </span><span class="content">Notational syntaxes</span><a class="self-link" href="#cwmnx-notational-syntaxes"></a></h4>
+   <h5 class="heading settled" data-level="5.2.2.1" id="note-value-syntax"><span class="secno">5.2.2.1. </span><span class="content">Note value syntax</span><a class="self-link" href="#note-value-syntax"></a></h5>
    <p>MNX provides a microsyntax for encoding note values whose syntactic
 constraints map to the above requirements. Its syntax is designed to be
 distinguishable from other syntaxes for integers, floating point numbers or
@@ -2542,7 +2552,7 @@ of the following forms:</p>
       <p>a dotted breve</p>
     </dl>
    </div>
-   <h5 class="heading settled" data-level="5.2.2.2" id="measure-locations"><span class="secno">5.2.2.2. </span><span class="content">Measure Locations</span><a class="self-link" href="#measure-locations"></a></h5>
+   <h5 class="heading settled" data-level="5.2.2.2" id="measure-locations"><span class="secno">5.2.2.2. </span><span class="content">Measure locations</span><a class="self-link" href="#measure-locations"></a></h5>
    <p>There are a variety of situations in which the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="measure-location">measure location</dfn> of a
 musical event needs to be described, in terms of the content of the measure.</p>
    <p>The following cases exist for specifying <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location-1">measure locations</a>:</p>
@@ -2572,113 +2582,10 @@ musical event needs to be described, in terms of the content of the measure.</p>
       <p>the same metrical position as the event whose element ID is <code>event-235</code></p>
     </dl>
    </div>
-   <h4 class="heading settled" data-level="5.2.3" id="cwmnx-content-types"><span class="secno">5.2.3. </span><span class="content">Content Types</span><a class="self-link" href="#cwmnx-content-types"></a></h4>
-   <h5 class="heading settled" data-level="5.2.3.1" id="cwmnx-metadata-content"><span class="secno">5.2.3.1. </span><span class="content">Metadata content</span><a class="self-link" href="#cwmnx-metadata-content"></a></h5>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="metadata-content">Metadata content</dfn> may be included in many elements to supply
-bibliographic data and other descriptive information.</p>
-   <h5 class="heading settled" data-level="5.2.3.2" id="cwmnx-style-properties"><span class="secno">5.2.3.2. </span><span class="content">Style properties</span><a class="self-link" href="#cwmnx-style-properties"></a></h5>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="style-properties">Style properties</dfn> may be included in many elements to control the
-specific way in which the element is rendered.</p>
-   <p>Style content consists of a single <code><a data-link-type="element" href="https://svgwg.org/svg2-draft/styling.html#elementdef-style">style</a></code> element, whose set of attributes
-supplies a dictionary of <a data-link-type="dfn" href="#style-properties" id="ref-for-style-properties-1">style properties</a> and their associated
-values for the parent element of <code><a data-link-type="element" href="https://svgwg.org/svg2-draft/styling.html#elementdef-style">style</a></code>. The list of valid <a data-link-type="dfn" href="#style-properties" id="ref-for-style-properties-2">style
-properties</a> varies from one element to another and is documented separately
-for each element.</p>
-   <h5 class="heading settled" data-level="5.2.3.3" id="cwmnx-interpretation-content"><span class="secno">5.2.3.3. </span><span class="content">Interpretation content</span><a class="self-link" href="#cwmnx-interpretation-content"></a></h5>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="interpretation-content">Interpretation content</dfn> may be included in some elements to control
-the specific way in which the element is interpreted as a musical performance.
-In general, this content supplies explicit <a data-link-type="dfn" href="#performance-event" id="ref-for-performance-event-2">performance events</a> to
-replace the defaults that an MNX consumer would determine based on a default <a data-link-type="dfn" href="#performance-interpretation" id="ref-for-performance-interpretation-2">performance interpretation</a>.</p>
-   <p>Style content consists of a single <code><a data-link-type="element" href="https://svgwg.org/svg2-draft/styling.html#elementdef-style">style</a></code> element, whose set of attributes
-supplies a dictionary of <a data-link-type="dfn" href="#style-properties" id="ref-for-style-properties-3">style properties</a> and their associated
-values for the parent element of <code><a data-link-type="element" href="https://svgwg.org/svg2-draft/styling.html#elementdef-style">style</a></code>. The list of valid <a data-link-type="dfn" href="#style-properties" id="ref-for-style-properties-4">style
-properties</a> varies from one element to another and is documented separately
-for each element.</p>
-   <h5 class="heading settled" data-level="5.2.3.4" id="cwmnx-part-description-content"><span class="secno">5.2.3.4. </span><span class="content">Part description content</span><a class="self-link" href="#cwmnx-part-description-content"></a></h5>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="part-description-content">Part description content</dfn> supplies information describing a part. It may include:</p>
-   <ul>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-part-name" id="ref-for-elementdef-part-name-1">part-name</a></code></p>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-part-abbreviation" id="ref-for-elementdef-part-abbreviation-1">part-abbreviation</a></code></p>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-instrument-sound" id="ref-for-elementdef-instrument-sound-1">instrument-sound</a></code></p>
-   </ul>
-   <h5 class="heading settled" data-level="5.2.3.5" id="cwmnx-system-content"><span class="secno">5.2.3.5. </span><span class="content">System content</span><a class="self-link" href="#cwmnx-system-content"></a></h5>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="system-content">System content</dfn> supplies a sequence of <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure-2">measure</a></code> elements, each of
-which supplies musical content for a time interval within a score.</p>
-   <p>The placement of the measures in system content constitutes their <dfn data-dfn-type="dfn" data-lt="score order" data-noexport="" id="score-order">score
-order<a class="self-link" href="#score-order"></a></dfn>, which is the order in which they are logically presented to a
-reader. This is distinct from their <dfn data-dfn-type="dfn" data-noexport="" id="performance-order">performance order<a class="self-link" href="#performance-order"></a></dfn>, which is the
-order in which they are played by a performer.</p>
-   <h5 class="heading settled" data-level="5.2.3.6" id="cwmnx-measure-content"><span class="secno">5.2.3.6. </span><span class="content">Measure content</span><a class="self-link" href="#cwmnx-measure-content"></a></h5>
-   <h5 class="heading settled" data-level="5.2.3.7" id="cwmnx-sequence-content"><span class="secno">5.2.3.7. </span><span class="content">Sequence content</span><a class="self-link" href="#cwmnx-sequence-content"></a></h5>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="sequence-content">Sequence content</dfn> supplies a series of musical events that are
-both presented and performed in a given order, each at a distinct time. Such
-events express the concepts of chords, notes and rests.</p>
-   <p>Within sequence content, each <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event-3">event</a></code> descendant except for those below a <code><a data-link-type="element" href="#elementdef-grace" id="ref-for-elementdef-grace-1">grace</a></code> element possesses a well-defined <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="metrical-position">metrical position</dfn>,
-giving its notated time onset expressed as a rational number of whole note
-durations after the start of its containing measure. This position may be
-thought of as the event’s "address" within its containing sequence, and plays
-a determining role in the normative rendering and performance of events.</p>
-   <p>Events below a <code><a data-link-type="element" href="#elementdef-grace" id="ref-for-elementdef-grace-2">grace</a></code> element do not have a metrical position. They merely
-have a well-defined notational ordering relative to other events in the
-measure.</p>
-   <p>Elements occuring in sequence content include:</p>
-   <ul>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event-4">event</a></code></p>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-tuplet" id="ref-for-elementdef-tuplet-1">tuplet</a></code></p>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-grace" id="ref-for-elementdef-grace-3">grace</a></code></p>
-   </ul>
-   <h5 class="heading settled" data-level="5.2.3.8" id="cwmnx-direction-content"><span class="secno">5.2.3.8. </span><span class="content">Direction content</span><a class="self-link" href="#cwmnx-direction-content"></a></h5>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="direction-content">Direction content</dfn> consists of some number of musical <dfn data-dfn-type="element" data-export="" id="elementdef-directions">directions<a class="self-link" href="#elementdef-directions"></a></dfn> that modify or accompany the performance of events within the sequence content
-of one or more measures.</p>
-   <p>Valid direction content must always be given an explicit <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location-5">measure location</a> by supplying a <dfn class="dfn-paneled" data-dfn-for="directions" data-dfn-type="element-attr" data-export="" id="element-attrdef-directions-location">location</dfn> attribute.</p>
-   <p>A direction is <dfn data-dfn-type="dfn" data-lt="direction scope" data-noexport="" id="direction-scope">scoped<a class="self-link" href="#direction-scope"></a></dfn> in a way that depends on
-where it is placed:</p>
-   <ul>
-    <li data-md="">
-     <p>Direction content in a <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure-3">measure</a></code> within the <code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-1">system</a></code> element applies to all sequences of the measure in all parts.</p>
-    <li data-md="">
-     <p>Direction content in a <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure-4">measure</a></code> within a <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part-1">part</a></code> element applies to all sequences of the measure in a given part.</p>
-    <li data-md="">
-     <p>Direction content in a <code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence-2">sequence</a></code> applies to the sequence in which it occurs.</p>
-   </ul>
-   <h5 class="heading settled" data-level="5.2.3.9" id="cwmnx-staff-content"><span class="secno">5.2.3.9. </span><span class="content">Staff content</span><a class="self-link" href="#cwmnx-staff-content"></a></h5>
-   <p><dfn data-dfn-type="dfn" data-noexport="" id="staff-content">Staff content<a class="self-link" href="#staff-content"></a></dfn> describes the properties of a staff on which events are placed. These include:</p>
-   <h5 class="heading settled" data-level="5.2.3.10" id="cwmnx-event-content"><span class="secno">5.2.3.10. </span><span class="content">Event content</span><a class="self-link" href="#cwmnx-event-content"></a></h5>
-   <p><dfn data-dfn-type="dfn" data-noexport="" id="event-content">Event content<a class="self-link" href="#event-content"></a></dfn> comprises elements that describe the musical content of a single event that is performed at a distinct time. These include:</p>
-   <ul>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-note" id="ref-for-elementdef-note-1">note</a></code></p>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-rest" id="ref-for-elementdef-rest-1">rest</a></code></p>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-lyric" id="ref-for-elementdef-lyric-1">lyric</a></code></p>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-slur" id="ref-for-elementdef-slur-1">slur</a></code></p>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-glissando" id="ref-for-elementdef-glissando-1">glissando</a></code></p>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-slide" id="ref-for-elementdef-slide-1">slide</a></code></p>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-ornaments" id="ref-for-elementdef-ornaments-1">ornaments</a></code></p>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-articulations" id="ref-for-elementdef-articulations-1">articulations</a></code></p>
-    <li data-md="">
-     <p><code><a data-link-type="element" href="#elementdef-technical" id="ref-for-elementdef-technical-1">technical</a></code></p>
-    <li data-md="">
-     <p>Any <a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content-1">direction content</a></p>
-    <li data-md="">
-     <p>...TBD...</p>
-   </ul>
    <section>
-    <h4 class="heading settled" data-level="5.2.4" id="cwmnx-body"><span class="secno">5.2.4. </span><span class="content">Body Elements</span><a class="self-link" href="#cwmnx-body"></a></h4>
+    <h4 class="heading settled" data-level="5.2.3" id="cwmnx-body"><span class="secno">5.2.3. </span><span class="content">CWMNX body content</span><a class="self-link" href="#cwmnx-body"></a></h4>
     <p>These elements of a CWMNX score supply its high-level description and structure.</p>
-    <h5 class="heading settled" data-level="5.2.4.1" id="the-cwmnx-element"><span class="secno">5.2.4.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-cwmnx"><code>cwmnx</code></dfn> element</span><a class="self-link" href="#the-cwmnx-element"></a></h5>
+    <h5 class="heading settled" data-level="5.2.3.1" id="the-cwmnx-element"><span class="secno">5.2.3.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-cwmnx"><code>cwmnx</code></dfn> element</span><a class="self-link" href="#the-cwmnx-element"></a></h5>
     <section>
      <dl class="def">
       <dt><a data-link-type="dfn" href="#content-categories" id="ref-for-content-categories-1">Description</a>:
@@ -2687,8 +2594,8 @@ where it is placed:</p>
       <dd>Wherever a <a data-link-type="dfn" href="#musical-body" id="ref-for-musical-body-2">musical body</a> is expected.
       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model-2">Content Model</a>:
       <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content-1">Metadata content</a>.
-      <dd>Exactly one <code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-2">system</a></code> element - <a data-link-type="dfn" href="#system-content" id="ref-for-system-content-3">system content</a> that is common to all parts within the score
-      <dd>One or more <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part-2">part</a></code> elements - description and <a data-link-type="dfn" href="#system-content" id="ref-for-system-content-4">system content</a> of each part in the score.
+      <dd>Exactly one <code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-1">system</a></code> element - <a data-link-type="dfn" href="#system-content" id="ref-for-system-content-3">system content</a> that is common to all parts within the score
+      <dd>One or more <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part-1">part</a></code> elements - description and <a data-link-type="dfn" href="#system-content" id="ref-for-system-content-4">system content</a> of each part in the score.
       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute">Attributes</a>:
       <dd><code><a data-link-type="element-sub" href="#element-attrdef-cwmnx-profile" id="ref-for-element-attrdef-cwmnx-profile-1">profile</a></code> — profile describing constraints on the contents of this score
      </dl>
@@ -2700,12 +2607,12 @@ profile</a> that supplies constraints to which the score is expected to obey.</p
 constraints that they represent:</p>
      <dl>
       <dt><dfn class="css" data-dfn-for="cwmnx/profile" data-dfn-type="value" data-export="" id="valdef-cwmnx-profile-standard"><code>standard</code><a class="self-link" href="#valdef-cwmnx-profile-standard"></a></dfn>
-      <dd>The <a data-link-type="dfn" href="#system-content" id="ref-for-system-content-5">system content</a> in all <code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-3">system</a></code> or <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part-3">part</a></code> elements consists of an identical number of measures.
-      <dd>Time and key signatures only occur in measures within the <code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-4">system</a></code> element.
+      <dd>The <a data-link-type="dfn" href="#system-content" id="ref-for-system-content-5">system content</a> in all <code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-2">system</a></code> or <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part-2">part</a></code> elements consists of an identical number of measures.
+      <dd>Time and key signatures only occur in measures within the <code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-3">system</a></code> element.
      </dl>
     </section>
     <section>
-     <h5 class="heading settled" data-level="5.2.4.2" id="the-system-element"><span class="secno">5.2.4.2. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-system"><code>system</code></dfn> element</span><a class="self-link" href="#the-system-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.3.2" id="the-system-element"><span class="secno">5.2.3.2. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-system"><code>system</code></dfn> element</span><a class="self-link" href="#the-system-element"></a></h5>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used-2">Contexts in which this element can be used</a>:
@@ -2713,10 +2620,14 @@ constraints that they represent:</p>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model-3">Content Model</a>:
        <dd><a data-link-type="dfn" href="#system-content" id="ref-for-system-content-6">System content</a>, which must not include any <a data-link-type="dfn" href="#sequence-content" id="ref-for-sequence-content-1">sequence content</a>
       </dl>
-      <p>The <code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-5">system</a></code> element represents musical content that describes sets of
-measures in various parts within the score which share the same measure number.</p>
+      <p>The <code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-4">system</a></code> element represents a set of measures, each of which provides
+content that is shared by all parts within the score. Each <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure-2">measure</a></code> element
+within <code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-5">system</a></code> supplies the shared content for all other <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure-3">measure</a></code> elements which share the same measure number.</p>
+      <p>Typical examples of such content include key signatures, time signatures and
+tempo indications.</p>
+      <p><a data-link-type="dfn" href="#notated-event" id="ref-for-notated-event-2">Notated events</a> like notes or rests cannot be shared between parts in CWMN. Consequently, <a data-link-type="dfn" href="#sequence-content" id="ref-for-sequence-content-2">sequence content</a> cannot occur in the measures within <code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-6">system</a></code>.</p>
      </section>
-     <h5 class="heading settled" data-level="5.2.4.3" id="the-part-element"><span class="secno">5.2.4.3. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-part"><code>part</code></dfn> element</span><a class="self-link" href="#the-part-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.3.3" id="the-part-element"><span class="secno">5.2.3.3. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-part"><code>part</code></dfn> element</span><a class="self-link" href="#the-part-element"></a></h5>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used-3">Contexts in which this element can be used</a>:
@@ -2726,60 +2637,141 @@ measures in various parts within the score which share the same measure number.<
        <dd><a data-link-type="dfn" href="#system-content" id="ref-for-system-content-7">System content</a>
       </dl>
      </section>
-     <h4 class="heading settled" data-level="5.2.5" id="cwmnx-elements-system"><span class="secno">5.2.5. </span><span class="content">System Elements</span><a class="self-link" href="#cwmnx-elements-system"></a></h4>
-     <h5 class="heading settled" data-level="5.2.5.1" id="the-measure-element"><span class="secno">5.2.5.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-measure"><code>measure</code></dfn> element</span><a class="self-link" href="#the-measure-element"></a></h5>
+     <h4 class="heading settled" data-level="5.2.4" id="cwmnx-system-content"><span class="secno">5.2.4. </span><span class="content">System content</span><a class="self-link" href="#cwmnx-system-content"></a></h4>
+     <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="system-content">System content</dfn> supplies a sequence of <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure-4">measure</a></code> elements, each of
+which supplies musical content for a time interval within a score.</p>
+     <p>The placement of the measures in system content constitutes their <dfn data-dfn-type="dfn" data-lt="score order" data-noexport="" id="score-order">score
+order<a class="self-link" href="#score-order"></a></dfn>, which is the order in which they are logically presented to a
+reader. This is distinct from their <dfn data-dfn-type="dfn" data-noexport="" id="performance-order">performance order<a class="self-link" href="#performance-order"></a></dfn>, which is the
+order in which they are played by a performer.</p>
+     <h5 class="heading settled" data-level="5.2.4.1" id="the-measure-element"><span class="secno">5.2.4.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-measure"><code>measure</code></dfn> element</span><a class="self-link" href="#the-measure-element"></a></h5>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used-4">Contexts in which this element can be used</a>:
-       <dd><code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-6">system</a></code>, <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part-4">part</a></code>
+       <dd><code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-7">system</a></code>, <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part-3">part</a></code>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model-5">Content Model</a>:
        <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content-2">Metadata content</a>
-       <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content-2">Direction content</a>
+       <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content-1">Direction content</a>
        <dd>An optional <code><a data-link-type="element">attributes</a></code> element
-       <dd>One or more <code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence-3">sequence</a></code> elements (within <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part-5">part</a></code> elements only)
+       <dd>One or more <code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence-2">sequence</a></code> elements (within <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part-4">part</a></code> elements only)
        <dd><a data-link-type="dfn" href="#interpretation-content" id="ref-for-interpretation-content-1">Interpretation content</a>
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute">Attributes</a>:
       </dl>
      </section>
-     <h4 class="heading settled" data-level="5.2.6" id="cwmnx-elements-general"><span class="secno">5.2.6. </span><span class="content">General Elements</span><a class="self-link" href="#cwmnx-elements-general"></a></h4>
-     <p>TBD: refine categories</p>
-     <h5 class="heading settled" data-level="5.2.6.1" id="the-sequence-element"><span class="secno">5.2.6.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-sequence"><code>sequence</code></dfn> element</span><a class="self-link" href="#the-sequence-element"></a></h5>
+     <h4 class="heading settled" data-level="5.2.5" id="cwmnx-measure-content"><span class="secno">5.2.5. </span><span class="content">Measure content</span><a class="self-link" href="#cwmnx-measure-content"></a></h4>
+     <p><dfn data-dfn-type="dfn" data-noexport="" id="measure-content">Measure content<a class="self-link" href="#measure-content"></a></dfn> consists of metadata, directions and sequences that
+make up the semantic content of a musical measure.</p>
+     <h5 class="heading settled" data-level="5.2.5.1" id="the-sequence-element"><span class="secno">5.2.5.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-sequence"><code>sequence</code></dfn> element</span><a class="self-link" href="#the-sequence-element"></a></h5>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used-5">Contexts in which this element can be used</a>:
-       <dd><code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-7">system</a></code>, <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part-6">part</a></code>
+       <dd><code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-8">system</a></code>, <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part-5">part</a></code>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model-6">Content Model</a>:
        <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content-3">Metadata content</a>
-       <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content-3">Direction content</a>
-       <dd><a data-link-type="dfn" href="#sequence-content" id="ref-for-sequence-content-2">Sequence content</a>
+       <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content-2">Direction content</a>
+       <dd><a data-link-type="dfn" href="#sequence-content" id="ref-for-sequence-content-3">Sequence content</a>
        <dd><a data-link-type="dfn" href="#interpretation-content" id="ref-for-interpretation-content-2">Interpretation content</a>
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute">Attributes</a>:
        <dd><code><a data-link-type="element-sub">orient</a></code> - default <a data-link-type="dfn" href="#orientation0" id="ref-for-orientation0-1">orientation</a> of direction and sequence content 
        <dd><code><a data-link-type="element-sub">staff</a></code> - default staff index of direction or sequence content
       </dl>
-      <p>The <code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence-4">sequence</a></code> element organizes a set of strictly musical events within a
+      <p>The <code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence-3">sequence</a></code> element organizes a set of strictly musical events within a
 measure into a strict temporal sequence, accompanied by relevant directions.</p>
      </section>
-     <h5 class="heading settled" data-level="5.2.6.2" id="the-event-element"><span class="secno">5.2.6.2. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-event"><code>event</code></dfn> element</span><a class="self-link" href="#the-event-element"></a></h5>
+     <h4 class="heading settled" data-level="5.2.6" id="cwmnx-sequence-content"><span class="secno">5.2.6. </span><span class="content">Sequence content</span><a class="self-link" href="#cwmnx-sequence-content"></a></h4>
+     <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="sequence-content">Sequence content</dfn> supplies a series of musical events that are
+both presented and performed in a given order, each at a distinct time. Such
+events express the concepts of chords, notes and rests.</p>
+     <p>Within sequence content, each <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event-3">event</a></code> descendant except for those below a <code><a data-link-type="element" href="#elementdef-grace" id="ref-for-elementdef-grace-1">grace</a></code> element possesses a well-defined <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="metrical-position">metrical position</dfn>,
+giving its notated time onset expressed as a rational number of whole note
+durations after the start of its containing measure. This position may be
+thought of as the event’s "address" within its containing sequence, and plays
+a determining role in the normative rendering and performance of events.</p>
+     <p>Events below a <code><a data-link-type="element" href="#elementdef-grace" id="ref-for-elementdef-grace-2">grace</a></code> element do not have a metrical position. They merely
+have a well-defined notational ordering relative to other events in the
+measure.</p>
+     <h5 class="heading settled" data-level="5.2.6.1" id="the-event-element"><span class="secno">5.2.6.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-event"><code>event</code></dfn> element</span><a class="self-link" href="#the-event-element"></a></h5>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used-6">Contexts in which this element can be used</a>:
-       <dd><code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence-5">sequence</a></code>
+       <dd><code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence-4">sequence</a></code>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model-7">Content Model</a>:
        <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content-4">Metadata content</a>
-       <dd>One or more <code><a data-link-type="element" href="#elementdef-note" id="ref-for-elementdef-note-2">note</a></code> elements, or a single <code><a data-link-type="element" href="#elementdef-rest" id="ref-for-elementdef-rest-2">rest</a></code> element
+       <dd>One or more <code><a data-link-type="element" href="#elementdef-note" id="ref-for-elementdef-note-1">note</a></code> elements, or a single <code><a data-link-type="element" href="#elementdef-rest" id="ref-for-elementdef-rest-1">rest</a></code> element
        <dd><a data-link-type="dfn" href="#interpretation-content" id="ref-for-interpretation-content-3">Interpretation content</a>
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute">Attributes</a>:
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-event-value" id="ref-for-element-attrdef-event-value-1">value</a></code> - the metrical duration of this event
        <dd><code><a data-link-type="element-sub">orient</a></code> - optional <a data-link-type="dfn" href="#orientation0" id="ref-for-orientation0-2">orientation</a> of this event 
        <dd><code><a data-link-type="element-sub">staff</a></code> - optional <a data-link-type="dfn" href="#staff-index" id="ref-for-staff-index-3">staff index</a> of this event 
       </dl>
-      <p>The <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event-5">event</a></code> element represents a discrete period of time within a sequence
+      <p>The <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event-4">event</a></code> element represents a discrete period of time within a sequence
 during which one or more notes are performed, or in which a rest occurs.</p>
       <p>Events have a <dfn class="dfn-paneled" data-dfn-for="event" data-dfn-type="element-attr" data-export="" id="element-attrdef-event-value">value</dfn> attribute describing their
 duration in the containing <a data-link-type="dfn">metrical context</a>, given as a <a data-link-type="dfn" href="#note-value" id="ref-for-note-value-2">note value</a>.</p>
      </section>
-     <h5 class="heading settled" data-level="5.2.6.3" id="the-dirgroup-element"><span class="secno">5.2.6.3. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-dirgroup"><code>dirgroup</code></dfn> element</span><a class="self-link" href="#the-dirgroup-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.6.2" id="the-tuplet-element"><span class="secno">5.2.6.2. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-tuplet"><code>tuplet</code><a class="self-link" href="#elementdef-tuplet"></a></dfn> element</span><a class="self-link" href="#the-tuplet-element"></a></h5>
+     <section></section>
+     <h5 class="heading settled" data-level="5.2.6.3" id="the-grace-element"><span class="secno">5.2.6.3. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-grace"><code>grace</code></dfn> element</span><a class="self-link" href="#the-grace-element"></a></h5>
+     <section></section>
+     <h4 class="heading settled" data-level="5.2.7" id="cwmnx-direction-content"><span class="secno">5.2.7. </span><span class="content">Direction content</span><a class="self-link" href="#cwmnx-direction-content"></a></h4>
+     <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="direction-content">Direction content</dfn> consists of some number of musical <dfn data-dfn-type="element" data-export="" id="elementdef-directions">directions<a class="self-link" href="#elementdef-directions"></a></dfn> that modify or accompany the performance of events within the sequence content
+of one or more measures.</p>
+     <p>Valid direction content must always be given an explicit <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location-5">measure location</a> by supplying a <dfn class="dfn-paneled" data-dfn-for="directions" data-dfn-type="element-attr" data-export="" id="element-attrdef-directions-location">location</dfn> attribute.</p>
+     <p>A direction is <dfn data-dfn-type="dfn" data-lt="direction scope" data-noexport="" id="direction-scope">scoped<a class="self-link" href="#direction-scope"></a></dfn> in a way that depends on
+where it is placed:</p>
+     <ul>
+      <li data-md="">
+       <p>Direction content in a <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure-5">measure</a></code> within the <code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system-9">system</a></code> element applies to all sequences of the measure in all parts.</p>
+      <li data-md="">
+       <p>Direction content in a <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure-6">measure</a></code> within a <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part-6">part</a></code> element applies to all sequences of the measure in a given part.</p>
+      <li data-md="">
+       <p>Direction content in a <code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence-5">sequence</a></code> applies to the sequence in which it occurs.</p>
+     </ul>
+     <h4 class="heading settled" data-level="5.2.8" id="cwmnx-event-content"><span class="secno">5.2.8. </span><span class="content">Event content</span><a class="self-link" href="#cwmnx-event-content"></a></h4>
+     <p><dfn data-dfn-type="dfn" data-noexport="" id="event-content">Event content<a class="self-link" href="#event-content"></a></dfn> comprises elements that describe the musical content of a single event that is performed at a distinct time. These include:</p>
+     <ul>
+      <li data-md="">
+       <p><code><a data-link-type="element" href="#elementdef-note" id="ref-for-elementdef-note-2">note</a></code></p>
+      <li data-md="">
+       <p><code><a data-link-type="element" href="#elementdef-rest" id="ref-for-elementdef-rest-2">rest</a></code></p>
+      <li data-md="">
+       <p><code><a data-link-type="element" href="#elementdef-lyric" id="ref-for-elementdef-lyric-1">lyric</a></code></p>
+      <li data-md="">
+       <p><code><a data-link-type="element" href="#elementdef-slur" id="ref-for-elementdef-slur-1">slur</a></code></p>
+      <li data-md="">
+       <p><code><a data-link-type="element" href="#elementdef-glissando" id="ref-for-elementdef-glissando-1">glissando</a></code></p>
+      <li data-md="">
+       <p><code><a data-link-type="element" href="#elementdef-slide" id="ref-for-elementdef-slide-1">slide</a></code></p>
+      <li data-md="">
+       <p><code><a data-link-type="element" href="#elementdef-ornaments" id="ref-for-elementdef-ornaments-1">ornaments</a></code></p>
+      <li data-md="">
+       <p><code><a data-link-type="element" href="#elementdef-articulations" id="ref-for-elementdef-articulations-1">articulations</a></code></p>
+      <li data-md="">
+       <p><code><a data-link-type="element" href="#elementdef-technical" id="ref-for-elementdef-technical-1">technical</a></code></p>
+      <li data-md="">
+       <p>Any <a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content-3">direction content</a></p>
+      <li data-md="">
+       <p>...TBD...</p>
+     </ul>
+     <h5 class="heading settled" data-level="5.2.8.1" id="the-note-element"><span class="secno">5.2.8.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-note"><code>note</code></dfn> element</span><a class="self-link" href="#the-note-element"></a></h5>
+     <section></section>
+     <h5 class="heading settled" data-level="5.2.8.2" id="the-rest-element"><span class="secno">5.2.8.2. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-rest"><code>rest</code></dfn> element</span><a class="self-link" href="#the-rest-element"></a></h5>
+     <section></section>
+     <h5 class="heading settled" data-level="5.2.8.3" id="the-lyric-element"><span class="secno">5.2.8.3. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-lyric"><code>lyric</code></dfn> element</span><a class="self-link" href="#the-lyric-element"></a></h5>
+     <section></section>
+     <h5 class="heading settled" data-level="5.2.8.4" id="the-slur-element"><span class="secno">5.2.8.4. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-slur"><code>slur</code></dfn> element</span><a class="self-link" href="#the-slur-element"></a></h5>
+     <section></section>
+     <h5 class="heading settled" data-level="5.2.8.5" id="the-glissando-element"><span class="secno">5.2.8.5. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-glissando"><code>glissando</code></dfn> element</span><a class="self-link" href="#the-glissando-element"></a></h5>
+     <section></section>
+     <h5 class="heading settled" data-level="5.2.8.6" id="the-slide-element"><span class="secno">5.2.8.6. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-slide"><code>slide</code></dfn> element</span><a class="self-link" href="#the-slide-element"></a></h5>
+     <section></section>
+     <h5 class="heading settled" data-level="5.2.8.7" id="the-ornaments-element"><span class="secno">5.2.8.7. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-ornaments"><code>ornaments</code></dfn> element</span><a class="self-link" href="#the-ornaments-element"></a></h5>
+     <section></section>
+     <h5 class="heading settled" data-level="5.2.8.8" id="the-articulations-element"><span class="secno">5.2.8.8. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-articulations"><code>articulations</code></dfn> element</span><a class="self-link" href="#the-articulations-element"></a></h5>
+     <section></section>
+     <h5 class="heading settled" data-level="5.2.8.9" id="the-technical-element"><span class="secno">5.2.8.9. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-technical"><code>technical</code></dfn> element</span><a class="self-link" href="#the-technical-element"></a></h5>
+     <section></section>
+     <h5 class="heading settled" data-level="5.2.8.10" id="the-dirgroup-element"><span class="secno">5.2.8.10. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-dirgroup"><code>dirgroup</code></dfn> element</span><a class="self-link" href="#the-dirgroup-element"></a></h5>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used-7">Contexts in which this element can be used</a>:
@@ -2792,9 +2784,9 @@ duration in the containing <a data-link-type="dfn">metrical context</a>, given a
        The <code><a data-link-type="element" href="#elementdef-dirgroup" id="ref-for-elementdef-dirgroup-1">dirgroup</a></code> element describes a set of directions which are presented
 sequentially, like a sentence. The typical presentation of directions in a group is
 to arrange them horizontally from left to right. 
+      <p>TBD: spacing</p>
      </section>
-     <p>TBD: spacing</p>
-     <h5 class="heading settled" data-level="5.2.6.4" id="the-dynamics-element"><span class="secno">5.2.6.4. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-dynamics"><code>dynamics</code></dfn> element</span><a class="self-link" href="#the-dynamics-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.8.11" id="the-dynamics-element"><span class="secno">5.2.8.11. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-dynamics"><code>dynamics</code></dfn> element</span><a class="self-link" href="#the-dynamics-element"></a></h5>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used-8">Contexts in which this element can be used</a>:
@@ -2833,7 +2825,7 @@ to arrange them horizontally from left to right.
        <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-fz"><code>fz</code><a class="self-link" href="#valdef-dynamics-type-fz"></a></dfn>
       </dl>
      </section>
-     <h5 class="heading settled" data-level="5.2.6.5" id="the-wedge-element"><span class="secno">5.2.6.5. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-wedge"><code>wedge</code><a class="self-link" href="#elementdef-wedge"></a></dfn> element</span><a class="self-link" href="#the-wedge-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.8.12" id="the-wedge-element"><span class="secno">5.2.8.12. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-wedge"><code>wedge</code><a class="self-link" href="#elementdef-wedge"></a></dfn> element</span><a class="self-link" href="#the-wedge-element"></a></h5>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used-9">Contexts in which this element can be used</a>:
@@ -2853,51 +2845,50 @@ to arrange them horizontally from left to right.
        <dd>The wedge represents an increase in dynamic level.
       </dl>
      </section>
-     <h5 class="heading settled" data-level="5.2.6.6" id="the-harmony-element"><span class="secno">5.2.6.6. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-harmony"><code>harmony</code><a class="self-link" href="#elementdef-harmony"></a></dfn> element</span><a class="self-link" href="#the-harmony-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.8.13" id="the-harmony-element"><span class="secno">5.2.8.13. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-harmony"><code>harmony</code><a class="self-link" href="#elementdef-harmony"></a></dfn> element</span><a class="self-link" href="#the-harmony-element"></a></h5>
      <section></section>
-     <h5 class="heading settled" data-level="5.2.6.7" id="the-instruction-element"><span class="secno">5.2.6.7. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-instruction"><code>instruction</code><a class="self-link" href="#elementdef-instruction"></a></dfn> element</span><a class="self-link" href="#the-instruction-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.8.14" id="the-instruction-element"><span class="secno">5.2.8.14. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-instruction"><code>instruction</code><a class="self-link" href="#elementdef-instruction"></a></dfn> element</span><a class="self-link" href="#the-instruction-element"></a></h5>
      <section></section>
-     <h5 class="heading settled" data-level="5.2.6.8" id="the-expression-element"><span class="secno">5.2.6.8. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-expression"><code>expression</code><a class="self-link" href="#elementdef-expression"></a></dfn> element</span><a class="self-link" href="#the-expression-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.8.15" id="the-expression-element"><span class="secno">5.2.8.15. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-expression"><code>expression</code><a class="self-link" href="#elementdef-expression"></a></dfn> element</span><a class="self-link" href="#the-expression-element"></a></h5>
      <section></section>
-     <h5 class="heading settled" data-level="5.2.6.9" id="the-pedal-element"><span class="secno">5.2.6.9. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-pedal"><code>pedal</code><a class="self-link" href="#elementdef-pedal"></a></dfn> element</span><a class="self-link" href="#the-pedal-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.8.16" id="the-pedal-element"><span class="secno">5.2.8.16. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-pedal"><code>pedal</code><a class="self-link" href="#elementdef-pedal"></a></dfn> element</span><a class="self-link" href="#the-pedal-element"></a></h5>
      <section></section>
-     <h5 class="heading settled" data-level="5.2.6.10" id="the-bracket-element"><span class="secno">5.2.6.10. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-bracket"><code>bracket</code><a class="self-link" href="#elementdef-bracket"></a></dfn> element</span><a class="self-link" href="#the-bracket-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.8.17" id="the-bracket-element"><span class="secno">5.2.8.17. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-bracket"><code>bracket</code><a class="self-link" href="#elementdef-bracket"></a></dfn> element</span><a class="self-link" href="#the-bracket-element"></a></h5>
      <section></section>
-     <h5 class="heading settled" data-level="5.2.6.11" id="the-coda-element"><span class="secno">5.2.6.11. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-coda"><code>coda</code><a class="self-link" href="#elementdef-coda"></a></dfn> element</span><a class="self-link" href="#the-coda-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.8.18" id="the-coda-element"><span class="secno">5.2.8.18. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-coda"><code>coda</code><a class="self-link" href="#elementdef-coda"></a></dfn> element</span><a class="self-link" href="#the-coda-element"></a></h5>
      <section></section>
-     <h5 class="heading settled" data-level="5.2.6.12" id="the-segno-element"><span class="secno">5.2.6.12. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-segno"><code>segno</code><a class="self-link" href="#elementdef-segno"></a></dfn> element</span><a class="self-link" href="#the-segno-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.8.19" id="the-segno-element"><span class="secno">5.2.8.19. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-segno"><code>segno</code><a class="self-link" href="#elementdef-segno"></a></dfn> element</span><a class="self-link" href="#the-segno-element"></a></h5>
      <section></section>
-     <h5 class="heading settled" data-level="5.2.6.13" id="the-note-element"><span class="secno">5.2.6.13. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-note"><code>note</code></dfn> element</span><a class="self-link" href="#the-note-element"></a></h5>
+     <h4 class="heading settled" data-level="5.2.9" id="cwmnx-staff-content"><span class="secno">5.2.9. </span><span class="content">Staff content</span><a class="self-link" href="#cwmnx-staff-content"></a></h4>
+     <p><dfn data-dfn-type="dfn" data-noexport="" id="staff-content">Staff content<a class="self-link" href="#staff-content"></a></dfn> describes the properties of a staff on which events are placed.</p>
+     <h4 class="heading settled" data-level="5.2.10" id="cwmnx-part-description-content"><span class="secno">5.2.10. </span><span class="content">Part description content</span><a class="self-link" href="#cwmnx-part-description-content"></a></h4>
+     <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="part-description-content">Part description content</dfn> consists of elements that supply information describing a part,
+and occur at the beginning of a <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part-7">part</a></code> element.</p>
+     <h5 class="heading settled" data-level="5.2.10.1" id="the-part-name-element"><span class="secno">5.2.10.1. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-part-name"><code>part-name</code><a class="self-link" href="#elementdef-part-name"></a></dfn> element</span><a class="self-link" href="#the-part-name-element"></a></h5>
      <section></section>
-     <h5 class="heading settled" data-level="5.2.6.14" id="the-rest-element"><span class="secno">5.2.6.14. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-rest"><code>rest</code></dfn> element</span><a class="self-link" href="#the-rest-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.10.2" id="the-part-abbreviation-element"><span class="secno">5.2.10.2. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-part-abbreviation"><code>part-abbreviation</code><a class="self-link" href="#elementdef-part-abbreviation"></a></dfn> element</span><a class="self-link" href="#the-part-abbreviation-element"></a></h5>
      <section></section>
-     <h5 class="heading settled" data-level="5.2.6.15" id="the-lyric-element"><span class="secno">5.2.6.15. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-lyric"><code>lyric</code></dfn> element</span><a class="self-link" href="#the-lyric-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.10.3" id="the-instrument-sound-element"><span class="secno">5.2.10.3. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-instrument-sound"><code>instrument-sound</code><a class="self-link" href="#elementdef-instrument-sound"></a></dfn> element</span><a class="self-link" href="#the-instrument-sound-element"></a></h5>
      <section></section>
-     <h5 class="heading settled" data-level="5.2.6.16" id="the-slur-element"><span class="secno">5.2.6.16. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-slur"><code>slur</code></dfn> element</span><a class="self-link" href="#the-slur-element"></a></h5>
-     <section></section>
-     <h5 class="heading settled" data-level="5.2.6.17" id="the-glissando-element"><span class="secno">5.2.6.17. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-glissando"><code>glissando</code></dfn> element</span><a class="self-link" href="#the-glissando-element"></a></h5>
-     <section></section>
-     <h5 class="heading settled" data-level="5.2.6.18" id="the-slide-element"><span class="secno">5.2.6.18. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-slide"><code>slide</code></dfn> element</span><a class="self-link" href="#the-slide-element"></a></h5>
-     <section></section>
-     <h5 class="heading settled" data-level="5.2.6.19" id="the-ornaments-element"><span class="secno">5.2.6.19. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-ornaments"><code>ornaments</code></dfn> element</span><a class="self-link" href="#the-ornaments-element"></a></h5>
-     <section></section>
-     <h5 class="heading settled" data-level="5.2.6.20" id="the-articulations-element"><span class="secno">5.2.6.20. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-articulations"><code>articulations</code></dfn> element</span><a class="self-link" href="#the-articulations-element"></a></h5>
-     <section></section>
-     <h5 class="heading settled" data-level="5.2.6.21" id="the-technical-element"><span class="secno">5.2.6.21. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-technical"><code>technical</code></dfn> element</span><a class="self-link" href="#the-technical-element"></a></h5>
-     <section></section>
-     <h5 class="heading settled" data-level="5.2.6.22" id="the-tuplet-element"><span class="secno">5.2.6.22. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-tuplet"><code>tuplet</code></dfn> element</span><a class="self-link" href="#the-tuplet-element"></a></h5>
-     <section></section>
-     <h5 class="heading settled" data-level="5.2.6.23" id="the-grace-element"><span class="secno">5.2.6.23. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-grace"><code>grace</code></dfn> element</span><a class="self-link" href="#the-grace-element"></a></h5>
-     <section></section>
-     <h5 class="heading settled" data-level="5.2.6.24" id="the-part-name-element"><span class="secno">5.2.6.24. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-part-name"><code>part-name</code></dfn> element</span><a class="self-link" href="#the-part-name-element"></a></h5>
-     <section></section>
-     <h5 class="heading settled" data-level="5.2.6.25" id="the-part-abbreviation-element"><span class="secno">5.2.6.25. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-part-abbreviation"><code>part-abbreviation</code></dfn> element</span><a class="self-link" href="#the-part-abbreviation-element"></a></h5>
-     <section></section>
-     <h5 class="heading settled" data-level="5.2.6.26" id="the-instrument-sound-element"><span class="secno">5.2.6.26. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-instrument-sound"><code>instrument-sound</code></dfn> element</span><a class="self-link" href="#the-instrument-sound-element"></a></h5>
-     <section></section>
+     <h4 class="heading settled" data-level="5.2.11" id="cwmnx-interpretation-content"><span class="secno">5.2.11. </span><span class="content">Interpretation content</span><a class="self-link" href="#cwmnx-interpretation-content"></a></h4>
+     <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="interpretation-content">Interpretation content</dfn> may be included in some elements to control
+the specific way in which the element is interpreted as a musical performance.
+In general, this content supplies explicit <a data-link-type="dfn" href="#performance-event" id="ref-for-performance-event-2">performance events</a> to
+replace the defaults that an MNX consumer would determine based on a default <a data-link-type="dfn" href="#performance-interpretation" id="ref-for-performance-interpretation-2">performance interpretation</a>.</p>
+     <p><em>Elements TBD</em></p>
     </section>
-    <h3 class="heading settled" data-level="5.3" id="cwmnx-rendering"><span class="secno">5.3. </span><span class="content">Rendering</span><a class="self-link" href="#cwmnx-rendering"></a></h3>
-    <h4 class="heading settled" data-level="5.3.1" id="cwmnx-stem"><span class="secno">5.3.1. </span><span class="content">The <dfn class="css" data-dfn-type="property" data-export="" id="propdef-stem"><code>stem</code><a class="self-link" href="#propdef-stem"></a></dfn> property</span><a class="self-link" href="#cwmnx-stem"></a></h4>
+    <h3 class="heading settled" data-level="5.3" id="cwmnx-style-properties"><span class="secno">5.3. </span><span class="content">Style properties</span><a class="self-link" href="#cwmnx-style-properties"></a></h3>
+    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="style-properties">Style properties</dfn> may be included in many elements to control the
+specific way in which the element is rendered. Each property is defined as a
+key-value pair.</p>
+    <p>Style properties are supplied by employing the <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style-1">style</a></code> element, whose set of
+attributes supplies a dictionary of <a data-link-type="dfn" href="#style-properties" id="ref-for-style-properties-1">style properties</a> and their
+associated values for the parent element of <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style-2">style</a></code>. The list of valid <a data-link-type="dfn" href="#style-properties" id="ref-for-style-properties-2">style properties</a> varies from one element to another and is documented
+separately for each element.</p>
+    <h4 class="heading settled" data-level="5.3.1" id="the-style-element"><span class="secno">5.3.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-style"><code>style</code></dfn> element</span><a class="self-link" href="#the-style-element"></a></h4>
+    <section></section>
+    <h4 class="heading settled" data-level="5.3.2" id="cwmnx-rendering"><span class="secno">5.3.2. </span><span class="content">Rendering Properties</span><a class="self-link" href="#cwmnx-rendering"></a></h4>
+    <h5 class="heading settled" data-level="5.3.2.1" id="cwmnx-stem"><span class="secno">5.3.2.1. </span><span class="content">The <dfn class="css" data-dfn-type="property" data-export="" id="propdef-stem"><code>stem</code><a class="self-link" href="#propdef-stem"></a></dfn> property</span><a class="self-link" href="#cwmnx-stem"></a></h5>
     <section>
      <p>The value <dfn class="css" data-dfn-for="stem" data-dfn-type="value" data-export="" id="valdef-stem-up">up<a class="self-link" href="#valdef-stem-up"></a></dfn> causes an event’s stem to be rendered pointing upwards.</p>
      <p>The value <dfn class="css" data-dfn-for="stem" data-dfn-type="value" data-export="" id="valdef-stem-down">down<a class="self-link" href="#valdef-stem-down"></a></dfn> causes an event’s stem to be rendered pointing downwards.</p>
@@ -2919,17 +2910,17 @@ to arrange them horizontally from left to right.
         articulations
         <ul>
          <li><a href="#articulations">definition of</a><span>, in §5.2.1.2</span>
-         <li><a href="#elementdef-articulations">(element)</a><span>, in §5.2.6.20</span>
+         <li><a href="#elementdef-articulations">(element)</a><span>, in §5.2.8.8</span>
         </ul>
        <li><a href="#ascii-digits">ASCII digits</a><span>, in §2.2.1</span>
        <li><a href="#ascii-hex-digits">ASCII hex digits</a><span>, in §2.2.1</span>
        <li><a href="#ascii-letters">ASCII letters</a><span>, in §2.2.1</span>
        <li><a href="#base-note-values">base note values</a><span>, in §5.2.1.7</span>
-       <li><a href="#elementdef-bracket">bracket</a><span>, in §5.2.6.10</span>
+       <li><a href="#elementdef-bracket">bracket</a><span>, in §5.2.8.17</span>
        <li><a href="#categories">Categories</a><span>, in §3.2.1</span>
        <li><a href="#chords">chords</a><span>, in §5.2.1.2</span>
        <li><a href="#clef">clef</a><span>, in §5.2.1.1</span>
-       <li><a href="#elementdef-coda">coda</a><span>, in §5.2.6.11</span>
+       <li><a href="#elementdef-coda">coda</a><span>, in §5.2.8.18</span>
        <li><a href="#collect-a-sequence-of-characters">collect a sequence of characters</a><span>, in §2.2.1</span>
        <li><a href="#container">container</a><span>, in §4.1</span>
        <li><a href="#container-document">container document</a><span>, in §3.1</span>
@@ -2939,87 +2930,88 @@ to arrange them horizontally from left to right.
        <li><a href="#content-model">Content model</a><span>, in §3.2.1</span>
        <li><a href="#contexts-in-which-this-element-can-be-used">Contexts in which this element can be used</a><span>, in §3.2.1</span>
        <li><a href="#control-characters">control characters</a><span>, in §2.2.1</span>
-       <li><a href="#valdef-wedge-type-crescendo">crescendo</a><span>, in §5.2.6.5</span>
-       <li><a href="#elementdef-cwmnx">cwmnx</a><span>, in §5.2.4.1</span>
-       <li><a href="#valdef-wedge-type-diminuendo">diminuendo</a><span>, in §5.2.6.5</span>
+       <li><a href="#valdef-wedge-type-crescendo">crescendo</a><span>, in §5.2.8.12</span>
+       <li><a href="#elementdef-cwmnx">cwmnx</a><span>, in §5.2.3.1</span>
+       <li><a href="#valdef-wedge-type-diminuendo">diminuendo</a><span>, in §5.2.8.12</span>
        <li><a href="#direction">direction</a><span>, in §5.2.1.3</span>
-       <li><a href="#direction-content">Direction content</a><span>, in §5.2.3.8</span>
-       <li><a href="#elementdef-directions">directions</a><span>, in §5.2.3.8</span>
-       <li><a href="#direction-scope">direction scope</a><span>, in §5.2.3.8</span>
-       <li><a href="#elementdef-dirgroup">dirgroup</a><span>, in §5.2.6.3</span>
-       <li><a href="#valdef-stem-down">down</a><span>, in §5.3.1</span>
-       <li><a href="#elementdef-dynamics">dynamics</a><span>, in §5.2.6.4</span>
+       <li><a href="#direction-content">Direction content</a><span>, in §5.2.7</span>
+       <li><a href="#elementdef-directions">directions</a><span>, in §5.2.7</span>
+       <li><a href="#direction-scope">direction scope</a><span>, in §5.2.7</span>
+       <li><a href="#elementdef-dirgroup">dirgroup</a><span>, in §5.2.8.10</span>
+       <li><a href="#valdef-stem-down">down</a><span>, in §5.3.2.1</span>
+       <li><a href="#elementdef-dynamics">dynamics</a><span>, in §5.2.8.11</span>
        <li><a href="#element-location">element location</a><span>, in §2.2.5</span>
-       <li><a href="#elementdef-event">event</a><span>, in §5.2.6.2</span>
-       <li><a href="#event-content">Event content</a><span>, in §5.2.3.10</span>
-       <li><a href="#elementdef-expression">expression</a><span>, in §5.2.6.8</span>
-       <li><a href="#valdef-dynamics-type-f">f</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-ff">ff</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-fff">fff</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-ffff">ffff</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-fffff">fffff</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-ffffff">ffffff</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-fp">fp</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-fz">fz</a><span>, in §5.2.6.4</span>
+       <li><a href="#elementdef-event">event</a><span>, in §5.2.6.1</span>
+       <li><a href="#event-content">Event content</a><span>, in §5.2.8</span>
+       <li><a href="#elementdef-expression">expression</a><span>, in §5.2.8.15</span>
+       <li><a href="#valdef-dynamics-type-f">f</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-ff">ff</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-fff">fff</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-ffff">ffff</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-fffff">fffff</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-ffffff">ffffff</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-fp">fp</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-fz">fz</a><span>, in §5.2.8.11</span>
        <li><a href="#general-note-values">general note values</a><span>, in §5.2.1.7</span>
-       <li><a href="#elementdef-glissando">glissando</a><span>, in §5.2.6.17</span>
-       <li><a href="#elementdef-grace">grace</a><span>, in §5.2.6.23</span>
-       <li><a href="#elementdef-harmony">harmony</a><span>, in §5.2.6.6</span>
-       <li><a href="#elementdef-instruction">instruction</a><span>, in §5.2.6.7</span>
-       <li><a href="#elementdef-instrument-sound">instrument-sound</a><span>, in §5.2.6.26</span>
-       <li><a href="#interpretation-content">Interpretation content</a><span>, in §5.2.3.3</span>
+       <li><a href="#elementdef-glissando">glissando</a><span>, in §5.2.8.5</span>
+       <li><a href="#elementdef-grace">grace</a><span>, in §5.2.6.3</span>
+       <li><a href="#elementdef-harmony">harmony</a><span>, in §5.2.8.13</span>
+       <li><a href="#elementdef-instruction">instruction</a><span>, in §5.2.8.14</span>
+       <li><a href="#elementdef-instrument-sound">instrument-sound</a><span>, in §5.2.10.3</span>
+       <li><a href="#interpretation-content">Interpretation content</a><span>, in §5.2.11</span>
        <li><a href="#key-signature">key signature</a><span>, in §5.2.1.1</span>
        <li><a href="#strip-leading-and-trailing-white-space">leading and trailing white space stripped</a><span>, in §2.2.1</span>
-       <li><a href="#element-attrdef-directions-location">location</a><span>, in §5.2.3.8</span>
+       <li><a href="#element-attrdef-directions-location">location</a><span>, in §5.2.7</span>
        <li><a href="#lowercase-ascii-hex-digits">lowercase ASCII hex digits</a><span>, in §2.2.1</span>
        <li><a href="#lowercase-ascii-letters">lowercase ASCII letters</a><span>, in §2.2.1</span>
-       <li><a href="#elementdef-lyric">lyric</a><span>, in §5.2.6.15</span>
-       <li><a href="#elementdef-measure">measure</a><span>, in §5.2.5.1</span>
+       <li><a href="#elementdef-lyric">lyric</a><span>, in §5.2.8.3</span>
+       <li><a href="#elementdef-measure">measure</a><span>, in §5.2.4.1</span>
+       <li><a href="#measure-content">Measure content</a><span>, in §5.2.5</span>
        <li><a href="#measure-location">measure location</a><span>, in §5.2.2.2</span>
-       <li><a href="#metadata-content">Metadata content</a><span>, in §5.2.3.1</span>
-       <li><a href="#metrical-position">metrical position</a><span>, in §5.2.3.7</span>
-       <li><a href="#valdef-dynamics-type-mf">mf</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-mp">mp</a><span>, in §5.2.6.4</span>
+       <li><a href="#metadata-content">Metadata content</a><span>, in §4.2.1.1</span>
+       <li><a href="#metrical-position">metrical position</a><span>, in §5.2.6</span>
+       <li><a href="#valdef-dynamics-type-mf">mf</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-mp">mp</a><span>, in §5.2.8.11</span>
        <li><a href="#musical-body">musical bodies</a><span>, in §4.2.1.2</span>
        <li><a href="#musical-body">musical body</a><span>, in §4.2.1.2</span>
        <li><a href="#musical-body">musical body content</a><span>, in §4.2.1.2</span>
        <li><a href="#notated-event">notated event</a><span>, in §5.2.1.2</span>
        <li><a href="#notated-sequence">notated sequence</a><span>, in §5.2.1.4</span>
        <li><a href="#notational-idiom">notational idiom</a><span>, in §2.1.1</span>
-       <li><a href="#elementdef-note">note</a><span>, in §5.2.6.13</span>
+       <li><a href="#elementdef-note">note</a><span>, in §5.2.8.1</span>
        <li><a href="#notes">notes</a><span>, in §5.2.1.2</span>
        <li><a href="#note-value">note value</a><span>, in §5.2.1.7</span>
        <li><a href="#number-of-dots">number of dots</a><span>, in §5.2.1.7</span>
        <li><a href="#ordered-set-of-unique-space-separated-tokens">ordered set of unique space-separated tokens</a><span>, in §2.2.3</span>
        <li><a href="#orientation0">orientation</a><span>, in §5.2.1.8</span>
-       <li><a href="#elementdef-ornaments">ornaments</a><span>, in §5.2.6.19</span>
-       <li><a href="#valdef-dynamics-type-p">p</a><span>, in §5.2.6.4</span>
+       <li><a href="#elementdef-ornaments">ornaments</a><span>, in §5.2.8.7</span>
+       <li><a href="#valdef-dynamics-type-p">p</a><span>, in §5.2.8.11</span>
        <li><a href="#parse-token-as-an-integer">parse it as an integer</a><span>, in §2.2.2.1</span>
        <li><a href="#parse-that-attributes-value">parse that attribute’s value</a><span>, in §2.2.2.2</span>
        <li><a href="#parse-token-as-an-integer">parse token as an integer</a><span>, in §2.2.2.1</span>
-       <li><a href="#elementdef-part">part</a><span>, in §5.2.4.3</span>
-       <li><a href="#elementdef-part-abbreviation">part-abbreviation</a><span>, in §5.2.6.25</span>
-       <li><a href="#part-description-content">Part description content</a><span>, in §5.2.3.4</span>
-       <li><a href="#elementdef-part-name">part-name</a><span>, in §5.2.6.24</span>
+       <li><a href="#elementdef-part">part</a><span>, in §5.2.3.3</span>
+       <li><a href="#elementdef-part-abbreviation">part-abbreviation</a><span>, in §5.2.10.2</span>
+       <li><a href="#part-description-content">Part description content</a><span>, in §5.2.10</span>
+       <li><a href="#elementdef-part-name">part-name</a><span>, in §5.2.10.1</span>
        <li><a href="#parts">parts</a><span>, in §5.2.1.1</span>
-       <li><a href="#elementdef-pedal">pedal</a><span>, in §5.2.6.9</span>
+       <li><a href="#elementdef-pedal">pedal</a><span>, in §5.2.8.16</span>
        <li><a href="#performance-event">performance event</a><span>, in §5.2.1.6</span>
        <li><a href="#performance-interpretation">performance interpretation</a><span>, in §5.2.1.5</span>
-       <li><a href="#performance-order">performance order</a><span>, in §5.2.3.5</span>
-       <li><a href="#valdef-dynamics-type-pp">pp</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-ppp">ppp</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-pppp">pppp</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-ppppp">ppppp</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-pppppp">pppppp</a><span>, in §5.2.6.4</span>
-       <li><a href="#element-attrdef-cwmnx-profile">profile</a><span>, in §5.2.4.1</span>
+       <li><a href="#performance-order">performance order</a><span>, in §5.2.4</span>
+       <li><a href="#valdef-dynamics-type-pp">pp</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-ppp">ppp</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-pppp">pppp</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-ppppp">ppppp</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-pppppp">pppppp</a><span>, in §5.2.8.11</span>
+       <li><a href="#element-attrdef-cwmnx-profile">profile</a><span>, in §5.2.3.1</span>
        <li>
         rest
         <ul>
          <li><a href="#rest">definition of</a><span>, in §5.2.1.2</span>
-         <li><a href="#elementdef-rest">(element)</a><span>, in §5.2.6.14</span>
+         <li><a href="#elementdef-rest">(element)</a><span>, in §5.2.8.2</span>
         </ul>
-       <li><a href="#valdef-dynamics-type-rf">rf</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-rfz">rfz</a><span>, in §5.2.6.4</span>
+       <li><a href="#valdef-dynamics-type-rf">rf</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-rfz">rfz</a><span>, in §5.2.8.11</span>
        <li><a href="#rules-for-parsing-a-list-of-floating-point-numbers">rules for parsing a list of floating-point numbers</a><span>, in §2.2.2.6</span>
        <li><a href="#rules-for-parsing-dimension-values">rules for parsing dimension values</a><span>, in §2.2.2.4</span>
        <li><a href="#rules-for-parsing-floating-point-number-values">rules for parsing floating-point number values</a><span>, in §2.2.2.3</span>
@@ -3028,33 +3020,33 @@ to arrange them horizontally from left to right.
        <li><a href="#parse-that-attributes-value">rules for parsing non-negative integers</a><span>, in §2.2.2.2</span>
        <li><a href="#rules-for-parsing-non-zero-dimension-values">rules for parsing non-zero dimension values</a><span>, in §2.2.2.5</span>
        <li><a href="#parse-token-as-an-integer">rules for parsing signed integers</a><span>, in §2.2.2.1</span>
-       <li><a href="#score-order">score order</a><span>, in §5.2.3.5</span>
+       <li><a href="#score-order">score order</a><span>, in §5.2.4</span>
        <li><a href="#score-profile">score profile</a><span>, in §2.1.2</span>
        <li><a href="#score-types">score types</a><span>, in §1.2</span>
-       <li><a href="#elementdef-segno">segno</a><span>, in §5.2.6.12</span>
-       <li><a href="#elementdef-sequence">sequence</a><span>, in §5.2.6.1</span>
-       <li><a href="#sequence-content">Sequence content</a><span>, in §5.2.3.7</span>
+       <li><a href="#elementdef-segno">segno</a><span>, in §5.2.8.19</span>
+       <li><a href="#elementdef-sequence">sequence</a><span>, in §5.2.5.1</span>
+       <li><a href="#sequence-content">Sequence content</a><span>, in §5.2.6</span>
        <li><a href="#set-of-comma-separated-tokens">set of comma-separated tokens</a><span>, in §2.2.4</span>
        <li><a href="#set-of-space-separated-tokens">set of space-separated tokens</a><span>, in §2.2.3</span>
-       <li><a href="#valdef-dynamics-type-sf">sf</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-sffz">sffz</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-sfp">sfp</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-sfpp">sfpp</a><span>, in §5.2.6.4</span>
-       <li><a href="#valdef-dynamics-type-sfz">sfz</a><span>, in §5.2.6.4</span>
+       <li><a href="#valdef-dynamics-type-sf">sf</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-sffz">sffz</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-sfp">sfp</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-sfpp">sfpp</a><span>, in §5.2.8.11</span>
+       <li><a href="#valdef-dynamics-type-sfz">sfz</a><span>, in §5.2.8.11</span>
        <li><a href="#single-ended">Single-ended</a><span>, in §5.2.1.3</span>
        <li><a href="#skip-white-space">skip white space</a><span>, in §2.2.1</span>
-       <li><a href="#elementdef-slide">slide</a><span>, in §5.2.6.18</span>
-       <li><a href="#elementdef-slur">slur</a><span>, in §5.2.6.16</span>
+       <li><a href="#elementdef-slide">slide</a><span>, in §5.2.8.6</span>
+       <li><a href="#elementdef-slur">slur</a><span>, in §5.2.8.4</span>
        <li><a href="#space-characters">space characters</a><span>, in §2.2.1</span>
        <li><a href="#span">Span</a><span>, in §5.2.1.3</span>
        <li><a href="#split-a-string-on-commas">split a string on commas</a><span>, in §2.2.4</span>
        <li><a href="#split-a-string-on-spaces">split a string on spaces</a><span>, in §2.2.3</span>
        <li><a href="#staff">staff</a><span>, in §5.2.1.1</span>
-       <li><a href="#staff-content">Staff content</a><span>, in §5.2.3.9</span>
+       <li><a href="#staff-content">Staff content</a><span>, in §5.2.9</span>
        <li><a href="#staff-index">staff index</a><span>, in §5.2.1.1</span>
-       <li><a href="#valdef-cwmnx-profile-standard">standard</a><span>, in §5.2.4.1</span>
+       <li><a href="#valdef-cwmnx-profile-standard">standard</a><span>, in §5.2.3.1</span>
        <li><a href="#staff">staves</a><span>, in §5.2.1.1</span>
-       <li><a href="#propdef-stem">stem</a><span>, in §5.3.1</span>
+       <li><a href="#propdef-stem">stem</a><span>, in §5.3.2.1</span>
        <li><a href="#strictly-splitting-the-string">strictly split</a><span>, in §2.2.1</span>
        <li><a href="#strictly-splitting-the-string">strictly split a string</a><span>, in §2.2.1</span>
        <li><a href="#strictly-splitting-the-string">strictly splitting the string</a><span>, in §2.2.1</span>
@@ -3064,25 +3056,26 @@ to arrange them horizontally from left to right.
        <li><a href="#stripped-line-breaks">stripped line breaks</a><span>, in §2.2.1</span>
        <li><a href="#stripping-and-collapsing-white-space">stripping and collapsing white space</a><span>, in §2.2.1</span>
        <li><a href="#strip-leading-and-trailing-white-space">stripping leading and trailing white space</a><span>, in §2.2.1</span>
-       <li><a href="#style-properties">Style properties</a><span>, in §5.2.3.2</span>
-       <li><a href="#elementdef-system">system</a><span>, in §5.2.4.2</span>
-       <li><a href="#system-content">System content</a><span>, in §5.2.3.5</span>
-       <li><a href="#elementdef-technical">technical</a><span>, in §5.2.6.21</span>
+       <li><a href="#elementdef-style">style</a><span>, in §5.3.1</span>
+       <li><a href="#style-properties">Style properties</a><span>, in §5.3</span>
+       <li><a href="#elementdef-system">system</a><span>, in §5.2.3.2</span>
+       <li><a href="#system-content">System content</a><span>, in §5.2.4</span>
+       <li><a href="#elementdef-technical">technical</a><span>, in §5.2.8.9</span>
        <li>
         this
         <ul>
          <li><a href="#this">definition of</a><span>, in §1.9.2</span>
          <li><a href="#elementdef-this">(element)</a><span>, in §1.9.2</span>
         </ul>
-       <li><a href="#elementdef-tuplet">tuplet</a><span>, in §5.2.6.22</span>
+       <li><a href="#elementdef-tuplet">tuplet</a><span>, in §5.2.6.2</span>
        <li>
         type
         <ul>
-         <li><a href="#element-attrdef-dynamics-type">element-attr for dynamics</a><span>, in §5.2.6.4</span>
-         <li><a href="#element-attrdef-wedge-type">element-attr for wedge</a><span>, in §5.2.6.5</span>
+         <li><a href="#element-attrdef-dynamics-type">element-attr for dynamics</a><span>, in §5.2.8.11</span>
+         <li><a href="#element-attrdef-wedge-type">element-attr for wedge</a><span>, in §5.2.8.12</span>
         </ul>
        <li><a href="#unordered-set-of-unique-space-separated-tokens">unordered set of unique space-separated tokens</a><span>, in §2.2.3</span>
-       <li><a href="#valdef-stem-up">up</a><span>, in §5.3.1</span>
+       <li><a href="#valdef-stem-up">up</a><span>, in §5.3.2.1</span>
        <li><a href="#uppercase-ascii-hex-digits">uppercase ASCII hex digits</a><span>, in §2.2.1</span>
        <li><a href="#uppercase-ascii-letters">uppercase ASCII letters</a><span>, in §2.2.1</span>
        <li><a href="#valid-floating-point-number">valid floating-point number</a><span>, in §2.2.2.3</span>
@@ -3090,8 +3083,8 @@ to arrange them horizontally from left to right.
        <li><a href="#valid-integer">valid integers</a><span>, in §2.2.2.1</span>
        <li><a href="#valid-list-of-floating-point-numbers">valid list of floating-point numbers</a><span>, in §2.2.2.6</span>
        <li><a href="#valid-non-negative-integer">valid non-negative integer</a><span>, in §2.2.2.2</span>
-       <li><a href="#element-attrdef-event-value">value</a><span>, in §5.2.6.2</span>
-       <li><a href="#elementdef-wedge">wedge</a><span>, in §5.2.6.5</span>
+       <li><a href="#element-attrdef-event-value">value</a><span>, in §5.2.6.1</span>
+       <li><a href="#elementdef-wedge">wedge</a><span>, in §5.2.8.12</span>
        <li><a href="#white_space">white_space</a><span>, in §2.2.1</span>
        <li><a href="#white_space">white_space characters</a><span>, in §2.2.1</span>
       </ul>
@@ -3101,11 +3094,6 @@ to arrange them horizontally from left to right.
         <a data-link-type="biblio">[DOM]</a> defines the following terms:
         <ul>
          <li><a href="https://dom.spec.whatwg.org/#concept-attribute">attribute</a>
-        </ul>
-       <li>
-        <a data-link-type="biblio">[SVG2]</a> defines the following terms:
-        <ul>
-         <li><a href="https://svgwg.org/svg2-draft/styling.html#elementdef-style">style</a>
         </ul>
       </ul>
      </div>
@@ -3268,15 +3256,13 @@ to arrange them horizontally from left to right.
    <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/">DOM Standard</a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
-   <dt id="biblio-svg2">[SVG2]
-   <dd>Nikos Andronikos; et al. <a href="https://www.w3.org/TR/SVG2/">Scalable Vector Graphics (SVG) 2</a>. URL: <a href="https://www.w3.org/TR/SVG2/">https://www.w3.org/TR/SVG2/</a>
    <dt id="biblio-unicode">[UNICODE]
    <dd><a href="http://www.unicode.org/versions/latest/">The Unicode Standard</a>. URL: <a href="http://www.unicode.org/versions/latest/">http://www.unicode.org/versions/latest/</a>
   </dl>
   <aside class="dfn-panel" data-for="score-types">
    <b><a href="#score-types">#score-types</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-score-types-1">1.2. MNX Score Types</a>
+    <li><a href="#ref-for-score-types-1">1.2. MNX score types</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="this">
@@ -3300,7 +3286,7 @@ to arrange them horizontally from left to right.
   <aside class="dfn-panel" data-for="score-profile">
    <b><a href="#score-profile">#score-profile</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-score-profile-1">5.2.4.1. The cwmnx element</a>
+    <li><a href="#ref-for-score-profile-1">5.2.3.1. The cwmnx element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="space-characters">
@@ -3333,7 +3319,7 @@ to arrange them horizontally from left to right.
     <li><a href="#ref-for-ascii-digits-6">2.2.2.3. Floating-point numbers</a> <a href="#ref-for-ascii-digits-7">(2)</a> <a href="#ref-for-ascii-digits-8">(3)</a> <a href="#ref-for-ascii-digits-9">(4)</a> <a href="#ref-for-ascii-digits-10">(5)</a> <a href="#ref-for-ascii-digits-11">(6)</a> <a href="#ref-for-ascii-digits-12">(7)</a> <a href="#ref-for-ascii-digits-13">(8)</a> <a href="#ref-for-ascii-digits-14">(9)</a> <a href="#ref-for-ascii-digits-15">(10)</a>
     <li><a href="#ref-for-ascii-digits-16">2.2.2.4. Percentages and lengths</a> <a href="#ref-for-ascii-digits-17">(2)</a> <a href="#ref-for-ascii-digits-18">(3)</a> <a href="#ref-for-ascii-digits-19">(4)</a>
     <li><a href="#ref-for-ascii-digits-20">2.2.2.6. Lists of floating-point numbers</a>
-    <li><a href="#ref-for-ascii-digits-21">5.2.2.1. Note Value Syntax</a> <a href="#ref-for-ascii-digits-22">(2)</a> <a href="#ref-for-ascii-digits-23">(3)</a>
+    <li><a href="#ref-for-ascii-digits-21">5.2.2.1. Note value syntax</a> <a href="#ref-for-ascii-digits-22">(2)</a> <a href="#ref-for-ascii-digits-23">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="collect-a-sequence-of-characters">
@@ -3346,7 +3332,7 @@ to arrange them horizontally from left to right.
     <li><a href="#ref-for-collect-a-sequence-of-characters-7">2.2.2.6. Lists of floating-point numbers</a> <a href="#ref-for-collect-a-sequence-of-characters-8">(2)</a> <a href="#ref-for-collect-a-sequence-of-characters-9">(3)</a> <a href="#ref-for-collect-a-sequence-of-characters-10">(4)</a>
     <li><a href="#ref-for-collect-a-sequence-of-characters-11">2.2.3. Space-separated tokens</a>
     <li><a href="#ref-for-collect-a-sequence-of-characters-12">2.2.4. Comma-separated tokens</a>
-    <li><a href="#ref-for-collect-a-sequence-of-characters-13">5.2.2.1. Note Value Syntax</a> <a href="#ref-for-collect-a-sequence-of-characters-14">(2)</a>
+    <li><a href="#ref-for-collect-a-sequence-of-characters-13">5.2.2.1. Note value syntax</a> <a href="#ref-for-collect-a-sequence-of-characters-14">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="skip-white-space">
@@ -3375,7 +3361,7 @@ to arrange them horizontally from left to right.
    <b><a href="#parse-token-as-an-integer">#parse-token-as-an-integer</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-parse-token-as-an-integer-1">2.2.2.2. Non-negative integers</a>
-    <li><a href="#ref-for-parse-token-as-an-integer-2">5.2.2.1. Note Value Syntax</a>
+    <li><a href="#ref-for-parse-token-as-an-integer-2">5.2.2.1. Note value syntax</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valid-non-negative-integer">
@@ -3389,7 +3375,7 @@ to arrange them horizontally from left to right.
    <ul>
     <li><a href="#ref-for-valid-floating-point-number-1">2.2.2.3. Floating-point numbers</a> <a href="#ref-for-valid-floating-point-number-2">(2)</a>
     <li><a href="#ref-for-valid-floating-point-number-3">2.2.2.6. Lists of floating-point numbers</a>
-    <li><a href="#ref-for-valid-floating-point-number-4">5.2.2.2. Measure Locations</a> <a href="#ref-for-valid-floating-point-number-5">(2)</a>
+    <li><a href="#ref-for-valid-floating-point-number-4">5.2.2.2. Measure locations</a> <a href="#ref-for-valid-floating-point-number-5">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="rules-for-parsing-floating-point-number-values">
@@ -3408,7 +3394,7 @@ to arrange them horizontally from left to right.
    <b><a href="#set-of-space-separated-tokens">#set-of-space-separated-tokens</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-set-of-space-separated-tokens-1">2.2.3. Space-separated tokens</a> <a href="#ref-for-set-of-space-separated-tokens-2">(2)</a> <a href="#ref-for-set-of-space-separated-tokens-3">(3)</a> <a href="#ref-for-set-of-space-separated-tokens-4">(4)</a> <a href="#ref-for-set-of-space-separated-tokens-5">(5)</a>
-    <li><a href="#ref-for-set-of-space-separated-tokens-6">5.2.2.2. Measure Locations</a>
+    <li><a href="#ref-for-set-of-space-separated-tokens-6">5.2.2.2. Measure locations</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="split-a-string-on-spaces">
@@ -3432,19 +3418,19 @@ to arrange them horizontally from left to right.
   <aside class="dfn-panel" data-for="element-location">
    <b><a href="#element-location">#element-location</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-location-1">5.2.2.2. Measure Locations</a> <a href="#ref-for-element-location-2">(2)</a>
+    <li><a href="#ref-for-element-location-1">5.2.2.2. Measure locations</a> <a href="#ref-for-element-location-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="container-document">
    <b><a href="#container-document">#container-document</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-container-document-1">1.2. MNX Score Types</a>
+    <li><a href="#ref-for-container-document-1">1.2. MNX score types</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="content-categories">
    <b><a href="#content-categories">#content-categories</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-content-categories-1">5.2.4.1. The cwmnx element</a>
+    <li><a href="#ref-for-content-categories-1">5.2.3.1. The cwmnx element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="categories">
@@ -3456,387 +3442,371 @@ to arrange them horizontally from left to right.
   <aside class="dfn-panel" data-for="contexts-in-which-this-element-can-be-used">
    <b><a href="#contexts-in-which-this-element-can-be-used">#contexts-in-which-this-element-can-be-used</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-1">5.2.4.1. The cwmnx element</a>
-    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-2">5.2.4.2. The system element</a>
-    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-3">5.2.4.3. The part element</a>
-    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-4">5.2.5.1. The measure element</a>
-    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-5">5.2.6.1. The sequence element</a>
-    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-6">5.2.6.2. The event element</a>
-    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-7">5.2.6.3. The dirgroup element</a>
-    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-8">5.2.6.4. The dynamics element</a>
-    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-9">5.2.6.5. The wedge element</a>
+    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-1">5.2.3.1. The cwmnx element</a>
+    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-2">5.2.3.2. The system element</a>
+    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-3">5.2.3.3. The part element</a>
+    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-4">5.2.4.1. The measure element</a>
+    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-5">5.2.5.1. The sequence element</a>
+    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-6">5.2.6.1. The event element</a>
+    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-7">5.2.8.10. The dirgroup element</a>
+    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-8">5.2.8.11. The dynamics element</a>
+    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used-9">5.2.8.12. The wedge element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="content-model">
    <b><a href="#content-model">#content-model</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-content-model-1">3.2.1. Element definitions</a>
-    <li><a href="#ref-for-content-model-2">5.2.4.1. The cwmnx element</a>
-    <li><a href="#ref-for-content-model-3">5.2.4.2. The system element</a>
-    <li><a href="#ref-for-content-model-4">5.2.4.3. The part element</a>
-    <li><a href="#ref-for-content-model-5">5.2.5.1. The measure element</a>
-    <li><a href="#ref-for-content-model-6">5.2.6.1. The sequence element</a>
-    <li><a href="#ref-for-content-model-7">5.2.6.2. The event element</a>
-    <li><a href="#ref-for-content-model-8">5.2.6.3. The dirgroup element</a>
-    <li><a href="#ref-for-content-model-9">5.2.6.4. The dynamics element</a>
-    <li><a href="#ref-for-content-model-10">5.2.6.5. The wedge element</a>
+    <li><a href="#ref-for-content-model-2">5.2.3.1. The cwmnx element</a>
+    <li><a href="#ref-for-content-model-3">5.2.3.2. The system element</a>
+    <li><a href="#ref-for-content-model-4">5.2.3.3. The part element</a>
+    <li><a href="#ref-for-content-model-5">5.2.4.1. The measure element</a>
+    <li><a href="#ref-for-content-model-6">5.2.5.1. The sequence element</a>
+    <li><a href="#ref-for-content-model-7">5.2.6.1. The event element</a>
+    <li><a href="#ref-for-content-model-8">5.2.8.10. The dirgroup element</a>
+    <li><a href="#ref-for-content-model-9">5.2.8.11. The dynamics element</a>
+    <li><a href="#ref-for-content-model-10">5.2.8.12. The wedge element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="container">
    <b><a href="#container">#container</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-container-1">5.2.4.1. The cwmnx element</a>
+    <li><a href="#ref-for-container-1">5.2.3.1. The cwmnx element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="metadata-content">
+   <b><a href="#metadata-content">#metadata-content</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-metadata-content-1">5.2.3.1. The cwmnx element</a>
+    <li><a href="#ref-for-metadata-content-2">5.2.4.1. The measure element</a>
+    <li><a href="#ref-for-metadata-content-3">5.2.5.1. The sequence element</a>
+    <li><a href="#ref-for-metadata-content-4">5.2.6.1. The event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="musical-body">
    <b><a href="#musical-body">#musical-body</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-musical-body-1">5.2.4.1. The cwmnx element</a> <a href="#ref-for-musical-body-2">(2)</a> <a href="#ref-for-musical-body-3">(3)</a>
+    <li><a href="#ref-for-musical-body-1">5.2.3.1. The cwmnx element</a> <a href="#ref-for-musical-body-2">(2)</a> <a href="#ref-for-musical-body-3">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="parts">
    <b><a href="#parts">#parts</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-parts-1">5.2.1.1. Parts and Staves</a> <a href="#ref-for-parts-2">(2)</a>
+    <li><a href="#ref-for-parts-1">5.2.1.1. Parts and staves</a> <a href="#ref-for-parts-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="staff">
    <b><a href="#staff">#staff</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-staff-1">5.2.1.1. Parts and Staves</a> <a href="#ref-for-staff-2">(2)</a>
-    <li><a href="#ref-for-staff-3">5.2.1.2. Notated Events</a>
+    <li><a href="#ref-for-staff-1">5.2.1.1. Parts and staves</a> <a href="#ref-for-staff-2">(2)</a>
+    <li><a href="#ref-for-staff-3">5.2.1.2. Notated events</a>
     <li><a href="#ref-for-staff-4">5.2.1.3. Directions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="staff-index">
    <b><a href="#staff-index">#staff-index</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-staff-index-1">5.2.1.2. Notated Events</a>
+    <li><a href="#ref-for-staff-index-1">5.2.1.2. Notated events</a>
     <li><a href="#ref-for-staff-index-2">5.2.1.3. Directions</a>
-    <li><a href="#ref-for-staff-index-3">5.2.6.2. The event element</a>
+    <li><a href="#ref-for-staff-index-3">5.2.6.1. The event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="notated-event">
    <b><a href="#notated-event">#notated-event</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-notated-event-1">5.2.1.4. Notated Sequences</a>
+    <li><a href="#ref-for-notated-event-1">5.2.1.4. Notated sequences</a>
+    <li><a href="#ref-for-notated-event-2">5.2.3.2. The system element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="notes">
    <b><a href="#notes">#notes</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-notes-1">5.2.1.1. Parts and Staves</a>
+    <li><a href="#ref-for-notes-1">5.2.1.1. Parts and staves</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="articulations">
    <b><a href="#articulations">#articulations</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-articulations-1">5.2.1.2. Notated Events</a>
+    <li><a href="#ref-for-articulations-1">5.2.1.2. Notated events</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="performance-interpretation">
    <b><a href="#performance-interpretation">#performance-interpretation</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-performance-interpretation-1">5.2.1.6. Performance Events</a>
-    <li><a href="#ref-for-performance-interpretation-2">5.2.3.3. Interpretation content</a>
+    <li><a href="#ref-for-performance-interpretation-1">5.2.1.6. Performance events</a>
+    <li><a href="#ref-for-performance-interpretation-2">5.2.11. Interpretation content</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="performance-event">
    <b><a href="#performance-event">#performance-event</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-performance-event-1">5.2.1.5. Performance Interpretation</a>
-    <li><a href="#ref-for-performance-event-2">5.2.3.3. Interpretation content</a>
+    <li><a href="#ref-for-performance-event-2">5.2.11. Interpretation content</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="note-value">
    <b><a href="#note-value">#note-value</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-note-value-1">5.2.1.2. Notated Events</a>
-    <li><a href="#ref-for-note-value-2">5.2.6.2. The event element</a>
+    <li><a href="#ref-for-note-value-1">5.2.1.2. Notated events</a>
+    <li><a href="#ref-for-note-value-2">5.2.6.1. The event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="base-note-values">
    <b><a href="#base-note-values">#base-note-values</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-base-note-values-1">5.2.1.7. Note Values</a>
-    <li><a href="#ref-for-base-note-values-2">5.2.2.1. Note Value Syntax</a> <a href="#ref-for-base-note-values-3">(2)</a> <a href="#ref-for-base-note-values-4">(3)</a> <a href="#ref-for-base-note-values-5">(4)</a>
+    <li><a href="#ref-for-base-note-values-1">5.2.1.7. Note values</a>
+    <li><a href="#ref-for-base-note-values-2">5.2.2.1. Note value syntax</a> <a href="#ref-for-base-note-values-3">(2)</a> <a href="#ref-for-base-note-values-4">(3)</a> <a href="#ref-for-base-note-values-5">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="general-note-values">
    <b><a href="#general-note-values">#general-note-values</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-general-note-values-1">5.2.2.1. Note Value Syntax</a>
+    <li><a href="#ref-for-general-note-values-1">5.2.2.1. Note value syntax</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="number-of-dots">
    <b><a href="#number-of-dots">#number-of-dots</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-number-of-dots-1">5.2.1.7. Note Values</a>
-    <li><a href="#ref-for-number-of-dots-2">5.2.2.1. Note Value Syntax</a>
+    <li><a href="#ref-for-number-of-dots-1">5.2.1.7. Note values</a>
+    <li><a href="#ref-for-number-of-dots-2">5.2.2.1. Note value syntax</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="orientation0">
    <b><a href="#orientation0">#orientation0</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-orientation0-1">5.2.6.1. The sequence element</a>
-    <li><a href="#ref-for-orientation0-2">5.2.6.2. The event element</a>
+    <li><a href="#ref-for-orientation0-1">5.2.5.1. The sequence element</a>
+    <li><a href="#ref-for-orientation0-2">5.2.6.1. The event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="measure-location">
    <b><a href="#measure-location">#measure-location</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-measure-location-1">5.2.2.2. Measure Locations</a> <a href="#ref-for-measure-location-2">(2)</a> <a href="#ref-for-measure-location-3">(3)</a> <a href="#ref-for-measure-location-4">(4)</a>
-    <li><a href="#ref-for-measure-location-5">5.2.3.8. Direction content</a>
-    <li><a href="#ref-for-measure-location-6">5.2.6.3. The dirgroup element</a> <a href="#ref-for-measure-location-7">(2)</a>
-    <li><a href="#ref-for-measure-location-8">5.2.6.4. The dynamics element</a>
-    <li><a href="#ref-for-measure-location-9">5.2.6.5. The wedge element</a> <a href="#ref-for-measure-location-10">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="metadata-content">
-   <b><a href="#metadata-content">#metadata-content</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-metadata-content-1">5.2.4.1. The cwmnx element</a>
-    <li><a href="#ref-for-metadata-content-2">5.2.5.1. The measure element</a>
-    <li><a href="#ref-for-metadata-content-3">5.2.6.1. The sequence element</a>
-    <li><a href="#ref-for-metadata-content-4">5.2.6.2. The event element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="style-properties">
-   <b><a href="#style-properties">#style-properties</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-style-properties-1">5.2.3.2. Style properties</a> <a href="#ref-for-style-properties-2">(2)</a>
-    <li><a href="#ref-for-style-properties-3">5.2.3.3. Interpretation content</a> <a href="#ref-for-style-properties-4">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="interpretation-content">
-   <b><a href="#interpretation-content">#interpretation-content</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-interpretation-content-1">5.2.5.1. The measure element</a>
-    <li><a href="#ref-for-interpretation-content-2">5.2.6.1. The sequence element</a>
-    <li><a href="#ref-for-interpretation-content-3">5.2.6.2. The event element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="part-description-content">
-   <b><a href="#part-description-content">#part-description-content</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-part-description-content-1">5.2.4.3. The part element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="system-content">
-   <b><a href="#system-content">#system-content</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-system-content-1">5.2.2.2. Measure Locations</a> <a href="#ref-for-system-content-2">(2)</a>
-    <li><a href="#ref-for-system-content-3">5.2.4.1. The cwmnx element</a> <a href="#ref-for-system-content-4">(2)</a> <a href="#ref-for-system-content-5">(3)</a>
-    <li><a href="#ref-for-system-content-6">5.2.4.2. The system element</a>
-    <li><a href="#ref-for-system-content-7">5.2.4.3. The part element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="sequence-content">
-   <b><a href="#sequence-content">#sequence-content</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-sequence-content-1">5.2.4.2. The system element</a>
-    <li><a href="#ref-for-sequence-content-2">5.2.6.1. The sequence element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="metrical-position">
-   <b><a href="#metrical-position">#metrical-position</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-metrical-position-1">5.2.2.2. Measure Locations</a> <a href="#ref-for-metrical-position-2">(2)</a> <a href="#ref-for-metrical-position-3">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="direction-content">
-   <b><a href="#direction-content">#direction-content</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-direction-content-1">5.2.3.10. Event content</a>
-    <li><a href="#ref-for-direction-content-2">5.2.5.1. The measure element</a>
-    <li><a href="#ref-for-direction-content-3">5.2.6.1. The sequence element</a>
-    <li><a href="#ref-for-direction-content-4">5.2.6.3. The dirgroup element</a> <a href="#ref-for-direction-content-5">(2)</a>
-    <li><a href="#ref-for-direction-content-6">5.2.6.4. The dynamics element</a>
-    <li><a href="#ref-for-direction-content-7">5.2.6.5. The wedge element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-directions-location">
-   <b><a href="#element-attrdef-directions-location">#element-attrdef-directions-location</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-element-attrdef-directions-location-1">5.2.6.3. The dirgroup element</a>
-    <li><a href="#ref-for-element-attrdef-directions-location-2">5.2.6.4. The dynamics element</a>
-    <li><a href="#ref-for-element-attrdef-directions-location-3">5.2.6.5. The wedge element</a>
+    <li><a href="#ref-for-measure-location-1">5.2.2.2. Measure locations</a> <a href="#ref-for-measure-location-2">(2)</a> <a href="#ref-for-measure-location-3">(3)</a> <a href="#ref-for-measure-location-4">(4)</a>
+    <li><a href="#ref-for-measure-location-5">5.2.7. Direction content</a>
+    <li><a href="#ref-for-measure-location-6">5.2.8.10. The dirgroup element</a> <a href="#ref-for-measure-location-7">(2)</a>
+    <li><a href="#ref-for-measure-location-8">5.2.8.11. The dynamics element</a>
+    <li><a href="#ref-for-measure-location-9">5.2.8.12. The wedge element</a> <a href="#ref-for-measure-location-10">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-cwmnx">
    <b><a href="#elementdef-cwmnx">#elementdef-cwmnx</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-cwmnx-1">5.2.4.1. The cwmnx element</a>
-    <li><a href="#ref-for-elementdef-cwmnx-2">5.2.4.2. The system element</a>
-    <li><a href="#ref-for-elementdef-cwmnx-3">5.2.4.3. The part element</a>
+    <li><a href="#ref-for-elementdef-cwmnx-1">5.2.3.1. The cwmnx element</a>
+    <li><a href="#ref-for-elementdef-cwmnx-2">5.2.3.2. The system element</a>
+    <li><a href="#ref-for-elementdef-cwmnx-3">5.2.3.3. The part element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-cwmnx-profile">
    <b><a href="#element-attrdef-cwmnx-profile">#element-attrdef-cwmnx-profile</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-cwmnx-profile-1">5.2.4.1. The cwmnx element</a> <a href="#ref-for-element-attrdef-cwmnx-profile-2">(2)</a>
+    <li><a href="#ref-for-element-attrdef-cwmnx-profile-1">5.2.3.1. The cwmnx element</a> <a href="#ref-for-element-attrdef-cwmnx-profile-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-system">
    <b><a href="#elementdef-system">#elementdef-system</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-system-1">5.2.3.8. Direction content</a>
-    <li><a href="#ref-for-elementdef-system-2">5.2.4.1. The cwmnx element</a> <a href="#ref-for-elementdef-system-3">(2)</a> <a href="#ref-for-elementdef-system-4">(3)</a>
-    <li><a href="#ref-for-elementdef-system-5">5.2.4.2. The system element</a>
-    <li><a href="#ref-for-elementdef-system-6">5.2.5.1. The measure element</a>
-    <li><a href="#ref-for-elementdef-system-7">5.2.6.1. The sequence element</a>
+    <li><a href="#ref-for-elementdef-system-1">5.2.3.1. The cwmnx element</a> <a href="#ref-for-elementdef-system-2">(2)</a> <a href="#ref-for-elementdef-system-3">(3)</a>
+    <li><a href="#ref-for-elementdef-system-4">5.2.3.2. The system element</a> <a href="#ref-for-elementdef-system-5">(2)</a> <a href="#ref-for-elementdef-system-6">(3)</a>
+    <li><a href="#ref-for-elementdef-system-7">5.2.4.1. The measure element</a>
+    <li><a href="#ref-for-elementdef-system-8">5.2.5.1. The sequence element</a>
+    <li><a href="#ref-for-elementdef-system-9">5.2.7. Direction content</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-part">
    <b><a href="#elementdef-part">#elementdef-part</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-part-1">5.2.3.8. Direction content</a>
-    <li><a href="#ref-for-elementdef-part-2">5.2.4.1. The cwmnx element</a> <a href="#ref-for-elementdef-part-3">(2)</a>
-    <li><a href="#ref-for-elementdef-part-4">5.2.5.1. The measure element</a> <a href="#ref-for-elementdef-part-5">(2)</a>
-    <li><a href="#ref-for-elementdef-part-6">5.2.6.1. The sequence element</a>
+    <li><a href="#ref-for-elementdef-part-1">5.2.3.1. The cwmnx element</a> <a href="#ref-for-elementdef-part-2">(2)</a>
+    <li><a href="#ref-for-elementdef-part-3">5.2.4.1. The measure element</a> <a href="#ref-for-elementdef-part-4">(2)</a>
+    <li><a href="#ref-for-elementdef-part-5">5.2.5.1. The sequence element</a>
+    <li><a href="#ref-for-elementdef-part-6">5.2.7. Direction content</a>
+    <li><a href="#ref-for-elementdef-part-7">5.2.10. Part description content</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="system-content">
+   <b><a href="#system-content">#system-content</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-system-content-1">5.2.2.2. Measure locations</a> <a href="#ref-for-system-content-2">(2)</a>
+    <li><a href="#ref-for-system-content-3">5.2.3.1. The cwmnx element</a> <a href="#ref-for-system-content-4">(2)</a> <a href="#ref-for-system-content-5">(3)</a>
+    <li><a href="#ref-for-system-content-6">5.2.3.2. The system element</a>
+    <li><a href="#ref-for-system-content-7">5.2.3.3. The part element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-measure">
    <b><a href="#elementdef-measure">#elementdef-measure</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-measure-1">5.2.2.2. Measure Locations</a>
-    <li><a href="#ref-for-elementdef-measure-2">5.2.3.5. System content</a>
-    <li><a href="#ref-for-elementdef-measure-3">5.2.3.8. Direction content</a> <a href="#ref-for-elementdef-measure-4">(2)</a>
+    <li><a href="#ref-for-elementdef-measure-1">5.2.2.2. Measure locations</a>
+    <li><a href="#ref-for-elementdef-measure-2">5.2.3.2. The system element</a> <a href="#ref-for-elementdef-measure-3">(2)</a>
+    <li><a href="#ref-for-elementdef-measure-4">5.2.4. System content</a>
+    <li><a href="#ref-for-elementdef-measure-5">5.2.7. Direction content</a> <a href="#ref-for-elementdef-measure-6">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-sequence">
    <b><a href="#elementdef-sequence">#elementdef-sequence</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-sequence-1">5.2.1.4. Notated Sequences</a>
-    <li><a href="#ref-for-elementdef-sequence-2">5.2.3.8. Direction content</a>
-    <li><a href="#ref-for-elementdef-sequence-3">5.2.5.1. The measure element</a>
-    <li><a href="#ref-for-elementdef-sequence-4">5.2.6.1. The sequence element</a>
-    <li><a href="#ref-for-elementdef-sequence-5">5.2.6.2. The event element</a>
+    <li><a href="#ref-for-elementdef-sequence-1">5.2.1.4. Notated sequences</a>
+    <li><a href="#ref-for-elementdef-sequence-2">5.2.4.1. The measure element</a>
+    <li><a href="#ref-for-elementdef-sequence-3">5.2.5.1. The sequence element</a>
+    <li><a href="#ref-for-elementdef-sequence-4">5.2.6.1. The event element</a>
+    <li><a href="#ref-for-elementdef-sequence-5">5.2.7. Direction content</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="sequence-content">
+   <b><a href="#sequence-content">#sequence-content</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-sequence-content-1">5.2.3.2. The system element</a> <a href="#ref-for-sequence-content-2">(2)</a>
+    <li><a href="#ref-for-sequence-content-3">5.2.5.1. The sequence element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="metrical-position">
+   <b><a href="#metrical-position">#metrical-position</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-metrical-position-1">5.2.2.2. Measure locations</a> <a href="#ref-for-metrical-position-2">(2)</a> <a href="#ref-for-metrical-position-3">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-event">
    <b><a href="#elementdef-event">#elementdef-event</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-event-1">5.2.1.2. Notated Events</a>
-    <li><a href="#ref-for-elementdef-event-2">5.2.2.2. Measure Locations</a>
-    <li><a href="#ref-for-elementdef-event-3">5.2.3.7. Sequence content</a> <a href="#ref-for-elementdef-event-4">(2)</a>
-    <li><a href="#ref-for-elementdef-event-5">5.2.6.2. The event element</a>
+    <li><a href="#ref-for-elementdef-event-1">5.2.1.2. Notated events</a>
+    <li><a href="#ref-for-elementdef-event-2">5.2.2.2. Measure locations</a>
+    <li><a href="#ref-for-elementdef-event-3">5.2.6. Sequence content</a>
+    <li><a href="#ref-for-elementdef-event-4">5.2.6.1. The event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-event-value">
    <b><a href="#element-attrdef-event-value">#element-attrdef-event-value</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-event-value-1">5.2.6.2. The event element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="elementdef-dirgroup">
-   <b><a href="#elementdef-dirgroup">#elementdef-dirgroup</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-elementdef-dirgroup-1">5.2.6.3. The dirgroup element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="elementdef-dynamics">
-   <b><a href="#elementdef-dynamics">#elementdef-dynamics</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-elementdef-dynamics-1">5.2.6.4. The dynamics element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-dynamics-type">
-   <b><a href="#element-attrdef-dynamics-type">#element-attrdef-dynamics-type</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-element-attrdef-dynamics-type-1">5.2.6.4. The dynamics element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-wedge-type">
-   <b><a href="#element-attrdef-wedge-type">#element-attrdef-wedge-type</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-element-attrdef-wedge-type-1">5.2.6.5. The wedge element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="elementdef-note">
-   <b><a href="#elementdef-note">#elementdef-note</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-elementdef-note-1">5.2.3.10. Event content</a>
-    <li><a href="#ref-for-elementdef-note-2">5.2.6.2. The event element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="elementdef-rest">
-   <b><a href="#elementdef-rest">#elementdef-rest</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-elementdef-rest-1">5.2.3.10. Event content</a>
-    <li><a href="#ref-for-elementdef-rest-2">5.2.6.2. The event element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="elementdef-lyric">
-   <b><a href="#elementdef-lyric">#elementdef-lyric</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-elementdef-lyric-1">5.2.3.10. Event content</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="elementdef-slur">
-   <b><a href="#elementdef-slur">#elementdef-slur</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-elementdef-slur-1">5.2.3.10. Event content</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="elementdef-glissando">
-   <b><a href="#elementdef-glissando">#elementdef-glissando</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-elementdef-glissando-1">5.2.3.10. Event content</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="elementdef-slide">
-   <b><a href="#elementdef-slide">#elementdef-slide</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-elementdef-slide-1">5.2.3.10. Event content</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="elementdef-ornaments">
-   <b><a href="#elementdef-ornaments">#elementdef-ornaments</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-elementdef-ornaments-1">5.2.3.10. Event content</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="elementdef-articulations">
-   <b><a href="#elementdef-articulations">#elementdef-articulations</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-elementdef-articulations-1">5.2.3.10. Event content</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="elementdef-technical">
-   <b><a href="#elementdef-technical">#elementdef-technical</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-elementdef-technical-1">5.2.3.10. Event content</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="elementdef-tuplet">
-   <b><a href="#elementdef-tuplet">#elementdef-tuplet</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-elementdef-tuplet-1">5.2.3.7. Sequence content</a>
+    <li><a href="#ref-for-element-attrdef-event-value-1">5.2.6.1. The event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-grace">
    <b><a href="#elementdef-grace">#elementdef-grace</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-grace-1">5.2.3.7. Sequence content</a> <a href="#ref-for-elementdef-grace-2">(2)</a> <a href="#ref-for-elementdef-grace-3">(3)</a>
+    <li><a href="#ref-for-elementdef-grace-1">5.2.6. Sequence content</a> <a href="#ref-for-elementdef-grace-2">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="elementdef-part-name">
-   <b><a href="#elementdef-part-name">#elementdef-part-name</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="direction-content">
+   <b><a href="#direction-content">#direction-content</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-part-name-1">5.2.3.4. Part description content</a>
+    <li><a href="#ref-for-direction-content-1">5.2.4.1. The measure element</a>
+    <li><a href="#ref-for-direction-content-2">5.2.5.1. The sequence element</a>
+    <li><a href="#ref-for-direction-content-3">5.2.8. Event content</a>
+    <li><a href="#ref-for-direction-content-4">5.2.8.10. The dirgroup element</a> <a href="#ref-for-direction-content-5">(2)</a>
+    <li><a href="#ref-for-direction-content-6">5.2.8.11. The dynamics element</a>
+    <li><a href="#ref-for-direction-content-7">5.2.8.12. The wedge element</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="elementdef-part-abbreviation">
-   <b><a href="#elementdef-part-abbreviation">#elementdef-part-abbreviation</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="element-attrdef-directions-location">
+   <b><a href="#element-attrdef-directions-location">#element-attrdef-directions-location</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-part-abbreviation-1">5.2.3.4. Part description content</a>
+    <li><a href="#ref-for-element-attrdef-directions-location-1">5.2.8.10. The dirgroup element</a>
+    <li><a href="#ref-for-element-attrdef-directions-location-2">5.2.8.11. The dynamics element</a>
+    <li><a href="#ref-for-element-attrdef-directions-location-3">5.2.8.12. The wedge element</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="elementdef-instrument-sound">
-   <b><a href="#elementdef-instrument-sound">#elementdef-instrument-sound</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="elementdef-note">
+   <b><a href="#elementdef-note">#elementdef-note</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-instrument-sound-1">5.2.3.4. Part description content</a>
+    <li><a href="#ref-for-elementdef-note-1">5.2.6.1. The event element</a>
+    <li><a href="#ref-for-elementdef-note-2">5.2.8. Event content</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-rest">
+   <b><a href="#elementdef-rest">#elementdef-rest</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-rest-1">5.2.6.1. The event element</a>
+    <li><a href="#ref-for-elementdef-rest-2">5.2.8. Event content</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-lyric">
+   <b><a href="#elementdef-lyric">#elementdef-lyric</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-lyric-1">5.2.8. Event content</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-slur">
+   <b><a href="#elementdef-slur">#elementdef-slur</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-slur-1">5.2.8. Event content</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-glissando">
+   <b><a href="#elementdef-glissando">#elementdef-glissando</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-glissando-1">5.2.8. Event content</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-slide">
+   <b><a href="#elementdef-slide">#elementdef-slide</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-slide-1">5.2.8. Event content</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-ornaments">
+   <b><a href="#elementdef-ornaments">#elementdef-ornaments</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-ornaments-1">5.2.8. Event content</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-articulations">
+   <b><a href="#elementdef-articulations">#elementdef-articulations</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-articulations-1">5.2.8. Event content</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-technical">
+   <b><a href="#elementdef-technical">#elementdef-technical</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-technical-1">5.2.8. Event content</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-dirgroup">
+   <b><a href="#elementdef-dirgroup">#elementdef-dirgroup</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-dirgroup-1">5.2.8.10. The dirgroup element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-dynamics">
+   <b><a href="#elementdef-dynamics">#elementdef-dynamics</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-dynamics-1">5.2.8.11. The dynamics element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-dynamics-type">
+   <b><a href="#element-attrdef-dynamics-type">#element-attrdef-dynamics-type</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-dynamics-type-1">5.2.8.11. The dynamics element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-wedge-type">
+   <b><a href="#element-attrdef-wedge-type">#element-attrdef-wedge-type</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-wedge-type-1">5.2.8.12. The wedge element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="part-description-content">
+   <b><a href="#part-description-content">#part-description-content</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-part-description-content-1">5.2.3.3. The part element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="interpretation-content">
+   <b><a href="#interpretation-content">#interpretation-content</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-interpretation-content-1">5.2.4.1. The measure element</a>
+    <li><a href="#ref-for-interpretation-content-2">5.2.5.1. The sequence element</a>
+    <li><a href="#ref-for-interpretation-content-3">5.2.6.1. The event element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="style-properties">
+   <b><a href="#style-properties">#style-properties</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-style-properties-1">5.3. Style properties</a> <a href="#ref-for-style-properties-2">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-style">
+   <b><a href="#elementdef-style">#elementdef-style</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-style-1">5.3. Style properties</a> <a href="#ref-for-elementdef-style-2">(2)</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
