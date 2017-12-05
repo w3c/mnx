@@ -1066,7 +1066,7 @@ Here are some instances of the measure location syntax:
 </div>
 
 <section>
-<h4 id="cwmnx-body">CWMNX body content</h4>
+<h4 id="cwmnx-body-content">CWMNX body content</h4>
 
 These elements of a CWMNX score supply its high-level description and structure.
 
@@ -1157,7 +1157,7 @@ order in which they are played by a performer.
     <dd><a>Metadata content</a></dd>
     <dd><a>Direction content</a></dd>
     <dd>An optional <{attributes}> element</dd>
-    <dd>One or more <{sequence}> elements (within <{part}> elements only)</dd>
+    <dd>One or more <{sequence}> elements (for measures within <{part}> elements only)</dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
   </dl>
@@ -1173,7 +1173,7 @@ make up the semantic content of a musical measure.
 <section dfn-for="sequence">
   <dl class="def">
     <dt><a>Contexts in which this element can be used</a>:</dt>
-    <dd><{system}>, <{part}></dd>
+    <dd><{measure}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
     <dd><a>Direction content</a></dd>
@@ -1236,22 +1236,6 @@ duration in the containing <a>metrical context</a>, given as a <a>note value</a>
 <section dfn-for="grace">
 </section>
 
-<h4 id="cwmnx-direction-content">Direction content</h4>
-
-<dfn>Direction content</dfn> consists of some number of musical <dfn element>directions</dfn>
-that modify or accompany the performance of events within the sequence content
-of one or more measures.
-
-Valid direction content must always be given an explicit <a>measure location</a>
-by supplying a <dfn element-attr dfn-for="directions">location</dfn> attribute.
-
-A direction is <dfn lt="direction scope">scoped</dfn> in a way that depends on
-where it is placed:
-
-- Direction content in a <{measure}> within the <{system}> element applies to all sequences of the measure in all parts.
-- Direction content in a <{measure}> within a <{part}> element applies to all sequences of the measure in a given part.
-- Direction content in a <{sequence}> applies to the sequence in which it occurs.
-
 <h4 id="cwmnx-event-content">Event content</h4>
 
 <dfn>Event content</dfn> comprises elements that describe the musical content of a single event that is performed at a distinct time. These include:
@@ -1303,6 +1287,22 @@ where it is placed:
 <h5 id="the-technical-element">The <dfn element><code>technical</code></dfn> element</h5>
 <section dfn-for="technical">
 </section>
+
+<h4 id="cwmnx-direction-content">Direction content</h4>
+
+<dfn>Direction content</dfn> consists of some number of musical <dfn element>directions</dfn>
+that modify or accompany the performance of events within the sequence content
+of one or more measures.
+
+Valid direction content must always be given an explicit <a>measure location</a>
+by supplying a <dfn element-attr dfn-for="directions">location</dfn> attribute.
+
+A direction is <dfn lt="direction scope">scoped</dfn> in a way that depends on
+where it is placed:
+
+- Direction content in a <{measure}> within the <{system}> element applies to all sequences of the measure in all parts.
+- Direction content in a <{measure}> within a <{part}> element applies to all sequences of the measure in a given part.
+- Direction content in a <{sequence}> applies to the sequence in which it occurs.
 
 <h5 id="the-dirgroup-element">The <dfn element><code>dirgroup</code></dfn> element</h5>
 <section dfn-for="dirgroup">
