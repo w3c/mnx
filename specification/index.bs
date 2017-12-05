@@ -634,6 +634,35 @@ criteria for content in those formats, and how to parse them.
           U+003B SEMICOLON characters. This skips past the delimiter.
   6. Return <var>numbers</var>.
 
+<h5 id="rational-numbers">Rational numbers</h5>
+
+  A string is a <dfn>rational number</dfn> if it is either an integer, or a pair of integers
+  separated by a U+002F SLASH whose second element is nonzero.
+
+  The <dfn export>rules for parsing rational numbers</dfn> are as given in the following algorithm. When
+  invoked, the steps must be followed in the order given, aborting at the first step that returns
+  a value. This algorithm will return a pair of integers, one for the numerator and one for the denominator which  must be nonzero, or an error.
+
+  1. Let <var>input</var> be the string being parsed.
+  2. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
+      the string.
+  3. Let <var>fraction</var> be an initially empty list of integers.
+  4. <a>Collect a sequence of characters</a> that are [=space characters=]. These are skipped.
+  5. While <var>position</var> is not past the end of <var>input</var>, and <var>fraction</var> contains
+      fewer than two elements:
+      1. <a>Collect a sequence of characters</a> that are not [=space characters=], <a>ASCII digits</a>, U+002D HYPHEN-MINUS or U+002F SLASH
+          characters. This skips past leading garbage.
+      2. <a>Collect a sequence of characters</a> that are not [=space characters=] or U+002F SLASH, and let <var>unparsed number</var> be the result.
+      3. Let <var>number</var> be the result of parsing <var>unparsed number</var> using the
+          <a>rules for parsing signed integers</a>.
+      4. If <var>number</var> is an error, set <var>number</var> to zero.
+      5. Append <var>number</var> to <var>fraction</var>.
+      6. <a>Collect a sequence of characters</a> that are [=space characters=], or U+002F SLASH.
+  6. If <var>fraction</var> has no elements, return zero.
+  7. If <var>fraction</var> has only one element, append 1 to <var>fraction</var>.
+  8. Return the first element of <var>fraction</var> as the numerator and the second element
+     of <var>fraction</var> as the denominator.
+
 <h4 id="space-separated-tokens">Space-separated tokens</h4>
 
   A <dfn export>set of space-separated tokens</dfn> is a string containing zero or more words (known as
@@ -823,13 +852,8 @@ concrete musical content that can be rendered and/or performed.
 
 <h4 id="cwmnx-notational-concepts">Notational concepts</h4>
 
-  <em>This section is non-normative.</em>
-
 This section describes various foundational concepts in music notation that
-are frequently referenced by this specification. While these descriptions are
-not normative, they serve to clarify the CWMN concepts represented by MNX
-markup and provide a vocabulary for talking about the semantics behind
-the normative material.
+are frequently referenced by this specification. 
 
 <h5 id="cwmnx-parts-staves">Parts and staves</h5>
 
@@ -875,6 +899,18 @@ specification, we use the term <a>articulation</a> in an expanded sense to
 cover all such additional properties.
 
 Notated events are represented by the <{event}> element.
+
+<h5 id="cwmnx-metrical-position">Metrical position</h5>
+
+Most notated events possess a well-defined <dfn>metrical position</dfn>,
+giving a time onset expressed as a rational number of whole note durations
+after the start of its containing measure. This position may be thought of as
+the event's "address" and plays a determining role in the normative rendering
+and performance of events.
+
+Grace notes are a special case, in that they do not have a metrical position.
+They merely have a well-defined notational ordering relative to other notated
+events in the measure.
 
 <h5 id="cwmnx-directions">Directions</h5>
 
@@ -1014,7 +1050,7 @@ Here are some instances of the note value syntax:
 : `/4`
 :: a quarter note
 : `/8`
-:: an eighth quarter note
+:: an eighth note
 : `./8`
 :: a dotted eighth note
 : `../8`
@@ -1026,6 +1062,18 @@ Here are some instances of the note value syntax:
 
 </div>
 
+<h5 id="note-value-multiple">Note value quantity syntax</h5>
+
+MNX permits any <a>rational number</a> whose denominator is a positive power of two to be used to specify
+a <dfn>note value quantity</dfn>. These are used to specify time signatures and tuplets among other cases.
+
+Examples include:
+
+: `3/8`
+:: three eighth notes
+: `5`
+:: five whole notes
+
 <h5 id="measure-locations">Measure locations</h5>
 
 There are a variety of situations in which the <dfn>measure location</dfn> of a
@@ -1036,14 +1084,14 @@ The following cases exist for specifying <a>measure locations</a>:
 <ol>
   <li>If the <a>measure location</a> is a <a>metrical position</a> in the context
   of some containing measure, then it is specified as a <a>valid floating-point
-  number</a> that gives the number of whole notes from the start of the
+  number</a> or <a>note value quantity</a> that gives the number of whole notes from the start of the
   measure.</li>
 
   <li>If the <a>measure location</a> is a <a>metrical position</a> in the context
   of an arbitrary <{measure}> in the score, then it is specified as a <a>set of
   space-separated tokens</a>. The first token is a <a>element location</a>
   identifying the measure, and the second token is a <a>valid floating-point
-  number</a> that gives the number of whole notes from the start of the
+  number</a> or <a>note value quantity</a> that gives the number of whole notes from the start of the
   identified measure. The identified measure must belong to the same
   <a>system content</a> as the element in which the measure location is given.</li>
 
@@ -1058,10 +1106,14 @@ Here are some instances of the measure location syntax:
 
 : `0.25`
 :: one quarter note after the start of a containing measure
-: `#measure-4 0.25`
-:: one quarter note after the start of the measure whose element ID is `measure-4`
-: `#event-235`
-:: the same metrical position as the event whose element ID is `event-235`
+: `3/8`
+:: three eighth notes after the start of a containing measure
+: `#m4 0.25`
+:: one quarter note after the start of the measure whose element ID is `m4`
+: `#m4 1/4`
+:: the same as the preceding example
+: `#event235`
+:: the same metrical position as the event whose element ID is `event235`
 
 </div>
 
@@ -1163,10 +1215,77 @@ order in which they are played by a performer.
   </dl>
 </section>
 
-<h4 id="cwmnx-measure-content">Measure content</h4>
+<h4 id="cwmnx-sequence-content">Sequence content</h4>
 
-<dfn>Measure content</dfn> consists of metadata, directions and sequences that
-make up the semantic content of a musical measure.
+<dfn>Sequence content</dfn> supplies a series of musical events that are
+both presented and performed in a given order, each at a distinct time. Such
+events express the concepts of chords, notes and rests.  <a>Direction content</a>
+may also occur freely within sequence content.
+
+Sequence content possesses a <dfn>starting position</dfn>. This is the
+<a>metrical position</a> within a containing measure of the content's first
+element.
+
+Sequence content also possesses a <dfn>time modification ratio</dfn>. This is
+a rational number scale factor which implicitly applies to all positions and
+durations within the content.
+
+Within sequence content, nested <a>event content</a> and <a>direction content</a>
+elements are assigned <a>metrical positions</a> according to the
+following procedure, called <dfn lt="sequence the content|sequencing the content">sequencing the content</dfn>:
+
+<ol>
+  <li>Let <var>sequence cursor</var> be the <a>starting position</a> of the sequence content.
+  <li>Let <var>content</var> to the list of elements comprising the sequence content.</li>
+  <li>While <var>content</var> is not empty:
+    <ol>
+      <li>Let <var>next</var> be the initial element of <var>content</var>,
+      and remove it from the head of <var>content</var>.
+      <li>If <var>next</var> is <{event}>:
+        <ol>
+          <li>
+            Set the <a>metrical position</a> of <var>next</var> to <var>sequence cursor</var>.
+          </li>
+          <li>
+            Add the duration of <var>next</var> to <var>sequence cursor</var>.
+          </li>
+        </ol>
+      </li>
+      <li>Else, if <var>next</var> is <{tuplet}>:
+        <ol>
+          <li>
+            <a>Sequence the content</a> of <var>next</var>, using
+            <var>sequence cursor</var> as the <a>starting position</a> and the
+            the <a>time modification ratio</a> as determined by the <{tuplet}>.
+          </li>
+          <li>
+            Add the total duration of <var>next</var> as given by <{tuplet/outer}>
+            to <var>sequence cursor</var>.
+          </li>
+        </ol>
+      </li>
+      <li>Else, if <var>next</var> is <{grace}>:
+        <ol>
+          <li>
+            Process the contents of <var>next</var>, assigning them a non-metrical ordering
+            relative to preceding or following elements as appropriate.
+        </ol>
+      </li>
+      <li>Else, if <var>next</var> is <a>direction content</a> and lacks a <{directions/location}> attribute:
+        <ol>
+          <li>
+            Set the <a>metrical position</a> of <var>next</var> to <var>sequence cursor</var>.
+          </li>
+        </ol>
+      </li>
+      <li>
+        If <var>sequence cursor</var> exceeds the specified duration for the enclosing element
+        (time signature for a <{measure}>, <{tuplet/inner}> attribute for a <{tuplet}>), throw
+        a processing error.
+      </li>
+    </ol>
+  </li>
+</ol>
 
 <h5 id="the-sequence-element">The <dfn element><code>sequence</code></dfn> element</h5>
 
@@ -1176,7 +1295,6 @@ make up the semantic content of a musical measure.
     <dd><{measure}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
-    <dd><a>Direction content</a></dd>
     <dd><a>Sequence content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
@@ -1184,36 +1302,31 @@ make up the semantic content of a musical measure.
     <dd><{sequence/staff}> - default staff index of direction or sequence content</dd>
   </dl>
 
-The <{sequence}> element organizes a set of strictly musical events within a
+The <{sequence}> element organizes a set of musical events within a
 measure into a strict temporal sequence, accompanied by relevant directions.
+This is accomplished by <a>sequencing the content</a>, with a <a>starting
+position</a> of 0 and a <a>time modification ratio</a> of 1.
+
+The optional <dfn element-attr>orient</dfn> attribute provides a specific
+<a>orientation</a> for all content within this sequence. If not provided, the
+orientation is determined automatically according to the implementation's
+rendering rules.
+
+The <dfn element-attr>staff</dfn> attribute provides a specific
+<a>staff index</a> for all content within this sequence.  If not provided, the
+staff index is determined automatically according to the implementation's
+rendering rules.
 
 </section>
-
-<h4 id="cwmnx-sequence-content">Sequence content</h4>
-
-<dfn>Sequence content</dfn> supplies a series of musical events that are
-both presented and performed in a given order, each at a distinct time. Such
-events express the concepts of chords, notes and rests.
-
-Within sequence content, each <{event}> descendant except for those below a
-<{grace}> element possesses a well-defined <dfn>metrical position</dfn>,
-giving its notated time onset expressed as a rational number of whole note
-durations after the start of its containing measure. This position may be
-thought of as the event's "address" within its containing sequence, and plays
-a determining role in the normative rendering and performance of events.
-
-Events below a <{grace}> element do not have a metrical position. They merely
-have a well-defined notational ordering relative to other events in the
-measure.
 
 <h5 id="the-event-element">The <dfn element><code>event</code></dfn> element</h5>
 <section dfn-for="event">
   <dl class="def">
     <dt><a>Contexts in which this element can be used</a>:</dt>
-    <dd><{sequence}></dd>
+    <dd><{sequence}>, <{tuplet}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
-    <dd>One or more <{note}> elements, or a single <{rest}> element</dd>
+    <dd><a>Event content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{event/value}> - the metrical duration of this event</dd>
@@ -1225,11 +1338,68 @@ The <{event}> element represents a discrete period of time within a sequence
 during which one or more notes are performed, or in which a rest occurs.
 
 Events have a <dfn element-attr>value</dfn> attribute describing their
-duration in the containing <a>metrical context</a>, given as a <a>note value</a>.
+duration in the containing metrical context, given as a <a>note value</a>.
+
+The optional <dfn element-attr>orient</dfn> attribute provides a specific
+<a>orientation</a> for all content within this sequence. If not provided, the
+orientation is inherited from any <{sequence}> or <{tuplet}> ancestor which
+specified it. If no ancestor did so, it is determined automatically according
+to the implementation's rendering rules.
+
+The optional <dfn element-attr>staff</dfn> attribute provides a specific
+<a>staff index</a> for all content within this sequence. If not provided, the
+orientation is inherited from any <{sequence}> or <{tuplet}> ancestor which
+specified it. If no ancestor did so, it is determined automatically according
+to the implementation's rendering rules.
 </section>
 
 <h5 id="the-tuplet-element">The <dfn element><code>tuplet</code></dfn> element</h5>
 <section dfn-for="tuplet">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd><{sequence}>, <{tuplet}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a></dd>
+    <dd><a>Sequence content</a></dd>
+    <dd><a>Interpretation content</a></dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{tuplet/outer}> - duration with respect to containing element</dd>
+    <dd><{tuplet/inner}> - duration of the enclosed sequence content</dd>
+    <dd><{sequence/orient}> - optional <a>orientation</a> of this tuplet </dd>
+    <dd><{sequence/staff}> - optional <a>staff index</a> of this tuplet </dd>
+  </dl>
+
+The <{tuplet}> element organizes a set of musical events that form a distinct
+and contiguous run within a <{sequence}, and which are subject to a common
+<a>time modification ratio</a> expressed as the quotient of two rational numbers.
+A <{tuplet}> behaves much like a <{sequence}> element with respect to its contents.
+
+The required attribute <dfn element-attr>outer</dfn> supplies a <a>note value
+quantity</a> describing the duration of the tuplet with respect to its enclosing
+context. This is how much time the tuplet occupies in the measure or tuplet in
+which it is placed.
+
+The required attribute <dfn element-attr>inner</dfn> supplies a <a>note value
+quantity</a> describing the total duration of the events within the tuplet, as
+notated.
+
+The contents of the tuplet are placed into a temporal sequence by performing
+the procedure <a>sequencing the content</a> with a <a>starting position</a>
+determined by the parent context, and a <a>time modification ratio</a> equal
+to the tuplet's <{tuplet/outer}> value divided by its <{tuplet/inner}> value.
+Following this procedure, the value of the <var>sequence cursor</var> MUST
+equal the value of <{tuplet/inner}>, or the contents are considered to be in error.
+
+The optional <dfn element-attr>orient</dfn> attribute provides a specific
+<a>orientation</a> for all content within this sequence. If not provided, the
+orientation is determined automatically according to the implementation's
+rendering rules.
+
+The <dfn element-attr>staff</dfn> attribute provides a specific
+<a>staff index</a> for all content within this sequence.  If not provided, the
+staff index is determined automatically according to the implementation's
+rendering rules.
+
 </section>
 
 <h5 id="the-grace-element">The <dfn element><code>grace</code></dfn> element</h5>
@@ -1290,19 +1460,24 @@ duration in the containing <a>metrical context</a>, given as a <a>note value</a>
 
 <h4 id="cwmnx-direction-content">Direction content</h4>
 
-<dfn>Direction content</dfn> consists of some number of musical <dfn element>directions</dfn>
-that modify or accompany the performance of events within the sequence content
-of one or more measures.
-
-Valid direction content must always be given an explicit <a>measure location</a>
-by supplying a <dfn element-attr dfn-for="directions">location</dfn> attribute.
+<dfn>Direction content</dfn> consists of some number of musical <dfn
+element>directions</dfn> that modify or accompany the performance of events in
+one or more measures.  Note that <a>directions</a> may also be freely included
+in <a>sequence content</a>.
 
 A direction is <dfn lt="direction scope">scoped</dfn> in a way that depends on
 where it is placed:
 
-- Direction content in a <{measure}> within the <{system}> element applies to all sequences of the measure in all parts.
-- Direction content in a <{measure}> within a <{part}> element applies to all sequences of the measure in a given part.
-- Direction content in a <{sequence}> applies to the sequence in which it occurs.
+- A direction in a <{measure}> within the <{system}> element applies to all sequences of the measure in all parts.
+- A direction in a <{measure}> within a <{part}> element applies to all sequences of the measure in a given part.
+- A direction in sequence content applies to the sequence in which it occurs.
+
+Directions in a <{measure}> MUST be given an explicit <a>measure location</a>
+by supplying a <dfn element-attr dfn-for="directions">location</dfn> attribute.
+
+In sequence content, direction content MAY be given an explicit location.
+If this is absent, it will be assigned an implicit <a>measure location</a>
+according to the procedure for <a>sequencing the content</a>.
 
 <h5 id="the-dirgroup-element">The <dfn element><code>dirgroup</code></dfn> element</h5>
 <section dfn-for="dirgroup">
