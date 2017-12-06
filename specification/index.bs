@@ -22,21 +22,14 @@ urlPrefix: https://www.w3.org/TR/css3-syntax/; type: dfn; spec: css3-syntax;
 url: https://www.w3.org/TR/css-style-attr/#syntax; type: dfn; spec: css-style-attr;
     text: style attribute
 
-<!-- ******************************** CSS SELECTORS ******************************************** -->
-
 urlPrefix: https://www.w3.org/TR/selectors4/#; type: dfn; spec: SELECTORS4
     text: type selector
     text: attribute selector
     text: pseudo-class
 
-<!-- ********************************** CSS CASCADE ******************************************** -->
-
 urlPrefix: https://www.w3.org/TR/css-cascade-4/#; type: dfn; spec: CSS-CASCADE-4
     text: specified value
     text: computed value
-
-
-<!-- ****************************** XML (and related) ****************************************** -->
 
 urlPrefix: https://www.w3.org/TR/xml/#; spec: XML; for: xml
     type: dfn; url: NT-Name; text: Name
@@ -57,7 +50,6 @@ urlPrefix: https://www.w3.org/TR/xlink11/#; spec: XLINK; for: xlink; type: eleme
 urlPrefix: https://www.w3.org/TR/xml-names/#; spec: XML-NAMES; for: xmlns; type: element-attr
     text: xmlns; url: ns-decl
 
-<!-- ****************************** HTML ****************************************** -->
 url: https://www.w3.org/TR/html5/infrastructure.html#signed-integers; type: dfn; spec: html;
     text: rules for parsing integers
     text: rules for parsing signed integers
@@ -88,6 +80,8 @@ url: https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens; typ
     text: unordered set of space-separated tokens
     text: split a string on spaces
 
+url: https://www.w3.org/TR/html5/infrastructure.html#colors; type:dfn; spec: html;
+    text: simple color
 
 </pre>
 <pre class="link-defaults">
@@ -480,16 +474,13 @@ that some of these could employ non-CWMN encodings as well.)
 
   Each element in MNX falls into zero or more <dfn lt="content
   categories|content category">categories</dfn> that group elements with
-  similar characteristics together. The following broad categories are used in
-  this specification:
+  similar characteristics together. Examples of content categories
+  include <a>event content</a> and <a>sequence content</a>, among
+  many others.
 
 <h4 id="element-definitions">Element definitions</h4>
 
   Each element in this specification has a definition that includes the following information:
-
-  : <dfn>Categories</dfn>
-  :: A list of [=categories=] to which the element belongs. These are used when defining the
-      [=content models=] for each element.
 
   : <dfn>Contexts in which this element can be used</dfn>
   :: A <em>non-normative</em> description of where the element can be used. This information is
@@ -500,10 +491,15 @@ that some of these could employ non-CWMN encodings as well.)
   :: A normative description of what content must be included as children and descendants of the
       element.
 
-  : <dfn>Content attributes</dfn>
+  : <a>Attributes</a>
   :: A normative list of attributes that may be specified on the element (except where otherwise
       disallowed), along with non-normative descriptions of those attributes. (The content to the
       left of the dash is normative, the content to the right of the dash is not.)
+
+  : <a>Style properties</a>
+  :: A normative list of style properties that may be specified on the element (except where otherwise
+      disallowed), along with non-normative descriptions of those attributes. Where these attributes may
+      be inherited from ancestor elements, this is indicated.
 
   This is then followed by a description of what the element represents, along with any
   additional normative conformance criteria that may apply to producers and consumers
@@ -1030,6 +1026,8 @@ rendering rules.
     <dd><{event/value}> - the metrical duration of this event</dd>
     <dd><{event/orient}> - optional <a>orientation</a> of this event </dd>
     <dd><{event/staff}> - optional <a>staff index</a> of this event </dd>
+    <dt><a>Style properties</a>:</dt>
+    <dd>'stem' - the stem direction of this event</dd>
   </dl>
 
 The <{event}> element represents a discrete period of time within a sequence
@@ -1049,6 +1047,16 @@ The optional <dfn element-attr>staff</dfn> attribute provides a specific
 orientation is inherited from any <{sequence}> or <{tuplet}> ancestor which
 specified it. If no ancestor did so, it is determined automatically according
 to the implementation's rendering rules.
+
+</section>
+<section>
+The <dfn property><code>stem</code></dfn> property controls the direction
+of any rendered stem associated with this event. If omitted, the stem direction
+is determined automatically by the implementation.
+
+The value <dfn value dfn-for="stem">up</dfn> causes an event's stem to be rendered pointing upwards.
+
+The value <dfn value dfn-for="stem">down</dfn> causes an event's stem to be rendered pointing downwards.
 </section>
 
 <h5 id="the-tuplet-element">The <dfn element><code>tuplet</code></dfn> element</h5>
@@ -1177,24 +1185,6 @@ In sequence content, direction content MAY be given an explicit location.
 If this is absent, it will be assigned an implicit <a>measure location</a>
 according to the procedure for <a>sequencing the content</a>.
 
-<h5 id="the-dirgroup-element">The <dfn element><code>dirgroup</code></dfn> element</h5>
-<section dfn-for="dirgroup">
-  <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
-    <dd><a>Direction content</a></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd><a>Direction content</a>, which must not include <a>measure locations</a></dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{directions/location}> - optional <a>measure location</a> of this direction, where required</dd>
-  </dl>
-The <{dirgroup}> element describes a set of directions which are presented
-sequentially, like a sentence. The typical presentation of directions in a group is
-to arrange them horizontally from left to right.
-
-TBD: spacing
-
-</section>
-
 <h5 id="the-dynamics-element">The <dfn element><code>dynamics</code></dfn> element</h5>
 <section dfn-for="dynamics">
   <dl class="def">
@@ -1265,7 +1255,9 @@ The <dfn element-attr>type</dfn> attribute describes the nature of the dynamic:
 characterized by a <a>span</a>.
 
 Spanning directions MUST be given a <a>measure location</a> as their endpoint,
-by supplying a <dfn element-attr dfn-for="spans">end</dfn> attribute.
+by supplying a <dfn element-attr dfn-for="spans">end</dfn> attribute. This
+measure location must lie within the same run of <a>system content</a> as the
+location given for the start of the spanning direction.
 
 <h5 id="the-wedge-element">The <dfn element><code>wedge</code></dfn> element</h5>
 <section dfn-for="wedge">
@@ -1299,9 +1291,61 @@ The <dfn element-attr>type</dfn> attribute describes the nature of the wedge:
 <section dfn-for="bracket">
 </section>
 
+<h5 id="the-dirgroup-element">The <dfn element><code>dirgroup</code></dfn> element</h5>
+<section dfn-for="dirgroup">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd><a>Direction content</a></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Direction content</a>, which must not include <a>measure locations</a></dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{directions/location}> - optional <a>measure location</a> of this direction, where required</dd>
+  </dl>
+The <{dirgroup}> element describes a set of directions which are presented
+sequentially, like a sentence. The typical presentation of directions in a group is
+to arrange them horizontally from left to right.
+
+TBD: spacing
+
+</section>
 <h4 id="cwmnx-staff-content">Staff content</h4>
 
-<dfn>Staff content</dfn> describes the properties of a staff on which events are placed.
+<dfn>Staff content</dfn> describes the properties of a staff on which events
+are placed. Such elements may occur in any <{measure}> element, and apply from
+the start of that <{measure}> to all subsequent measures within the same
+<{system}> or <{part}> element until changed.
+
+Most staff content elements have a fixed location, typically the beginning or
+end of the measure in which they occur.
+
+<h5 id="the-key-element">The <dfn element><code>key</code></dfn> element</h5>
+<section dfn-for="key">
+</section>
+
+<h5 id="the-time-element">The <dfn element><code>time</code></dfn> element</h5>
+<section dfn-for="time">
+</section>
+
+<h5 id="the-staves-element">The <dfn element><code>staves</code></dfn> element</h5>
+<section dfn-for="staves">
+</section>
+
+<h5 id="the-staff-details-element">The <dfn element><code>staff-details</code></dfn> element</h5>
+<section dfn-for="staff-details">
+</section>
+
+<h5 id="the-clef-element">The <dfn element><code>clef</code></dfn> element</h5>
+<section dfn-for="clef">
+</section>
+
+<h5 id="the-use-instrument-element">The <dfn element><code>use-instrument</code></dfn> element</h5>
+<section dfn-for="use-instrument">
+</section>
+
+<h5 id="the-transpose-element">The <dfn element><code>transpose</code></dfn> element</h5>
+<section dfn-for="transpose">
+</section>
+
 
 <h4 id="cwmnx-part-description-content">Part description content</h4>
 
@@ -1316,8 +1360,8 @@ and occur at the beginning of a <{part}> element.
 <section dfn-for="part-abbreviation">
 </section>
 
-<h5 id="the-instrument-sound-element">The <dfn element><code>instrument-sound</code></dfn> element</h5>
-<section dfn-for="instrument-sound">
+<h5 id="the-score-instrument-element">The <dfn element><code>score-instrument</code></dfn> element</h5>
+<section dfn-for="score-instrument">
 </section>
 
 <h4 id="cwmnx-interpretation-content">Interpretation content</h4>
@@ -1334,6 +1378,8 @@ replace the defaults that an MNX consumer would determine based on a default
     To generate these from bullet-points like "- <{elementname}>", use this regexp substitution:
     Find:
         - <{([a-z-]+)}>
+        or, in an XSD:
+        (?s)\s*<xs:element name="(\w+)".*</xs:element>
     Replace:
         <h5 id="the-$1-element">The <dfn element><code>$1</code></dfn> element</h5>\n<section dfn-for="$1">\n</section>\n
 -->
@@ -1345,26 +1391,46 @@ replace the defaults that an MNX consumer would determine based on a default
 specific way in which the element is rendered. Each property is defined as a
 key-value pair.
 
-Style properties are supplied by employing the <{style}> element, whose set of
-attributes supplies a dictionary of <a>style properties</a> and their
-associated values for the parent element of <{style}>. The list of valid
-<a>style properties</a> varies from one element to another and is documented
-separately for each element.
+Style properties are supplied by employing one or more <{style}> elements,
+each of which supplies the name of a <a>style property</a> and its associated
+value for the parent element of <{style}>. The list of valid <a>style
+properties</a> varies from one element to another. Properties are documented
+in the following places:
+
+- Properties applying to all elements are defined below under <a href="cwmnx-common-properties">common style properties</a>.
+
+- Properties applying to a <a>content category</a> are defined in the section describing that category.
+
+- Properties applying to a specific element are defined in the description of that element.
 
 <h4 id="the-style-element">The <dfn element><code>style</code></dfn> element</h4>
 <section dfn-for="style">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd>Any.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>Text of the value being defined for this property</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{style/property}> - the name of the property being defined</dd>
+  </dl>
+
+The <dfn element-attr>property</dfn> attribute supplies the name of the property
+whose value is supplied by this <{style}> element's contents.
+
 </section>
 
-<h4 id="cwmnx-rendering">Rendering Properties</h4>
+<h4 id="cwmnx-common-properties">Common style properties</h4>
 
-<h5 id="cwmnx-stem">The <dfn property><code>stem</code></dfn> property</h5>
+The following <a>style properties</a> apply to many kinds of object in CWMNX, and in general
+apply to all descendants of the element within which they are specified.
 
-<section dfn-for="stem">
+<h5 id="the-color-property">The <dfn property><code>color</code></dfn> property</h5>
+<section dfn-for="color">
+  The 'color' property specifies a <a>simple color</a> to be used to render a notational object.
+</section>
 
-The value <dfn value>up</dfn> causes an event's stem to be rendered pointing upwards.
-
-The value <dfn value>down</dfn> causes an event's stem to be rendered pointing downwards.
-
+<section>
+<h3 id="cwmnx-rendering">Rendering</h3>
 </section>
 
 <section>
