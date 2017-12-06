@@ -618,10 +618,10 @@ that applies to notated events.
 
 Directions do not have a duration, although they have a specific location in
 relation to a containing measure or sequence. Like events, directions also
-belong to a specific <a>staff</a> within a part, denoted by its <a>staff
-index</a>.
+belong to a specific <a>staff</a> within a part, denoted by its one-based
+<a>staff index</a>.
 
-Directions come in two flavors:
+Directions come in the following flavors:
 
 <dfn>Single-ended</dfn> directions begin at a point in time in some part and
 generally continue to apply until superseded by another direction, or by some
@@ -680,7 +680,7 @@ act as a multiplier on the <a>base note value</a>. These multipliers take the fo
 (2<sup><em>n</em>+1</sup>-1) / 2<sup><em>n</em></sup>, where <em>n</em> is the
 <a>number of dots</a>.
 
-<h5 id="orientation">Orientation</h5>
+<h5 id="event-orientation">Orientation</h5>
 
 Events and sequences may possess an optional <dfn>orientation</dfn> that
 determines a the placement and rendering of content according to a complex set
@@ -907,7 +907,6 @@ order in which they are played by a performer.
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
     <dd><a>Direction content</a></dd>
-    <dd>An optional <{attributes}> element</dd>
     <dd>One or more <{sequence}> elements (for measures within <{part}> elements only)</dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
@@ -1240,6 +1239,34 @@ The <dfn element-attr>type</dfn> attribute describes the nature of the dynamic:
 
 </section>
 
+<h5 id="the-harmony-element">The <dfn element><code>harmony</code></dfn> element</h5>
+<section dfn-for="harmony">
+</section>
+
+<h5 id="the-instruction-element">The <dfn element><code>instruction</code></dfn> element</h5>
+<section dfn-for="instruction">
+</section>
+
+<h5 id="the-expression-element">The <dfn element><code>expression</code></dfn> element</h5>
+<section dfn-for="expression">
+</section>
+
+<h5 id="the-coda-element">The <dfn element><code>coda</code></dfn> element</h5>
+<section dfn-for="coda">
+</section>
+
+<h5 id="the-segno-element">The <dfn element><code>segno</code></dfn> element</h5>
+<section dfn-for="segno">
+</section>
+
+<h4 id="cwmnx-spanning-directions">Spanning directions</h4>
+
+<dfn>Spanning directions</dfn> are directions whose temporal extent within a part is
+characterized by a <a>span</a>.
+
+Spanning directions MUST be given a <a>measure location</a> as their endpoint,
+by supplying a <dfn element-attr dfn-for="spans">end</dfn> attribute.
+
 <h5 id="the-wedge-element">The <dfn element><code>wedge</code></dfn> element</h5>
 <section dfn-for="wedge">
   <dl class="def">
@@ -1264,32 +1291,12 @@ The <dfn element-attr>type</dfn> attribute describes the nature of the wedge:
 
 </section>
 
-<h5 id="the-harmony-element">The <dfn element><code>harmony</code></dfn> element</h5>
-<section dfn-for="harmony">
-</section>
-
-<h5 id="the-instruction-element">The <dfn element><code>instruction</code></dfn> element</h5>
-<section dfn-for="instruction">
-</section>
-
-<h5 id="the-expression-element">The <dfn element><code>expression</code></dfn> element</h5>
-<section dfn-for="expression">
-</section>
-
 <h5 id="the-pedal-element">The <dfn element><code>pedal</code></dfn> element</h5>
 <section dfn-for="pedal">
 </section>
 
 <h5 id="the-bracket-element">The <dfn element><code>bracket</code></dfn> element</h5>
 <section dfn-for="bracket">
-</section>
-
-<h5 id="the-coda-element">The <dfn element><code>coda</code></dfn> element</h5>
-<section dfn-for="coda">
-</section>
-
-<h5 id="the-segno-element">The <dfn element><code>segno</code></dfn> element</h5>
-<section dfn-for="segno">
 </section>
 
 <h4 id="cwmnx-staff-content">Staff content</h4>
