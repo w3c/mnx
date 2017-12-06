@@ -56,6 +56,39 @@ urlPrefix: https://www.w3.org/TR/xlink11/#; spec: XLINK; for: xlink; type: eleme
 
 urlPrefix: https://www.w3.org/TR/xml-names/#; spec: XML-NAMES; for: xmlns; type: element-attr
     text: xmlns; url: ns-decl
+
+<!-- ****************************** HTML ****************************************** -->
+url: https://www.w3.org/TR/html5/infrastructure.html#signed-integers; type: dfn; spec: html;
+    text: rules for parsing integers
+    text: rules for parsing signed integers
+    text: valid integer
+    text: signed integer
+
+url: https://www.w3.org/TR/html5/infrastructure.html#non-negative-integers; type: dfn; spec: html;
+    text: non-negative integer
+    text: valid non-negative integer
+    text: rules for parsing non-negative integers
+
+url: https://www.w3.org/TR/html5/infrastructure.html#floating-point-numbers; type: dfn; spec: html;
+    text: floating-point number
+    text: valid floating-point number
+    text: rules for parsing floating-point numbers
+
+url: https://www.w3.org/TR/html5/infrastructure.html#percentages-and-lengths; type: dfn; spec: html;
+    text: rules for parsing dimension values
+
+url: https://www.w3.org/TR/html5/infrastructure.html#lists-of-floating-point-numbers; type: dfn; spec: html;
+    text: valid list of floating-point numbers
+    text: list of floating-point numbers
+    text: rules for parsing a list of floating-point numbers
+
+url: https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens; type: dfn; spec: html;
+    text: set of space-separated tokens
+    text: ordered set of space-separated tokens
+    text: unordered set of space-separated tokens
+    text: split a string on spaces
+
+
 </pre>
 <pre class="link-defaults">
 spec:dom; type:dfn; text:attribute
@@ -377,263 +410,6 @@ criteria for content in those formats, and how to parse them.
 
 <h4 id="numbers">Numbers</h4>
 
-<h5 id="signed-integers">Signed integers</h5>
-
-  A string is a <dfn lt="valid integer|valid integers">valid integer</dfn> if it consists of one or more <a>ASCII digits</a>,
-  optionally prefixed with a U+002D HYPHEN-MINUS character (-).
-
-  A <a>valid integer</a> without a U+002D HYPHEN-MINUS (-) prefix represents the number that is
-  represented in base ten by that string of digits. A <a>valid integer</a> <em>with</em> a U+002D
-  HYPHEN-MINUS (-) prefix represents the number represented in base ten by the string of digits that
-  follows the U+002D HYPHEN-MINUS, subtracted from zero.
-
-  The <dfn lt="parse token as an integer|parse it as an integer|rules for parsing integers|rules for parsing integer|rules for parsing signed integers">rules for parsing integers</dfn> are as given in the following algorithm. When
-  invoked, the steps must be followed in the order given, aborting at the first step that returns
-  a value. This algorithm will return either an integer or an error.
-
-  1. Let <var>input</var> be the string being parsed.
-  2. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the
-      start of the string.
-  3. Let <var>sign</var> have the value "positive".
-  4. <a>Skip white space</a>.
-  5. If <var>position</var> is past the end of <var>input</var>, return an error.
-  6. If the character indicated by <var>position</var> (the first character) is a U+002D
-      HYPHEN-MINUS character (-):
-      1. Let <var>sign</var> be "negative".
-      2. Advance <var>position</var> to the next character.
-      3. If <var>position</var> is past the end of <var>input</var>, return an error.
-
-      Otherwise, if the character indicated by <var>position</var> (the first character) is a
-      U+002B PLUS SIGN character (+):
-
-      1. Advance <var>position</var> to the next character. (The "<code>+</code>" is ignored, but
-          it is not conforming.)
-      2. If <var>position</var> is past the end of <var>input</var>, return an error.
-  7. If the character indicated by <var>position</var> is not an <a>ASCII digit</a>, then return
-      an error.
-  8. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a>, and interpret the
-      resulting sequence as a base-ten integer. Let <var>value</var> be that integer.
-  9. If <var>sign</var> is "positive", return <var>value</var>, otherwise return the result of
-      subtracting <var>value</var> from zero.
-
-
-<h5 id="non-negative-integers">Non-negative integers</h5>
-
-  A string is a <dfn export>valid non-negative integer</dfn> if it consists of one or more
-  <a>ASCII digits</a>.
-
-  A <a>valid non-negative integer</a> represents the number that is represented in base ten by that
-  string of digits.
-
-  The <dfn lt="parse that attribute's value|rules for parsing non-negative integers">rules for parsing non-negative integers</dfn> are as given in the following algorithm.
-  When invoked, the steps must be followed in the order given, aborting at the first step that
-  returns a value. This algorithm will return either zero, a positive integer, or an error.
-
-  1. Let <var>input</var> be the string being parsed.
-  2. Let <var>value</var> be the result of parsing <var>input</var> using the
-      <a>rules for parsing integers</a>.
-  3. If <var>value</var> is an error, return an error.
-  4. If <var>value</var> is less than zero, return an error.
-  5. Return <var>value</var>.
-
-<h5 id="floating-point-numbers">Floating-point numbers</h5>
-
-  A string is a <dfn export>valid floating-point number</dfn> if it consists of:
-
-  1. Optionally, a U+002D HYPHEN-MINUS character (-).
-  2. One or both of the following, in the given order:
-      1. A series of one or more <a>ASCII digits</a>.
-      2. Both of the following, in the given order:
-          1. A single U+002E FULL STOP character (.).
-          2. A series of one or more <a>ASCII digits</a>.
-  3. Optionally:
-      1. Either a U+0065 LATIN SMALL LETTER E character (e) or a U+0045 LATIN CAPITAL LETTER E
-          character (E).
-      2. Optionally, a U+002D HYPHEN-MINUS character (-) or U+002B PLUS SIGN character (+).
-      3. A series of one or more <a>ASCII digits</a>.
-
-  A <a>valid floating-point number</a> represents the number obtained by multiplying the significand
-  by ten raised to the power of the exponent, where the significand is the first number, interpreted
-  as base ten (including the decimal point and the number after the decimal point, if any, and
-  interpreting the significand as a negative number if the whole string starts with a U+002D
-  HYPHEN-MINUS character (-) and the number is not zero), and where the exponent is the number after
-  the E, if any (interpreted as a negative number if there is a U+002D HYPHEN-MINUS character (-)
-  between the E and the number and the number is not zero, or else ignoring a U+002B PLUS SIGN
-  character (+) between the E and the number if there is one). If there is no E, then the exponent
-  is treated as zero.
-
-  <p class="note">The Infinity and Not-a-Number (NaN) values are not <a>valid floating-point numbers</a>.</p>
-
-  The <dfn export>rules for parsing floating-point number values</dfn> are as given in the following
-  algorithm. This algorithm must be aborted at the first step that returns something. This
-  algorithm will return either a number or an error.
-
-  1. Let <var>input</var> be the string being parsed.
-  2. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start
-      of the string.
-  3. Let <var>value</var> have the value 1.
-  4. Let <var>divisor</var> have the value 1.
-  5. Let <var>exponent</var> have the value 1.
-  6. <a>Skip white space</a>.
-  7. If <var>position</var> is past the end of <var>input</var>, return an error.
-  8. If the character indicated by <var>position</var> is a U+002D HYPHEN-MINUS character (-):
-      1. Change <var>value</var> and <var>divisor</var> to -1.
-      2. Advance <var>position</var> to the next character.
-      3. If <var>position</var> is past the end of <var>input</var>, return an error.
-
-      Otherwise, if the character indicated by <var>position</var> (the first character) is a
-      U+002B PLUS SIGN character (+):
-
-      1. Advance <var>position</var> to the next character. (The "<code>+</code>" is ignored, but
-          it is not conforming.)
-      2. If <var>position</var> is past the end of <var>input</var>, return an error.
-
-  9. If the character indicated by <var>position</var> is a U+002E FULL STOP (.), and that is not
-      the last character in <var>input</var>, and the character after the character indicated by
-      <var>position</var> is an <a>ASCII digit</a>, then set
-      <var>value</var> to zero and jump to the step labeled <i>fraction</i>.
-  10. If the character indicated by <var>position</var> is not an <a>ASCII digit</a>, then return
-      an error.
-  11. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a>, and interpret the
-      resulting sequence as a base-ten integer. Multiply <var>value</var> by that integer.
-  12. If <var>position</var> is past the end of <var>input</var>, jump to the step labeled
-      <i>conversion</i>.
-  13. <i>Fraction</i>: If the character indicated by <var>position</var> is a U+002E FULL STOP
-      (.), run these substeps:
-      1. Advance <var>position</var> to the next character.
-      2. If <var>position</var> is past the end of <var>input</var>, or if the character indicated
-          by <var>position</var> is not an <a>ASCII digit</a>, U+0065 LATIN SMALL LETTER E (e), or
-          U+0045 LATIN CAPITAL LETTER E (E), then jump to the step labeled <i>conversion</i>.
-      3. If the character indicated by <var>position</var> is a U+0065 LATIN SMALL LETTER E
-          character (e) or a U+0045 LATIN CAPITAL LETTER E character (E), skip the remainder of
-          these substeps.
-      4. <i>Fraction loop</i>: Multiply <var>divisor</var> by ten.
-      5. Add the value of the character indicated by <var>position</var>, interpreted as a
-          base-ten digit (0..9) and divided by <var>divisor</var>, to <var>value</var>.
-      6. Advance <var>position</var> to the next character.
-      7. If <var>position</var> is past the end of <var>input</var>, then jump to the step labeled
-          <i>conversion</i>.
-      8. If the character indicated by <var>position</var> is an <a>ASCII digit</a>, jump back to
-          the step labeled <i>fraction loop</i> in these substeps.
-  14. If the character indicated by <var>position</var> is a U+0065 LATIN SMALL LETTER E character
-      (e) or a U+0045 LATIN CAPITAL LETTER E character (E), run these substeps:
-      1. Advance <var>position</var> to the next character.
-      2. If <var>position</var> is past the end of <var>input</var>, then jump to the step labeled
-          <i>conversion</i>.
-      3. If the character indicated by <var>position</var> is a U+002D HYPHEN-MINUS character (-):
-          1. Change <var>exponent</var> to -1.
-          2. Advance <var>position</var> to the next character.
-          3. If <var>position</var> is past the end of <var>input</var>, then jump to the step
-              labeled <i>conversion</i>.
-
-          Otherwise, if the character indicated by <var>position</var> is a U+002B PLUS SIGN character
-          (+):
-
-          1. Advance <var>position</var> to the next character.
-          2. If <var>position</var> is past the end of <var>input</var>, then jump to the step
-              labeled <i>conversion</i>.
-      4. If the character indicated by <var>position</var> is not an <a>ASCII digit</a>, then jump
-          to the step labeled <i>conversion</i>.
-      5. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a>, and interpret the
-          resulting sequence as a base-ten integer. Multiply <var>exponent</var> by that integer.
-      6. Multiply <var>value</var> by ten raised to the <var>exponent</var>th power.
-  15. <i>Conversion</i>: Let <var>S</var> be the set of finite IEEE 754 double-precision
-      floating-point values except -0, but with two special values added: 2<sup>1024</sup>
-      and -2<sup>1024</sup>.
-  16. Let <var>rounded-value</var> be the number in <var>S</var> that is closest to
-      <var>value</var>, selecting the number with an even significand if there are two equally
-      close values. (The two special values 2<sup>1024</sup> and -2<sup>1024</sup> are
-      considered to have even significands for this purpose.)
-  17. If <var>rounded-value</var> is 2<sup>1024</sup> or -2<sup>1024</sup>, return an error.
-  18. Return <var>rounded-value</var>.
-
-<h5 id="percentages-and-dimensions">Percentages and lengths</h5>
-
-  The <dfn export>rules for parsing dimension values</dfn> are as given in the following algorithm. When
-  invoked, the steps must be followed in the order given, aborting at the first step that returns
-  a value. This algorithm will return either a number greater than or equal to 0.0, or an error;
-  if a number is returned, then it is further categorized as either a percentage or a length.
-
-  1. Let <var>input</var> be the string being parsed.
-  2. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start
-      of the string.
-  3. <a>Skip white space</a>.
-  4. If <var>position</var> is past the end of <var>input</var>, return an error.
-  5. If the character indicated by <var>position</var> is a U+002B PLUS SIGN character (+),
-      advance <var>position</var> to the next character.
-  6. If <var>position</var> is past the end of <var>input</var>, return an error.
-  7. If the character indicated by <var>position</var> is not an <a>ASCII digit</a>, then return
-      an error.
-  8. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a>, and interpret the
-      resulting sequence as a base-ten integer. Let <var>value</var> be that number.
-  9. If <var>position</var> is past the end of <var>input</var>, return <var>value</var> as a
-      length.
-  10. If the character indicated by <var>position</var> is a U+002E FULL STOP character (.):
-      1. Advance <var>position</var> to the next character.
-      2. If <var>position</var> is past the end of <var>input</var>, or if the character indicated
-          by <var>position</var> is not an <a>ASCII digit</a>, then return <var>value</var> as a
-          length.
-      3. Let <var>divisor</var> have the value 1.
-      4. <i>Fraction loop</i>: Multiply <var>divisor</var> by ten.
-      5. Add the value of the character indicated by <var>position</var>, interpreted as a
-          base-ten digit (0..9) and divided by <var>divisor</var>, to <var>value</var>.
-      6. Advance <var>position</var> to the next character.
-      7. If <var>position</var> is past the end of <var>input</var>, then return <var>value</var>
-          as a length.
-      8. If the character indicated by <var>position</var> is an <a>ASCII digit</a>, return to the
-          step labeled <i>fraction loop</i> in these substeps.
-  11. If <var>position</var> is past the end of <var>input</var>, return <var>value</var> as a
-      length.
-  12. If the character indicated by <var>position</var> is a U+0025 PERCENT SIGN character (%),
-      return <var>value</var> as a percentage.
-  13. Return <var>value</var> as a length.
-
-<h5 id="non-zero-percentages-and-lengths">Non-zero percentages and lengths</h5>
-
-  The <dfn export>rules for parsing non-zero dimension values</dfn> are as given in the following
-  algorithm. When invoked, the steps must be followed in the order given, aborting at the first
-  step that returns a value. This algorithm will return either a number greater than 0.0, or an
-  error; if a number is returned, then it is further categorized as either a percentage or a
-  length.
-
-  1. Let <var>input</var> be the string being parsed.
-  2. Let <var>value</var> be the result of parsing <var>input</var> using the
-      <a>rules for parsing dimension values</a>.
-  3. If <var>value</var> is an error, return an error.
-  4. If <var>value</var> is zero, return an error.
-  5. If <var>value</var> is a percentage, return <var>value</var> as a percentage.
-  6. Return <var>value</var> as a length.
-
-<h5 id="lists-of-floating-point-numbers">Lists of floating-point numbers</h5>
-
-  A <dfn export>valid list of floating-point numbers</dfn> is a number of
-  <a>valid floating-point numbers</a> separated by U+002C COMMA characters, with no other characters
-  (e.g. no [=space characters=]). In addition, there might be restrictions on the number of
-  floating-point numbers that can be given, or on the range of values allowed.
-
-  The <dfn export>rules for parsing a list of floating-point numbers</dfn> are as follows:
-
-  1. Let <var>input</var> be the string being parsed.
-  2. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
-      the string.
-  3. Let <var>numbers</var> be an initially empty list of floating-point numbers. This list will be
-      the result of this algorithm.
-  4. <a>Collect a sequence of characters</a> that are [=space characters=], U+002C COMMA, or
-      U+003B SEMICOLON characters. This skips past any leading delimiters.
-  5. While <var>position</var> is not past the end of <var>input</var>:
-      1. <a>Collect a sequence of characters</a> that are not [=space characters=], U+002C COMMA,
-          U+003B SEMICOLON, <a>ASCII digits</a>, U+002E FULL STOP, or U+002D HYPHEN-MINUS
-          characters. This skips past leading garbage.
-      2. <a>Collect a sequence of characters</a> that are not [=space characters=], U+002C COMMA,
-          or U+003B SEMICOLON characters, and let <var>unparsed number</var> be the result.
-      3. Let <var>number</var> be the result of parsing <var>unparsed number</var> using the
-          <a>rules for parsing floating-point number values</a>.
-      4. If <var>number</var> is an error, set <var>number</var> to zero.
-      5. Append <var>number</var> to <var>numbers</var>.
-      6. <a>Collect a sequence of characters</a> that are [=space characters=], U+002C COMMA, or
-          U+003B SEMICOLON characters. This skips past the delimiter.
-  6. Return <var>numbers</var>.
-
 <h5 id="rational-numbers">Rational numbers</h5>
 
   A string is a <dfn>rational number</dfn> if it is either an integer, or a pair of integers
@@ -662,83 +438,6 @@ criteria for content in those formats, and how to parse them.
   7. If <var>fraction</var> has only one element, append 1 to <var>fraction</var>.
   8. Return the first element of <var>fraction</var> as the numerator and the second element
      of <var>fraction</var> as the denominator.
-
-<h4 id="space-separated-tokens">Space-separated tokens</h4>
-
-  A <dfn export>set of space-separated tokens</dfn> is a string containing zero or more words (known as
-  tokens) separated by one or more [=space characters=], where words consist of any string of one
-  or more characters, none of which are [=space characters=].
-
-  A string containing a <a>set of space-separated tokens</a> may have leading or trailing
-  [=space characters=].
-
-  An <dfn export>unordered set of unique space-separated tokens</dfn> is a
-  <a>set of space-separated tokens</a> where none of the tokens are duplicated.
-
-  An <dfn export>ordered set of unique space-separated tokens</dfn> is a
-  <a>set of space-separated tokens</a> where none of the tokens are duplicated but where the order
-  of the tokens is meaningful.
-
-  <a lt="set of space-separated tokens">Sets of space-separated tokens</a> sometimes have a defined set of allowed values. When a set
-  of allowed values is defined, the tokens must all be from that list of allowed values; other
-  values are non-conforming. If no such set of allowed values is provided, then all values are
-  conforming.
-
-  <p class="note">
-    How tokens in a <a>set of space-separated tokens</a> are to be compared (e.g., case-sensitively
-    or not) is defined on a per-set basis.
-  </p>
-
-  When a consumer has to <dfn export>split a string on spaces</dfn>, it must use the following
-  algorithm:
-
-  1. Let <var>input</var> be the string being parsed.
-  2. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start
-      of the string.
-  3. Let <var>tokens</var> be an ordered list of tokens, initially empty.
-  4. <a>Skip white space</a>
-  5. While <var>position</var> is not past the end of <var>input</var>:
-      1. <a>Collect a sequence of characters</a> that are not [=space characters=].
-      2. Append the string collected in the previous step to <var>tokens</var>.
-      3. <a>Skip white space</a>
-  6. Return <var>tokens</var>.
-
-<h4 id="comma-separated-tokens">Comma-separated tokens</h4>
-
-  A <dfn export>set of comma-separated tokens</dfn> is a string containing zero or more tokens each
-  separated from the next by a single U+002C COMMA character (,), where tokens consist of any string
-  of zero or more characters, neither beginning nor ending with [=space characters=], nor
-  containing any U+002C COMMA characters (,), and optionally surrounded by [=space characters=].
-
-  <p class="example">
-    For instance, the string "<code>&nbsp;a&nbsp;,b, ,d&nbsp;d&nbsp;</code>" consists of four tokens:
-    "a", "b", the empty string, and "d&nbsp;d". Leading and trailing white space around each token
-    doesn't count as part of the token, and the empty string can be a token.
-  </p>
-
-  <a lt="set of comma-separated tokens">Sets of comma-separated tokens</a> sometimes have further restrictions on what consists a valid
-  token. When such restrictions are defined, the tokens must all fit within those restrictions;
-  other values are non-conforming. If no such restrictions are specified, then all values are
-  conforming.
-
-  When a consumer has to <dfn export>split a string on commas</dfn>, it must use the following algorithm:
-
-  1. Let <var>input</var> be the string being parsed.
-  2. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start
-      of the string.
-  3. Let <var>tokens</var> be an ordered list of tokens, initially empty.
-  4. <i>Token</i>: If <var>position</var> is past the end of <var>input</var>, jump to the last
-      step.
-  5. <a>Collect a sequence of characters</a> that are not U+002C COMMA characters (,). Let
-      <var>s</var> be the resulting sequence (which might be the empty string).
-  6. <a>Strip leading and trailing white space</a> from <var>s</var>.
-  7. Append <var>s</var> to <var>tokens</var>.
-  8. If <var>position</var> is not past the end of <var>input</var>, then the character at
-      <var>position</var> is a U+002C COMMA character (,); advance <var>position</var> past that
-      character.
-  9. Jump back to the step labeled <i>token</i>.
-  10. Return <var>tokens</var>.
-
 
 <h4 id="element-locations">Element locations</h4>
 
