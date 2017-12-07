@@ -1403,11 +1403,28 @@ replace the defaults that an MNX consumer would determine based on a default
 specific way in which the element is rendered. Each property is defined as a
 key-value pair.
 
-Style properties are supplied by employing one or more <{style}> elements,
-each of which supplies the name of a <a>style property</a> and its associated
-value for the parent element of <{style}>. The list of valid <a>style
-properties</a> varies from one element to another. Properties are documented
-in the following places:
+Style properties are applied to each MNX semantic element according to the following
+procedure for <dfn>style property computation</dfn>:
+
+<ol>
+  <li>Apply the property values from each <a>style selector definition</a>
+    whose <a>style selector rule</a> matches the semantic element.
+    All definitions with a matching rule are applied in the order
+    that they were encountered in processing of the document.
+  </li>
+
+  <li>For each <{class}> element belonging to the semantic element, in the order
+    of occurrence, apply the property values from each <a>style class definition</a>
+    whose class name matches the <{class/name}> attribute.
+    All definitions with a matching name are applied in the order
+    that they were encountered in processing of the document.
+  </li>
+
+  <li>For each <{style}> element belonging to the semantic element,
+    in the order of occurrence, apply its property value.
+  </li>
+
+Properties are documented in the following places:
 
 - Properties applying to all elements are defined below under <a href="cwmnx-common-properties">common style properties</a>.
 
@@ -1421,13 +1438,97 @@ in the following places:
     <dt><a>Contexts in which this element can be used</a>:</dt>
     <dd>Any.</dd>
     <dt><a>Content Model</a>:</dt>
-    <dd>Text of the value being defined for this property</dd>
+    <dd>Text of the value being defined for this property, or empty.</dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{style/property}> - the name of the property being defined</dd>
   </dl>
 
-The <dfn element-attr>property</dfn> attribute supplies the name of the property
-whose value is supplied by this <{style}> element's contents.
+The <{style}> element supplies the value of an explicit style property
+which applies to the containing element.
+
+The <dfn element-attr>property</dfn> attribute gives the name of a property
+whose value is supplied by this <{style}> element's text content, applying
+to the rendering or interpretation of the containing element.
+
+</section>
+
+<h4 id="the-class-element">The <dfn element><code>class</code></dfn> element</h4>
+<section dfn-for="class">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd>Any.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>Empty.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{class/name}> - a <a>style class definition</a></dd>
+  </dl>
+
+The <{class}> element supplies the value of a <a>style class definition</a>
+which applies to a containing element as per the rules of <a>style property
+computation</a>.
+
+The <dfn element-attr>name</dfn> attribute supplies the name of a style class
+definition which applies to the containing element as an <a>ordered set of
+space-separated tokens</a>. All style property values supplied by the class
+definition are applied to the element in the order in which they were defined.
+
+</section>
+
+<h4 id="the-style-class-element">The <dfn element><code>style-class</code></dfn> element</h4>
+<section dfn-for="style-class">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd>Any.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>One or more <{style}> elements.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{style-class/name}> - the name of this style class definition</dd>
+  </dl>
+
+The <{style-class}> element supplies a <dfn>style class definition</dfn>,
+which associates a list of style property values with a class that can be
+referenced elsewhere using its name alone, as per the rules of <a>style
+property computation</a>. The list of property values in the class is
+contained in a set of child <{style}> elements.
+
+The <dfn element-attr>name</dfn> attribute supplies the name of this style class
+definition.
+
+Multiple occurrences of <{style-class}> are permitted to share the same value
+of <{style-class/name}>. These are equivalent to a single occurrence of
+<{style-class}> with the same constituent definitions of style property values
+in the same order.
+</section>
+
+<h4 id="the-style-selector-element">The <dfn element><code>style-selector</code></dfn> element</h4>
+<section dfn-for="style-selector">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd>Any.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>One or more <{style}> elements.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{style-selector/rule}> - a set of element names to which this style selector definition applies</dd>
+  </dl>
+
+The <{style-selector}> element supplies a <dfn>style selector
+definition</dfn>, which defines a list of style property values applying to
+all elements matching a <a>style selector rule</a>, as per the rules of <a>style
+property computation</a>. The list is contained in a set of child <{style}>
+elements that belong to the class selector.
+
+The <dfn element-attr>rule</dfn> attribute supplies a <dfn>style selector rule</dfn>
+that is automatically applied to all semantic MNX elements to determine a set of
+implied style properties. The following rule syntax is supported:
+
+- An <a>unordered set of space-separated tokens</a>, each of which is the name
+    of an MNX element. Elements whose names belong to this set are considered to
+    match the rule.
+
+Multiple occurrences of <{style-selector}> are permitted to share the same value
+of <{style-selector/rule}>. These are equivalent to a single occurrence of
+<{style-selector}> with the same constituent definitions of style property values
+in the same order.
 
 </section>
 

@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="5d34d6510efe7bfd122b904211c8598546a88104" name="document-revision">
+  <meta content="fd09bac8b472b5a1fed652a192a3ec08ffae6b3d" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1628,11 +1628,14 @@ Parts of this work may be from another specification document.  If so, those par
        <a href="#cwmnx-style-properties"><span class="secno">5.3</span> <span class="content">Style properties</span></a>
        <ol class="toc">
         <li><a href="#the-style-element"><span class="secno">5.3.1</span> <span class="content">The <span><code>style</code></span> element</span></a>
+        <li><a href="#the-class-element"><span class="secno">5.3.2</span> <span class="content">The <span><code>class</code></span> element</span></a>
+        <li><a href="#the-style-class-element"><span class="secno">5.3.3</span> <span class="content">The <span><code>style-class</code></span> element</span></a>
+        <li><a href="#the-style-selector-element"><span class="secno">5.3.4</span> <span class="content">The <span><code>style-selector</code></span> element</span></a>
         <li>
-         <a href="#cwmnx-common-properties"><span class="secno">5.3.2</span> <span class="content">Common style properties</span></a>
+         <a href="#cwmnx-common-properties"><span class="secno">5.3.5</span> <span class="content">Common style properties</span></a>
          <ol class="toc">
-          <li><a href="#the-color-property"><span class="secno">5.3.2.1</span> <span class="content">The <span><code>color</code></span> property</span></a>
-          <li><a href="#the-glyph-property"><span class="secno">5.3.2.2</span> <span class="content">The <span><code>glyph</code></span> property</span></a>
+          <li><a href="#the-color-property"><span class="secno">5.3.5.1</span> <span class="content">The <span><code>color</code></span> property</span></a>
+          <li><a href="#the-glyph-property"><span class="secno">5.3.5.2</span> <span class="content">The <span><code>glyph</code></span> property</span></a>
          </ol>
        </ol>
       <li><a href="#cwmnx-rendering"><span class="secno">5.4</span> <span class="content">Rendering</span></a>
@@ -2647,283 +2650,375 @@ replace the defaults that an MNX consumer would determine based on a default <a 
     <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="style-properties">Style properties</dfn> may be included in many elements to control the
 specific way in which the element is rendered. Each property is defined as a
 key-value pair.</p>
-    <p>Style properties are supplied by employing one or more <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style">style</a></code> elements,
-each of which supplies the name of a <a data-link-type="dfn" href="#style-properties" id="ref-for-style-properties②">style property</a> and its associated
-value for the parent element of <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style①">style</a></code>. The list of valid <a data-link-type="dfn" href="#style-properties" id="ref-for-style-properties③">style
-properties</a> varies from one element to another. Properties are documented
-in the following places:</p>
-    <ul>
-     <li data-md="">
-      <p>Properties applying to all elements are defined below under <a href="cwmnx-common-properties">common style properties</a>.</p>
-     <li data-md="">
-      <p>Properties applying to a <a data-link-type="dfn" href="#content-categories" id="ref-for-content-categories①">content category</a> are defined in the section describing that category.</p>
-     <li data-md="">
-      <p>Properties applying to a specific element are defined in the description of that element.</p>
-    </ul>
-    <h4 class="heading settled" data-level="5.3.1" id="the-style-element"><span class="secno">5.3.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-style"><code>style</code></dfn> element</span><a class="self-link" href="#the-style-element"></a></h4>
-    <section>
-     <dl class="def">
-      <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used①⓪">Contexts in which this element can be used</a>:
-      <dd>Any.
-      <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model①⓪">Content Model</a>:
-      <dd>Text of the value being defined for this property
-      <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute⑨">Attributes</a>:
-      <dd><code><a data-link-type="element-sub" href="#element-attrdef-style-property" id="ref-for-element-attrdef-style-property">property</a></code> - the name of the property being defined
-     </dl>
-     <p>The <dfn class="dfn-paneled" data-dfn-for="style" data-dfn-type="element-attr" data-export="" id="element-attrdef-style-property"><code>property</code></dfn> attribute supplies the name of the property
-whose value is supplied by this <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style②">style</a></code> element’s contents.</p>
-    </section>
-    <h4 class="heading settled" data-level="5.3.2" id="cwmnx-common-properties"><span class="secno">5.3.2. </span><span class="content">Common style properties</span><a class="self-link" href="#cwmnx-common-properties"></a></h4>
-    <p>The following <a data-link-type="dfn" href="#style-properties" id="ref-for-style-properties④">style properties</a> apply to many kinds of object in CWMNX, and in general
+    <p>Style properties are applied to each MNX semantic element according to the following
+procedure for <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="style-property-computation">style property computation</dfn>:</p>
+    <ol>
+     <li>Apply the property values from each <a data-link-type="dfn" href="#style-selector-style-selector-definition" id="ref-for-style-selector-style-selector-definition">style selector definition</a> whose <a data-link-type="dfn" href="#style-selector-style-selector-rule" id="ref-for-style-selector-style-selector-rule">style selector rule</a> matches the semantic element.
+    All definitions with a matching rule are applied in the order
+    that they were encountered in processing of the document. 
+     <li>For each <code><a data-link-type="element" href="#elementdef-class" id="ref-for-elementdef-class">class</a></code> element belonging to the semantic element, in the order
+    of occurrence, apply the property values from each <a data-link-type="dfn" href="#style-class-style-class-definition" id="ref-for-style-class-style-class-definition">style class definition</a> whose class name matches the <code><a data-link-type="element-sub" href="#element-attrdef-class-name" id="ref-for-element-attrdef-class-name">name</a></code> attribute.
+    All definitions with a matching name are applied in the order
+    that they were encountered in processing of the document. 
+     <li>For each <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style">style</a></code> element belonging to the semantic element,
+    in the order of occurrence, apply its property value. 
+     <p>Properties are documented in the following places:</p>
+     <ul>
+      <li data-md="">
+       <p>Properties applying to all elements are defined below under <a href="cwmnx-common-properties">common style properties</a>.</p>
+      <li data-md="">
+       <p>Properties applying to a <a data-link-type="dfn" href="#content-categories" id="ref-for-content-categories①">content category</a> are defined in the section describing that category.</p>
+      <li data-md="">
+       <p>Properties applying to a specific element are defined in the description of that element.</p>
+     </ul>
+     <h4 class="heading settled" data-level="5.3.1" id="the-style-element"><span class="secno">5.3.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-style"><code>style</code></dfn> element</span><a class="self-link" href="#the-style-element"></a></h4>
+     <section>
+      <dl class="def">
+       <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used①⓪">Contexts in which this element can be used</a>:
+       <dd>Any.
+       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model①⓪">Content Model</a>:
+       <dd>Text of the value being defined for this property, or empty.
+       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute⑨">Attributes</a>:
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-style-property" id="ref-for-element-attrdef-style-property">property</a></code> - the name of the property being defined
+      </dl>
+      <p>The <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style①">style</a></code> element supplies the value of an explicit style property
+which applies to the containing element.</p>
+      <p>The <dfn class="dfn-paneled" data-dfn-for="style" data-dfn-type="element-attr" data-export="" id="element-attrdef-style-property"><code>property</code></dfn> attribute gives the name of a property
+whose value is supplied by this <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style②">style</a></code> element’s text content, applying
+to the rendering or interpretation of the containing element.</p>
+     </section>
+     <h4 class="heading settled" data-level="5.3.2" id="the-class-element"><span class="secno">5.3.2. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-class"><code>class</code></dfn> element</span><a class="self-link" href="#the-class-element"></a></h4>
+     <section>
+      <dl class="def">
+       <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used①①">Contexts in which this element can be used</a>:
+       <dd>Any.
+       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model①①">Content Model</a>:
+       <dd>Empty.
+       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute①⓪">Attributes</a>:
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-class-name" id="ref-for-element-attrdef-class-name①">name</a></code> - a <a data-link-type="dfn" href="#style-class-style-class-definition" id="ref-for-style-class-style-class-definition①">style class definition</a>
+      </dl>
+      <p>The <code><a data-link-type="element" href="#elementdef-class" id="ref-for-elementdef-class①">class</a></code> element supplies the value of a <a data-link-type="dfn" href="#style-class-style-class-definition" id="ref-for-style-class-style-class-definition②">style class definition</a> which applies to a containing element as per the rules of <a data-link-type="dfn" href="#style-property-computation" id="ref-for-style-property-computation">style property
+computation</a>.</p>
+      <p>The <dfn class="dfn-paneled" data-dfn-for="class" data-dfn-type="element-attr" data-export="" id="element-attrdef-class-name"><code>name</code></dfn> attribute supplies the name of a style class
+definition which applies to the containing element as an <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens" id="ref-for-space-separated-tokens②">ordered set of
+space-separated tokens</a>. All style property values supplied by the class
+definition are applied to the element in the order in which they were defined.</p>
+     </section>
+     <h4 class="heading settled" data-level="5.3.3" id="the-style-class-element"><span class="secno">5.3.3. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-style-class"><code>style-class</code></dfn> element</span><a class="self-link" href="#the-style-class-element"></a></h4>
+     <section>
+      <dl class="def">
+       <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used①②">Contexts in which this element can be used</a>:
+       <dd>Any.
+       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model①②">Content Model</a>:
+       <dd>One or more <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style③">style</a></code> elements.
+       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute①①">Attributes</a>:
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-style-class-name" id="ref-for-element-attrdef-style-class-name">name</a></code> - the name of this style class definition
+      </dl>
+      <p>The <code><a data-link-type="element" href="#elementdef-style-class" id="ref-for-elementdef-style-class">style-class</a></code> element supplies a <dfn class="dfn-paneled" data-dfn-for="style-class" data-dfn-type="dfn" data-noexport="" id="style-class-style-class-definition">style class definition</dfn>,
+which associates a list of style property values with a class that can be
+referenced elsewhere using its name alone, as per the rules of <a data-link-type="dfn" href="#style-property-computation" id="ref-for-style-property-computation①">style
+property computation</a>. The list of property values in the class is
+contained in a set of child <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style④">style</a></code> elements.</p>
+      <p>The <dfn class="dfn-paneled" data-dfn-for="style-class" data-dfn-type="element-attr" data-export="" id="element-attrdef-style-class-name"><code>name</code></dfn> attribute supplies the name of this style class
+definition.</p>
+      <p>Multiple occurrences of <code><a data-link-type="element" href="#elementdef-style-class" id="ref-for-elementdef-style-class①">style-class</a></code> are permitted to share the same value
+of <code><a data-link-type="element-sub" href="#element-attrdef-style-class-name" id="ref-for-element-attrdef-style-class-name①">name</a></code>. These are equivalent to a single occurrence of <code><a data-link-type="element" href="#elementdef-style-class" id="ref-for-elementdef-style-class②">style-class</a></code> with the same constituent definitions of style property values
+in the same order.</p>
+     </section>
+     <h4 class="heading settled" data-level="5.3.4" id="the-style-selector-element"><span class="secno">5.3.4. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-style-selector"><code>style-selector</code></dfn> element</span><a class="self-link" href="#the-style-selector-element"></a></h4>
+     <section>
+      <dl class="def">
+       <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used①③">Contexts in which this element can be used</a>:
+       <dd>Any.
+       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model①③">Content Model</a>:
+       <dd>One or more <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style⑤">style</a></code> elements.
+       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute①②">Attributes</a>:
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-style-selector-rule" id="ref-for-element-attrdef-style-selector-rule">rule</a></code> - a set of element names to which this style selector definition applies
+      </dl>
+      <p>The <code><a data-link-type="element" href="#elementdef-style-selector" id="ref-for-elementdef-style-selector">style-selector</a></code> element supplies a <dfn class="dfn-paneled" data-dfn-for="style-selector" data-dfn-type="dfn" data-lt="style selector definition" data-noexport="" id="style-selector-style-selector-definition">style selector
+definition</dfn>, which defines a list of style property values applying to
+all elements matching a <a data-link-type="dfn" href="#style-selector-style-selector-rule" id="ref-for-style-selector-style-selector-rule①">style selector rule</a>, as per the rules of <a data-link-type="dfn" href="#style-property-computation" id="ref-for-style-property-computation②">style
+property computation</a>. The list is contained in a set of child <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style⑥">style</a></code> elements that belong to the class selector.</p>
+      <p>The <dfn class="dfn-paneled" data-dfn-for="style-selector" data-dfn-type="element-attr" data-export="" id="element-attrdef-style-selector-rule"><code>rule</code></dfn> attribute supplies a <dfn class="dfn-paneled" data-dfn-for="style-selector" data-dfn-type="dfn" data-noexport="" id="style-selector-style-selector-rule">style selector rule</dfn> that is automatically applied to all semantic MNX elements to determine a set of
+implied style properties. The following rule syntax is supported:</p>
+      <ul>
+       <li data-md="">
+        <p>An <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens" id="ref-for-space-separated-tokens③">unordered set of space-separated tokens</a>, each of which is the name
+of an MNX element. Elements whose names belong to this set are considered to
+match the rule.</p>
+      </ul>
+      <p>Multiple occurrences of <code><a data-link-type="element" href="#elementdef-style-selector" id="ref-for-elementdef-style-selector①">style-selector</a></code> are permitted to share the same value
+of <code><a data-link-type="element-sub" href="#element-attrdef-style-selector-rule" id="ref-for-element-attrdef-style-selector-rule①">rule</a></code>. These are equivalent to a single occurrence of <code><a data-link-type="element" href="#elementdef-style-selector" id="ref-for-elementdef-style-selector②">style-selector</a></code> with the same constituent definitions of style property values
+in the same order.</p>
+     </section>
+     <h4 class="heading settled" data-level="5.3.5" id="cwmnx-common-properties"><span class="secno">5.3.5. </span><span class="content">Common style properties</span><a class="self-link" href="#cwmnx-common-properties"></a></h4>
+     <p>The following <a data-link-type="dfn" href="#style-properties" id="ref-for-style-properties②">style properties</a> apply to many kinds of object in CWMNX, and in general
 apply to all descendants of the element within which they are specified.</p>
-    <h5 class="heading settled" data-level="5.3.2.1" id="the-color-property"><span class="secno">5.3.2.1. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-color"><code>color</code></dfn> property</span><a class="self-link" href="#the-color-property"></a></h5>
-    <section> The <a class="property" data-link-type="propdesc" href="#propdef-color" id="ref-for-propdef-color">color</a> property specifies a <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#colors" id="ref-for-colors">simple color</a> to be used to render a notational object. </section>
-    <h5 class="heading settled" data-level="5.3.2.2" id="the-glyph-property"><span class="secno">5.3.2.2. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-glyph"><code>glyph</code></dfn> property</span><a class="self-link" href="#the-glyph-property"></a></h5>
-    <section> The <a class="property" data-link-type="propdesc" href="#propdef-glyph" id="ref-for-propdef-glyph①">glyph</a> property specifies a specific <a data-link-type="dfn" href="https://w3c.github.io/smufl/gitbook/specification/glyphnames.html#">SMuFL glyph name</a> to be used to render a notational object. </section>
-    <section>
-     <h3 class="heading settled" data-level="5.4" id="cwmnx-rendering"><span class="secno">5.4. </span><span class="content">Rendering</span><a class="self-link" href="#cwmnx-rendering"></a></h3>
-    </section>
-    <section>
-     <h3 class="heading settled" data-level="5.5" id="cwmnx-interpretation"><span class="secno">5.5. </span><span class="content">Interpretation</span><a class="self-link" href="#cwmnx-interpretation"></a></h3>
-    </section>
-    <section>
-     <h2 class="heading settled" data-level="6" id="gmnx"><span class="secno">6. </span><span class="content">GMNX</span><a class="self-link" href="#gmnx"></a></h2>
-    </section>
-    <section>
-     <div data-fill-with="index">
-      <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
-      <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
-      <ul class="index">
-       <li><a href="#accidental">Accidental</a><span>, in §5.2.1.1</span>
-       <li><a href="#alphanumeric-ascii-characters">alphanumeric ASCII characters</a><span>, in §2.2.1</span>
-       <li>
-        articulations
-        <ul>
-         <li><a href="#articulations">definition of</a><span>, in §5.2.1.2</span>
-         <li><a href="#elementdef-articulations">(element)</a><span>, in §5.2.6.8</span>
-        </ul>
-       <li><a href="#ascii-digits">ASCII digits</a><span>, in §2.2.1</span>
-       <li><a href="#ascii-hex-digits">ASCII hex digits</a><span>, in §2.2.1</span>
-       <li><a href="#ascii-letters">ASCII letters</a><span>, in §2.2.1</span>
-       <li><a href="#base-note-values">base note values</a><span>, in §5.2.1.8</span>
-       <li><a href="#elementdef-bracket">bracket</a><span>, in §5.2.8.3</span>
-       <li><a href="#chords">chords</a><span>, in §5.2.1.2</span>
-       <li>
-        clef
-        <ul>
-         <li><a href="#clef">definition of</a><span>, in §5.2.1.1</span>
-         <li><a href="#elementdef-clef">(element)</a><span>, in §5.2.9.5</span>
-        </ul>
-       <li><a href="#elementdef-coda">coda</a><span>, in §5.2.7.5</span>
-       <li><a href="#collect-a-sequence-of-characters">collect a sequence of characters</a><span>, in §2.2.1</span>
-       <li><a href="#propdef-color">color</a><span>, in §5.3.2.1</span>
-       <li><a href="#container">container</a><span>, in §4.1</span>
-       <li><a href="#container-document">container document</a><span>, in §3.1</span>
-       <li><a href="#content-categories">content categories</a><span>, in §3.2</span>
-       <li><a href="#content-categories">content category</a><span>, in §3.2</span>
-       <li><a href="#content-model">Content model</a><span>, in §3.2.1</span>
-       <li><a href="#contexts-in-which-this-element-can-be-used">Contexts in which this element can be used</a><span>, in §3.2.1</span>
-       <li><a href="#control-characters">control characters</a><span>, in §2.2.1</span>
-       <li><a href="#valdef-wedge-type-crescendo">crescendo</a><span>, in §5.2.8.1</span>
-       <li><a href="#elementdef-cwmnx">cwmnx</a><span>, in §5.2.3.1</span>
-       <li><a href="#valdef-wedge-type-diminuendo">diminuendo</a><span>, in §5.2.8.1</span>
-       <li><a href="#direction">direction</a><span>, in §5.2.1.4</span>
-       <li><a href="#direction-content">Direction content</a><span>, in §5.2.7</span>
-       <li><a href="#elementdef-directions">directions</a><span>, in §5.2.7</span>
-       <li><a href="#direction-scope">direction scope</a><span>, in §5.2.7</span>
-       <li><a href="#elementdef-dirgroup">dirgroup</a><span>, in §5.2.8.4</span>
-       <li><a href="#valdef-stem-down">down</a><span>, in §5.2.5.2</span>
-       <li><a href="#elementdef-dynamics">dynamics</a><span>, in §5.2.7.1</span>
-       <li><a href="#element-location">element location</a><span>, in §2.2.3</span>
-       <li><a href="#element-attrdef-spans-end">end</a><span>, in §5.2.8</span>
-       <li><a href="#elementdef-event">event</a><span>, in §5.2.5.2</span>
-       <li><a href="#event-content">Event content</a><span>, in §5.2.6</span>
-       <li><a href="#elementdef-expression">expression</a><span>, in §5.2.7.4</span>
-       <li><a href="#valdef-dynamics-type-f">f</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-ff">ff</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-fff">fff</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-ffff">ffff</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-fffff">fffff</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-ffffff">ffffff</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-fp">fp</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-fz">fz</a><span>, in §5.2.7.1</span>
-       <li><a href="#general-note-values">general note values</a><span>, in §5.2.1.8</span>
-       <li><a href="#elementdef-glissando">glissando</a><span>, in §5.2.6.5</span>
-       <li><a href="#propdef-glyph">glyph</a><span>, in §5.3.2.2</span>
-       <li><a href="#elementdef-grace">grace</a><span>, in §5.2.5.4</span>
-       <li><a href="#elementdef-harmony">harmony</a><span>, in §5.2.7.2</span>
-       <li><a href="#element-attrdef-tuplet-inner">inner</a><span>, in §5.2.5.3</span>
-       <li><a href="#elementdef-instruction">instruction</a><span>, in §5.2.7.3</span>
-       <li><a href="#interpretation-content">Interpretation content</a><span>, in §5.2.11</span>
-       <li><a href="#elementdef-key">key</a><span>, in §5.2.9.1</span>
-       <li><a href="#key-signature">key signature</a><span>, in §5.2.1.1</span>
-       <li><a href="#strip-leading-and-trailing-white-space">leading and trailing white space stripped</a><span>, in §2.2.1</span>
-       <li><a href="#element-attrdef-directions-location">location</a><span>, in §5.2.7</span>
-       <li><a href="#lowercase-ascii-hex-digits">lowercase ASCII hex digits</a><span>, in §2.2.1</span>
-       <li><a href="#lowercase-ascii-letters">lowercase ASCII letters</a><span>, in §2.2.1</span>
-       <li><a href="#elementdef-lyric">lyric</a><span>, in §5.2.6.3</span>
-       <li><a href="#elementdef-measure">measure</a><span>, in §5.2.4.1</span>
-       <li><a href="#measure-location">measure location</a><span>, in §5.2.2.3</span>
-       <li><a href="#metadata-content">Metadata content</a><span>, in §4.2.1.1</span>
-       <li><a href="#metrical-position">metrical position</a><span>, in §5.2.1.3</span>
-       <li><a href="#valdef-dynamics-type-mf">mf</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-mp">mp</a><span>, in §5.2.7.1</span>
-       <li><a href="#musical-body">musical bodies</a><span>, in §4.2.1.2</span>
-       <li><a href="#musical-body">musical body</a><span>, in §4.2.1.2</span>
-       <li><a href="#musical-body">musical body content</a><span>, in §4.2.1.2</span>
-       <li><a href="#notated-event">notated event</a><span>, in §5.2.1.2</span>
-       <li><a href="#notated-sequence">notated sequence</a><span>, in §5.2.1.5</span>
-       <li><a href="#notational-idiom">notational idiom</a><span>, in §2.1.1</span>
-       <li><a href="#elementdef-note">note</a><span>, in §5.2.6.1</span>
-       <li><a href="#notes">notes</a><span>, in §5.2.1.2</span>
-       <li><a href="#note-value">note value</a><span>, in §5.2.1.8</span>
-       <li><a href="#note-value-quantity">note value quantity</a><span>, in §5.2.2.2</span>
-       <li><a href="#number-of-dots">number of dots</a><span>, in §5.2.1.8</span>
-       <li>
-        orient
-        <ul>
-         <li><a href="#element-attrdef-sequence-orient">element-attr for sequence</a><span>, in §5.2.5.1</span>
-         <li><a href="#element-attrdef-event-orient">element-attr for event</a><span>, in §5.2.5.2</span>
-         <li><a href="#element-attrdef-tuplet-orient">element-attr for tuplet</a><span>, in §5.2.5.3</span>
-        </ul>
-       <li><a href="#orientation">orientation</a><span>, in §5.2.1.9</span>
-       <li><a href="#elementdef-ornaments">ornaments</a><span>, in §5.2.6.7</span>
-       <li><a href="#element-attrdef-tuplet-outer">outer</a><span>, in §5.2.5.3</span>
-       <li><a href="#valdef-dynamics-type-p">p</a><span>, in §5.2.7.1</span>
-       <li><a href="#elementdef-part">part</a><span>, in §5.2.3.3</span>
-       <li><a href="#elementdef-part-abbreviation">part-abbreviation</a><span>, in §5.2.10.2</span>
-       <li><a href="#part-description-content">Part description content</a><span>, in §5.2.10</span>
-       <li><a href="#elementdef-part-name">part-name</a><span>, in §5.2.10.1</span>
-       <li><a href="#parts">parts</a><span>, in §5.2.1.1</span>
-       <li><a href="#elementdef-pedal">pedal</a><span>, in §5.2.8.2</span>
-       <li><a href="#performance-event">performance event</a><span>, in §5.2.1.7</span>
-       <li><a href="#performance-interpretation">performance interpretation</a><span>, in §5.2.1.6</span>
-       <li><a href="#performance-order">performance order</a><span>, in §5.2.4</span>
-       <li><a href="#valdef-dynamics-type-pp">pp</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-ppp">ppp</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-pppp">pppp</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-ppppp">ppppp</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-pppppp">pppppp</a><span>, in §5.2.7.1</span>
-       <li><a href="#element-attrdef-cwmnx-profile">profile</a><span>, in §5.2.3.1</span>
-       <li><a href="#element-attrdef-style-property">property</a><span>, in §5.3.1</span>
-       <li><a href="#rational-number">rational number</a><span>, in §2.2.2.1</span>
-       <li>
-        rest
-        <ul>
-         <li><a href="#rest">definition of</a><span>, in §5.2.1.2</span>
-         <li><a href="#elementdef-rest">(element)</a><span>, in §5.2.6.2</span>
-        </ul>
-       <li><a href="#valdef-dynamics-type-rf">rf</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-rfz">rfz</a><span>, in §5.2.7.1</span>
-       <li><a href="#rules-for-parsing-rational-numbers">rules for parsing rational numbers</a><span>, in §2.2.2.1</span>
-       <li><a href="#elementdef-score-instrument">score-instrument</a><span>, in §5.2.10.3</span>
-       <li><a href="#score-order">score order</a><span>, in §5.2.4</span>
-       <li><a href="#score-profile">score profile</a><span>, in §2.1.2</span>
-       <li><a href="#score-types">score types</a><span>, in §1.2</span>
-       <li><a href="#elementdef-segno">segno</a><span>, in §5.2.7.6</span>
-       <li><a href="#elementdef-sequence">sequence</a><span>, in §5.2.5.1</span>
-       <li><a href="#sequence-content">Sequence content</a><span>, in §5.2.5</span>
-       <li><a href="#sequence-the-content">sequence the content</a><span>, in §5.2.5</span>
-       <li><a href="#sequence-the-content">sequencing the content</a><span>, in §5.2.5</span>
-       <li><a href="#valdef-dynamics-type-sf">sf</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-sffz">sffz</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-sfp">sfp</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-sfpp">sfpp</a><span>, in §5.2.7.1</span>
-       <li><a href="#valdef-dynamics-type-sfz">sfz</a><span>, in §5.2.7.1</span>
-       <li><a href="#single-ended">Single-ended</a><span>, in §5.2.1.4</span>
-       <li><a href="#skip-white-space">skip white space</a><span>, in §2.2.1</span>
-       <li><a href="#elementdef-slide">slide</a><span>, in §5.2.6.6</span>
-       <li><a href="#elementdef-slur">slur</a><span>, in §5.2.6.4</span>
-       <li><a href="#space-characters">space characters</a><span>, in §2.2.1</span>
-       <li><a href="#span">Span</a><span>, in §5.2.1.4</span>
-       <li><a href="#spanning-directions">Spanning directions</a><span>, in §5.2.8</span>
-       <li>
-        staff
-        <ul>
-         <li><a href="#staff">definition of</a><span>, in §5.2.1.1</span>
-         <li><a href="#element-attrdef-sequence-staff">element-attr for sequence</a><span>, in §5.2.5.1</span>
-         <li><a href="#element-attrdef-event-staff">element-attr for event</a><span>, in §5.2.5.2</span>
-         <li><a href="#element-attrdef-tuplet-staff">element-attr for tuplet</a><span>, in §5.2.5.3</span>
-        </ul>
-       <li><a href="#staff-content">Staff content</a><span>, in §5.2.9</span>
-       <li><a href="#elementdef-staff-details">staff-details</a><span>, in §5.2.9.4</span>
-       <li><a href="#staff-index">staff index</a><span>, in §5.2.1.1</span>
-       <li><a href="#valdef-cwmnx-profile-standard">standard</a><span>, in §5.2.3.1</span>
-       <li><a href="#starting-position">starting position</a><span>, in §5.2.5</span>
-       <li>
-        staves
-        <ul>
-         <li><a href="#staff">definition of</a><span>, in §5.2.1.1</span>
-         <li><a href="#elementdef-staves">(element)</a><span>, in §5.2.9.3</span>
-        </ul>
-       <li><a href="#propdef-stem">stem</a><span>, in §5.2.5.2</span>
-       <li><a href="#strictly-splitting-the-string">strictly split</a><span>, in §2.2.1</span>
-       <li><a href="#strictly-splitting-the-string">strictly split a string</a><span>, in §2.2.1</span>
-       <li><a href="#strictly-splitting-the-string">strictly splitting the string</a><span>, in §2.2.1</span>
-       <li><a href="#stripping-and-collapsing-white-space">strip and collapse white space</a><span>, in §2.2.1</span>
-       <li><a href="#strip-leading-and-trailing-white-space">strip leading and trailing white space</a><span>, in §2.2.1</span>
-       <li><a href="#stripped-line-breaks">strip line breaks</a><span>, in §2.2.1</span>
-       <li><a href="#stripped-line-breaks">stripped line breaks</a><span>, in §2.2.1</span>
-       <li><a href="#stripping-and-collapsing-white-space">stripping and collapsing white space</a><span>, in §2.2.1</span>
-       <li><a href="#strip-leading-and-trailing-white-space">stripping leading and trailing white space</a><span>, in §2.2.1</span>
-       <li><a href="#elementdef-style">style</a><span>, in §5.3.1</span>
-       <li><a href="#style-properties">Style properties</a><span>, in §5.3</span>
-       <li><a href="#elementdef-system">system</a><span>, in §5.2.3.2</span>
-       <li><a href="#system-content">System content</a><span>, in §5.2.4</span>
-       <li><a href="#elementdef-technical">technical</a><span>, in §5.2.6.9</span>
-       <li>
-        this
-        <ul>
-         <li><a href="#this">definition of</a><span>, in §1.9.2</span>
-         <li><a href="#elementdef-this">(element)</a><span>, in §1.9.2</span>
-        </ul>
-       <li><a href="#elementdef-time">time</a><span>, in §5.2.9.2</span>
-       <li><a href="#time-modification-ratio">time modification ratio</a><span>, in §5.2.5</span>
-       <li><a href="#elementdef-transpose">transpose</a><span>, in §5.2.9.7</span>
-       <li><a href="#elementdef-tuplet">tuplet</a><span>, in §5.2.5.3</span>
-       <li>
-        type
-        <ul>
-         <li><a href="#element-attrdef-dynamics-type">element-attr for dynamics</a><span>, in §5.2.7.1</span>
-         <li><a href="#element-attrdef-wedge-type">element-attr for wedge</a><span>, in §5.2.8.1</span>
-        </ul>
-       <li><a href="#valdef-stem-up">up</a><span>, in §5.2.5.2</span>
-       <li><a href="#uppercase-ascii-hex-digits">uppercase ASCII hex digits</a><span>, in §2.2.1</span>
-       <li><a href="#uppercase-ascii-letters">uppercase ASCII letters</a><span>, in §2.2.1</span>
-       <li><a href="#elementdef-use-instrument">use-instrument</a><span>, in §5.2.9.6</span>
-       <li><a href="#element-attrdef-event-value">value</a><span>, in §5.2.5.2</span>
-       <li><a href="#elementdef-wedge">wedge</a><span>, in §5.2.8.1</span>
-       <li><a href="#white_space">white_space</a><span>, in §2.2.1</span>
-       <li><a href="#white_space">white_space characters</a><span>, in §2.2.1</span>
-      </ul>
-      <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
-      <ul class="index">
-       <li>
-        <a data-link-type="biblio">[DOM]</a> defines the following terms:
-        <ul>
-         <li><a href="https://dom.spec.whatwg.org/#concept-attribute">attribute</a>
-        </ul>
-       <li>
-        <a data-link-type="biblio">[HTML]</a> defines the following terms:
-        <ul>
-         <li><a href="https://www.w3.org/TR/html5/infrastructure.html#signed-integers">rules for parsing integers</a>
-         <li><a href="https://www.w3.org/TR/html5/infrastructure.html#signed-integers">rules for parsing signed integers</a>
-         <li><a href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens">set of space-separated tokens</a>
-         <li><a href="https://www.w3.org/TR/html5/infrastructure.html#colors">simple color</a>
-         <li><a href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens">split a string on spaces</a>
-         <li><a href="https://www.w3.org/TR/html5/infrastructure.html#floating-point-numbers">valid floating-point number</a>
-        </ul>
-       <li>
-        <a data-link-type="biblio">[INFRA]</a> defines the following terms:
-        <ul>
-         <li><a href="https://infra.spec.whatwg.org/#split-on-commas">split a string on commas</a>
-        </ul>
-      </ul>
-     </div>
-    </section>
-    <section>
-     <div data-fill-with="issues-index"></div>
-    </section>
+     <h5 class="heading settled" data-level="5.3.5.1" id="the-color-property"><span class="secno">5.3.5.1. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-color"><code>color</code></dfn> property</span><a class="self-link" href="#the-color-property"></a></h5>
+     <section> The <a class="property" data-link-type="propdesc" href="#propdef-color" id="ref-for-propdef-color">color</a> property specifies a <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#colors" id="ref-for-colors">simple color</a> to be used to render a notational object. </section>
+     <h5 class="heading settled" data-level="5.3.5.2" id="the-glyph-property"><span class="secno">5.3.5.2. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-glyph"><code>glyph</code></dfn> property</span><a class="self-link" href="#the-glyph-property"></a></h5>
+     <section> The <a class="property" data-link-type="propdesc" href="#propdef-glyph" id="ref-for-propdef-glyph①">glyph</a> property specifies a specific <a data-link-type="dfn" href="https://w3c.github.io/smufl/gitbook/specification/glyphnames.html#">SMuFL glyph name</a> to be used to render a notational object. </section>
+     <section>
+      <h3 class="heading settled" data-level="5.4" id="cwmnx-rendering"><span class="secno">5.4. </span><span class="content">Rendering</span><a class="self-link" href="#cwmnx-rendering"></a></h3>
+     </section>
+     <section>
+      <h3 class="heading settled" data-level="5.5" id="cwmnx-interpretation"><span class="secno">5.5. </span><span class="content">Interpretation</span><a class="self-link" href="#cwmnx-interpretation"></a></h3>
+     </section>
+     <section>
+      <h2 class="heading settled" data-level="6" id="gmnx"><span class="secno">6. </span><span class="content">GMNX</span><a class="self-link" href="#gmnx"></a></h2>
+     </section>
+     <section>
+      <div data-fill-with="index">
+       <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
+       <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
+       <ul class="index">
+        <li><a href="#accidental">Accidental</a><span>, in §5.2.1.1</span>
+        <li><a href="#alphanumeric-ascii-characters">alphanumeric ASCII characters</a><span>, in §2.2.1</span>
+        <li>
+         articulations
+         <ul>
+          <li><a href="#articulations">definition of</a><span>, in §5.2.1.2</span>
+          <li><a href="#elementdef-articulations">(element)</a><span>, in §5.2.6.8</span>
+         </ul>
+        <li><a href="#ascii-digits">ASCII digits</a><span>, in §2.2.1</span>
+        <li><a href="#ascii-hex-digits">ASCII hex digits</a><span>, in §2.2.1</span>
+        <li><a href="#ascii-letters">ASCII letters</a><span>, in §2.2.1</span>
+        <li><a href="#base-note-values">base note values</a><span>, in §5.2.1.8</span>
+        <li><a href="#elementdef-bracket">bracket</a><span>, in §5.2.8.3</span>
+        <li><a href="#chords">chords</a><span>, in §5.2.1.2</span>
+        <li><a href="#elementdef-class">class</a><span>, in §5.3.2</span>
+        <li>
+         clef
+         <ul>
+          <li><a href="#clef">definition of</a><span>, in §5.2.1.1</span>
+          <li><a href="#elementdef-clef">(element)</a><span>, in §5.2.9.5</span>
+         </ul>
+        <li><a href="#elementdef-coda">coda</a><span>, in §5.2.7.5</span>
+        <li><a href="#collect-a-sequence-of-characters">collect a sequence of characters</a><span>, in §2.2.1</span>
+        <li><a href="#propdef-color">color</a><span>, in §5.3.5.1</span>
+        <li><a href="#container">container</a><span>, in §4.1</span>
+        <li><a href="#container-document">container document</a><span>, in §3.1</span>
+        <li><a href="#content-categories">content categories</a><span>, in §3.2</span>
+        <li><a href="#content-categories">content category</a><span>, in §3.2</span>
+        <li><a href="#content-model">Content model</a><span>, in §3.2.1</span>
+        <li><a href="#contexts-in-which-this-element-can-be-used">Contexts in which this element can be used</a><span>, in §3.2.1</span>
+        <li><a href="#control-characters">control characters</a><span>, in §2.2.1</span>
+        <li><a href="#valdef-wedge-type-crescendo">crescendo</a><span>, in §5.2.8.1</span>
+        <li><a href="#elementdef-cwmnx">cwmnx</a><span>, in §5.2.3.1</span>
+        <li><a href="#valdef-wedge-type-diminuendo">diminuendo</a><span>, in §5.2.8.1</span>
+        <li><a href="#direction">direction</a><span>, in §5.2.1.4</span>
+        <li><a href="#direction-content">Direction content</a><span>, in §5.2.7</span>
+        <li><a href="#elementdef-directions">directions</a><span>, in §5.2.7</span>
+        <li><a href="#direction-scope">direction scope</a><span>, in §5.2.7</span>
+        <li><a href="#elementdef-dirgroup">dirgroup</a><span>, in §5.2.8.4</span>
+        <li><a href="#valdef-stem-down">down</a><span>, in §5.2.5.2</span>
+        <li><a href="#elementdef-dynamics">dynamics</a><span>, in §5.2.7.1</span>
+        <li><a href="#element-location">element location</a><span>, in §2.2.3</span>
+        <li><a href="#element-attrdef-spans-end">end</a><span>, in §5.2.8</span>
+        <li><a href="#elementdef-event">event</a><span>, in §5.2.5.2</span>
+        <li><a href="#event-content">Event content</a><span>, in §5.2.6</span>
+        <li><a href="#elementdef-expression">expression</a><span>, in §5.2.7.4</span>
+        <li><a href="#valdef-dynamics-type-f">f</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-ff">ff</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-fff">fff</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-ffff">ffff</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-fffff">fffff</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-ffffff">ffffff</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-fp">fp</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-fz">fz</a><span>, in §5.2.7.1</span>
+        <li><a href="#general-note-values">general note values</a><span>, in §5.2.1.8</span>
+        <li><a href="#elementdef-glissando">glissando</a><span>, in §5.2.6.5</span>
+        <li><a href="#propdef-glyph">glyph</a><span>, in §5.3.5.2</span>
+        <li><a href="#elementdef-grace">grace</a><span>, in §5.2.5.4</span>
+        <li><a href="#elementdef-harmony">harmony</a><span>, in §5.2.7.2</span>
+        <li><a href="#element-attrdef-tuplet-inner">inner</a><span>, in §5.2.5.3</span>
+        <li><a href="#elementdef-instruction">instruction</a><span>, in §5.2.7.3</span>
+        <li><a href="#interpretation-content">Interpretation content</a><span>, in §5.2.11</span>
+        <li><a href="#elementdef-key">key</a><span>, in §5.2.9.1</span>
+        <li><a href="#key-signature">key signature</a><span>, in §5.2.1.1</span>
+        <li><a href="#strip-leading-and-trailing-white-space">leading and trailing white space stripped</a><span>, in §2.2.1</span>
+        <li><a href="#element-attrdef-directions-location">location</a><span>, in §5.2.7</span>
+        <li><a href="#lowercase-ascii-hex-digits">lowercase ASCII hex digits</a><span>, in §2.2.1</span>
+        <li><a href="#lowercase-ascii-letters">lowercase ASCII letters</a><span>, in §2.2.1</span>
+        <li><a href="#elementdef-lyric">lyric</a><span>, in §5.2.6.3</span>
+        <li><a href="#elementdef-measure">measure</a><span>, in §5.2.4.1</span>
+        <li><a href="#measure-location">measure location</a><span>, in §5.2.2.3</span>
+        <li><a href="#metadata-content">Metadata content</a><span>, in §4.2.1.1</span>
+        <li><a href="#metrical-position">metrical position</a><span>, in §5.2.1.3</span>
+        <li><a href="#valdef-dynamics-type-mf">mf</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-mp">mp</a><span>, in §5.2.7.1</span>
+        <li><a href="#musical-body">musical bodies</a><span>, in §4.2.1.2</span>
+        <li><a href="#musical-body">musical body</a><span>, in §4.2.1.2</span>
+        <li><a href="#musical-body">musical body content</a><span>, in §4.2.1.2</span>
+        <li>
+         name
+         <ul>
+          <li><a href="#element-attrdef-class-name">element-attr for class</a><span>, in §5.3.2</span>
+          <li><a href="#element-attrdef-style-class-name">element-attr for style-class</a><span>, in §5.3.3</span>
+         </ul>
+        <li><a href="#notated-event">notated event</a><span>, in §5.2.1.2</span>
+        <li><a href="#notated-sequence">notated sequence</a><span>, in §5.2.1.5</span>
+        <li><a href="#notational-idiom">notational idiom</a><span>, in §2.1.1</span>
+        <li><a href="#elementdef-note">note</a><span>, in §5.2.6.1</span>
+        <li><a href="#notes">notes</a><span>, in §5.2.1.2</span>
+        <li><a href="#note-value">note value</a><span>, in §5.2.1.8</span>
+        <li><a href="#note-value-quantity">note value quantity</a><span>, in §5.2.2.2</span>
+        <li><a href="#number-of-dots">number of dots</a><span>, in §5.2.1.8</span>
+        <li>
+         orient
+         <ul>
+          <li><a href="#element-attrdef-sequence-orient">element-attr for sequence</a><span>, in §5.2.5.1</span>
+          <li><a href="#element-attrdef-event-orient">element-attr for event</a><span>, in §5.2.5.2</span>
+          <li><a href="#element-attrdef-tuplet-orient">element-attr for tuplet</a><span>, in §5.2.5.3</span>
+         </ul>
+        <li><a href="#orientation">orientation</a><span>, in §5.2.1.9</span>
+        <li><a href="#elementdef-ornaments">ornaments</a><span>, in §5.2.6.7</span>
+        <li><a href="#element-attrdef-tuplet-outer">outer</a><span>, in §5.2.5.3</span>
+        <li><a href="#valdef-dynamics-type-p">p</a><span>, in §5.2.7.1</span>
+        <li><a href="#elementdef-part">part</a><span>, in §5.2.3.3</span>
+        <li><a href="#elementdef-part-abbreviation">part-abbreviation</a><span>, in §5.2.10.2</span>
+        <li><a href="#part-description-content">Part description content</a><span>, in §5.2.10</span>
+        <li><a href="#elementdef-part-name">part-name</a><span>, in §5.2.10.1</span>
+        <li><a href="#parts">parts</a><span>, in §5.2.1.1</span>
+        <li><a href="#elementdef-pedal">pedal</a><span>, in §5.2.8.2</span>
+        <li><a href="#performance-event">performance event</a><span>, in §5.2.1.7</span>
+        <li><a href="#performance-interpretation">performance interpretation</a><span>, in §5.2.1.6</span>
+        <li><a href="#performance-order">performance order</a><span>, in §5.2.4</span>
+        <li><a href="#valdef-dynamics-type-pp">pp</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-ppp">ppp</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-pppp">pppp</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-ppppp">ppppp</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-pppppp">pppppp</a><span>, in §5.2.7.1</span>
+        <li><a href="#element-attrdef-cwmnx-profile">profile</a><span>, in §5.2.3.1</span>
+        <li><a href="#element-attrdef-style-property">property</a><span>, in §5.3.1</span>
+        <li><a href="#rational-number">rational number</a><span>, in §2.2.2.1</span>
+        <li>
+         rest
+         <ul>
+          <li><a href="#rest">definition of</a><span>, in §5.2.1.2</span>
+          <li><a href="#elementdef-rest">(element)</a><span>, in §5.2.6.2</span>
+         </ul>
+        <li><a href="#valdef-dynamics-type-rf">rf</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-rfz">rfz</a><span>, in §5.2.7.1</span>
+        <li><a href="#element-attrdef-style-selector-rule">rule</a><span>, in §5.3.4</span>
+        <li><a href="#rules-for-parsing-rational-numbers">rules for parsing rational numbers</a><span>, in §2.2.2.1</span>
+        <li><a href="#elementdef-score-instrument">score-instrument</a><span>, in §5.2.10.3</span>
+        <li><a href="#score-order">score order</a><span>, in §5.2.4</span>
+        <li><a href="#score-profile">score profile</a><span>, in §2.1.2</span>
+        <li><a href="#score-types">score types</a><span>, in §1.2</span>
+        <li><a href="#elementdef-segno">segno</a><span>, in §5.2.7.6</span>
+        <li><a href="#elementdef-sequence">sequence</a><span>, in §5.2.5.1</span>
+        <li><a href="#sequence-content">Sequence content</a><span>, in §5.2.5</span>
+        <li><a href="#sequence-the-content">sequence the content</a><span>, in §5.2.5</span>
+        <li><a href="#sequence-the-content">sequencing the content</a><span>, in §5.2.5</span>
+        <li><a href="#valdef-dynamics-type-sf">sf</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-sffz">sffz</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-sfp">sfp</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-sfpp">sfpp</a><span>, in §5.2.7.1</span>
+        <li><a href="#valdef-dynamics-type-sfz">sfz</a><span>, in §5.2.7.1</span>
+        <li><a href="#single-ended">Single-ended</a><span>, in §5.2.1.4</span>
+        <li><a href="#skip-white-space">skip white space</a><span>, in §2.2.1</span>
+        <li><a href="#elementdef-slide">slide</a><span>, in §5.2.6.6</span>
+        <li><a href="#elementdef-slur">slur</a><span>, in §5.2.6.4</span>
+        <li><a href="#space-characters">space characters</a><span>, in §2.2.1</span>
+        <li><a href="#span">Span</a><span>, in §5.2.1.4</span>
+        <li><a href="#spanning-directions">Spanning directions</a><span>, in §5.2.8</span>
+        <li>
+         staff
+         <ul>
+          <li><a href="#staff">definition of</a><span>, in §5.2.1.1</span>
+          <li><a href="#element-attrdef-sequence-staff">element-attr for sequence</a><span>, in §5.2.5.1</span>
+          <li><a href="#element-attrdef-event-staff">element-attr for event</a><span>, in §5.2.5.2</span>
+          <li><a href="#element-attrdef-tuplet-staff">element-attr for tuplet</a><span>, in §5.2.5.3</span>
+         </ul>
+        <li><a href="#staff-content">Staff content</a><span>, in §5.2.9</span>
+        <li><a href="#elementdef-staff-details">staff-details</a><span>, in §5.2.9.4</span>
+        <li><a href="#staff-index">staff index</a><span>, in §5.2.1.1</span>
+        <li><a href="#valdef-cwmnx-profile-standard">standard</a><span>, in §5.2.3.1</span>
+        <li><a href="#starting-position">starting position</a><span>, in §5.2.5</span>
+        <li>
+         staves
+         <ul>
+          <li><a href="#staff">definition of</a><span>, in §5.2.1.1</span>
+          <li><a href="#elementdef-staves">(element)</a><span>, in §5.2.9.3</span>
+         </ul>
+        <li><a href="#propdef-stem">stem</a><span>, in §5.2.5.2</span>
+        <li><a href="#strictly-splitting-the-string">strictly split</a><span>, in §2.2.1</span>
+        <li><a href="#strictly-splitting-the-string">strictly split a string</a><span>, in §2.2.1</span>
+        <li><a href="#strictly-splitting-the-string">strictly splitting the string</a><span>, in §2.2.1</span>
+        <li><a href="#stripping-and-collapsing-white-space">strip and collapse white space</a><span>, in §2.2.1</span>
+        <li><a href="#strip-leading-and-trailing-white-space">strip leading and trailing white space</a><span>, in §2.2.1</span>
+        <li><a href="#stripped-line-breaks">strip line breaks</a><span>, in §2.2.1</span>
+        <li><a href="#stripped-line-breaks">stripped line breaks</a><span>, in §2.2.1</span>
+        <li><a href="#stripping-and-collapsing-white-space">stripping and collapsing white space</a><span>, in §2.2.1</span>
+        <li><a href="#strip-leading-and-trailing-white-space">stripping leading and trailing white space</a><span>, in §2.2.1</span>
+        <li><a href="#elementdef-style">style</a><span>, in §5.3.1</span>
+        <li><a href="#elementdef-style-class">style-class</a><span>, in §5.3.3</span>
+        <li><a href="#style-class-style-class-definition">style class definition</a><span>, in §5.3.3</span>
+        <li><a href="#style-properties">Style properties</a><span>, in §5.3</span>
+        <li><a href="#style-property-computation">style property computation</a><span>, in §5.3</span>
+        <li><a href="#elementdef-style-selector">style-selector</a><span>, in §5.3.4</span>
+        <li><a href="#style-selector-style-selector-definition">style selector definition</a><span>, in §5.3.4</span>
+        <li><a href="#style-selector-style-selector-rule">style selector rule</a><span>, in §5.3.4</span>
+        <li><a href="#elementdef-system">system</a><span>, in §5.2.3.2</span>
+        <li><a href="#system-content">System content</a><span>, in §5.2.4</span>
+        <li><a href="#elementdef-technical">technical</a><span>, in §5.2.6.9</span>
+        <li>
+         this
+         <ul>
+          <li><a href="#this">definition of</a><span>, in §1.9.2</span>
+          <li><a href="#elementdef-this">(element)</a><span>, in §1.9.2</span>
+         </ul>
+        <li><a href="#elementdef-time">time</a><span>, in §5.2.9.2</span>
+        <li><a href="#time-modification-ratio">time modification ratio</a><span>, in §5.2.5</span>
+        <li><a href="#elementdef-transpose">transpose</a><span>, in §5.2.9.7</span>
+        <li><a href="#elementdef-tuplet">tuplet</a><span>, in §5.2.5.3</span>
+        <li>
+         type
+         <ul>
+          <li><a href="#element-attrdef-dynamics-type">element-attr for dynamics</a><span>, in §5.2.7.1</span>
+          <li><a href="#element-attrdef-wedge-type">element-attr for wedge</a><span>, in §5.2.8.1</span>
+         </ul>
+        <li><a href="#valdef-stem-up">up</a><span>, in §5.2.5.2</span>
+        <li><a href="#uppercase-ascii-hex-digits">uppercase ASCII hex digits</a><span>, in §2.2.1</span>
+        <li><a href="#uppercase-ascii-letters">uppercase ASCII letters</a><span>, in §2.2.1</span>
+        <li><a href="#elementdef-use-instrument">use-instrument</a><span>, in §5.2.9.6</span>
+        <li><a href="#element-attrdef-event-value">value</a><span>, in §5.2.5.2</span>
+        <li><a href="#elementdef-wedge">wedge</a><span>, in §5.2.8.1</span>
+        <li><a href="#white_space">white_space</a><span>, in §2.2.1</span>
+        <li><a href="#white_space">white_space characters</a><span>, in §2.2.1</span>
+       </ul>
+       <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
+       <ul class="index">
+        <li>
+         <a data-link-type="biblio">[DOM]</a> defines the following terms:
+         <ul>
+          <li><a href="https://dom.spec.whatwg.org/#concept-attribute">attribute</a>
+         </ul>
+        <li>
+         <a data-link-type="biblio">[HTML]</a> defines the following terms:
+         <ul>
+          <li><a href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens">ordered set of space-separated tokens</a>
+          <li><a href="https://www.w3.org/TR/html5/infrastructure.html#signed-integers">rules for parsing integers</a>
+          <li><a href="https://www.w3.org/TR/html5/infrastructure.html#signed-integers">rules for parsing signed integers</a>
+          <li><a href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens">set of space-separated tokens</a>
+          <li><a href="https://www.w3.org/TR/html5/infrastructure.html#colors">simple color</a>
+          <li><a href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens">split a string on spaces</a>
+          <li><a href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens">unordered set of space-separated tokens</a>
+          <li><a href="https://www.w3.org/TR/html5/infrastructure.html#floating-point-numbers">valid floating-point number</a>
+         </ul>
+        <li>
+         <a data-link-type="biblio">[INFRA]</a> defines the following terms:
+         <ul>
+          <li><a href="https://infra.spec.whatwg.org/#split-on-commas">split a string on commas</a>
+         </ul>
+       </ul>
+      </div>
+     </section>
+     <section>
+      <div data-fill-with="issues-index"></div>
+     </section>
+    </ol>
    </section>
   </main>
   <div data-fill-with="conformance">
@@ -3199,6 +3294,9 @@ apply to all descendants of the element within which they are specified.</p>
     <li><a href="#ref-for-contexts-in-which-this-element-can-be-used⑧">5.2.8.1. The wedge element</a>
     <li><a href="#ref-for-contexts-in-which-this-element-can-be-used⑨">5.2.8.4. The dirgroup element</a>
     <li><a href="#ref-for-contexts-in-which-this-element-can-be-used①⓪">5.3.1. The style element</a>
+    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used①①">5.3.2. The class element</a>
+    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used①②">5.3.3. The style-class element</a>
+    <li><a href="#ref-for-contexts-in-which-this-element-can-be-used①③">5.3.4. The style-selector element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="content-model">
@@ -3215,6 +3313,9 @@ apply to all descendants of the element within which they are specified.</p>
     <li><a href="#ref-for-content-model⑧">5.2.8.1. The wedge element</a>
     <li><a href="#ref-for-content-model⑨">5.2.8.4. The dirgroup element</a>
     <li><a href="#ref-for-content-model①⓪">5.3.1. The style element</a>
+    <li><a href="#ref-for-content-model①①">5.3.2. The class element</a>
+    <li><a href="#ref-for-content-model①②">5.3.3. The style-class element</a>
+    <li><a href="#ref-for-content-model①③">5.3.4. The style-selector element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="container">
@@ -3676,15 +3777,24 @@ apply to all descendants of the element within which they are specified.</p>
    <ul>
     <li><a href="#ref-for-style-properties">3.2.1. Element definitions</a>
     <li><a href="#ref-for-style-properties①">5.2.5.2. The event element</a>
-    <li><a href="#ref-for-style-properties②">5.3. Style properties</a> <a href="#ref-for-style-properties③">(2)</a>
-    <li><a href="#ref-for-style-properties④">5.3.2. Common style properties</a>
+    <li><a href="#ref-for-style-properties②">5.3.5. Common style properties</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="style-property-computation">
+   <b><a href="#style-property-computation">#style-property-computation</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-style-property-computation">5.3.2. The class element</a>
+    <li><a href="#ref-for-style-property-computation①">5.3.3. The style-class element</a>
+    <li><a href="#ref-for-style-property-computation②">5.3.4. The style-selector element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-style">
    <b><a href="#elementdef-style">#elementdef-style</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-style">5.3. Style properties</a> <a href="#ref-for-elementdef-style①">(2)</a>
-    <li><a href="#ref-for-elementdef-style②">5.3.1. The style element</a>
+    <li><a href="#ref-for-elementdef-style">5.3. Style properties</a>
+    <li><a href="#ref-for-elementdef-style①">5.3.1. The style element</a> <a href="#ref-for-elementdef-style②">(2)</a>
+    <li><a href="#ref-for-elementdef-style③">5.3.3. The style-class element</a> <a href="#ref-for-elementdef-style④">(2)</a>
+    <li><a href="#ref-for-elementdef-style⑤">5.3.4. The style-selector element</a> <a href="#ref-for-elementdef-style⑥">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-style-property">
@@ -3693,17 +3803,75 @@ apply to all descendants of the element within which they are specified.</p>
     <li><a href="#ref-for-element-attrdef-style-property">5.3.1. The style element</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="elementdef-class">
+   <b><a href="#elementdef-class">#elementdef-class</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-class">5.3. Style properties</a>
+    <li><a href="#ref-for-elementdef-class①">5.3.2. The class element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-class-name">
+   <b><a href="#element-attrdef-class-name">#element-attrdef-class-name</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-class-name">5.3. Style properties</a>
+    <li><a href="#ref-for-element-attrdef-class-name①">5.3.2. The class element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-style-class">
+   <b><a href="#elementdef-style-class">#elementdef-style-class</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-style-class">5.3.3. The style-class element</a> <a href="#ref-for-elementdef-style-class①">(2)</a> <a href="#ref-for-elementdef-style-class②">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="style-class-style-class-definition">
+   <b><a href="#style-class-style-class-definition">#style-class-style-class-definition</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-style-class-style-class-definition">5.3. Style properties</a>
+    <li><a href="#ref-for-style-class-style-class-definition①">5.3.2. The class element</a> <a href="#ref-for-style-class-style-class-definition②">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-style-class-name">
+   <b><a href="#element-attrdef-style-class-name">#element-attrdef-style-class-name</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-style-class-name">5.3.3. The style-class element</a> <a href="#ref-for-element-attrdef-style-class-name①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-style-selector">
+   <b><a href="#elementdef-style-selector">#elementdef-style-selector</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-style-selector">5.3.4. The style-selector element</a> <a href="#ref-for-elementdef-style-selector①">(2)</a> <a href="#ref-for-elementdef-style-selector②">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="style-selector-style-selector-definition">
+   <b><a href="#style-selector-style-selector-definition">#style-selector-style-selector-definition</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-style-selector-style-selector-definition">5.3. Style properties</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-style-selector-rule">
+   <b><a href="#element-attrdef-style-selector-rule">#element-attrdef-style-selector-rule</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-style-selector-rule">5.3.4. The style-selector element</a> <a href="#ref-for-element-attrdef-style-selector-rule①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="style-selector-style-selector-rule">
+   <b><a href="#style-selector-style-selector-rule">#style-selector-style-selector-rule</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-style-selector-style-selector-rule">5.3. Style properties</a>
+    <li><a href="#ref-for-style-selector-style-selector-rule①">5.3.4. The style-selector element</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="propdef-color">
    <b><a href="#propdef-color">#propdef-color</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-propdef-color">5.3.2.1. The color property</a>
+    <li><a href="#ref-for-propdef-color">5.3.5.1. The color property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="propdef-glyph">
    <b><a href="#propdef-glyph">#propdef-glyph</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-propdef-glyph">5.2.2.4. SMuFL glyph name syntax</a>
-    <li><a href="#ref-for-propdef-glyph①">5.3.2.2. The glyph property</a>
+    <li><a href="#ref-for-propdef-glyph①">5.3.5.2. The glyph property</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
