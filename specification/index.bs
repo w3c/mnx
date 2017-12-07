@@ -970,7 +970,8 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
             Set the <a>metrical position</a> of <var>next</var> to <var>sequence cursor</var>.
           </li>
           <li>
-            Add the duration of <var>next</var> to <var>sequence cursor</var>.
+            Add the duration of <var>next</var>, multiplied by the
+              <a>time modification ratio</a>, to <var>sequence cursor</var>.
           </li>
         </ol>
       </li>
@@ -978,12 +979,14 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
         <ol>
           <li>
             <a>Sequence the content</a> of <var>next</var>, using
-            <var>sequence cursor</var> as the <a>starting position</a> and the
-            the <a>time modification ratio</a> as determined by the <{tuplet}>.
+            <var>sequence cursor</var> as the <a>starting position</a>, and the
+            multiplying the <a>time modification ratio</a> by the <{tuplet}>'s
+            <{tuplet/outer}> / <{tuplet/inner}> ratio
+            for the processing of the tuplet.
           </li>
           <li>
-            Add the total duration of <var>next</var> as given by <{tuplet/outer}>
-            to <var>sequence cursor</var>.
+            Add the total duration of <var>next</var> as given by <{tuplet/outer}>, multiplied by the
+              <a>time modification ratio</a>, to <var>sequence cursor</var>.
           </li>
         </ol>
       </li>
@@ -1110,13 +1113,13 @@ and contiguous run within a <{sequence}, and which are subject to a common
 A <{tuplet}> behaves much like a <{sequence}> element with respect to its contents.
 
 The required attribute <dfn element-attr>outer</dfn> supplies a <a>note value
-quantity</a> describing the duration of the tuplet with respect to its enclosing
-context. This is how much time the tuplet occupies in the measure or tuplet in
-which it is placed.
+quantity</a> describing both the duration and the units of the tuplet with
+respect to its enclosing context. This is how much time the tuplet occupies in
+the measure or tuplet in which it is placed.
 
 The required attribute <dfn element-attr>inner</dfn> supplies a <a>note value
-quantity</a> describing the total duration of the events within the tuplet, as
-notated.
+quantity</a> describing the total duration and the units of the events within
+the tuplet, as notated.
 
 The contents of the tuplet are placed into a temporal sequence by performing
 the procedure <a>sequencing the content</a> with a <a>starting position</a>

@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="d38eb06caacb4aab0e1dfa474c8b4106ab156376" name="document-revision">
+  <meta content="2ea43e9099448b3c7c51e68bc4d337a8db95c8b2" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -2354,14 +2354,15 @@ following procedure, called <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt
          If <var>next</var> is <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event②">event</a></code>: 
          <ol>
           <li> Set the <a data-link-type="dfn" href="#metrical-position" id="ref-for-metrical-position⑤">metrical position</a> of <var>next</var> to <var>sequence cursor</var>. 
-          <li> Add the duration of <var>next</var> to <var>sequence cursor</var>. 
+          <li> Add the duration of <var>next</var>, multiplied by the <a data-link-type="dfn" href="#time-modification-ratio" id="ref-for-time-modification-ratio">time modification ratio</a>, to <var>sequence cursor</var>. 
          </ol>
         <li>
          Else, if <var>next</var> is <code><a data-link-type="element" href="#elementdef-tuplet" id="ref-for-elementdef-tuplet">tuplet</a></code>: 
          <ol>
-          <li> <a data-link-type="dfn" href="#sequence-the-content" id="ref-for-sequence-the-content">Sequence the content</a> of <var>next</var>, using <var>sequence cursor</var> as the <a data-link-type="dfn" href="#starting-position" id="ref-for-starting-position①">starting position</a> and the
-            the <a data-link-type="dfn" href="#time-modification-ratio" id="ref-for-time-modification-ratio">time modification ratio</a> as determined by the <code><a data-link-type="element" href="#elementdef-tuplet" id="ref-for-elementdef-tuplet①">tuplet</a></code>. 
-          <li> Add the total duration of <var>next</var> as given by <code><a data-link-type="element-sub" href="#element-attrdef-tuplet-outer" id="ref-for-element-attrdef-tuplet-outer">outer</a></code> to <var>sequence cursor</var>. 
+          <li> <a data-link-type="dfn" href="#sequence-the-content" id="ref-for-sequence-the-content">Sequence the content</a> of <var>next</var>, using <var>sequence cursor</var> as the <a data-link-type="dfn" href="#starting-position" id="ref-for-starting-position①">starting position</a>, and the
+            multiplying the <a data-link-type="dfn" href="#time-modification-ratio" id="ref-for-time-modification-ratio①">time modification ratio</a> by the <code><a data-link-type="element" href="#elementdef-tuplet" id="ref-for-elementdef-tuplet①">tuplet</a></code>'s <code><a data-link-type="element-sub" href="#element-attrdef-tuplet-outer" id="ref-for-element-attrdef-tuplet-outer">outer</a></code> / <code><a data-link-type="element-sub" href="#element-attrdef-tuplet-inner" id="ref-for-element-attrdef-tuplet-inner">inner</a></code> ratio
+            for the processing of the tuplet. 
+          <li> Add the total duration of <var>next</var> as given by <code><a data-link-type="element-sub" href="#element-attrdef-tuplet-outer" id="ref-for-element-attrdef-tuplet-outer①">outer</a></code>, multiplied by the <a data-link-type="dfn" href="#time-modification-ratio" id="ref-for-time-modification-ratio②">time modification ratio</a>, to <var>sequence cursor</var>. 
          </ol>
         <li>
          Else, if <var>next</var> is <code><a data-link-type="element" href="#elementdef-grace" id="ref-for-elementdef-grace">grace</a></code>: 
@@ -2375,7 +2376,7 @@ following procedure, called <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt
           <li> Set the <a data-link-type="dfn" href="#metrical-position" id="ref-for-metrical-position⑥">metrical position</a> of <var>next</var> to <var>sequence cursor</var>. 
          </ol>
         <li> If <var>sequence cursor</var> exceeds the specified duration for the enclosing element
-        (time signature for a <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure④">measure</a></code>, <code><a data-link-type="element-sub" href="#element-attrdef-tuplet-inner" id="ref-for-element-attrdef-tuplet-inner">inner</a></code> attribute for a <code><a data-link-type="element" href="#elementdef-tuplet" id="ref-for-elementdef-tuplet②">tuplet</a></code>), throw
+        (time signature for a <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure④">measure</a></code>, <code><a data-link-type="element-sub" href="#element-attrdef-tuplet-inner" id="ref-for-element-attrdef-tuplet-inner①">inner</a></code> attribute for a <code><a data-link-type="element" href="#elementdef-tuplet" id="ref-for-elementdef-tuplet②">tuplet</a></code>), throw
         a processing error. 
        </ol>
      </ol>
@@ -2395,7 +2396,7 @@ following procedure, called <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt
       <p>The <code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence②">sequence</a></code> element organizes a set of musical events within a
 measure into a strict temporal sequence, accompanied by relevant directions.
 This is accomplished by <a data-link-type="dfn" href="#sequence-the-content" id="ref-for-sequence-the-content①">sequencing the content</a>, with a <a data-link-type="dfn" href="#starting-position" id="ref-for-starting-position②">starting
-position</a> of 0 and a <a data-link-type="dfn" href="#time-modification-ratio" id="ref-for-time-modification-ratio①">time modification ratio</a> of 1.</p>
+position</a> of 0 and a <a data-link-type="dfn" href="#time-modification-ratio" id="ref-for-time-modification-ratio③">time modification ratio</a> of 1.</p>
       <p>The optional <dfn class="dfn-paneled" data-dfn-for="sequence" data-dfn-type="element-attr" data-export="" id="element-attrdef-sequence-orient"><code>orient</code></dfn> attribute provides a specific <a data-link-type="dfn" href="#orientation" id="ref-for-orientation①">orientation</a> for all content within this sequence. If not provided, the
 orientation is determined automatically according to the implementation’s
 rendering rules.</p>
@@ -2449,26 +2450,26 @@ is determined automatically by the implementation.
        <dd><a data-link-type="dfn" href="#sequence-content" id="ref-for-sequence-content④">Sequence content</a>
        <dd><a data-link-type="dfn" href="#interpretation-content" id="ref-for-interpretation-content③">Interpretation content</a>
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute⑤">Attributes</a>:
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-tuplet-outer" id="ref-for-element-attrdef-tuplet-outer①">outer</a></code> - duration with respect to containing element
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-tuplet-inner" id="ref-for-element-attrdef-tuplet-inner①">inner</a></code> - duration of the enclosed sequence content
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-tuplet-outer" id="ref-for-element-attrdef-tuplet-outer②">outer</a></code> - duration with respect to containing element
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-tuplet-inner" id="ref-for-element-attrdef-tuplet-inner②">inner</a></code> - duration of the enclosed sequence content
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-sequence-orient" id="ref-for-element-attrdef-sequence-orient①">orient</a></code> - optional <a data-link-type="dfn" href="#orientation" id="ref-for-orientation④">orientation</a> of this tuplet 
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-sequence-staff" id="ref-for-element-attrdef-sequence-staff①">staff</a></code> - optional <a data-link-type="dfn" href="#staff-index" id="ref-for-staff-index⑤">staff index</a> of this tuplet 
       </dl>
       <p>The <code><a data-link-type="element" href="#elementdef-tuplet" id="ref-for-elementdef-tuplet⑦">tuplet</a></code> element organizes a set of musical events that form a distinct
-and contiguous run within a &lt;{sequence}, and which are subject to a common <a data-link-type="dfn" href="#time-modification-ratio" id="ref-for-time-modification-ratio②">time modification ratio</a> expressed as the quotient of two rational numbers.
+and contiguous run within a &lt;{sequence}, and which are subject to a common <a data-link-type="dfn" href="#time-modification-ratio" id="ref-for-time-modification-ratio④">time modification ratio</a> expressed as the quotient of two rational numbers.
 A <code><a data-link-type="element" href="#elementdef-tuplet" id="ref-for-elementdef-tuplet⑧">tuplet</a></code> behaves much like a <code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence⑦">sequence</a></code> element with respect to its contents.</p>
       <p>The required attribute <dfn class="dfn-paneled" data-dfn-for="tuplet" data-dfn-type="element-attr" data-export="" id="element-attrdef-tuplet-outer"><code>outer</code></dfn> supplies a <a data-link-type="dfn" href="#note-value-quantity" id="ref-for-note-value-quantity②">note value
-quantity</a> describing the duration of the tuplet with respect to its enclosing
-context. This is how much time the tuplet occupies in the measure or tuplet in
-which it is placed.</p>
+quantity</a> describing both the duration and the units of the tuplet with
+respect to its enclosing context. This is how much time the tuplet occupies in
+the measure or tuplet in which it is placed.</p>
       <p>The required attribute <dfn class="dfn-paneled" data-dfn-for="tuplet" data-dfn-type="element-attr" data-export="" id="element-attrdef-tuplet-inner"><code>inner</code></dfn> supplies a <a data-link-type="dfn" href="#note-value-quantity" id="ref-for-note-value-quantity③">note value
-quantity</a> describing the total duration of the events within the tuplet, as
-notated.</p>
+quantity</a> describing the total duration and the units of the events within
+the tuplet, as notated.</p>
       <p>The contents of the tuplet are placed into a temporal sequence by performing
-the procedure <a data-link-type="dfn" href="#sequence-the-content" id="ref-for-sequence-the-content②">sequencing the content</a> with a <a data-link-type="dfn" href="#starting-position" id="ref-for-starting-position③">starting position</a> determined by the parent context, and a <a data-link-type="dfn" href="#time-modification-ratio" id="ref-for-time-modification-ratio③">time modification ratio</a> equal
-to the tuplet’s <code><a data-link-type="element-sub" href="#element-attrdef-tuplet-outer" id="ref-for-element-attrdef-tuplet-outer②">outer</a></code> value divided by its <code><a data-link-type="element-sub" href="#element-attrdef-tuplet-inner" id="ref-for-element-attrdef-tuplet-inner②">inner</a></code> value.
+the procedure <a data-link-type="dfn" href="#sequence-the-content" id="ref-for-sequence-the-content②">sequencing the content</a> with a <a data-link-type="dfn" href="#starting-position" id="ref-for-starting-position③">starting position</a> determined by the parent context, and a <a data-link-type="dfn" href="#time-modification-ratio" id="ref-for-time-modification-ratio⑤">time modification ratio</a> equal
+to the tuplet’s <code><a data-link-type="element-sub" href="#element-attrdef-tuplet-outer" id="ref-for-element-attrdef-tuplet-outer③">outer</a></code> value divided by its <code><a data-link-type="element-sub" href="#element-attrdef-tuplet-inner" id="ref-for-element-attrdef-tuplet-inner③">inner</a></code> value.
 Following this procedure, the value of the <var>sequence cursor</var> MUST
-equal the value of <code><a data-link-type="element-sub" href="#element-attrdef-tuplet-inner" id="ref-for-element-attrdef-tuplet-inner③">inner</a></code>, or the contents are considered to be in error.</p>
+equal the value of <code><a data-link-type="element-sub" href="#element-attrdef-tuplet-inner" id="ref-for-element-attrdef-tuplet-inner④">inner</a></code>, or the contents are considered to be in error.</p>
       <p>The optional <dfn data-dfn-for="tuplet" data-dfn-type="element-attr" data-export="" id="element-attrdef-tuplet-orient"><code>orient</code><a class="self-link" href="#element-attrdef-tuplet-orient"></a></dfn> attribute provides a specific <a data-link-type="dfn" href="#orientation" id="ref-for-orientation⑤">orientation</a> for all content within this sequence. If not provided, the
 orientation is determined automatically according to the implementation’s
 rendering rules.</p>
@@ -3574,9 +3575,9 @@ apply to all descendants of the element within which they are specified.</p>
   <aside class="dfn-panel" data-for="time-modification-ratio">
    <b><a href="#time-modification-ratio">#time-modification-ratio</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-time-modification-ratio">5.2.5. Sequence content</a>
-    <li><a href="#ref-for-time-modification-ratio①">5.2.5.1. The sequence element</a>
-    <li><a href="#ref-for-time-modification-ratio②">5.2.5.3. The tuplet element</a> <a href="#ref-for-time-modification-ratio③">(2)</a>
+    <li><a href="#ref-for-time-modification-ratio">5.2.5. Sequence content</a> <a href="#ref-for-time-modification-ratio①">(2)</a> <a href="#ref-for-time-modification-ratio②">(3)</a>
+    <li><a href="#ref-for-time-modification-ratio③">5.2.5.1. The sequence element</a>
+    <li><a href="#ref-for-time-modification-ratio④">5.2.5.3. The tuplet element</a> <a href="#ref-for-time-modification-ratio⑤">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="sequence-the-content">
@@ -3656,15 +3657,15 @@ apply to all descendants of the element within which they are specified.</p>
   <aside class="dfn-panel" data-for="element-attrdef-tuplet-outer">
    <b><a href="#element-attrdef-tuplet-outer">#element-attrdef-tuplet-outer</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-tuplet-outer">5.2.5. Sequence content</a>
-    <li><a href="#ref-for-element-attrdef-tuplet-outer①">5.2.5.3. The tuplet element</a> <a href="#ref-for-element-attrdef-tuplet-outer②">(2)</a>
+    <li><a href="#ref-for-element-attrdef-tuplet-outer">5.2.5. Sequence content</a> <a href="#ref-for-element-attrdef-tuplet-outer①">(2)</a>
+    <li><a href="#ref-for-element-attrdef-tuplet-outer②">5.2.5.3. The tuplet element</a> <a href="#ref-for-element-attrdef-tuplet-outer③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-tuplet-inner">
    <b><a href="#element-attrdef-tuplet-inner">#element-attrdef-tuplet-inner</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-tuplet-inner">5.2.5. Sequence content</a>
-    <li><a href="#ref-for-element-attrdef-tuplet-inner①">5.2.5.3. The tuplet element</a> <a href="#ref-for-element-attrdef-tuplet-inner②">(2)</a> <a href="#ref-for-element-attrdef-tuplet-inner③">(3)</a>
+    <li><a href="#ref-for-element-attrdef-tuplet-inner">5.2.5. Sequence content</a> <a href="#ref-for-element-attrdef-tuplet-inner①">(2)</a>
+    <li><a href="#ref-for-element-attrdef-tuplet-inner②">5.2.5.3. The tuplet element</a> <a href="#ref-for-element-attrdef-tuplet-inner③">(2)</a> <a href="#ref-for-element-attrdef-tuplet-inner④">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-grace">
