@@ -719,7 +719,7 @@ The syntax for <a>general note values</a> consists of these components:
       supply the <a>number of dots</a>.
 1. A <a>base note value</a> encoding.
 
-To parse a note value, use the following procedure:
+To <dfn>parse a note value</dfn>, use the following procedure:
 
   1. Let <var>input</var> be the string being parsed.
   1. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
@@ -765,14 +765,31 @@ Here are some instances of the note value syntax:
 
 <h5 id="note-value-multiple">Note value quantity syntax</h5>
 
-MNX permits any <a>rational number</a> whose denominator is a positive power of two to be used to specify
-a <dfn>note value quantity</dfn>. These are used to specify time signatures and tuplets among other cases.
+MNX allows the specification of a <dfn>note value quantity</dfn>, defined as
+an integer multiple of a <a>note value</a>. To parse a note value quantity,
+use the following procedure:
+
+  1. Let <var>input</var> be the string being parsed.
+  1. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
+      the string.
+  1. Let <var>multiplier</var> be 1.
+  1. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a> only, and let <var>unparsed number</var>
+      be the result.
+  1. If <var>unparsed number</var> is not empty, assign <var>unparsed number</var> to <var>multiplier</var>
+      using the <a>rules for parsing integers</a>.
+  1. Let <var>note value</var> be the result of parsing the remainder of string beginning at <var>position</var>
+      according to the rules to <a>parse a note value</a>.
+  1. Return <var>multiplier</var> and <var>note value</var> as the result.
 
 Examples include:
 
-: `3/8`
-:: three eighth notes
-: `5`
+: `/8`
+:: a single eighth note
+: `6/8`
+:: six eighth notes
+: `6./8`
+:: six dotted eighth notes
+: `5*1`
 :: five whole notes
 
 <h5 id="measure-locations">Measure location syntax</h5>

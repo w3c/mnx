@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="fd09bac8b472b5a1fed652a192a3ec08ffae6b3d" name="document-revision">
+  <meta content="d38eb06caacb4aab0e1dfa474c8b4106ab156376" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1884,7 +1884,7 @@ criteria for content in those formats, and how to parse them.</p>
     algorithm does not apply (those algorithms also perform <a data-link-type="dfn" href="#strip-leading-and-trailing-white-space" id="ref-for-strip-leading-and-trailing-white-space①">white space trimming</a>). </p>
     <h4 class="heading settled" data-level="2.2.2" id="numbers"><span class="secno">2.2.2. </span><span class="content">Numbers</span><a class="self-link" href="#numbers"></a></h4>
     <h5 class="heading settled" data-level="2.2.2.1" id="rational-numbers"><span class="secno">2.2.2.1. </span><span class="content">Rational numbers</span><a class="self-link" href="#rational-numbers"></a></h5>
-    <p>A string is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="rational-number">rational number</dfn> if it is either an integer, or a pair of integers
+    <p>A string is a <dfn data-dfn-type="dfn" data-noexport="" id="rational-number">rational number<a class="self-link" href="#rational-number"></a></dfn> if it is either an integer, or a pair of integers
   separated by a U+002F SLASH whose second element is nonzero.</p>
     <p>The <dfn data-dfn-type="dfn" data-export="" id="rules-for-parsing-rational-numbers">rules for parsing rational numbers<a class="self-link" href="#rules-for-parsing-rational-numbers"></a></dfn> are as given in the following algorithm. When
   invoked, the steps must be followed in the order given, aborting at the first step that returns
@@ -2121,7 +2121,7 @@ of the following forms:</p>
     <li data-md="">
      <p>A <a data-link-type="dfn" href="#base-note-values" id="ref-for-base-note-values④">base note value</a> encoding.</p>
    </ol>
-   <p>To parse a note value, use the following procedure:</p>
+   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="parse-a-note-value">parse a note value</dfn>, use the following procedure:</p>
    <ol>
     <li data-md="">
      <p>Let <var>input</var> be the string being parsed.</p>
@@ -2182,14 +2182,38 @@ of the following forms:</p>
     </dl>
    </div>
    <h5 class="heading settled" data-level="5.2.2.2" id="note-value-multiple"><span class="secno">5.2.2.2. </span><span class="content">Note value quantity syntax</span><a class="self-link" href="#note-value-multiple"></a></h5>
-   <p>MNX permits any <a data-link-type="dfn" href="#rational-number" id="ref-for-rational-number">rational number</a> whose denominator is a positive power of two to be used to specify
-a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="note-value-quantity">note value quantity</dfn>. These are used to specify time signatures and tuplets among other cases.</p>
+   <p>MNX allows the specification of a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="note-value-quantity">note value quantity</dfn>, defined as
+an integer multiple of a <a data-link-type="dfn" href="#note-value" id="ref-for-note-value①">note value</a>. To parse a note value quantity,
+use the following procedure:</p>
+   <ol>
+    <li data-md="">
+     <p>Let <var>input</var> be the string being parsed.</p>
+    <li data-md="">
+     <p>Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
+  the string.</p>
+    <li data-md="">
+     <p>Let <var>multiplier</var> be 1.</p>
+    <li data-md="">
+     <p><a data-link-type="dfn" href="#collect-a-sequence-of-characters" id="ref-for-collect-a-sequence-of-characters⑧">Collect a sequence of characters</a> that are <a data-link-type="dfn" href="#ascii-digits" id="ref-for-ascii-digits⑤">ASCII digits</a> only, and let <var>unparsed number</var> be the result.</p>
+    <li data-md="">
+     <p>If <var>unparsed number</var> is not empty, assign <var>unparsed number</var> to <var>multiplier</var> using the <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#signed-integers" id="ref-for-signed-integers②">rules for parsing integers</a>.</p>
+    <li data-md="">
+     <p>Let <var>note value</var> be the result of parsing the remainder of string beginning at <var>position</var> according to the rules to <a data-link-type="dfn" href="#parse-a-note-value" id="ref-for-parse-a-note-value">parse a note value</a>.</p>
+    <li data-md="">
+     <p>Return <var>multiplier</var> and <var>note value</var> as the result.</p>
+   </ol>
    <p>Examples include:</p>
    <dl>
-    <dt data-md=""><code>3/8</code>
+    <dt data-md=""><code>/8</code>
     <dd data-md="">
-     <p>three eighth notes</p>
-    <dt data-md=""><code>5</code>
+     <p>a single eighth note</p>
+    <dt data-md=""><code>6/8</code>
+    <dd data-md="">
+     <p>six eighth notes</p>
+    <dt data-md=""><code>6./8</code>
+    <dd data-md="">
+     <p>six dotted eighth notes</p>
+    <dt data-md=""><code>5*1</code>
     <dd data-md="">
      <p>five whole notes</p>
    </dl>
@@ -2398,7 +2422,7 @@ rendering rules.</p>
       <p>The <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event③">event</a></code> element represents a discrete period of time within a sequence
 during which one or more notes are performed, or in which a rest occurs.</p>
       <p>Events have a <dfn class="dfn-paneled" data-dfn-for="event" data-dfn-type="element-attr" data-export="" id="element-attrdef-event-value"><code>value</code></dfn> attribute describing their
-duration in the containing metrical context, given as a <a data-link-type="dfn" href="#note-value" id="ref-for-note-value①">note value</a>.</p>
+duration in the containing metrical context, given as a <a data-link-type="dfn" href="#note-value" id="ref-for-note-value②">note value</a>.</p>
       <p>The optional <dfn class="dfn-paneled" data-dfn-for="event" data-dfn-type="element-attr" data-export="" id="element-attrdef-event-orient"><code>orient</code></dfn> attribute provides a specific <a data-link-type="dfn" href="#orientation" id="ref-for-orientation③">orientation</a> for all content within this sequence. If not provided, the
 orientation is inherited from any <code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence④">sequence</a></code> or <code><a data-link-type="element" href="#elementdef-tuplet" id="ref-for-elementdef-tuplet④">tuplet</a></code> ancestor which
 specified it. If no ancestor did so, it is determined automatically according
@@ -2875,6 +2899,7 @@ apply to all descendants of the element within which they are specified.</p>
         <li><a href="#elementdef-ornaments">ornaments</a><span>, in §5.2.6.7</span>
         <li><a href="#element-attrdef-tuplet-outer">outer</a><span>, in §5.2.5.3</span>
         <li><a href="#valdef-dynamics-type-p">p</a><span>, in §5.2.7.1</span>
+        <li><a href="#parse-a-note-value">parse a note value</a><span>, in §5.2.2.1</span>
         <li><a href="#elementdef-part">part</a><span>, in §5.2.3.3</span>
         <li><a href="#elementdef-part-abbreviation">part-abbreviation</a><span>, in §5.2.10.2</span>
         <li><a href="#part-description-content">Part description content</a><span>, in §5.2.10</span>
@@ -3239,6 +3264,7 @@ apply to all descendants of the element within which they are specified.</p>
     <li><a href="#ref-for-ascii-digits">2.2.1. Common parser idioms</a>
     <li><a href="#ref-for-ascii-digits①">2.2.2.1. Rational numbers</a>
     <li><a href="#ref-for-ascii-digits②">5.2.2.1. Note value syntax</a> <a href="#ref-for-ascii-digits③">(2)</a> <a href="#ref-for-ascii-digits④">(3)</a>
+    <li><a href="#ref-for-ascii-digits⑤">5.2.2.2. Note value quantity syntax</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="collect-a-sequence-of-characters">
@@ -3247,18 +3273,13 @@ apply to all descendants of the element within which they are specified.</p>
     <li><a href="#ref-for-collect-a-sequence-of-characters">2.2.1. Common parser idioms</a> <a href="#ref-for-collect-a-sequence-of-characters①">(2)</a>
     <li><a href="#ref-for-collect-a-sequence-of-characters②">2.2.2.1. Rational numbers</a> <a href="#ref-for-collect-a-sequence-of-characters③">(2)</a> <a href="#ref-for-collect-a-sequence-of-characters④">(3)</a> <a href="#ref-for-collect-a-sequence-of-characters⑤">(4)</a>
     <li><a href="#ref-for-collect-a-sequence-of-characters⑥">5.2.2.1. Note value syntax</a> <a href="#ref-for-collect-a-sequence-of-characters⑦">(2)</a>
+    <li><a href="#ref-for-collect-a-sequence-of-characters⑧">5.2.2.2. Note value quantity syntax</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="strip-leading-and-trailing-white-space">
    <b><a href="#strip-leading-and-trailing-white-space">#strip-leading-and-trailing-white-space</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-strip-leading-and-trailing-white-space">2.2.1. Common parser idioms</a> <a href="#ref-for-strip-leading-and-trailing-white-space①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="rational-number">
-   <b><a href="#rational-number">#rational-number</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-rational-number">5.2.2.2. Note value quantity syntax</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-location">
@@ -3420,7 +3441,8 @@ apply to all descendants of the element within which they are specified.</p>
    <b><a href="#note-value">#note-value</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-note-value">5.2.1.2. Notated events</a>
-    <li><a href="#ref-for-note-value①">5.2.5.2. The event element</a>
+    <li><a href="#ref-for-note-value①">5.2.2.2. Note value quantity syntax</a>
+    <li><a href="#ref-for-note-value②">5.2.5.2. The event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="base-note-values">
@@ -3449,6 +3471,12 @@ apply to all descendants of the element within which they are specified.</p>
     <li><a href="#ref-for-orientation">5.2.5.1. The sequence element</a> <a href="#ref-for-orientation①">(2)</a>
     <li><a href="#ref-for-orientation②">5.2.5.2. The event element</a> <a href="#ref-for-orientation③">(2)</a>
     <li><a href="#ref-for-orientation④">5.2.5.3. The tuplet element</a> <a href="#ref-for-orientation⑤">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="parse-a-note-value">
+   <b><a href="#parse-a-note-value">#parse-a-note-value</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-parse-a-note-value">5.2.2.2. Note value quantity syntax</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="note-value-quantity">
