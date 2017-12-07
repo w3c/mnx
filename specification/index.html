@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="dae85c79de28f17e125ee961f389e7206d8a6f42" name="document-revision">
+  <meta content="5d34d6510efe7bfd122b904211c8598546a88104" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1424,7 +1424,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Draft Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-12-06">6 December 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-12-07">7 December 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1438,7 +1438,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 6 December 2017,
+In addition, as of 7 December 2017,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1550,7 +1550,8 @@ Parts of this work may be from another specification document.  If so, those par
          <ol class="toc">
           <li><a href="#note-value-syntax"><span class="secno">5.2.2.1</span> <span class="content">Note value syntax</span></a>
           <li><a href="#note-value-multiple"><span class="secno">5.2.2.2</span> <span class="content">Note value quantity syntax</span></a>
-          <li><a href="#measure-locations"><span class="secno">5.2.2.3</span> <span class="content">Measure locations</span></a>
+          <li><a href="#measure-locations"><span class="secno">5.2.2.3</span> <span class="content">Measure location syntax</span></a>
+          <li><a href="#glyph-names"><span class="secno">5.2.2.4</span> <span class="content">SMuFL glyph name syntax</span></a>
          </ol>
         <li>
          <a href="#cwmnx-body-content"><span class="secno">5.2.3</span> <span class="content">CWMNX body content</span></a>
@@ -1631,6 +1632,7 @@ Parts of this work may be from another specification document.  If so, those par
          <a href="#cwmnx-common-properties"><span class="secno">5.3.2</span> <span class="content">Common style properties</span></a>
          <ol class="toc">
           <li><a href="#the-color-property"><span class="secno">5.3.2.1</span> <span class="content">The <span><code>color</code></span> property</span></a>
+          <li><a href="#the-glyph-property"><span class="secno">5.3.2.2</span> <span class="content">The <span><code>glyph</code></span> property</span></a>
          </ol>
        </ol>
       <li><a href="#cwmnx-rendering"><span class="secno">5.4</span> <span class="content">Rendering</span></a>
@@ -2188,7 +2190,7 @@ a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="note-value-q
     <dd data-md="">
      <p>five whole notes</p>
    </dl>
-   <h5 class="heading settled" data-level="5.2.2.3" id="measure-locations"><span class="secno">5.2.2.3. </span><span class="content">Measure locations</span><a class="self-link" href="#measure-locations"></a></h5>
+   <h5 class="heading settled" data-level="5.2.2.3" id="measure-locations"><span class="secno">5.2.2.3. </span><span class="content">Measure location syntax</span><a class="self-link" href="#measure-locations"></a></h5>
    <p>There are a variety of situations in which the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="measure-location">measure location</dfn> of a
 musical event needs to be described, in terms of the content of the measure.</p>
    <p>The following cases exist for specifying <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location">measure locations</a>:</p>
@@ -2224,6 +2226,9 @@ musical event needs to be described, in terms of the content of the measure.</p>
       <p>the same metrical position as the event whose element ID is <code>event235</code></p>
     </dl>
    </div>
+   <h5 class="heading settled" data-level="5.2.2.4" id="glyph-names"><span class="secno">5.2.2.4. </span><span class="content">SMuFL glyph name syntax</span><a class="self-link" href="#glyph-names"></a></h5>
+   <p>Some contexts, particularly the <a class="property" data-link-type="propdesc" href="#propdef-glyph" id="ref-for-propdef-glyph">glyph</a> property, permit the specification of
+a <a data-link-type="dfn" href="https://w3c.github.io/smufl/gitbook/specification/glyphnames.html#">SMuFL glyph name</a> from the catalog of glyph names defined in the <a data-link-type="dfn" href="https://w3c.github.io/smufl/gitbook/specification#">SMuFL specification</a>.</p>
    <section>
     <h4 class="heading settled" data-level="5.2.3" id="cwmnx-body-content"><span class="secno">5.2.3. </span><span class="content">CWMNX body content</span><a class="self-link" href="#cwmnx-body-content"></a></h4>
     <p>These elements of a CWMNX score supply its high-level description and structure.</p>
@@ -2673,6 +2678,8 @@ whose value is supplied by this <code><a data-link-type="element" href="#element
 apply to all descendants of the element within which they are specified.</p>
     <h5 class="heading settled" data-level="5.3.2.1" id="the-color-property"><span class="secno">5.3.2.1. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-color"><code>color</code></dfn> property</span><a class="self-link" href="#the-color-property"></a></h5>
     <section> The <a class="property" data-link-type="propdesc" href="#propdef-color" id="ref-for-propdef-color">color</a> property specifies a <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#colors" id="ref-for-colors">simple color</a> to be used to render a notational object. </section>
+    <h5 class="heading settled" data-level="5.3.2.2" id="the-glyph-property"><span class="secno">5.3.2.2. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-glyph"><code>glyph</code></dfn> property</span><a class="self-link" href="#the-glyph-property"></a></h5>
+    <section> The <a class="property" data-link-type="propdesc" href="#propdef-glyph" id="ref-for-propdef-glyph①">glyph</a> property specifies a specific <a data-link-type="dfn" href="https://w3c.github.io/smufl/gitbook/specification/glyphnames.html#">SMuFL glyph name</a> to be used to render a notational object. </section>
     <section>
      <h3 class="heading settled" data-level="5.4" id="cwmnx-rendering"><span class="secno">5.4. </span><span class="content">Rendering</span><a class="self-link" href="#cwmnx-rendering"></a></h3>
     </section>
@@ -2742,6 +2749,7 @@ apply to all descendants of the element within which they are specified.</p>
        <li><a href="#valdef-dynamics-type-fz">fz</a><span>, in §5.2.7.1</span>
        <li><a href="#general-note-values">general note values</a><span>, in §5.2.1.8</span>
        <li><a href="#elementdef-glissando">glissando</a><span>, in §5.2.6.5</span>
+       <li><a href="#propdef-glyph">glyph</a><span>, in §5.3.2.2</span>
        <li><a href="#elementdef-grace">grace</a><span>, in §5.2.5.4</span>
        <li><a href="#elementdef-harmony">harmony</a><span>, in §5.2.7.2</span>
        <li><a href="#element-attrdef-tuplet-inner">inner</a><span>, in §5.2.5.3</span>
@@ -3161,7 +3169,7 @@ apply to all descendants of the element within which they are specified.</p>
   <aside class="dfn-panel" data-for="element-location">
    <b><a href="#element-location">#element-location</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-location">5.2.2.3. Measure locations</a> <a href="#ref-for-element-location①">(2)</a>
+    <li><a href="#ref-for-element-location">5.2.2.3. Measure location syntax</a> <a href="#ref-for-element-location①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="container-document">
@@ -3277,7 +3285,7 @@ apply to all descendants of the element within which they are specified.</p>
   <aside class="dfn-panel" data-for="metrical-position">
    <b><a href="#metrical-position">#metrical-position</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-metrical-position">5.2.2.3. Measure locations</a> <a href="#ref-for-metrical-position①">(2)</a> <a href="#ref-for-metrical-position②">(3)</a>
+    <li><a href="#ref-for-metrical-position">5.2.2.3. Measure location syntax</a> <a href="#ref-for-metrical-position①">(2)</a> <a href="#ref-for-metrical-position②">(3)</a>
     <li><a href="#ref-for-metrical-position③">5.2.5. Sequence content</a> <a href="#ref-for-metrical-position④">(2)</a> <a href="#ref-for-metrical-position⑤">(3)</a> <a href="#ref-for-metrical-position⑥">(4)</a>
    </ul>
   </aside>
@@ -3345,14 +3353,14 @@ apply to all descendants of the element within which they are specified.</p>
   <aside class="dfn-panel" data-for="note-value-quantity">
    <b><a href="#note-value-quantity">#note-value-quantity</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-note-value-quantity">5.2.2.3. Measure locations</a> <a href="#ref-for-note-value-quantity①">(2)</a>
+    <li><a href="#ref-for-note-value-quantity">5.2.2.3. Measure location syntax</a> <a href="#ref-for-note-value-quantity①">(2)</a>
     <li><a href="#ref-for-note-value-quantity②">5.2.5.3. The tuplet element</a> <a href="#ref-for-note-value-quantity③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="measure-location">
    <b><a href="#measure-location">#measure-location</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-measure-location">5.2.2.3. Measure locations</a> <a href="#ref-for-measure-location①">(2)</a> <a href="#ref-for-measure-location②">(3)</a> <a href="#ref-for-measure-location③">(4)</a>
+    <li><a href="#ref-for-measure-location">5.2.2.3. Measure location syntax</a> <a href="#ref-for-measure-location①">(2)</a> <a href="#ref-for-measure-location②">(3)</a> <a href="#ref-for-measure-location③">(4)</a>
     <li><a href="#ref-for-measure-location④">5.2.7. Direction content</a> <a href="#ref-for-measure-location⑤">(2)</a>
     <li><a href="#ref-for-measure-location⑥">5.2.7.1. The dynamics element</a>
     <li><a href="#ref-for-measure-location⑦">5.2.8. Spanning directions</a>
@@ -3397,7 +3405,7 @@ apply to all descendants of the element within which they are specified.</p>
   <aside class="dfn-panel" data-for="system-content">
    <b><a href="#system-content">#system-content</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-system-content">5.2.2.3. Measure locations</a> <a href="#ref-for-system-content①">(2)</a>
+    <li><a href="#ref-for-system-content">5.2.2.3. Measure location syntax</a> <a href="#ref-for-system-content①">(2)</a>
     <li><a href="#ref-for-system-content②">5.2.3.1. The cwmnx element</a> <a href="#ref-for-system-content③">(2)</a> <a href="#ref-for-system-content④">(3)</a>
     <li><a href="#ref-for-system-content⑤">5.2.3.2. The system element</a>
     <li><a href="#ref-for-system-content⑥">5.2.3.3. The part element</a>
@@ -3407,7 +3415,7 @@ apply to all descendants of the element within which they are specified.</p>
   <aside class="dfn-panel" data-for="elementdef-measure">
    <b><a href="#elementdef-measure">#elementdef-measure</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-measure">5.2.2.3. Measure locations</a>
+    <li><a href="#ref-for-elementdef-measure">5.2.2.3. Measure location syntax</a>
     <li><a href="#ref-for-elementdef-measure①">5.2.3.2. The system element</a> <a href="#ref-for-elementdef-measure②">(2)</a>
     <li><a href="#ref-for-elementdef-measure③">5.2.4. System content</a>
     <li><a href="#ref-for-elementdef-measure④">5.2.5. Sequence content</a>
@@ -3479,7 +3487,7 @@ apply to all descendants of the element within which they are specified.</p>
    <b><a href="#elementdef-event">#elementdef-event</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-elementdef-event">5.2.1.2. Notated events</a>
-    <li><a href="#ref-for-elementdef-event①">5.2.2.3. Measure locations</a>
+    <li><a href="#ref-for-elementdef-event①">5.2.2.3. Measure location syntax</a>
     <li><a href="#ref-for-elementdef-event②">5.2.5. Sequence content</a>
     <li><a href="#ref-for-elementdef-event③">5.2.5.2. The event element</a>
    </ul>
@@ -3689,6 +3697,13 @@ apply to all descendants of the element within which they are specified.</p>
    <b><a href="#propdef-color">#propdef-color</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-propdef-color">5.3.2.1. The color property</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="propdef-glyph">
+   <b><a href="#propdef-glyph">#propdef-glyph</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-propdef-glyph">5.2.2.4. SMuFL glyph name syntax</a>
+    <li><a href="#ref-for-propdef-glyph①">5.3.2.2. The glyph property</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */

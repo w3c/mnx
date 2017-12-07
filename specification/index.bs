@@ -83,6 +83,12 @@ url: https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens; typ
 url: https://www.w3.org/TR/html5/infrastructure.html#colors; type:dfn; spec: html;
     text: simple color
 
+url: https://w3c.github.io/smufl/gitbook/specification#; type: dfn;
+    text: SMuFL specification
+
+url: https://w3c.github.io/smufl/gitbook/specification/glyphnames.html#; type: dfn;
+    text: SMuFL glyph names
+
 </pre>
 <pre class="link-defaults">
 spec:dom; type:dfn; text:attribute
@@ -769,7 +775,7 @@ Examples include:
 : `5`
 :: five whole notes
 
-<h5 id="measure-locations">Measure locations</h5>
+<h5 id="measure-locations">Measure location syntax</h5>
 
 There are a variety of situations in which the <dfn>measure location</dfn> of a
 musical event needs to be described, in terms of the content of the measure.
@@ -811,6 +817,12 @@ Here are some instances of the measure location syntax:
 :: the same metrical position as the event whose element ID is `event235`
 
 </div>
+
+<h5 id="glyph-names">SMuFL glyph name syntax</h5>
+
+Some contexts, particularly the 'glyph' property, permit the specification of
+a <a>SMuFL glyph name</a> from the catalog of glyph names defined in the
+<a>SMuFL specification</a>.
 
 <section>
 <h4 id="cwmnx-body-content">CWMNX body content</h4>
@@ -1427,6 +1439,11 @@ apply to all descendants of the element within which they are specified.
 <h5 id="the-color-property">The <dfn property><code>color</code></dfn> property</h5>
 <section dfn-for="color">
   The 'color' property specifies a <a>simple color</a> to be used to render a notational object.
+</section>
+
+<h5 id="the-glyph-property">The <dfn property><code>glyph</code></dfn> property</h5>
+<section dfn-for="glyph">
+  The 'glyph' property specifies a specific <a>SMuFL glyph name</a> to be used to render a notational object.
 </section>
 
 <section>
