@@ -454,6 +454,78 @@ Each MNX document acts as a <dfn>container document</dfn>, which contains a
 hierarchy of components which collectively make up the
 document as a whole.
 
+<h4 id="the-mnx-element">The <dfn element><code>mnx</code></dfn> element</h4>
+<section dfn-for="mnx">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd>None: this is the top-level element.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>A single, required <{head}> element.</dd>
+    <dd>Either a <{collection}> or a <{score}> element.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None.</dd>
+  </dl>
+
+The <{mnx}> element encloses an MNX document as a whole.
+</section>
+
+<h4 id="the-head-element">The <dfn element><code>head</code></dfn> element</h4>
+<section dfn-for="head">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd>Any.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a>.</dd>
+    <dd><a>Stylesheet definitions</a>.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None.</dd>
+  </dl>
+The <{head}> element supplies overall descriptive information for an MNX document,
+such as document-scoped metadata or <a>stylesheet definitions</a>.
+</section>
+
+<h4 id="the-collection-element">The <dfn element><code>collection</code></dfn> element</h4>
+<section dfn-for="collection">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd><{mnx}>, <{collection}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>Any combination of <{collection}> and <{score}> elements.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{collection/type}> - The type of the collection</dd>
+  </dl>
+
+The <{collection}> element describes a collection, which is a sequence of
+ordered elements that make up a compound musical document. Each child element
+of the collection may itself be either a collection or a score.
+
+The <dfn element-attr>type</dfn> attribute determines the nature of the collection.
+Valid collection type values include:
+
+: <dfn value><code>movements</code>
+:: Each element comprises a movement of a work.
+: <dfn value><code>sections</code>
+:: Each element comprises a section of a work, or of a movement.
+: <dfn value><code>parts</code>
+:: Each element comprises a description of of the same music, organized for different parts.
+
+</section>
+
+<h4 id="the-score-element">The <dfn element><code>score</code></dfn> element</h4>
+<section dfn-for="score">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd><{mnx}>, <{collection}>.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>A single <{cwmnx}> or <{gmnx}> element.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None.</dd>
+  </dl>
+</section>
+
+The <{score}> element encloses a self-contained description of the score for
+a portion or the entirety of a musical work.
+
 <!--
 ### A simple CWMN score
 
@@ -857,6 +929,7 @@ These elements of a CWMNX score supply its high-level description and structure.
     <dd>Wherever a <a>musical body</a> is expected.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a>.</dd>
+    <dd><a>Stylesheet definitions</a>.</dd>
     <dd>Exactly one <{system}> element - <a>system content</a> that is common to all parts within the score</dd>
     <dd>One or more <{part}> elements - description and <a>system content</a> of each part in the score.</dd>
     <dt><a>Attributes</a>:</dt>
@@ -1146,19 +1219,8 @@ rendering rules.
 
 <h4 id="cwmnx-event-content">Event content</h4>
 
-<dfn>Event content</dfn> comprises elements that describe the musical content of a single event that is performed at a distinct time. These include:
-
-- <{note}>
-- <{rest}>
-- <{lyric}>
-- <{slur}>
-- <{glissando}>
-- <{slide}>
-- <{ornaments}>
-- <{articulations}>
-- <{technical}>
-- Any <a>direction content</a>
-- ...TBD...
+<dfn>Event content</dfn> comprises elements that describe the musical content
+of a single event that is performed at a distinct time.
 
 <h5 id="the-note-element">The <dfn element><code>note</code></dfn> element</h5>
 <section dfn-for="note">
@@ -1494,6 +1556,33 @@ definition are applied to the element in the order in which they were defined.
 
 </section>
 
+<h4 id="cwmnx-common-properties">Common style properties</h4>
+
+The following <a>style properties</a> apply to many kinds of object in CWMNX, and in general
+apply to all descendants of the element within which they are specified.
+
+<h5 id="the-color-property">The <dfn property><code>color</code></dfn> property</h5>
+<section dfn-for="color">
+  The 'color' property specifies a <a>simple color</a> to be used to render a notational object.
+</section>
+
+<h5 id="the-glyph-property">The <dfn property><code>glyph</code></dfn> property</h5>
+<section dfn-for="glyph">
+  The 'glyph' property specifies a specific <a>SMuFL glyph name</a> to be used to render a notational object.
+</section>
+
+<h3 id="cwmnx-stylesheet-definitions">Stylesheet definitions</h3>
+
+The <{style-class}> and <{style-selector}> elements allow definition of style
+properties in groups that can be applied in a unitary fashion to other
+elements, respectively by name matching in a <a>style class definition</a>, or by
+algorithmic rule matching in a <a>style selector definition</a>. Taken together,
+these supply a set of <dfn>stylesheet definitions</dfn> that control the rendering
+and interpretation of the document.
+
+These definitions may be placed in the <{head}>, the <{cwmnx}>
+element, or in a separate linked stylesheet.
+
 <h4 id="the-style-class-element">The <dfn element><code>style-class</code></dfn> element</h4>
 <section dfn-for="style-class">
   <dl class="def">
@@ -1552,21 +1641,6 @@ in the same order.
 
 </section>
 
-<h4 id="cwmnx-common-properties">Common style properties</h4>
-
-The following <a>style properties</a> apply to many kinds of object in CWMNX, and in general
-apply to all descendants of the element within which they are specified.
-
-<h5 id="the-color-property">The <dfn property><code>color</code></dfn> property</h5>
-<section dfn-for="color">
-  The 'color' property specifies a <a>simple color</a> to be used to render a notational object.
-</section>
-
-<h5 id="the-glyph-property">The <dfn property><code>glyph</code></dfn> property</h5>
-<section dfn-for="glyph">
-  The 'glyph' property specifies a specific <a>SMuFL glyph name</a> to be used to render a notational object.
-</section>
-
 <section>
 <h3 id="cwmnx-rendering">Rendering</h3>
 </section>
@@ -1577,6 +1651,30 @@ apply to all descendants of the element within which they are specified.
 
 <section>
 <h2 id="gmnx">GMNX</h2>
+
+<h3 id="the-gmnx-element">The <dfn element><code>gmnx</code></dfn> element</h3>
+
+<section dfn-for="gmnx">
+
+  <dl class="def">
+    <dt><a lt="content categories">Description</a>:</dt>
+    <dd><a>Musical body content</a> in an MNX <a>container</a>.</dd>
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd>Wherever a <a>musical body</a> is expected.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a>.</dd>
+    <dd><em>Visual content</em>.</dd>
+    <dd><em>Performance content</em>.</dd>
+    <dd>One or more <{part}> elements - description and <a>system content</a> of each part in the score.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None.</dd>
+  </dl>
+
+The <{gmnx}> element is a <a>musical body</a> that describes a GMNX
+score as a whole.
+
+<em>This section TBD. See <a href="../overview/index.html#gmnx">GMNX Proposal</a> for an initial proposal
+on its contents.</em>
 </section>
 
 <section>
