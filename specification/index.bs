@@ -441,8 +441,9 @@ criteria for content in those formats, and how to parse them.
 
 <h4 id="element-locations">Element locations</h4>
 
-An <dfn>element location</dfn> is the character `#`, immediately followed by the XML ID
-of an element within the document.
+An <dfn>element location</dfn> constitutes a reference to a specific element
+in the document. It consists of the character `#`, immediately followed by the
+XML ID of the referenced element.
 
 </section>
 
@@ -685,6 +686,24 @@ Grace notes are a special case, in that they do not have a metrical position.
 They merely have a well-defined notational ordering relative to other notated
 events in the measure.
 
+<h5 id="chromatic-pitches">Chromatic pitches</h4>
+
+A <dfn>chromatic pitch</dfn> describes a pitch situated in a 12-tone
+temperament notated as per CWMN conventions. The description incorporates
+three elements:
+
+- The <dfn>diatonic step</dfn>, which is one of the letters `A` through `G`, describing
+    the corresponding diatonic steps.
+
+- The <dfn>octave</dfn>, which is an integer giving the octave in which
+    the step occurs. The assignment of pitches to octaves follows the <a href="https://en.wikipedia.org/wiki/Scientific_pitch_notation">
+    Scientific Pitch Notation (SPN)</a> convention, in which the octave number increases
+    on the step from `B` to `C`.
+
+- The <dfn>alteration</dfn>, which is a floating-point alteration in semitones
+    applied to the step and octave.
+
+
 <h5 id="cwmnx-directions">Directions</h5>
 
 A <dfn>direction</dfn> is a discrete instruction in the score
@@ -808,6 +827,7 @@ To <dfn>parse a note value</dfn>, use the following procedure:
       be the result.
   1. Let <var>base value</var> be the result of parsing <var>unparsed number</var> using the
       <a>rules for parsing integers</a>.
+  1. If <var>position</var> is not at the end of the string, return an error.
   1. If <var>base value</var> is not equal to a power of 2, return an error.
   1. If <var>base value</var> is equal to 1 and <var>fractional</var> is false, return an error.
   1. If <var>fractional</var> is true, set <var>base value</var> to (1 / <var>base value</var>).
@@ -863,6 +883,50 @@ Examples include:
 :: six dotted eighth notes
 : `5*1`
 :: five whole notes
+
+<h5 id="chromatic-pitch-syntax">Chromatic pitch syntax</h5>
+
+MNX allows the specification of a <a>chromatic pitch</a> in a single string,
+by employing the <dfn>rules for parsing a chromatic pitch</dfn>. To parse this
+syntax, employ the following procedure:
+
+  1. Let <var>input</var> be the string being parsed.
+  1. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
+      the string.
+  1. Let <var>alteration</var> be 0.
+  1. If the character at <var>position</var> is not an <a>uppercase ASCII letter</a> in the range from
+    U+0041 A - U+0047 G, return an error.
+  1. Let <var>step</var> be the character at <var>position</var>, and advance <var>position</var> by 1.
+  1. If the character at <var>position</var> is U+0023 HASH,
+       1. While the character at <var>position</var> is U+0023 HASH,
+           1. Increase <var>alteration</var> by 1.
+           1. Advance <var>position</var> by 1.
+  1. If the character at <var>position</var> is U+0061 b,
+       1. While the character at <var>position</var> is U+0061 b,
+           1. Decrease <var>alteration</var> by 1.
+           1. Advance <var>position</var> by 1.
+  1. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a> only and let <var>unparsed number</var>
+      be the result.
+  1. Let <var>octave</var> be the result of parsing <var>unparsed number</var> using the
+      <a>rules for parsing integers</a>.
+  1. If <var>position</var> is not at the end of the string, return an error.
+  1. Return <var>step</var>, <var>octave</var> and <var>alteration</var> as the result.
+
+Examples include:
+
+: `C4`
+:: Middle C
+: `C#4`
+:: The pitch one semitone above middle C
+: `Db4`
+:: The pitch one semitone above middle C (identical to the above)
+: `C4+0.5`
+:: The pitch one quarter-tone above middle C
+: `B3+1.5`
+:: The pitch one quarter-tone above middle C (identical to the above)
+: `C#4-0.5`
+:: The pitch one quarter-tone above middle C (identical to the above)
+
 
 <h5 id="measure-locations">Measure location syntax</h5>
 
@@ -1380,9 +1444,9 @@ TBD: spacing
 </section>
 <h4 id="cwmnx-staff-content">Staff content</h4>
 
-<dfn>Staff content</dfn> are elements that apply as a whole to the musical
-staff on which events are placed. Such elements may occur in any <{measure}>
-element.
+<dfn>Staff content</dfn> consists of elements that apply as a whole to the
+musical staff on which events are placed. Such elements may occur in any
+<{measure}> element.
 
 In general, any element of staff content <dfn>partitions</dfn> the events in a
 measure, such that all events lie either before or after the given element.
@@ -1403,6 +1467,10 @@ end of the measure in which they occur.
 
 <h5 id="the-time-element">The <dfn element><code>time</code></dfn> element</h5>
 <section dfn-for="time">
+</section>
+
+<h5 id="the-tempo-element">The <dfn element><code>tempo</code></dfn> element</h5>
+<section dfn-for="tempo">
 </section>
 
 <h5 id="the-staves-element">The <dfn element><code>staves</code></dfn> element</h5>
