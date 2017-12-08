@@ -1070,13 +1070,6 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
             relative to preceding or following elements as appropriate.
         </ol>
       </li>
-      <li>Else, if <var>next</var> is <a>direction content</a> and lacks a <{directions/location}> attribute:
-        <ol>
-          <li>
-            Set the <a>metrical position</a> of <var>next</var> to <var>sequence cursor</var>.
-          </li>
-        </ol>
-      </li>
       <li>
         If <var>sequence cursor</var> exceeds the specified duration for the enclosing element
         (time signature for a <{measure}>, <{tuplet/inner}> attribute for a <{tuplet}>), throw
@@ -1270,14 +1263,16 @@ where it is placed:
 
 - A direction in a <{measure}> within the <{system}> element applies to all sequences of the measure in all parts.
 - A direction in a <{measure}> within a <{part}> element applies to all sequences of the measure in a given part.
-- A direction in sequence content applies to the sequence in which it occurs.
+- A direction in a <{sequence}> applies to the sequence in which it occurs.
+- A direction in an <{event}> applies to the event in which it occurs.
 
-Directions in a <{measure}> MUST be given an explicit <a>measure location</a>
-by supplying a <dfn element-attr dfn-for="directions">location</dfn> attribute.
+All directions not contained in an <{event}> element, MUST be given an
+explicit <a>measure location</a> by supplying a <dfn element-attr dfn-
+for="directions">location</dfn> attribute.
 
-In sequence content, direction content MAY be given an explicit location.
-If this is absent, it will be assigned an implicit <a>measure location</a>
-according to the procedure for <a>sequencing the content</a>.
+Beneath an <{event}> element, directions are forced to assume the  measure
+location of the containing event. Such directions MUST NOT be assigned an
+explicit location.
 
 <h5 id="the-dynamics-element">The <dfn element><code>dynamics</code></dfn> element</h5>
 <section dfn-for="dynamics">
@@ -1293,32 +1288,13 @@ according to the procedure for <a>sequencing the content</a>.
 
 The <{dynamics}> element describes a textual dynamic direction to the performer.
 
-The <dfn element-attr>type</dfn> attribute describes the nature of the dynamic:
+The <dfn element-attr>type</dfn> attribute describes the nature of the dynamic. The following
+dynamics are supported:
 
 <dl dfn-for="dynamics/type">
-  <dt><dfn value><code>p</code></dt>
-  <dt><dfn value><code>pp</code></dt>
-  <dt><dfn value><code>ppp</code></dt>
-  <dt><dfn value><code>pppp</code></dt>
-  <dt><dfn value><code>ppppp</code></dt>
-  <dt><dfn value><code>pppppp</code></dt>
-  <dt><dfn value><code>f</code></dt>
-  <dt><dfn value><code>ff</code></dt>
-  <dt><dfn value><code>fff</code></dt>
-  <dt><dfn value><code>ffff</code></dt>
-  <dt><dfn value><code>fffff</code></dt>
-  <dt><dfn value><code>ffffff</code></dt>
-  <dt><dfn value><code>mp</code></dt>
-  <dt><dfn value><code>mf</code></dt>
-  <dt><dfn value><code>sf</code></dt>
-  <dt><dfn value><code>sfp</code></dt>
-  <dt><dfn value><code>sfpp</code></dt>
-  <dt><dfn value><code>fp</code></dt>
-  <dt><dfn value><code>rf</code></dt>
-  <dt><dfn value><code>rfz</code></dt>
-  <dt><dfn value><code>sfz</code></dt>
-  <dt><dfn value><code>sffz</code></dt>
-  <dt><dfn value><code>fz</code></dt>
+  <dt><dfn value><code>p</code></dfn>, <dfn value><code>pp</code></dfn>, <dfn value><code>ppp</code></dfn>, <dfn value><code>pppp</code></dfn>, <dfn value><code>ppppp</code></dfn>, <dfn value><code>pppppp</code></dfn>, <dfn value><code>mp</code></dfn></dt>
+  <dt><dfn value><code>mf</code></dfn>, <dfn value><code>f</code></dfn>, <dfn value><code>ff</code></dfn>, <dfn value><code>fff</code></dfn>, <dfn value><code>ffff</code></dfn>, <dfn value><code>fffff</code></dfn>, <dfn value><code>ffffff</code></dfn></dt>
+  <dt><dfn value><code>sf</code></dfn>, <dfn value><code>sfp</code></dfn>, <dfn value><code>sfpp</code></dfn>, <dfn value><code>fp</code></dfn>, <dfn value><code>rf</code></dfn>, <dfn value><code>rfz</code></dfn>, <dfn value><code>sfz</code></dfn>, <dfn value><code>sffz</code></dfn>, <dfn value><code>fz</code></dfn></dt>
 </dl>
 
 </section>
@@ -1404,9 +1380,18 @@ TBD: spacing
 </section>
 <h4 id="cwmnx-staff-content">Staff content</h4>
 
-<dfn>Staff content</dfn> describes the properties of a staff on which events
-are placed. Such elements may occur in any <{measure}> element, and apply from
-the start of that <{measure}> to all subsequent measures within the same
+<dfn>Staff content</dfn> are elements that apply as a whole to the musical
+staff on which events are placed. Such elements may occur in any <{measure}>
+element.
+
+In general, any element of staff content <dfn>partitions</dfn> the events in a
+measure, such that all events lie either before or after the given element.
+For example, consider a <{clef}> element describing a clef change. No matter
+how many polyphonic voices exist in a measure, all notes in all voices either
+lie to the left or to the right of this clef.
+
+Staff content that modifies the interpretation or layout of the staff, applies
+from the start of that <{measure}> to all subsequent measures within the same
 <{system}> or <{part}> element until changed.
 
 Most staff content elements have a fixed location, typically the beginning or
@@ -1430,6 +1415,10 @@ end of the measure in which they occur.
 
 <h5 id="the-clef-element">The <dfn element><code>clef</code></dfn> element</h5>
 <section dfn-for="clef">
+</section>
+
+<h5 id="the-barline-element">The <dfn element><code>barline</code></dfn> element</h5>
+<section dfn-for="barline">
 </section>
 
 <h5 id="the-use-instrument-element">The <dfn element><code>use-instrument</code></dfn> element</h5>

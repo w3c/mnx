@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="f4826d4250f46df38245c5cfb418e6d2e945f0f1" name="document-revision">
+  <meta content="ca8a9d5a87e70b31dbb0102e89e3d7a47e09aa38" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1619,8 +1619,9 @@ Parts of this work may be from another specification document.  If so, those par
           <li><a href="#the-staves-element"><span class="secno">5.2.9.3</span> <span class="content">The <span><code>staves</code></span> element</span></a>
           <li><a href="#the-staff-details-element"><span class="secno">5.2.9.4</span> <span class="content">The <span><code>staff-details</code></span> element</span></a>
           <li><a href="#the-clef-element"><span class="secno">5.2.9.5</span> <span class="content">The <span><code>clef</code></span> element</span></a>
-          <li><a href="#the-use-instrument-element"><span class="secno">5.2.9.6</span> <span class="content">The <span><code>use-instrument</code></span> element</span></a>
-          <li><a href="#the-transpose-element"><span class="secno">5.2.9.7</span> <span class="content">The <span><code>transpose</code></span> element</span></a>
+          <li><a href="#the-barline-element"><span class="secno">5.2.9.6</span> <span class="content">The <span><code>barline</code></span> element</span></a>
+          <li><a href="#the-use-instrument-element"><span class="secno">5.2.9.7</span> <span class="content">The <span><code>use-instrument</code></span> element</span></a>
+          <li><a href="#the-transpose-element"><span class="secno">5.2.9.8</span> <span class="content">The <span><code>transpose</code></span> element</span></a>
          </ol>
         <li>
          <a href="#cwmnx-part-description-content"><span class="secno">5.2.10</span> <span class="content">Part description content</span></a>
@@ -2453,11 +2454,6 @@ following procedure, called <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt
           <li> Process the contents of <var>next</var>, assigning them a non-metrical ordering
             relative to preceding or following elements as appropriate. 
          </ol>
-        <li>
-         Else, if <var>next</var> is <a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content③">direction content</a> and lacks a <code><a data-link-type="element-sub" href="#element-attrdef-directions-location" id="ref-for-element-attrdef-directions-location">location</a></code> attribute: 
-         <ol>
-          <li> Set the <a data-link-type="dfn" href="#metrical-position" id="ref-for-metrical-position⑥">metrical position</a> of <var>next</var> to <var>sequence cursor</var>. 
-         </ol>
         <li> If <var>sequence cursor</var> exceeds the specified duration for the enclosing element
         (time signature for a <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure④">measure</a></code>, <code><a data-link-type="element-sub" href="#element-attrdef-tuplet-inner" id="ref-for-element-attrdef-tuplet-inner①">inner</a></code> attribute for a <code><a data-link-type="element" href="#elementdef-tuplet" id="ref-for-elementdef-tuplet②">tuplet</a></code>), throw
         a processing error. 
@@ -2595,48 +2591,33 @@ where it is placed:</p>
       <li data-md="">
        <p>A direction in a <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure⑦">measure</a></code> within a <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part④">part</a></code> element applies to all sequences of the measure in a given part.</p>
       <li data-md="">
-       <p>A direction in sequence content applies to the sequence in which it occurs.</p>
+       <p>A direction in a <code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence⑧">sequence</a></code> applies to the sequence in which it occurs.</p>
+      <li data-md="">
+       <p>A direction in an <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event④">event</a></code> applies to the event in which it occurs.</p>
      </ul>
-     <p>Directions in a <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure⑧">measure</a></code> MUST be given an explicit <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location④">measure location</a> by supplying a <dfn class="dfn-paneled" data-dfn-for="directions" data-dfn-type="element-attr" data-export="" id="element-attrdef-directions-location"><code>location</code></dfn> attribute.</p>
-     <p>In sequence content, direction content MAY be given an explicit location.
-If this is absent, it will be assigned an implicit <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location⑤">measure location</a> according to the procedure for <a data-link-type="dfn" href="#sequence-the-content" id="ref-for-sequence-the-content③">sequencing the content</a>.</p>
+     <p>All directions not contained in an <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event⑤">event</a></code> element, MUST be given an
+explicit <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location④">measure location</a> by supplying a <dfn class="dfn-paneled" data-dfn-for="directions" data-dfn-type="element-attr" data-export="" dfn-="" id="element-attrdef-directions-location"><code>location</code></dfn> attribute.</p>
+     <p>Beneath an <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event⑥">event</a></code> element, directions are forced to assume the  measure
+location of the containing event. Such directions MUST NOT be assigned an
+explicit location.</p>
      <h5 class="heading settled" data-level="5.2.7.1" id="the-dynamics-element"><span class="secno">5.2.7.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-dynamics"><code>dynamics</code></dfn> element</span><a class="self-link" href="#the-dynamics-element"></a></h5>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used①①">Contexts in which this element can be used</a>:
-       <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content④">Direction content</a>
+       <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content③">Direction content</a>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model①①">Content Model</a>:
        <dd>None
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute①⓪">Attributes</a>:
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-dynamics-type" id="ref-for-element-attrdef-dynamics-type">type</a></code> - the semantic nature of this dynamics direction
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-directions-location" id="ref-for-element-attrdef-directions-location①">location</a></code> - optional <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location⑥">measure location</a> of this direction, where required
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-directions-location" id="ref-for-element-attrdef-directions-location">location</a></code> - optional <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location⑤">measure location</a> of this direction, where required
       </dl>
       <p>The <code><a data-link-type="element" href="#elementdef-dynamics" id="ref-for-elementdef-dynamics">dynamics</a></code> element describes a textual dynamic direction to the performer.</p>
-      <p>The <dfn class="dfn-paneled" data-dfn-for="dynamics" data-dfn-type="element-attr" data-export="" id="element-attrdef-dynamics-type"><code>type</code></dfn> attribute describes the nature of the dynamic:</p>
+      <p>The <dfn class="dfn-paneled" data-dfn-for="dynamics" data-dfn-type="element-attr" data-export="" id="element-attrdef-dynamics-type"><code>type</code></dfn> attribute describes the nature of the dynamic. The following
+dynamics are supported:</p>
       <dl>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-p"><code>p</code><a class="self-link" href="#valdef-dynamics-type-p"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-pp"><code>pp</code><a class="self-link" href="#valdef-dynamics-type-pp"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-ppp"><code>ppp</code><a class="self-link" href="#valdef-dynamics-type-ppp"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-pppp"><code>pppp</code><a class="self-link" href="#valdef-dynamics-type-pppp"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-ppppp"><code>ppppp</code><a class="self-link" href="#valdef-dynamics-type-ppppp"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-pppppp"><code>pppppp</code><a class="self-link" href="#valdef-dynamics-type-pppppp"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-f"><code>f</code><a class="self-link" href="#valdef-dynamics-type-f"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-ff"><code>ff</code><a class="self-link" href="#valdef-dynamics-type-ff"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-fff"><code>fff</code><a class="self-link" href="#valdef-dynamics-type-fff"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-ffff"><code>ffff</code><a class="self-link" href="#valdef-dynamics-type-ffff"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-fffff"><code>fffff</code><a class="self-link" href="#valdef-dynamics-type-fffff"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-ffffff"><code>ffffff</code><a class="self-link" href="#valdef-dynamics-type-ffffff"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-mp"><code>mp</code><a class="self-link" href="#valdef-dynamics-type-mp"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-mf"><code>mf</code><a class="self-link" href="#valdef-dynamics-type-mf"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-sf"><code>sf</code><a class="self-link" href="#valdef-dynamics-type-sf"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-sfp"><code>sfp</code><a class="self-link" href="#valdef-dynamics-type-sfp"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-sfpp"><code>sfpp</code><a class="self-link" href="#valdef-dynamics-type-sfpp"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-fp"><code>fp</code><a class="self-link" href="#valdef-dynamics-type-fp"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-rf"><code>rf</code><a class="self-link" href="#valdef-dynamics-type-rf"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-rfz"><code>rfz</code><a class="self-link" href="#valdef-dynamics-type-rfz"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-sfz"><code>sfz</code><a class="self-link" href="#valdef-dynamics-type-sfz"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-sffz"><code>sffz</code><a class="self-link" href="#valdef-dynamics-type-sffz"></a></dfn>
-       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-fz"><code>fz</code><a class="self-link" href="#valdef-dynamics-type-fz"></a></dfn>
+       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-p"><code>p</code><a class="self-link" href="#valdef-dynamics-type-p"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-pp"><code>pp</code><a class="self-link" href="#valdef-dynamics-type-pp"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-ppp"><code>ppp</code><a class="self-link" href="#valdef-dynamics-type-ppp"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-pppp"><code>pppp</code><a class="self-link" href="#valdef-dynamics-type-pppp"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-ppppp"><code>ppppp</code><a class="self-link" href="#valdef-dynamics-type-ppppp"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-pppppp"><code>pppppp</code><a class="self-link" href="#valdef-dynamics-type-pppppp"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-mp"><code>mp</code><a class="self-link" href="#valdef-dynamics-type-mp"></a></dfn>
+       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-mf"><code>mf</code><a class="self-link" href="#valdef-dynamics-type-mf"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-f"><code>f</code><a class="self-link" href="#valdef-dynamics-type-f"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-ff"><code>ff</code><a class="self-link" href="#valdef-dynamics-type-ff"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-fff"><code>fff</code><a class="self-link" href="#valdef-dynamics-type-fff"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-ffff"><code>ffff</code><a class="self-link" href="#valdef-dynamics-type-ffff"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-fffff"><code>fffff</code><a class="self-link" href="#valdef-dynamics-type-fffff"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-ffffff"><code>ffffff</code><a class="self-link" href="#valdef-dynamics-type-ffffff"></a></dfn>
+       <dt><dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-sf"><code>sf</code><a class="self-link" href="#valdef-dynamics-type-sf"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-sfp"><code>sfp</code><a class="self-link" href="#valdef-dynamics-type-sfp"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-sfpp"><code>sfpp</code><a class="self-link" href="#valdef-dynamics-type-sfpp"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-fp"><code>fp</code><a class="self-link" href="#valdef-dynamics-type-fp"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-rf"><code>rf</code><a class="self-link" href="#valdef-dynamics-type-rf"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-rfz"><code>rfz</code><a class="self-link" href="#valdef-dynamics-type-rfz"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-sfz"><code>sfz</code><a class="self-link" href="#valdef-dynamics-type-sfz"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-sffz"><code>sffz</code><a class="self-link" href="#valdef-dynamics-type-sffz"></a></dfn>, <dfn class="css" data-dfn-for="dynamics/type" data-dfn-type="value" data-export="" id="valdef-dynamics-type-fz"><code>fz</code><a class="self-link" href="#valdef-dynamics-type-fz"></a></dfn>
       </dl>
      </section>
      <h5 class="heading settled" data-level="5.2.7.2" id="the-harmony-element"><span class="secno">5.2.7.2. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-harmony"><code>harmony</code><a class="self-link" href="#elementdef-harmony"></a></dfn> element</span><a class="self-link" href="#the-harmony-element"></a></h5>
@@ -2652,7 +2633,7 @@ If this is absent, it will be assigned an implicit <a data-link-type="dfn" href=
      <h4 class="heading settled" data-level="5.2.8" id="cwmnx-spanning-directions"><span class="secno">5.2.8. </span><span class="content">Spanning directions</span><a class="self-link" href="#cwmnx-spanning-directions"></a></h4>
      <p><dfn data-dfn-type="dfn" data-noexport="" id="spanning-directions">Spanning directions<a class="self-link" href="#spanning-directions"></a></dfn> are directions whose temporal extent within a part is
 characterized by a <a data-link-type="dfn" href="#span" id="ref-for-span">span</a>.</p>
-     <p>Spanning directions MUST be given a <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location⑦">measure location</a> as their endpoint,
+     <p>Spanning directions MUST be given a <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location⑥">measure location</a> as their endpoint,
 by supplying a <dfn class="dfn-paneled" data-dfn-for="spans" data-dfn-type="element-attr" data-export="" id="element-attrdef-spans-end"><code>end</code></dfn> attribute. This
 measure location must lie within the same run of <a data-link-type="dfn" href="#system-content" id="ref-for-system-content⑦">system content</a> as the
 location given for the start of the spanning direction.</p>
@@ -2660,13 +2641,13 @@ location given for the start of the spanning direction.</p>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used①②">Contexts in which this element can be used</a>:
-       <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content⑤">Direction content</a>
+       <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content④">Direction content</a>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model①②">Content Model</a>:
        <dd>None
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute①①">Attributes</a>:
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-wedge-type" id="ref-for-element-attrdef-wedge-type">type</a></code> - the type of wedge
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-directions-location" id="ref-for-element-attrdef-directions-location②">location</a></code> - optional <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location⑧">measure location</a> of the direction’s start, where required
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-spans-end" id="ref-for-element-attrdef-spans-end">end</a></code> - a required <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location⑨">measure location</a> for the direction’s end
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-directions-location" id="ref-for-element-attrdef-directions-location①">location</a></code> - optional <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location⑦">measure location</a> of the direction’s start, where required
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-spans-end" id="ref-for-element-attrdef-spans-end">end</a></code> - a required <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location⑧">measure location</a> for the direction’s end
       </dl>
       <p>The <dfn class="dfn-paneled" data-dfn-for="wedge" data-dfn-type="element-attr" data-export="" id="element-attrdef-wedge-type"><code>type</code></dfn> attribute describes the nature of the wedge:</p>
       <dl>
@@ -2684,11 +2665,11 @@ location given for the start of the spanning direction.</p>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts-in-which-this-element-can-be-used" id="ref-for-contexts-in-which-this-element-can-be-used①③">Contexts in which this element can be used</a>:
-       <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content⑥">Direction content</a>
+       <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content⑤">Direction content</a>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model①③">Content Model</a>:
-       <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content⑦">Direction content</a>, which must not include <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location①⓪">measure locations</a>
+       <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content⑥">Direction content</a>, which must not include <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location⑨">measure locations</a>
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute①②">Attributes</a>:
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-directions-location" id="ref-for-element-attrdef-directions-location③">location</a></code> - optional <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location①①">measure location</a> of this direction, where required
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-directions-location" id="ref-for-element-attrdef-directions-location②">location</a></code> - optional <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location①⓪">measure location</a> of this direction, where required
       </dl>
        The <code><a data-link-type="element" href="#elementdef-dirgroup" id="ref-for-elementdef-dirgroup">dirgroup</a></code> element describes a set of directions which are presented
 sequentially, like a sentence. The typical presentation of directions in a group is
@@ -2696,9 +2677,15 @@ to arrange them horizontally from left to right.
       <p>TBD: spacing</p>
      </section>
      <h4 class="heading settled" data-level="5.2.9" id="cwmnx-staff-content"><span class="secno">5.2.9. </span><span class="content">Staff content</span><a class="self-link" href="#cwmnx-staff-content"></a></h4>
-     <p><dfn data-dfn-type="dfn" data-noexport="" id="staff-content">Staff content<a class="self-link" href="#staff-content"></a></dfn> describes the properties of a staff on which events
-are placed. Such elements may occur in any <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure⑨">measure</a></code> element, and apply from
-the start of that <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure①⓪">measure</a></code> to all subsequent measures within the same <code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system⑧">system</a></code> or <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part⑤">part</a></code> element until changed.</p>
+     <p><dfn data-dfn-type="dfn" data-noexport="" id="staff-content">Staff content<a class="self-link" href="#staff-content"></a></dfn> are elements that apply as a whole to the musical
+staff on which events are placed. Such elements may occur in any <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure⑧">measure</a></code> element.</p>
+     <p>In general, any element of staff content <dfn data-dfn-type="dfn" data-noexport="" id="partitions">partitions<a class="self-link" href="#partitions"></a></dfn> the events in a
+measure, such that all events lie either before or after the given element.
+For example, consider a <code><a data-link-type="element" href="#elementdef-clef" id="ref-for-elementdef-clef">clef</a></code> element describing a clef change. No matter
+how many polyphonic voices exist in a measure, all notes in all voices either
+lie to the left or to the right of this clef.</p>
+     <p>Staff content that modifies the interpretation or layout of the staff, applies
+from the start of that <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure⑨">measure</a></code> to all subsequent measures within the same <code><a data-link-type="element" href="#elementdef-system" id="ref-for-elementdef-system⑧">system</a></code> or <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part⑤">part</a></code> element until changed.</p>
      <p>Most staff content elements have a fixed location, typically the beginning or
 end of the measure in which they occur.</p>
      <h5 class="heading settled" data-level="5.2.9.1" id="the-key-element"><span class="secno">5.2.9.1. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-key"><code>key</code><a class="self-link" href="#elementdef-key"></a></dfn> element</span><a class="self-link" href="#the-key-element"></a></h5>
@@ -2709,11 +2696,13 @@ end of the measure in which they occur.</p>
      <section></section>
      <h5 class="heading settled" data-level="5.2.9.4" id="the-staff-details-element"><span class="secno">5.2.9.4. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-staff-details"><code>staff-details</code><a class="self-link" href="#elementdef-staff-details"></a></dfn> element</span><a class="self-link" href="#the-staff-details-element"></a></h5>
      <section></section>
-     <h5 class="heading settled" data-level="5.2.9.5" id="the-clef-element"><span class="secno">5.2.9.5. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-clef"><code>clef</code><a class="self-link" href="#elementdef-clef"></a></dfn> element</span><a class="self-link" href="#the-clef-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.9.5" id="the-clef-element"><span class="secno">5.2.9.5. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-clef"><code>clef</code></dfn> element</span><a class="self-link" href="#the-clef-element"></a></h5>
      <section></section>
-     <h5 class="heading settled" data-level="5.2.9.6" id="the-use-instrument-element"><span class="secno">5.2.9.6. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-use-instrument"><code>use-instrument</code><a class="self-link" href="#elementdef-use-instrument"></a></dfn> element</span><a class="self-link" href="#the-use-instrument-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.9.6" id="the-barline-element"><span class="secno">5.2.9.6. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-barline"><code>barline</code><a class="self-link" href="#elementdef-barline"></a></dfn> element</span><a class="self-link" href="#the-barline-element"></a></h5>
      <section></section>
-     <h5 class="heading settled" data-level="5.2.9.7" id="the-transpose-element"><span class="secno">5.2.9.7. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-transpose"><code>transpose</code><a class="self-link" href="#elementdef-transpose"></a></dfn> element</span><a class="self-link" href="#the-transpose-element"></a></h5>
+     <h5 class="heading settled" data-level="5.2.9.7" id="the-use-instrument-element"><span class="secno">5.2.9.7. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-use-instrument"><code>use-instrument</code><a class="self-link" href="#elementdef-use-instrument"></a></dfn> element</span><a class="self-link" href="#the-use-instrument-element"></a></h5>
+     <section></section>
+     <h5 class="heading settled" data-level="5.2.9.8" id="the-transpose-element"><span class="secno">5.2.9.8. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-transpose"><code>transpose</code><a class="self-link" href="#elementdef-transpose"></a></dfn> element</span><a class="self-link" href="#the-transpose-element"></a></h5>
      <section></section>
      <h4 class="heading settled" data-level="5.2.10" id="cwmnx-part-description-content"><span class="secno">5.2.10. </span><span class="content">Part description content</span><a class="self-link" href="#cwmnx-part-description-content"></a></h4>
      <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="part-description-content">Part description content</dfn> consists of elements that supply information describing a part,
@@ -2895,6 +2884,7 @@ on its contents.</em></p>
          <li><a href="#ascii-digits">ASCII digits</a><span>, in §2.2.1</span>
          <li><a href="#ascii-hex-digits">ASCII hex digits</a><span>, in §2.2.1</span>
          <li><a href="#ascii-letters">ASCII letters</a><span>, in §2.2.1</span>
+         <li><a href="#elementdef-barline">barline</a><span>, in §5.2.9.6</span>
          <li><a href="#base-note-values">base note values</a><span>, in §5.2.1.8</span>
          <li><a href="#elementdef-bracket">bracket</a><span>, in §5.2.8.3</span>
          <li><a href="#chords">chords</a><span>, in §5.2.1.2</span>
@@ -2996,6 +2986,7 @@ on its contents.</em></p>
          <li><a href="#elementdef-part">part</a><span>, in §5.2.3.3</span>
          <li><a href="#elementdef-part-abbreviation">part-abbreviation</a><span>, in §5.2.10.2</span>
          <li><a href="#part-description-content">Part description content</a><span>, in §5.2.10</span>
+         <li><a href="#partitions">partitions</a><span>, in §5.2.9</span>
          <li><a href="#elementdef-part-name">part-name</a><span>, in §5.2.10.1</span>
          <li>
           parts
@@ -3097,7 +3088,7 @@ on its contents.</em></p>
           </ul>
          <li><a href="#elementdef-time">time</a><span>, in §5.2.9.2</span>
          <li><a href="#time-modification-ratio">time modification ratio</a><span>, in §5.2.5</span>
-         <li><a href="#elementdef-transpose">transpose</a><span>, in §5.2.9.7</span>
+         <li><a href="#elementdef-transpose">transpose</a><span>, in §5.2.9.8</span>
          <li><a href="#elementdef-tuplet">tuplet</a><span>, in §5.2.5.3</span>
          <li>
           type
@@ -3109,7 +3100,7 @@ on its contents.</em></p>
          <li><a href="#valdef-stem-up">up</a><span>, in §5.2.5.2</span>
          <li><a href="#uppercase-ascii-hex-digits">uppercase ASCII hex digits</a><span>, in §2.2.1</span>
          <li><a href="#uppercase-ascii-letters">uppercase ASCII letters</a><span>, in §2.2.1</span>
-         <li><a href="#elementdef-use-instrument">use-instrument</a><span>, in §5.2.9.6</span>
+         <li><a href="#elementdef-use-instrument">use-instrument</a><span>, in §5.2.9.7</span>
          <li><a href="#element-attrdef-event-value">value</a><span>, in §5.2.5.2</span>
          <li><a href="#elementdef-wedge">wedge</a><span>, in §5.2.8.1</span>
          <li><a href="#white_space">white_space</a><span>, in §2.2.1</span>
@@ -3564,7 +3555,7 @@ on its contents.</em></p>
    <b><a href="#metrical-position">#metrical-position</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-metrical-position">5.2.2.3. Measure location syntax</a> <a href="#ref-for-metrical-position①">(2)</a> <a href="#ref-for-metrical-position②">(3)</a>
-    <li><a href="#ref-for-metrical-position③">5.2.5. Sequence content</a> <a href="#ref-for-metrical-position④">(2)</a> <a href="#ref-for-metrical-position⑤">(3)</a> <a href="#ref-for-metrical-position⑥">(4)</a>
+    <li><a href="#ref-for-metrical-position③">5.2.5. Sequence content</a> <a href="#ref-for-metrical-position④">(2)</a> <a href="#ref-for-metrical-position⑤">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="direction">
@@ -3646,11 +3637,11 @@ on its contents.</em></p>
    <b><a href="#measure-location">#measure-location</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-measure-location">5.2.2.3. Measure location syntax</a> <a href="#ref-for-measure-location①">(2)</a> <a href="#ref-for-measure-location②">(3)</a> <a href="#ref-for-measure-location③">(4)</a>
-    <li><a href="#ref-for-measure-location④">5.2.7. Direction content</a> <a href="#ref-for-measure-location⑤">(2)</a>
-    <li><a href="#ref-for-measure-location⑥">5.2.7.1. The dynamics element</a>
-    <li><a href="#ref-for-measure-location⑦">5.2.8. Spanning directions</a>
-    <li><a href="#ref-for-measure-location⑧">5.2.8.1. The wedge element</a> <a href="#ref-for-measure-location⑨">(2)</a>
-    <li><a href="#ref-for-measure-location①⓪">5.2.8.4. The dirgroup element</a> <a href="#ref-for-measure-location①①">(2)</a>
+    <li><a href="#ref-for-measure-location④">5.2.7. Direction content</a>
+    <li><a href="#ref-for-measure-location⑤">5.2.7.1. The dynamics element</a>
+    <li><a href="#ref-for-measure-location⑥">5.2.8. Spanning directions</a>
+    <li><a href="#ref-for-measure-location⑦">5.2.8.1. The wedge element</a> <a href="#ref-for-measure-location⑧">(2)</a>
+    <li><a href="#ref-for-measure-location⑨">5.2.8.4. The dirgroup element</a> <a href="#ref-for-measure-location①⓪">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-cwmnx">
@@ -3709,8 +3700,8 @@ on its contents.</em></p>
     <li><a href="#ref-for-elementdef-measure③">5.2.4. System content</a>
     <li><a href="#ref-for-elementdef-measure④">5.2.5. Sequence content</a>
     <li><a href="#ref-for-elementdef-measure⑤">5.2.5.1. The sequence element</a>
-    <li><a href="#ref-for-elementdef-measure⑥">5.2.7. Direction content</a> <a href="#ref-for-elementdef-measure⑦">(2)</a> <a href="#ref-for-elementdef-measure⑧">(3)</a>
-    <li><a href="#ref-for-elementdef-measure⑨">5.2.9. Staff content</a> <a href="#ref-for-elementdef-measure①⓪">(2)</a>
+    <li><a href="#ref-for-elementdef-measure⑥">5.2.7. Direction content</a> <a href="#ref-for-elementdef-measure⑦">(2)</a>
+    <li><a href="#ref-for-elementdef-measure⑧">5.2.9. Staff content</a> <a href="#ref-for-elementdef-measure⑨">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="sequence-content">
@@ -3745,7 +3736,6 @@ on its contents.</em></p>
     <li><a href="#ref-for-sequence-the-content">5.2.5. Sequence content</a>
     <li><a href="#ref-for-sequence-the-content①">5.2.5.1. The sequence element</a>
     <li><a href="#ref-for-sequence-the-content②">5.2.5.3. The tuplet element</a>
-    <li><a href="#ref-for-sequence-the-content③">5.2.7. Direction content</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-sequence">
@@ -3756,6 +3746,7 @@ on its contents.</em></p>
     <li><a href="#ref-for-elementdef-sequence②">5.2.5.1. The sequence element</a>
     <li><a href="#ref-for-elementdef-sequence③">5.2.5.2. The event element</a> <a href="#ref-for-elementdef-sequence④">(2)</a> <a href="#ref-for-elementdef-sequence⑤">(3)</a>
     <li><a href="#ref-for-elementdef-sequence⑥">5.2.5.3. The tuplet element</a> <a href="#ref-for-elementdef-sequence⑦">(2)</a>
+    <li><a href="#ref-for-elementdef-sequence⑧">5.2.7. Direction content</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-sequence-orient">
@@ -3779,6 +3770,7 @@ on its contents.</em></p>
     <li><a href="#ref-for-elementdef-event①">5.2.2.3. Measure location syntax</a>
     <li><a href="#ref-for-elementdef-event②">5.2.5. Sequence content</a>
     <li><a href="#ref-for-elementdef-event③">5.2.5.2. The event element</a>
+    <li><a href="#ref-for-elementdef-event④">5.2.7. Direction content</a> <a href="#ref-for-elementdef-event⑤">(2)</a> <a href="#ref-for-elementdef-event⑥">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-event-value">
@@ -3845,19 +3837,18 @@ on its contents.</em></p>
    <b><a href="#direction-content">#direction-content</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-direction-content">5.2.4.1. The measure element</a>
-    <li><a href="#ref-for-direction-content①">5.2.5. Sequence content</a> <a href="#ref-for-direction-content②">(2)</a> <a href="#ref-for-direction-content③">(3)</a>
-    <li><a href="#ref-for-direction-content④">5.2.7.1. The dynamics element</a>
-    <li><a href="#ref-for-direction-content⑤">5.2.8.1. The wedge element</a>
-    <li><a href="#ref-for-direction-content⑥">5.2.8.4. The dirgroup element</a> <a href="#ref-for-direction-content⑦">(2)</a>
+    <li><a href="#ref-for-direction-content①">5.2.5. Sequence content</a> <a href="#ref-for-direction-content②">(2)</a>
+    <li><a href="#ref-for-direction-content③">5.2.7.1. The dynamics element</a>
+    <li><a href="#ref-for-direction-content④">5.2.8.1. The wedge element</a>
+    <li><a href="#ref-for-direction-content⑤">5.2.8.4. The dirgroup element</a> <a href="#ref-for-direction-content⑥">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-directions-location">
    <b><a href="#element-attrdef-directions-location">#element-attrdef-directions-location</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-directions-location">5.2.5. Sequence content</a>
-    <li><a href="#ref-for-element-attrdef-directions-location①">5.2.7.1. The dynamics element</a>
-    <li><a href="#ref-for-element-attrdef-directions-location②">5.2.8.1. The wedge element</a>
-    <li><a href="#ref-for-element-attrdef-directions-location③">5.2.8.4. The dirgroup element</a>
+    <li><a href="#ref-for-element-attrdef-directions-location">5.2.7.1. The dynamics element</a>
+    <li><a href="#ref-for-element-attrdef-directions-location①">5.2.8.1. The wedge element</a>
+    <li><a href="#ref-for-element-attrdef-directions-location②">5.2.8.4. The dirgroup element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-dynamics">
@@ -3888,6 +3879,12 @@ on its contents.</em></p>
    <b><a href="#elementdef-dirgroup">#elementdef-dirgroup</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-elementdef-dirgroup">5.2.8.4. The dirgroup element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-clef">
+   <b><a href="#elementdef-clef">#elementdef-clef</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-clef">5.2.9. Staff content</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="part-description-content">
