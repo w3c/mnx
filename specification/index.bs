@@ -1010,7 +1010,7 @@ The following values of <{cwmnx/profile}> are supported, along with the
 constraints that they represent:
 
 <dl dfn-for="cwmnx/profile">
-    <dt><dfn value><code>standard</code></dfn></dt>
+    <dt><dfn attr-value><code>standard</code></dfn></dt>
     <dd>The <a>system content</a> in all <{system}> or <{part}> elements consists of an identical number of measures.</dd>
     <dd>Time and key signatures only occur in measures within the <{system}> element.</dd>
 </dl>
@@ -1101,7 +1101,27 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
     <ol>
       <li>Let <var>next</var> be the initial element of <var>content</var>,
       and remove it from the head of <var>content</var>.
-      <li>If <var>next</var> is <{event}>:
+      <li>If <var>next</var> is an <{event}> element:
+        <ol>
+          <li>If <var>next</var> has a <{event/measure}> value of <{event/measure/true}>,
+            <ol>
+              <li>If <var>sequence cursor</var> is greater than zero, throw a processing error.</li>
+              <li>Set <var>sequence cursor</var> to the end of the measure as defined by its time signature.</li>
+            </ol>
+          </li>
+          <li>Else,
+            <ol>
+              <li>
+                Set the <a>metrical position</a> of <var>next</var> to <var>sequence cursor</var>.
+              </li>
+              <li>
+                Add the duration of <var>next</var>, multiplied by the
+                  <a>time modification ratio</a>, to <var>sequence cursor</var>.
+              </li>
+            </ol>
+        </ol>
+      </li>
+      <li>If <var>next</var> is a <{space}> element:
         <ol>
           <li>
             Set the <a>metrical position</a> of <var>next</var> to <var>sequence cursor</var>.
@@ -1112,7 +1132,7 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
           </li>
         </ol>
       </li>
-      <li>Else, if <var>next</var> is <{tuplet}>:
+      <li>Else, if <var>next</var> is a <{tuplet}> element:
         <ol>
           <li>
             <a>Sequence the content</a> of <var>next</var>, using
@@ -1127,7 +1147,7 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
           </li>
         </ol>
       </li>
-      <li>Else, if <var>next</var> is <{grace}>:
+      <li>Else, if <var>next</var> is a <{grace}> element:
         <ol>
           <li>
             Process the contents of <var>next</var>, assigning them a non-metrical ordering
@@ -1182,10 +1202,13 @@ rendering rules.
     <dd><{sequence}>, <{tuplet}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
+    <dd>Either zero or more <{note}> elements, or one <{rest}> element.</dd>
     <dd><a>Event content</a></dd>
+    <dd><a>Direction content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{event/value}> - the metrical duration of this event</dd>
+    <dd><{event/measure}> - optional flag indicating that the event occupies the entire measure.</dd>
     <dd><{event/orient}> - optional <a>orientation</a> of this event </dd>
     <dd><{event/staff}> - optional <a>staff index</a> of this event </dd>
     <dt><a>Style properties</a>:</dt>
@@ -1195,8 +1218,17 @@ rendering rules.
 The <{event}> element represents a discrete period of time within a sequence
 during which one or more notes are performed, or in which a rest occurs.
 
-Events have a <dfn element-attr>value</dfn> attribute describing their
-duration in the containing metrical context, given as a <a>note value</a>.
+All events other than <a>whole-measure events</a> require a <dfn element-attr>
+value</dfn> attribute to provide their duration as a <a>note value</a>.
+This duration is implicitly multiplied by the current <a>time modification
+ratio</a>, as specified by the process of <a>sequencing the content</a> of the
+event's containing element.
+
+If the optional <dfn element-attr>measure</dfn> attribute is given as <dfn
+attr-value dfn-for="event/measure">true</dfn>, then the event is a <dfn>whole-measure
+event</dfn> which occupies the entire measure. Whole-measure events may not
+specify a <{event/value}> attribute, and must either be empty or contain
+exactly one <{rest}>.
 
 The optional <dfn element-attr>orient</dfn> attribute provides a specific
 <a>orientation</a> for all content within this sequence. If not provided, the
@@ -1270,14 +1302,33 @@ rendering rules.
 
 </section>
 
+<h5 id="the-space-element">The <dfn element><code>space</code></dfn> element</h5>
+<section dfn-for="space">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd><{sequence}>, <{tuplet}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a></dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{space/duration}> - the metrical duration of this space</dd>
+    <dt><a>Style properties</a>:</dt>
+    <dd>'stem' - the stem direction of this event</dd>
+  </dl>
+
+The <{space}> element represents a discrete period of time within a sequence
+in which no notations occur.
+
+The <dfn element-attr>duration</dfn> attribute specifies a <a>note value
+quantity</a> that provides the length of this <{space}>.
+
+Note: In contrast to <{event}>'s <{event/value}> attribute, the
+<{space/duration}> attribute is not constrained to a single note value, but
+may be a multiple of one.
+</section>
+
 <h5 id="the-grace-element">The <dfn element><code>grace</code></dfn> element</h5>
 <section dfn-for="grace">
 </section>
-
-<h4 id="cwmnx-event-content">Event content</h4>
-
-<dfn>Event content</dfn> comprises elements that describe the musical content
-of a single event that is performed at a distinct time.
 
 <h5 id="the-note-element">The <dfn element><code>note</code></dfn> element</h5>
 <section dfn-for="note">
@@ -1286,6 +1337,11 @@ of a single event that is performed at a distinct time.
 <h5 id="the-rest-element">The <dfn element><code>rest</code></dfn> element</h5>
 <section dfn-for="rest">
 </section>
+
+<h4 id="cwmnx-event-content">Event content</h4>
+
+<dfn>Event content</dfn> comprises elements that describe the musical content
+of a single event that is performed at a distinct time.
 
 <h5 id="the-lyric-element">The <dfn element><code>lyric</code></dfn> element</h5>
 <section dfn-for="lyric">
