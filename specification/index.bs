@@ -895,7 +895,7 @@ syntax, employ the following procedure:
       the string.
   1. Let <var>alteration</var> be 0.
   1. If the character at <var>position</var> is not an <a>uppercase ASCII letter</a> in the range from
-    U+0041 A - U+0047 G, return an error.
+    U+0041 UPPERCASE A - U+0047 UPPERCASE G, return an error.
   1. Let <var>step</var> be the character at <var>position</var>, and advance <var>position</var> by 1.
   1. If the character at <var>position</var> is U+0023 HASH,
        1. While the character at <var>position</var> is U+0023 HASH,
