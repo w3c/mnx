@@ -503,11 +503,11 @@ of the collection may itself be either a collection or a score.
 The <dfn element-attr>type</dfn> attribute determines the nature of the collection.
 Valid collection type values include:
 
-: <dfn value><code>movements</code>
+: <dfn attr-value><code>movements</code>
 :: Each element comprises a movement of a work.
-: <dfn value><code>sections</code>
+: <dfn attr-value><code>sections</code>
 :: Each element comprises a section of a work, or of a movement.
-: <dfn value><code>parts</code>
+: <dfn attr-value><code>parts</code>
 :: Each element comprises a description of of the same music, organized for different parts.
 
 </section>
@@ -1216,9 +1216,9 @@ The <dfn property><code>stem</code></dfn> property controls the direction
 of any rendered stem associated with this event. If omitted, the stem direction
 is determined automatically by the implementation.
 
-The value <dfn value dfn-for="stem">up</dfn> causes an event's stem to be rendered pointing upwards.
+The value <dfn attr-value dfn-for="stem">up</dfn> causes an event's stem to be rendered pointing upwards.
 
-The value <dfn value dfn-for="stem">down</dfn> causes an event's stem to be rendered pointing downwards.
+The value <dfn attr-value dfn-for="stem">down</dfn> causes an event's stem to be rendered pointing downwards.
 </section>
 
 <h5 id="the-tuplet-element">The <dfn element><code>tuplet</code></dfn> element</h5>
@@ -1356,9 +1356,9 @@ The <dfn element-attr>type</dfn> attribute describes the nature of the dynamic. 
 dynamics are supported:
 
 <dl dfn-for="dynamics/type">
-  <dt><dfn value><code>p</code></dfn>, <dfn value><code>pp</code></dfn>, <dfn value><code>ppp</code></dfn>, <dfn value><code>pppp</code></dfn>, <dfn value><code>ppppp</code></dfn>, <dfn value><code>pppppp</code></dfn>, <dfn value><code>mp</code></dfn></dt>
-  <dt><dfn value><code>mf</code></dfn>, <dfn value><code>f</code></dfn>, <dfn value><code>ff</code></dfn>, <dfn value><code>fff</code></dfn>, <dfn value><code>ffff</code></dfn>, <dfn value><code>fffff</code></dfn>, <dfn value><code>ffffff</code></dfn></dt>
-  <dt><dfn value><code>sf</code></dfn>, <dfn value><code>sfp</code></dfn>, <dfn value><code>sfpp</code></dfn>, <dfn value><code>fp</code></dfn>, <dfn value><code>rf</code></dfn>, <dfn value><code>rfz</code></dfn>, <dfn value><code>sfz</code></dfn>, <dfn value><code>sffz</code></dfn>, <dfn value><code>fz</code></dfn></dt>
+  <dt><dfn attr-value><code>p</code></dfn>, <dfn attr-value><code>pp</code></dfn>, <dfn attr-value><code>ppp</code></dfn>, <dfn attr-value><code>pppp</code></dfn>, <dfn attr-value><code>ppppp</code></dfn>, <dfn attr-value><code>pppppp</code></dfn>, <dfn attr-value><code>mp</code></dfn></dt>
+  <dt><dfn attr-value><code>mf</code></dfn>, <dfn attr-value><code>f</code></dfn>, <dfn attr-value><code>ff</code></dfn>, <dfn attr-value><code>fff</code></dfn>, <dfn attr-value><code>ffff</code></dfn>, <dfn attr-value><code>fffff</code></dfn>, <dfn attr-value><code>ffffff</code></dfn></dt>
+  <dt><dfn attr-value><code>sf</code></dfn>, <dfn attr-value><code>sfp</code></dfn>, <dfn attr-value><code>sfpp</code></dfn>, <dfn attr-value><code>fp</code></dfn>, <dfn attr-value><code>rf</code></dfn>, <dfn attr-value><code>rfz</code></dfn>, <dfn attr-value><code>sfz</code></dfn>, <dfn attr-value><code>sffz</code></dfn>, <dfn attr-value><code>fz</code></dfn></dt>
 </dl>
 
 </section>
@@ -1409,9 +1409,9 @@ location given for the start of the spanning direction.
 The <dfn element-attr>type</dfn> attribute describes the nature of the wedge:
 
 <dl dfn-for="wedge/type">
-  <dt><dfn value><code>diminuendo</code></dt>
+  <dt><dfn attr-value><code>diminuendo</code></dt>
   <dd>The wedge represents a decrease in dynamic level.</dd>
-  <dt><dfn value><code>crescendo</code></dt>
+  <dt><dfn attr-value><code>crescendo</code></dt>
   <dd>The wedge represents an increase in dynamic level.</dd>
 </dl>
 
