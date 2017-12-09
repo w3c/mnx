@@ -1633,17 +1633,19 @@ Properties are documented in the following places:
     <dt><a>Contexts in which this element can be used</a>:</dt>
     <dd>Any.</dd>
     <dt><a>Content Model</a>:</dt>
-    <dd>Text of the value being defined for this property, or empty.</dd>
+    <dd>Empty.</dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{style/property}> - the name of the property being defined</dd>
+    <dd><{style/value}> - the value of the property being defined</dd>
   </dl>
 
 The <{style}> element supplies the value of an explicit style property
 which applies to the containing element.
 
 The <dfn element-attr>property</dfn> attribute gives the name of a property
-whose value is supplied by this <{style}> element's text content, applying
-to the rendering or interpretation of the containing element.
+whose value is supplied by this <{style}> element's <dfn element-
+attr>value</dfn> attribute, applying to the rendering or interpretation of the
+containing element.
 
 </section>
 
