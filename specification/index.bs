@@ -1231,22 +1231,23 @@ specify a <{event/value}> attribute, and must either be empty or contain
 exactly one <{rest}>.
 
 The optional <dfn element-attr>orient</dfn> attribute provides a specific
-<a>orientation</a> for all content within this sequence. If not provided, the
-orientation is inherited from any <{sequence}> or <{tuplet}> ancestor which
-specified it. If no ancestor did so, it is determined automatically according
-to the implementation's rendering rules.
+<a>orientation</a> for this event. If not provided, the orientation is
+inherited from any <{sequence}> or <{tuplet}> ancestor which specified it. If
+no ancestor did so, it is determined automatically according to the
+implementation's rendering rules.
 
 The optional <dfn element-attr>staff</dfn> attribute provides a specific
-<a>staff index</a> for all content within this sequence. If not provided, the
-orientation is inherited from any <{sequence}> or <{tuplet}> ancestor which
-specified it. If no ancestor did so, it is determined automatically according
-to the implementation's rendering rules.
+<a>staff index</a> for this event. If not provided, the orientation is
+inherited from any <{sequence}> or <{tuplet}> ancestor which specified it. If
+no ancestor did so, it is determined automatically according to the
+implementation's rendering rules.
 
 </section>
 <section>
 The <dfn property><code>stem</code></dfn> property controls the direction
 of any rendered stem associated with this event. If omitted, the stem direction
-is determined automatically by the implementation.
+is determined automatically by the implementation, in accordance with the
+<a>orientation</a> of the event.
 
 The value <dfn attr-value dfn-for="stem">up</dfn> causes an event's stem to be rendered pointing upwards.
 
@@ -1328,6 +1329,34 @@ may be a multiple of one.
 
 <h5 id="the-grace-element">The <dfn element><code>grace</code></dfn> element</h5>
 <section dfn-for="grace">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd><{sequence}>, <{tuplet}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a></dd>
+    <dd><a>Sequence content</a></dd>
+    <dd><a>Interpretation content</a></dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{grace/slash}> - a flag indicating that this run of grace events bears a slash</dd>
+    <dd><{event/orient}> - optional <a>orientation</a> of this event </dd>
+    <dd><{event/staff}> - optional <a>staff index</a> of this event </dd>
+    <dt><a>Style properties</a>:</dt>
+    <dd>'stem' - the stem direction of this event</dd>
+  </dl>
+
+The <{grace}> element represents a run of events that do not have defined
+measure positions, but are performed in such a way that they either:
+
+- occupy a time interval within the preceding event that concludes on the following event, or
+
+- delay the onset of the following event by the time interval occupied by the run
+
+The <dfn element-attr>slash</dfn> event declares that a slash is notated for
+this run of grace notes if its value is <dfn attr-value dfn-
+for="grace/slash">true</dfn>. Otherwise, by default, the contents of <{grace}>
+are interpreted as an appoggiatura and thus delay the onset of the following
+event.
+
 </section>
 
 <h5 id="the-note-element">The <dfn element><code>note</code></dfn> element</h5>
@@ -1643,8 +1672,8 @@ The <{style}> element supplies the value of an explicit style property
 which applies to the containing element.
 
 The <dfn element-attr>property</dfn> attribute gives the name of a property
-whose value is supplied by this <{style}> element's <dfn element-
-attr>value</dfn> attribute, applying to the rendering or interpretation of the
+whose value is supplied by this <{style}> element's <dfn element-attr>value</dfn>
+attribute, applying to the rendering or interpretation of the
 containing element.
 
 </section>
