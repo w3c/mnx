@@ -806,9 +806,9 @@ of the following forms:
 
 The syntax for <a>general note values</a> consists of these components:
 
-1. Zero or more occurrences of U+002E FULL STOP (.) characters. The number of occurrences
-      supply the <a>number of dots</a>.
 1. A <a>base note value</a> encoding.
+1. Zero or more occurrences of U+0064 LOWERCASE D characters. The number of occurrences
+      supply the <a>number of dots</a>.
 
 To <dfn>parse a note value</dfn>, use the following procedure:
 
@@ -816,8 +816,6 @@ To <dfn>parse a note value</dfn>, use the following procedure:
   1. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
       the string.
   1. Let <var>number of dots</var> be 0.
-  1. If parsing a general note value, <a>collect a sequence of characters</a> that are U+002E FULL STOP
-      characters. Set <var>number of dots</var> to the length of this sequence.
   1. If the character indicated by <var>position</var> is a U+002A ASTERISK character (*), let <var>fractional</var>
       be <code>false</code> and advance <var>position</var> by 1.
   1. Else, if the character indicated by <var>position</var> is a U+002E SLASH character (/), let <var>fractional</var>
@@ -827,6 +825,8 @@ To <dfn>parse a note value</dfn>, use the following procedure:
       be the result.
   1. Let <var>base value</var> be the result of parsing <var>unparsed number</var> using the
       <a>rules for parsing integers</a>.
+  1. If parsing a general note value, <a>collect a sequence of characters</a> that are U+0064 LOWERCASE D
+      characters. Set <var>number of dots</var> to the length of this sequence.
   1. If <var>position</var> is not at the end of the string, return an error.
   1. If <var>base value</var> is not equal to a power of 2, return an error.
   1. If <var>base value</var> is equal to 1 and <var>fractional</var> is false, return an error.
@@ -844,13 +844,13 @@ Here are some instances of the note value syntax:
 :: a quarter note
 : `/8`
 :: an eighth note
-: `./8`
+: `/8d`
 :: a dotted eighth note
-: `../8`
+: `/8dd`
 :: a double-dotted eighth note
 : `*2`
 :: a breve (double whole note)
-: `.*2`
+: `*2d`
 :: a dotted breve
 
 </div>
@@ -879,7 +879,7 @@ Examples include:
 :: a single eighth note
 : `6/8`
 :: six eighth notes
-: `6./8`
+: `6/8d`
 :: six dotted eighth notes
 : `5*1`
 :: five whole notes
