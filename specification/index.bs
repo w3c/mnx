@@ -1079,8 +1079,7 @@ order in which they are played by a performer.
 
 <dfn>Sequence content</dfn> supplies a series of musical events that are
 both presented and performed in a given order, each at a distinct time. Such
-events express the concepts of chords, notes and rests.  <a>Direction content</a>
-may also occur freely within sequence content.
+events express the concepts of chords, notes and rests.
 
 Sequence content possesses a <dfn>starting position</dfn>. This is the
 <a>metrical position</a> within a containing measure of the content's first
@@ -1090,8 +1089,11 @@ Sequence content also possesses a <dfn>time modification ratio</dfn>. This is
 a rational number scale factor which implicitly applies to all positions and
 durations within the content.
 
-Within sequence content, nested <a>event content</a> and <a>direction content</a>
-elements are assigned <a>metrical positions</a> according to the
+Sequence content also may possess an optional <dfn>beamed group</dfn>. If defined,
+this is a list which accumulates events into a group to which beaming applies.
+
+Within sequence content, nested <a>event content</a>
+is assigned <a>metrical positions</a> and placed in beamed groups according to the
 following procedure, called <dfn lt="sequence the content|sequencing the content">sequencing the content</dfn>:
 
 <ol>
@@ -1101,6 +1103,17 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
     <ol>
       <li>Let <var>next</var> be the initial element of <var>content</var>,
       and remove it from the head of <var>content</var>.
+      <li>If <var>next</var> is a <{beamed}> element:
+        <ol>
+          <li>If <var>beamed group</var> has a value of list type, beamed groups have been illegally nested. Throw an error.</li>
+          <li>Set <var>beamed group</var> to an empty list.
+          <li>
+            <a>Sequence the content</a> of <var>next</var>, retaining the value of <var>beamed group</var>.
+          </li>
+          <li>Record <var>beamed group</var> as a group of beamed events within the sequence.</li>
+          <li>Set <var>beamed group</var> to an undefined value.</li>
+        </ol>
+      </li>
       <li>If <var>next</var> is an <{event}> element:
         <ol>
           <li>If <var>next</var> has a <{event/measure}> value of <{event/measure/true}>,
@@ -1118,6 +1131,8 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
                 Add the duration of <var>next</var>, multiplied by the
                   <a>time modification ratio</a>, to <var>sequence cursor</var>.
               </li>
+              <li>
+                If <var>beamed group</var> is a list, append <var>next</var> to <var>beamed group</var>.
             </ol>
         </ol>
       </li>
@@ -1136,7 +1151,8 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
         <ol>
           <li>
             <a>Sequence the content</a> of <var>next</var>, using
-            <var>sequence cursor</var> as the <a>starting position</a>, and the
+            <var>sequence cursor</var> as the <a>starting position</a>,
+            retaining the current value of <var>beamed group</var>, and
             multiplying the <a>time modification ratio</a> by the <{tuplet}>'s
             <{tuplet/outer}> / <{tuplet/inner}> ratio
             for the processing of the tuplet.
@@ -1199,7 +1215,7 @@ rendering rules.
 <section dfn-for="event">
   <dl class="def">
     <dt><a>Contexts in which this element can be used</a>:</dt>
-    <dd><{sequence}>, <{tuplet}></dd>
+    <dd><{sequence}>, <{tuplet}>, <{beamed}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
     <dd>Either zero or more <{note}> elements, or one <{rest}> element.</dd>
@@ -1211,6 +1227,7 @@ rendering rules.
     <dd><{event/measure}> - optional flag indicating that the event occupies the entire measure.</dd>
     <dd><{event/orient}> - optional <a>orientation</a> of this event </dd>
     <dd><{event/staff}> - optional <a>staff index</a> of this event </dd>
+    <dd><{event/beam-count}> - optional count of beams connecting this event to its successor</dd>
     <dt><a>Style properties</a>:</dt>
     <dd>'stem' - the stem direction of this event</dd>
   </dl>
@@ -1242,6 +1259,9 @@ inherited from any <{sequence}> or <{tuplet}> ancestor which specified it. If
 no ancestor did so, it is determined automatically according to the
 implementation's rendering rules.
 
+The optional <dfn element-attr>beam-count</dfn> attribute defines a specific
+number of beams that connect this event to its successor within a <a>beamed group</a>
+of events.
 </section>
 <section>
 The <dfn property><code>stem</code></dfn> property controls the direction
@@ -1258,7 +1278,7 @@ The value <dfn attr-value dfn-for="stem">down</dfn> causes an event's stem to be
 <section dfn-for="tuplet">
   <dl class="def">
     <dt><a>Contexts in which this element can be used</a>:</dt>
-    <dd><{sequence}>, <{tuplet}></dd>
+    <dd><{sequence}>, <{tuplet}>, <{beamed}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
     <dd><a>Sequence content</a></dd>
@@ -1301,6 +1321,36 @@ The <dfn element-attr>staff</dfn> attribute provides a specific
 staff index is determined automatically according to the implementation's
 rendering rules.
 
+</section>
+
+<h5 id="the-beamed-element">The <dfn element><code>beamed</code></dfn> element</h5>
+<section dfn-for="beamed">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd><{sequence}>, <{tuplet}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a></dd>
+    <dd><a>Sequence content</a></dd>
+    <dd><a>Interpretation content</a></dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{beamed/next}> - optional continuing beam group in following measure</dd>
+  </dl>
+
+The <{beamed}> element defines a <dfn>beamed group</dfn> of events that are joined
+by beams to conceptually mark them as belonging to a distinct run.
+
+It is not valid to nest a <{beamed}> element inside another, directly or indirectly.
+
+Beams may continue from one measure to the next. In this case, the <dfn element-attr>next</dfn>
+attribute gives the <a>element location</a> of a <{beamed}> element in the succeeding
+measure of the same part. This attribute may only be specified if no other events follow
+this beamed group in its measure.
+
+NOTE: In general, the number of beams and the use of forward or backward hooks
+is determined automatically by implementations, using both <{beamed}> and the
+<{event/beam-count}> attribute of <{event}>. More detailed beam specifications
+may be overridden using style properties, but do not amount to semantic
+markup.
 </section>
 
 <h5 id="the-space-element">The <dfn element><code>space</code></dfn> element</h5>
@@ -1362,6 +1412,27 @@ event.
 <h5 id="the-note-element">The <dfn element><code>note</code></dfn> element</h5>
 <section dfn-for="note">
 </section>
+
+<!--
+      <xs:element name="instrument" type="instrument" minOccurs="0"/>
+      <xs:group ref="editorial-voice"/>
+      <xs:element name="type" type="note-type" minOccurs="0"/>
+      <xs:element name="dot" type="empty-placement" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>One dot element is used for each dot of prolongation. The placement element is used to specify whether the dot should appear above or below the staff line. It is ignored for notes that appear on a staff space.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="accidental" type="accidental" minOccurs="0"/>
+      <xs:element name="time-modification" type="time-modification" minOccurs="0"/>
+      <xs:element name="stem" type="stem" minOccurs="0"/>
+      <xs:element name="notehead" type="notehead" minOccurs="0"/>
+      <xs:element name="notehead-text" type="notehead-text" minOccurs="0"/>
+      <xs:group ref="staff" minOccurs="0"/>
+      <xs:element name="beam" type="beam" minOccurs="0" maxOccurs="8"/>
+      <xs:element name="notations" type="notations" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="lyric" type="lyric" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="play" type="play" minOccurs="0"/>
+  -->
 
 <h5 id="the-rest-element">The <dfn element><code>rest</code></dfn> element</h5>
 <section dfn-for="rest">
