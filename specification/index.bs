@@ -1136,7 +1136,7 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
       </li>
       <li>If <var>next</var> is an <{event}> element:
         <ol>
-          <li>If <var>next</var> has a <{event/measure}> value of <{event/measure/true}>,
+          <li>If <var>next</var> has a <{event/measure}> value of <{event/measure/yes}>,
             <ol>
               <li>If <var>sequence cursor</var> is greater than zero, throw a processing error.</li>
               <li>Set <var>sequence cursor</var> to the end of the measure as defined by its time signature.</li>
@@ -1262,7 +1262,7 @@ ratio</a>, as specified by the process of <a>sequencing the content</a> of the
 event's containing element.
 
 If the optional <dfn element-attr>measure</dfn> attribute is given as <dfn
-attr-value dfn-for="event/measure">true</dfn>, then the event is a <dfn>whole-measure
+attr-value dfn-for="event/measure">yes</dfn>, then the event is a <dfn>whole-measure
 event</dfn> which occupies the entire measure. Whole-measure events may not
 specify a <{event/value}> attribute, and must either be empty or contain
 exactly one <{rest}>.
@@ -1423,7 +1423,7 @@ measure positions, but are performed in such a way that they either:
 
 The <dfn element-attr>slash</dfn> event declares that a slash is notated for
 this run of grace notes if its value is <dfn attr-value dfn-
-for="grace/slash">true</dfn>. Otherwise, by default, the contents of <{grace}>
+for="grace/slash">yes</dfn>. Otherwise, by default, the contents of <{grace}>
 are interpreted as an appoggiatura and thus delay the onset of the following
 event.
 
@@ -1431,6 +1431,18 @@ event.
 
 <h5 id="the-note-element">The <dfn element><code>note</code></dfn> element</h5>
 <section dfn-for="note">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd><{event}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a></dd>
+    <dd><a>Note content</a></dd>
+    <dd><a>Liaison content</a></dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{note/pitch}> - the musical pitch of this note </dd>
+    <dt><a>Style properties</a>:</dt>
+    <dd>'stem' - the stem direction of this event</dd>
+  </dl>
 </section>
 
 <!--
