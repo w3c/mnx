@@ -1105,8 +1105,8 @@ Sequence content also possesses a <dfn>time modification ratio</dfn>. This is
 a rational number scale factor which implicitly applies to all positions and
 durations within the content.
 
-Sequence content also may possess an optional <dfn>beamed group</dfn>. If defined,
-this is a list which accumulates events into a group to which beaming applies.
+Sequence content also may define some number of <a>beamed groups</a>. If defined,
+these are lists which accumulate events into groups to which beaming applies.
 
 Within sequence content, nested <a>event content</a>
 is assigned <a>metrical positions</a> and placed in beamed groups according to the
@@ -1248,8 +1248,9 @@ rendering rules.
     <dd>'stem' - the stem direction of this event</dd>
   </dl>
 
-The <{event}> element represents a discrete period of time within a sequence
-during which one or more notes are performed, or in which a rest occurs.
+The <{event}> element represents a <a>notated event</a>: a discrete period of
+time within a sequence during which one or more notes are performed, or in
+which a rest occurs.
 
 All events other than <a>whole-measure events</a> require a <dfn element-attr>
 value</dfn> attribute to provide their duration as a <a>note value</a>.
@@ -1436,12 +1437,19 @@ event.
     <dd><a>Liaison content</a></dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{note/pitch}> - the musical pitch of this note </dd>
-    <dt><a>Style properties</a>:</dt>
-    <dd>'stem' - the stem direction of this event</dd>
   </dl>
+
+The <{note}> element defines a single note within an event, along with other
+information pertaining to the note itself rather than to its containing event.
+
+The <dfn element-attr>pitch</dfn> attribute supplies the pitch of the note
+as a <a>chromatic pitch</a>, using the <a>rules for parsing a chromatic pitch</a>.
+
 </section>
 
 <!--
+  <note> schema elements:
+
       <xs:element name="instrument" type="instrument" minOccurs="0"/>
       <xs:group ref="editorial-voice"/>
       <xs:element name="type" type="note-type" minOccurs="0"/>
@@ -1464,19 +1472,67 @@ event.
 
 <h5 id="the-rest-element">The <dfn element><code>rest</code></dfn> element</h5>
 <section dfn-for="rest">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd><{event}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a></dd>
+    <dt><a>Attributes</a>:</dt>
+  </dl>
+
+The <{rest}> element defines a rest within an event, along with other
+information pertaining to the rest rather than to its containing event.
 </section>
 
 <h4 id="cwmnx-event-content">Event content</h4>
 
 <dfn>Event content</dfn> comprises elements that describe the musical content
-of a single event that is performed at a distinct time.
+of a single event, that is performed at a distinct time.
+
+<h5 id="the-articulations-element">The <dfn element><code>articulations</code></dfn> element</h5>
+<section dfn-for="articulations">
+</section>
 
 <h5 id="the-lyric-element">The <dfn element><code>lyric</code></dfn> element</h5>
 <section dfn-for="lyric">
 </section>
 
-<h5 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h5>
-<section dfn-for="slur">
+<h5 id="the-ornaments-element">The <dfn element><code>ornaments</code></dfn> element</h5>
+<section dfn-for="ornaments">
+</section>
+
+<h5 id="the-technical-element">The <dfn element><code>technical</code></dfn> element</h5>
+<section dfn-for="technical">
+</section>
+
+<h4 id="cwmnx-note-content">Note content</h4>
+
+<dfn>Note content</dfn> comprises elements that describe the musical nature
+of a single note within an event.
+
+<h5 id="the-accidental-element">The <dfn element><code>accidental</code></dfn> element</h5>
+<section dfn-for="accidental">
+</section>
+
+<h5 id="the-notehead-element">The <dfn element><code>notehead</code></dfn> element</h5>
+<section dfn-for="notehead">
+</section>
+
+<h5 id="the-fret-element">The <dfn element><code>fret</code></dfn> element</h5>
+<section dfn-for="fret">
+</section>
+
+<h5 id="the-string-element">The <dfn element><code>string</code></dfn> element</h5>
+<section dfn-for="string">
+</section>
+
+<h4 id="cwmnx-liaison-content">Liaison content</h4>
+
+<dfn>Liaison content</dfn> comprises elements that describe the liaison or connection
+between a single note within an event, and some other note.
+
+<h5 id="the-tied-element">The <dfn element><code>tied</code></dfn> element</h5>
+<section dfn-for="tied">
 </section>
 
 <h5 id="the-glissando-element">The <dfn element><code>glissando</code></dfn> element</h5>
@@ -1487,17 +1543,18 @@ of a single event that is performed at a distinct time.
 <section dfn-for="slide">
 </section>
 
-<h5 id="the-ornaments-element">The <dfn element><code>ornaments</code></dfn> element</h5>
-<section dfn-for="ornaments">
+<h5 id="the-bend-element">The <dfn element><code>bend</code></dfn> element</h5>
+<section dfn-for="bend">
 </section>
 
-<h5 id="the-articulations-element">The <dfn element><code>articulations</code></dfn> element</h5>
-<section dfn-for="articulations">
+<h5 id="the-hammer-on-element">The <dfn element><code>hammer-on</code></dfn> element</h5>
+<section dfn-for="hammer-on">
 </section>
 
-<h5 id="the-technical-element">The <dfn element><code>technical</code></dfn> element</h5>
-<section dfn-for="technical">
+<h5 id="the-pull-off-element">The <dfn element><code>pull-off</code></dfn> element</h5>
+<section dfn-for="pull-off">
 </section>
+
 
 <h4 id="cwmnx-direction-content">Direction content</h4>
 
@@ -1576,6 +1633,10 @@ Spanning directions MUST be given a <a>measure location</a> as their endpoint,
 by supplying a <dfn element-attr dfn-for="spans">end</dfn> attribute. This
 measure location must lie within the same run of <a>system content</a> as the
 location given for the start of the spanning direction.
+
+<h5 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h5>
+<section dfn-for="slur">
+</section>
 
 <h5 id="the-wedge-element">The <dfn element><code>wedge</code></dfn> element</h5>
 <section dfn-for="wedge">
