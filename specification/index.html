@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="ba87ac686a8c147c0994082f59f8790b291af302" name="document-revision">
+  <meta content="ba362471404573c8baba6cc0a46bd96f2317535d" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1672,6 +1672,9 @@ predecessors.</p>
          <ol class="toc">
           <li><a href="#the-color-property"><span class="secno">6.3.3.1</span> <span class="content">The <span><code>color</code></span> property</span></a>
           <li><a href="#the-glyph-property"><span class="secno">6.3.3.2</span> <span class="content">The <span><code>glyph</code></span> property</span></a>
+          <li><a href="#the-display-property"><span class="secno">6.3.3.3</span> <span class="content">The <span><code>display</code></span> property</span></a>
+          <li><a href="#the-visibility-property"><span class="secno">6.3.3.4</span> <span class="content">The <span><code>visibility</code></span> property</span></a>
+          <li><a href="#the-audibility-property"><span class="secno">6.3.3.5</span> <span class="content">The <span><code>perform</code></span> property</span></a>
          </ol>
        </ol>
       <li>
@@ -3069,6 +3072,47 @@ apply to all descendants of the element within which they are specified.</p>
      <section> The <a class="property" data-link-type="propdesc" href="#propdef-color" id="ref-for-propdef-color">color</a> property specifies a <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#colors" id="ref-for-colors">simple color</a> to be used to render a notational object. </section>
      <h5 class="heading settled" data-level="6.3.3.2" id="the-glyph-property"><span class="secno">6.3.3.2. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-glyph"><code>glyph</code></dfn> property</span><a class="self-link" href="#the-glyph-property"></a></h5>
      <section> The <a class="property" data-link-type="propdesc" href="#propdef-glyph" id="ref-for-propdef-glyph①">glyph</a> property specifies a specific <a data-link-type="dfn" href="https://w3c.github.io/smufl/gitbook/specification/glyphnames.html#">SMuFL glyph name</a> to be used to render a notational object. </section>
+     <h5 class="heading settled" data-level="6.3.3.3" id="the-display-property"><span class="secno">6.3.3.3. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-display"><code>display</code></dfn> property</span><a class="self-link" href="#the-display-property"></a></h5>
+     <section>
+      <p>The <a class="property" data-link-type="propdesc" href="#propdef-display" id="ref-for-propdef-display">display</a> property controls whether an element’s contents (including
+all of its descendants) are displayed by a consumer or not. The layout of the
+document is affected by this property, in that a value of <a class="css" data-link-type="maybe" href="#valdef-display-none" id="ref-for-valdef-display-none">none</a> will display
+the document as if the styled element did not exist.</p>
+      <p>Permitted values include:</p>
+      <ul>
+       <li data-md="">
+        <p><dfn class="css" data-dfn-for="display" data-dfn-type="value" data-export="" id="valdef-display-normal">normal<a class="self-link" href="#valdef-display-normal"></a></dfn> the element is displayed normally</p>
+       <li data-md="">
+        <p><dfn class="dfn-paneled css" data-dfn-for="display" data-dfn-type="value" data-export="" id="valdef-display-none">none</dfn> the element is not processed for display</p>
+      </ul>
+     </section>
+     <h5 class="heading settled" data-level="6.3.3.4" id="the-visibility-property"><span class="secno">6.3.3.4. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-visibility"><code>visibility</code></dfn> property</span><a class="self-link" href="#the-visibility-property"></a></h5>
+     <section>
+      <p>The <a class="property" data-link-type="propdesc" href="#propdef-visibility" id="ref-for-propdef-visibility">visibility</a> property controls whether an element’s contents (including
+all of its descendants) are displayed by a consumer or not.</p>
+      <p>In contrast to <a class="property" data-link-type="propdesc" href="#propdef-display" id="ref-for-propdef-display①">display</a> with a value of <a class="css" data-link-type="maybe" href="#valdef-display-none" id="ref-for-valdef-display-none①">none</a>, a <a class="property" data-link-type="propdesc" href="#propdef-visibility" id="ref-for-propdef-visibility①">visibility</a> value of <a class="css" data-link-type="maybe" href="#valdef-visibility-hidden" id="ref-for-valdef-visibility-hidden">hidden</a> does not affect the layout of any other
+elements in the document. For example, the contents of a hidden <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event①①">event</a></code> will not be shown, but the place where the event would have appeared
+will still occupy space in the containing measure.</p>
+      <p>Permitted values include:</p>
+      <ul>
+       <li data-md="">
+        <p><dfn class="css" data-dfn-for="visibility" data-dfn-type="value" data-export="" id="valdef-visibility-visible">visible<a class="self-link" href="#valdef-visibility-visible"></a></dfn> the element is visible</p>
+       <li data-md="">
+        <p><dfn class="dfn-paneled css" data-dfn-for="visibility" data-dfn-type="value" data-export="" id="valdef-visibility-hidden">hidden</dfn> the element is hidden</p>
+      </ul>
+     </section>
+     <h5 class="heading settled" data-level="6.3.3.5" id="the-audibility-property"><span class="secno">6.3.3.5. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-perform"><code>perform</code></dfn> property</span><a class="self-link" href="#the-audibility-property"></a></h5>
+     <section>
+      <p>The <a class="property" data-link-type="propdesc" href="#propdef-perform" id="ref-for-propdef-perform">perform</a> property controls whether an element’s contents (including
+all of its descendants) are performed by a consumer or not.</p>
+      <p>Permitted values include:</p>
+      <ul>
+       <li data-md="">
+        <p><dfn class="css" data-dfn-for="perform" data-dfn-type="value" data-export="" id="valdef-perform-perform">perform<a class="self-link" href="#valdef-perform-perform"></a></dfn> the element is performed</p>
+       <li data-md="">
+        <p><dfn class="css" data-dfn-for="perform" data-dfn-type="value" data-export="" id="valdef-perform-none">none<a class="self-link" href="#valdef-perform-none"></a></dfn> the element is omitted from performance</p>
+      </ul>
+     </section>
      <h3 class="heading settled" data-level="6.4" id="cwmnx-stylesheet-definitions"><span class="secno">6.4. </span><span class="content">Stylesheet definitions</span><a class="self-link" href="#cwmnx-stylesheet-definitions"></a></h3>
      <p>The <code><a data-link-type="element" href="#elementdef-style-class" id="ref-for-elementdef-style-class">style-class</a></code> and <code><a data-link-type="element" href="#elementdef-style-selector" id="ref-for-elementdef-style-selector">style-selector</a></code> elements allow definition of style
 properties in groups that can be applied in a unitary fashion to other
@@ -3206,6 +3250,7 @@ on its contents.</em></p>
          <li><a href="#elementdef-directions">directions</a><span>, in §6.2.9</span>
          <li><a href="#direction-scope">direction scope</a><span>, in §6.2.9</span>
          <li><a href="#elementdef-dirgroup">dirgroup</a><span>, in §6.2.10.5</span>
+         <li><a href="#propdef-display">display</a><span>, in §6.3.3.3</span>
          <li><a href="#attr-valuedef-stem-down">down</a><span>, in §6.2.5.2</span>
          <li><a href="#element-attrdef-space-duration">duration</a><span>, in §6.2.5.5</span>
          <li><a href="#elementdef-dynamics">dynamics</a><span>, in §6.2.9.1</span>
@@ -3231,6 +3276,7 @@ on its contents.</em></p>
          <li><a href="#elementdef-hammer-on">hammer-on</a><span>, in §6.2.8.5</span>
          <li><a href="#elementdef-harmony">harmony</a><span>, in §6.2.9.2</span>
          <li><a href="#elementdef-head">head</a><span>, in §4.1.2</span>
+         <li><a href="#valdef-visibility-hidden">hidden</a><span>, in §6.3.3.4</span>
          <li><a href="#element-attrdef-tuplet-inner">inner</a><span>, in §6.2.5.3</span>
          <li><a href="#elementdef-instruction">instruction</a><span>, in §6.2.9.3</span>
          <li><a href="#interpretation-content">Interpretation content</a><span>, in §6.2.13</span>
@@ -3265,6 +3311,13 @@ on its contents.</em></p>
            <li><a href="#element-attrdef-style-class-name">element-attr for style-class</a><span>, in §6.4.1</span>
           </ul>
          <li><a href="#element-attrdef-beamed-next">next</a><span>, in §6.2.5.4</span>
+         <li>
+          none
+          <ul>
+           <li><a href="#valdef-display-none">value for display</a><span>, in §6.3.3.3</span>
+           <li><a href="#valdef-perform-none">value for perform</a><span>, in §6.3.3.5</span>
+          </ul>
+         <li><a href="#valdef-display-normal">normal</a><span>, in §6.3.3.3</span>
          <li><a href="#notated-event">notated event</a><span>, in §6.2.1.2</span>
          <li><a href="#notated-sequence">notated sequence</a><span>, in §6.2.1.6</span>
          <li><a href="#notational-idiom">notational idiom</a><span>, in §3.1.1</span>
@@ -3300,6 +3353,12 @@ on its contents.</em></p>
            <li><a href="#parts">definition of</a><span>, in §6.2.1.1</span>
           </ul>
          <li><a href="#elementdef-pedal">pedal</a><span>, in §6.2.10.3</span>
+         <li>
+          perform
+          <ul>
+           <li><a href="#propdef-perform">(property)</a><span>, in §6.3.3.5</span>
+           <li><a href="#valdef-perform-perform">value for perform</a><span>, in §6.3.3.5</span>
+          </ul>
          <li><a href="#performance-event">performance event</a><span>, in §6.2.1.8</span>
          <li><a href="#performance-interpretation">performance interpretation</a><span>, in §6.2.1.7</span>
          <li><a href="#performance-order">performance order</a><span>, in §6.2.4</span>
@@ -3420,6 +3479,8 @@ on its contents.</em></p>
            <li><a href="#element-attrdef-event-value">element-attr for event</a><span>, in §6.2.5.2</span>
            <li><a href="#element-attrdef-style-value">element-attr for style</a><span>, in §6.3.1</span>
           </ul>
+         <li><a href="#propdef-visibility">visibility</a><span>, in §6.3.3.4</span>
+         <li><a href="#valdef-visibility-visible">visible</a><span>, in §6.3.3.4</span>
          <li><a href="#elementdef-wedge">wedge</a><span>, in §6.2.10.2</span>
          <li><a href="#white_space">white_space</a><span>, in §3.2.1</span>
          <li><a href="#white_space">white_space characters</a><span>, in §3.2.1</span>
@@ -4143,6 +4204,7 @@ on its contents.</em></p>
     <li><a href="#ref-for-elementdef-event⑥">6.2.5.7. The note element</a>
     <li><a href="#ref-for-elementdef-event⑦">6.2.5.8. The rest element</a>
     <li><a href="#ref-for-elementdef-event⑧">6.2.9. Direction content</a> <a href="#ref-for-elementdef-event⑨">(2)</a> <a href="#ref-for-elementdef-event①⓪">(3)</a>
+    <li><a href="#ref-for-elementdef-event①①">6.3.3.4. The visibility property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-event-value">
@@ -4448,6 +4510,38 @@ on its contents.</em></p>
    <ul>
     <li><a href="#ref-for-propdef-glyph">6.2.2.5. SMuFL glyph name syntax</a>
     <li><a href="#ref-for-propdef-glyph①">6.3.3.2. The glyph property</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="propdef-display">
+   <b><a href="#propdef-display">#propdef-display</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-propdef-display">6.3.3.3. The display property</a>
+    <li><a href="#ref-for-propdef-display①">6.3.3.4. The visibility property</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="valdef-display-none">
+   <b><a href="#valdef-display-none">#valdef-display-none</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-valdef-display-none">6.3.3.3. The display property</a>
+    <li><a href="#ref-for-valdef-display-none①">6.3.3.4. The visibility property</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="propdef-visibility">
+   <b><a href="#propdef-visibility">#propdef-visibility</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-propdef-visibility">6.3.3.4. The visibility property</a> <a href="#ref-for-propdef-visibility①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="valdef-visibility-hidden">
+   <b><a href="#valdef-visibility-hidden">#valdef-visibility-hidden</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-valdef-visibility-hidden">6.3.3.4. The visibility property</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="propdef-perform">
+   <b><a href="#propdef-perform">#propdef-perform</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-propdef-perform">6.3.3.5. The perform property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="stylesheet-definitions">

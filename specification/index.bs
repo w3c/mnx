@@ -1875,6 +1875,53 @@ apply to all descendants of the element within which they are specified.
   The 'glyph' property specifies a specific <a>SMuFL glyph name</a> to be used to render a notational object.
 </section>
 
+<h5 id="the-display-property">The <dfn property><code>display</code></dfn> property</h5>
+<section dfn-for="display">
+
+The 'display' property controls whether an element's contents (including
+all of its descendants) are displayed by a consumer or not. The layout of the
+document is affected by this property, in that a value of ''display/none'' will display
+the document as if the styled element did not exist.
+
+Permitted values include:
+
+- <dfn value>normal</dfn> the element is displayed normally
+- <dfn value>none</dfn> the element is not processed for display
+
+</section>
+
+<h5 id="the-visibility-property">The <dfn property><code>visibility</code></dfn> property</h5>
+<section dfn-for="visibility">
+
+The 'visibility' property controls whether an element's contents (including
+all of its descendants) are displayed by a consumer or not.
+
+In contrast to 'display' with a value of ''display/none'', a 'visibility'
+value of ''visibility/hidden'' does not affect the layout of any other
+elements in the document. For example, the contents of a hidden <{event}>
+will not be shown, but the place where the event would have appeared
+will still occupy space in the containing measure.
+
+Permitted values include:
+
+- <dfn value>visible</dfn> the element is visible
+- <dfn value>hidden</dfn> the element is hidden
+
+</section>
+
+<h5 id="the-audibility-property">The <dfn property><code>perform</code></dfn> property</h5>
+<section dfn-for="perform">
+
+The 'perform' property controls whether an element's contents (including
+all of its descendants) are performed by a consumer or not.
+
+Permitted values include:
+
+- <dfn value>perform</dfn> the element is performed
+- <dfn value>none</dfn> the element is omitted from performance
+
+</section>
+
 <h3 id="cwmnx-stylesheet-definitions">Stylesheet definitions</h3>
 
 The <{style-class}> and <{style-selector}> elements allow definition of style
