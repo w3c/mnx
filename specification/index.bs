@@ -1209,18 +1209,137 @@ The optional attribute <dfn element-attr>number</dfn> provides an <a>non-negativ
 which can be used for visually cross-referencing <{measure}> elements in different parts.
 If provided, corresponding measures must share the same value for <{measure/number}>.
 
+The following example shows both direction content and a single-voice sequence
+with two monophonic half notes:
+
 <div class="example">
 ```xml
 <measure number="2">
   <dynamics type="f" location="0"/>
+
   <sequence>
-    <event value="2">
+    <event value="/2">
       <note pitch="C4"/>
     </event>
-    <event value="2">
+    <event value="/2">
       <note pitch="C5"/>
     </event>
   </sequence>
+</measure>
+```
+</div>
+
+</section>
+
+<h5 id="the-sequence-element">The <dfn element><code>sequence</code></dfn> element</h5>
+
+<section dfn-for="sequence">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd><{measure}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a></dd>
+    <dd><a>Sequence content</a></dd>
+    <dd><a>Direction content</a></dd>
+    <dd><a>Interpretation content</a></dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{sequence/orient}> - default <a>orientation</a> of direction and sequence content </dd>
+    <dd><{sequence/staff}> - default staff index of direction or sequence content</dd>
+  </dl>
+
+The <{sequence}> element organizes a set of musical events within a measure
+into a strict temporal sequence, accompanied by relevant directions. The
+assignment of measure positions to these events  is accomplished by
+<a>sequencing the content</a>, with a <a>starting position</a> of 0 and a
+<a>time modification ratio</a> of 1.
+
+The <a>sequence content</a> within each <{sequence}> supplies the music
+for a single voice, including notes, chords, rests, beam groups,
+tuplets and grace note runs.
+
+The optional <dfn element-attr>orient</dfn> attribute provides a specific
+<a>orientation</a> for all content within this sequence. If not provided, the
+orientation is determined automatically according to the implementation's
+rendering rules.
+
+The <dfn element-attr>staff</dfn> attribute provides a specific
+<a>staff index</a> for all content within this sequence.  If not provided, the
+staff index is determined automatically according to the implementation's
+rendering rules.
+
+This example shows a sequence with a single monophonic voice including a series
+of events that together comprise a 4/4 measure. A single staff is used, so no
+<{sequence/staff}> attribute is present.
+
+<div class="example">
+```xml
+<measure>
+    <sequence>
+        <event value="/2">...</event>
+        <event value="/4">...</event>
+        <event value="/4">...</event>
+    </sequence>
+</measure>
+```
+</div>
+
+Here's a more complex measure that shows two melodic voices with independent
+rhythms on different staves, each represented by a <{sequence}> element. The second voice includes
+an 8th-note triplet.
+
+<div class="example">
+```xml
+<measure>
+    <sequence staff="1">
+        <event value="/2">...</event>
+        <event value="/4">...</event>
+        <event value="/4">...</event>
+    </sequence>
+    <sequence staff="2">
+        <event value="./2">...</event>
+        <tuplet inner="3/8" outer="1/4">
+            <event value="/8">...</event>
+            <event value="/8">...</event>
+            <event value="/8">...</event>
+        </tuplet>
+    </sequence>
+</measure>
+```
+</div>
+
+If the voices in the previous example shared a single polyphonic staff,
+it might look like this instead:
+
+<div class="example">
+```xml
+<measure>
+    <sequence orient="up">
+        <event value="/2">...</event>
+        <event value="/4">...</event>
+        <event value="/4">...</event>
+    </sequence>
+    <sequence orient="down">
+        <event value="./2">...</event>
+        <tuplet inner="3/8" outer="1/4">
+            <event value="/8">...</event>
+            <event value="/8">...</event>
+            <event value="/8">...</event>
+        </tuplet>
+    </sequence>
+</measure>
+```
+</div>
+
+The following example shows a typical organization of sequences within a measure
+for a SATB-style grand staff with four voices, two on each staff:
+
+<div class="example">
+```xml
+<measure>
+    <sequence orient="up" staff="1">...</sequence>
+    <sequence orient="down" staff="1">...</sequence>
+    <sequence orient="up" staff="2">...</sequence>
+    <sequence orient="down" staff="2">...</sequence>
 </measure>
 ```
 </div>
@@ -1330,38 +1449,6 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
     </ol>
   </li>
 </ol>
-
-<h5 id="the-sequence-element">The <dfn element><code>sequence</code></dfn> element</h5>
-
-<section dfn-for="sequence">
-  <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
-    <dd><{measure}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd><a>Metadata content</a></dd>
-    <dd><a>Sequence content</a></dd>
-    <dd><a>Interpretation content</a></dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{sequence/orient}> - default <a>orientation</a> of direction and sequence content </dd>
-    <dd><{sequence/staff}> - default staff index of direction or sequence content</dd>
-  </dl>
-
-The <{sequence}> element organizes a set of musical events within a
-measure into a strict temporal sequence, accompanied by relevant directions.
-This is accomplished by <a>sequencing the content</a>, with a <a>starting
-position</a> of 0 and a <a>time modification ratio</a> of 1.
-
-The optional <dfn element-attr>orient</dfn> attribute provides a specific
-<a>orientation</a> for all content within this sequence. If not provided, the
-orientation is determined automatically according to the implementation's
-rendering rules.
-
-The <dfn element-attr>staff</dfn> attribute provides a specific
-<a>staff index</a> for all content within this sequence.  If not provided, the
-staff index is determined automatically according to the implementation's
-rendering rules.
-
-</section>
 
 <h5 id="the-event-element">The <dfn element><code>event</code></dfn> element</h5>
 <section dfn-for="event">
@@ -1552,6 +1639,11 @@ event.
 
 </section>
 
+<h4 id="cwmnx-event-content">Event content</h4>
+
+<dfn>Event content</dfn> comprises elements that describe the musical content
+of a single event, that is performed at a distinct time.
+
 <h5 id="the-note-element">The <dfn element><code>note</code></dfn> element</h5>
 <section dfn-for="note">
   <dl class="def">
@@ -1573,29 +1665,6 @@ as a <a>chromatic pitch</a>, using the <a>rules for parsing a chromatic pitch</a
 
 </section>
 
-<!--
-  <note> schema elements:
-
-      <xs:element name="instrument" type="instrument" minOccurs="0"/>
-      <xs:group ref="editorial-voice"/>
-      <xs:element name="type" type="note-type" minOccurs="0"/>
-      <xs:element name="dot" type="empty-placement" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:documentation>One dot element is used for each dot of prolongation. The placement element is used to specify whether the dot should appear above or below the staff line. It is ignored for notes that appear on a staff space.</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="accidental" type="accidental" minOccurs="0"/>
-      <xs:element name="time-modification" type="time-modification" minOccurs="0"/>
-      <xs:element name="stem" type="stem" minOccurs="0"/>
-      <xs:element name="notehead" type="notehead" minOccurs="0"/>
-      <xs:element name="notehead-text" type="notehead-text" minOccurs="0"/>
-      <xs:group ref="staff" minOccurs="0"/>
-      <xs:element name="beam" type="beam" minOccurs="0" maxOccurs="8"/>
-      <xs:element name="notations" type="notations" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="lyric" type="lyric" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="play" type="play" minOccurs="0"/>
-  -->
-
 <h5 id="the-rest-element">The <dfn element><code>rest</code></dfn> element</h5>
 <section dfn-for="rest">
   <dl class="def">
@@ -1609,11 +1678,6 @@ as a <a>chromatic pitch</a>, using the <a>rules for parsing a chromatic pitch</a
 The <{rest}> element defines a rest within an event, along with other
 information pertaining to the rest rather than to its containing event.
 </section>
-
-<h4 id="cwmnx-event-content">Event content</h4>
-
-<dfn>Event content</dfn> comprises elements that describe the musical content
-of a single event, that is performed at a distinct time.
 
 <h5 id="the-articulations-element">The <dfn element><code>articulations</code></dfn> element</h5>
 <section dfn-for="articulations">
