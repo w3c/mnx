@@ -1153,7 +1153,7 @@ The <{part}> element represents a set of measures which describe a single part
 within the score. The sequence of measures must match the sequences found in the
 score's <{system}> element, and in all other <{part}> elements.
 
-  <div class="example">
+<div class="example">
 ```xml
 <part>
   <part-name>Violin</part-name>
@@ -1199,7 +1199,32 @@ order in which they are played by a performer.
     <dd>One or more <{sequence}> elements (for measures within <{part}> elements only)</dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
+    <dd><{measure/number}> - an optional numeric index for the measure
   </dl>
+
+The <{measure}> element encloses the direction and sequence content that together
+make up the majority of musical content in a CWMNX score.
+
+The optional attribute <dfn element-attr>number</dfn> provides an <a>non-negative integer</a>
+which can be used for visually cross-referencing <{measure}> elements in different parts.
+If provided, corresponding measures must share the same value for <{measure/number}>.
+
+<div class="example">
+```xml
+<measure number="2">
+  <dynamics type="f" location="0"/>
+  <sequence>
+    <event value="2">
+      <note pitch="C4"/>
+    </event>
+    <event value="2">
+      <note pitch="C5"/>
+    </event>
+  </sequence>
+</measure>
+```
+</div>
+
 </section>
 
 <h4 id="cwmnx-sequence-content">Sequence content</h4>
@@ -1672,6 +1697,15 @@ where it is placed:
 - A direction in a <{sequence}> applies to the sequence in which it occurs.
 - A direction in an <{event}> applies to the event in which it occurs.
 
+<h5 id="cwmnx-direction-attributes">Direction attributes</h5>
+
+Directions share a set of common <dfn>direction attributes</dfn> in an attribute group.
+
+  <dl class="def">
+    <dt><a>Attributes</a>:</dt>
+    <dd><{directions/location}> - the <a>measure location</a> of the direction</dd>
+  </dl>
+
 All directions not contained in an <{event}> element, MUST be given an
 explicit <a>measure location</a> by supplying a <dfn element-attr dfn-
 for="directions">location</dfn> attribute.
@@ -1689,7 +1723,8 @@ explicit location.
     <dd>None</dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{dynamics/type}> - the semantic nature of this dynamics direction</dd>
-    <dd><{directions/location}> - optional <a>measure location</a> of this direction, where required</dd>
+    <dt>Attribute Groups:</dt>
+    <dd><a>Direction attributes</a></dd>
   </dl>
 
 The <{dynamics}> element describes a textual dynamic direction to the performer.
@@ -1725,10 +1760,36 @@ dynamics are supported:
 <section dfn-for="segno">
 </section>
 
+<h5 id="the-dirgroup-element">The <dfn element><code>dirgroup</code></dfn> element</h5>
+<section dfn-for="dirgroup">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd><a>Direction content</a></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Direction content</a>, which must not include <a>measure locations</a></dd>
+    <dt>Attribute Groups:</dt>
+    <dd><a>Direction attributes</a></dd>
+  </dl>
+The <{dirgroup}> element describes a set of directions which are presented
+sequentially, like a sentence. The typical presentation of directions in a group is
+to arrange them horizontally from left to right.
+
+TBD: spacing
+
+</section>
 <h4 id="cwmnx-spanning-directions">Spanning directions</h4>
 
 <dfn>Spanning directions</dfn> are directions whose temporal extent within a part is
 characterized by a <a>span</a>.
+
+<h5 id="cwmnx-span-attributes">Span attributes</h5>
+
+Spanning directions share a set of common <dfn>span attributes</dfn> in an attribute group.
+
+  <dl class="def">
+    <dt><a>Attributes</a>:</dt>
+    <dd><{spans/end}> - the <a>measure location</a> of the direction</dd>
+  </dl>
 
 Spanning directions MUST be given a <a>measure location</a> as their endpoint,
 by supplying a <dfn element-attr dfn-for="spans">end</dfn> attribute. This
@@ -1748,8 +1809,9 @@ location given for the start of the spanning direction.
     <dd>None</dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{wedge/type}> - the type of wedge</dd>
-    <dd><{directions/location}> - optional <a>measure location</a> of the direction's start, where required</dd>
-    <dd><{spans/end}> - a required <a>measure location</a> for the direction's end</dd>
+    <dt>Attribute Groups:</dt>
+    <dd><a>Direction attributes</a></dd>
+    <dd><a>Span attributes</a></dd>
   </dl>
 
 The <dfn element-attr>type</dfn> attribute describes the nature of the wedge:
@@ -1771,23 +1833,6 @@ The <dfn element-attr>type</dfn> attribute describes the nature of the wedge:
 <section dfn-for="bracket">
 </section>
 
-<h5 id="the-dirgroup-element">The <dfn element><code>dirgroup</code></dfn> element</h5>
-<section dfn-for="dirgroup">
-  <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
-    <dd><a>Direction content</a></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd><a>Direction content</a>, which must not include <a>measure locations</a></dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{directions/location}> - optional <a>measure location</a> of this direction, where required</dd>
-  </dl>
-The <{dirgroup}> element describes a set of directions which are presented
-sequentially, like a sentence. The typical presentation of directions in a group is
-to arrange them horizontally from left to right.
-
-TBD: spacing
-
-</section>
 <h4 id="cwmnx-staff-content">Staff content</h4>
 
 <dfn>Staff content</dfn> consists of elements that apply as a whole to the
