@@ -1280,16 +1280,6 @@ The optional <dfn element-attr>beam-count</dfn> attribute defines a specific
 number of beams that connect this event to its successor within a <a>beamed group</a>
 of events.
 </section>
-<section>
-The <dfn property><code>stem</code></dfn> property controls the direction
-of any rendered stem associated with this event. If omitted, the stem direction
-is determined automatically by the implementation, in accordance with the
-<a>orientation</a> of the event.
-
-The value <dfn attr-value dfn-for="stem">up</dfn> causes an event's stem to be rendered pointing upwards.
-
-The value <dfn attr-value dfn-for="stem">down</dfn> causes an event's stem to be rendered pointing downwards.
-</section>
 
 <h5 id="the-tuplet-element">The <dfn element><code>tuplet</code></dfn> element</h5>
 <section dfn-for="tuplet">
@@ -1867,16 +1857,52 @@ apply to all descendants of the element within which they are specified.
 
 <h5 id="the-color-property">The <dfn property><code>color</code></dfn> property</h5>
 <section dfn-for="color">
+  <dl class="def">
+    <dt>Applies to:</dt>
+    <dd><{part}></dd>
+    <dd><a>Sequence content</a></dd>
+    <dd><a>Direction content</a></dd>
+    <dd><a>Event content</a></dd>
+    <dd><a>Note content</a></dd>
+    <dd><a>Liaison content</a></dd>
+    <dt>Value:</dt>
+    <dd><a>Simple color</a></dd>
+    <dt>Inherited:</dt>
+    <dd>yes</dd>
+  </dl>
   The 'color' property specifies a <a>simple color</a> to be used to render a notational object.
 </section>
 
 <h5 id="the-glyph-property">The <dfn property><code>glyph</code></dfn> property</h5>
 <section dfn-for="glyph">
+  <dl class="def">
+    <dt>Applies to:</dt>
+    <dd><a>Direction content</a></dd>
+    <dd><a>Note content</a></dd>
+    <dt>Value:</dt>
+    <dd><a>SMuFL glyph name</a></dd>
+    <dt>Inherited:</dt>
+    <dd>no</dd>
+  </dl>
   The 'glyph' property specifies a specific <a>SMuFL glyph name</a> to be used to render a notational object.
 </section>
 
 <h5 id="the-display-property">The <dfn property><code>display</code></dfn> property</h5>
 <section dfn-for="display">
+
+  <dl class="def">
+    <dt>Applies to:</dt>
+    <dd><{part}></dd>
+    <dd><a>Sequence content</a></dd>
+    <dd><a>Direction content</a></dd>
+    <dd><a>Event content</a></dd>
+    <dd><a>Note content</a></dd>
+    <dd><a>Liaison content</a></dd>
+    <dt>Value:</dt>
+    <dd>''display/normal'' | ''display/none''</dd>
+    <dt>Inherited:</dt>
+    <dd>yes</dd>
+  </dl>
 
 The 'display' property controls whether an element's contents (including
 all of its descendants) are displayed by a consumer or not. The layout of the
@@ -1892,6 +1918,18 @@ Permitted values include:
 
 <h5 id="the-visibility-property">The <dfn property><code>visibility</code></dfn> property</h5>
 <section dfn-for="visibility">
+  <dl class="def">
+    <dt>Applies to:</dt>
+    <dd><a>Sequence content</a></dd>
+    <dd><a>Direction content</a></dd>
+    <dd><a>Event content</a></dd>
+    <dd><a>Note content</a></dd>
+    <dd><a>Liaison content</a></dd>
+    <dt>Value:</dt>
+    <dd>''visibility/visible'' | ''visibility/hidden''</dd>
+    <dt>Inherited:</dt>
+    <dd>yes</dd>
+  </dl>
 
 The 'visibility' property controls whether an element's contents (including
 all of its descendants) are displayed by a consumer or not.
@@ -1904,22 +1942,54 @@ will still occupy space in the containing measure.
 
 Permitted values include:
 
-- <dfn value>visible</dfn> the element is visible
-- <dfn value>hidden</dfn> the element is hidden
+- <dfn value>visible</dfn>: the element is visible
+- <dfn value>hidden</dfn>: the element is hidden
 
 </section>
 
-<h5 id="the-audibility-property">The <dfn property><code>perform</code></dfn> property</h5>
+<h5 id="the-perform-property">The <dfn property><code>perform</code></dfn> property</h5>
 <section dfn-for="perform">
-
+  <dl class="def">
+    <dt>Applies to:</dt>
+    <dd><a>Sequence content</a></dd>
+    <dd><a>Direction content</a></dd>
+    <dd><a>Event content</a></dd>
+    <dd><a>Note content</a></dd>
+    <dd><a>Liaison content</a></dd>
+    <dt>Value:</dt>
+    <dd>''perform/normal'' | ''perform/none''</dd>
+    <dt>Inherited:</dt>
+    <dd>yes</dd>
+  </dl>
 The 'perform' property controls whether an element's contents (including
 all of its descendants) are performed by a consumer or not.
 
 Permitted values include:
 
-- <dfn value>perform</dfn> the element is performed
+- <dfn value>normal</dfn> the element is performed
 - <dfn value>none</dfn> the element is omitted from performance
 
+</section>
+
+<h5 id="the-stem-property">The <dfn property><code>stem</code></dfn> property</h5>
+<section dfn-for="stem">
+  <dl class="def">
+    <dt>Applies to:</dt>
+    <dd><a>Event content</a></dd>
+    <dt>Value:</dt>
+    <dd>''stem/up'' | ''stem/down''</dd>
+    <dt>Inherited:</dt>
+    <dd>yes</dd>
+  </dl>
+
+The 'stem' property controls the direction
+of any rendered stem associated with this event. If omitted, the stem direction
+is determined automatically by the implementation, in accordance with the
+<a>orientation</a> of the event.
+
+The value <dfn attr-value dfn-for="stem">up</dfn> causes an event's stem to be rendered pointing upwards.
+
+The value <dfn attr-value dfn-for="stem">down</dfn> causes an event's stem to be rendered pointing downwards.
 </section>
 
 <h3 id="cwmnx-stylesheet-definitions">Stylesheet definitions</h3>
