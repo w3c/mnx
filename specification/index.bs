@@ -1,3 +1,9 @@
+<style>
+  .language-xml {
+    font-size: 11px;
+  }
+</style>
+
 <pre class="metadata">
 Status: LD
 Title: MNX Draft Specification
@@ -1284,8 +1290,7 @@ of events that together comprise a 4/4 measure. A single staff is used, so no
 </div>
 
 Here's a more complex measure that shows two melodic voices with independent
-rhythms on different staves, each represented by a <{sequence}> element. The second voice includes
-an 8th-note triplet.
+rhythms on different staves, each represented by a <{sequence}> element:
 
 <div class="example">
 ```xml
@@ -1481,11 +1486,70 @@ This duration is implicitly multiplied by the current <a>time modification
 ratio</a>, as specified by the process of <a>sequencing the content</a> of the
 event's containing element.
 
+Here's an example of a simple event representing a half note:
+
+<div class="example">
+```xml
+<event value="/2">
+  <note pitch="C4"/>
+</event>
+```
+</div>
+
+With more than one <{note}>, the event becomes a chord:
+
+<div class="example">
+```xml
+<event value="/2">
+  <note pitch="C4"/>
+  <note pitch="E4"/>
+  <note pitch="G4"/>
+</event>
+```
+</div>
+
+With a <{rest}> element alone, the event is a rest:
+<div class="example">
+```xml
+<event value="/2">
+  <rest/>
+</event>
+```
+</div>
+
+NOTE: It is legal for an event to have neither notes nor a rest. The result is
+functionally identical to <{space}>, but is more constrained since an event
+must have a valid <a>note value</a>, while a space can have a multiple
+thereof.
+
+When <a>direction content</a> is included in an <{event}>, it has
+a measure location identical to that of the event. For example,
+this event includes a <{dynamics}> element which applies
+to the start of the event:
+
+<div class="example">
+```xml
+<event value="/4">
+  <dynamics type="mp"/>
+  <note pitch="C4"/>
+</event>
+```
+</div>
+
 If the optional <dfn element-attr>measure</dfn> attribute is given as <dfn
 attr-value dfn-for="event/measure">yes</dfn>, then the event is a <dfn>whole-measure
 event</dfn> which occupies the entire measure. Whole-measure events may not
 specify a <{event/value}> attribute, and must either be empty or contain
-exactly one <{rest}>.
+exactly one <{rest}>. Here's an example:
+
+<div class="example">
+```xml
+<event measure="yes">
+  <rest/>
+</event>
+```
+</div>
+
 
 The optional <dfn element-attr>orient</dfn> attribute provides a specific
 <a>orientation</a> for this event. If not provided, the orientation is
@@ -1499,9 +1563,35 @@ inherited from any <{sequence}> or <{tuplet}> ancestor which specified it. If
 no ancestor did so, it is determined automatically according to the
 implementation's rendering rules.
 
+While <{event/staff}> could be used on a per-event basis, its primary purpose
+is for overriding a default staff assignment at the <{sequence}> level, as in
+cross-staff keyboard notation. The following example illustrates a lower-staff
+keyboard voice that temporarily crosses into the upper staff:
+
+<div class="example">
+```xml
+<sequence staff="2">
+  <event value="/4">
+    <note pitch="C3"/>
+  </event>
+  <event value="/4">
+    <note pitch="G3"/>
+  </event>
+  <event value="/4" staff="1">
+    <note pitch="E4"/>
+  </event>
+  <event value="/4">
+    <note pitch="C3"/>
+  </event>
+</sequence>
+```
+</div>
+
 The optional <dfn element-attr>beam-count</dfn> attribute defines a specific
 number of beams that connect this event to its successor within a <a>beamed group</a>
-of events.
+of events. A typical use of this attribute would be to specify a beam count of 1
+on, say the fourth note in a beamed group of eight 32nd notes to emphasize a
+secondary grouping at the eighth-note level.
 </section>
 
 <h5 id="the-tuplet-element">The <dfn element><code>tuplet</code></dfn> element</h5>
@@ -1512,6 +1602,7 @@ of events.
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
     <dd><a>Sequence content</a></dd>
+    <dd><a>Direction content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{tuplet/outer}> - duration with respect to containing element</dd>
@@ -1542,14 +1633,28 @@ Following this procedure, the value of the <var>sequence cursor</var> MUST
 equal the value of <{tuplet/inner}>, or the contents are considered to be in error.
 
 The optional <dfn element-attr>orient</dfn> attribute provides a specific
-<a>orientation</a> for all content within this sequence. If not provided, the
+<a>orientation</a> for all content within this tuplet. If not provided, the
 orientation is determined automatically according to the implementation's
 rendering rules.
 
 The <dfn element-attr>staff</dfn> attribute provides a specific
-<a>staff index</a> for all content within this sequence.  If not provided, the
+<a>staff index</a> for all content within this tuplet.  If not provided, the
 staff index is determined automatically according to the implementation's
 rendering rules.
+
+<div class="example">
+```xml
+<sequence>
+    ...preceding events in sequence...
+    <tuplet inner="3/8" outer="1/4">
+        <event value="/8">...</event>
+        <event value="/8">...</event>
+        <event value="/8">...</event>
+    </tuplet>
+    ...remaining events in sequence...
+</sequence>
+```
+</div>
 
 </section>
 
@@ -1561,26 +1666,82 @@ rendering rules.
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
     <dd><a>Sequence content</a></dd>
+    <dd><a>Direction content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
-    <dd><{beamed/next}> - optional continuing beam group in following measure</dd>
+    <dd><{beamed/continue}> - optional continuing beam group in following measure</dd>
   </dl>
 
-The <{beamed}> element defines a <dfn>beamed group</dfn> of events that are joined
-by beams to conceptually mark them as belonging to a distinct run.
+The <{beamed}> element defines a <dfn>beamed group</dfn> of events that are
+joined by beams to conceptually mark them as belonging to a distinct run. In
+CWMNX, beams cannot begin or end in the middle of other groupings such as
+tuplets or grace notes, and this element acts to enforce that constraint.
 
 It is not valid to nest a <{beamed}> element inside another, directly or indirectly.
-
-Beams may continue from one measure to the next. In this case, the <dfn element-attr>next</dfn>
-attribute gives the <a>element location</a> of a <{beamed}> element in the succeeding
-measure of the same part. This attribute may only be specified if no other events follow
-this beamed group in its measure.
 
 NOTE: In general, the number of beams and the use of forward or backward hooks
 is determined automatically by implementations, using both <{beamed}> and the
 <{event/beam-count}> attribute of <{event}>. More detailed beam specifications
 may be overridden using style properties, but do not amount to semantic
 markup.
+
+Here is a simple beaming example in a 6/8 time signature. The grouping
+suffices; there is no need to describe individual beams within the beamed
+group, such as the distinct beam that joins the two 16th notes in the second
+group:
+
+<div class="example">
+```xml
+<sequence>
+    <beamed>
+      <event value="/8">...</event>
+      <event value="/8">...</event>
+      <event value="/8">...</event>
+    </beamed>
+    <beamed>
+      <event value="/8">...</event>
+      <event value="/16">...</event>
+      <event value="/16">...</event>
+      <event value="/8">...</event>
+    </beamed>
+</sequence>
+```
+</div>
+
+Beams may continue from one measure to the next. In this case, the <dfn
+element-attr>continue</dfn> attribute gives the <a>element location</a> of
+a <{beamed}> element in the succeeding measure of the same part, which serves
+to identify both the continuing group and the sequence or voice in which it
+resides. This attribute may only be specified if no other events follow this
+beamed group in its measure.
+
+A continuation of a prior beamed group, may itself have a continuation. Thus,
+beamed groups can continue throughout a part without interruption if desired.
+
+The following example illustrates a beam that crosses a measure boundary:
+
+<div class="example">
+```xml
+<measure number="9">
+  <sequence>
+      ...preceding sequence content...
+      <beamed continuation="#beamcont1">
+        <event value="/8">...</event>
+        <event value="/8">...</event>
+      </beamed>
+  </sequence>
+</measure>
+<measure number="10">
+  <sequence>
+      <beamed id="beamcont1">
+        <event value="/8">...</event>
+        <event value="/8">...</event>
+      </beamed>
+      ...following sequence content...
+  </sequence>
+</measure>
+```
+</div>
 </section>
 
 <h5 id="the-space-element">The <dfn element><code>space</code></dfn> element</h5>
@@ -1590,19 +1751,22 @@ markup.
     <dd><{sequence}>, <{tuplet}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
+    <dd><a>Direction content</a></dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{space/duration}> - the metrical duration of this space</dd>
-    <dt><a>Style properties</a>:</dt>
-    <dd>'stem' - the stem direction of this event</dd>
   </dl>
 
 The <{space}> element represents a discrete period of time within a sequence
-in which no notations occur.
+in which no sequence content occurs. It embodies the idea of blank space
+within a measure.
+
+<a>Direction content</a> may be included in a <{space}>, causing it to
+assume the same measure position as the space.
 
 The <dfn element-attr>duration</dfn> attribute specifies a <a>note value
 quantity</a> that provides the length of this <{space}>.
 
-Note: In contrast to <{event}>'s <{event/value}> attribute, the
+NOTE: In contrast to <{event}>'s <{event/value}> attribute, the
 <{space/duration}> attribute is not constrained to a single note value, but
 may be a multiple of one.
 </section>
@@ -1617,11 +1781,7 @@ may be a multiple of one.
     <dd><a>Sequence content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
-    <dd><{grace/slash}> - a flag indicating that this run of grace events bears a slash</dd>
-    <dd><{event/orient}> - optional <a>orientation</a> of this event </dd>
-    <dd><{event/staff}> - optional <a>staff index</a> of this event </dd>
-    <dt><a>Style properties</a>:</dt>
-    <dd>'stem' - the stem direction of this event</dd>
+    <dd><{grace/appoggiatura}> - a flag indicating that this is an appoggiatura</dd>
   </dl>
 
 The <{grace}> element represents a run of events that do not have defined
@@ -1631,12 +1791,35 @@ measure positions, but are performed in such a way that they either:
 
 - delay the onset of the following event by the time interval occupied by the run
 
-The <dfn element-attr>slash</dfn> event declares that a slash is notated for
-this run of grace notes if its value is <dfn attr-value dfn-
-for="grace/slash">yes</dfn>. Otherwise, by default, the contents of <{grace}>
-are interpreted as an appoggiatura and thus delay the onset of the following
-event.
+The <dfn element-attr>appoggiatura</dfn> attribute declares that a slash is
+notated for this run of grace notes if its value is <dfn attr-value dfn-
+for="grace/appoggiatura">yes</dfn>. Otherwise, by default, the contents of
+<{grace}> are interpreted as an acciaccatura and thus delay the onset of the
+following event.
 
+Slashes are displayed by default for acciaccaturas only, but can be modified
+using the 'grace-slash' property.
+
+<div class="example">
+```xml
+<sequence>
+    <beamed>
+      <event value="/8">...</event>
+      <event value="/8">...</event>
+      <event value="/8">...</event>
+    </beamed>
+    <beamed>
+      <event value="/8">...</event>
+      <event value="/16">...</event>
+      <event value="/16">...</event>
+      <event value="/8">...</event>
+    </beamed>
+</sequence>
+```
+</div>
+
+NOTE: <a>Direction content</a> may not be used within a <{grace}> element, since
+measure positions cannot position a direction relative to individual grace notes.
 </section>
 
 <h4 id="cwmnx-event-content">Event content</h4>
@@ -1673,10 +1856,16 @@ as a <a>chromatic pitch</a>, using the <a>rules for parsing a chromatic pitch</a
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
     <dt><a>Attributes</a>:</dt>
+    <dd><{rest/pitch}> - the musical pitch to which this rest should be visually registered </dd>
   </dl>
 
 The <{rest}> element defines a rest within an event, along with other
 information pertaining to the rest rather than to its containing event.
+
+If the <dfn element-attr>pitch</dfn> attribute is provided, it mandates that
+the rest be placed on the staff line corresponding to the provided
+<a>chromatic pitch syntax</a>. The accidental component of the pitch is
+ignored for this purpose.
 </section>
 
 <h5 id="the-articulations-element">The <dfn element><code>articulations</code></dfn> element</h5>
@@ -2191,6 +2380,28 @@ Permitted values include:
 
 </section>
 
+<h5 id="the-y-property">The <dfn property><code>y</code></dfn> property</h5>
+<section dfn-for="y">
+  <dl class="def">
+    <dt>Applies to:</dt>
+    <dd><a>Direction content</a></dd>
+    <dt>Value:</dt>
+    <dd><var>staff position</var> | ''y/above'' | ''y/below''</dd>
+    <dt>Inherited:</dt>
+    <dd>no</dd>
+  </dl>
+The 'y' property places a direction in terms of a staff position given as a
+<a>valid floating-point number</a> of staff lines starting from the top line and
+proceeding downwards in a positive direction.
+
+The special values <dfn value>above</dfn> and <dfn value>below</dfn> delegate
+exact positioning of the direction to the implementation and request that
+the direction be placed respectively above or below the staff.
+
+<em>TBD: describe rendering model and regisration</em>
+
+</section>
+
 <h5 id="the-stem-property">The <dfn property><code>stem</code></dfn> property</h5>
 <section dfn-for="stem">
   <dl class="def">
@@ -2199,13 +2410,35 @@ Permitted values include:
     <dt>Value:</dt>
     <dd>''stem/up'' | ''stem/down''</dd>
     <dt>Inherited:</dt>
-    <dd>yes</dd>
+    <dd>no</dd>
   </dl>
 
 The 'stem' property controls the direction
 of any rendered stem associated with this event. If omitted, the stem direction
 is determined automatically by the implementation, in accordance with the
 <a>orientation</a> of the event.
+
+The value <dfn attr-value dfn-for="stem">up</dfn> causes an event's stem to be rendered pointing upwards.
+
+The value <dfn attr-value dfn-for="stem">down</dfn> causes an event's stem to be rendered pointing downwards.
+</section>
+
+<h5 id="the-grace-slash-property">The <dfn property><code>grace-slash</code></dfn> property</h5>
+<section dfn-for="grace-slash">
+  <dl class="def">
+    <dt>Applies to:</dt>
+    <dd><{grace}></dd>
+    <dt>Value:</dt>
+    <dd>yes | no</dd>
+    <dt>Inherited:</dt>
+    <dd>no</dd>
+  </dl>
+
+The 'grace-slash' property controls whether or not a slash is rendered in
+conjunction with the flag or beam of a grace note. If omitted, the stem
+direction is determined automatically by the implementation based on the
+nature of the grace note.
+
 
 The value <dfn attr-value dfn-for="stem">up</dfn> causes an event's stem to be rendered pointing upwards.
 
