@@ -474,7 +474,7 @@ document as a whole.
 <h4 id="the-mnx-element">The <dfn element><code>mnx</code></dfn> element</h4>
 <section dfn-for="mnx">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd>None: this is the top-level element.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd>A single, required <{head}> element.</dd>
@@ -503,7 +503,7 @@ The <{mnx}> element encloses an MNX document as a whole.
 <h4 id="the-head-element">The <dfn element><code>head</code></dfn> element</h4>
 <section dfn-for="head">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd>Any.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a>.</dd>
@@ -518,7 +518,7 @@ such as document-scoped metadata or <a>stylesheet definitions</a>.
 <h4 id="the-collection-element">The <dfn element><code>collection</code></dfn> element</h4>
 <section dfn-for="collection">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><{mnx}>, <{collection}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd>Any combination of <{collection}> and <{score}> elements.</dd>
@@ -577,7 +577,7 @@ The following example shows a hierarchy of collections and scores.
 <h4 id="the-score-element">The <dfn element><code>score</code></dfn> element</h4>
 <section dfn-for="score">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><{mnx}>, <{collection}>.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>    
@@ -607,7 +607,7 @@ must be provided within the content of the <{score}> element.
 
   Each element in this specification has a definition that includes the following information:
 
-  : <dfn>Contexts in which this element can be used</dfn>
+  : <dfn>Contexts</dfn>
   :: A <em>non-normative</em> description of where the element can be used. This information is
       redundant with the content models of elements that allow this one as a child, and is provided
       only as a convenience.
@@ -654,7 +654,7 @@ bibliographic data and other descriptive information.
 <h4 id="the-title-element">The <dfn element><code>title</code></dfn> element</h4>
 <section dfn-for="title">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd>Any.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd>Text</dd>
@@ -1047,7 +1047,7 @@ These elements of a CWMNX score supply its high-level description and structure.
   <dl class="def">
     <dt><a lt="content categories">Description</a>:</dt>
     <dd><a>Musical body content</a> in an MNX <a>container</a>.</dd>
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd>Wherever a <a>musical body</a> is expected.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a>.</dd>
@@ -1099,7 +1099,7 @@ The following example provides the basic skeleton of a <{cwmnx}> musical body:
 <h5 id="the-system-element">The <dfn element><code>system</code></dfn> element</h5>
 <section dfn-for="system">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><{cwmnx}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>System content</a>, which must not include any <a>sequence content</a></dd>
@@ -1141,7 +1141,7 @@ tempo indications.
 <h5 id="the-part-element">The <dfn element><code>part</code></dfn> element</h5>
 <section dfn-for="part">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><{cwmnx}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Part description content</a></dd>
@@ -1191,7 +1191,7 @@ order in which they are played by a performer.
 <h5 id="the-measure-element">The <dfn element><code>measure</code></dfn> element</h5>
 <section dfn-for="measure">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><{system}>, <{part}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
@@ -1235,7 +1235,7 @@ with two monophonic half notes:
 
 <section dfn-for="sequence">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><{measure}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
@@ -1453,7 +1453,7 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
 <h5 id="the-event-element">The <dfn element><code>event</code></dfn> element</h5>
 <section dfn-for="event">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><{sequence}>, <{tuplet}>, <{beamed}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
@@ -1507,7 +1507,7 @@ of events.
 <h5 id="the-tuplet-element">The <dfn element><code>tuplet</code></dfn> element</h5>
 <section dfn-for="tuplet">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><{sequence}>, <{tuplet}>, <{beamed}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
@@ -1556,7 +1556,7 @@ rendering rules.
 <h5 id="the-beamed-element">The <dfn element><code>beamed</code></dfn> element</h5>
 <section dfn-for="beamed">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><{sequence}>, <{tuplet}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
@@ -1586,7 +1586,7 @@ markup.
 <h5 id="the-space-element">The <dfn element><code>space</code></dfn> element</h5>
 <section dfn-for="space">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><{sequence}>, <{tuplet}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
@@ -1610,7 +1610,7 @@ may be a multiple of one.
 <h5 id="the-grace-element">The <dfn element><code>grace</code></dfn> element</h5>
 <section dfn-for="grace">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><{sequence}>, <{tuplet}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
@@ -1647,7 +1647,7 @@ of a single event, that is performed at a distinct time.
 <h5 id="the-note-element">The <dfn element><code>note</code></dfn> element</h5>
 <section dfn-for="note">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><{event}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
@@ -1668,7 +1668,7 @@ as a <a>chromatic pitch</a>, using the <a>rules for parsing a chromatic pitch</a
 <h5 id="the-rest-element">The <dfn element><code>rest</code></dfn> element</h5>
 <section dfn-for="rest">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><{event}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
@@ -1781,7 +1781,7 @@ explicit location.
 <h5 id="the-dynamics-element">The <dfn element><code>dynamics</code></dfn> element</h5>
 <section dfn-for="dynamics">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><a>Direction content</a></dd>
     <dt><a>Content Model</a>:</dt>
     <dd>None</dd>
@@ -1827,7 +1827,7 @@ dynamics are supported:
 <h5 id="the-dirgroup-element">The <dfn element><code>dirgroup</code></dfn> element</h5>
 <section dfn-for="dirgroup">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><a>Direction content</a></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Direction content</a>, which must not include <a>measure locations</a></dd>
@@ -1867,7 +1867,7 @@ location given for the start of the spanning direction.
 <h5 id="the-wedge-element">The <dfn element><code>wedge</code></dfn> element</h5>
 <section dfn-for="wedge">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd><a>Direction content</a></dd>
     <dt><a>Content Model</a>:</dt>
     <dd>None</dd>
@@ -2029,7 +2029,7 @@ Properties are documented in the following places:
 <h4 id="the-style-element">The <dfn element><code>style</code></dfn> element</h4>
 <section dfn-for="style">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd>Any.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd>Empty.</dd>
@@ -2051,7 +2051,7 @@ containing element.
 <h4 id="the-class-element">The <dfn element><code>class</code></dfn> element</h4>
 <section dfn-for="class">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd>Any.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd>Empty.</dd>
@@ -2227,7 +2227,7 @@ element, or in a separate linked stylesheet.
 <h4 id="the-style-class-element">The <dfn element><code>style-class</code></dfn> element</h4>
 <section dfn-for="style-class">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd>Any.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd>One or more <{style}> elements.</dd>
@@ -2253,7 +2253,7 @@ in the same order.
 <h4 id="the-style-selector-element">The <dfn element><code>style-selector</code></dfn> element</h4>
 <section dfn-for="style-selector">
   <dl class="def">
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd>Any.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd>One or more <{style}> elements.</dd>
@@ -2300,7 +2300,7 @@ in the same order.
   <dl class="def">
     <dt><a lt="content categories">Description</a>:</dt>
     <dd><a>Musical body content</a> in an MNX <a>container</a>.</dd>
-    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dt><a>Contexts</a>:</dt>
     <dd>Wherever a <a>musical body</a> is expected.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a>.</dd>
