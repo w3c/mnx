@@ -484,6 +484,20 @@ document as a whole.
   </dl>
 
 The <{mnx}> element encloses an MNX document as a whole.
+
+<div class="example">
+```xml
+<mnx xmlns="http://www.w3.org/mnx">
+    <head>
+      ...head content...
+    </head>
+    <score>
+      ...musical body content...
+    </score>
+</mnx>
+```
+</div>
+
 </section>
 
 <h4 id="the-head-element">The <dfn element><code>head</code></dfn> element</h4>
@@ -526,6 +540,38 @@ Valid collection type values include:
 : <dfn attr-value><code>parts</code>
 :: Each element comprises a description of of the same music, organized for different parts.
 
+<a>Metadata content</a> or <a>style properties</a> may be included at any level
+of the resulting structure, causing them to apply them only to those parts of
+the document.
+
+The following example shows a hierarchy of collections and scores.
+
+<div class="example">
+```xml
+    <collection type="sections">
+        <score>
+            <title>Section 1 (for Flute and Cello)</title>
+            <cwmnx>...</cwmnx>
+        </score>
+        <collection type="movements">
+            <title>Section 2</title>
+            <score>
+                <title>Section 2, Movement 1 (for Solo Flute)</title>
+                <cwmnx>...</cwmnx>
+            </score>
+            <score>
+                <title>Section 2, Movement 2 (for Solo Cello)</title>
+                <cwmnx>...</cwmnx>
+            </score>
+        </collection>
+        <score>
+            <title>Section 3 (for Flute and Cello)</title>
+            <cwmnx>...</cwmnx>
+        </score>
+    </collection>
+```
+</div>
+
 </section>
 
 <h4 id="the-score-element">The <dfn element><code>score</code></dfn> element</h4>
@@ -534,36 +580,20 @@ Valid collection type values include:
     <dt><a>Contexts in which this element can be used</a>:</dt>
     <dd><{mnx}>, <{collection}>.</dd>
     <dt><a>Content Model</a>:</dt>
-    <dd>A single <{cwmnx}> or <{gmnx}> element.</dd>
+    <dd><a>Metadata content</a></dd>    
+    <dd>Zero or one <a>musical body</a> elements.</dd>
     <dt><a>Attributes</a>:</dt>
-    <dd>None.</dd>
+    <dd><{score/src}> - optional relative path to an external source file</dd>
   </dl>
-</section>
 
 The <{score}> element encloses a self-contained description of the score for
 a portion or the entirety of a musical work.
 
-<!--
-### A simple CWMN score
+If the <dfn element-attr>src</dfn> attribute is provided, this specifies a
+relative path where the score's <a>musical body</a> lives. Otherwise, the body
+must be provided within the content of the <{score}> element.
 
-### A simple general score
-
-### Compound MNX documents
-
-It's also possible to combine different representations of music in the same
-MNX document by using the <{collection}> element to combine  multiple chunks
-of music into a single chunk.  Each chunk may possess a distinct encoding.
-<{collection}> elements can be nested, allowing a subordinate collection to be 
-embedded in a higher-level one.
-
-Metadata elements such as <{identification}> or formatting elements like
-<{style}> may be included at any level of the resulting structure, causing
-them to apply them only to those parts of the document.
-
-Here's an example that includes a hierarchy of collections and scores. (Note
-that some of these could employ non-CWMN encodings as well.)
-
--->
+</section>
 
 <h3 id="content-models">Content models and categories</h3>
 
@@ -614,14 +644,26 @@ that some of these could employ non-CWMN encodings as well.)
 
 <h3 id="mnx-semantics-elements">Semantics</h3>
 
-<h4 id="mnx-content-types">Content types</h4>
-
-<h5 id="mnx-metadata-content">Metadata content</h5>
+<h4 id="mnx-metadata-content">Metadata content</h4>
 
 <dfn>Metadata content</dfn> may be included in many elements to supply
 bibliographic data and other descriptive information.
 
-<em>List of elements TBD</em>
+<em>Many elements TBD. Need to harmonize with existing metadata and bibliographic standards.</em>
+
+<h4 id="the-title-element">The <dfn element><code>title</code></dfn> element</h4>
+<section dfn-for="title">
+  <dl class="def">
+    <dt><a>Contexts in which this element can be used</a>:</dt>
+    <dd>Any.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>Text</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None.</dd>
+  </dl>
+
+The <{title}> element assigns a title to its parent element in the context of the document as a whole.
+</section>
 
 <h5 id="mnx-musical body">Musical body content</h5>
 
@@ -1031,6 +1073,26 @@ constraints that they represent:
     <dd>Time and key signatures only occur in measures within the <{system}> element.</dd>
 </dl>
 
+The following example provides the basic skeleton of a <{cwmnx}> musical body:
+
+<div class="example">
+```xml
+<cwmnx>
+  <system>
+      ...measure content describing system-wide features...
+  </system>
+  <part>
+      ...part description content...
+      ...measure content for part 1...
+  </part>
+  <part>
+      ...part description content...
+      ...measure content for part 2...
+  </part>
+  ...additional parts...
+</cwmnx>
+```
+</div>
 </section>
 
 <section>
@@ -1054,6 +1116,26 @@ tempo indications.
 <a>Notated events</a> like notes or rests cannot be shared between parts in CWMN. Consequently,
 <a>sequence content</a> cannot occur in the measures within <{system}>.
 
+<div class="example">
+```xml
+<system>
+  <measure>
+    <tempo bpm="120" value="4"/>
+    <time signature="4/4"/>
+    <barline/>
+  </measure>
+  <measure>
+    <barline/>
+  </measure>
+  <measure>
+    <barline/>
+  </measure>
+  <measure>
+    <barline type="final"/>
+  </measure>
+</system>
+```
+</div>
 </section>
 
 <h5 id="the-part-element">The <dfn element><code>part</code></dfn> element</h5>
@@ -1066,6 +1148,35 @@ tempo indications.
     <dd><a>System content</a></dd>
   </dl>
 </section>
+
+The <{part}> element represents a set of measures which describe a single part
+within the score. The sequence of measures must match the sequences found in the
+score's <{system}> element, and in all other <{part}> elements.
+
+  <div class="example">
+```xml
+<part>
+  <part-name>Violin</part-name>
+  <part-abbreviation>Vln</part-abbreviation>
+  <instrument-sound>strings.violin</instrument-sound>
+
+  <measure>
+    <sequence>...</sequence>
+  </measure>
+  <measure>
+    <sequence>...</sequence>
+  </measure>
+  <measure>
+    <sequence>...</sequence>
+  </measure>
+  <measure>
+    <sequence>...</sequence>
+  </measure>
+</part>
+```
+</div>
+</section>
+
 
 <h4 id="cwmnx-system-content">System content</h4>
 
@@ -1746,8 +1857,8 @@ and occur at the beginning of a <{part}> element.
 <section dfn-for="part-abbreviation">
 </section>
 
-<h5 id="the-score-instrument-element">The <dfn element><code>score-instrument</code></dfn> element</h5>
-<section dfn-for="score-instrument">
+<h5 id="the-instrument-sound-element">The <dfn element><code>instrument-sound</code></dfn> element</h5>
+<section dfn-for="instrument-sound">
 </section>
 
 <h4 id="cwmnx-interpretation-content">Interpretation content</h4>
