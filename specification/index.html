@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="49e0cdeed1adb1a335b60009cf034f230d6bd150" name="document-revision">
+  <meta content="11a32660a4f74bf0a1539c8a70f6d5725efc45e1" name="document-revision">
 <style>
   .language-xml {
     font-size: 11px;
@@ -1429,7 +1429,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Draft Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-12-12">12 December 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-12-13">13 December 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1443,7 +1443,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 12 December 2017,
+In addition, as of 13 December 2017,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1683,7 +1683,7 @@ predecessors.</p>
           <li><a href="#the-visibility-property"><span class="secno">6.3.3.4</span> <span class="content">The <span><code>visibility</code></span> property</span></a>
           <li><a href="#the-perform-property"><span class="secno">6.3.3.5</span> <span class="content">The <span><code>perform</code></span> property</span></a>
           <li><a href="#the-y-property"><span class="secno">6.3.3.6</span> <span class="content">The <span><code>y</code></span> property</span></a>
-          <li><a href="#the-stem-property"><span class="secno">6.3.3.7</span> <span class="content">The <span><code>stem</code></span> property</span></a>
+          <li><a href="#the-stem-direction-property"><span class="secno">6.3.3.7</span> <span class="content">The <span><code>stem-direction</code></span> property</span></a>
           <li><a href="#the-grace-slash-property"><span class="secno">6.3.3.8</span> <span class="content">The <span><code>grace-slash</code></span> property</span></a>
          </ol>
        </ol>
@@ -2881,7 +2881,7 @@ following procedure, called <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt
       <dd><code><a data-link-type="element-sub" href="#element-attrdef-event-staff" id="ref-for-element-attrdef-event-staff">staff</a></code> - optional <a data-link-type="dfn" href="#staff-index" id="ref-for-staff-index③">staff index</a> of this event 
       <dd><code><a data-link-type="element-sub" href="#element-attrdef-event-beam-count" id="ref-for-element-attrdef-event-beam-count">beam-count</a></code> - optional count of beams connecting this event to its successor
       <dt><a data-link-type="dfn" href="#style-properties" id="ref-for-style-properties②">Style properties</a>:
-      <dd><a class="property" data-link-type="propdesc" href="#propdef-stem" id="ref-for-propdef-stem">stem</a> - the stem direction of this event
+      <dd><a class="property" data-link-type="propdesc" href="#propdef-stem-direction" id="ref-for-propdef-stem-direction">stem-direction</a> - the stem direction of this event
      </dl>
      <p>The <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event③">event</a></code> element represents a <a data-link-type="dfn" href="#notated-event" id="ref-for-notated-event②">notated event</a>: a discrete period of
 time within a sequence during which one or more notes are performed, or in
@@ -3149,20 +3149,17 @@ notated for this run of grace notes if its value is <dfn data-dfn-for="grace/app
 following event.</p>
      <p>Slashes are displayed by default for acciaccaturas only, but can be modified
 using the <a class="property" data-link-type="propdesc" href="#propdef-grace-slash" id="ref-for-propdef-grace-slash">grace-slash</a> property.</p>
-     <div class="example" id="example-fdcec848①">
-      <a class="self-link" href="#example-fdcec848①"></a> 
+     <p>The following example illustrates a run of two grace notes up to a quarter note.</p>
+     <div class="example" id="example-efec3de2">
+      <a class="self-link" href="#example-efec3de2"></a> 
 <pre class="language-xml highlight"><span class="nt">&lt;sequence></span>
-    <span class="nt">&lt;beamed></span>
+    ...preceding event content...
+    <span class="nt">&lt;grace></span>
       <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"/8"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
       <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"/8"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
-      <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"/8"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
-    <span class="nt">&lt;/beamed></span>
-    <span class="nt">&lt;beamed></span>
-      <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"/8"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
-      <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"/16"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
-      <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"/16"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
-      <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"/8"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
-    <span class="nt">&lt;/beamed></span>
+    <span class="nt">&lt;/grace></span>
+    <span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"/4"</span><span class="nt">></span>...<span class="nt">&lt;/event></span>
+    ...following event content...
 <span class="nt">&lt;/sequence></span>
 </pre>
      </div>
@@ -3202,7 +3199,7 @@ as a <a data-link-type="dfn" href="#chromatic-pitch" id="ref-for-chromatic-pitch
      <p>The <code><a data-link-type="element" href="#elementdef-rest" id="ref-for-elementdef-rest③">rest</a></code> element defines a rest within an event, along with other
 information pertaining to the rest rather than to its containing event.</p>
      <p>If the <dfn class="dfn-paneled" data-dfn-for="rest" data-dfn-type="element-attr" data-export="" id="element-attrdef-rest-pitch"><code>pitch</code></dfn> attribute is provided, it mandates that
-the rest be placed on the staff line corresponding to the provided <a data-link-type="dfn">chromatic pitch syntax</a>. The accidental component of the pitch is
+the rest be placed on the staff line corresponding to the provided <a data-link-type="dfn" href="#chromatic-pitch" id="ref-for-chromatic-pitch②">chromatic pitch</a>. The accidental component of the pitch is
 ignored for this purpose.</p>
     </section>
     <h5 class="heading settled" data-level="6.2.6.3" id="the-articulations-element"><span class="secno">6.2.6.3. </span><span class="content">The <dfn data-dfn-type="element" data-export="" id="elementdef-articulations"><code>articulations</code><a class="self-link" href="#elementdef-articulations"></a></dfn> element</span><a class="self-link" href="#the-articulations-element"></a></h5>
@@ -3578,14 +3575,14 @@ all of its descendants) are performed by a consumer or not.
       <dt>Inherited:
       <dd>no
      </dl>
-      The <a class="property" data-link-type="propdesc" href="#propdef-y" id="ref-for-propdef-y">y</a> property places a direction in terms of a staff position given as a <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#floating-point-numbers" id="ref-for-floating-point-numbers②">valid floating-point number</a> of staff lines starting from the top line and
+      The <a class="property" data-link-type="propdesc" href="#propdef-y" id="ref-for-propdef-y">y</a> property places a direction at a given <var>staff position</var> given as a <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#floating-point-numbers" id="ref-for-floating-point-numbers②">valid floating-point number</a> of staff lines starting from the top line and
 proceeding downwards in a positive direction. 
      <p>The special values <dfn class="dfn-paneled css" data-dfn-for="y" data-dfn-type="value" data-export="" id="valdef-y-above">above</dfn> and <dfn class="dfn-paneled css" data-dfn-for="y" data-dfn-type="value" data-export="" id="valdef-y-below">below</dfn> delegate
 exact positioning of the direction to the implementation and request that
 the direction be placed respectively above or below the staff.</p>
      <p><em>TBD: describe rendering model and regisration</em></p>
     </section>
-    <h5 class="heading settled" data-level="6.3.3.7" id="the-stem-property"><span class="secno">6.3.3.7. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-stem"><code>stem</code></dfn> property</span><a class="self-link" href="#the-stem-property"></a></h5>
+    <h5 class="heading settled" data-level="6.3.3.7" id="the-stem-direction-property"><span class="secno">6.3.3.7. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-stem-direction"><code>stem-direction</code></dfn> property</span><a class="self-link" href="#the-stem-direction-property"></a></h5>
     <section>
      <dl class="def">
       <dt>Applies to:
@@ -3595,11 +3592,11 @@ the direction be placed respectively above or below the staff.</p>
       <dt>Inherited:
       <dd>no
      </dl>
-     <p>The <a class="property" data-link-type="propdesc" href="#propdef-stem" id="ref-for-propdef-stem①">stem</a> property controls the direction
+     <p>The <a class="property" data-link-type="propdesc" href="#propdef-stem-direction" id="ref-for-propdef-stem-direction①">stem-direction</a> property controls the direction
 of any rendered stem associated with this event. If omitted, the stem direction
 is determined automatically by the implementation, in accordance with the <a data-link-type="dfn" href="#orientation" id="ref-for-orientation⑥">orientation</a> of the event.</p>
-     <p>The value <dfn data-dfn-for="stem" data-dfn-type="attr-value" data-export="" id="attr-valuedef-stem-up"><code>up</code><a class="self-link" href="#attr-valuedef-stem-up"></a></dfn> causes an event’s stem to be rendered pointing upwards.</p>
-     <p>The value <dfn data-dfn-for="stem" data-dfn-type="attr-value" data-export="" id="attr-valuedef-stem-down"><code>down</code><a class="self-link" href="#attr-valuedef-stem-down"></a></dfn> causes an event’s stem to be rendered pointing downwards.</p>
+     <p>The value <dfn data-dfn-for="stem-direction" data-dfn-type="attr-value" data-export="" id="attr-valuedef-stem-direction-up"><code>up</code><a class="self-link" href="#attr-valuedef-stem-direction-up"></a></dfn> causes an event’s stem to be rendered pointing upwards.</p>
+     <p>The value <dfn data-dfn-for="stem-direction" data-dfn-type="attr-value" data-export="" id="attr-valuedef-stem-direction-down"><code>down</code><a class="self-link" href="#attr-valuedef-stem-direction-down"></a></dfn> causes an event’s stem to be rendered pointing downwards.</p>
     </section>
     <h5 class="heading settled" data-level="6.3.3.8" id="the-grace-slash-property"><span class="secno">6.3.3.8. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-grace-slash"><code>grace-slash</code></dfn> property</span><a class="self-link" href="#the-grace-slash-property"></a></h5>
     <section>
@@ -3615,8 +3612,8 @@ is determined automatically by the implementation, in accordance with the <a dat
 conjunction with the flag or beam of a grace note. If omitted, the stem
 direction is determined automatically by the implementation based on the
 nature of the grace note.</p>
-     <p>The value <dfn data-dfn-for="stem" data-dfn-type="attr-value" data-export="" id="attr-valuedef-stem-up①"><code>up</code><a class="self-link" href="#attr-valuedef-stem-up①"></a></dfn> causes an event’s stem to be rendered pointing upwards.</p>
-     <p>The value <dfn data-dfn-for="stem" data-dfn-type="attr-value" data-export="" id="attr-valuedef-stem-down①"><code>down</code><a class="self-link" href="#attr-valuedef-stem-down①"></a></dfn> causes an event’s stem to be rendered pointing downwards.</p>
+     <p>The value <dfn data-dfn-for="stem" data-dfn-type="attr-value" data-export="" id="attr-valuedef-stem-up"><code>up</code><a class="self-link" href="#attr-valuedef-stem-up"></a></dfn> causes an event’s stem to be rendered pointing upwards.</p>
+     <p>The value <dfn data-dfn-for="stem" data-dfn-type="attr-value" data-export="" id="attr-valuedef-stem-down"><code>down</code><a class="self-link" href="#attr-valuedef-stem-down"></a></dfn> causes an event’s stem to be rendered pointing downwards.</p>
     </section>
     <h3 class="heading settled" data-level="6.4" id="cwmnx-stylesheet-definitions"><span class="secno">6.4. </span><span class="content">Stylesheet definitions</span><a class="self-link" href="#cwmnx-stylesheet-definitions"></a></h3>
     <p>The <code><a data-link-type="element" href="#elementdef-style-class" id="ref-for-elementdef-style-class">style-class</a></code> and <code><a data-link-type="element" href="#elementdef-style-selector" id="ref-for-elementdef-style-selector">style-selector</a></code> elements allow definition of style
@@ -3764,8 +3761,8 @@ on its contents.</em></p>
         <li>
          down
          <ul>
-          <li><a href="#attr-valuedef-stem-down">attr-value for stem</a><span>, in §6.3.3.7</span>
-          <li><a href="#attr-valuedef-stem-down①">attr-value for stem</a><span>, in §6.3.3.8</span>
+          <li><a href="#attr-valuedef-stem-direction-down">attr-value for stem-direction</a><span>, in §6.3.3.7</span>
+          <li><a href="#attr-valuedef-stem-down">attr-value for stem</a><span>, in §6.3.3.8</span>
          </ul>
         <li><a href="#element-attrdef-space-duration">duration</a><span>, in §6.2.5.4</span>
         <li><a href="#elementdef-dynamics">dynamics</a><span>, in §6.2.9.2</span>
@@ -3949,7 +3946,7 @@ on its contents.</em></p>
           <li><a href="#staff">definition of</a><span>, in §6.2.1.1</span>
           <li><a href="#elementdef-staves">(element)</a><span>, in §6.2.11.4</span>
          </ul>
-        <li><a href="#propdef-stem">stem</a><span>, in §6.3.3.7</span>
+        <li><a href="#propdef-stem-direction">stem-direction</a><span>, in §6.3.3.7</span>
         <li><a href="#strictly-splitting-the-string">strictly split</a><span>, in §3.2.1</span>
         <li><a href="#strictly-splitting-the-string">strictly split a string</a><span>, in §3.2.1</span>
         <li><a href="#strictly-splitting-the-string">strictly splitting the string</a><span>, in §3.2.1</span>
@@ -3995,8 +3992,8 @@ on its contents.</em></p>
         <li>
          up
          <ul>
-          <li><a href="#attr-valuedef-stem-up">attr-value for stem</a><span>, in §6.3.3.7</span>
-          <li><a href="#attr-valuedef-stem-up①">attr-value for stem</a><span>, in §6.3.3.8</span>
+          <li><a href="#attr-valuedef-stem-direction-up">attr-value for stem-direction</a><span>, in §6.3.3.7</span>
+          <li><a href="#attr-valuedef-stem-up">attr-value for stem</a><span>, in §6.3.3.8</span>
          </ul>
         <li><a href="#uppercase-ascii-hex-digits">uppercase ASCII hex digits</a><span>, in §3.2.1</span>
         <li><a href="#uppercase-ascii-letters">uppercase ASCII letters</a><span>, in §3.2.1</span>
@@ -4515,6 +4512,7 @@ on its contents.</em></p>
    <ul>
     <li><a href="#ref-for-chromatic-pitch">6.2.2.3. Chromatic pitch syntax</a>
     <li><a href="#ref-for-chromatic-pitch①">6.2.6.1. The note element</a>
+    <li><a href="#ref-for-chromatic-pitch②">6.2.6.2. The rest element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="direction">
@@ -4577,7 +4575,7 @@ on its contents.</em></p>
     <li><a href="#ref-for-orientation">6.2.4.2. The sequence element</a> <a href="#ref-for-orientation①">(2)</a>
     <li><a href="#ref-for-orientation②">6.2.5.1. The event element</a> <a href="#ref-for-orientation③">(2)</a>
     <li><a href="#ref-for-orientation④">6.2.5.2. The tuplet element</a> <a href="#ref-for-orientation⑤">(2)</a>
-    <li><a href="#ref-for-orientation⑥">6.3.3.7. The stem property</a>
+    <li><a href="#ref-for-orientation⑥">6.3.3.7. The stem-direction property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="parse-a-note-value">
@@ -4895,7 +4893,7 @@ on its contents.</em></p>
     <li><a href="#ref-for-event-content④">6.3.3.3. The display property</a>
     <li><a href="#ref-for-event-content⑤">6.3.3.4. The visibility property</a>
     <li><a href="#ref-for-event-content⑥">6.3.3.5. The perform property</a>
-    <li><a href="#ref-for-event-content⑦">6.3.3.7. The stem property</a>
+    <li><a href="#ref-for-event-content⑦">6.3.3.7. The stem-direction property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-note">
@@ -5179,11 +5177,11 @@ on its contents.</em></p>
     <li><a href="#ref-for-valdef-y-below">6.3.3.6. The y property</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="propdef-stem">
-   <b><a href="#propdef-stem">#propdef-stem</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="propdef-stem-direction">
+   <b><a href="#propdef-stem-direction">#propdef-stem-direction</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-propdef-stem">6.2.5.1. The event element</a>
-    <li><a href="#ref-for-propdef-stem①">6.3.3.7. The stem property</a>
+    <li><a href="#ref-for-propdef-stem-direction">6.2.5.1. The event element</a>
+    <li><a href="#ref-for-propdef-stem-direction①">6.3.3.7. The stem-direction property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="propdef-grace-slash">

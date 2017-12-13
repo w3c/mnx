@@ -1473,7 +1473,7 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
     <dd><{event/staff}> - optional <a>staff index</a> of this event </dd>
     <dd><{event/beam-count}> - optional count of beams connecting this event to its successor</dd>
     <dt><a>Style properties</a>:</dt>
-    <dd>'stem' - the stem direction of this event</dd>
+    <dd>'stem-direction' - the stem direction of this event</dd>
   </dl>
 
 The <{event}> element represents a <a>notated event</a>: a discrete period of
@@ -1800,20 +1800,17 @@ following event.
 Slashes are displayed by default for acciaccaturas only, but can be modified
 using the 'grace-slash' property.
 
+The following example illustrates a run of two grace notes up to a quarter note.
 <div class="example">
 ```xml
 <sequence>
-    <beamed>
+    ...preceding event content...
+    <grace>
       <event value="/8">...</event>
       <event value="/8">...</event>
-      <event value="/8">...</event>
-    </beamed>
-    <beamed>
-      <event value="/8">...</event>
-      <event value="/16">...</event>
-      <event value="/16">...</event>
-      <event value="/8">...</event>
-    </beamed>
+    </grace>
+    <event value="/4">...</event>
+    ...following event content...
 </sequence>
 ```
 </div>
@@ -1864,7 +1861,7 @@ information pertaining to the rest rather than to its containing event.
 
 If the <dfn element-attr>pitch</dfn> attribute is provided, it mandates that
 the rest be placed on the staff line corresponding to the provided
-<a>chromatic pitch syntax</a>. The accidental component of the pitch is
+<a>chromatic pitch</a>. The accidental component of the pitch is
 ignored for this purpose.
 </section>
 
@@ -2390,7 +2387,7 @@ Permitted values include:
     <dt>Inherited:</dt>
     <dd>no</dd>
   </dl>
-The 'y' property places a direction in terms of a staff position given as a
+The 'y' property places a direction at a given <var>staff position</var> given as a
 <a>valid floating-point number</a> of staff lines starting from the top line and
 proceeding downwards in a positive direction.
 
@@ -2402,25 +2399,25 @@ the direction be placed respectively above or below the staff.
 
 </section>
 
-<h5 id="the-stem-property">The <dfn property><code>stem</code></dfn> property</h5>
-<section dfn-for="stem">
+<h5 id="the-stem-direction-property">The <dfn property><code>stem-direction</code></dfn> property</h5>
+<section dfn-for="stem-direction">
   <dl class="def">
     <dt>Applies to:</dt>
     <dd><a>Event content</a></dd>
     <dt>Value:</dt>
-    <dd>''stem/up'' | ''stem/down''</dd>
+    <dd>''stem-direction/up'' | ''stem-direction/down''</dd>
     <dt>Inherited:</dt>
     <dd>no</dd>
   </dl>
 
-The 'stem' property controls the direction
+The 'stem-direction' property controls the direction
 of any rendered stem associated with this event. If omitted, the stem direction
 is determined automatically by the implementation, in accordance with the
 <a>orientation</a> of the event.
 
-The value <dfn attr-value dfn-for="stem">up</dfn> causes an event's stem to be rendered pointing upwards.
+The value <dfn attr-value dfn-for="stem-direction">up</dfn> causes an event's stem to be rendered pointing upwards.
 
-The value <dfn attr-value dfn-for="stem">down</dfn> causes an event's stem to be rendered pointing downwards.
+The value <dfn attr-value dfn-for="stem-direction">down</dfn> causes an event's stem to be rendered pointing downwards.
 </section>
 
 <h5 id="the-grace-slash-property">The <dfn property><code>grace-slash</code></dfn> property</h5>
