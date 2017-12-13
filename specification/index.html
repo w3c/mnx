@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="ddf972c96ea7d01ef9f7f2fe3c4d3d0ddf5eda23" name="document-revision">
+  <meta content="625d49a37e1e900f204bf1b33ea5585306086339" name="document-revision">
 <style>
   .language-xml {
     font-size: 11px;
@@ -3946,9 +3946,10 @@ following values:</p>
       <dl>
        <dt><dfn data-dfn-for="performance-mapping/type" data-dfn-type="attr-value" data-export="" id="attr-valuedef-performance-mapping-type-block"><code>block</code><a class="self-link" href="#attr-valuedef-performance-mapping-type-block"></a></dfn> (default)
        <dd>The entire time region corresponds to the entire visual region, with no further decomposition.
-       <dt><dfn data-dfn-for="performance-mapping/type" data-dfn-type="attr-value" data-export="" id="attr-valuedef-performance-mapping-type-left-to-right"><code>left-to-right</code><a class="self-link" href="#attr-valuedef-performance-mapping-type-left-to-right"></a></dfn> (default)
-       <dd>Subranges of the time region correspond to proportional subranges of the visual region,
-      along the X dimension.
+       <dt><dfn data-dfn-for="performance-mapping/type" data-dfn-type="attr-value" data-export="" id="attr-valuedef-performance-mapping-type-left-to-right"><code>left-to-right</code><a class="self-link" href="#attr-valuedef-performance-mapping-type-left-to-right"></a></dfn>
+       <dd>A time <var>t</var> in the time region corresponds to a vertical line in the visual region,
+      whose points share an X coordinate equal to <var>left</var> + (<var>right</var> - <var>left</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>), where <var>left</var> and <var>right</var> are the left and right boundaries of the visual region
+      in SVG user coordinates.
       </dl>
      </section>
      <section>

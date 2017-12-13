@@ -2865,9 +2865,10 @@ following values:
 <dl dfn-for="performance-mapping/type">
   <dt><dfn attr-value><code>block</code></dfn> (default)</dt>
   <dd>The entire time region corresponds to the entire visual region, with no further decomposition.</dd>
-  <dt><dfn attr-value><code>left-to-right</code></dfn> (default)</dt>
-  <dd>Subranges of the time region correspond to proportional subranges of the visual region,
-      along the X dimension.</dd>
+  <dt><dfn attr-value><code>left-to-right</code></dfn></dt>
+  <dd>A time <var>t</var> in the time region corresponds to a vertical line in the visual region,
+      whose points share an X coordinate equal to <var>left</var> + (<var>right</var> - <var>left</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>), where <var>left</var> and <var>right</var> are the left and right boundaries of the visual region
+      in SVG user coordinates.</dd>
 </dl>
 
 </section>
