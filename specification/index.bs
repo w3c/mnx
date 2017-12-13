@@ -1246,7 +1246,6 @@ with two monophonic half notes:
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
     <dd><a>Sequence content</a></dd>
-    <dd><a>Direction content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{sequence/orient}> - default <a>orientation</a> of direction and sequence content </dd>
@@ -1368,6 +1367,10 @@ durations within the content.
 Sequence content also may define some number of <a>beamed groups</a>. If defined,
 these are lists which accumulate events into groups to which beaming applies.
 
+Sequence content also permits interspersed <a>direction content</a> whose
+directions are injected into the sequence either adjacent to events, or
+at explicitly given measure locations.
+
 Within sequence content, nested <a>event content</a>
 is assigned <a>metrical positions</a> and placed in beamed groups according to the
 following procedure, called <dfn lt="sequence the content|sequencing the content">sequencing the content</dfn>:
@@ -1446,6 +1449,13 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
             relative to preceding or following elements as appropriate.
         </ol>
       </li>
+      <li>Else, if <var>next</var> is <a>direction content</a> without an explicitly specified <{directions/location}> attribute:
+        <ol>
+          <li>
+            Take the current value of <var>sequence cursor</var> as the <a>measure location</a> of <var>next</var>.
+          </li>
+        </ol>
+      </li>
       <li>
         If <var>sequence cursor</var> exceeds the specified duration for the enclosing element
         (time signature for a <{measure}>, <{tuplet/inner}> attribute for a <{tuplet}>), throw
@@ -1522,17 +1532,34 @@ functionally identical to <{space}>, but is more constrained since an event
 must have a valid <a>note value</a>, while a space can have a multiple
 thereof.
 
-When <a>direction content</a> is included in an <{event}>, it has
-a measure location identical to that of the event. For example,
-this event includes a <{dynamics}> element which applies
-to the start of the event:
+When <a>direction content</a> is included prior to an <{event}> or within an
+<{event}>, it has a measure location identical to that of the event. The
+following pair of examples specify a <{dynamics}> element which applies to the
+start of the following note:
 
 <div class="example">
 ```xml
-<event value="/4">
+<sequence>
+  ...preceding sequence content...
   <dynamics type="mp"/>
-  <note pitch="C4"/>
-</event>
+  <event value="/4">
+    <note pitch="C4"/>
+  </event>
+  ...following sequence content
+</sequence>
+```
+</div>
+
+<div class="example">
+```xml
+<sequence>
+  ...preceding sequence content...
+  <event value="/4">
+    <dynamics type="mp"/>
+    <note pitch="C4"/>
+  </event>
+  ...following sequence content
+</sequence>
 ```
 </div>
 
@@ -1602,7 +1629,6 @@ secondary grouping at the eighth-note level.
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
     <dd><a>Sequence content</a></dd>
-    <dd><a>Direction content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{tuplet/outer}> - duration with respect to containing element</dd>
@@ -1666,7 +1692,6 @@ rendering rules.
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
     <dd><a>Sequence content</a></dd>
-    <dd><a>Direction content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{beamed/continue}> - optional continuing beam group in following measure</dd>
@@ -1800,6 +1825,11 @@ following event.
 Slashes are displayed by default for acciaccaturas only, but can be modified
 using the 'grace-slash' property.
 
+<a>Direction content</a> lacking a <{directions/location} attribute within a
+<{grace}> element, is considered to be in alignment with the following event,
+even though grace notes in the same run technically share the same <a>measure
+location</a>.
+
 The following example illustrates a run of two grace notes up to a quarter note.
 <div class="example">
 ```xml
@@ -1815,8 +1845,6 @@ The following example illustrates a run of two grace notes up to a quarter note.
 ```
 </div>
 
-NOTE: <a>Direction content</a> may not be used within a <{grace}> element, since
-measure positions cannot position a direction relative to individual grace notes.
 </section>
 
 <h4 id="cwmnx-event-content">Event content</h4>
@@ -1956,13 +1984,13 @@ Directions share a set of common <dfn>direction attributes</dfn> in an attribute
     <dd><{directions/location}> - the <a>measure location</a> of the direction</dd>
   </dl>
 
-All directions not contained in an <{event}> element, MUST be given an
-explicit <a>measure location</a> by supplying a <dfn element-attr dfn-
-for="directions">location</dfn> attribute.
+When a direction has a <{sequence}> element as its ancestor and is processed
+during the procedure of <a>sequencing the content</a> of that ancestor,
+it assumes the current measure location of the <var>sequence cursor</var>.
 
-Beneath an <{event}> element, directions are forced to assume the  measure
-location of the containing event. Such directions MUST NOT be assigned an
-explicit location.
+Conversely, all directions that lack a <{sequence}> element ancestor, MUST be
+given an explicit <a>measure location</a> by supplying a <dfn element-attr
+dfn-for="directions">location</dfn> attribute.
 
 <h5 id="the-dynamics-element">The <dfn element><code>dynamics</code></dfn> element</h5>
 <section dfn-for="dynamics">
