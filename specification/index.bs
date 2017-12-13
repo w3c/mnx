@@ -2586,11 +2586,12 @@ in the same order.
 <section>
 <h2 id="gmnx">GMNX</h2>
 
-GMNX intended as a general format for representing musical scores as
-a linkage of graphical media, audio media and performance data.
+GMNX is a general format for representing musical scores in terms of linked
+graphical media, audio media and performance data.
 
 In contrast to CWMNX, there is no attempt to represent semantics directly in
-GMNX. Thus, GMNX can be thought of as a low-level, literal format. GMNX is
+GMNX. Thus, GMNX can be described as a low-level, literal format that
+represents instances of scores, rather than their semantic content. GMNX is
 intended to support applications which <em>must</em> be able to faithfully
 execute a visual and/or audible rendition of a score, with an awareness of the
 relationship between what is seen and what is heard.
@@ -2802,6 +2803,8 @@ of a scoring time unit relative to performance time, similar to a MIDI tempo tra
     <dd><{performance-event/duration}> - duration of this event</dd>
     <dd><{performance-event/pitch}> - pitch of this event</dd>
     <dd><{performance-event/techniques}> - set of performance techniques for this event</dd>
+    <dd><{performance-event/view}> - optional element ID of the <{score-graphics}> containing a symbol for the event</dd>
+    <dd><{performance-event/region}> - an optional reference to the graphical symbol for the event</dd>
   </dl>
 
 The <{performance-event}> element describes a single musical event in terms of its
@@ -2831,6 +2834,9 @@ to the event as a <a>unordered set of space-separated tokens</a>.
 Note: These presumably correspond to articulatory variations of the instrument sound.
 Proper definition remains TBD.
 
+If present, the <dfn element-attr>view</dfn> and <dfn element-attr>region</dfn>
+identify a specific visual region corresponding to the event. This
+correspondence is not required.
 </section>
 
 

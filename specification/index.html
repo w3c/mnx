@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="702c24f3ac9bf5236d96da67e58e71ac8be644f2" name="document-revision">
+  <meta content="6d2c6e1666b8f5426990620df2b0dea65cae779b" name="document-revision">
 <style>
   .language-xml {
     font-size: 11px;
@@ -3740,10 +3740,11 @@ in the same order.</p>
     </section>
     <section>
      <h2 class="heading settled" data-level="7" id="gmnx"><span class="secno">7. </span><span class="content">GMNX</span><a class="self-link" href="#gmnx"></a></h2>
-     <p>GMNX intended as a general format for representing musical scores as
-a linkage of graphical media, audio media and performance data.</p>
+     <p>GMNX is a general format for representing musical scores in terms of linked
+graphical media, audio media and performance data.</p>
      <p>In contrast to CWMNX, there is no attempt to represent semantics directly in
-GMNX. Thus, GMNX can be thought of as a low-level, literal format. GMNX is
+GMNX. Thus, GMNX can be described as a low-level, literal format that
+represents instances of scores, rather than their semantic content. GMNX is
 intended to support applications which <em>must</em> be able to faithfully
 execute a visual and/or audible rendition of a score, with an awareness of the
 relationship between what is seen and what is heard.</p>
@@ -3899,6 +3900,8 @@ of a scoring time unit relative to performance time, similar to a MIDI tempo tra
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-duration" id="ref-for-element-attrdef-performance-event-duration">duration</a></code> - duration of this event
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-pitch" id="ref-for-element-attrdef-performance-event-pitch">pitch</a></code> - pitch of this event
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-techniques" id="ref-for-element-attrdef-performance-event-techniques">techniques</a></code> - set of performance techniques for this event
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-view" id="ref-for-element-attrdef-performance-event-view">view</a></code> - optional element ID of the <code><a data-link-type="element" href="#elementdef-score-graphics" id="ref-for-elementdef-score-graphics④">score-graphics</a></code> containing a symbol for the event
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-region" id="ref-for-element-attrdef-performance-event-region">region</a></code> - an optional reference to the graphical symbol for the event
       </dl>
       <p>The <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event④">performance-event</a></code> element describes a single musical event in terms of its
 performance parameters.</p>
@@ -3922,6 +3925,8 @@ a <a data-link-type="dfn" href="#chromatic-pitch" id="ref-for-chromatic-pitch③
 to the event as a <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens" id="ref-for-space-separated-tokens④">unordered set of space-separated tokens</a>.</p>
       <p class="note" role="note"><span>Note:</span> These presumably correspond to articulatory variations of the instrument sound.
 Proper definition remains TBD.</p>
+      <p>If present, the <dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-view"><code>view</code></dfn> and <dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-region"><code>region</code></dfn> identify a specific visual region corresponding to the event. This
+correspondence is not required.</p>
      </section>
      <h5 class="heading settled" data-level="7.1.3.6" id="the-performance-mapping-element"><span class="secno">7.1.3.6. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-mapping"><code>performance-mapping</code></dfn> element</span><a class="self-link" href="#the-performance-mapping-element"></a></h5>
      <section>
@@ -3933,7 +3938,7 @@ Proper definition remains TBD.</p>
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute③①">Attributes</a>:
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-mapping-start" id="ref-for-element-attrdef-performance-mapping-start">start</a></code> - start time of the time region being mapped
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-mapping-end" id="ref-for-element-attrdef-performance-mapping-end">end</a></code> - end time of the time region
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-mapping-view" id="ref-for-element-attrdef-performance-mapping-view">view</a></code> - the element ID of the <code><a data-link-type="element" href="#elementdef-score-graphics" id="ref-for-elementdef-score-graphics④">score-graphics</a></code> containing the visual region
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-mapping-view" id="ref-for-element-attrdef-performance-mapping-view">view</a></code> - the element ID of the <code><a data-link-type="element" href="#elementdef-score-graphics" id="ref-for-elementdef-score-graphics⑤">score-graphics</a></code> containing the visual region
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-mapping-region" id="ref-for-element-attrdef-performance-mapping-region">region</a></code> - the definition of the visual region itself
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-mapping-type" id="ref-for-element-attrdef-performance-mapping-type">type</a></code> - indicate that a continuous mapping exists
       </dl>
@@ -3944,7 +3949,7 @@ regions of the graphical score and regions of one or more audio performances.</p
       <p><dfn class="dfn-paneled" data-dfn-for="performance-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-mapping-start"><code>start</code></dfn> gives the start of the time region.</p>
       <p><dfn class="dfn-paneled" data-dfn-for="performance-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-mapping-end"><code>end</code></dfn> gives the end of the time region.</p>
       <p><dfn class="dfn-paneled" data-dfn-for="performance-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-mapping-view"><code>view</code></dfn> identifies a view of some section of the score, by
-the ID of its <code><a data-link-type="element" href="#elementdef-score-graphics" id="ref-for-elementdef-score-graphics⑤">score-graphics</a></code> element.</p>
+the ID of its <code><a data-link-type="element" href="#elementdef-score-graphics" id="ref-for-elementdef-score-graphics⑥">score-graphics</a></code> element.</p>
       <p><dfn class="dfn-paneled" data-dfn-for="performance-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-mapping-region"><code>region</code></dfn> identifies the visual region for the mapping
 using a fragment identifier in accordance with <a data-link-type="dfn" href="https://www.w3.org/TR/SVG/linking.html#LinksIntoSVG" id="ref-for-LinksIntoSVG①">linking into SVG content</a>.
 The fragment identifier refers to the same document identified by the <code><a data-link-type="element-sub" href="#element-attrdef-performance-mapping-view" id="ref-for-element-attrdef-performance-mapping-view①">view</a></code> attribute.</p>
@@ -4183,7 +4188,12 @@ following values:</p>
         <li><a href="#element-attrdef-style-property">property</a><span>, in §6.3.1</span>
         <li><a href="#elementdef-pull-off">pull-off</a><span>, in §6.2.8.6</span>
         <li><a href="#rational-number">rational number</a><span>, in §3.2.2.1</span>
-        <li><a href="#element-attrdef-performance-mapping-region">region</a><span>, in §7.1.3.6</span>
+        <li>
+         region
+         <ul>
+          <li><a href="#element-attrdef-performance-event-region">element-attr for performance-event</a><span>, in §7.1.3.5</span>
+          <li><a href="#element-attrdef-performance-mapping-region">element-attr for performance-mapping</a><span>, in §7.1.3.6</span>
+         </ul>
         <li>
          rest
          <ul>
@@ -4317,6 +4327,7 @@ following values:</p>
          view
          <ul>
           <li><a href="#element-attrdef-score-graphics-view">element-attr for score-graphics</a><span>, in §7.1.2.1</span>
+          <li><a href="#element-attrdef-performance-event-view">element-attr for performance-event</a><span>, in §7.1.3.5</span>
           <li><a href="#element-attrdef-performance-mapping-view">element-attr for performance-mapping</a><span>, in §7.1.3.6</span>
          </ul>
         <li><a href="#propdef-visibility">visibility</a><span>, in §6.3.3.4</span>
@@ -5594,7 +5605,8 @@ following values:</p>
    <ul>
     <li><a href="#ref-for-elementdef-score-graphics">7.1.1.1. The gmnx element</a>
     <li><a href="#ref-for-elementdef-score-graphics①">7.1.2.1. The score-graphics element</a> <a href="#ref-for-elementdef-score-graphics②">(2)</a> <a href="#ref-for-elementdef-score-graphics③">(3)</a>
-    <li><a href="#ref-for-elementdef-score-graphics④">7.1.3.6. The performance-mapping element</a> <a href="#ref-for-elementdef-score-graphics⑤">(2)</a>
+    <li><a href="#ref-for-elementdef-score-graphics④">7.1.3.5. The performance-event element</a>
+    <li><a href="#ref-for-elementdef-score-graphics⑤">7.1.3.6. The performance-mapping element</a> <a href="#ref-for-elementdef-score-graphics⑥">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-score-graphics-view">
@@ -5728,6 +5740,18 @@ following values:</p>
    <b><a href="#element-attrdef-performance-event-techniques">#element-attrdef-performance-event-techniques</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-element-attrdef-performance-event-techniques">7.1.3.5. The performance-event element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-performance-event-view">
+   <b><a href="#element-attrdef-performance-event-view">#element-attrdef-performance-event-view</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-performance-event-view">7.1.3.5. The performance-event element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-performance-event-region">
+   <b><a href="#element-attrdef-performance-event-region">#element-attrdef-performance-event-region</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-performance-event-region">7.1.3.5. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-performance-mapping">
