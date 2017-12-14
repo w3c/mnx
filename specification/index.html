@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="526ece8ec6287f37f61cd2647364ac7bd8827b59" name="document-revision">
+  <meta content="c6fe1b04b33eee90ccfd4c89d94fdfa2dc57eecd" name="document-revision">
 <style>
   .language-xml {
     font-size: 11px;
@@ -1429,7 +1429,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Draft Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-12-13">13 December 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-12-14">14 December 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1443,7 +1443,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 13 December 2017,
+In addition, as of 14 December 2017,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1715,17 +1715,19 @@ predecessors.</p>
         <li>
          <a href="#gmnx-graphics"><span class="secno">7.1.2</span> <span class="content">Graphics media</span></a>
          <ol class="toc">
-          <li><a href="#the-score-graphics-element"><span class="secno">7.1.2.1</span> <span class="content">The <span><code>score-graphics</code></span> element</span></a>
+          <li><a href="#the-score-view-element"><span class="secno">7.1.2.1</span> <span class="content">The <span><code>score-view</code></span> element</span></a>
          </ol>
         <li>
          <a href="#gmnx-performance"><span class="secno">7.1.3</span> <span class="content">Performance content</span></a>
          <ol class="toc">
           <li><a href="#the-performance-audio-element"><span class="secno">7.1.3.1</span> <span class="content">The <span><code>performance-audio</code></span> element</span></a>
-          <li><a href="#the-performance-data-element"><span class="secno">7.1.3.2</span> <span class="content">The <span><code>performance-data</code></span> element</span></a>
-          <li><a href="#the-performance-part-element"><span class="secno">7.1.3.3</span> <span class="content">The <span><code>performance-part</code></span> element</span></a>
-          <li><a href="#the-performance-tempo-element"><span class="secno">7.1.3.4</span> <span class="content">The <span><code>performance-tempo</code></span> element</span></a>
-          <li><a href="#the-performance-event-element"><span class="secno">7.1.3.5</span> <span class="content">The <span><code>performance-event</code></span> element</span></a>
-          <li><a href="#the-performance-mapping-element"><span class="secno">7.1.3.6</span> <span class="content">The <span><code>performance-mapping</code></span> element</span></a>
+          <li><a href="#the-performance-audio-media-element"><span class="secno">7.1.3.2</span> <span class="content">The <span><code>performance-audio-media</code></span> element</span></a>
+          <li><a href="#the-performance-data-element"><span class="secno">7.1.3.3</span> <span class="content">The <span><code>performance-data</code></span> element</span></a>
+          <li><a href="#the-performance-part-element"><span class="secno">7.1.3.4</span> <span class="content">The <span><code>performance-part</code></span> element</span></a>
+          <li><a href="#the-performance-tempo-element"><span class="secno">7.1.3.5</span> <span class="content">The <span><code>performance-tempo</code></span> element</span></a>
+          <li><a href="#the-performance-event-element"><span class="secno">7.1.3.6</span> <span class="content">The <span><code>performance-event</code></span> element</span></a>
+          <li><a href="#the-performance-mapping-element"><span class="secno">7.1.3.7</span> <span class="content">The <span><code>performance-mapping</code></span> element</span></a>
+          <li><a href="#the-performance-region-element"><span class="secno">7.1.3.8</span> <span class="content">The <span><code>performance-region</code></span> element</span></a>
          </ol>
        </ol>
      </ol>
@@ -3844,16 +3846,53 @@ semantic information does not suffice to yield the desired musical result.</p>
        <dd>Wherever a <a data-link-type="dfn" href="#musical-body" id="ref-for-musical-body④">musical body</a> is expected.
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑥">Content Model</a>:
        <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content①③">Metadata content</a>.
-       <dd>One or more <code><a data-link-type="element" href="#elementdef-score-graphics" id="ref-for-elementdef-score-graphics">score-graphics</a></code> elements.
+       <dd>One or more <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view">score-view</a></code> elements.
        <dd><a data-link-type="dfn" href="#performance-content" id="ref-for-performance-content">Performance content</a>.
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑤">Attributes</a>:
        <dd>None.
       </dl>
       <p>The <code><a data-link-type="element" href="#elementdef-gmnx" id="ref-for-elementdef-gmnx">gmnx</a></code> element is a <a data-link-type="dfn" href="#musical-body" id="ref-for-musical-body⑤">musical body</a> that describes a GMNX
 score as a whole.</p>
+      <p>The following example illustrates an entire GMNX document; the elements
+are described individually in the remainder of this section.</p>
+      <div class="example" id="example-ed7ec00c">
+       <a class="self-link" href="#example-ed7ec00c"></a> 
+<pre class="language-xml highlight"><span class="nt">&lt;gmnx></span>
+  <span class="nt">&lt;score-view</span> <span class="na">id=</span><span class="s">"page1"</span> <span class="na">view=</span><span class="s">"score.svg#page1"</span><span class="nt">/></span>
+  <span class="nt">&lt;score-view</span> <span class="na">id=</span><span class="s">"page2"</span> <span class="na">view=</span><span class="s">"score.svg#page2"</span><span class="nt">/></span>
+  <span class="nt">&lt;score-view</span> <span class="na">id=</span><span class="s">"page3"</span> <span class="na">view=</span><span class="s">"score.svg#page3"</span><span class="nt">/></span>
+
+  <span class="nt">&lt;performance-audio></span>
+    <span class="nt">&lt;performance-audio-media</span> <span class="na">src=</span><span class="s">"score.mp4"</span><span class="nt">/></span>
+    <span class="nt">&lt;performance-mapping></span>
+      <span class="nt">&lt;performance-region</span> <span class="na">start=</span><span class="s">"0"</span> <span class="na">end=</span><span class="s">"0.72"</span> <span class="na">view=</span><span class="s">"page1"</span> <span class="na">region=</span><span class="s">"m1"</span><span class="nt">/></span>
+      <span class="nt">&lt;performance-region</span> <span class="na">start=</span><span class="s">"0.72"</span> <span class="na">end=</span><span class="s">"1.43"</span> <span class="na">view=</span><span class="s">"page1"</span> <span class="na">region=</span><span class="s">"m2"</span><span class="nt">/></span>
+      <span class="nt">&lt;performance-region</span> <span class="na">start=</span><span class="s">"1.43"</span> <span class="na">end=</span><span class="s">"2.99"</span> <span class="na">view=</span><span class="s">"page1"</span> <span class="na">region=</span><span class="s">"m3"</span><span class="nt">/></span>
+      <span class="nt">&lt;performance-region</span> <span class="na">start=</span><span class="s">"2.99"</span> <span class="na">end=</span><span class="s">"3.65"</span> <span class="na">view=</span><span class="s">"page1"</span> <span class="na">region=</span><span class="s">"m4"</span><span class="nt">/></span>
+    <span class="nt">&lt;/performance-mapping></span>
+  <span class="nt">&lt;/performance-audio></span>
+
+  <span class="nt">&lt;performance-data></span>
+    <span class="nt">&lt;performance-tempo</span> <span class="na">beat=</span><span class="s">"/4"</span> <span class="na">bpm=</span><span class="s">"80"</span><span class="nt">/></span>
+    <span class="nt">&lt;performance-mapping></span>
+      <span class="nt">&lt;performance-region</span> <span class="na">start=</span><span class="s">"0"</span> <span class="na">end=</span><span class="s">"1"</span> <span class="na">view=</span><span class="s">"page1"</span> <span class="na">region=</span><span class="s">"m1"</span><span class="nt">/></span>
+      <span class="nt">&lt;performance-region</span> <span class="na">start=</span><span class="s">"1"</span> <span class="na">end=</span><span class="s">"2"</span> <span class="na">view=</span><span class="s">"page1"</span> <span class="na">region=</span><span class="s">"m2"</span><span class="nt">/></span>
+      <span class="nt">&lt;performance-region</span> <span class="na">start=</span><span class="s">"2"</span> <span class="na">end=</span><span class="s">"3"</span> <span class="na">view=</span><span class="s">"page1"</span> <span class="na">region=</span><span class="s">"m3"</span><span class="nt">/></span>
+      <span class="nt">&lt;performance-region</span> <span class="na">start=</span><span class="s">"3"</span> <span class="na">end=</span><span class="s">"4"</span> <span class="na">view=</span><span class="s">"page1"</span> <span class="na">region=</span><span class="s">"m4"</span><span class="nt">/></span>
+    <span class="nt">&lt;/performance-mapping></span>
+    <span class="nt">&lt;performance-part></span>
+      <span class="nt">&lt;instrument-sound></span>strings.violin<span class="nt">&lt;/instrument-sound></span>
+      <span class="nt">&lt;performance-event</span> <span class="na">start=</span><span class="s">"0"</span> <span class="na">duration=</span><span class="s">"1/4"</span> <span class="na">pitch=</span><span class="s">"C4"</span> <span class="na">dynamics=</span><span class="s">"100"</span><span class="nt">/></span>
+      <span class="nt">&lt;performance-event</span> <span class="na">start=</span><span class="s">"1/4"</span> <span class="na">duration=</span><span class="s">"1/4"</span> <span class="na">pitch=</span><span class="s">"D4"</span> <span class="na">dynamics=</span><span class="s">"100"</span><span class="nt">/></span>
+      ...following events...
+    <span class="nt">&lt;/performance-part></span>
+  <span class="nt">&lt;/performance-data></span>
+<span class="nt">&lt;/gmnx></span>
+</pre>
+      </div>
      </section>
      <h4 class="heading settled" data-level="7.1.2" id="gmnx-graphics"><span class="secno">7.1.2. </span><span class="content">Graphics media</span><a class="self-link" href="#gmnx-graphics"></a></h4>
-     <h5 class="heading settled" data-level="7.1.2.1" id="the-score-graphics-element"><span class="secno">7.1.2.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-score-graphics"><code>score-graphics</code></dfn> element</span><a class="self-link" href="#the-score-graphics-element"></a></h5>
+     <h5 class="heading settled" data-level="7.1.2.1" id="the-score-view-element"><span class="secno">7.1.2.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-score-view"><code>score-view</code></dfn> element</span><a class="self-link" href="#the-score-view-element"></a></h5>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②⑥">Contexts</a>:
@@ -3861,12 +3900,12 @@ score as a whole.</p>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑦">Content Model</a>:
        <dd>None.
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑥">Attributes</a>:
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-score-graphics-view" id="ref-for-element-attrdef-score-graphics-view">view</a></code> - link to an SVG view of the score
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-score-view-view" id="ref-for-element-attrdef-score-view-view">view</a></code> - link to an SVG view of the score
       </dl>
-      <p>The <code><a data-link-type="element" href="#elementdef-score-graphics" id="ref-for-elementdef-score-graphics①">score-graphics</a></code> element references a specific view within a separate
-SVG document, via the URL provided in the <dfn class="dfn-paneled" data-dfn-for="score-graphics" data-dfn-type="element-attr" data-export="" id="element-attrdef-score-graphics-view"><code>view</code></dfn> attribute. This URL must follow the rules for <a data-link-type="dfn" href="https://www.w3.org/TR/SVG/linking.html#LinksIntoSVG" id="ref-for-LinksIntoSVG">linking into SVG content</a>.</p>
-      <p>Each <code><a data-link-type="element" href="#elementdef-score-graphics" id="ref-for-elementdef-score-graphics②">score-graphics</a></code> element represents a single page of the score. A
-default sequence of pages is established by the order of occurrence of <code><a data-link-type="element" href="#elementdef-score-graphics" id="ref-for-elementdef-score-graphics③">score-graphics</a></code> elements within the document.</p>
+      <p>The <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view①">score-view</a></code> element references a specific view within a separate
+SVG document, via the URL provided in the <dfn class="dfn-paneled" data-dfn-for="score-view" data-dfn-type="element-attr" data-export="" id="element-attrdef-score-view-view"><code>view</code></dfn> attribute. This URL must follow the rules for <a data-link-type="dfn" href="https://www.w3.org/TR/SVG/linking.html#LinksIntoSVG" id="ref-for-LinksIntoSVG">linking into SVG content</a>.</p>
+      <p>Each <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view②">score-view</a></code> element represents a single page of the score. A
+default sequence of pages is established by the order of occurrence of <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view③">score-view</a></code> elements within the document.</p>
       <p>The sequence of page presentation in conjunction with <a data-link-type="dfn" href="#performance-content" id="ref-for-performance-content①">performance
 content</a> may differ from the default sequence, according to the mapping
 between performance and graphics.</p>
@@ -3888,42 +3927,62 @@ terms of discrete, parameterized sonic events</p>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑧">Content Model</a>:
        <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content①④">Metadata content</a>.
        <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo">performance-tempo</a></code> elements.
-       <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-mapping" id="ref-for-elementdef-performance-mapping">performance-mapping</a></code> elements.
-       <dd><em>TBD: audio track elements</em>.
-       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑦">Attributes</a>:
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-audio-src" id="ref-for-element-attrdef-performance-audio-src">src</a></code> - URL of an audio file of the score
+       <dd>Zero or one <code><a data-link-type="element" href="#elementdef-performance-mapping" id="ref-for-elementdef-performance-mapping">performance-mapping</a></code> elements.
+       <dd>One or more <code><a data-link-type="element" href="#elementdef-performance-audio-media" id="ref-for-elementdef-performance-audio-media">performance-audio-media</a></code> elements.
       </dl>
-      <p>The <code><a data-link-type="element" href="#elementdef-performance-audio" id="ref-for-elementdef-performance-audio">performance-audio</a></code> element includes an <a data-link-type="dfn" href="#audio-media" id="ref-for-audio-media①">audio media</a> file, via the URL provided
-in the <dfn class="dfn-paneled" data-dfn-for="performance-audio" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-audio-src"><code>src</code></dfn> attribute.</p>
+      <p>The <code><a data-link-type="element" href="#elementdef-performance-audio" id="ref-for-elementdef-performance-audio">performance-audio</a></code> element defines one or more <a data-link-type="dfn" href="#audio-media" id="ref-for-audio-media①">audio media</a> files
+that constitute a single performance of the score, and whose contents are
+presumed to be temporally synchronized with each other.</p>
+      <p>Additionally, <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo①">performance-tempo</a></code> elements may establish an proportional
+mapping between an arbitrary <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit①">notated time unit</a> and a time interval. This mapping
+may change throughout the course of the performance.  If no such elements occur,
+the <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit②">notated time unit</a> is defined as equal to 1 second of performance time.</p>
+      <p>A set of optional <code><a data-link-type="element" href="#elementdef-performance-mapping" id="ref-for-elementdef-performance-mapping①">performance-mapping</a></code> elements, if given, may establish a mapping
+between the performance data and the graphical score.</p>
      </section>
-     <h5 class="heading settled" data-level="7.1.3.2" id="the-performance-data-element"><span class="secno">7.1.3.2. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-data"><code>performance-data</code></dfn> element</span><a class="self-link" href="#the-performance-data-element"></a></h5>
+     <h5 class="heading settled" data-level="7.1.3.2" id="the-performance-audio-media-element"><span class="secno">7.1.3.2. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-audio-media"><code>performance-audio-media</code></dfn> element</span><a class="self-link" href="#the-performance-audio-media-element"></a></h5>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②⑧">Contexts</a>:
        <dd><code><a data-link-type="element" href="#elementdef-gmnx" id="ref-for-elementdef-gmnx③">gmnx</a></code>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑨">Content Model</a>:
        <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content①⑤">Metadata content</a>.
+       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑦">Attributes</a>:
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-audio-media-src" id="ref-for-element-attrdef-performance-audio-media-src">src</a></code> - URL of an audio file of the score
+      </dl>
+      <p>The <code><a data-link-type="element" href="#elementdef-performance-audio-media" id="ref-for-elementdef-performance-audio-media①">performance-audio-media</a></code> element includes an <a data-link-type="dfn" href="#audio-media" id="ref-for-audio-media②">audio media</a> file, via the URL provided
+in the <dfn class="dfn-paneled" data-dfn-for="performance-audio-media" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-audio-media-src"><code>src</code></dfn> attribute.</p>
+     </section>
+     <h5 class="heading settled" data-level="7.1.3.3" id="the-performance-data-element"><span class="secno">7.1.3.3. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-data"><code>performance-data</code></dfn> element</span><a class="self-link" href="#the-performance-data-element"></a></h5>
+     <section>
+      <dl class="def">
+       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②⑨">Contexts</a>:
+       <dd><code><a data-link-type="element" href="#elementdef-gmnx" id="ref-for-elementdef-gmnx④">gmnx</a></code>
+       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model③⓪">Content Model</a>:
+       <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content①⑥">Metadata content</a>.
        <dd>One or more <code><a data-link-type="element" href="#elementdef-performance-part" id="ref-for-elementdef-performance-part">performance-part</a></code> elements.
-       <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo①">performance-tempo</a></code> elements.
-       <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-mapping" id="ref-for-elementdef-performance-mapping①">performance-mapping</a></code> elements.
+       <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo②">performance-tempo</a></code> elements.
+       <dd>Zero or one <code><a data-link-type="element" href="#elementdef-performance-mapping" id="ref-for-elementdef-performance-mapping②">performance-mapping</a></code> elements.
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑧">Attributes</a>:
       </dl>
       <p>The <code><a data-link-type="element" href="#elementdef-performance-data" id="ref-for-elementdef-performance-data">performance-data</a></code> element provides <a data-link-type="dfn" href="#performance-data" id="ref-for-performance-data②">performance data</a> in the form of
 discrete sonic events suitable for synthesis or analysis.</p>
       <p>It consists of some number of parts, plus optional mappings between performance time
 and regions of graphical media.</p>
-      <p>Additionally, <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo②">performance-tempo</a></code> elements may establish an proportional
-mapping between an arbitrary <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit①">notated time unit</a> and a time interval. This mapping
+      <p>Additionally, <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo③">performance-tempo</a></code> elements may establish an proportional
+mapping between an arbitrary <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit③">notated time unit</a> and a time interval. This mapping
 may change throughout the course of the performance.  If no such elements occur,
-the <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit②">notated time unit</a> is defined as equal to 1 second of performance time.</p>
+the <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit④">notated time unit</a> is defined as equal to 1 second of performance time.</p>
+      <p>A set of optional <code><a data-link-type="element" href="#elementdef-performance-mapping" id="ref-for-elementdef-performance-mapping③">performance-mapping</a></code> elements, if given, may establish a mapping
+between the performance data and the graphical score.</p>
      </section>
-     <h5 class="heading settled" data-level="7.1.3.3" id="the-performance-part-element"><span class="secno">7.1.3.3. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-part"><code>performance-part</code></dfn> element</span><a class="self-link" href="#the-performance-part-element"></a></h5>
+     <h5 class="heading settled" data-level="7.1.3.4" id="the-performance-part-element"><span class="secno">7.1.3.4. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-part"><code>performance-part</code></dfn> element</span><a class="self-link" href="#the-performance-part-element"></a></h5>
      <section>
       <dl class="def">
-       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②⑨">Contexts</a>:
+       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts③⓪">Contexts</a>:
        <dd><code><a data-link-type="element" href="#elementdef-performance-data" id="ref-for-elementdef-performance-data①">performance-data</a></code>
-       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model③⓪">Content Model</a>:
-       <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content①⑥">Metadata content</a>.
+       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model③①">Content Model</a>:
+       <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content①⑦">Metadata content</a>.
        <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event②">performance-event</a></code> elements.
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑨">Attributes</a>:
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-part-instrument-sound" id="ref-for-element-attrdef-performance-part-instrument-sound">instrument-sound</a></code> - the sound ID of the instrument for this part.
@@ -3933,22 +3992,22 @@ the <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-
 for this part.</p>
       <p class="note" role="note"><span>Note:</span> <code><a data-link-type="element" href="#elementdef-performance-part" id="ref-for-elementdef-performance-part②">performance-part</a></code> elements do not necessarily correspond to CWMNX <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part①①">part</a></code> elements, as they pertain to a single instrument.</p>
      </section>
-     <h5 class="heading settled" data-level="7.1.3.4" id="the-performance-tempo-element"><span class="secno">7.1.3.4. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-tempo"><code>performance-tempo</code></dfn> element</span><a class="self-link" href="#the-performance-tempo-element"></a></h5>
+     <h5 class="heading settled" data-level="7.1.3.5" id="the-performance-tempo-element"><span class="secno">7.1.3.5. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-tempo"><code>performance-tempo</code></dfn> element</span><a class="self-link" href="#the-performance-tempo-element"></a></h5>
      <section>
       <dl class="def">
-       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts③⓪">Contexts</a>:
+       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts③①">Contexts</a>:
        <dd><code><a data-link-type="element" href="#elementdef-performance-data" id="ref-for-elementdef-performance-data②">performance-data</a></code>, <code><a data-link-type="element" href="#elementdef-performance-audio" id="ref-for-elementdef-performance-audio①">performance-audio</a></code>
-       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model③①">Content Model</a>:
+       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model③②">Content Model</a>:
        <dd>None.
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute③⓪">Attributes</a>:
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-tempo-start" id="ref-for-element-attrdef-performance-tempo-start">start</a></code> - start time of this performance tempo
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-tempo-beat" id="ref-for-element-attrdef-performance-tempo-beat">beat</a></code> - notated time units per beat
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-tempo-bpm" id="ref-for-element-attrdef-performance-tempo-bpm">bpm</a></code> - number of beats per minute
       </dl>
-      <p>The <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo③">performance-tempo</a></code> element describes a proportional relationship between
+      <p>The <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo④">performance-tempo</a></code> element describes a proportional relationship between
 time and an arbitrary <dfn class="dfn-paneled" data-dfn-for="performance-tempo" data-dfn-type="dfn" data-noexport="" id="performance-tempo-notated-time-unit">notated time unit</dfn> that may be used by the score.</p>
       <p>This relationship applies to a time range beginning at the time in seconds
-specified by <dfn class="dfn-paneled" data-dfn-for="performance-tempo" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-tempo-start"><code>start</code></dfn> and continuing until the next <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo④">performance-tempo</a></code> element.</p>
+specified by <dfn class="dfn-paneled" data-dfn-for="performance-tempo" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-tempo-start"><code>start</code></dfn> and continuing until the next <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo⑤">performance-tempo</a></code> element. The default value is 0.</p>
       <p>The <dfn class="dfn-paneled" data-dfn-for="performance-tempo" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-tempo-beat"><code>beat</code></dfn> element is a <a data-link-type="dfn" href="#note-value" id="ref-for-note-value④">note value</a> which
 establishes a beat as some fraction or multiple of a notated time unit (which
 in CWMN a whole note by convention). The default value is 1.</p>
@@ -3957,27 +4016,29 @@ default value is 60.</p>
       <p class="note" role="note"><span>NOTE:</span> The defaults for both of the above attributes establish a notated
 time unit as equal to 1 second. Thus, if no attribute values are provided,
 score time is equal to real performance time.</p>
-      <p class="note" role="note"><span>NOTE:</span> The set of <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo⑤">performance-tempo</a></code> elements establish a variable-rate progression
+      <p class="note" role="note"><span>NOTE:</span> The set of <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo⑥">performance-tempo</a></code> elements establish a variable-rate progression
 of a scoring time unit relative to performance time, similar to a MIDI tempo track.</p>
      </section>
-     <h5 class="heading settled" data-level="7.1.3.5" id="the-performance-event-element"><span class="secno">7.1.3.5. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-event"><code>performance-event</code></dfn> element</span><a class="self-link" href="#the-performance-event-element"></a></h5>
+     <h5 class="heading settled" data-level="7.1.3.6" id="the-performance-event-element"><span class="secno">7.1.3.6. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-event"><code>performance-event</code></dfn> element</span><a class="self-link" href="#the-performance-event-element"></a></h5>
      <section>
       <dl class="def">
-       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts③①">Contexts</a>:
+       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts③②">Contexts</a>:
        <dd><code><a data-link-type="element" href="#elementdef-performance-part" id="ref-for-elementdef-performance-part③">performance-part</a></code>, <code><a data-link-type="element" href="#elementdef-interpret" id="ref-for-elementdef-interpret④">interpret</a></code>
-       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model③②">Content Model</a>:
+       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model③③">Content Model</a>:
        <dd>None.
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute③①">Attributes</a>:
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-start" id="ref-for-element-attrdef-performance-event-start">start</a></code> - start time of this event
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-duration" id="ref-for-element-attrdef-performance-event-duration">duration</a></code> - duration of this event
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-pitch" id="ref-for-element-attrdef-performance-event-pitch">pitch</a></code> - pitch of this event
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-dynamics" id="ref-for-element-attrdef-performance-event-dynamics">dynamics</a></code> - dynamics for this event
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-techniques" id="ref-for-element-attrdef-performance-event-techniques">techniques</a></code> - set of performance techniques for this event
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-view" id="ref-for-element-attrdef-performance-event-view">view</a></code> - optional element ID of the <code><a data-link-type="element" href="#elementdef-score-graphics" id="ref-for-elementdef-score-graphics④">score-graphics</a></code> containing a symbol for the event
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-view" id="ref-for-element-attrdef-performance-event-view">view</a></code> - optional element ID of the <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view④">score-view</a></code> containing a symbol for the event
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-region" id="ref-for-element-attrdef-performance-event-region">region</a></code> - an optional reference to the graphical symbol for the event
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-semantics" id="ref-for-element-attrdef-performance-event-semantics">semantics</a></code> - an optional reference to an element in a semantic document
       </dl>
       <p>The <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event④">performance-event</a></code> element describes a single musical event in terms of its
 performance parameters.</p>
-      <p>All times given are in <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit③">notated time units</a>, whose relationship to performance time is described by <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo⑥">performance-tempo</a></code> elements. These times may be expressed in the following forms which are
+      <p>All times given are in <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit⑤">notated time units</a>, whose relationship to performance time is described by <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo⑦">performance-tempo</a></code> elements. These times may be expressed in the following forms which are
 syntactically distinct:</p>
       <ul>
        <li data-md="">
@@ -3993,44 +4054,69 @@ specifies the actual duration to be performed, not a notated duration subject
 to interpretation by a performer.</p>
       <p><dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-pitch"><code>pitch</code></dfn> gives the pitch of the event expressed as
 a <a data-link-type="dfn" href="#chromatic-pitch" id="ref-for-chromatic-pitch③">chromatic pitch</a>.</p>
+      <p><dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-dynamics"><code>dynamics</code></dfn> gives the dynamics of the event expressed in
+a scale from 0 to 127. <em>This scale needs to be better defined; the existing
+MusicXML definition as "percentage of forte" is hard to interpret clearly.</em></p>
       <p><dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-techniques"><code>techniques</code></dfn> gives a set of performance techniques applying
 to the event as a <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens" id="ref-for-space-separated-tokens④">unordered set of space-separated tokens</a>.</p>
       <p class="note" role="note"><span>Note:</span> These presumably correspond to articulatory variations of the instrument sound.
 Proper definition remains TBD.</p>
-      <p>If present, the <dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-view"><code>view</code></dfn> and <dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-region"><code>region</code></dfn> identify a specific visual region corresponding to the event. This
+      <p>If present, the <dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-view"><code>view</code></dfn> and <dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-region"><code>region</code></dfn> attributes identify a specific visual region corresponding to the event. This
 correspondence is not required.</p>
+      <p>If present, the <dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-semantics"><code>semantics</code></dfn> attribute identify a
+semantic source element in an external document corresponding to the event.
+This correspondence is not required.</p>
      </section>
-     <h5 class="heading settled" data-level="7.1.3.6" id="the-performance-mapping-element"><span class="secno">7.1.3.6. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-mapping"><code>performance-mapping</code></dfn> element</span><a class="self-link" href="#the-performance-mapping-element"></a></h5>
+     <h5 class="heading settled" data-level="7.1.3.7" id="the-performance-mapping-element"><span class="secno">7.1.3.7. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-mapping"><code>performance-mapping</code></dfn> element</span><a class="self-link" href="#the-performance-mapping-element"></a></h5>
      <section>
       <dl class="def">
-       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts③②">Contexts</a>:
+       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts③③">Contexts</a>:
        <dd><code><a data-link-type="element" href="#elementdef-performance-audio" id="ref-for-elementdef-performance-audio②">performance-audio</a></code>, <code><a data-link-type="element" href="#elementdef-performance-data" id="ref-for-elementdef-performance-data③">performance-data</a></code>
-       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model③③">Content Model</a>:
-       <dd>None.
+       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model③④">Content Model</a>:
+       <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-region" id="ref-for-elementdef-performance-region">performance-region</a></code> elements.
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute③②">Attributes</a>:
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-mapping-start" id="ref-for-element-attrdef-performance-mapping-start">start</a></code> - start time of the time region being mapped
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-mapping-end" id="ref-for-element-attrdef-performance-mapping-end">end</a></code> - end time of the time region
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-mapping-view" id="ref-for-element-attrdef-performance-mapping-view">view</a></code> - the element ID of the <code><a data-link-type="element" href="#elementdef-score-graphics" id="ref-for-elementdef-score-graphics⑤">score-graphics</a></code> containing the visual region
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-mapping-region" id="ref-for-element-attrdef-performance-mapping-region">region</a></code> - the definition of the visual region itself
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-mapping-type" id="ref-for-element-attrdef-performance-mapping-type">type</a></code> - indicate that a continuous mapping exists
       </dl>
-      <p>The <code><a data-link-type="element" href="#elementdef-performance-mapping" id="ref-for-elementdef-performance-mapping②">performance-mapping</a></code> element describes the relationship between a
-performance time region expressed in <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit④">notated time units</a>, and a visual region of a
+     </section>
+     <p>The <code><a data-link-type="element" href="#elementdef-performance-mapping" id="ref-for-elementdef-performance-mapping④">performance-mapping</a></code> element defines a sequence of piecewise, non-
+overlapping ranges in notated time which correspond to piecewise regions
+within score graphics media views. In essence, it is a timeline that
+correlates a performance with elements within a series of views of the score
+from which that performance is derived.</p>
+     <p>The <code><a data-link-type="element" href="#elementdef-performance-region" id="ref-for-elementdef-performance-region①">performance-region</a></code> elements in a mapping provide the detailed
+descriptions of these ranges. The elements must occur in forward time order,
+and the <code><a data-link-type="element-sub" href="#element-attrdef-performance-region-end" id="ref-for-element-attrdef-performance-region-end">end</a></code> value of each region must be less than or
+equal to the <code><a data-link-type="element-sub" href="#element-attrdef-performance-region-start" id="ref-for-element-attrdef-performance-region-start">start</a></code> value of the next region.</p>
+     <h5 class="heading settled" data-level="7.1.3.8" id="the-performance-region-element"><span class="secno">7.1.3.8. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-region"><code>performance-region</code></dfn> element</span><a class="self-link" href="#the-performance-region-element"></a></h5>
+     <section>
+      <dl class="def">
+       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts③④">Contexts</a>:
+       <dd><code><a data-link-type="element" href="#elementdef-performance-mapping" id="ref-for-elementdef-performance-mapping⑤">performance-mapping</a></code>
+       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model③⑤">Content Model</a>:
+       <dd>None.
+       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute③③">Attributes</a>:
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-start" id="ref-for-element-attrdef-performance-region-start①">start</a></code> - start time of the time region being mapped
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-end" id="ref-for-element-attrdef-performance-region-end①">end</a></code> - end time of the time region
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-view" id="ref-for-element-attrdef-performance-region-view">view</a></code> - the element ID of the <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑤">score-view</a></code> containing the visual region
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-region" id="ref-for-element-attrdef-performance-region-region">region</a></code> - the definition of the visual region itself
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-type" id="ref-for-element-attrdef-performance-region-type">type</a></code> - indicate that a continuous mapping exists
+      </dl>
+      <p>The <code><a data-link-type="element" href="#elementdef-performance-region" id="ref-for-elementdef-performance-region②">performance-region</a></code> element describes the relationship between a
+performance time region expressed in <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit⑥">notated time units</a>, and a visual region of a
 score page. This allows consumers to understand the correspondence between
 regions of the graphical score and regions of one or more audio performances.</p>
-      <p><dfn class="dfn-paneled" data-dfn-for="performance-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-mapping-start"><code>start</code></dfn> gives the start of the time region.</p>
-      <p><dfn class="dfn-paneled" data-dfn-for="performance-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-mapping-end"><code>end</code></dfn> gives the end of the time region.</p>
-      <p><dfn class="dfn-paneled" data-dfn-for="performance-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-mapping-view"><code>view</code></dfn> identifies a view of some section of the score, by
-the ID of its <code><a data-link-type="element" href="#elementdef-score-graphics" id="ref-for-elementdef-score-graphics⑥">score-graphics</a></code> element.</p>
-      <p><dfn class="dfn-paneled" data-dfn-for="performance-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-mapping-region"><code>region</code></dfn> identifies the visual region for the mapping
+      <p><dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-start"><code>start</code></dfn> gives the start of the time region.</p>
+      <p><dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-end"><code>end</code></dfn> gives the end of the time region.</p>
+      <p><dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-view"><code>view</code></dfn> identifies a view of some section of the score, by
+providing the XML ID of its <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑥">score-view</a></code> element.</p>
+      <p><dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-region"><code>region</code></dfn> identifies the visual region for the mapping
 using a fragment identifier in accordance with <a data-link-type="dfn" href="https://www.w3.org/TR/SVG/linking.html#LinksIntoSVG" id="ref-for-LinksIntoSVG①">linking into SVG content</a>.
-The fragment identifier refers to the same document identified by the <code><a data-link-type="element-sub" href="#element-attrdef-performance-mapping-view" id="ref-for-element-attrdef-performance-mapping-view①">view</a></code> attribute.</p>
-      <p><dfn class="dfn-paneled" data-dfn-for="performance-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-mapping-type"><code>type</code></dfn> defines the nature of the mapping, with the
+The fragment identifier refers to the same document identified by the <code><a data-link-type="element-sub" href="#element-attrdef-performance-region-view" id="ref-for-element-attrdef-performance-region-view①">view</a></code> attribute.</p>
+      <p><dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-type"><code>type</code></dfn> defines the nature of the mapping, with the
 following values:</p>
       <dl>
-       <dt><dfn data-dfn-for="performance-mapping/type" data-dfn-type="attr-value" data-export="" id="attr-valuedef-performance-mapping-type-block"><code>block</code><a class="self-link" href="#attr-valuedef-performance-mapping-type-block"></a></dfn> (default)
+       <dt><dfn data-dfn-for="performance-region/type" data-dfn-type="attr-value" data-export="" id="attr-valuedef-performance-region-type-block"><code>block</code><a class="self-link" href="#attr-valuedef-performance-region-type-block"></a></dfn> (default)
        <dd>The entire time region corresponds to the entire visual region, with no further decomposition.
-       <dt><dfn data-dfn-for="performance-mapping/type" data-dfn-type="attr-value" data-export="" id="attr-valuedef-performance-mapping-type-left-to-right"><code>left-to-right</code><a class="self-link" href="#attr-valuedef-performance-mapping-type-left-to-right"></a></dfn>
+       <dt><dfn data-dfn-for="performance-region/type" data-dfn-type="attr-value" data-export="" id="attr-valuedef-performance-region-type-left-to-right"><code>left-to-right</code><a class="self-link" href="#attr-valuedef-performance-region-type-left-to-right"></a></dfn>
        <dd>A time <var>t</var> in the time region corresponds to a vertical line in the visual region,
       whose points share an X coordinate equal to <var>left</var> + (<var>right</var> - <var>left</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>), where <var>left</var> and <var>right</var> are the left and right boundaries of the visual region
       in SVG user coordinates.
@@ -4062,11 +4148,11 @@ following values:</p>
         <li><a href="#element-attrdef-event-beam-count">beam-count</a><span>, in §6.2.5.1</span>
         <li><a href="#elementdef-beamed">beamed</a><span>, in §6.2.5.3</span>
         <li><a href="#beamed-beamed-group">beamed group</a><span>, in §6.2.5.3</span>
-        <li><a href="#element-attrdef-performance-tempo-beat">beat</a><span>, in §7.1.3.4</span>
+        <li><a href="#element-attrdef-performance-tempo-beat">beat</a><span>, in §7.1.3.5</span>
         <li><a href="#valdef-y-below">below</a><span>, in §6.3.3.6</span>
         <li><a href="#elementdef-bend">bend</a><span>, in §6.2.8.4</span>
-        <li><a href="#attr-valuedef-performance-mapping-type-block">block</a><span>, in §7.1.3.6</span>
-        <li><a href="#element-attrdef-performance-tempo-bpm">bpm</a><span>, in §7.1.3.4</span>
+        <li><a href="#attr-valuedef-performance-region-type-block">block</a><span>, in §7.1.3.8</span>
+        <li><a href="#element-attrdef-performance-tempo-bpm">bpm</a><span>, in §7.1.3.5</span>
         <li><a href="#elementdef-bracket">bracket</a><span>, in §6.2.10.5</span>
         <li><a href="#chords">chords</a><span>, in §6.2.1.2</span>
         <li><a href="#chromatic-pitch">chromatic pitch</a><span>, in §6.2.1.4</span>
@@ -4114,15 +4200,20 @@ following values:</p>
          duration
          <ul>
           <li><a href="#element-attrdef-space-duration">element-attr for space</a><span>, in §6.2.5.4</span>
-          <li><a href="#element-attrdef-performance-event-duration">element-attr for performance-event</a><span>, in §7.1.3.5</span>
+          <li><a href="#element-attrdef-performance-event-duration">element-attr for performance-event</a><span>, in §7.1.3.6</span>
          </ul>
-        <li><a href="#elementdef-dynamics">dynamics</a><span>, in §6.2.9.2</span>
+        <li>
+         dynamics
+         <ul>
+          <li><a href="#elementdef-dynamics">(element)</a><span>, in §6.2.9.2</span>
+          <li><a href="#element-attrdef-performance-event-dynamics">element-attr for performance-event</a><span>, in §7.1.3.6</span>
+         </ul>
         <li><a href="#element-location">element location</a><span>, in §3.2.3</span>
         <li>
          end
          <ul>
           <li><a href="#element-attrdef-spans-end">element-attr for spans</a><span>, in §6.2.10.1</span>
-          <li><a href="#element-attrdef-performance-mapping-end">element-attr for performance-mapping</a><span>, in §7.1.3.6</span>
+          <li><a href="#element-attrdef-performance-region-end">element-attr for performance-region</a><span>, in §7.1.3.8</span>
          </ul>
         <li><a href="#elementdef-event">event</a><span>, in §6.2.5.1</span>
         <li><a href="#event-content">Event content</a><span>, in §6.2.6</span>
@@ -4152,14 +4243,14 @@ following values:</p>
          instrument-sound
          <ul>
           <li><a href="#elementdef-instrument-sound">(element)</a><span>, in §6.2.12.3</span>
-          <li><a href="#element-attrdef-performance-part-instrument-sound">element-attr for performance-part</a><span>, in §7.1.3.3</span>
+          <li><a href="#element-attrdef-performance-part-instrument-sound">element-attr for performance-part</a><span>, in §7.1.3.4</span>
          </ul>
         <li><a href="#elementdef-interpret">interpret</a><span>, in §6.2.13.1</span>
         <li><a href="#interpretation-content">Interpretation content</a><span>, in §6.2.13</span>
         <li><a href="#elementdef-key">key</a><span>, in §6.2.11.1</span>
         <li><a href="#key-signature">key signature</a><span>, in §6.2.1.1</span>
         <li><a href="#strip-leading-and-trailing-white-space">leading and trailing white space stripped</a><span>, in §3.2.1</span>
-        <li><a href="#attr-valuedef-performance-mapping-type-left-to-right">left-to-right</a><span>, in §7.1.3.6</span>
+        <li><a href="#attr-valuedef-performance-region-type-left-to-right">left-to-right</a><span>, in §7.1.3.8</span>
         <li><a href="#liaison-content">Liaison content</a><span>, in §6.2.8</span>
         <li><a href="#element-attrdef-direction-location">location</a><span>, in §6.2.9.1</span>
         <li><a href="#lowercase-ascii-hex-digits">lowercase ASCII hex digits</a><span>, in §3.2.1</span>
@@ -4201,7 +4292,7 @@ following values:</p>
          </ul>
         <li><a href="#notated-event">notated event</a><span>, in §6.2.1.2</span>
         <li><a href="#notated-sequence">notated sequence</a><span>, in §6.2.1.6</span>
-        <li><a href="#performance-tempo-notated-time-unit">notated time unit</a><span>, in §7.1.3.4</span>
+        <li><a href="#performance-tempo-notated-time-unit">notated time unit</a><span>, in §7.1.3.5</span>
         <li><a href="#notational-idiom">notational idiom</a><span>, in §3.1.1</span>
         <li><a href="#elementdef-note">note</a><span>, in §6.2.6.1</span>
         <li><a href="#note-content">Note content</a><span>, in §6.2.7</span>
@@ -4238,22 +4329,24 @@ following values:</p>
         <li><a href="#elementdef-pedal">pedal</a><span>, in §6.2.10.4</span>
         <li><a href="#propdef-perform">perform</a><span>, in §6.3.3.5</span>
         <li><a href="#elementdef-performance-audio">performance-audio</a><span>, in §7.1.3.1</span>
+        <li><a href="#elementdef-performance-audio-media">performance-audio-media</a><span>, in §7.1.3.2</span>
         <li><a href="#performance-content">performance content</a><span>, in §7.1.3</span>
-        <li><a href="#elementdef-performance-data">performance-data</a><span>, in §7.1.3.2</span>
+        <li><a href="#elementdef-performance-data">performance-data</a><span>, in §7.1.3.3</span>
         <li><a href="#performance-data">performance data</a><span>, in §7.1.3</span>
         <li><a href="#performance-event">performance event</a><span>, in §6.2.1.8</span>
-        <li><a href="#elementdef-performance-event">performance-event</a><span>, in §7.1.3.5</span>
+        <li><a href="#elementdef-performance-event">performance-event</a><span>, in §7.1.3.6</span>
         <li><a href="#performance-interpretation">performance interpretation</a><span>, in §6.2.1.7</span>
-        <li><a href="#elementdef-performance-mapping">performance-mapping</a><span>, in §7.1.3.6</span>
+        <li><a href="#elementdef-performance-mapping">performance-mapping</a><span>, in §7.1.3.7</span>
         <li><a href="#performance-order">performance order</a><span>, in §6.2.4</span>
-        <li><a href="#elementdef-performance-part">performance-part</a><span>, in §7.1.3.3</span>
-        <li><a href="#elementdef-performance-tempo">performance-tempo</a><span>, in §7.1.3.4</span>
+        <li><a href="#elementdef-performance-part">performance-part</a><span>, in §7.1.3.4</span>
+        <li><a href="#elementdef-performance-region">performance-region</a><span>, in §7.1.3.8</span>
+        <li><a href="#elementdef-performance-tempo">performance-tempo</a><span>, in §7.1.3.5</span>
         <li>
          pitch
          <ul>
           <li><a href="#element-attrdef-note-pitch">element-attr for note</a><span>, in §6.2.6.1</span>
           <li><a href="#element-attrdef-rest-pitch">element-attr for rest</a><span>, in §6.2.6.2</span>
-          <li><a href="#element-attrdef-performance-event-pitch">element-attr for performance-event</a><span>, in §7.1.3.5</span>
+          <li><a href="#element-attrdef-performance-event-pitch">element-attr for performance-event</a><span>, in §7.1.3.6</span>
          </ul>
         <li><a href="#attr-valuedef-dynamics-type-pp">pp</a><span>, in §6.2.9.2</span>
         <li><a href="#attr-valuedef-dynamics-type-ppp">ppp</a><span>, in §6.2.9.2</span>
@@ -4267,8 +4360,8 @@ following values:</p>
         <li>
          region
          <ul>
-          <li><a href="#element-attrdef-performance-event-region">element-attr for performance-event</a><span>, in §7.1.3.5</span>
-          <li><a href="#element-attrdef-performance-mapping-region">element-attr for performance-mapping</a><span>, in §7.1.3.6</span>
+          <li><a href="#element-attrdef-performance-event-region">element-attr for performance-event</a><span>, in §7.1.3.6</span>
+          <li><a href="#element-attrdef-performance-region-region">element-attr for performance-region</a><span>, in §7.1.3.8</span>
          </ul>
         <li>
          rest
@@ -4282,12 +4375,13 @@ following values:</p>
         <li><a href="#rules-for-parsing-a-chromatic-pitch">rules for parsing a chromatic pitch</a><span>, in §6.2.2.3</span>
         <li><a href="#rules-for-parsing-rational-numbers">rules for parsing rational numbers</a><span>, in §3.2.2.1</span>
         <li><a href="#elementdef-score">score</a><span>, in §4.1.4</span>
-        <li><a href="#elementdef-score-graphics">score-graphics</a><span>, in §7.1.2.1</span>
         <li><a href="#score-order">score order</a><span>, in §6.2.4</span>
         <li><a href="#score-profile">score profile</a><span>, in §3.1.2</span>
         <li><a href="#score-types">score types</a><span>, in §2.2</span>
+        <li><a href="#elementdef-score-view">score-view</a><span>, in §7.1.2.1</span>
         <li><a href="#attr-valuedef-collection-type-sections">sections</a><span>, in §4.1.3</span>
         <li><a href="#elementdef-segno">segno</a><span>, in §6.2.9.7</span>
+        <li><a href="#element-attrdef-performance-event-semantics">semantics</a><span>, in §7.1.3.6</span>
         <li><a href="#elementdef-sequence">sequence</a><span>, in §6.2.4.2</span>
         <li><a href="#sequence-content">Sequence content</a><span>, in §6.2.5</span>
         <li><a href="#sequence-the-content">sequence the content</a><span>, in §6.2.5</span>
@@ -4310,7 +4404,7 @@ following values:</p>
          src
          <ul>
           <li><a href="#element-attrdef-score-src">element-attr for score</a><span>, in §4.1.4</span>
-          <li><a href="#element-attrdef-performance-audio-src">element-attr for performance-audio</a><span>, in §7.1.3.1</span>
+          <li><a href="#element-attrdef-performance-audio-media-src">element-attr for performance-audio-media</a><span>, in §7.1.3.2</span>
          </ul>
         <li>
          staff
@@ -4327,9 +4421,9 @@ following values:</p>
         <li>
          start
          <ul>
-          <li><a href="#element-attrdef-performance-tempo-start">element-attr for performance-tempo</a><span>, in §7.1.3.4</span>
-          <li><a href="#element-attrdef-performance-event-start">element-attr for performance-event</a><span>, in §7.1.3.5</span>
-          <li><a href="#element-attrdef-performance-mapping-start">element-attr for performance-mapping</a><span>, in §7.1.3.6</span>
+          <li><a href="#element-attrdef-performance-tempo-start">element-attr for performance-tempo</a><span>, in §7.1.3.5</span>
+          <li><a href="#element-attrdef-performance-event-start">element-attr for performance-event</a><span>, in §7.1.3.6</span>
+          <li><a href="#element-attrdef-performance-region-start">element-attr for performance-region</a><span>, in §7.1.3.8</span>
          </ul>
         <li><a href="#starting-position">starting position</a><span>, in §6.2.5</span>
         <li>
@@ -4362,7 +4456,7 @@ following values:</p>
         <li><a href="#system-content">System content</a><span>, in §6.2.4</span>
         <li><a href="#target-format">target format</a><span>, in §7</span>
         <li><a href="#elementdef-technical">technical</a><span>, in §6.2.6.6</span>
-        <li><a href="#element-attrdef-performance-event-techniques">techniques</a><span>, in §7.1.3.5</span>
+        <li><a href="#element-attrdef-performance-event-techniques">techniques</a><span>, in §7.1.3.6</span>
         <li><a href="#elementdef-tempo">tempo</a><span>, in §6.2.11.3</span>
         <li>
          this
@@ -4382,7 +4476,7 @@ following values:</p>
           <li><a href="#element-attrdef-collection-type">element-attr for collection</a><span>, in §4.1.3</span>
           <li><a href="#element-attrdef-dynamics-type">element-attr for dynamics</a><span>, in §6.2.9.2</span>
           <li><a href="#element-attrdef-wedge-type">element-attr for wedge</a><span>, in §6.2.10.3</span>
-          <li><a href="#element-attrdef-performance-mapping-type">element-attr for performance-mapping</a><span>, in §7.1.3.6</span>
+          <li><a href="#element-attrdef-performance-region-type">element-attr for performance-region</a><span>, in §7.1.3.8</span>
          </ul>
         <li>
          up
@@ -4402,9 +4496,9 @@ following values:</p>
         <li>
          view
          <ul>
-          <li><a href="#element-attrdef-score-graphics-view">element-attr for score-graphics</a><span>, in §7.1.2.1</span>
-          <li><a href="#element-attrdef-performance-event-view">element-attr for performance-event</a><span>, in §7.1.3.5</span>
-          <li><a href="#element-attrdef-performance-mapping-view">element-attr for performance-mapping</a><span>, in §7.1.3.6</span>
+          <li><a href="#element-attrdef-score-view-view">element-attr for score-view</a><span>, in §7.1.2.1</span>
+          <li><a href="#element-attrdef-performance-event-view">element-attr for performance-event</a><span>, in §7.1.3.6</span>
+          <li><a href="#element-attrdef-performance-region-view">element-attr for performance-region</a><span>, in §7.1.3.8</span>
          </ul>
         <li><a href="#propdef-visibility">visibility</a><span>, in §6.3.3.4</span>
         <li><a href="#valdef-visibility-visible">visible</a><span>, in §6.3.3.4</span>
@@ -4696,7 +4790,7 @@ following values:</p>
   <aside class="dfn-panel" data-for="rational-number">
    <b><a href="#rational-number">#rational-number</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-rational-number">7.1.3.5. The performance-event element</a>
+    <li><a href="#ref-for-rational-number">7.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-location">
@@ -4791,13 +4885,15 @@ following values:</p>
     <li><a href="#ref-for-contexts②③">6.4.1. The style-class element</a>
     <li><a href="#ref-for-contexts②④">6.4.2. The style-selector element</a>
     <li><a href="#ref-for-contexts②⑤">7.1.1.1. The gmnx element</a>
-    <li><a href="#ref-for-contexts②⑥">7.1.2.1. The score-graphics element</a>
+    <li><a href="#ref-for-contexts②⑥">7.1.2.1. The score-view element</a>
     <li><a href="#ref-for-contexts②⑦">7.1.3.1. The performance-audio element</a>
-    <li><a href="#ref-for-contexts②⑧">7.1.3.2. The performance-data element</a>
-    <li><a href="#ref-for-contexts②⑨">7.1.3.3. The performance-part element</a>
-    <li><a href="#ref-for-contexts③⓪">7.1.3.4. The performance-tempo element</a>
-    <li><a href="#ref-for-contexts③①">7.1.3.5. The performance-event element</a>
-    <li><a href="#ref-for-contexts③②">7.1.3.6. The performance-mapping element</a>
+    <li><a href="#ref-for-contexts②⑧">7.1.3.2. The performance-audio-media element</a>
+    <li><a href="#ref-for-contexts②⑨">7.1.3.3. The performance-data element</a>
+    <li><a href="#ref-for-contexts③⓪">7.1.3.4. The performance-part element</a>
+    <li><a href="#ref-for-contexts③①">7.1.3.5. The performance-tempo element</a>
+    <li><a href="#ref-for-contexts③②">7.1.3.6. The performance-event element</a>
+    <li><a href="#ref-for-contexts③③">7.1.3.7. The performance-mapping element</a>
+    <li><a href="#ref-for-contexts③④">7.1.3.8. The performance-region element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="content-model">
@@ -4830,13 +4926,15 @@ following values:</p>
     <li><a href="#ref-for-content-model②④">6.4.1. The style-class element</a>
     <li><a href="#ref-for-content-model②⑤">6.4.2. The style-selector element</a>
     <li><a href="#ref-for-content-model②⑥">7.1.1.1. The gmnx element</a>
-    <li><a href="#ref-for-content-model②⑦">7.1.2.1. The score-graphics element</a>
+    <li><a href="#ref-for-content-model②⑦">7.1.2.1. The score-view element</a>
     <li><a href="#ref-for-content-model②⑧">7.1.3.1. The performance-audio element</a>
-    <li><a href="#ref-for-content-model②⑨">7.1.3.2. The performance-data element</a>
-    <li><a href="#ref-for-content-model③⓪">7.1.3.3. The performance-part element</a>
-    <li><a href="#ref-for-content-model③①">7.1.3.4. The performance-tempo element</a>
-    <li><a href="#ref-for-content-model③②">7.1.3.5. The performance-event element</a>
-    <li><a href="#ref-for-content-model③③">7.1.3.6. The performance-mapping element</a>
+    <li><a href="#ref-for-content-model②⑨">7.1.3.2. The performance-audio-media element</a>
+    <li><a href="#ref-for-content-model③⓪">7.1.3.3. The performance-data element</a>
+    <li><a href="#ref-for-content-model③①">7.1.3.4. The performance-part element</a>
+    <li><a href="#ref-for-content-model③②">7.1.3.5. The performance-tempo element</a>
+    <li><a href="#ref-for-content-model③③">7.1.3.6. The performance-event element</a>
+    <li><a href="#ref-for-content-model③④">7.1.3.7. The performance-mapping element</a>
+    <li><a href="#ref-for-content-model③⑤">7.1.3.8. The performance-region element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="metadata-content">
@@ -4857,8 +4955,9 @@ following values:</p>
     <li><a href="#ref-for-metadata-content①②">6.2.6.2. The rest element</a>
     <li><a href="#ref-for-metadata-content①③">7.1.1.1. The gmnx element</a>
     <li><a href="#ref-for-metadata-content①④">7.1.3.1. The performance-audio element</a>
-    <li><a href="#ref-for-metadata-content①⑤">7.1.3.2. The performance-data element</a>
-    <li><a href="#ref-for-metadata-content①⑥">7.1.3.3. The performance-part element</a>
+    <li><a href="#ref-for-metadata-content①⑤">7.1.3.2. The performance-audio-media element</a>
+    <li><a href="#ref-for-metadata-content①⑥">7.1.3.3. The performance-data element</a>
+    <li><a href="#ref-for-metadata-content①⑦">7.1.3.4. The performance-part element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-title">
@@ -4932,7 +5031,7 @@ following values:</p>
     <li><a href="#ref-for-chromatic-pitch">6.2.2.3. Chromatic pitch syntax</a>
     <li><a href="#ref-for-chromatic-pitch①">6.2.6.1. The note element</a>
     <li><a href="#ref-for-chromatic-pitch②">6.2.6.2. The rest element</a>
-    <li><a href="#ref-for-chromatic-pitch③">7.1.3.5. The performance-event element</a>
+    <li><a href="#ref-for-chromatic-pitch③">7.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="span">
@@ -4959,7 +5058,7 @@ following values:</p>
     <li><a href="#ref-for-note-value">6.2.1.2. Notated events</a>
     <li><a href="#ref-for-note-value①">6.2.2.2. Note value quantity syntax</a>
     <li><a href="#ref-for-note-value②">6.2.5.1. The event element</a> <a href="#ref-for-note-value③">(2)</a>
-    <li><a href="#ref-for-note-value④">7.1.3.4. The performance-tempo element</a>
+    <li><a href="#ref-for-note-value④">7.1.3.5. The performance-tempo element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="base-note-values">
@@ -5059,7 +5158,7 @@ following values:</p>
     <li><a href="#ref-for-elementdef-part⑧">6.2.12. Part description content</a>
     <li><a href="#ref-for-elementdef-part⑨">6.3.3.1. The color property</a>
     <li><a href="#ref-for-elementdef-part①⓪">6.3.3.3. The display property</a>
-    <li><a href="#ref-for-elementdef-part①①">7.1.3.3. The performance-part element</a>
+    <li><a href="#ref-for-elementdef-part①①">7.1.3.4. The performance-part element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="system-content">
@@ -5471,7 +5570,7 @@ following values:</p>
    <b><a href="#elementdef-interpret">#elementdef-interpret</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-elementdef-interpret">6.2.13.1. The interpret element</a> <a href="#ref-for-elementdef-interpret①">(2)</a> <a href="#ref-for-elementdef-interpret②">(3)</a> <a href="#ref-for-elementdef-interpret③">(4)</a>
-    <li><a href="#ref-for-elementdef-interpret④">7.1.3.5. The performance-event element</a>
+    <li><a href="#ref-for-elementdef-interpret④">7.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="style-properties">
@@ -5686,31 +5785,32 @@ following values:</p>
    <b><a href="#elementdef-gmnx">#elementdef-gmnx</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-elementdef-gmnx">7.1.1.1. The gmnx element</a>
-    <li><a href="#ref-for-elementdef-gmnx①">7.1.2.1. The score-graphics element</a>
+    <li><a href="#ref-for-elementdef-gmnx①">7.1.2.1. The score-view element</a>
     <li><a href="#ref-for-elementdef-gmnx②">7.1.3.1. The performance-audio element</a>
-    <li><a href="#ref-for-elementdef-gmnx③">7.1.3.2. The performance-data element</a>
+    <li><a href="#ref-for-elementdef-gmnx③">7.1.3.2. The performance-audio-media element</a>
+    <li><a href="#ref-for-elementdef-gmnx④">7.1.3.3. The performance-data element</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="elementdef-score-graphics">
-   <b><a href="#elementdef-score-graphics">#elementdef-score-graphics</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="elementdef-score-view">
+   <b><a href="#elementdef-score-view">#elementdef-score-view</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-score-graphics">7.1.1.1. The gmnx element</a>
-    <li><a href="#ref-for-elementdef-score-graphics①">7.1.2.1. The score-graphics element</a> <a href="#ref-for-elementdef-score-graphics②">(2)</a> <a href="#ref-for-elementdef-score-graphics③">(3)</a>
-    <li><a href="#ref-for-elementdef-score-graphics④">7.1.3.5. The performance-event element</a>
-    <li><a href="#ref-for-elementdef-score-graphics⑤">7.1.3.6. The performance-mapping element</a> <a href="#ref-for-elementdef-score-graphics⑥">(2)</a>
+    <li><a href="#ref-for-elementdef-score-view">7.1.1.1. The gmnx element</a>
+    <li><a href="#ref-for-elementdef-score-view①">7.1.2.1. The score-view element</a> <a href="#ref-for-elementdef-score-view②">(2)</a> <a href="#ref-for-elementdef-score-view③">(3)</a>
+    <li><a href="#ref-for-elementdef-score-view④">7.1.3.6. The performance-event element</a>
+    <li><a href="#ref-for-elementdef-score-view⑤">7.1.3.8. The performance-region element</a> <a href="#ref-for-elementdef-score-view⑥">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-score-graphics-view">
-   <b><a href="#element-attrdef-score-graphics-view">#element-attrdef-score-graphics-view</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="element-attrdef-score-view-view">
+   <b><a href="#element-attrdef-score-view-view">#element-attrdef-score-view-view</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-score-graphics-view">7.1.2.1. The score-graphics element</a>
+    <li><a href="#ref-for-element-attrdef-score-view-view">7.1.2.1. The score-view element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="performance-content">
    <b><a href="#performance-content">#performance-content</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-performance-content">7.1.1.1. The gmnx element</a>
-    <li><a href="#ref-for-performance-content①">7.1.2.1. The score-graphics element</a>
+    <li><a href="#ref-for-performance-content①">7.1.2.1. The score-view element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="audio-media">
@@ -5718,6 +5818,7 @@ following values:</p>
    <ul>
     <li><a href="#ref-for-audio-media">7. GMNX</a>
     <li><a href="#ref-for-audio-media①">7.1.3.1. The performance-audio element</a>
+    <li><a href="#ref-for-audio-media②">7.1.3.2. The performance-audio-media element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="performance-data">
@@ -5725,162 +5826,192 @@ following values:</p>
    <ul>
     <li><a href="#ref-for-performance-data">6.2.13.1. The interpret element</a>
     <li><a href="#ref-for-performance-data①">7. GMNX</a>
-    <li><a href="#ref-for-performance-data②">7.1.3.2. The performance-data element</a>
+    <li><a href="#ref-for-performance-data②">7.1.3.3. The performance-data element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-performance-audio">
    <b><a href="#elementdef-performance-audio">#elementdef-performance-audio</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-elementdef-performance-audio">7.1.3.1. The performance-audio element</a>
-    <li><a href="#ref-for-elementdef-performance-audio①">7.1.3.4. The performance-tempo element</a>
-    <li><a href="#ref-for-elementdef-performance-audio②">7.1.3.6. The performance-mapping element</a>
+    <li><a href="#ref-for-elementdef-performance-audio①">7.1.3.5. The performance-tempo element</a>
+    <li><a href="#ref-for-elementdef-performance-audio②">7.1.3.7. The performance-mapping element</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-performance-audio-src">
-   <b><a href="#element-attrdef-performance-audio-src">#element-attrdef-performance-audio-src</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="elementdef-performance-audio-media">
+   <b><a href="#elementdef-performance-audio-media">#elementdef-performance-audio-media</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-audio-src">7.1.3.1. The performance-audio element</a>
+    <li><a href="#ref-for-elementdef-performance-audio-media">7.1.3.1. The performance-audio element</a>
+    <li><a href="#ref-for-elementdef-performance-audio-media①">7.1.3.2. The performance-audio-media element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-performance-audio-media-src">
+   <b><a href="#element-attrdef-performance-audio-media-src">#element-attrdef-performance-audio-media-src</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-performance-audio-media-src">7.1.3.2. The performance-audio-media element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-performance-data">
    <b><a href="#elementdef-performance-data">#elementdef-performance-data</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-performance-data">7.1.3.2. The performance-data element</a>
-    <li><a href="#ref-for-elementdef-performance-data①">7.1.3.3. The performance-part element</a>
-    <li><a href="#ref-for-elementdef-performance-data②">7.1.3.4. The performance-tempo element</a>
-    <li><a href="#ref-for-elementdef-performance-data③">7.1.3.6. The performance-mapping element</a>
+    <li><a href="#ref-for-elementdef-performance-data">7.1.3.3. The performance-data element</a>
+    <li><a href="#ref-for-elementdef-performance-data①">7.1.3.4. The performance-part element</a>
+    <li><a href="#ref-for-elementdef-performance-data②">7.1.3.5. The performance-tempo element</a>
+    <li><a href="#ref-for-elementdef-performance-data③">7.1.3.7. The performance-mapping element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-performance-part">
    <b><a href="#elementdef-performance-part">#elementdef-performance-part</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-performance-part">7.1.3.2. The performance-data element</a>
-    <li><a href="#ref-for-elementdef-performance-part①">7.1.3.3. The performance-part element</a> <a href="#ref-for-elementdef-performance-part②">(2)</a>
-    <li><a href="#ref-for-elementdef-performance-part③">7.1.3.5. The performance-event element</a>
+    <li><a href="#ref-for-elementdef-performance-part">7.1.3.3. The performance-data element</a>
+    <li><a href="#ref-for-elementdef-performance-part①">7.1.3.4. The performance-part element</a> <a href="#ref-for-elementdef-performance-part②">(2)</a>
+    <li><a href="#ref-for-elementdef-performance-part③">7.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-performance-part-instrument-sound">
    <b><a href="#element-attrdef-performance-part-instrument-sound">#element-attrdef-performance-part-instrument-sound</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-part-instrument-sound">7.1.3.3. The performance-part element</a>
+    <li><a href="#ref-for-element-attrdef-performance-part-instrument-sound">7.1.3.4. The performance-part element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-performance-tempo">
    <b><a href="#elementdef-performance-tempo">#elementdef-performance-tempo</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-performance-tempo">7.1.3.1. The performance-audio element</a>
-    <li><a href="#ref-for-elementdef-performance-tempo①">7.1.3.2. The performance-data element</a> <a href="#ref-for-elementdef-performance-tempo②">(2)</a>
-    <li><a href="#ref-for-elementdef-performance-tempo③">7.1.3.4. The performance-tempo element</a> <a href="#ref-for-elementdef-performance-tempo④">(2)</a> <a href="#ref-for-elementdef-performance-tempo⑤">(3)</a>
-    <li><a href="#ref-for-elementdef-performance-tempo⑥">7.1.3.5. The performance-event element</a>
+    <li><a href="#ref-for-elementdef-performance-tempo">7.1.3.1. The performance-audio element</a> <a href="#ref-for-elementdef-performance-tempo①">(2)</a>
+    <li><a href="#ref-for-elementdef-performance-tempo②">7.1.3.3. The performance-data element</a> <a href="#ref-for-elementdef-performance-tempo③">(2)</a>
+    <li><a href="#ref-for-elementdef-performance-tempo④">7.1.3.5. The performance-tempo element</a> <a href="#ref-for-elementdef-performance-tempo⑤">(2)</a> <a href="#ref-for-elementdef-performance-tempo⑥">(3)</a>
+    <li><a href="#ref-for-elementdef-performance-tempo⑦">7.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="performance-tempo-notated-time-unit">
    <b><a href="#performance-tempo-notated-time-unit">#performance-tempo-notated-time-unit</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-performance-tempo-notated-time-unit">6.2.13.1. The interpret element</a>
-    <li><a href="#ref-for-performance-tempo-notated-time-unit①">7.1.3.2. The performance-data element</a> <a href="#ref-for-performance-tempo-notated-time-unit②">(2)</a>
-    <li><a href="#ref-for-performance-tempo-notated-time-unit③">7.1.3.5. The performance-event element</a>
-    <li><a href="#ref-for-performance-tempo-notated-time-unit④">7.1.3.6. The performance-mapping element</a>
+    <li><a href="#ref-for-performance-tempo-notated-time-unit①">7.1.3.1. The performance-audio element</a> <a href="#ref-for-performance-tempo-notated-time-unit②">(2)</a>
+    <li><a href="#ref-for-performance-tempo-notated-time-unit③">7.1.3.3. The performance-data element</a> <a href="#ref-for-performance-tempo-notated-time-unit④">(2)</a>
+    <li><a href="#ref-for-performance-tempo-notated-time-unit⑤">7.1.3.6. The performance-event element</a>
+    <li><a href="#ref-for-performance-tempo-notated-time-unit⑥">7.1.3.8. The performance-region element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-performance-tempo-start">
    <b><a href="#element-attrdef-performance-tempo-start">#element-attrdef-performance-tempo-start</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-tempo-start">7.1.3.4. The performance-tempo element</a>
+    <li><a href="#ref-for-element-attrdef-performance-tempo-start">7.1.3.5. The performance-tempo element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-performance-tempo-beat">
    <b><a href="#element-attrdef-performance-tempo-beat">#element-attrdef-performance-tempo-beat</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-tempo-beat">7.1.3.4. The performance-tempo element</a>
+    <li><a href="#ref-for-element-attrdef-performance-tempo-beat">7.1.3.5. The performance-tempo element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-performance-tempo-bpm">
    <b><a href="#element-attrdef-performance-tempo-bpm">#element-attrdef-performance-tempo-bpm</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-tempo-bpm">7.1.3.4. The performance-tempo element</a>
+    <li><a href="#ref-for-element-attrdef-performance-tempo-bpm">7.1.3.5. The performance-tempo element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-performance-event">
    <b><a href="#elementdef-performance-event">#elementdef-performance-event</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-elementdef-performance-event">6.2.13.1. The interpret element</a> <a href="#ref-for-elementdef-performance-event①">(2)</a>
-    <li><a href="#ref-for-elementdef-performance-event②">7.1.3.3. The performance-part element</a> <a href="#ref-for-elementdef-performance-event③">(2)</a>
-    <li><a href="#ref-for-elementdef-performance-event④">7.1.3.5. The performance-event element</a>
+    <li><a href="#ref-for-elementdef-performance-event②">7.1.3.4. The performance-part element</a> <a href="#ref-for-elementdef-performance-event③">(2)</a>
+    <li><a href="#ref-for-elementdef-performance-event④">7.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-performance-event-start">
    <b><a href="#element-attrdef-performance-event-start">#element-attrdef-performance-event-start</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-event-start">7.1.3.5. The performance-event element</a>
+    <li><a href="#ref-for-element-attrdef-performance-event-start">7.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-performance-event-duration">
    <b><a href="#element-attrdef-performance-event-duration">#element-attrdef-performance-event-duration</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-event-duration">7.1.3.5. The performance-event element</a>
+    <li><a href="#ref-for-element-attrdef-performance-event-duration">7.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-performance-event-pitch">
    <b><a href="#element-attrdef-performance-event-pitch">#element-attrdef-performance-event-pitch</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-event-pitch">7.1.3.5. The performance-event element</a>
+    <li><a href="#ref-for-element-attrdef-performance-event-pitch">7.1.3.6. The performance-event element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-performance-event-dynamics">
+   <b><a href="#element-attrdef-performance-event-dynamics">#element-attrdef-performance-event-dynamics</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-performance-event-dynamics">7.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-performance-event-techniques">
    <b><a href="#element-attrdef-performance-event-techniques">#element-attrdef-performance-event-techniques</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-event-techniques">7.1.3.5. The performance-event element</a>
+    <li><a href="#ref-for-element-attrdef-performance-event-techniques">7.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-performance-event-view">
    <b><a href="#element-attrdef-performance-event-view">#element-attrdef-performance-event-view</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-event-view">7.1.3.5. The performance-event element</a>
+    <li><a href="#ref-for-element-attrdef-performance-event-view">7.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-performance-event-region">
    <b><a href="#element-attrdef-performance-event-region">#element-attrdef-performance-event-region</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-event-region">7.1.3.5. The performance-event element</a>
+    <li><a href="#ref-for-element-attrdef-performance-event-region">7.1.3.6. The performance-event element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-performance-event-semantics">
+   <b><a href="#element-attrdef-performance-event-semantics">#element-attrdef-performance-event-semantics</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-performance-event-semantics">7.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-performance-mapping">
    <b><a href="#elementdef-performance-mapping">#elementdef-performance-mapping</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-performance-mapping">7.1.3.1. The performance-audio element</a>
-    <li><a href="#ref-for-elementdef-performance-mapping①">7.1.3.2. The performance-data element</a>
-    <li><a href="#ref-for-elementdef-performance-mapping②">7.1.3.6. The performance-mapping element</a>
+    <li><a href="#ref-for-elementdef-performance-mapping">7.1.3.1. The performance-audio element</a> <a href="#ref-for-elementdef-performance-mapping①">(2)</a>
+    <li><a href="#ref-for-elementdef-performance-mapping②">7.1.3.3. The performance-data element</a> <a href="#ref-for-elementdef-performance-mapping③">(2)</a>
+    <li><a href="#ref-for-elementdef-performance-mapping④">7.1.3.7. The performance-mapping element</a>
+    <li><a href="#ref-for-elementdef-performance-mapping⑤">7.1.3.8. The performance-region element</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-performance-mapping-start">
-   <b><a href="#element-attrdef-performance-mapping-start">#element-attrdef-performance-mapping-start</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="elementdef-performance-region">
+   <b><a href="#elementdef-performance-region">#elementdef-performance-region</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-mapping-start">7.1.3.6. The performance-mapping element</a>
+    <li><a href="#ref-for-elementdef-performance-region">7.1.3.7. The performance-mapping element</a> <a href="#ref-for-elementdef-performance-region①">(2)</a>
+    <li><a href="#ref-for-elementdef-performance-region②">7.1.3.8. The performance-region element</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-performance-mapping-end">
-   <b><a href="#element-attrdef-performance-mapping-end">#element-attrdef-performance-mapping-end</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="element-attrdef-performance-region-start">
+   <b><a href="#element-attrdef-performance-region-start">#element-attrdef-performance-region-start</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-mapping-end">7.1.3.6. The performance-mapping element</a>
+    <li><a href="#ref-for-element-attrdef-performance-region-start">7.1.3.7. The performance-mapping element</a>
+    <li><a href="#ref-for-element-attrdef-performance-region-start①">7.1.3.8. The performance-region element</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-performance-mapping-view">
-   <b><a href="#element-attrdef-performance-mapping-view">#element-attrdef-performance-mapping-view</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="element-attrdef-performance-region-end">
+   <b><a href="#element-attrdef-performance-region-end">#element-attrdef-performance-region-end</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-mapping-view">7.1.3.6. The performance-mapping element</a> <a href="#ref-for-element-attrdef-performance-mapping-view①">(2)</a>
+    <li><a href="#ref-for-element-attrdef-performance-region-end">7.1.3.7. The performance-mapping element</a>
+    <li><a href="#ref-for-element-attrdef-performance-region-end①">7.1.3.8. The performance-region element</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-performance-mapping-region">
-   <b><a href="#element-attrdef-performance-mapping-region">#element-attrdef-performance-mapping-region</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="element-attrdef-performance-region-view">
+   <b><a href="#element-attrdef-performance-region-view">#element-attrdef-performance-region-view</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-mapping-region">7.1.3.6. The performance-mapping element</a>
+    <li><a href="#ref-for-element-attrdef-performance-region-view">7.1.3.8. The performance-region element</a> <a href="#ref-for-element-attrdef-performance-region-view①">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-performance-mapping-type">
-   <b><a href="#element-attrdef-performance-mapping-type">#element-attrdef-performance-mapping-type</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="element-attrdef-performance-region-region">
+   <b><a href="#element-attrdef-performance-region-region">#element-attrdef-performance-region-region</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-mapping-type">7.1.3.6. The performance-mapping element</a>
+    <li><a href="#ref-for-element-attrdef-performance-region-region">7.1.3.8. The performance-region element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-performance-region-type">
+   <b><a href="#element-attrdef-performance-region-type">#element-attrdef-performance-region-type</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-performance-region-type">7.1.3.8. The performance-region element</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */

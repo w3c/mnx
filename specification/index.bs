@@ -2710,7 +2710,7 @@ The only constraints on the nature of a GMNX score are:
     <dd>Wherever a <a>musical body</a> is expected.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a>.</dd>
-    <dd>One or more <{score-graphics}> elements.</dd>
+    <dd>One or more <{score-view}> elements.</dd>
     <dd><a>Performance content</a>.</dd>
     <dt><a>Attributes</a>:</dt>
     <dd>None.</dd>
@@ -2719,13 +2719,52 @@ The only constraints on the nature of a GMNX score are:
 The <{gmnx}> element is a <a>musical body</a> that describes a GMNX
 score as a whole.
 
+The following example illustrates an entire GMNX document; the elements
+are described individually in the remainder of this section.
+
+<div class="example">
+```xml
+<gmnx>
+  <score-view id="page1" view="score.svg#page1"/>
+  <score-view id="page2" view="score.svg#page2"/>
+  <score-view id="page3" view="score.svg#page3"/>
+
+  <performance-audio>
+    <performance-audio-media src="score.mp4"/>
+    <performance-mapping>
+      <performance-region start="0" end="0.72" view="page1" region="m1"/>
+      <performance-region start="0.72" end="1.43" view="page1" region="m2"/>
+      <performance-region start="1.43" end="2.99" view="page1" region="m3"/>
+      <performance-region start="2.99" end="3.65" view="page1" region="m4"/>
+    </performance-mapping>
+  </performance-audio>
+
+  <performance-data>
+    <performance-tempo beat="/4" bpm="80"/>
+    <performance-mapping>
+      <performance-region start="0" end="1" view="page1" region="m1"/>
+      <performance-region start="1" end="2" view="page1" region="m2"/>
+      <performance-region start="2" end="3" view="page1" region="m3"/>
+      <performance-region start="3" end="4" view="page1" region="m4"/>
+    </performance-mapping>
+    <performance-part>
+      <instrument-sound>strings.violin</instrument-sound>
+      <performance-event start="0" duration="1/4" pitch="C4" dynamics="100"/>
+      <performance-event start="1/4" duration="1/4" pitch="D4" dynamics="100"/>
+      ...following events...
+    </performance-part>
+  </performance-data>
+</gmnx>
+```
+</div>
+
 </section>
 
 <h4 id="gmnx-graphics">Graphics media</h4>
 
-<h5 id="the-score-graphics-element">The <dfn element><code>score-graphics</code></dfn> element</h5>
+<h5 id="the-score-view-element">The <dfn element><code>score-view</code></dfn> element</h5>
 
-<section dfn-for="score-graphics">
+<section dfn-for="score-view">
 
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2733,16 +2772,16 @@ score as a whole.
     <dt><a>Content Model</a>:</dt>
     <dd>None.</dd>
     <dt><a>Attributes</a>:</dt>
-    <dd><{score-graphics/view}> - link to an SVG view of the score</dd>
+    <dd><{score-view/view}> - link to an SVG view of the score</dd>
   </dl>
 
-The <{score-graphics}> element references a specific view within a separate
+The <{score-view}> element references a specific view within a separate
 SVG document, via the URL provided in the <dfn element-attr>view</dfn>
 attribute. This URL must follow the rules for <a>linking into SVG content</a>.
 
-Each <{score-graphics}> element represents a single page of the score. A
+Each <{score-view}> element represents a single page of the score. A
 default sequence of pages is established by the order of occurrence of
-<{score-graphics}> elements within the document.
+<{score-view}> elements within the document.
 
 The sequence of page presentation in conjunction with <a>performance
 content</a> may differ from the default sequence, according to the mapping
@@ -2769,13 +2808,39 @@ The category of <dfn>performance content</dfn> includes both of the following:
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a>.</dd>
     <dd>Zero or more <{performance-tempo}> elements.</dd>
-    <dd>Zero or more <{performance-mapping}> elements.</dd>
-    <dd><em>TBD: audio track elements</em>.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{performance-audio/src}> - URL of an audio file of the score</dd>
+    <dd>Zero or one <{performance-mapping}> elements.</dd>
+    <dd>One or more <{performance-audio-media}> elements.</dd>
   </dl>
 
-The <{performance-audio}> element includes an <a>audio media</a> file, via the URL provided
+The <{performance-audio}> element defines one or more <a>audio media</a> files
+that constitute a single performance of the score, and whose contents are
+presumed to be temporally synchronized with each other.
+
+
+Additionally, <{performance-tempo}> elements may establish an proportional
+mapping between an arbitrary <a>notated time unit</a> and a time interval. This mapping
+may change throughout the course of the performance.  If no such elements occur,
+the <a>notated time unit</a> is defined as equal to 1 second of performance time.
+
+A set of optional <{performance-mapping}> elements, if given, may establish a mapping
+between the performance data and the graphical score.
+
+</section>
+
+<h5 id="the-performance-audio-media-element">The <dfn element><code>performance-audio-media</code></dfn> element</h5>
+
+<section dfn-for="performance-audio-media">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{gmnx}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a>.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{performance-audio-media/src}> - URL of an audio file of the score</dd>
+  </dl>
+
+The <{performance-audio-media}> element includes an <a>audio media</a> file, via the URL provided
 in the <dfn element-attr>src</dfn> attribute.
 
 </section>
@@ -2791,7 +2856,7 @@ in the <dfn element-attr>src</dfn> attribute.
     <dd><a>Metadata content</a>.</dd>
     <dd>One or more <{performance-part}> elements.</dd>
     <dd>Zero or more <{performance-tempo}> elements.</dd>
-    <dd>Zero or more <{performance-mapping}> elements.</dd>
+    <dd>Zero or one <{performance-mapping}> elements.</dd>
     <dt><a>Attributes</a>:</dt>
   </dl>
 
@@ -2805,6 +2870,9 @@ Additionally, <{performance-tempo}> elements may establish an proportional
 mapping between an arbitrary <a>notated time unit</a> and a time interval. This mapping
 may change throughout the course of the performance.  If no such elements occur,
 the <a>notated time unit</a> is defined as equal to 1 second of performance time.
+
+A set of optional <{performance-mapping}> elements, if given, may establish a mapping
+between the performance data and the graphical score.
 
 </section>
 
@@ -2853,7 +2921,7 @@ time and an arbitrary <dfn>notated time unit</dfn> that may be used by the score
 
 This relationship applies to a time range beginning at the time in seconds
 specified by <dfn element-attr>start</dfn> and continuing until the next
-<{performance-tempo}> element.
+<{performance-tempo}> element. The default value is 0.
 
 The <dfn element-attr>beat</dfn> element is a <a>note value</a> which
 establishes a beat as some fraction or multiple of a notated time unit (which
@@ -2885,9 +2953,11 @@ of a scoring time unit relative to performance time, similar to a MIDI tempo tra
     <dd><{performance-event/start}> - start time of this event</dd>
     <dd><{performance-event/duration}> - duration of this event</dd>
     <dd><{performance-event/pitch}> - pitch of this event</dd>
+    <dd><{performance-event/dynamics}> - dynamics for this event</dd>
     <dd><{performance-event/techniques}> - set of performance techniques for this event</dd>
-    <dd><{performance-event/view}> - optional element ID of the <{score-graphics}> containing a symbol for the event</dd>
+    <dd><{performance-event/view}> - optional element ID of the <{score-view}> containing a symbol for the event</dd>
     <dd><{performance-event/region}> - an optional reference to the graphical symbol for the event</dd>
+    <dd><{performance-event/semantics}> - an optional reference to an element in a semantic document</dd>
   </dl>
 
 The <{performance-event}> element describes a single musical event in terms of its
@@ -2911,6 +2981,10 @@ to interpretation by a performer.
 <dfn element-attr>pitch</dfn> gives the pitch of the event expressed as
 a <a>chromatic pitch</a>.
 
+<dfn element-attr>dynamics</dfn> gives the dynamics of the event expressed in
+a scale from 0 to 127.  <em>This scale needs to be better defined; the existing
+MusicXML definition as "percentage of forte" is hard to interpret clearly.</em>
+
 <dfn element-attr>techniques</dfn> gives a set of performance techniques applying
 to the event as a <a>unordered set of space-separated tokens</a>.
 
@@ -2918,8 +2992,13 @@ Note: These presumably correspond to articulatory variations of the instrument s
 Proper definition remains TBD.
 
 If present, the <dfn element-attr>view</dfn> and <dfn element-attr>region</dfn>
-identify a specific visual region corresponding to the event. This
+attributes identify a specific visual region corresponding to the event. This
 correspondence is not required.
+
+If present, the <dfn element-attr>semantics</dfn> attribute identify a
+semantic source element in an external document corresponding to the event.
+This correspondence is not required.
+
 </section>
 
 
@@ -2931,16 +3010,40 @@ correspondence is not required.
     <dt><a>Contexts</a>:</dt>
     <dd><{performance-audio}>, <{performance-data}></dd>
     <dt><a>Content Model</a>:</dt>
+    <dd>Zero or more <{performance-region}> elements.</dd>
+    <dt><a>Attributes</a>:</dt>
+  </dl>
+</section>
+
+The <{performance-mapping}> element defines a sequence of piecewise, non-
+overlapping ranges in notated time which correspond to piecewise regions
+within score graphics media views. In essence, it is a timeline that
+correlates a performance with elements within a series of views of the score
+from which that performance is derived.
+
+The <{performance-region}> elements in a mapping provide the detailed
+descriptions of these ranges. The elements must occur in forward time order,
+and the <{performance-region/end}> value of each region must be less than or
+equal to the <{performance-region/start}> value of the next region.
+
+<h5 id="the-performance-region-element">The <dfn element><code>performance-region</code></dfn> element</h5>
+
+<section dfn-for="performance-region">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{performance-mapping}></dd>
+    <dt><a>Content Model</a>:</dt>
     <dd>None.</dd>
     <dt><a>Attributes</a>:</dt>
-    <dd><{performance-mapping/start}> - start time of the time region being mapped</dd>
-    <dd><{performance-mapping/end}> - end time of the time region</dd>
-    <dd><{performance-mapping/view}> - the element ID of the <{score-graphics}> containing the visual region</dd>
-    <dd><{performance-mapping/region}> - the definition of the visual region itself</dd>
-    <dd><{performance-mapping/type}> - indicate that a continuous mapping exists</dd>
+    <dd><{performance-region/start}> - start time of the time region being mapped</dd>
+    <dd><{performance-region/end}> - end time of the time region</dd>
+    <dd><{performance-region/view}> - the element ID of the <{score-view}> containing the visual region</dd>
+    <dd><{performance-region/region}> - the definition of the visual region itself</dd>
+    <dd><{performance-region/type}> - indicate that a continuous mapping exists</dd>
   </dl>
 
-The <{performance-mapping}> element describes the relationship between a
+The <{performance-region}> element describes the relationship between a
 performance time region expressed in <a>notated time units</a>, and a visual region of a
 score page. This allows consumers to understand the correspondence between
 regions of the graphical score and regions of one or more audio performances.
@@ -2950,17 +3053,17 @@ regions of the graphical score and regions of one or more audio performances.
 <dfn element-attr>end</dfn> gives the end of the time region.
 
 <dfn element-attr>view</dfn> identifies a view of some section of the score, by
-the ID of its <{score-graphics}> element.
+providing the XML ID of its <{score-view}> element.
 
 <dfn element-attr>region</dfn> identifies the visual region for the mapping
 using a fragment identifier in accordance with <a>linking into SVG content</a>.
 The fragment identifier refers to the same document identified by the
-<{performance-mapping/view}> attribute.
+<{performance-region/view}> attribute.
 
 <dfn element-attr>type</dfn> defines the nature of the mapping, with the
 following values:
 
-<dl dfn-for="performance-mapping/type">
+<dl dfn-for="performance-region/type">
   <dt><dfn attr-value><code>block</code></dfn> (default)</dt>
   <dd>The entire time region corresponds to the entire visual region, with no further decomposition.</dd>
   <dt><dfn attr-value><code>left-to-right</code></dfn></dt>
