@@ -1207,7 +1207,7 @@ order in which they are played by a performer.
     <dd><{system}>, <{part}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
-    <dd><a>Direction content</a></dd>
+    <dd>Zero or one <{directions}> elements</dd>
     <dd>One or more <{sequence}> elements (for measures within <{part}> elements only)</dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
@@ -1227,8 +1227,11 @@ with two monophonic half notes:
 <div class="example">
 ```xml
 <measure number="2">
-  <dynamics type="f" location="0"/>
-
+  <directions>
+    <dynamics type="f" location="0"/>
+    <wedge type="diminuendo" location="0" end="1/2"/>
+    <dynamics type="p" location="1/2"/>
+  </directions>
   <sequence>
     <event value="/2">
       <note pitch="C4"/>
@@ -1251,6 +1254,7 @@ with two monophonic half notes:
     <dd><{measure}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
+    <dd>Zero or one <{directions}> elements</dd>
     <dd><a>Sequence content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
@@ -1354,6 +1358,74 @@ for a SATB-style grand staff with four voices, two on each staff:
 ```
 </div>
 
+When a <a>direction content</a> element is included in a sequence, it acquires
+a measure location identical to that of the following event, or to the end of
+the measure if there are no more events. The following example specifies a
+<{dynamics}> element which applies to the start of the following note:
+
+<div class="example">
+```xml
+<sequence>
+  ...preceding sequence content...
+  <dynamics type="mp"/>
+  <event value="/4">
+    <note pitch="C4"/>
+  </event>
+  ...following sequence content
+</sequence>
+```
+</div>
+
+Note that directions may also occur within a <{directions}> element at the
+start of a sequence, in which case they are assigned explicit locations. In
+this example, dynamic changes are specified over the course of a single whole
+note which occupies the entire measure:
+
+<div class="example">
+```xml
+<sequence>
+  <directions>
+    <dynamics type="f" location="0"/>
+    <wedge type="diminuendo" location="0" end="1/2"/>
+    <dynamics type="p" location="1/2"/>
+  </directions>
+  <event value="/1">
+    <note pitch="C4"/>
+  </event>
+</sequence>
+```
+</div>
+
+</section>
+
+<h5 id="the-directions-element">The <dfn element><code>directions</code></dfn> element</h5>
+<section dfn-for="directions">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{measure}>, <{sequence}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Direction content</a></dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None.</dd>
+  </dl>
+
+The <{directions}> element organizes <a>direction content</a> within a containing
+<{measure}> or <{sequence}> element. Within <{directions}>, each child direction element
+is assigned a explicit measure location, via its <{direction/location}> attribute.
+
+The order of occurrence of child elements is not significant, since each child has an
+explicit location independent of this order.
+
+The context of the <{directions}> element defines a scope for contained directions as follows:
+
+- Directions in a <{measure}> within the <{system}> element apply to all sequences of the measure in all parts.
+
+- Directions in a <{measure}> within a <{part}> element apply to all sequences of the measure in a given part.
+
+- Directions in a <{sequence}> apply to the sequence in which it occurs.
+
+- Directions in an <{event}> apply to the event in which it occurs.
+
 </section>
 
 <h4 id="cwmnx-sequence-content">Sequence content</h4>
@@ -1455,7 +1527,7 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
             relative to preceding or following elements as appropriate.
         </ol>
       </li>
-      <li>Else, if <var>next</var> is <a>direction content</a> without an explicitly specified <{directions/location}> attribute:
+      <li>Else, if <var>next</var> is <a>direction content</a>:
         <ol>
           <li>
             Take the current value of <var>sequence cursor</var> as the <a>measure location</a> of <var>next</var>.
@@ -1480,7 +1552,6 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
     <dd><a>Metadata content</a></dd>
     <dd>Either zero or more <{note}> elements, or one <{rest}> element.</dd>
     <dd><a>Event content</a></dd>
-    <dd><a>Direction content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{event/value}> - the metrical duration of this event</dd>
@@ -1537,37 +1608,6 @@ NOTE: It is legal for an event to have neither notes nor a rest. The result is
 functionally identical to <{space}>, but is more constrained since an event
 must have a valid <a>note value</a>, while a space can have a multiple
 thereof.
-
-When <a>direction content</a> is included prior to an <{event}> or within an
-<{event}>, it has a measure location identical to that of the event. The
-following pair of examples specify a <{dynamics}> element which applies to the
-start of the following note:
-
-<div class="example">
-```xml
-<sequence>
-  ...preceding sequence content...
-  <dynamics type="mp"/>
-  <event value="/4">
-    <note pitch="C4"/>
-  </event>
-  ...following sequence content
-</sequence>
-```
-</div>
-
-<div class="example">
-```xml
-<sequence>
-  ...preceding sequence content...
-  <event value="/4">
-    <dynamics type="mp"/>
-    <note pitch="C4"/>
-  </event>
-  ...following sequence content
-</sequence>
-```
-</div>
 
 If the optional <dfn element-attr>measure</dfn> attribute is given as <dfn
 attr-value dfn-for="event/measure">yes</dfn>, then the event is a <dfn>whole-measure
@@ -1831,7 +1871,7 @@ following event.
 Slashes are displayed by default for acciaccaturas only, but can be modified
 using the 'grace-slash' property.
 
-<a>Direction content</a> lacking a <{directions/location} attribute within a
+<a>Direction content</a> lacking a <{direction/location} attribute within a
 <{grace}> element, is considered to be in alignment with the following event,
 even though grace notes in the same run technically share the same <a>measure
 location</a>.
@@ -1968,18 +2008,15 @@ between a single note within an event, and some other note.
 
 <h4 id="cwmnx-direction-content">Direction content</h4>
 
-<dfn>Direction content</dfn> consists of some number of musical <dfn
-element>directions</dfn> that modify or accompany the performance of events in
-one or more measures.  Note that <a>directions</a> may also be freely included
-in <a>sequence content</a>.
+<dfn>Direction content</dfn> consists of some number of musical
+<dfn>directions</dfn> that modify or accompany the performance of events in
+one or more measures. Directions may be included in a CWMNX score in two ways:
 
-A direction is <dfn lt="direction scope">scoped</dfn> in a way that depends on
-where it is placed:
+- Within a <{directions}> element below a <{measure}> or <{sequence}>, with
+    explicitly defined measure locations for each direction.
 
-- A direction in a <{measure}> within the <{system}> element applies to all sequences of the measure in all parts.
-- A direction in a <{measure}> within a <{part}> element applies to all sequences of the measure in a given part.
-- A direction in a <{sequence}> applies to the sequence in which it occurs.
-- A direction in an <{event}> applies to the event in which it occurs.
+- Within <a>sequence content</a>, in which case measure locations are assigned
+    as an outcome of <a>sequencing the content</a>.
 
 <h5 id="cwmnx-direction-attributes">Direction attributes</h5>
 
@@ -1987,16 +2024,16 @@ Directions share a set of common <dfn>direction attributes</dfn> in an attribute
 
   <dl class="def">
     <dt><a>Attributes</a>:</dt>
-    <dd><{directions/location}> - the <a>measure location</a> of the direction</dd>
+    <dd><{direction/location}> - the <a>measure location</a> of the direction</dd>
   </dl>
 
-When a direction has a <{sequence}> element as its ancestor and is processed
-during the procedure of <a>sequencing the content</a> of that ancestor,
-it assumes the current measure location of the <var>sequence cursor</var>.
-
-Conversely, all directions that lack a <{sequence}> element ancestor, MUST be
+All directions within a <{directions}> parent element must be
 given an explicit <a>measure location</a> by supplying a <dfn element-attr
-dfn-for="directions">location</dfn> attribute.
+dfn-for="direction">location</dfn> attribute.
+
+Conversely, directions occurring within <a>sequence content</a> must omit this
+attribute as their location is determined during the procedure of
+<a>sequencing the content</a>.
 
 <h5 id="the-dynamics-element">The <dfn element><code>dynamics</code></dfn> element</h5>
 <section dfn-for="dynamics">
