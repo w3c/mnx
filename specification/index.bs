@@ -243,14 +243,14 @@ A companion document details a set of [known use cases for music notation](../us
   <div dfn-for="spec">
     : [[#introduction]]
     :: Non-normative materials providing a context for the HTML specification.
-    : [[#cwmnx-semantics]]
-    :: Each element has a predefined meaning, which is explained in this section. Rules for authors
-        on how to use the element, along with user agent requirements for how to
-        handle each element, are also given. This includes large signature features of HTML
-        such as video playback and subtitles, form controls and form submission, and a 2D graphics
-        API known as the HTML canvas.
-    : [[#cwmnx-rendering]]
-    :: This section defines the default rendering rules for Web browsers.
+    : [[#infrastructure]]
+    :: Scaffolding material on which the remainder of the specification relies
+    : [[#mnx-container]]
+    :: The high-level structure of MNX which organizes a hierarchy of musical resources in a document
+    : [[#cwmnx]]
+    :: A schema describing a musical score in Conventional Western Music Notation.
+    : [[#gmnx]]
+    :: A schema describing an arbitrary graphical score in conjunction with audio and performance data.
   </div>
 
 <h4 id="how-to-read-this-specification">How to read this specification</h4>
@@ -473,15 +473,50 @@ An <dfn>element location</dfn> constitutes a reference to a specific element
 in the document. It consists of the character `#`, immediately followed by the
 XML ID of the referenced element.
 
+<h3 id="content-models">Content models and categories</h3>
+
+  Each element in MNX falls into zero or more <dfn lt="content
+  categories|content category">categories</dfn> that group elements with
+  similar characteristics together. Examples of content categories
+  include <a>event content</a> and <a>sequence content</a>, among
+  many others.
+
+<h4 id="element-definitions">Element definitions</h4>
+
+  Each element in this specification has a definition that includes the following information:
+
+  : <dfn>Contexts</dfn>
+  :: A <em>non-normative</em> description of where the element can be used. This information is
+      redundant with the content models of elements that allow this one as a child, and is provided
+      only as a convenience.
+
+  : <dfn>Content model</dfn>
+  :: A normative description of what content must be included as children and descendants of the
+      element.
+
+  : <a>Attributes</a>
+  :: A normative list of attributes that may be specified on the element (except where otherwise
+      disallowed), along with non-normative descriptions of those attributes. (The content to the
+      left of the dash is normative, the content to the right of the dash is not.)
+
+  : <a>Style properties</a>
+  :: A normative list of style properties that may be specified on the element (except where otherwise
+      disallowed), along with non-normative descriptions of those attributes. Where these attributes may
+      be inherited from ancestor elements, this is indicated.
+
+  This is then followed by a description of what the element represents, along with any
+  additional normative conformance criteria that may apply to producers and consumers
+  and implementations. Examples are sometimes also included.
+
 </section>
 
-<h2 id="document">Document organization</h2>
-
-<h3 id="the-container-document">The container document</h3>
+<h2 id="mnx-container">MNX container</h2>
 
 Each MNX document acts as a <dfn>container document</dfn>, which contains a
 hierarchy of components which collectively make up the
 document as a whole.
+
+<h3 id="structural-elements">Structural Elements</h3>
 
 <h4 id="the-mnx-element">The <dfn element><code>mnx</code></dfn> element</h4>
 <section dfn-for="mnx">
@@ -588,6 +623,12 @@ The following example shows a hierarchy of collections and scores.
 
 </section>
 
+<h3 id="mnx-musical body">Musical body content</h3>
+
+A <dfn lt="musical body|musical bodies|musical body content">musical
+body</dfn> consists of a score in some <a>notational idiom</a> supplying
+concrete musical content that can be rendered and/or performed.
+
 <h4 id="the-score-element">The <dfn element><code>score</code></dfn> element</h4>
 <section dfn-for="score">
   <dl class="def">
@@ -609,56 +650,8 @@ must be provided within the content of the <{score}> element.
 
 </section>
 
-<h3 id="content-models">Content models and categories</h3>
 
-  Each element in MNX falls into zero or more <dfn lt="content
-  categories|content category">categories</dfn> that group elements with
-  similar characteristics together. Examples of content categories
-  include <a>event content</a> and <a>sequence content</a>, among
-  many others.
-
-<h4 id="element-definitions">Element definitions</h4>
-
-  Each element in this specification has a definition that includes the following information:
-
-  : <dfn>Contexts</dfn>
-  :: A <em>non-normative</em> description of where the element can be used. This information is
-      redundant with the content models of elements that allow this one as a child, and is provided
-      only as a convenience.
-
-  : <dfn>Content model</dfn>
-  :: A normative description of what content must be included as children and descendants of the
-      element.
-
-  : <a>Attributes</a>
-  :: A normative list of attributes that may be specified on the element (except where otherwise
-      disallowed), along with non-normative descriptions of those attributes. (The content to the
-      left of the dash is normative, the content to the right of the dash is not.)
-
-  : <a>Style properties</a>
-  :: A normative list of style properties that may be specified on the element (except where otherwise
-      disallowed), along with non-normative descriptions of those attributes. Where these attributes may
-      be inherited from ancestor elements, this is indicated.
-
-  This is then followed by a description of what the element represents, along with any
-  additional normative conformance criteria that may apply to producers and consumers
-  and implementations. Examples are sometimes also included.
-
-<h2 id="mnx-container">MNX container</h2>
-
-<section>
-<h3 id="mnx-scope">Scope</h3>
-
-  <em>This section is non-normative.</em>
-
-  The MNX <dfn>container</dfn> is a top-level XML document that contains one or more scores accompanied by
-  metadata.
-
-</section>
-
-<h3 id="mnx-semantics-elements">Semantics</h3>
-
-<h4 id="mnx-metadata-content">Metadata content</h4>
+<h3 id="mnx-metadata-content">Metadata content</h3>
 
 <dfn>Metadata content</dfn> may be included in many elements to supply
 bibliographic data and other descriptive information.
@@ -678,12 +671,6 @@ bibliographic data and other descriptive information.
 
 The <{title}> element assigns a title to its parent element in the context of the document as a whole.
 </section>
-
-<h5 id="mnx-musical body">Musical body content</h5>
-
-A <dfn lt="musical body|musical bodies|musical body content">musical
-body</dfn> consists of a score in some <a>notational idiom</a> supplying
-concrete musical content that can be rendered and/or performed.
 
 <h2 id="cwmnx">CWMNX</h2>
 
