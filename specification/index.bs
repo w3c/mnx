@@ -2605,15 +2605,15 @@ apply to all descendants of the element within which they are specified.
     <dd>yes</dd>
   </dl>
 
-The 'display' property controls whether an element's contents (including
-all of its descendants) are displayed by a consumer or not. The layout of the
-document is affected by this property, in that a value of ''display/none'' will display
-the document as if the styled element did not exist.
+The 'display' property controls the way in which an element and its
+descendants interact with the layout of the document.
 
 Permitted values include:
 
-- <dfn value>normal</dfn> the element is displayed normally
-- <dfn value>none</dfn> the element is not processed for display
+- <dfn value>normal</dfn> the element is displayed normally.
+- <dfn value>none</dfn> the element is not processed for display and layout proceeds as if it did not exist.
+
+Advisement: Other values are likely, making this property into more than simply a way of hiding content.
 
 </section>
 
