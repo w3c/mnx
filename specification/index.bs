@@ -803,9 +803,12 @@ Notated sequences are represented by the <{sequence}> element.
 
 Notated sequences may also belong to <dfn>voices</dfn>. A voice is a set of
 sequences in different measures, but within the same part. The sequences
-within a layer can be thought of as making up a single musical voice
+within this set can be thought of as constituting a single musical voice
 throughout the score. Thus they are an organizational construct, rather than a
 notational one.
+
+A given voice need not be expressed in every single measure of a part. It may
+be present in some measures, and absent in others.
 
 Even so, the assignment of sequences to voices has concrete implications for
 MNX implementations. Producer implementations may interpret a voice as
