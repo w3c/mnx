@@ -1893,24 +1893,37 @@ may be a multiple of one.
     <dd><a>Sequence content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
-    <dd><{grace/appoggiatura}> - a flag indicating that this is an appoggiatura</dd>
+    <dd><{grace/type}> - type of included grace notes</dd>
+    <dd><{grace/slash}> - flag indicating rhythmic character of grace notes</dd>
   </dl>
 
-The <{grace}> element represents a run of events that do not have defined
-measure positions, but are performed in such a way that they either:
+The <{grace}> element represents a run of events that are performed in a
+subordinate relationship to the surrounding non-grace events.
 
-- occupy a time interval within the preceding event that concludes on the following event, or
+The <dfn element-attr>type</dfn> attribute describes the kind of grace notes
+included in this element. Values include:
 
-- delay the onset of the following event by the time interval occupied by the run
+: <dfn attr-value dfn-for="grace/type">steal-following</dfn> (default)
 
-The <dfn element-attr>appoggiatura</dfn> attribute declares that a slash is
-notated for this run of grace notes if its value is <dfn attr-value dfn-
-for="grace/appoggiatura">yes</dfn>. Otherwise, by default, the contents of
-<{grace}> are interpreted as an acciaccatura and thus delay the onset of the
-following event.
+:: The run of grace notes occupies a time interval starting at the expected
+    onset of the next non-grace event, both delaying its onset and shortening its duration.
 
-Slashes are displayed by default for acciaccaturas only, but can be modified
-using the 'grace-slash' property.
+: <dfn attr-value dfn-for="grace/type">steal-previous</dfn>
+
+:: The run of grace notes occupies a time interval that ends before the
+    expected onset of the next non-grace event, shortening the duration of
+    the preceding non-grace event.
+
+: <dfn attr-value dfn-for="grace/type">make-time</dfn>
+
+:: The run of grace notes delays the onset of the next non-grace event.
+
+The <dfn element-attr>slash</dfn> attribute specifies whether grace notes are
+notated with a slash or not. The default value of <dfn attr-value dfn-
+for="grace/slash">yes</dfn> specifies a slash, indicating that the grace notes
+are displayed with a diagonal stroke and are to be performed quickly and not
+in their notated rhythm. Otherwise, they are performed with the notated note
+values according to the performance characteristics given by <{grace/type}>.
 
 <a>Direction content</a> lacking a <{direction/location} attribute within a
 <{grace}> element, is considered to be in alignment with the following event,
