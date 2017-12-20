@@ -1354,7 +1354,7 @@ rhythms on different staves, each represented by a <{sequence}> element:
         <event value="/4">...</event>
     </sequence>
     <sequence staff="2">
-        <event value="./2">...</event>
+        <event value="/2d">...</event>
         <tuplet inner="3/8" outer="1/4">
             <event value="/8">...</event>
             <event value="/8">...</event>
@@ -1377,7 +1377,8 @@ it might look like this instead:
         <event value="/4">...</event>
     </sequence>
     <sequence orient="down">
-        <event value="./2">...</event>
+      FIXME: broken syntax
+        <event value="/2d">...</event>
         <tuplet inner="3/8" outer="1/4">
             <event value="/8">...</event>
             <event value="/8">...</event>
