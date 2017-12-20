@@ -760,7 +760,8 @@ three elements:
 - The <dfn>octave</dfn>, which is an integer giving the octave in which
     the step occurs. The assignment of pitches to octaves follows the <a href="https://en.wikipedia.org/wiki/Scientific_pitch_notation">
     Scientific Pitch Notation (SPN)</a> convention, in which the octave number increases
-    on the step from `B` to `C`.
+    on the step from `B` to `C`.  For example, the SPN for the range of steps around
+    middle C on the piano keyboard includes the sequence: `...A3, B3, C4, D4...`.
 
 - The <dfn>alteration</dfn>, which is a floating-point alteration in semitones
     applied to the step and octave.
