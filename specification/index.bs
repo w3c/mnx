@@ -793,10 +793,26 @@ succeeding note. A common example of a liaison direction is a tie.
 <h5 id="sequence">Notated sequences</h5>
 
 A <dfn>notated sequence</dfn> is a set of <a>notated events</a> whose notional
-time intervals do not overlap, and which occur at progressively greater temporal
-offsets within a measure.
+time intervals do not overlap, which lie within the same measure and the same
+part, and which occur at progressively greater temporal offsets within a
+measure.
 
 Notated sequences are represented by the <{sequence}> element.
+
+<h5 id="voice">Voices</h5>
+
+Notated sequences may also belong to <dfn>voices</dfn>. A voice is a set of
+sequences in different measures, but within the same part. The sequences
+within a layer can be thought of as making up a single musical voice
+throughout the score. Thus they are an organizational construct, rather than a
+notational one.
+
+Even so, the assignment of sequences to voices has concrete implications for
+MNX implementations. Producer implementations may interpret a voice as
+affecting the way that musical material is organized, for example by cutting
+and pasting material from  a given voice in one measure into the same voice in
+a different measure. Consumer implementations might allow users to isolate the
+playback of a single voice, including only the sequences that belong to it.
 
 <h5 id="cwmnx-performance-interpretation">Performance Interpretation</h5>
 
@@ -1276,6 +1292,7 @@ with two monophonic half notes:
     <dt><a>Attributes</a>:</dt>
     <dd><{sequence/orient}> - default <a>orientation</a> of direction and sequence content </dd>
     <dd><{sequence/staff}> - default staff index of direction or sequence content</dd>
+    <dd><{sequence/voice}> - optional cross-measure voice identifier</dd>
   </dl>
 
 The <{sequence}> element organizes a set of musical events within a measure
@@ -1284,19 +1301,27 @@ assignment of measure positions to these events  is accomplished by
 <a>sequencing the content</a>, with a <a>starting position</a> of 0 and a
 <a>time modification ratio</a> of 1.
 
-The <a>sequence content</a> within each <{sequence}> supplies the music
-for a single voice, including notes, chords, rests, beam groups,
-tuplets and grace note runs.
+The <a>sequence content</a> within each <{sequence}> supplies the music for a
+single polyphonic voice within its containing measure, including notes,
+chords, rests, beam groups, tuplets and grace note runs.
 
-The optional <dfn element-attr>orient</dfn> attribute provides a specific
+The optional <dfn element-attr>orient</dfn> attribute provides a default
 <a>orientation</a> for all content within this sequence. If not provided, the
 orientation is determined automatically according to the implementation's
-rendering rules.
+rendering rules, and may also be overridden by descendants.
 
-The <dfn element-attr>staff</dfn> attribute provides a specific
+The optional <dfn element-attr>staff</dfn> attribute provides a default
 <a>staff index</a> for all content within this sequence.  If not provided, the
 staff index is determined automatically according to the implementation's
-rendering rules.
+rendering rules, and may also be overridden by descendants.
+
+The optional <dfn element-attr>voice</dfn> attribute supplies a string that
+identifies the <a>voice</a> to which this sequence belongs. All <{sequence}>
+elements in a given <{part}> having the same value of <{sequence/voice}>
+belong to the same voice. Within a given <{measure}> element, no two
+<{sequence}> elements may share the same value for <{sequence/voice}>.  The
+value of <{sequence/voice}> is an opaque identifier that does not supply
+information from producers to consumers.
 
 This example shows a sequence with a single monophonic voice including a series
 of events that together comprise a 4/4 measure. A single staff is used, so no
