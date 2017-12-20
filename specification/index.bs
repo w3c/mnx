@@ -864,10 +864,10 @@ determines a the placement and rendering of content according to a complex set
 of CWMN conventions. For the purposes of CWMNX there are two orientations:
 
 <ul>
-<li>An orientation of <em>up</em> orients note stems pointing upwards, and places beams, directions
+<li>An orientation of <dfn value dfn-for="orientation">up</dfn> orients note stems pointing upwards, and places beams, directions
 and articulations accordingly.</li>
 
-<li>An orientation of <em>down</em> orients note stems pointing upwards, and places beams, directions
+<li>An orientation of <dfn value dfn-for="orientation">down</dfn> orients note stems pointing upwards, and places beams, directions
 and articulations accordingly.</li>
 </ul>
 
@@ -1463,7 +1463,7 @@ explicit location independent of this order.
 
 The context of the <{directions}> element defines a scope for contained directions as follows:
 
-- Directions in a <{measure}> within the <{global}> element apply to all sequences of the measure in all parts.
+- Directions in a <{measure}> within the <{global}> element apply to all sequences of the measure in all parts. Directions with an orientation of ''orientation/up'' appear above the first displayed part; those with an orientation of ''orientation/down'' below the last displayed part.
 
 - Directions in a <{measure}> within a <{part}> element apply to all sequences of the measure in a given part.
 
@@ -2070,6 +2070,7 @@ Directions share a set of common <dfn>direction attributes</dfn> in an attribute
   <dl class="def">
     <dt><a>Attributes</a>:</dt>
     <dd><{direction/location}> - the <a>measure location</a> of the direction</dd>
+    <dd><{direction/orient}> - an optional <a>orientation</a></dd>
   </dl>
 
 All directions within a <{directions}> parent element must be
@@ -2079,6 +2080,12 @@ dfn-for="direction">location</dfn> attribute.
 Conversely, directions occurring within <a>sequence content</a> must omit this
 attribute as their location is determined during the procedure of
 <a>sequencing the content</a>.
+
+The optional <dfn element-attr dfn-for="direction">orient</dfn> attribute provides a specific
+<a>orientation</a> for this direction. If not provided, the orientation is
+inherited from any <{sequence}> ancestor which specified it. If
+no ancestor did so, it is determined automatically according to the
+implementation's rendering rules.
 
 <h5 id="the-dynamics-element">The <dfn element><code>dynamics</code></dfn> element</h5>
 <section dfn-for="dynamics">
