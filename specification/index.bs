@@ -1963,6 +1963,8 @@ of a single event, that is performed at a distinct time.
     <dd><a>Liaison content</a></dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{note/pitch}> - the musical pitch of this note </dd>
+    <dd><{note/staff}> - an optional staff index for this note </dd>
+    <dd><{note/value}> - an optional note value for this note </dd>
   </dl>
 
 The <{note}> element defines a single note within an event, along with other
@@ -1970,6 +1972,16 @@ information pertaining to the note itself rather than to its containing event.
 
 The <dfn element-attr>pitch</dfn> attribute supplies the pitch of the note
 as a <a>chromatic pitch</a>, using the <a>rules for parsing a chromatic pitch</a>.
+
+Optionally, the <dfn element-attr>staff</dfn> attribute supplies a <a>staff index</a>
+for this note where this differs from the staff index which applies to the containing
+<{event}> as a whole.
+
+Optionally, the <dfn element-attr>value</dfn> attribute supplies a <a>note
+value</a> for this note, where this differs from the containing <{event}>'s
+note value.  The value of the note must be less than or equal to the value of
+the containing event. <em>This attribute is not supported by the
+<{cwmnx/profile/standard}> CWMNX profile.</em>
 
 </section>
 
