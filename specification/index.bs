@@ -1977,11 +1977,13 @@ Optionally, the <dfn element-attr>staff</dfn> attribute supplies a <a>staff inde
 for this note where this differs from the staff index which applies to the containing
 <{event}> as a whole.
 
+Advisement: The following features are not supported by the
+<{cwmnx/profile/standard}> CWMNX profile.
+
 Optionally, the <dfn element-attr>value</dfn> attribute supplies a <a>note
 value</a> for this note, where this differs from the containing <{event}>'s
 note value.  The value of the note must be less than or equal to the value of
-the containing event. <em>This attribute is not supported by the
-<{cwmnx/profile/standard}> CWMNX profile.</em>
+the containing event.
 
 </section>
 
