@@ -714,17 +714,24 @@ the topmost staff are identified with successively increasing indices.
 <h5 id="cwmnx-notated-events">Notated events</h5>
 
 A <dfn>notated event</dfn> in CWMN is a discrete action in the score with a
-notated duration. It has an onset that is relative to the start of its
-containing sequence as well as to other elements in that sequence, subject to
-the conventions of CWMN.  Events belong to a specific <a>staff</a> within a
-part, denoted by its <a>staff index</a>.
+notated duration. It has an onset that
+is relative to the start of its containing sequence as well as to other
+elements in that sequence, subject to the conventions of CWMN.  Events belong
+to a specific <a>staff</a> within a part, denoted by its <a>staff index</a>.
 
 A notated event may include one or more <dfn>notes</dfn> possessing a
 pitch, or a <dfn>rest</dfn> indicating silence.  Events including more than
 one note are referred to as <dfn>chords</dfn>.
 
-In both cases, the event possesses an associated <a>note value</a> that indicates
-its duration. This value is not literal, but is subject to performance interpretation.
+In both cases, the event possesses an associated <a>note value</a> that
+indicates its notated duration. This value is not literal, but is subject to
+performance interpretation.
+
+The content of a notated event includes only the specific notes and chords
+within it. In particular a notated event does not account for ties, ornamental
+interpretation or many other kinds of performance reading. As such, the onset,
+duration, pitch and other properties of notated events will often differ from
+those in the corresponding <a>performance events</a>.
 
 Events may further possess <dfn>articulations</dfn>, additional properties
 that modulate their musical performance in commonly understood ways. In this
