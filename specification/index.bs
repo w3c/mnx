@@ -1538,7 +1538,7 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
             </ol>
         </ol>
       </li>
-      <li>If <var>next</var> is a <{space}> element:
+      <li>If <var>next</var> is a <{forward}> element:
         <ol>
           <li>
             Set the <a>metrical position</a> of <var>next</var> to <var>sequence cursor</var>.
@@ -1650,7 +1650,7 @@ With a <{rest}> element alone, the event is a rest:
 </div>
 
 NOTE: It is legal for an event to have neither notes nor a rest. The result is
-functionally identical to <{space}>, but is more constrained since an event
+functionally identical to <{forward}>, but is more constrained since an event
 must have a valid <a>note value</a>, while a space can have a multiple
 thereof.
 
@@ -1860,30 +1860,26 @@ The following example illustrates a beam that crosses a measure boundary:
 </div>
 </section>
 
-<h5 id="the-space-element">The <dfn element><code>space</code></dfn> element</h5>
-<section dfn-for="space">
+<h5 id="the-forward-element">The <dfn element><code>forward</code></dfn> element</h5>
+<section dfn-for="forward">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
     <dd><{sequence}>, <{tuplet}></dd>
     <dt><a>Content Model</a>:</dt>
-    <dd><a>Metadata content</a></dd>
-    <dd><a>Direction content</a></dd>
+    <dd>None.</dd>
     <dt><a>Attributes</a>:</dt>
-    <dd><{space/duration}> - the metrical duration of this space</dd>
+    <dd><{forward/duration}> - the metrical duration of this space</dd>
   </dl>
 
-The <{space}> element represents a discrete period of time within a sequence
+The <{forward}> element represents a discrete period of time within a sequence
 in which no sequence content occurs. It embodies the idea of blank space
 within a measure.
 
-<a>Direction content</a> may be included in a <{space}>, causing it to
-assume the same measure position as the space.
-
 The <dfn element-attr>duration</dfn> attribute specifies a <a>note value
-quantity</a> that provides the length of this <{space}>.
+quantity</a> that provides the length of this <{forward}>.
 
 NOTE: In contrast to <{event}>'s <{event/value}> attribute, the
-<{space/duration}> attribute is not constrained to a single note value, but
+<{forward/duration}> attribute is not constrained to a single note value, but
 may be a multiple of one.
 </section>
 
