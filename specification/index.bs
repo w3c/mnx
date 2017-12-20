@@ -3196,7 +3196,8 @@ equal to the <{performance-region/start}> value of the next region.
     <dd><{performance-region/end}> - end time of the time region</dd>
     <dd><{performance-region/view}> - the element ID of the <{score-view}> containing the visual region</dd>
     <dd><{performance-region/region}> - the definition of the visual region itself</dd>
-    <dd><{performance-region/type}> - indicate that a continuous mapping exists</dd>
+    <dd><{performance-region/cursor-start}> - a starting line segment for a cursor</dd>
+    <dd><{performance-region/cursor-end}> - an ending line segment for a cursor</dd>
   </dl>
 
 The <{performance-region}> element describes the relationship between a
@@ -3216,17 +3217,30 @@ using a fragment identifier in accordance with <a>linking into SVG content</a>.
 The fragment identifier refers to the same document identified by the
 <{performance-region/view}> attribute.
 
-<dfn element-attr>type</dfn> defines the nature of the mapping, with the
-following values:
+If the pair of attributes <dfn element-attr>cursor-start</dfn> and <dfn
+element-attr>cursor-end</dfn> are defined, then a mapping is defined between
+points in performance time and line segments in the visual region. Each attribute
+supplies an <a>ordered set of space-separated tokens</a> giving the following:
 
-<dl dfn-for="performance-region/type">
-  <dt><dfn attr-value><code>block</code></dfn> (default)</dt>
-  <dd>The entire time region corresponds to the entire visual region, with no further decomposition.</dd>
-  <dt><dfn attr-value><code>left-to-right</code></dfn></dt>
-  <dd>A time <var>t</var> in the time region corresponds to a vertical line in the visual region,
-      whose points share an X coordinate equal to <var>left</var> + (<var>right</var> - <var>left</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>), where <var>left</var> and <var>right</var> are the left and right boundaries of the visual region
-      in SVG user coordinates.</dd>
-</dl>
+- The X and Y locations in SVG user coordinates of the cursor <var>top</var>
+- The X and Y locations in SVG user coordinates of the cursor <var>bottom</var>
+
+Under this mapping, a time <var>t</var> in the time region corresponds to a
+vertical line in the visual region connecting two points given by the respective
+formulae of:
+
+- <var>cursor-start.top</var> + (<var ignore=''>cursor-end.top</var> - <var>cursor-start.top</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).
+- <var>cursor-start.bottom</var> + (<var ignore=''>cursor-end.bottom</var> - <var>cursor-start.bottom</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).
+
+Note: the terms <var>top</var> and <var>bottom</var> are purely arbitrary, as the cursor
+may have any desired orientation and may progress in any direction. Multiple regions may
+be pieced together in a contiguous manner to approximate any desired non-linear score layout.
+
+If either or both of <{performance-region/cursor-start}> and
+<{performance-region/cursor-end}> are undefined, then the entire time region corresponds
+to the entire visual region, with no further decomposition.
+
+  <dd></dd>
 
 </section>
 
