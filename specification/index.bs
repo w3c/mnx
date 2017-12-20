@@ -2227,36 +2227,83 @@ location given for the start of the spanning direction.
 
 <h5 id="the-wedge-element">The <dfn element><code>wedge</code></dfn> element</h5>
 <section dfn-for="wedge">
+   <dl class="def">
+     <dt><a>Contexts</a>:</dt>
+     <dd><a>Direction content</a></dd>
+     <dt><a>Content Model</a>:</dt>
+     <dd>None</dd>
+     <dt><a>Attributes</a>:</dt>
+     <dd><{wedge/type}> - the type of wedge</dd>
+     <dt>Attribute Groups:</dt>
+     <dd><a>Direction attributes</a></dd>
+     <dd><a>Span attributes</a></dd>
+   </dl>
+
+The <dfn element-attr>type</dfn> attribute describes the nature of the wedge:
+
+<dl dfn-for="wedge/type">
+  <dt><dfn attr-value><code>diminuendo</code></dfn></dt>
+  <dd>The wedge represents a decrease in dynamic level.</dd>
+  <dt><dfn attr-value><code>crescendo</code></dfn></dt>
+  <dd>The wedge represents an increase in dynamic level.</dd>
+</dl>
+</section>
+
+<h5 id="the-cresc-element">The <dfn element><code>cresc</code></dfn> element</h5>
+<section dfn-for="cresc">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><a>Direction content</a></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{cresc/text}> - optional text to be displayed</dd>
+    <dt>Attribute Groups:</dt>
+    <dd><a>Direction attributes</a></dd>
+    <dd><a>Span attributes</a></dd>
+  </dl>
+
+The <{cresc}> element represents a crescendo or increasing dynamic level over the course of a span,
+notated as text followed by a dashed line.
+
+The optional <dfn element-attr>text</dfn> attribute overrides the text to be
+displayed in the score for this element.
+
+</section>
+
+<h5 id="the-dim-element">The <dfn element><code>dim</code></dfn> element</h5>
+<section dfn-for="dim">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
     <dd><a>Direction content</a></dd>
     <dt><a>Content Model</a>:</dt>
     <dd>None</dd>
     <dt><a>Attributes</a>:</dt>
-    <dd><{wedge/type}> - the type of wedge</dd>
+    <dd><{dim/text}> - optional text to be displayed</dd>
     <dt>Attribute Groups:</dt>
     <dd><a>Direction attributes</a></dd>
     <dd><a>Span attributes</a></dd>
   </dl>
 
-The <dfn element-attr>type</dfn> attribute describes the nature of the wedge:
+The <{dim}> element represents a diminuendo or decreasing dynamic level over the course of a span,
+notated as text followed by a dashed line.
 
-<dl dfn-for="wedge/type">
-  <dt><dfn attr-value><code>diminuendo</code></dt>
-  <dd>The wedge represents a decrease in dynamic level.</dd>
-  <dt><dfn attr-value><code>crescendo</code></dt>
-  <dd>The wedge represents an increase in dynamic level.</dd>
-</dl>
+The optional <dfn element-attr>text</dfn> attribute overrides the text to be
+displayed in the score for this element.
 
 </section>
 
 <h5 id="the-pedal-element">The <dfn element><code>pedal</code></dfn> element</h5>
 <section dfn-for="pedal">
+  <em>Details TBD.</em>
 </section>
 
 <h5 id="the-bracket-element">The <dfn element><code>bracket</code></dfn> element</h5>
 <section dfn-for="bracket">
+<em>TBD: This should be separated into distinct elements with their own semantics.
+  Brackets in MusicXML are too much of a catch-all.</em>
 </section>
+
+Advisement: Other spans exist in MusicXML and need to be migrated.
 
 <h4 id="cwmnx-staff-content">Staff content</h4>
 
