@@ -2474,6 +2474,8 @@ the handling of grace notes, for example.
 
 <h3 id="cwmnx-style-properties">Style properties</h3>
 
+FIXME: add examples
+
 <dfn>Style properties</dfn> may be included in many elements to control the
 specific way in which the element is rendered. Each property is defined as a
 key-value pair.
@@ -3226,7 +3228,7 @@ supplies an <a>ordered set of space-separated tokens</a> giving the following:
 - The X and Y locations in SVG user coordinates of the cursor <var>bottom</var>
 
 Under this mapping, a time <var>t</var> in the time region corresponds to a
-vertical line in the visual region connecting two points given by the respective
+line segment in the visual region connecting two points given by the respective
 formulae of:
 
 - <var>cursor-start.top</var> + (<var ignore=''>cursor-end.top</var> - <var>cursor-start.top</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).
