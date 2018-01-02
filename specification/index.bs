@@ -3136,8 +3136,13 @@ a performer. The default value is zero.
 specifies the actual duration to be performed, not a notated duration subject
 to interpretation by a performer.
 
-<dfn element-attr>pitch</dfn> gives the pitch of the event expressed as
-a <a>chromatic pitch</a>.
+<dfn element-attr>pitch</dfn> gives the pitch of the event expressed as either
+a <a>valid floating-point number</a> providing a frequency in Hertz, or a
+<a>chromatic pitch</a>.
+
+Note: The interpretation of pitch at the event level needs to be much more carefully nailed down.
+Issues include how to control unpitched instruments, the temperament (if any) applied to chromatic pitches,
+and no doubt more.
 
 <dfn element-attr>dynamics</dfn> gives the dynamics of the event expressed in
 a scale from 0 to 127.  <em>This scale needs to be better defined; the existing
