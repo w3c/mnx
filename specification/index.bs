@@ -2474,8 +2474,6 @@ the handling of grace notes, for example.
 
 <h3 id="cwmnx-style-properties">Style properties</h3>
 
-FIXME: add examples
-
 <dfn>Style properties</dfn> may be included in many elements to control the
 specific way in which the element is rendered. Each property is defined as a
 key-value pair.
@@ -2490,9 +2488,9 @@ procedure for <dfn>style property computation</dfn>:
     that they were encountered in processing of the document.
   </li>
 
-  <li>For each <{class}> element belonging to the semantic element, in the order
+  <li>For each <{style/class}> attribute belonging to the semantic element, in the order
     of occurrence, apply the property values from each <a>style class definition</a>
-    whose class name matches the <{class/name}> attribute.
+    whose class name matches the <{style/class}> attribute.
     All definitions with a matching name are applied in the order
     that they were encountered in processing of the document.
   </li>
@@ -2529,27 +2527,43 @@ whose value is supplied by this <{style}> element's <dfn element-attr>value</dfn
 attribute, applying to the rendering or interpretation of the
 containing element.
 
+Here's an example of a style property definition adding color to a note:
+
+<div class="example">
+```xml
+<note pitch="C4">
+  <style property="color" value="#000099"/>
+</note>
+```
+</div>
+
+Note: Use of inline CSS-style syntax as in `style="color: #000099;"` would
+certainly be far more compact; at present, the spec attempts to address some
+members' preference to avoid introducing complex microsyntaxes. Even "simple"
+CSS requires an approach to escaping, etc.
+
 </section>
 
-<h4 id="the-class-element">The <dfn element><code>class</code></dfn> element</h4>
-<section dfn-for="class">
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd>Any.</dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd>Empty.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{class/name}> - a <a>style class definition</a></dd>
-  </dl>
+<h4 id="the-class-attribute">The <dfn element-attr for="style"><code>class</code></dfn> attribute</h4>
+<section dfn-for="style">
 
-The <{class}> element supplies the value of a <a>style class definition</a>
-which applies to a containing element as per the rules of <a>style property
-computation</a>.
+The <{style/class}> attribute may be used on any MNX element, and supplies the value
+of a <a>style class definition</a> which applies to a that element as per the
+rules of <a>style property computation</a>.
 
-The <dfn element-attr>name</dfn> attribute supplies the name of a style class
+The value of this attribute supplies the name of a style class
 definition which applies to the containing element as an <a>ordered set of
 space-separated tokens</a>. All style property values supplied by the class
 definition are applied to the element in the order in which they were defined.
+
+For example, the following definition applies a class named `emphasis` to
+a note:
+
+<div class="example">
+```xml
+<note class="emphasis" pitch="C4"/>
+```
+</div>
 
 </section>
 
@@ -2573,7 +2587,27 @@ apply to all descendants of the element within which they are specified.
     <dt>Inherited:</dt>
     <dd>yes</dd>
   </dl>
-  The 'color' property specifies a <a>simple color</a> to be used to render a notational object.
+  The 'color' property specifies a <a>simple color</a> to be used to render notational objects
+  at or below the level of the element.
+</section>
+
+<h5 id="the-smufl-font-property">The <dfn property><code>smufl-font</code></dfn> property</h5>
+<section dfn-for="smufl-font">
+  <dl class="def">
+    <dt>Applies to:</dt>
+    <dd><{part}></dd>
+    <dd><a>Sequence content</a></dd>
+    <dd><a>Direction content</a></dd>
+    <dd><a>Event content</a></dd>
+    <dd><a>Note content</a></dd>
+    <dd><a>Liaison content</a></dd>
+    <dt>Value:</dt>
+    <dd>A SMuFL font name</dd>
+    <dt>Inherited:</dt>
+    <dd>yes</dd>
+  </dl>
+  The 'smufl-font' property specifies the name of a SMuFL font that will be used> to be used to render notational objects
+  at or below the level of the element.
 </section>
 
 <h5 id="the-glyph-property">The <dfn property><code>glyph</code></dfn> property</h5>
@@ -2775,6 +2809,20 @@ Multiple occurrences of <{style-class}> are permitted to share the same value
 of <{style-class/name}>. These are equivalent to a single occurrence of
 <{style-class}> with the same constituent definitions of style property values
 in the same order.
+
+Here is a style class definition that creates a class called `emphasis`,
+intended to color its target objects bright red and apply a thicker stem width
+in the case of events:
+
+<div class="example">
+```xml
+<style-class name="emphasis">
+  <style property="color" value="#FF0000"/>
+  <style property="stem-width" value="0.05"/>
+</style-class>
+```
+</div>
+
 </section>
 
 <h4 id="the-style-selector-element">The <dfn element><code>style-selector</code></dfn> element</h4>
@@ -2806,6 +2854,19 @@ Multiple occurrences of <{style-selector}> are permitted to share the same value
 of <{style-selector/rule}>. These are equivalent to a single occurrence of
 <{style-selector}> with the same constituent definitions of style property values
 in the same order.
+
+Note: The scope of a defined rule is not limited to descendants of the element in which
+the <{style-selector}> element occurs, but is global.
+
+<div class="example">
+```xml
+<style-selector rule="event">
+  <style property="color" value="#FF0000"/>
+  <style property="stem-width" value="0.05"/>
+</style-class>
+```
+</div>
+
 
 </section>
 

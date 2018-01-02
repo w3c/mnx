@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="b23eb86a19c28021de2e0ca91e327f728e7cac59" name="document-revision">
+  <meta content="e290d558de35b38bc4e4daf5a8d0586555e87c24" name="document-revision">
 <style>
   .language-xml {
     font-size: 11px;
@@ -1429,7 +1429,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Draft Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2017-12-21">21 December 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-02">2 January 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1443,7 +1443,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 21 December 2017,
+In addition, as of 2 January 2018,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1675,18 +1675,19 @@ predecessors.</p>
        <a href="#cwmnx-style-properties"><span class="secno">5.3</span> <span class="content">Style properties</span></a>
        <ol class="toc">
         <li><a href="#the-style-element"><span class="secno">5.3.1</span> <span class="content">The <span><code>style</code></span> element</span></a>
-        <li><a href="#the-class-element"><span class="secno">5.3.2</span> <span class="content">The <span><code>class</code></span> element</span></a>
+        <li><a href="#the-class-attribute"><span class="secno">5.3.2</span> <span class="content">The <span><code>class</code></span> attribute</span></a>
         <li>
          <a href="#cwmnx-common-properties"><span class="secno">5.3.3</span> <span class="content">Common style properties</span></a>
          <ol class="toc">
           <li><a href="#the-color-property"><span class="secno">5.3.3.1</span> <span class="content">The <span><code>color</code></span> property</span></a>
-          <li><a href="#the-glyph-property"><span class="secno">5.3.3.2</span> <span class="content">The <span><code>glyph</code></span> property</span></a>
-          <li><a href="#the-display-property"><span class="secno">5.3.3.3</span> <span class="content">The <span><code>display</code></span> property</span></a>
-          <li><a href="#the-visibility-property"><span class="secno">5.3.3.4</span> <span class="content">The <span><code>visibility</code></span> property</span></a>
-          <li><a href="#the-perform-property"><span class="secno">5.3.3.5</span> <span class="content">The <span><code>perform</code></span> property</span></a>
-          <li><a href="#the-y-property"><span class="secno">5.3.3.6</span> <span class="content">The <span><code>y</code></span> property</span></a>
-          <li><a href="#the-stem-direction-property"><span class="secno">5.3.3.7</span> <span class="content">The <span><code>stem-direction</code></span> property</span></a>
-          <li><a href="#the-grace-slash-property"><span class="secno">5.3.3.8</span> <span class="content">The <span><code>grace-slash</code></span> property</span></a>
+          <li><a href="#the-smufl-font-property"><span class="secno">5.3.3.2</span> <span class="content">The <span><code>smufl-font</code></span> property</span></a>
+          <li><a href="#the-glyph-property"><span class="secno">5.3.3.3</span> <span class="content">The <span><code>glyph</code></span> property</span></a>
+          <li><a href="#the-display-property"><span class="secno">5.3.3.4</span> <span class="content">The <span><code>display</code></span> property</span></a>
+          <li><a href="#the-visibility-property"><span class="secno">5.3.3.5</span> <span class="content">The <span><code>visibility</code></span> property</span></a>
+          <li><a href="#the-perform-property"><span class="secno">5.3.3.6</span> <span class="content">The <span><code>perform</code></span> property</span></a>
+          <li><a href="#the-y-property"><span class="secno">5.3.3.7</span> <span class="content">The <span><code>y</code></span> property</span></a>
+          <li><a href="#the-stem-direction-property"><span class="secno">5.3.3.8</span> <span class="content">The <span><code>stem-direction</code></span> property</span></a>
+          <li><a href="#the-grace-slash-property"><span class="secno">5.3.3.9</span> <span class="content">The <span><code>grace-slash</code></span> property</span></a>
          </ol>
        </ol>
       <li>
@@ -1713,6 +1714,7 @@ predecessors.</p>
          <a href="#gmnx-graphics"><span class="secno">6.1.2</span> <span class="content">Graphics media</span></a>
          <ol class="toc">
           <li><a href="#the-score-view-element"><span class="secno">6.1.2.1</span> <span class="content">The <span><code>score-view</code></span> element</span></a>
+          <li><a href="#the-score-mapping-element"><span class="secno">6.1.2.2</span> <span class="content">The <span><code>score-mapping</code></span> element</span></a>
          </ol>
         <li>
          <a href="#gmnx-performance"><span class="secno">6.1.3</span> <span class="content">Performance content</span></a>
@@ -3660,7 +3662,6 @@ the handling of grace notes, for example.</p>
     </section>
    </section>
    <h3 class="heading settled" data-level="5.3" id="cwmnx-style-properties"><span class="secno">5.3. </span><span class="content">Style properties</span><a class="self-link" href="#cwmnx-style-properties"></a></h3>
-   <p>FIXME: add examples</p>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="style-properties">Style properties</dfn> may be included in many elements to control the
 specific way in which the element is rendered. Each property is defined as a
 key-value pair.</p>
@@ -3670,8 +3671,8 @@ procedure for <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="
     <li>Apply the property values from each <a data-link-type="dfn" href="#style-selector-style-selector-definition" id="ref-for-style-selector-style-selector-definition">style selector definition</a> whose <a data-link-type="dfn" href="#style-selector-style-selector-rule" id="ref-for-style-selector-style-selector-rule">style selector rule</a> matches the semantic element.
     All definitions with a matching rule are applied in the order
     that they were encountered in processing of the document. 
-    <li>For each <code><a data-link-type="element" href="#elementdef-class" id="ref-for-elementdef-class">class</a></code> element belonging to the semantic element, in the order
-    of occurrence, apply the property values from each <a data-link-type="dfn" href="#style-class-style-class-definition" id="ref-for-style-class-style-class-definition">style class definition</a> whose class name matches the <code><a data-link-type="element-sub" href="#element-attrdef-class-name" id="ref-for-element-attrdef-class-name">name</a></code> attribute.
+    <li>For each <code><a data-link-type="element-sub" href="#element-attrdef-style-class" id="ref-for-element-attrdef-style-class">class</a></code> attribute belonging to the semantic element, in the order
+    of occurrence, apply the property values from each <a data-link-type="dfn" href="#style-class-style-class-definition" id="ref-for-style-class-style-class-definition">style class definition</a> whose class name matches the <code><a data-link-type="element-sub" href="#element-attrdef-style-class" id="ref-for-element-attrdef-style-class①">class</a></code> attribute.
     All definitions with a matching name are applied in the order
     that they were encountered in processing of the document. 
     <li>For each <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style">style</a></code> element belonging to the semantic element,
@@ -3701,23 +3702,35 @@ which applies to the containing element.</p>
      <p>The <dfn class="dfn-paneled" data-dfn-for="style" data-dfn-type="element-attr" data-export="" id="element-attrdef-style-property"><code>property</code></dfn> attribute gives the name of a property
 whose value is supplied by this <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style②">style</a></code> element’s <dfn class="dfn-paneled" data-dfn-for="style" data-dfn-type="element-attr" data-export="" id="element-attrdef-style-value"><code>value</code></dfn> attribute, applying to the rendering or interpretation of the
 containing element.</p>
+     <p>Here’s an example of a style property definition adding color to a note:</p>
+     <div class="example" id="example-48fcc642">
+      <a class="self-link" href="#example-48fcc642"></a> 
+<pre class="language-xml highlight"><span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">></span>
+  <span class="nt">&lt;style</span> <span class="na">property=</span><span class="s">"color"</span> <span class="na">value=</span><span class="s">"#000099"</span><span class="nt">/></span>
+<span class="nt">&lt;/note></span>
+</pre>
+     </div>
+     <p class="note" role="note"><span>Note:</span> Use of inline CSS-style syntax as in <code>style="color: #000099;"</code> would
+certainly be far more compact; at present, the spec attempts to address some
+members' preference to avoid introducing complex microsyntaxes. Even "simple"
+CSS requires an approach to escaping, etc.</p>
     </section>
-    <h4 class="heading settled" data-level="5.3.2" id="the-class-element"><span class="secno">5.3.2. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-class"><code>class</code></dfn> element</span><a class="self-link" href="#the-class-element"></a></h4>
+    <h4 class="heading settled" data-level="5.3.2" id="the-class-attribute"><span class="secno">5.3.2. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-for="style" data-dfn-type="element-attr" data-export="" id="element-attrdef-style-class"><code>class</code></dfn> attribute</span><a class="self-link" href="#the-class-attribute"></a></h4>
     <section>
-     <dl class="def">
-      <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②④">Contexts</a>:
-      <dd>Any.
-      <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑤">Content Model</a>:
-      <dd>Empty.
-      <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②④">Attributes</a>:
-      <dd><code><a data-link-type="element-sub" href="#element-attrdef-class-name" id="ref-for-element-attrdef-class-name①">name</a></code> - a <a data-link-type="dfn" href="#style-class-style-class-definition" id="ref-for-style-class-style-class-definition①">style class definition</a>
-     </dl>
-     <p>The <code><a data-link-type="element" href="#elementdef-class" id="ref-for-elementdef-class①">class</a></code> element supplies the value of a <a data-link-type="dfn" href="#style-class-style-class-definition" id="ref-for-style-class-style-class-definition②">style class definition</a> which applies to a containing element as per the rules of <a data-link-type="dfn" href="#style-property-computation" id="ref-for-style-property-computation">style property
-computation</a>.</p>
-     <p>The <dfn class="dfn-paneled" data-dfn-for="class" data-dfn-type="element-attr" data-export="" id="element-attrdef-class-name"><code>name</code></dfn> attribute supplies the name of a style class
+     <p>The <code><a data-link-type="element-sub" href="#element-attrdef-style-class" id="ref-for-element-attrdef-style-class②">class</a></code> attribute may be used on any MNX element, and supplies the value
+of a <a data-link-type="dfn" href="#style-class-style-class-definition" id="ref-for-style-class-style-class-definition①">style class definition</a> which applies to a that element as per the
+rules of <a data-link-type="dfn" href="#style-property-computation" id="ref-for-style-property-computation">style property computation</a>.</p>
+     <p>The value of this attribute supplies the name of a style class
 definition which applies to the containing element as an <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens" id="ref-for-space-separated-tokens②">ordered set of
 space-separated tokens</a>. All style property values supplied by the class
 definition are applied to the element in the order in which they were defined.</p>
+     <p>For example, the following definition applies a class named <code>emphasis</code> to
+a note:</p>
+     <div class="example" id="example-c9833bfa">
+      <a class="self-link" href="#example-c9833bfa"></a> 
+<pre class="language-xml highlight"><span class="nt">&lt;note</span> <span class="na">class=</span><span class="s">"emphasis"</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span>
+</pre>
+     </div>
     </section>
     <h4 class="heading settled" data-level="5.3.3" id="cwmnx-common-properties"><span class="secno">5.3.3. </span><span class="content">Common style properties</span><a class="self-link" href="#cwmnx-common-properties"></a></h4>
     <p>The following <a data-link-type="dfn" href="#style-properties" id="ref-for-style-properties③">style properties</a> apply to many kinds of object in CWMNX, and in general
@@ -3737,14 +3750,33 @@ apply to all descendants of the element within which they are specified.</p>
       <dt>Inherited:
       <dd>yes
      </dl>
-      The <a class="property" data-link-type="propdesc" href="#propdef-color" id="ref-for-propdef-color">color</a> property specifies a <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#colors" id="ref-for-colors①">simple color</a> to be used to render a notational object. 
+      The <a class="property" data-link-type="propdesc" href="#propdef-color" id="ref-for-propdef-color">color</a> property specifies a <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#colors" id="ref-for-colors①">simple color</a> to be used to render notational objects
+  at or below the level of the element. 
     </section>
-    <h5 class="heading settled" data-level="5.3.3.2" id="the-glyph-property"><span class="secno">5.3.3.2. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-glyph"><code>glyph</code></dfn> property</span><a class="self-link" href="#the-glyph-property"></a></h5>
+    <h5 class="heading settled" data-level="5.3.3.2" id="the-smufl-font-property"><span class="secno">5.3.3.2. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-smufl-font"><code>smufl-font</code></dfn> property</span><a class="self-link" href="#the-smufl-font-property"></a></h5>
     <section>
      <dl class="def">
       <dt>Applies to:
+      <dd><code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part①②">part</a></code>
+      <dd><a data-link-type="dfn" href="#sequence-content" id="ref-for-sequence-content①①">Sequence content</a>
       <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content①③">Direction content</a>
+      <dd><a data-link-type="dfn" href="#event-content" id="ref-for-event-content④">Event content</a>
       <dd><a data-link-type="dfn" href="#note-content" id="ref-for-note-content②">Note content</a>
+      <dd><a data-link-type="dfn" href="#liaison-content" id="ref-for-liaison-content②">Liaison content</a>
+      <dt>Value:
+      <dd>A SMuFL font name
+      <dt>Inherited:
+      <dd>yes
+     </dl>
+      The <a class="property" data-link-type="propdesc" href="#propdef-smufl-font" id="ref-for-propdef-smufl-font">smufl-font</a> property specifies the name of a SMuFL font that will be used> to be used to render notational objects
+  at or below the level of the element. 
+    </section>
+    <h5 class="heading settled" data-level="5.3.3.3" id="the-glyph-property"><span class="secno">5.3.3.3. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-glyph"><code>glyph</code></dfn> property</span><a class="self-link" href="#the-glyph-property"></a></h5>
+    <section>
+     <dl class="def">
+      <dt>Applies to:
+      <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content①④">Direction content</a>
+      <dd><a data-link-type="dfn" href="#note-content" id="ref-for-note-content③">Note content</a>
       <dt>Value:
       <dd><a data-link-type="dfn" href="https://w3c.github.io/smufl/gitbook/specification/glyphnames.html#">SMuFL glyph name</a>
       <dt>Inherited:
@@ -3752,16 +3784,16 @@ apply to all descendants of the element within which they are specified.</p>
      </dl>
       The <a class="property" data-link-type="propdesc" href="#propdef-glyph" id="ref-for-propdef-glyph①">glyph</a> property specifies a specific <a data-link-type="dfn" href="https://w3c.github.io/smufl/gitbook/specification/glyphnames.html#">SMuFL glyph name</a> to be used to render a notational object. 
     </section>
-    <h5 class="heading settled" data-level="5.3.3.3" id="the-display-property"><span class="secno">5.3.3.3. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-display"><code>display</code></dfn> property</span><a class="self-link" href="#the-display-property"></a></h5>
+    <h5 class="heading settled" data-level="5.3.3.4" id="the-display-property"><span class="secno">5.3.3.4. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-display"><code>display</code></dfn> property</span><a class="self-link" href="#the-display-property"></a></h5>
     <section>
      <dl class="def">
       <dt>Applies to:
-      <dd><code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part①②">part</a></code>
-      <dd><a data-link-type="dfn" href="#sequence-content" id="ref-for-sequence-content①①">Sequence content</a>
-      <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content①④">Direction content</a>
-      <dd><a data-link-type="dfn" href="#event-content" id="ref-for-event-content④">Event content</a>
-      <dd><a data-link-type="dfn" href="#note-content" id="ref-for-note-content③">Note content</a>
-      <dd><a data-link-type="dfn" href="#liaison-content" id="ref-for-liaison-content②">Liaison content</a>
+      <dd><code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part①③">part</a></code>
+      <dd><a data-link-type="dfn" href="#sequence-content" id="ref-for-sequence-content①②">Sequence content</a>
+      <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content①⑤">Direction content</a>
+      <dd><a data-link-type="dfn" href="#event-content" id="ref-for-event-content⑤">Event content</a>
+      <dd><a data-link-type="dfn" href="#note-content" id="ref-for-note-content④">Note content</a>
+      <dd><a data-link-type="dfn" href="#liaison-content" id="ref-for-liaison-content③">Liaison content</a>
       <dt>Value:
       <dd><a class="css" data-link-type="maybe" href="#valdef-display-normal" id="ref-for-valdef-display-normal">normal</a> | <a class="css" data-link-type="maybe" href="#valdef-display-none" id="ref-for-valdef-display-none">none</a>
       <dt>Inherited:
@@ -3778,15 +3810,15 @@ descendants interact with the layout of the document.</p>
      </ul>
      <p><strong class="advisement"> Other values are likely, making this property into more than simply a way of hiding content.</strong></p>
     </section>
-    <h5 class="heading settled" data-level="5.3.3.4" id="the-visibility-property"><span class="secno">5.3.3.4. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-visibility"><code>visibility</code></dfn> property</span><a class="self-link" href="#the-visibility-property"></a></h5>
+    <h5 class="heading settled" data-level="5.3.3.5" id="the-visibility-property"><span class="secno">5.3.3.5. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-visibility"><code>visibility</code></dfn> property</span><a class="self-link" href="#the-visibility-property"></a></h5>
     <section>
      <dl class="def">
       <dt>Applies to:
-      <dd><a data-link-type="dfn" href="#sequence-content" id="ref-for-sequence-content①②">Sequence content</a>
-      <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content①⑤">Direction content</a>
-      <dd><a data-link-type="dfn" href="#event-content" id="ref-for-event-content⑤">Event content</a>
-      <dd><a data-link-type="dfn" href="#note-content" id="ref-for-note-content④">Note content</a>
-      <dd><a data-link-type="dfn" href="#liaison-content" id="ref-for-liaison-content③">Liaison content</a>
+      <dd><a data-link-type="dfn" href="#sequence-content" id="ref-for-sequence-content①③">Sequence content</a>
+      <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content①⑥">Direction content</a>
+      <dd><a data-link-type="dfn" href="#event-content" id="ref-for-event-content⑥">Event content</a>
+      <dd><a data-link-type="dfn" href="#note-content" id="ref-for-note-content⑤">Note content</a>
+      <dd><a data-link-type="dfn" href="#liaison-content" id="ref-for-liaison-content④">Liaison content</a>
       <dt>Value:
       <dd><a class="css" data-link-type="maybe" href="#valdef-visibility-visible" id="ref-for-valdef-visibility-visible">visible</a> | <a class="css" data-link-type="maybe" href="#valdef-visibility-hidden" id="ref-for-valdef-visibility-hidden">hidden</a>
       <dt>Inherited:
@@ -3805,15 +3837,15 @@ will still occupy space in the containing measure.</p>
        <p><dfn class="dfn-paneled css" data-dfn-for="visibility" data-dfn-type="value" data-export="" id="valdef-visibility-hidden">hidden</dfn>: the element is hidden</p>
      </ul>
     </section>
-    <h5 class="heading settled" data-level="5.3.3.5" id="the-perform-property"><span class="secno">5.3.3.5. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-perform"><code>perform</code></dfn> property</span><a class="self-link" href="#the-perform-property"></a></h5>
+    <h5 class="heading settled" data-level="5.3.3.6" id="the-perform-property"><span class="secno">5.3.3.6. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-perform"><code>perform</code></dfn> property</span><a class="self-link" href="#the-perform-property"></a></h5>
     <section>
      <dl class="def">
       <dt>Applies to:
-      <dd><a data-link-type="dfn" href="#sequence-content" id="ref-for-sequence-content①③">Sequence content</a>
-      <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content①⑥">Direction content</a>
-      <dd><a data-link-type="dfn" href="#event-content" id="ref-for-event-content⑥">Event content</a>
-      <dd><a data-link-type="dfn" href="#note-content" id="ref-for-note-content⑤">Note content</a>
-      <dd><a data-link-type="dfn" href="#liaison-content" id="ref-for-liaison-content④">Liaison content</a>
+      <dd><a data-link-type="dfn" href="#sequence-content" id="ref-for-sequence-content①④">Sequence content</a>
+      <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content①⑦">Direction content</a>
+      <dd><a data-link-type="dfn" href="#event-content" id="ref-for-event-content⑦">Event content</a>
+      <dd><a data-link-type="dfn" href="#note-content" id="ref-for-note-content⑥">Note content</a>
+      <dd><a data-link-type="dfn" href="#liaison-content" id="ref-for-liaison-content⑤">Liaison content</a>
       <dt>Value:
       <dd><a class="css" data-link-type="maybe" href="#valdef-perform-normal" id="ref-for-valdef-perform-normal">normal</a> | <a class="css" data-link-type="maybe" href="#valdef-perform-none" id="ref-for-valdef-perform-none">none</a>
       <dt>Inherited:
@@ -3829,11 +3861,11 @@ all of its descendants) are performed by a consumer or not.
        <p><dfn class="dfn-paneled css" data-dfn-for="perform" data-dfn-type="value" data-export="" id="valdef-perform-none">none</dfn> the element is omitted from performance</p>
      </ul>
     </section>
-    <h5 class="heading settled" data-level="5.3.3.6" id="the-y-property"><span class="secno">5.3.3.6. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-y"><code>y</code></dfn> property</span><a class="self-link" href="#the-y-property"></a></h5>
+    <h5 class="heading settled" data-level="5.3.3.7" id="the-y-property"><span class="secno">5.3.3.7. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-y"><code>y</code></dfn> property</span><a class="self-link" href="#the-y-property"></a></h5>
     <section>
      <dl class="def">
       <dt>Applies to:
-      <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content①⑦">Direction content</a>
+      <dd><a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content①⑧">Direction content</a>
       <dt>Value:
       <dd><var>staff position</var> | <a class="css" data-link-type="maybe" href="#valdef-y-above" id="ref-for-valdef-y-above">above</a> | <a class="css" data-link-type="maybe" href="#valdef-y-below" id="ref-for-valdef-y-below">below</a>
       <dt>Inherited:
@@ -3846,11 +3878,11 @@ exact positioning of the direction to the implementation and request that
 the direction be placed respectively above or below the staff.</p>
      <p><em>TBD: describe rendering model and regisration</em></p>
     </section>
-    <h5 class="heading settled" data-level="5.3.3.7" id="the-stem-direction-property"><span class="secno">5.3.3.7. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-stem-direction"><code>stem-direction</code></dfn> property</span><a class="self-link" href="#the-stem-direction-property"></a></h5>
+    <h5 class="heading settled" data-level="5.3.3.8" id="the-stem-direction-property"><span class="secno">5.3.3.8. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-stem-direction"><code>stem-direction</code></dfn> property</span><a class="self-link" href="#the-stem-direction-property"></a></h5>
     <section>
      <dl class="def">
       <dt>Applies to:
-      <dd><a data-link-type="dfn" href="#event-content" id="ref-for-event-content⑦">Event content</a>
+      <dd><a data-link-type="dfn" href="#event-content" id="ref-for-event-content⑧">Event content</a>
       <dt>Value:
       <dd><span class="css">up</span> | <span class="css">down</span>
       <dt>Inherited:
@@ -3862,7 +3894,7 @@ is determined automatically by the implementation, in accordance with the <a dat
      <p>The value <dfn data-dfn-for="stem-direction" data-dfn-type="attr-value" data-export="" id="attr-valuedef-stem-direction-up"><code>up</code><a class="self-link" href="#attr-valuedef-stem-direction-up"></a></dfn> causes an event’s stem to be rendered pointing upwards.</p>
      <p>The value <dfn data-dfn-for="stem-direction" data-dfn-type="attr-value" data-export="" id="attr-valuedef-stem-direction-down"><code>down</code><a class="self-link" href="#attr-valuedef-stem-direction-down"></a></dfn> causes an event’s stem to be rendered pointing downwards.</p>
     </section>
-    <h5 class="heading settled" data-level="5.3.3.8" id="the-grace-slash-property"><span class="secno">5.3.3.8. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-grace-slash"><code>grace-slash</code></dfn> property</span><a class="self-link" href="#the-grace-slash-property"></a></h5>
+    <h5 class="heading settled" data-level="5.3.3.9" id="the-grace-slash-property"><span class="secno">5.3.3.9. </span><span class="content">The <dfn class="dfn-paneled css" data-dfn-type="property" data-export="" id="propdef-grace-slash"><code>grace-slash</code></dfn> property</span><a class="self-link" href="#the-grace-slash-property"></a></h5>
     <section>
      <dl class="def">
       <dt>Applies to:
@@ -3882,7 +3914,7 @@ nature of the grace note.</p>
     <h3 class="heading settled" data-level="5.4" id="cwmnx-stylesheet-definitions"><span class="secno">5.4. </span><span class="content">Stylesheet definitions</span><a class="self-link" href="#cwmnx-stylesheet-definitions"></a></h3>
     <p>The <code><a data-link-type="element" href="#elementdef-style-class" id="ref-for-elementdef-style-class">style-class</a></code> and <code><a data-link-type="element" href="#elementdef-style-selector" id="ref-for-elementdef-style-selector">style-selector</a></code> elements allow definition of style
 properties in groups that can be applied in a unitary fashion to other
-elements, respectively by name matching in a <a data-link-type="dfn" href="#style-class-style-class-definition" id="ref-for-style-class-style-class-definition③">style class definition</a>, or by
+elements, respectively by name matching in a <a data-link-type="dfn" href="#style-class-style-class-definition" id="ref-for-style-class-style-class-definition②">style class definition</a>, or by
 algorithmic rule matching in a <a data-link-type="dfn" href="#style-selector-style-selector-definition" id="ref-for-style-selector-style-selector-definition①">style selector definition</a>. Taken together,
 these supply a set of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="stylesheet-definitions">stylesheet definitions</dfn> that control the rendering
 and interpretation of the document.</p>
@@ -3890,11 +3922,11 @@ and interpretation of the document.</p>
     <h4 class="heading settled" data-level="5.4.1" id="the-style-class-element"><span class="secno">5.4.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-style-class"><code>style-class</code></dfn> element</span><a class="self-link" href="#the-style-class-element"></a></h4>
     <section>
      <dl class="def">
-      <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②⑤">Contexts</a>:
+      <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②④">Contexts</a>:
       <dd>Any.
-      <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑥">Content Model</a>:
+      <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑤">Content Model</a>:
       <dd>One or more <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style③">style</a></code> elements.
-      <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑤">Attributes</a>:
+      <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②④">Attributes</a>:
       <dd><code><a data-link-type="element-sub" href="#element-attrdef-style-class-name" id="ref-for-element-attrdef-style-class-name">name</a></code> - the name of this style class definition
      </dl>
      <p>The <code><a data-link-type="element" href="#elementdef-style-class" id="ref-for-elementdef-style-class①">style-class</a></code> element supplies a <dfn class="dfn-paneled" data-dfn-for="style-class" data-dfn-type="dfn" data-noexport="" id="style-class-style-class-definition">style class definition</dfn>,
@@ -3907,15 +3939,26 @@ definition.</p>
      <p>Multiple occurrences of <code><a data-link-type="element" href="#elementdef-style-class" id="ref-for-elementdef-style-class②">style-class</a></code> are permitted to share the same value
 of <code><a data-link-type="element-sub" href="#element-attrdef-style-class-name" id="ref-for-element-attrdef-style-class-name①">name</a></code>. These are equivalent to a single occurrence of <code><a data-link-type="element" href="#elementdef-style-class" id="ref-for-elementdef-style-class③">style-class</a></code> with the same constituent definitions of style property values
 in the same order.</p>
+     <p>Here is a style class definition that creates a class called <code>emphasis</code>,
+intended to color its target objects bright red and apply a thicker stem width
+in the case of events:</p>
+     <div class="example" id="example-cb0a0bdd">
+      <a class="self-link" href="#example-cb0a0bdd"></a> 
+<pre class="language-xml highlight"><span class="nt">&lt;style-class</span> <span class="na">name=</span><span class="s">"emphasis"</span><span class="nt">></span>
+  <span class="nt">&lt;style</span> <span class="na">property=</span><span class="s">"color"</span> <span class="na">value=</span><span class="s">"#FF0000"</span><span class="nt">/></span>
+  <span class="nt">&lt;style</span> <span class="na">property=</span><span class="s">"stem-width"</span> <span class="na">value=</span><span class="s">"0.05"</span><span class="nt">/></span>
+<span class="nt">&lt;/style-class></span>
+</pre>
+     </div>
     </section>
     <h4 class="heading settled" data-level="5.4.2" id="the-style-selector-element"><span class="secno">5.4.2. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-style-selector"><code>style-selector</code></dfn> element</span><a class="self-link" href="#the-style-selector-element"></a></h4>
     <section>
      <dl class="def">
-      <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②⑥">Contexts</a>:
+      <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②⑤">Contexts</a>:
       <dd>Any.
-      <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑦">Content Model</a>:
+      <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑥">Content Model</a>:
       <dd>One or more <code><a data-link-type="element" href="#elementdef-style" id="ref-for-elementdef-style⑤">style</a></code> elements.
-      <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑥">Attributes</a>:
+      <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑤">Attributes</a>:
       <dd><code><a data-link-type="element-sub" href="#element-attrdef-style-selector-rule" id="ref-for-element-attrdef-style-selector-rule">rule</a></code> - a set of element names to which this style selector definition applies
      </dl>
      <p>The <code><a data-link-type="element" href="#elementdef-style-selector" id="ref-for-elementdef-style-selector①">style-selector</a></code> element supplies a <dfn class="dfn-paneled" data-dfn-for="style-selector" data-dfn-type="dfn" data-lt="style selector definition" data-noexport="" id="style-selector-style-selector-definition">style selector
@@ -3933,6 +3976,16 @@ match the rule.</p>
      <p>Multiple occurrences of <code><a data-link-type="element" href="#elementdef-style-selector" id="ref-for-elementdef-style-selector②">style-selector</a></code> are permitted to share the same value
 of <code><a data-link-type="element-sub" href="#element-attrdef-style-selector-rule" id="ref-for-element-attrdef-style-selector-rule①">rule</a></code>. These are equivalent to a single occurrence of <code><a data-link-type="element" href="#elementdef-style-selector" id="ref-for-elementdef-style-selector③">style-selector</a></code> with the same constituent definitions of style property values
 in the same order.</p>
+     <p class="note" role="note"><span>Note:</span> The scope of a defined rule is not limited to descendants of the element in which
+the <code><a data-link-type="element" href="#elementdef-style-selector" id="ref-for-elementdef-style-selector④">style-selector</a></code> element occurs, but is global.</p>
+     <div class="example" id="example-46f014d7">
+      <a class="self-link" href="#example-46f014d7"></a> 
+<pre class="language-xml highlight"><span class="nt">&lt;style-selector</span> <span class="na">rule=</span><span class="s">"event"</span><span class="nt">></span>
+  <span class="nt">&lt;style</span> <span class="na">property=</span><span class="s">"color"</span> <span class="na">value=</span><span class="s">"#FF0000"</span><span class="nt">/></span>
+  <span class="nt">&lt;style</span> <span class="na">property=</span><span class="s">"stem-width"</span> <span class="na">value=</span><span class="s">"0.05"</span><span class="nt">/></span>
+<span class="nt">&lt;/style-class></span>
+</pre>
+     </div>
     </section>
     <section>
      <h3 class="heading settled" data-level="5.5" id="cwmnx-rendering"><span class="secno">5.5. </span><span class="content">Rendering</span><a class="self-link" href="#cwmnx-rendering"></a></h3>
@@ -3972,13 +4025,13 @@ semantic information does not suffice to yield the desired musical result.</p>
      <h5 class="heading settled" data-level="6.1.1.1" id="the-gmnx-element"><span class="secno">6.1.1.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-gmnx"><code>gmnx</code></dfn> element</span><a class="self-link" href="#the-gmnx-element"></a></h5>
      <section>
       <dl class="def">
-       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②⑦">Contexts</a>:
+       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②⑥">Contexts</a>:
        <dd>Wherever a <a data-link-type="dfn" href="#musical-body" id="ref-for-musical-body④">musical body</a> is expected.
-       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑧">Content Model</a>:
+       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑦">Content Model</a>:
        <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content①②">Metadata content</a>.
        <dd>One or more <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view">score-view</a></code> elements.
        <dd><a data-link-type="dfn" href="#performance-content" id="ref-for-performance-content">Performance content</a>.
-       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑦">Attributes</a>:
+       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑥">Attributes</a>:
        <dd>None.
       </dl>
       <p>The <code><a data-link-type="element" href="#elementdef-gmnx" id="ref-for-elementdef-gmnx">gmnx</a></code> element is a <a data-link-type="dfn" href="#musical-body" id="ref-for-musical-body⑤">musical body</a> that describes a GMNX
@@ -4025,11 +4078,11 @@ are described individually in the remainder of this section.</p>
      <h5 class="heading settled" data-level="6.1.2.1" id="the-score-view-element"><span class="secno">6.1.2.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-score-view"><code>score-view</code></dfn> element</span><a class="self-link" href="#the-score-view-element"></a></h5>
      <section>
       <dl class="def">
-       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②⑧">Contexts</a>:
+       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②⑦">Contexts</a>:
        <dd><code><a data-link-type="element" href="#elementdef-gmnx" id="ref-for-elementdef-gmnx①">gmnx</a></code>
-       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑨">Content Model</a>:
-       <dd>None.
-       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑧">Attributes</a>:
+       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑧">Content Model</a>:
+       <dd>Any number of <code><a data-link-type="element" href="#elementdef-score-mapping" id="ref-for-elementdef-score-mapping">score-mapping</a></code> elements.
+       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑦">Attributes</a>:
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-score-view-view" id="ref-for-element-attrdef-score-view-view">view</a></code> - link to an SVG view of the score
       </dl>
       <p>The <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view①">score-view</a></code> element references a specific view within a separate
@@ -4039,6 +4092,43 @@ default sequence of pages is established by the order of occurrence of <code><a 
       <p>The sequence of page presentation in conjunction with <a data-link-type="dfn" href="#performance-content" id="ref-for-performance-content①">performance
 content</a> may differ from the default sequence, according to the mapping
 between performance and graphics.</p>
+     </section>
+     <h5 class="heading settled" data-level="6.1.2.2" id="the-score-mapping-element"><span class="secno">6.1.2.2. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-score-mapping"><code>score-mapping</code></dfn> element</span><a class="self-link" href="#the-score-mapping-element"></a></h5>
+     <section>
+      <dl class="def">
+       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②⑧">Contexts</a>:
+       <dd><code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view④">score-view</a></code>
+       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑨">Content Model</a>:
+       <dd>None.
+       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑧">Attributes</a>:
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-score-mapping-graphics" id="ref-for-element-attrdef-score-mapping-graphics">graphics</a></code> - an element ID within the SVG content described by the parent <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑤">score-view</a></code>
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-score-mapping-events" id="ref-for-element-attrdef-score-mapping-events">events</a></code> - one or more optional IDs of corresponding <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event③">performance-event</a></code> elements&lt;{
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-score-mapping-semantics" id="ref-for-element-attrdef-score-mapping-semantics">semantics</a></code> - one or more optional IDs of corresponding element(s) within source semantic documents
+      </dl>
+      <p>The <code><a data-link-type="element" href="#elementdef-score-mapping" id="ref-for-elementdef-score-mapping①">score-mapping</a></code> element supplies information on the correspondence
+between an SVG element in a <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑥">score-view</a></code>, and sets of other
+semantic and performance elements.</p>
+      <p>The <dfn class="dfn-paneled" data-dfn-for="score-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-score-mapping-graphics"><code>graphics</code></dfn> attribute is required, and gives a single
+ID of an element in the score view’s SVG content. There is no restriction on
+the nature or structure of this element, nor on its relationship to other
+elements.</p>
+      <p>The optional <dfn class="dfn-paneled" data-dfn-for="score-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-score-mapping-events"><code>events</code></dfn> attribute supplies one or more IDs
+of <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event④">performance-event</a></code> elements in the same document. This asserts that each
+of the referenced events are considered to be part of the performance
+interpretation of the SVG content described by <code><a data-link-type="element-sub" href="#element-attrdef-score-mapping-graphics" id="ref-for-element-attrdef-score-mapping-graphics①">graphics</a></code>.</p>
+      <p class="note" role="note"><span>Note:</span> It is common for multiple performance events to correspond to the
+same graphic. For example, consider repeated sections in which each notation
+generates multiple events over the course of a musical form, or the individual
+musical events generated by the same note bearing an ornament.</p>
+      <p>The optional <dfn class="dfn-paneled" data-dfn-for="score-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-score-mapping-semantics"><code>semantics</code></dfn> attribute supplies one or more
+IDs of elements in a semantic source document, for example a CWMNX document.
+This asserts that each of the referenced semantic source elements are considered as
+generating the SVG content described by <code><a data-link-type="element-sub" href="#element-attrdef-score-mapping-graphics" id="ref-for-element-attrdef-score-mapping-graphics②">graphics</a></code>.</p>
+      <p class="note" role="note"><span>Note:</span> While this element describes only a single SVG element, it is commonly
+the case that multiple SVG graphics may be associated with the same event or
+semantic source. (For example, consider that multiple tied notes in CWMN may
+define a single performance event.) Therefore, multiple <code><a data-link-type="element" href="#elementdef-score-mapping" id="ref-for-elementdef-score-mapping②">score-mapping</a></code> elements for different graphics may reference the same performance events
+and/or semantic sources.</p>
      </section>
      <h4 class="heading settled" data-level="6.1.3" id="gmnx-performance"><span class="secno">6.1.3. </span><span class="content">Performance content</span><a class="self-link" href="#gmnx-performance"></a></h4>
      <p>The category of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="performance-content">performance content</dfn> includes both of the following:</p>
@@ -4113,14 +4203,14 @@ between the performance data and the graphical score.</p>
        <dd><code><a data-link-type="element" href="#elementdef-performance-data" id="ref-for-elementdef-performance-data①">performance-data</a></code>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model③③">Content Model</a>:
        <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content①⑥">Metadata content</a>.
-       <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event③">performance-event</a></code> elements.
+       <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event⑤">performance-event</a></code> elements.
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute③①">Attributes</a>:
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-part-instrument-sound" id="ref-for-element-attrdef-performance-part-instrument-sound">instrument-sound</a></code> - the sound ID of the instrument for this part.
       </dl>
-      <p>The <code><a data-link-type="element" href="#elementdef-performance-part" id="ref-for-elementdef-performance-part①">performance-part</a></code> element organizes a list of <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event④">performance-event</a></code> elements, within a given performance.</p>
+      <p>The <code><a data-link-type="element" href="#elementdef-performance-part" id="ref-for-elementdef-performance-part①">performance-part</a></code> element organizes a list of <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event⑥">performance-event</a></code> elements, within a given performance.</p>
       <p>The <dfn class="dfn-paneled" data-dfn-for="performance-part" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-part-instrument-sound"><code>instrument-sound</code></dfn> attribute gives the MusicXML sound ID of the instrument
 for this part.</p>
-      <p class="note" role="note"><span>Note:</span> <code><a data-link-type="element" href="#elementdef-performance-part" id="ref-for-elementdef-performance-part②">performance-part</a></code> elements do not necessarily correspond to CWMNX <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part①③">part</a></code> elements, as they pertain to a single instrument.</p>
+      <p class="note" role="note"><span>Note:</span> <code><a data-link-type="element" href="#elementdef-performance-part" id="ref-for-elementdef-performance-part②">performance-part</a></code> elements do not necessarily correspond to CWMNX <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part①④">part</a></code> elements, as they pertain to a single instrument.</p>
      </section>
      <h5 class="heading settled" data-level="6.1.3.5" id="the-performance-tempo-element"><span class="secno">6.1.3.5. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-tempo"><code>performance-tempo</code></dfn> element</span><a class="self-link" href="#the-performance-tempo-element"></a></h5>
      <section>
@@ -4162,11 +4252,8 @@ of a scoring time unit relative to performance time, similar to a MIDI tempo tra
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-pitch" id="ref-for-element-attrdef-performance-event-pitch①">pitch</a></code> - pitch of this event
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-dynamics" id="ref-for-element-attrdef-performance-event-dynamics">dynamics</a></code> - dynamics for this event
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-techniques" id="ref-for-element-attrdef-performance-event-techniques">techniques</a></code> - set of performance techniques for this event
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-view" id="ref-for-element-attrdef-performance-event-view">view</a></code> - optional element ID of the <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view④">score-view</a></code> containing a symbol for the event
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-region" id="ref-for-element-attrdef-performance-event-region">region</a></code> - an optional reference to the graphical symbol for the event
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-semantics" id="ref-for-element-attrdef-performance-event-semantics">semantics</a></code> - an optional reference to an element in a semantic document
       </dl>
-      <p>The <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event⑤">performance-event</a></code> element describes a single musical event in terms of its
+      <p>The <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event⑦">performance-event</a></code> element describes a single musical event in terms of its
 performance parameters.</p>
       <p>All times given are in <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit⑤">notated time units</a>, whose relationship to performance time is described by <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo⑦">performance-tempo</a></code> elements. These times may be expressed in the following forms which are
 syntactically distinct:</p>
@@ -4182,8 +4269,11 @@ a performer. The default value is zero.</p>
       <p><dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-duration"><code>duration</code></dfn> gives the duration of the event. This
 specifies the actual duration to be performed, not a notated duration subject
 to interpretation by a performer.</p>
-      <p><dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-pitch"><code>pitch</code></dfn> gives the pitch of the event expressed as
-a <a data-link-type="dfn" href="#chromatic-pitch" id="ref-for-chromatic-pitch③">chromatic pitch</a>.</p>
+      <p><dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-pitch"><code>pitch</code></dfn> gives the pitch of the event expressed as either
+a <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#floating-point-numbers" id="ref-for-floating-point-numbers⑥">valid floating-point number</a> providing a frequency in Hertz, or a <a data-link-type="dfn" href="#chromatic-pitch" id="ref-for-chromatic-pitch③">chromatic pitch</a>.</p>
+      <p class="note" role="note"><span>Note:</span> The interpretation of pitch at the event level needs to be much more carefully nailed down.
+Issues include how to control unpitched instruments, the temperament (if any) applied to chromatic pitches,
+and no doubt more.</p>
       <p><dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-dynamics"><code>dynamics</code></dfn> gives the dynamics of the event expressed in
 a scale from 0 to 127. <em>This scale needs to be better defined; the existing
 MusicXML definition as "percentage of forte" is hard to interpret clearly.</em></p>
@@ -4191,11 +4281,6 @@ MusicXML definition as "percentage of forte" is hard to interpret clearly.</em><
 to the event as a <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens" id="ref-for-space-separated-tokens④">unordered set of space-separated tokens</a>.</p>
       <p class="note" role="note"><span>Note:</span> These presumably correspond to articulatory variations of the instrument sound.
 Proper definition remains TBD.</p>
-      <p>If present, the <dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-view"><code>view</code></dfn> and <dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-region"><code>region</code></dfn> attributes identify a specific visual region corresponding to the event. This
-correspondence is not required.</p>
-      <p>If present, the <dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-semantics"><code>semantics</code></dfn> attribute identify a
-semantic source element in an external document corresponding to the event.
-This correspondence is not required.</p>
      </section>
      <h5 class="heading settled" data-level="6.1.3.7" id="the-performance-mapping-element"><span class="secno">6.1.3.7. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-mapping"><code>performance-mapping</code></dfn> element</span><a class="self-link" href="#the-performance-mapping-element"></a></h5>
      <section>
@@ -4226,7 +4311,7 @@ equal to the <code><a data-link-type="element-sub" href="#element-attrdef-perfor
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute③⑤">Attributes</a>:
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-start" id="ref-for-element-attrdef-performance-region-start①">start</a></code> - start time of the time region being mapped
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-end" id="ref-for-element-attrdef-performance-region-end①">end</a></code> - end time of the time region
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-view" id="ref-for-element-attrdef-performance-region-view">view</a></code> - the element ID of the <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑤">score-view</a></code> containing the visual region
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-view" id="ref-for-element-attrdef-performance-region-view">view</a></code> - the element ID of the <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑦">score-view</a></code> containing the visual region
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-region" id="ref-for-element-attrdef-performance-region-region">region</a></code> - the definition of the visual region itself
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-cursor-start" id="ref-for-element-attrdef-performance-region-cursor-start">cursor-start</a></code> - a starting line segment for a cursor
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-cursor-end" id="ref-for-element-attrdef-performance-region-cursor-end">cursor-end</a></code> - an ending line segment for a cursor
@@ -4238,33 +4323,36 @@ regions of the graphical score and regions of one or more audio performances.</p
       <p><dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-start"><code>start</code></dfn> gives the start of the time region.</p>
       <p><dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-end"><code>end</code></dfn> gives the end of the time region.</p>
       <p><dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-view"><code>view</code></dfn> identifies a view of some section of the score, by
-providing the XML ID of its <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑥">score-view</a></code> element.</p>
+providing the XML ID of its <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑧">score-view</a></code> element.</p>
       <p><dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-region"><code>region</code></dfn> identifies the visual region for the mapping
 using a fragment identifier in accordance with <a data-link-type="dfn" href="https://www.w3.org/TR/SVG/linking.html#LinksIntoSVG" id="ref-for-LinksIntoSVG①">linking into SVG content</a>.
 The fragment identifier refers to the same document identified by the <code><a data-link-type="element-sub" href="#element-attrdef-performance-region-view" id="ref-for-element-attrdef-performance-region-view①">view</a></code> attribute.</p>
       <p>If the pair of attributes <dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-cursor-start"><code>cursor-start</code></dfn> and <dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-cursor-end"><code>cursor-end</code></dfn> are defined, then a mapping is defined between
-points in performance time and line segments in the visual region. Each attribute
-supplies an <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens" id="ref-for-space-separated-tokens⑤">ordered set of space-separated tokens</a> giving the following:</p>
-      <ul>
-       <li data-md="">
-        <p>The X and Y locations in SVG user coordinates of the cursor <var>top</var></p>
-       <li data-md="">
-        <p>The X and Y locations in SVG user coordinates of the cursor <var>bottom</var></p>
-      </ul>
+points in performance time and line segments in the visual region. Each
+attribute supplies an <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens" id="ref-for-space-separated-tokens⑤">ordered set of space-separated tokens</a> giving the
+cursor’s endpoints as successive X/Y pairs in user coordinates applicable to
+the region.</p>
+      <p>The special tokens <code>left</code>, <code>right</code>, <code>top</code> and <code>bottom</code> may be used here to
+define both endpoints of a cursor in terms of the corresponding edge of the
+region’s SVG bounding box.</p>
       <p>Under this mapping, a time <var>t</var> in the time region corresponds to a
 line segment in the visual region connecting two points given by the respective
 formulae of:</p>
       <ul>
        <li data-md="">
-        <p><var>cursor-start.top</var> + (<var>cursor-end.top</var> - <var>cursor-start.top</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).</p>
+        <p><var>cursor-start.p1</var> + (<var>cursor-end.p1</var> - <var>cursor-start.p1</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).</p>
        <li data-md="">
-        <p><var>cursor-start.bottom</var> + (<var>cursor-end.bottom</var> - <var>cursor-start.bottom</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).</p>
+        <p><var>cursor-start.p2</var> + (<var>cursor-end.p2</var> - <var>cursor-start.p2</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).</p>
       </ul>
-      <p class="note" role="note"><span>Note:</span> the terms <var>top</var> and <var>bottom</var> are purely arbitrary, as the cursor
-may have any desired orientation and may progress in any direction. Multiple regions may
-be pieced together in a contiguous manner to approximate any desired non-linear score layout.</p>
       <p>If either or both of <code><a data-link-type="element-sub" href="#element-attrdef-performance-region-cursor-start" id="ref-for-element-attrdef-performance-region-cursor-start①">cursor-start</a></code> and <code><a data-link-type="element-sub" href="#element-attrdef-performance-region-cursor-end" id="ref-for-element-attrdef-performance-region-cursor-end①">cursor-end</a></code> are undefined, then the entire time region corresponds
 to the entire visual region, with no further decomposition.</p>
+      <p class="note" role="note"><span>Note:</span> To more easily support cursor motion through curved arcs,  non-parallel
+start and end cursors could be considered as segments of two rays whose common
+origin lies at the point of intersection between these cursors. Interpolation
+would then be performed in radial coordinates, smoothly sweeping both the
+angle and the distances from the origin to move the cursor’s endpoints along
+roughly circular arcs. Straight-line motion would be merely a special case in which
+the intersection lies at infinity.</p>
       <dd>
      </section>
      <section>
@@ -4272,7 +4360,7 @@ to the entire visual region, with no further decomposition.</p>
        <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
        <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
        <ul class="index">
-        <li><a href="#valdef-y-above">above</a><span>, in §5.3.3.6</span>
+        <li><a href="#valdef-y-above">above</a><span>, in §5.3.3.7</span>
         <li><a href="#accidental">Accidental</a><span>, in §5.2.1.1</span>
         <li><a href="#elementdef-accidental">accidental</a><span>, in §5.2.7.1</span>
         <li><a href="#alphanumeric-ascii-characters">alphanumeric ASCII characters</a><span>, in §3.2.1</span>
@@ -4293,13 +4381,13 @@ to the entire visual region, with no further decomposition.</p>
         <li><a href="#elementdef-beamed">beamed</a><span>, in §5.2.5.3</span>
         <li><a href="#beamed-beamed-group">beamed group</a><span>, in §5.2.5.3</span>
         <li><a href="#element-attrdef-performance-tempo-beat">beat</a><span>, in §6.1.3.5</span>
-        <li><a href="#valdef-y-below">below</a><span>, in §5.3.3.6</span>
+        <li><a href="#valdef-y-below">below</a><span>, in §5.3.3.7</span>
         <li><a href="#elementdef-bend">bend</a><span>, in §5.2.8.4</span>
         <li><a href="#element-attrdef-performance-tempo-bpm">bpm</a><span>, in §6.1.3.5</span>
         <li><a href="#elementdef-bracket">bracket</a><span>, in §5.2.10.7</span>
         <li><a href="#chords">chords</a><span>, in §5.2.1.2</span>
         <li><a href="#chromatic-pitch">chromatic pitch</a><span>, in §5.2.1.4</span>
-        <li><a href="#elementdef-class">class</a><span>, in §5.3.2</span>
+        <li><a href="#element-attrdef-style-class">class</a><span>, in §5.3.2</span>
         <li>
          clef
          <ul>
@@ -4335,13 +4423,13 @@ to the entire visual region, with no further decomposition.</p>
           <li><a href="#directions">definition of</a><span>, in §5.2.9</span>
          </ul>
         <li><a href="#elementdef-dirgroup">dirgroup</a><span>, in §5.2.9.8</span>
-        <li><a href="#propdef-display">display</a><span>, in §5.3.3.3</span>
+        <li><a href="#propdef-display">display</a><span>, in §5.3.3.4</span>
         <li>
          down
          <ul>
           <li><a href="#valdef-orientation-down">value for orientation</a><span>, in §5.2.1.11</span>
-          <li><a href="#attr-valuedef-stem-direction-down">attr-value for stem-direction</a><span>, in §5.3.3.7</span>
-          <li><a href="#attr-valuedef-stem-down">attr-value for stem</a><span>, in §5.3.3.8</span>
+          <li><a href="#attr-valuedef-stem-direction-down">attr-value for stem-direction</a><span>, in §5.3.3.8</span>
+          <li><a href="#attr-valuedef-stem-down">attr-value for stem</a><span>, in §5.3.3.9</span>
          </ul>
         <li>
          duration
@@ -4364,6 +4452,7 @@ to the entire visual region, with no further decomposition.</p>
          </ul>
         <li><a href="#elementdef-event">event</a><span>, in §5.2.5.1</span>
         <li><a href="#event-content">Event content</a><span>, in §5.2.6</span>
+        <li><a href="#element-attrdef-score-mapping-events">events</a><span>, in §6.1.2.2</span>
         <li><a href="#elementdef-expression">expression</a><span>, in §5.2.9.5</span>
         <li><a href="#attr-valuedef-dynamics-type-f">f</a><span>, in §5.2.9.2</span>
         <li><a href="#attr-valuedef-dynamics-type-ff">ff</a><span>, in §5.2.9.2</span>
@@ -4378,14 +4467,15 @@ to the entire visual region, with no further decomposition.</p>
         <li><a href="#general-note-values">general note values</a><span>, in §5.2.1.10</span>
         <li><a href="#elementdef-glissando">glissando</a><span>, in §5.2.8.2</span>
         <li><a href="#elementdef-global">global</a><span>, in §5.2.3.2</span>
-        <li><a href="#propdef-glyph">glyph</a><span>, in §5.3.3.2</span>
+        <li><a href="#propdef-glyph">glyph</a><span>, in §5.3.3.3</span>
         <li><a href="#elementdef-gmnx">gmnx</a><span>, in §6.1.1.1</span>
         <li><a href="#elementdef-grace">grace</a><span>, in §5.2.5.5</span>
-        <li><a href="#propdef-grace-slash">grace-slash</a><span>, in §5.3.3.8</span>
+        <li><a href="#propdef-grace-slash">grace-slash</a><span>, in §5.3.3.9</span>
+        <li><a href="#element-attrdef-score-mapping-graphics">graphics</a><span>, in §6.1.2.2</span>
         <li><a href="#elementdef-hammer-on">hammer-on</a><span>, in §5.2.8.5</span>
         <li><a href="#elementdef-harmony">harmony</a><span>, in §5.2.9.3</span>
         <li><a href="#elementdef-head">head</a><span>, in §4.1.2</span>
-        <li><a href="#valdef-visibility-hidden">hidden</a><span>, in §5.3.3.4</span>
+        <li><a href="#valdef-visibility-hidden">hidden</a><span>, in §5.3.3.5</span>
         <li><a href="#element-attrdef-tuplet-inner">inner</a><span>, in §5.2.5.2</span>
         <li><a href="#elementdef-instruction">instruction</a><span>, in §5.2.9.4</span>
         <li>
@@ -4424,23 +4514,18 @@ to the entire visual region, with no further decomposition.</p>
         <li><a href="#musical-body">musical body</a><span>, in §4.2</span>
         <li><a href="#musical-body">musical body content</a><span>, in §4.2</span>
         <li><a href="#attr-valuedef-dynamics-type-n">n</a><span>, in §5.2.9.2</span>
-        <li>
-         name
-         <ul>
-          <li><a href="#element-attrdef-class-name">element-attr for class</a><span>, in §5.3.2</span>
-          <li><a href="#element-attrdef-style-class-name">element-attr for style-class</a><span>, in §5.4.1</span>
-         </ul>
+        <li><a href="#element-attrdef-style-class-name">name</a><span>, in §5.4.1</span>
         <li>
          none
          <ul>
-          <li><a href="#valdef-display-none">value for display</a><span>, in §5.3.3.3</span>
-          <li><a href="#valdef-perform-none">value for perform</a><span>, in §5.3.3.5</span>
+          <li><a href="#valdef-display-none">value for display</a><span>, in §5.3.3.4</span>
+          <li><a href="#valdef-perform-none">value for perform</a><span>, in §5.3.3.6</span>
          </ul>
         <li>
          normal
          <ul>
-          <li><a href="#valdef-display-normal">value for display</a><span>, in §5.3.3.3</span>
-          <li><a href="#valdef-perform-normal">value for perform</a><span>, in §5.3.3.5</span>
+          <li><a href="#valdef-display-normal">value for display</a><span>, in §5.3.3.4</span>
+          <li><a href="#valdef-perform-normal">value for perform</a><span>, in §5.3.3.6</span>
          </ul>
         <li><a href="#notated-event">notated event</a><span>, in §5.2.1.2</span>
         <li><a href="#notated-sequence">notated sequence</a><span>, in §5.2.1.6</span>
@@ -4480,7 +4565,7 @@ to the entire visual region, with no further decomposition.</p>
           <li><a href="#parts">definition of</a><span>, in §5.2.1.1</span>
          </ul>
         <li><a href="#elementdef-pedal">pedal</a><span>, in §5.2.10.6</span>
-        <li><a href="#propdef-perform">perform</a><span>, in §5.3.3.5</span>
+        <li><a href="#propdef-perform">perform</a><span>, in §5.3.3.6</span>
         <li><a href="#elementdef-performance-audio">performance-audio</a><span>, in §6.1.3.1</span>
         <li><a href="#elementdef-performance-audio-media">performance-audio-media</a><span>, in §6.1.3.2</span>
         <li><a href="#performance-content">performance content</a><span>, in §6.1.3</span>
@@ -4511,12 +4596,7 @@ to the entire visual region, with no further decomposition.</p>
         <li><a href="#element-attrdef-style-property">property</a><span>, in §5.3.1</span>
         <li><a href="#elementdef-pull-off">pull-off</a><span>, in §5.2.8.6</span>
         <li><a href="#rational-number">rational number</a><span>, in §3.2.2.1</span>
-        <li>
-         region
-         <ul>
-          <li><a href="#element-attrdef-performance-event-region">element-attr for performance-event</a><span>, in §6.1.3.6</span>
-          <li><a href="#element-attrdef-performance-region-region">element-attr for performance-region</a><span>, in §6.1.3.8</span>
-         </ul>
+        <li><a href="#element-attrdef-performance-region-region">region</a><span>, in §6.1.3.8</span>
         <li>
          rest
          <ul>
@@ -4529,13 +4609,14 @@ to the entire visual region, with no further decomposition.</p>
         <li><a href="#rules-for-parsing-a-chromatic-pitch">rules for parsing a chromatic pitch</a><span>, in §5.2.2.3</span>
         <li><a href="#rules-for-parsing-rational-numbers">rules for parsing rational numbers</a><span>, in §3.2.2.1</span>
         <li><a href="#elementdef-score">score</a><span>, in §4.2.1</span>
+        <li><a href="#elementdef-score-mapping">score-mapping</a><span>, in §6.1.2.2</span>
         <li><a href="#score-order">score order</a><span>, in §5.2.4</span>
         <li><a href="#score-profile">score profile</a><span>, in §3.1.2</span>
         <li><a href="#score-types">score types</a><span>, in §2.2</span>
         <li><a href="#elementdef-score-view">score-view</a><span>, in §6.1.2.1</span>
         <li><a href="#attr-valuedef-collection-type-sections">sections</a><span>, in §4.1.3</span>
         <li><a href="#elementdef-segno">segno</a><span>, in §5.2.9.7</span>
-        <li><a href="#element-attrdef-performance-event-semantics">semantics</a><span>, in §6.1.3.6</span>
+        <li><a href="#element-attrdef-score-mapping-semantics">semantics</a><span>, in §6.1.2.2</span>
         <li><a href="#elementdef-sequence">sequence</a><span>, in §5.2.4.2</span>
         <li><a href="#sequence-content">Sequence content</a><span>, in §5.2.5</span>
         <li><a href="#sequence-the-content">sequence the content</a><span>, in §5.2.5</span>
@@ -4551,6 +4632,7 @@ to the entire visual region, with no further decomposition.</p>
         <li><a href="#element-attrdef-grace-slash">slash</a><span>, in §5.2.5.5</span>
         <li><a href="#elementdef-slide">slide</a><span>, in §5.2.8.3</span>
         <li><a href="#elementdef-slur">slur</a><span>, in §5.2.10.2</span>
+        <li><a href="#propdef-smufl-font">smufl-font</a><span>, in §5.3.3.2</span>
         <li><a href="#space-characters">space characters</a><span>, in §3.2.1</span>
         <li><a href="#span">Span</a><span>, in §5.2.1.5</span>
         <li><a href="#span-attributes">span attributes</a><span>, in §5.2.10.1</span>
@@ -4590,7 +4672,7 @@ to the entire visual region, with no further decomposition.</p>
          </ul>
         <li><a href="#attr-valuedef-grace-type-steal-following">steal-following</a><span>, in §5.2.5.5</span>
         <li><a href="#attr-valuedef-grace-type-steal-previous">steal-previous</a><span>, in §5.2.5.5</span>
-        <li><a href="#propdef-stem-direction">stem-direction</a><span>, in §5.3.3.7</span>
+        <li><a href="#propdef-stem-direction">stem-direction</a><span>, in §5.3.3.8</span>
         <li><a href="#strictly-splitting-the-string">strictly split</a><span>, in §3.2.1</span>
         <li><a href="#strictly-splitting-the-string">strictly split a string</a><span>, in §3.2.1</span>
         <li><a href="#strictly-splitting-the-string">strictly splitting the string</a><span>, in §3.2.1</span>
@@ -4644,8 +4726,8 @@ to the entire visual region, with no further decomposition.</p>
          up
          <ul>
           <li><a href="#valdef-orientation-up">value for orientation</a><span>, in §5.2.1.11</span>
-          <li><a href="#attr-valuedef-stem-direction-up">attr-value for stem-direction</a><span>, in §5.3.3.7</span>
-          <li><a href="#attr-valuedef-stem-up">attr-value for stem</a><span>, in §5.3.3.8</span>
+          <li><a href="#attr-valuedef-stem-direction-up">attr-value for stem-direction</a><span>, in §5.3.3.8</span>
+          <li><a href="#attr-valuedef-stem-up">attr-value for stem</a><span>, in §5.3.3.9</span>
          </ul>
         <li><a href="#uppercase-ascii-hex-digits">uppercase ASCII hex digits</a><span>, in §3.2.1</span>
         <li><a href="#uppercase-ascii-letters">uppercase ASCII letters</a><span>, in §3.2.1</span>
@@ -4661,18 +4743,17 @@ to the entire visual region, with no further decomposition.</p>
          view
          <ul>
           <li><a href="#element-attrdef-score-view-view">element-attr for score-view</a><span>, in §6.1.2.1</span>
-          <li><a href="#element-attrdef-performance-event-view">element-attr for performance-event</a><span>, in §6.1.3.6</span>
           <li><a href="#element-attrdef-performance-region-view">element-attr for performance-region</a><span>, in §6.1.3.8</span>
          </ul>
-        <li><a href="#propdef-visibility">visibility</a><span>, in §5.3.3.4</span>
-        <li><a href="#valdef-visibility-visible">visible</a><span>, in §5.3.3.4</span>
+        <li><a href="#propdef-visibility">visibility</a><span>, in §5.3.3.5</span>
+        <li><a href="#valdef-visibility-visible">visible</a><span>, in §5.3.3.5</span>
         <li><a href="#element-attrdef-sequence-voice">voice</a><span>, in §5.2.4.2</span>
         <li><a href="#voices">voices</a><span>, in §5.2.1.7</span>
         <li><a href="#elementdef-wedge">wedge</a><span>, in §5.2.10.3</span>
         <li><a href="#white_space">white_space</a><span>, in §3.2.1</span>
         <li><a href="#white_space">white_space characters</a><span>, in §3.2.1</span>
         <li><a href="#event-whole-measure-event">whole-measure event</a><span>, in §5.2.5.1</span>
-        <li><a href="#propdef-y">y</a><span>, in §5.3.3.6</span>
+        <li><a href="#propdef-y">y</a><span>, in §5.3.3.7</span>
         <li>
          yes
          <ul>
@@ -5000,11 +5081,11 @@ to the entire visual region, with no further decomposition.</p>
     <li><a href="#ref-for-contexts②①">5.2.10.4. The cresc element</a>
     <li><a href="#ref-for-contexts②②">5.2.10.5. The dim element</a>
     <li><a href="#ref-for-contexts②③">5.3.1. The style element</a>
-    <li><a href="#ref-for-contexts②④">5.3.2. The class element</a>
-    <li><a href="#ref-for-contexts②⑤">5.4.1. The style-class element</a>
-    <li><a href="#ref-for-contexts②⑥">5.4.2. The style-selector element</a>
-    <li><a href="#ref-for-contexts②⑦">6.1.1.1. The gmnx element</a>
-    <li><a href="#ref-for-contexts②⑧">6.1.2.1. The score-view element</a>
+    <li><a href="#ref-for-contexts②④">5.4.1. The style-class element</a>
+    <li><a href="#ref-for-contexts②⑤">5.4.2. The style-selector element</a>
+    <li><a href="#ref-for-contexts②⑥">6.1.1.1. The gmnx element</a>
+    <li><a href="#ref-for-contexts②⑦">6.1.2.1. The score-view element</a>
+    <li><a href="#ref-for-contexts②⑧">6.1.2.2. The score-mapping element</a>
     <li><a href="#ref-for-contexts②⑨">6.1.3.1. The performance-audio element</a>
     <li><a href="#ref-for-contexts③⓪">6.1.3.2. The performance-audio-media element</a>
     <li><a href="#ref-for-contexts③①">6.1.3.3. The performance-data element</a>
@@ -5043,11 +5124,11 @@ to the entire visual region, with no further decomposition.</p>
     <li><a href="#ref-for-content-model②②">5.2.10.5. The dim element</a>
     <li><a href="#ref-for-content-model②③">5.2.13.1. The interpretation element</a>
     <li><a href="#ref-for-content-model②④">5.3.1. The style element</a>
-    <li><a href="#ref-for-content-model②⑤">5.3.2. The class element</a>
-    <li><a href="#ref-for-content-model②⑥">5.4.1. The style-class element</a>
-    <li><a href="#ref-for-content-model②⑦">5.4.2. The style-selector element</a>
-    <li><a href="#ref-for-content-model②⑧">6.1.1.1. The gmnx element</a>
-    <li><a href="#ref-for-content-model②⑨">6.1.2.1. The score-view element</a>
+    <li><a href="#ref-for-content-model②⑤">5.4.1. The style-class element</a>
+    <li><a href="#ref-for-content-model②⑥">5.4.2. The style-selector element</a>
+    <li><a href="#ref-for-content-model②⑦">6.1.1.1. The gmnx element</a>
+    <li><a href="#ref-for-content-model②⑧">6.1.2.1. The score-view element</a>
+    <li><a href="#ref-for-content-model②⑨">6.1.2.2. The score-mapping element</a>
     <li><a href="#ref-for-content-model③⓪">6.1.3.1. The performance-audio element</a>
     <li><a href="#ref-for-content-model③①">6.1.3.2. The performance-audio-media element</a>
     <li><a href="#ref-for-content-model③②">6.1.3.3. The performance-data element</a>
@@ -5267,7 +5348,7 @@ to the entire visual region, with no further decomposition.</p>
     <li><a href="#ref-for-orientation②">5.2.5.1. The event element</a> <a href="#ref-for-orientation③">(2)</a>
     <li><a href="#ref-for-orientation④">5.2.5.2. The tuplet element</a> <a href="#ref-for-orientation⑤">(2)</a>
     <li><a href="#ref-for-orientation⑥">5.2.9.1. Direction attributes</a> <a href="#ref-for-orientation⑦">(2)</a>
-    <li><a href="#ref-for-orientation⑧">5.3.3.7. The stem-direction property</a>
+    <li><a href="#ref-for-orientation⑧">5.3.3.8. The stem-direction property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valdef-orientation-up">
@@ -5356,8 +5437,9 @@ to the entire visual region, with no further decomposition.</p>
     <li><a href="#ref-for-elementdef-part⑨">5.2.11. Staff content</a>
     <li><a href="#ref-for-elementdef-part①⓪">5.2.12. Part description content</a>
     <li><a href="#ref-for-elementdef-part①①">5.3.3.1. The color property</a>
-    <li><a href="#ref-for-elementdef-part①②">5.3.3.3. The display property</a>
-    <li><a href="#ref-for-elementdef-part①③">6.1.3.4. The performance-part element</a>
+    <li><a href="#ref-for-elementdef-part①②">5.3.3.2. The smufl-font property</a>
+    <li><a href="#ref-for-elementdef-part①③">5.3.3.4. The display property</a>
+    <li><a href="#ref-for-elementdef-part①④">6.1.3.4. The performance-part element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="measure-content">
@@ -5448,9 +5530,10 @@ to the entire visual region, with no further decomposition.</p>
     <li><a href="#ref-for-sequence-content⑧">5.2.9. Direction content</a>
     <li><a href="#ref-for-sequence-content⑨">5.2.9.1. Direction attributes</a>
     <li><a href="#ref-for-sequence-content①⓪">5.3.3.1. The color property</a>
-    <li><a href="#ref-for-sequence-content①①">5.3.3.3. The display property</a>
-    <li><a href="#ref-for-sequence-content①②">5.3.3.4. The visibility property</a>
-    <li><a href="#ref-for-sequence-content①③">5.3.3.5. The perform property</a>
+    <li><a href="#ref-for-sequence-content①①">5.3.3.2. The smufl-font property</a>
+    <li><a href="#ref-for-sequence-content①②">5.3.3.4. The display property</a>
+    <li><a href="#ref-for-sequence-content①③">5.3.3.5. The visibility property</a>
+    <li><a href="#ref-for-sequence-content①④">5.3.3.6. The perform property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="starting-position">
@@ -5495,7 +5578,7 @@ to the entire visual region, with no further decomposition.</p>
     <li><a href="#ref-for-elementdef-event⑦">5.2.6.1. The note element</a> <a href="#ref-for-elementdef-event⑧">(2)</a> <a href="#ref-for-elementdef-event⑨">(3)</a>
     <li><a href="#ref-for-elementdef-event①⓪">5.2.6.2. The rest element</a>
     <li><a href="#ref-for-elementdef-event①①">5.2.13.1. The interpretation element</a>
-    <li><a href="#ref-for-elementdef-event①②">5.3.3.4. The visibility property</a>
+    <li><a href="#ref-for-elementdef-event①②">5.3.3.5. The visibility property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-event-value">
@@ -5610,7 +5693,7 @@ to the entire visual region, with no further decomposition.</p>
    <ul>
     <li><a href="#ref-for-elementdef-grace">5.2.5. Sequence content</a>
     <li><a href="#ref-for-elementdef-grace①">5.2.5.5. The grace element</a> <a href="#ref-for-elementdef-grace②">(2)</a>
-    <li><a href="#ref-for-elementdef-grace③">5.3.3.8. The grace-slash property</a>
+    <li><a href="#ref-for-elementdef-grace③">5.3.3.9. The grace-slash property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-grace-type">
@@ -5632,10 +5715,11 @@ to the entire visual region, with no further decomposition.</p>
     <li><a href="#ref-for-event-content①">5.2.5. Sequence content</a>
     <li><a href="#ref-for-event-content②">5.2.5.1. The event element</a>
     <li><a href="#ref-for-event-content③">5.3.3.1. The color property</a>
-    <li><a href="#ref-for-event-content④">5.3.3.3. The display property</a>
-    <li><a href="#ref-for-event-content⑤">5.3.3.4. The visibility property</a>
-    <li><a href="#ref-for-event-content⑥">5.3.3.5. The perform property</a>
-    <li><a href="#ref-for-event-content⑦">5.3.3.7. The stem-direction property</a>
+    <li><a href="#ref-for-event-content④">5.3.3.2. The smufl-font property</a>
+    <li><a href="#ref-for-event-content⑤">5.3.3.4. The display property</a>
+    <li><a href="#ref-for-event-content⑥">5.3.3.5. The visibility property</a>
+    <li><a href="#ref-for-event-content⑦">5.3.3.6. The perform property</a>
+    <li><a href="#ref-for-event-content⑧">5.3.3.8. The stem-direction property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-note">
@@ -5682,10 +5766,11 @@ to the entire visual region, with no further decomposition.</p>
    <ul>
     <li><a href="#ref-for-note-content">5.2.6.1. The note element</a>
     <li><a href="#ref-for-note-content①">5.3.3.1. The color property</a>
-    <li><a href="#ref-for-note-content②">5.3.3.2. The glyph property</a>
-    <li><a href="#ref-for-note-content③">5.3.3.3. The display property</a>
-    <li><a href="#ref-for-note-content④">5.3.3.4. The visibility property</a>
-    <li><a href="#ref-for-note-content⑤">5.3.3.5. The perform property</a>
+    <li><a href="#ref-for-note-content②">5.3.3.2. The smufl-font property</a>
+    <li><a href="#ref-for-note-content③">5.3.3.3. The glyph property</a>
+    <li><a href="#ref-for-note-content④">5.3.3.4. The display property</a>
+    <li><a href="#ref-for-note-content⑤">5.3.3.5. The visibility property</a>
+    <li><a href="#ref-for-note-content⑥">5.3.3.6. The perform property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="liaison-content">
@@ -5693,9 +5778,10 @@ to the entire visual region, with no further decomposition.</p>
    <ul>
     <li><a href="#ref-for-liaison-content">5.2.6.1. The note element</a>
     <li><a href="#ref-for-liaison-content①">5.3.3.1. The color property</a>
-    <li><a href="#ref-for-liaison-content②">5.3.3.3. The display property</a>
-    <li><a href="#ref-for-liaison-content③">5.3.3.4. The visibility property</a>
-    <li><a href="#ref-for-liaison-content④">5.3.3.5. The perform property</a>
+    <li><a href="#ref-for-liaison-content②">5.3.3.2. The smufl-font property</a>
+    <li><a href="#ref-for-liaison-content③">5.3.3.4. The display property</a>
+    <li><a href="#ref-for-liaison-content④">5.3.3.5. The visibility property</a>
+    <li><a href="#ref-for-liaison-content⑤">5.3.3.6. The perform property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="direction-content">
@@ -5711,11 +5797,12 @@ to the entire visual region, with no further decomposition.</p>
     <li><a href="#ref-for-direction-content①⓪">5.2.10.4. The cresc element</a>
     <li><a href="#ref-for-direction-content①①">5.2.10.5. The dim element</a>
     <li><a href="#ref-for-direction-content①②">5.3.3.1. The color property</a>
-    <li><a href="#ref-for-direction-content①③">5.3.3.2. The glyph property</a>
-    <li><a href="#ref-for-direction-content①④">5.3.3.3. The display property</a>
-    <li><a href="#ref-for-direction-content①⑤">5.3.3.4. The visibility property</a>
-    <li><a href="#ref-for-direction-content①⑥">5.3.3.5. The perform property</a>
-    <li><a href="#ref-for-direction-content①⑦">5.3.3.6. The y property</a>
+    <li><a href="#ref-for-direction-content①③">5.3.3.2. The smufl-font property</a>
+    <li><a href="#ref-for-direction-content①④">5.3.3.3. The glyph property</a>
+    <li><a href="#ref-for-direction-content①⑤">5.3.3.4. The display property</a>
+    <li><a href="#ref-for-direction-content①⑥">5.3.3.5. The visibility property</a>
+    <li><a href="#ref-for-direction-content①⑦">5.3.3.6. The perform property</a>
+    <li><a href="#ref-for-direction-content①⑧">5.3.3.7. The y property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="direction-attributes">
@@ -5846,7 +5933,7 @@ to the entire visual region, with no further decomposition.</p>
   <aside class="dfn-panel" data-for="style-property-computation">
    <b><a href="#style-property-computation">#style-property-computation</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-style-property-computation">5.3.2. The class element</a>
+    <li><a href="#ref-for-style-property-computation">5.3.2. The class attribute</a>
     <li><a href="#ref-for-style-property-computation①">5.4.1. The style-class element</a>
     <li><a href="#ref-for-style-property-computation②">5.4.2. The style-selector element</a>
    </ul>
@@ -5872,18 +5959,11 @@ to the entire visual region, with no further decomposition.</p>
     <li><a href="#ref-for-element-attrdef-style-value">5.3.1. The style element</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="elementdef-class">
-   <b><a href="#elementdef-class">#elementdef-class</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="element-attrdef-style-class">
+   <b><a href="#element-attrdef-style-class">#element-attrdef-style-class</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-class">5.3. Style properties</a>
-    <li><a href="#ref-for-elementdef-class①">5.3.2. The class element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-class-name">
-   <b><a href="#element-attrdef-class-name">#element-attrdef-class-name</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-element-attrdef-class-name">5.3. Style properties</a>
-    <li><a href="#ref-for-element-attrdef-class-name①">5.3.2. The class element</a>
+    <li><a href="#ref-for-element-attrdef-style-class">5.3. Style properties</a> <a href="#ref-for-element-attrdef-style-class①">(2)</a>
+    <li><a href="#ref-for-element-attrdef-style-class②">5.3.2. The class attribute</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="propdef-color">
@@ -5892,98 +5972,104 @@ to the entire visual region, with no further decomposition.</p>
     <li><a href="#ref-for-propdef-color">5.3.3.1. The color property</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="propdef-smufl-font">
+   <b><a href="#propdef-smufl-font">#propdef-smufl-font</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-propdef-smufl-font">5.3.3.2. The smufl-font property</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="propdef-glyph">
    <b><a href="#propdef-glyph">#propdef-glyph</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-propdef-glyph">5.2.2.5. SMuFL glyph name syntax</a>
-    <li><a href="#ref-for-propdef-glyph①">5.3.3.2. The glyph property</a>
+    <li><a href="#ref-for-propdef-glyph①">5.3.3.3. The glyph property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="propdef-display">
    <b><a href="#propdef-display">#propdef-display</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-propdef-display">5.3.3.3. The display property</a>
-    <li><a href="#ref-for-propdef-display①">5.3.3.4. The visibility property</a>
+    <li><a href="#ref-for-propdef-display">5.3.3.4. The display property</a>
+    <li><a href="#ref-for-propdef-display①">5.3.3.5. The visibility property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valdef-display-normal">
    <b><a href="#valdef-display-normal">#valdef-display-normal</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-valdef-display-normal">5.3.3.3. The display property</a>
+    <li><a href="#ref-for-valdef-display-normal">5.3.3.4. The display property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valdef-display-none">
    <b><a href="#valdef-display-none">#valdef-display-none</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-valdef-display-none">5.3.3.3. The display property</a>
-    <li><a href="#ref-for-valdef-display-none①">5.3.3.4. The visibility property</a>
+    <li><a href="#ref-for-valdef-display-none">5.3.3.4. The display property</a>
+    <li><a href="#ref-for-valdef-display-none①">5.3.3.5. The visibility property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="propdef-visibility">
    <b><a href="#propdef-visibility">#propdef-visibility</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-propdef-visibility">5.3.3.4. The visibility property</a> <a href="#ref-for-propdef-visibility①">(2)</a>
+    <li><a href="#ref-for-propdef-visibility">5.3.3.5. The visibility property</a> <a href="#ref-for-propdef-visibility①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valdef-visibility-visible">
    <b><a href="#valdef-visibility-visible">#valdef-visibility-visible</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-valdef-visibility-visible">5.3.3.4. The visibility property</a>
+    <li><a href="#ref-for-valdef-visibility-visible">5.3.3.5. The visibility property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valdef-visibility-hidden">
    <b><a href="#valdef-visibility-hidden">#valdef-visibility-hidden</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-valdef-visibility-hidden">5.3.3.4. The visibility property</a> <a href="#ref-for-valdef-visibility-hidden①">(2)</a>
+    <li><a href="#ref-for-valdef-visibility-hidden">5.3.3.5. The visibility property</a> <a href="#ref-for-valdef-visibility-hidden①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="propdef-perform">
    <b><a href="#propdef-perform">#propdef-perform</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-propdef-perform">5.3.3.5. The perform property</a>
+    <li><a href="#ref-for-propdef-perform">5.3.3.6. The perform property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valdef-perform-normal">
    <b><a href="#valdef-perform-normal">#valdef-perform-normal</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-valdef-perform-normal">5.3.3.5. The perform property</a>
+    <li><a href="#ref-for-valdef-perform-normal">5.3.3.6. The perform property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valdef-perform-none">
    <b><a href="#valdef-perform-none">#valdef-perform-none</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-valdef-perform-none">5.3.3.5. The perform property</a>
+    <li><a href="#ref-for-valdef-perform-none">5.3.3.6. The perform property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="propdef-y">
    <b><a href="#propdef-y">#propdef-y</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-propdef-y">5.3.3.6. The y property</a>
+    <li><a href="#ref-for-propdef-y">5.3.3.7. The y property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valdef-y-above">
    <b><a href="#valdef-y-above">#valdef-y-above</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-valdef-y-above">5.3.3.6. The y property</a>
+    <li><a href="#ref-for-valdef-y-above">5.3.3.7. The y property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valdef-y-below">
    <b><a href="#valdef-y-below">#valdef-y-below</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-valdef-y-below">5.3.3.6. The y property</a>
+    <li><a href="#ref-for-valdef-y-below">5.3.3.7. The y property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="propdef-stem-direction">
    <b><a href="#propdef-stem-direction">#propdef-stem-direction</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-propdef-stem-direction">5.2.5.1. The event element</a>
-    <li><a href="#ref-for-propdef-stem-direction①">5.3.3.7. The stem-direction property</a>
+    <li><a href="#ref-for-propdef-stem-direction①">5.3.3.8. The stem-direction property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="propdef-grace-slash">
    <b><a href="#propdef-grace-slash">#propdef-grace-slash</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-propdef-grace-slash">5.3.3.8. The grace-slash property</a>
+    <li><a href="#ref-for-propdef-grace-slash">5.3.3.9. The grace-slash property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="stylesheet-definitions">
@@ -6004,8 +6090,8 @@ to the entire visual region, with no further decomposition.</p>
    <b><a href="#style-class-style-class-definition">#style-class-style-class-definition</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-style-class-style-class-definition">5.3. Style properties</a>
-    <li><a href="#ref-for-style-class-style-class-definition①">5.3.2. The class element</a> <a href="#ref-for-style-class-style-class-definition②">(2)</a>
-    <li><a href="#ref-for-style-class-style-class-definition③">5.4. Stylesheet definitions</a>
+    <li><a href="#ref-for-style-class-style-class-definition①">5.3.2. The class attribute</a>
+    <li><a href="#ref-for-style-class-style-class-definition②">5.4. Stylesheet definitions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-style-class-name">
@@ -6018,7 +6104,7 @@ to the entire visual region, with no further decomposition.</p>
    <b><a href="#elementdef-style-selector">#elementdef-style-selector</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-elementdef-style-selector">5.4. Stylesheet definitions</a>
-    <li><a href="#ref-for-elementdef-style-selector①">5.4.2. The style-selector element</a> <a href="#ref-for-elementdef-style-selector②">(2)</a> <a href="#ref-for-elementdef-style-selector③">(3)</a>
+    <li><a href="#ref-for-elementdef-style-selector①">5.4.2. The style-selector element</a> <a href="#ref-for-elementdef-style-selector②">(2)</a> <a href="#ref-for-elementdef-style-selector③">(3)</a> <a href="#ref-for-elementdef-style-selector④">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="style-selector-style-selector-definition">
@@ -6056,14 +6142,39 @@ to the entire visual region, with no further decomposition.</p>
    <ul>
     <li><a href="#ref-for-elementdef-score-view">6.1.1.1. The gmnx element</a>
     <li><a href="#ref-for-elementdef-score-view①">6.1.2.1. The score-view element</a> <a href="#ref-for-elementdef-score-view②">(2)</a> <a href="#ref-for-elementdef-score-view③">(3)</a>
-    <li><a href="#ref-for-elementdef-score-view④">6.1.3.6. The performance-event element</a>
-    <li><a href="#ref-for-elementdef-score-view⑤">6.1.3.8. The performance-region element</a> <a href="#ref-for-elementdef-score-view⑥">(2)</a>
+    <li><a href="#ref-for-elementdef-score-view④">6.1.2.2. The score-mapping element</a> <a href="#ref-for-elementdef-score-view⑤">(2)</a> <a href="#ref-for-elementdef-score-view⑥">(3)</a>
+    <li><a href="#ref-for-elementdef-score-view⑦">6.1.3.8. The performance-region element</a> <a href="#ref-for-elementdef-score-view⑧">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-score-view-view">
    <b><a href="#element-attrdef-score-view-view">#element-attrdef-score-view-view</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-element-attrdef-score-view-view">6.1.2.1. The score-view element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="elementdef-score-mapping">
+   <b><a href="#elementdef-score-mapping">#elementdef-score-mapping</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-elementdef-score-mapping">6.1.2.1. The score-view element</a>
+    <li><a href="#ref-for-elementdef-score-mapping①">6.1.2.2. The score-mapping element</a> <a href="#ref-for-elementdef-score-mapping②">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-score-mapping-graphics">
+   <b><a href="#element-attrdef-score-mapping-graphics">#element-attrdef-score-mapping-graphics</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-score-mapping-graphics">6.1.2.2. The score-mapping element</a> <a href="#ref-for-element-attrdef-score-mapping-graphics①">(2)</a> <a href="#ref-for-element-attrdef-score-mapping-graphics②">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-score-mapping-events">
+   <b><a href="#element-attrdef-score-mapping-events">#element-attrdef-score-mapping-events</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-score-mapping-events">6.1.2.2. The score-mapping element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-score-mapping-semantics">
+   <b><a href="#element-attrdef-score-mapping-semantics">#element-attrdef-score-mapping-semantics</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-score-mapping-semantics">6.1.2.2. The score-mapping element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="performance-content">
@@ -6174,8 +6285,9 @@ to the entire visual region, with no further decomposition.</p>
    <b><a href="#elementdef-performance-event">#elementdef-performance-event</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-elementdef-performance-event">5.2.13.1. The interpretation element</a> <a href="#ref-for-elementdef-performance-event①">(2)</a> <a href="#ref-for-elementdef-performance-event②">(3)</a>
-    <li><a href="#ref-for-elementdef-performance-event③">6.1.3.4. The performance-part element</a> <a href="#ref-for-elementdef-performance-event④">(2)</a>
-    <li><a href="#ref-for-elementdef-performance-event⑤">6.1.3.6. The performance-event element</a>
+    <li><a href="#ref-for-elementdef-performance-event③">6.1.2.2. The score-mapping element</a> <a href="#ref-for-elementdef-performance-event④">(2)</a>
+    <li><a href="#ref-for-elementdef-performance-event⑤">6.1.3.4. The performance-part element</a> <a href="#ref-for-elementdef-performance-event⑥">(2)</a>
+    <li><a href="#ref-for-elementdef-performance-event⑦">6.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-performance-event-start">
@@ -6207,24 +6319,6 @@ to the entire visual region, with no further decomposition.</p>
    <b><a href="#element-attrdef-performance-event-techniques">#element-attrdef-performance-event-techniques</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-element-attrdef-performance-event-techniques">6.1.3.6. The performance-event element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-performance-event-view">
-   <b><a href="#element-attrdef-performance-event-view">#element-attrdef-performance-event-view</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-element-attrdef-performance-event-view">6.1.3.6. The performance-event element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-performance-event-region">
-   <b><a href="#element-attrdef-performance-event-region">#element-attrdef-performance-event-region</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-element-attrdef-performance-event-region">6.1.3.6. The performance-event element</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-performance-event-semantics">
-   <b><a href="#element-attrdef-performance-event-semantics">#element-attrdef-performance-event-semantics</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-element-attrdef-performance-event-semantics">6.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-performance-mapping">
