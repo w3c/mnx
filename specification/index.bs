@@ -3263,33 +3263,33 @@ The fragment identifier refers to the same document identified by the
 
 If the pair of attributes <dfn element-attr>cursor-start</dfn> and <dfn
 element-attr>cursor-end</dfn> are defined, then a mapping is defined between
-points in performance time and line segments in the visual region. Each attribute
-supplies an <a>ordered set of space-separated tokens</a> giving the following:
+points in performance time and line segments in the visual region. Each
+attribute supplies an <a>ordered set of space-separated tokens</a> giving the
+cursor's endpoints as successive X/Y pairs in user coordinates applicable to
+the region.
 
-- The X and Y locations in SVG user coordinates of the cursor <var>top</var>
-- The X and Y locations in SVG user coordinates of the cursor <var>bottom</var>
-
-Note: the terms <var>top</var> and <var>bottom</var> are arbitrary, as the cursor
-may have any desired orientation and may progress in any direction. Multiple regions may
-be pieced together in a contiguous manner to approximate any desired non-linear score layout.
+The special tokens `left`, `right`, `top` and `bottom` may be used here to
+define both endpoints of a cursor in terms of the corresponding edge of the
+region's SVG bounding box.
 
 Under this mapping, a time <var>t</var> in the time region corresponds to a
 line segment in the visual region connecting two points given by the respective
 formulae of:
 
-- <var>cursor-start.top</var> + (<var ignore=''>cursor-end.top</var> - <var>cursor-start.top</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).
-- <var>cursor-start.bottom</var> + (<var ignore=''>cursor-end.bottom</var> - <var>cursor-start.bottom</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).
+- <var>cursor-start.p1</var> + (<var ignore=''>cursor-end.p1</var> - <var>cursor-start.p1</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).
+- <var>cursor-start.p2</var> + (<var ignore=''>cursor-end.p2</var> - <var>cursor-start.p2</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).
 
 If either or both of <{performance-region/cursor-start}> and
 <{performance-region/cursor-end}> are undefined, then the entire time region corresponds
 to the entire visual region, with no further decomposition.
 
 Note: To more easily support cursor motion through curved arcs,  non-parallel
-start and end cursors may be considered as segments of two rays whose common
+start and end cursors could be considered as segments of two rays whose common
 origin lies at the point of intersection between these cursors. Interpolation
-can then be performed in radial coordinates, smoothly sweeping both the
-angle and the distances from the origin to fit the start and end cursor lines.
-
+would then be performed in radial coordinates, smoothly sweeping both the
+angle and the distances from the origin to move the cursor's endpoints along
+roughly circular arcs. Straight-line motion would be merely a special case in which
+the intersection lies at infinity.
   <dd></dd>
 
 </section>
