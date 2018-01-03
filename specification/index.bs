@@ -1002,7 +1002,7 @@ Examples include:
 :: A compound time signature of 2/8, 3/8 and 2/8, with 2+3+2 over the shared denominator 8.
 : `2/8 + 3/4 + 2/8`
 :: A compound time signature of 2/8, 3/4 and 2/8 as separate fractions (note that the spaces
-are ignored)
+    are ignored)
 
 
 <h5 id="chromatic-pitch-syntax">Chromatic pitch syntax</h5>
@@ -2129,21 +2129,30 @@ Directions share a set of common <dfn>direction attributes</dfn> in an attribute
   <dl class="def">
     <dt><a>Attributes</a>:</dt>
     <dd><{direction/location}> - the <a>measure location</a> of the direction</dd>
+    <dd><{direction/staff}> - an optional <a>staff index</a></dd>
     <dd><{direction/orient}> - an optional <a>orientation</a></dd>
   </dl>
 
-All directions within a <{directions}> parent element must be
-given an explicit <a>measure location</a> by supplying a <dfn element-attr
-dfn-for="direction">location</dfn> attribute.
+All directions within a <{directions}> parent element may be given an explicit
+<a>measure location</a> by supplying a <dfn element-attr dfn-
+for="direction">location</dfn> attribute. If omitted, this is determined by
+the process of <a>sequencing the content</a> in which it occurs; if not within
+a <{sequence}>, the default measure location is zero.
 
 Conversely, directions occurring within <a>sequence content</a> must omit this
 attribute as their location is determined during the procedure of
 <a>sequencing the content</a>.
 
-The optional <dfn element-attr dfn-for="direction">orient</dfn> attribute provides a specific
-<a>orientation</a> for this direction. If not provided, the orientation is
-inherited from any <{sequence}> ancestor which specified it. If
-no ancestor did so, it is determined automatically according to the
+The optional <dfn element-attr dfn-for="direction">staff</dfn> attribute
+designates the staff index to which this direction applies, if such a
+designation makes sense.  If not provided, the orientation is inherited from
+any <{sequence}> ancestor which specified it. If no ancestor did so, it is
+determined automatically according to the implementation's rendering rules.
+
+The optional <dfn element-attr dfn-for="direction">orient</dfn> attribute
+provides a specific <a>orientation</a> for this direction. If not provided,
+the orientation is inherited from any <{sequence}> ancestor which specified
+it. If no ancestor did so, it is determined automatically according to the
 implementation's rendering rules.
 
 <h5 id="the-dynamics-element">The <dfn element><code>dynamics</code></dfn> element</h5>
@@ -2341,41 +2350,75 @@ displayed in the score for this element.
 
 Advisement: Other spans exist in MusicXML and need to be migrated.
 
-<h4 id="cwmnx-staff-content">Staff content</h4>
+<h4 id="cwmnx-staff-directions">Staff directions</h4>
 
-<dfn>Staff content</dfn> consists of elements that apply as a whole to the
-musical staff on which events are placed. Such elements may occur in any
-<{measure}> element.
+<dfn>Staff directions</dfn> are directions that apply as a whole to the
+one or more musical staves in a part, and which determine the interpretation
+of other notations within some applicable range of those staves.
 
-In general, any element of staff content <dfn>partitions</dfn> the events in a
-measure, such that all events lie either before or after the given element.
+Because it delineates disjoint ranges of staves, any <a>staff direction</a> has the
+effect of <dfn lt="partitioning|partitions">partitioning</dfn> the events in a
+measure, such that all events lie either before or after the given directions.
 For example, consider a <{clef}> element describing a clef change. No matter
 how many polyphonic voices exist in a measure, all notes in all voices either
 lie to the left or to the right of this clef.
 
-Staff content that modifies the interpretation or layout of the staff, applies
+Staff directions that modify the interpretation or layout of the staff, apply
 from the start of that <{measure}> to all subsequent measures within the same
 <{global}> or <{part}> element until changed.
 
-Most staff content elements have a fixed location, typically the beginning or
+Most staff directions have a fixed location, typically the beginning or
 end of the measure in which they occur.
 
 <h5 id="the-key-element">The <dfn element><code>key</code></dfn> element</h5>
 <section dfn-for="key">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{key/fifths}> - the transposition from concert pitch in fifths</dd>
+  </dl>
+
+The <{key}> element defines a key signature applicable to this and all following
+measure content, until changed.
+
+The <a>measure location</a> of a <{key}> direction is ignored and is assumed to be zero.
+
+The <a>staff index</a> of a <{key}> direction is ignored, as the direction always applies
+to all the staves in a given part (if not the whole score).
+
+It is invalid to place more than one <{key}> element within a <{measure}>.
+
+In the <{cwmnx/profile/standard}> CWMNX profile, <{key}> elements in <{global}> measure content
+are required for every key change. <{key}> elements below <{part}>
+are optional; if present they must indicate a value of <{key/fifths}> that is
+either identical to the corresponding value in the global <{key}> or differs from it
+by a multiple of 12.
+
+The required <dfn element-attr>fifths</dfn> attribute is a <a>valid
+integer</a> which supplies a number of fifths distance from a signature with
+no accidentals.
 </section>
 
 <h5 id="the-time-element">The <dfn element><code>time</code></dfn> element</h5>
 <section dfn-for="time">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
-    <dd><{measure}></dd>
+    <dd>Direction content</dd>
     <dt><a>Content Model</a>:</dt>
     <dd>None</dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{time/signature}> - the applicable <a>time signature</a></dd>
   </dl>
 
-The <{time}> element defines a time signature.
+The <{time}> element defines a time signature applicable to this and following
+measures, until changed.
+
+The <a>measure location</a> of a <{time}> direction is ignored and is assumed to be zero.
+
+It is invalid to place more than one <{time}> element within a <{measure}>.
 
 In the <{cwmnx/profile/standard}> CWMNX profile, a <{time}> element may only appear
 inside <{global}> measure content, not within a <{part}>.
@@ -2386,18 +2429,79 @@ The required <dfn element-attr>signature</dfn> attribute supplies a <a>time sign
 
 <h5 id="the-tempo-element">The <dfn element><code>tempo</code></dfn> element</h5>
 <section dfn-for="tempo">
-</section>
 
-<h5 id="the-staves-element">The <dfn element><code>staves</code></dfn> element</h5>
-<section dfn-for="staves">
-</section>
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>Exact text to be displayed for the element in lieu of its default representation.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{tempo/value}> - the note value of the tempo</dd>
+    <dd><{tempo/bpm}> - the number of beats per minute</dd>
+  </dl>
 
-<h5 id="the-staff-details-element">The <dfn element><code>staff-details</code></dfn> element</h5>
-<section dfn-for="staff-details">
+The <{tempo}> element defines a tempo applicable to this and following
+measure content, until changed.
+
+In the <{cwmnx/profile/standard}> CWMNX profile, a <{tempo}> element may only appear
+inside <{global}> measure content, not within a <{part}>.
+
+The required <dfn element-attr>value</dfn> attribute supplies a <a>note value</a>
+which is asserted to occur with a frequency of <dfn element-attr>bpm</dfn> times per
+minute, which is a <a>valid floating-point number</a>.
+
 </section>
 
 <h5 id="the-clef-element">The <dfn element><code>clef</code></dfn> element</h5>
 <section dfn-for="clef">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{clef/line}> - the staff line associated with the clef sign</dd>
+    <dd><{clef/sign}> - the clef sign</dd>
+    <dd><{clef/octave}> - an optional number of octaves by which the clef's normal pitches should be transposed</dd>
+  </dl>
+
+The <{clef}> element defines a clef associated with this staff.
+
+The required <dfn element-attr>line</dfn> attribute gives the staff line for
+the clef symbol, where the counting upwards from 1 starting at the bottom line
+on the staff.
+
+The required <dfn element-attr>sign</dfn> attribute gives the clef symbol and may
+assume the following values:
+
+<dl dfn-for="clef-sign">
+  <dt><dfn attr-value><code>G</code></dfn></dt>
+  <dd>G (treble) clef</dd>
+  <dt><dfn attr-value><code>F</code></dfn></dt>
+  <dd>F (bass) clef</dd>
+  <dt><dfn attr-value><code>C</code></dfn></dt>
+  <dd>C clef</dd>
+  <dt><dfn attr-value><code>percussion</code></dfn></dt>
+  <dd>Percussion clef</dd>
+  <dt><dfn attr-value><code>jianpu</code></dfn></dt>
+  <dd>Jianpu clef</dd>
+</dl>
+
+<em>Is the <em>none</em> value from MusicXML needed? Why?</em>
+
+The optional <dfn element-attr>octave</dfn> attribute is a <a>signed
+integer</a> giving the number of octaves by which the pitches normally
+indicated by the given clef sign should be transposed. It defaults to zero.
+
+</section>
+
+<h5 id="the-staff-details-element">The <dfn element><code>staff-details</code></dfn> element</h5>
+<section dfn-for="staff-details">
+<em>Details TBD.</em>
+
+<em>Describes the nature of a particular staff; applies to this staff in all succeeeding
+  measure content in the part until changed. Expected to resemble MusicXML's corresponding element.</em>
+
 </section>
 
 <h5 id="the-barline-element">The <dfn element><code>barline</code></dfn> element</h5>
@@ -2406,13 +2510,16 @@ The required <dfn element-attr>signature</dfn> attribute supplies a <a>time sign
 
 <h5 id="the-use-instrument-element">The <dfn element><code>use-instrument</code></dfn> element</h5>
 <section dfn-for="use-instrument">
+
+  <em>Details TBD - applies a specific instrument sound to the staff as a whole.</em>
 </section>
 
 <h5 id="the-transpose-element">The <dfn element><code>transpose</code></dfn> element</h5>
 <section dfn-for="transpose">
+  <em>Details TBD - determines the transposition applicable to all staves in the part.</em>
 </section>
 
-Advisement: Other staff content elements exist in MusicXML and need to be migrated.
+Advisement: Other staff direction elements exist in MusicXML and need to be migrated.
 
 
 <h4 id="cwmnx-part-description-content">Part description content</h4>
