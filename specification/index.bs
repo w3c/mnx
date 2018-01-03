@@ -1206,17 +1206,10 @@ tempo indications.
   <measure>
     <tempo bpm="120" value="4"/>
     <time signature="4/4"/>
-    <barline/>
   </measure>
-  <measure>
-    <barline/>
-  </measure>
-  <measure>
-    <barline/>
-  </measure>
-  <measure>
-    <barline type="final"/>
-  </measure>
+  <measure/>
+  <measure/>
+  <measure barline="final"/>
 </system>
 ```
 </div>
@@ -1284,6 +1277,7 @@ order in which they are played by a performer.
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{measure/number}> - an optional numeric index for the measure
+    <dd><{measure/barline}> - an optional ending barline type for the measure
   </dl>
 
 The <{measure}> element encloses the direction and sequence content that together
@@ -1292,6 +1286,23 @@ make up the majority of musical content in a CWMNX score.
 The optional attribute <dfn element-attr>number</dfn> provides an <a>non-negative integer</a>
 which can be used for visually cross-referencing <{measure}> elements in different parts.
 If provided, corresponding measures must share the same value for <{measure/number}>.
+
+The optional attribute <dfn element-attr>barline</dfn> defines a barline type
+for the barline drawn at the end of the measure. Allowed values include:
+
+<dl dfn-for="measure/barline">
+  <dd><dfn attr-value>regular</dfn></dd>
+  <dd><dfn attr-value>dotted</dfn></dd>
+  <dd><dfn attr-value>dashed</dfn></dd>
+  <dd><dfn attr-value>heavy</dfn></dd>
+  <dd><dfn attr-value>light-light</dfn></dd>
+  <dd><dfn attr-value>light-heavy</dfn></dd>
+  <dd><dfn attr-value>heavy-light</dfn></dd>
+  <dd><dfn attr-value>heavy-heavy</dfn></dd>
+  <dd><dfn attr-value>tick</dfn></dd>
+  <dd><dfn attr-value>short</dfn></dd>
+  <dd><dfn attr-value>none</dfn></dd>
+</dl>
 
 The following example shows both direction content and a single-voice sequence
 with two monophonic half notes:
@@ -2264,6 +2275,18 @@ consistent with describing musical expression.
 
 </section>
 
+<h5 id="the-ending-element">The <dfn element><code>ending</code></dfn> element</h5>
+<section dfn-for="ending">
+  <em>Needs migration from MusicXML. Applies from the start of the containing measure (i.e. does not belong to a &lt;barline&gt;)</em>
+</section>
+
+<h5 id="the-repeat-element">The <dfn element><code>repeat</code></dfn> element</h5>
+<section dfn-for="repeat">
+  <em>Needs migration from MusicXML. Applies to the containing measure (i.e. does not belong to a &lt;barline&gt;).
+      Thus, "start" means a repeat starting from the beginning of this measure; "end" means a repeat ending at the end
+      of this measure.</em>
+</section>
+
 <h5 id="the-coda-element">The <dfn element><code>coda</code></dfn> element</h5>
 <section dfn-for="coda">
   <em>Needs migration from MusicXML. May need to distinguish musical form use from textual reference to the symbol.</em>
@@ -2562,6 +2585,8 @@ indicated by the given clef sign should be transposed. It defaults to zero.
 
 <h5 id="the-barline-element">The <dfn element><code>barline</code></dfn> element</h5>
 <section dfn-for="barline">
+  <em>Only describes a barline explicitly placed elsewhere than the end of a measure. Barlines at the end of a measure
+      are more simply described by the <{measure/barline}> attribute.
 </section>
 
 <h5 id="the-use-instrument-element">The <dfn element><code>use-instrument</code></dfn> element</h5>
