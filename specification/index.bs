@@ -2359,6 +2359,8 @@ end of the measure in which they occur.
 <section dfn-for="transpose">
 </section>
 
+Advisement: Other staff content elements exist in MusicXML and need to be migrated.
+
 
 <h4 id="cwmnx-part-description-content">Part description content</h4>
 
@@ -2773,6 +2775,9 @@ The value <dfn attr-value dfn-for="stem">up</dfn> causes an event's stem to be r
 The value <dfn attr-value dfn-for="stem">down</dfn> causes an event's stem to be rendered pointing downwards.
 </section>
 
+Advisement: Many other style properties exist in MusicXML (although not as
+styles per se) and will need to be migrated.
+
 <h3 id="cwmnx-stylesheet-definitions">Stylesheet definitions</h3>
 
 The <{style-class}> and <{style-selector}> elements allow definition of style
@@ -2873,7 +2878,13 @@ the <{style-selector}> element occurs, but is global.
 <section>
 <h3 id="cwmnx-rendering">Rendering</h3>
 
-<em>TBD: section describing normative CWMNX rendering procedure, leaving room for implementation decisions.</em>
+<em>TBD: section describing normative CWMNX rendering procedure, leaving room for implementation decisions.
+The intent is to set out the normative constraints that CWMNX rendering must follow, including at least:
+
+- 
+- normative registration
+
+</em>
 
 </section>
 
