@@ -2517,8 +2517,7 @@ The required <dfn element-attr>signature</dfn> attribute supplies a <a>time sign
     <dd><{tempo/bpm}> - the number of beats per minute</dd>
   </dl>
 
-The <{tempo}> element defines a tempo applicable to this and following
-measure content, until changed.
+The <{tempo}> element defines a tempo, from the point of its occurrence forward until changed.
 
 In the <{cwmnx/profile/standard}> CWMNX profile, a <{tempo}> element may only appear
 inside <{global}> measure content, not within a <{part}>.
@@ -2526,6 +2525,32 @@ inside <{global}> measure content, not within a <{part}>.
 The required <dfn element-attr>value</dfn> attribute supplies a <a>note value</a>
 which is asserted to occur with a frequency of <dfn element-attr>bpm</dfn> times per
 minute, which is a <a>valid floating-point number</a>.
+
+</section>
+
+<h5 id="the-staves-element">The <dfn element><code>staves</code></dfn> element</h5>
+<section dfn-for="staves">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{staves/number}> - the number of staves in this part</dd>
+  </dl>
+
+The <{staves}> element defines the number of staves in a part's measures,
+from the point of its occurrence forward until changed.
+
+The <a>measure location</a> of a <{staves}> direction is ignored and is assumed to be zero.
+
+It is invalid to place more than one <{staves}> element within a <{measure}>.
+
+A <{staves}> element may only appear inside <{part}> measure content, not
+within <{global}>.
+
+The required <dfn element-attr>number</dfn> attribute supplies the number of staves
+in the part, as a <a>valid non-negative integer</a> other than zero.
 
 </section>
 
