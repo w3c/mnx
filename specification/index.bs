@@ -915,9 +915,7 @@ To <dfn>parse a note value</dfn>, use the following procedure:
   1. If <var>base value</var> is not equal to a power of 2, return an error.
   1. If <var>base value</var> is equal to 1 and <var>fractional</var> is false, return an error.
   1. If <var>fractional</var> is true, set <var>base value</var> to (1 / <var>base value</var>).
-  1. If <var>number of dots</var> is greater than zero, multiply <var>base value</var> by
-      (2<sup>(<var>number of dots</var>+1)</sup>-1) / 2<sup>(<var>number of dots</var>)</sup>.
-  1. Return <var>base value</var>.
+  1. Return <var>base value</var> and <var>number of dots</var>.
 
 <div class="example">
 Here are some instances of the note value syntax:
@@ -965,8 +963,47 @@ Examples include:
 :: six eighth notes
 : `6/8d`
 :: six dotted eighth notes
-: `5*1`
+: `5/1`
 :: five whole notes
+
+<h5 id="time-signature-syntax">Time signature syntax</h5>
+
+MNX allows the specification of a <dfn>time signature</dfn>, consisting of a
+sequence of undotted note value quantities which may optionally share the same
+denominator. To parse a time signature, use the following procedure:
+
+  1. Let <var>input</var> be the string being parsed.
+  1. Let <var>tokens</var> be the result of <a>strictly splitting the string</a> <var>input</var> using U+002B PLUS as a delimiter.
+  1. If <var>tokens</var> is empty, return an error.
+  1. Let <var>shared denominator</var> be true.
+  1. Let <var>fractions</var> be an empty list.
+  1. While <var>tokens</var> is not empty,
+      1. Remove the first element of <var>tokens</var> and assign it to <var>t</var> after <a>stripping leading and trailing white space</a>.
+      1. If <var>t</var> contains the characters U+002F SLASH or U+002A ASTERISK,
+          1. Let <var>nv</var> be the result of parsing <var>t</var> as a <a>note value quantity</a>.
+          1. If <var>nv</var> has a <var>number of dots</var> greater than zero, return an error.
+          1. If <var>shared denominator</var> is true,
+              1. Replace the denominator in each element of <var>fractions</var> with the denominator of <var>nv</var>.
+              1. If more elements remain in <var>tokens</var>,
+                  1. Set <var>shared denominator</var> to false.
+          1. Append <var>nv</var> to <var>fractions</var>.
+      1. Else,
+          1. If <var>tokens</var> is empty, return an error.
+          1. If <var>shared denominator</var> is false, return an error.
+          1. Let <var>numerator</var> be the result of parsing <var>t</var> as a <a>valid integer</a>.
+          1. Append the fraction composed of <var>numerator</var> and the denominator 1 to <var>fractions</var>.
+  1. Return <var>fractions</var> and <var>shared denominator</var> as the result.
+
+Examples include:
+
+: `3/4`
+:: Three-quarters time
+: `2+3+2/8`
+:: A compound time signature of 2/8, 3/8 and 2/8, with 2+3+2 over the shared denominator 8.
+: `2/8 + 3/4 + 2/8`
+:: A compound time signature of 2/8, 3/4 and 2/8 as separate fractions (note that the spaces
+are ignored)
+
 
 <h5 id="chromatic-pitch-syntax">Chromatic pitch syntax</h5>
 
@@ -2329,6 +2366,22 @@ end of the measure in which they occur.
 
 <h5 id="the-time-element">The <dfn element><code>time</code></dfn> element</h5>
 <section dfn-for="time">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{measure}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{time/signature}> - the applicable <a>time signature</a></dd>
+  </dl>
+
+The <{time}> element defines a time signature.
+
+In the <{cwmnx/profile/standard}> CWMNX profile, a <{time}> element may only appear
+inside <{global}> measure content, not within a <{part}>.
+
+The required <dfn element-attr>signature</dfn> attribute supplies a <a>time signature</a>.
+
 </section>
 
 <h5 id="the-tempo-element">The <dfn element><code>tempo</code></dfn> element</h5>
