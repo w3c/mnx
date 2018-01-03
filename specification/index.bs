@@ -2210,24 +2210,78 @@ dynamics are supported:
 
 </section>
 
-<h5 id="the-harmony-element">The <dfn element><code>harmony</code></dfn> element</h5>
-<section dfn-for="harmony">
-</section>
-
 <h5 id="the-instruction-element">The <dfn element><code>instruction</code></dfn> element</h5>
 <section dfn-for="instruction">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><a>Direction content</a></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>The text of this direction.</dd>
+    <dt>Attribute Groups:</dt>
+    <dd><a>Direction attributes</a></dd>
+  </dl>
+The <{instruction}> element describes a run of text that is presented in a visual style
+consistent with general instructions to the performer.
+
+<div class="example">
+```xml
+<measure>
+  <directions>
+    <instruction>Molto adagio</instruction>
+  </directions>
+  ...following measure content...
+</measure>
+```
+</div>
+
 </section>
 
 <h5 id="the-expression-element">The <dfn element><code>expression</code></dfn> element</h5>
 <section dfn-for="expression">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><a>Direction content</a></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>The text of this direction.</dd>
+    <dt>Attribute Groups:</dt>
+    <dd><a>Direction attributes</a></dd>
+  </dl>
+
+The <{expression}> element describes a run of text that is presented in a visual style
+consistent with describing musical expression.
+
+<div class="example">
+```xml
+<sequence>
+  <dirgroup>
+    <expression>subito</expression>
+    <dynamics>p</dynamics>
+  </dirgroup>
+  ...following sequence content...
+</sequence>
+```
+</div>
+
 </section>
 
 <h5 id="the-coda-element">The <dfn element><code>coda</code></dfn> element</h5>
 <section dfn-for="coda">
+  <em>Needs migration from MusicXML. May need to distinguish musical form use from textual reference to the symbol.</em>
 </section>
 
 <h5 id="the-segno-element">The <dfn element><code>segno</code></dfn> element</h5>
 <section dfn-for="segno">
+  <em>Needs migration from MusicXML. May need to distinguish musical form use from textual reference to the symbol.</em>
+</section>
+
+<h5 id="the-harmony-element">The <dfn element><code>harmony</code></dfn> element</h5>
+<section dfn-for="harmony">
+<em>Needs migration from MusicXML.</em>
+</section>
+
+<h5 id="the-symbol-element">The <dfn element><code>symbol</code></dfn> element</h5>
+<section dfn-for="symbol">
+<em>Needs migration from MusicXML -- arbitrary SMuFL glyph. (How will visual registration work?)</em>
 </section>
 
 <h5 id="the-dirgroup-element">The <dfn element><code>dirgroup</code></dfn> element</h5>
@@ -2463,6 +2517,8 @@ minute, which is a <a>valid floating-point number</a>.
     <dd><{clef/line}> - the staff line associated with the clef sign</dd>
     <dd><{clef/sign}> - the clef sign</dd>
     <dd><{clef/octave}> - an optional number of octaves by which the clef's normal pitches should be transposed</dd>
+    <dt>Attribute Groups:</dt>
+    <dd><a>Direction attributes</a></dd>
   </dl>
 
 The <{clef}> element defines a clef associated with this staff.
