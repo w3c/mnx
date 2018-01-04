@@ -2087,18 +2087,22 @@ ignored for this purpose.
 
 <h5 id="the-articulations-element">The <dfn element><code>articulations</code></dfn> element</h5>
 <section dfn-for="articulations">
+<em>Needs migration from MusicXML.</em>
 </section>
 
 <h5 id="the-lyric-element">The <dfn element><code>lyric</code></dfn> element</h5>
 <section dfn-for="lyric">
+<em>Needs migration from MusicXML.</em>
 </section>
 
 <h5 id="the-ornaments-element">The <dfn element><code>ornaments</code></dfn> element</h5>
 <section dfn-for="ornaments">
+<em>Needs migration from MusicXML.</em>
 </section>
 
 <h5 id="the-technical-element">The <dfn element><code>technical</code></dfn> element</h5>
 <section dfn-for="technical">
+<em>Needs migration from MusicXML.</em>
 </section>
 
 <h4 id="cwmnx-note-content">Note content</h4>
@@ -2112,14 +2116,17 @@ of a single note within an event.
 
 <h5 id="the-notehead-element">The <dfn element><code>notehead</code></dfn> element</h5>
 <section dfn-for="notehead">
+<em>Needs migration from MusicXML.</em>
 </section>
 
 <h5 id="the-fret-element">The <dfn element><code>fret</code></dfn> element</h5>
 <section dfn-for="fret">
+<em>Needs migration from MusicXML.</em>
 </section>
 
 <h5 id="the-string-element">The <dfn element><code>string</code></dfn> element</h5>
 <section dfn-for="string">
+<em>Needs migration from MusicXML.</em>
 </section>
 
 <h4 id="cwmnx-liaison-content">Liaison content</h4>
@@ -2127,28 +2134,113 @@ of a single note within an event.
 <dfn>Liaison content</dfn> comprises elements that describe the liaison or connection
 between a single note within an event, and some other note.
 
+<h5 id="cwmnx-liaison-attributes">Liaison attributes</h5>
+
+Liaison elements share a set of common <dfn>liaison attributes</dfn> in an attribute group.
+
+  <dl class="def">
+    <dt><a>Attributes</a>:</dt>
+    <dd><{liaisons/target}> - the optional element ID of the note at which the liaison ends</dd>
+  </dl>
+
+Liaisons in general must be provided with the ID of a <{note}> on which they end,
+given via the <dfn element-attr dfn-for="liaisons">target</dfn> attribute. The constraints
+on this attribute vary from one liaison to another.
+
 <h5 id="the-tied-element">The <dfn element><code>tied</code></dfn> element</h5>
 <section dfn-for="tied">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{note}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a></dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{tied/location}> - an optional measure location to end at
+  </dl>
+
+The <{tied}> element is used to indicate that a note is tied to a successor <{note}> element.
+
+If the <{liaisons/target}> attribute is provided, it must specify the element
+ID of a <{note}> which lies in the same part, and whose containing <{event}>
+begins directly after the end of the of this note's event. The step, alteration and
+octave values for the target note must be identical to this one.
+
+If <{liaisons/target}> is not provided, the tie does not connect to a
+particular destination note. In this case <dfn element-attr>location</dfn>
+attribute may be used to specify the <a>measure location</a> of the other end
+of the tie.
+
+The value of <{tied/location}> may either lie before or after the current note's event,
+or may assume the special values <{tied/location/incoming}> or <{tied/location/outgoing}>.
+The handling is as follows:
+
+- If the location precedes the start of the current event, this signifies a tie
+    starting at the given location and ending on the current note.
+
+- If the location occurs after the start of the current event, this signifies a tie
+    starting at the current note and ending at the given location.
+
+- A value of <dfn attr-value for="tied/location">incoming</dfn> places the start location
+    at a conventionally short distance before the current note, and ends on the current note.
+
+- A value of <dfn attr-value for="tied/location">outgoing</dfn> starts on the current note,
+    and places the end location
+    at a conventionally short distance after the current note.
+
+If neither <{liaisons/target}> nor <{tied/location}> is given, the effect is as if
+<{tied/location/outgoing}> was specified.
+
+Note: If a producer implementation does not give an explicit value for
+<{liaisons/target}>, this always signifies an unmatched tie. In this case
+consumer implementations must not search for a matching end note of the same
+pitch.
+
+Examples:
+
+<div class="example">
+```xml
+<sequence>
+  <event value="/4">
+    <note pitch="C4">
+      <tied target="note2"/>
+    </note>
+  </event>
+  <event value="/4">
+    <note id="note2" pitch="C4"/>
+  </event>
+```
+</div>
+
+</section>
+
+<h5 id="the-arpeggiate-element">The <dfn element><code>arpeggiate</code></dfn> element</h5>
+<section dfn-for="arpeggiate">
+<em>Needs migration from MusicXML. In this case the liaison target will be constrained to lie within the same event.</em>
 </section>
 
 <h5 id="the-glissando-element">The <dfn element><code>glissando</code></dfn> element</h5>
 <section dfn-for="glissando">
+<em>Needs migration from MusicXML.</em>
 </section>
 
 <h5 id="the-slide-element">The <dfn element><code>slide</code></dfn> element</h5>
 <section dfn-for="slide">
+<em>Needs migration from MusicXML.</em>
 </section>
 
 <h5 id="the-bend-element">The <dfn element><code>bend</code></dfn> element</h5>
 <section dfn-for="bend">
+<em>Needs migration from MusicXML, and probably some simplification and better handling of pre-bends.</em>
 </section>
 
 <h5 id="the-hammer-on-element">The <dfn element><code>hammer-on</code></dfn> element</h5>
 <section dfn-for="hammer-on">
+<em>Needs migration from MusicXML.</em>
 </section>
 
 <h5 id="the-pull-off-element">The <dfn element><code>pull-off</code></dfn> element</h5>
 <section dfn-for="pull-off">
+<em>Needs migration from MusicXML.</em>
 </section>
 
 
