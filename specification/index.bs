@@ -3226,9 +3226,9 @@ of any rendered stem associated with this event. If omitted, the stem direction
 is determined automatically by the implementation, in accordance with the
 <a>orientation</a> of the event.
 
-The value <dfn attr-value dfn-for="stem-direction">up</dfn> causes an event's stem to be rendered pointing upwards.
+The value <dfn value>up</dfn> causes an event's stem to be rendered pointing upwards.
 
-The value <dfn attr-value dfn-for="stem-direction">down</dfn> causes an event's stem to be rendered pointing downwards.
+The value <dfn value>down</dfn> causes an event's stem to be rendered pointing downwards.
 </section>
 
 <h5 id="the-grace-slash-property">The <dfn property><code>grace-slash</code></dfn> property</h5>
@@ -3246,11 +3246,6 @@ The 'grace-slash' property controls whether or not a slash is rendered in
 conjunction with the flag or beam of a grace note. If omitted, the stem
 direction is determined automatically by the implementation based on the
 nature of the grace note.
-
-
-The value <dfn attr-value dfn-for="stem">up</dfn> causes an event's stem to be rendered pointing upwards.
-
-The value <dfn attr-value dfn-for="stem">down</dfn> causes an event's stem to be rendered pointing downwards.
 </section>
 
 Advisement: Many other style properties exist in MusicXML (although not as
