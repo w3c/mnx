@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="08771bb2b7af7ce2913c04354d900372457eb056" name="document-revision">
+  <meta content="83d21cdada5a826b8bac73fe0dac66d1e1c4fb55" name="document-revision">
 <style>
   .language-xml {
     font-size: 11px;
@@ -1434,6 +1434,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
     <dl>
      <dt>Issue Tracking:
      <dd><a href="https://github.com/w3c/mnx/issues/">GitHub</a>
+     <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editor:
      <dd class="editor p-author h-card vcard"><span class="p-name fn">Joe Berkovitz</span> (<span class="p-org org">Noteflight / Hal Leonard Corporation</span>)
      <dt>Participate:
@@ -1673,7 +1674,7 @@ predecessors.</p>
         <li>
          <a href="#cwmnx-interpretation-content"><span class="secno">5.2.13</span> <span class="content">Interpretation content</span></a>
          <ol class="toc">
-          <li><a href="#the-interpretation-element"><span class="secno">5.2.13.1</span> <span class="content">The <span><code>interpretation</code></span> element</span></a>
+          <li><a href="#the-interpret-element"><span class="secno">5.2.13.1</span> <span class="content">The <span><code>interpret</code></span> element</span></a>
          </ol>
        </ol>
       <li>
@@ -1741,6 +1742,7 @@ predecessors.</p>
       <li><a href="#index-defined-here"><span class="secno"></span> <span class="content">Terms defined by this specification</span></a>
       <li><a href="#index-defined-elsewhere"><span class="secno"></span> <span class="content">Terms defined by reference</span></a>
      </ol>
+    <li><a href="#issues-index"><span class="secno"></span> <span class="content">Issues Index</span></a>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
@@ -3803,16 +3805,29 @@ inside <code><a data-link-type="element" href="#elementdef-global" id="ref-for-e
       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts②⑦">Contexts</a>:
       <dd>Direction content
       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model②⑦">Content Model</a>:
-      <dd>Exact text to be displayed for the element in lieu of its default representation.
+      <dd>None.
       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute②⑤">Attributes</a>:
       <dd><code><a data-link-type="element-sub" href="#element-attrdef-tempo-value" id="ref-for-element-attrdef-tempo-value">value</a></code> - the note value of the tempo
       <dd><code><a data-link-type="element-sub" href="#element-attrdef-tempo-bpm" id="ref-for-element-attrdef-tempo-bpm">bpm</a></code> - the number of beats per minute
      </dl>
-     <p>The <code><a data-link-type="element" href="#elementdef-tempo" id="ref-for-elementdef-tempo">tempo</a></code> element defines a tempo, from the point of its occurrence forward until changed.</p>
+     <p>The <code><a data-link-type="element" href="#elementdef-tempo" id="ref-for-elementdef-tempo">tempo</a></code> element defines a tempo, from the point of its occurrence forward until changed.
+The tempo is rendered as a conventional pairing of a small beat unit notation equated to a
+metronome marking.</p>
      <p>In the <code><a data-link-type="attr-value" href="#attr-valuedef-cwmnx-profile-standard" id="ref-for-attr-valuedef-cwmnx-profile-standard③">standard</a></code> CWMNX profile, a <code><a data-link-type="element" href="#elementdef-tempo" id="ref-for-elementdef-tempo①">tempo</a></code> element may only appear
 inside <code><a data-link-type="element" href="#elementdef-global" id="ref-for-elementdef-global①③">global</a></code> measure content, not within a <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part①②">part</a></code>.</p>
      <p>The required <dfn class="dfn-paneled" data-dfn-for="tempo" data-dfn-type="element-attr" data-export="" id="element-attrdef-tempo-value"><code>value</code></dfn> attribute supplies a <a data-link-type="dfn" href="#note-value" id="ref-for-note-value⑤">note value</a> which is asserted to occur with a frequency of <dfn class="dfn-paneled" data-dfn-for="tempo" data-dfn-type="element-attr" data-export="" id="element-attrdef-tempo-bpm"><code>bpm</code></dfn> times per
 minute, which is a <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#floating-point-numbers" id="ref-for-floating-point-numbers③">valid floating-point number</a>.</p>
+     <p>To notate tempi using arbitrary text, various approaches may be taken,
+singly or in combination:</p>
+     <ul>
+      <li data-md="">
+       <p>The <code><a data-link-type="element" href="#elementdef-tempo" id="ref-for-elementdef-tempo②">tempo</a></code> direction may be combined with other directions in a <code><a data-link-type="element" href="#elementdef-dirgroup" id="ref-for-elementdef-dirgroup①">dirgroup</a></code>, e.g. as <code><a data-link-type="element" href="#elementdef-instruction" id="ref-for-elementdef-instruction①">instruction</a></code></p>
+      <li data-md="">
+       <p>The normal visual content of the <code><a data-link-type="element" href="#elementdef-tempo" id="ref-for-elementdef-tempo③">tempo</a></code> direction may be supressed by
+setting the <a class="property" data-link-type="propdesc" href="#propdef-display" id="ref-for-propdef-display">display</a> style property to <a class="css" data-link-type="maybe" href="#valdef-display-none" id="ref-for-valdef-display-none">none</a></p>
+      <li data-md="">
+       <p>A <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo">performance-tempo</a></code> may be supplied as <a data-link-type="dfn" href="#interpretation-content" id="ref-for-interpretation-content⑥">interpretation content</a> for any direction.</p>
+     </ul>
     </section>
     <h5 class="heading settled" data-level="5.2.11.4" id="the-staves-element"><span class="secno">5.2.11.4. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-staves"><code>staves</code></dfn> element</span><a class="self-link" href="#the-staves-element"></a></h5>
     <section>
@@ -3898,25 +3913,25 @@ and occur at the beginning of a <code><a data-link-type="element" href="#element
     <h4 class="heading settled" data-level="5.2.13" id="cwmnx-interpretation-content"><span class="secno">5.2.13. </span><span class="content">Interpretation content</span><a class="self-link" href="#cwmnx-interpretation-content"></a></h4>
     <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="interpretation-content">Interpretation content</dfn> may be included in some elements to control
 the specific way in which the element is interpreted as a musical performance.</p>
-    <h5 class="heading settled" data-level="5.2.13.1" id="the-interpretation-element"><span class="secno">5.2.13.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-interpretation"><code>interpretation</code></dfn> element</span><a class="self-link" href="#the-interpretation-element"></a></h5>
+    <h5 class="heading settled" data-level="5.2.13.1" id="the-interpret-element"><span class="secno">5.2.13.1. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-interpret"><code>interpret</code></dfn> element</span><a class="self-link" href="#the-interpret-element"></a></h5>
     <section>
      <dl class="def">
       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model③⓪">Content Model</a>:
-      <dd>Any number of <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event">performance-event</a></code> elements
+      <dd>Any number of <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event">performance-event</a></code> or <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo①">performance-tempo</a></code> elements
      </dl>
-     <p>The <code><a data-link-type="element" href="#elementdef-interpretation" id="ref-for-elementdef-interpretation">interpretation</a></code> element substitutes explicit GMNX <a data-link-type="dfn" href="#performance-data" id="ref-for-performance-data">performance data</a> for the performance of its CWMNX parent element that a producer would normally
+     <p>The <code><a data-link-type="element" href="#elementdef-interpret" id="ref-for-elementdef-interpret">interpret</a></code> element substitutes explicit GMNX <a data-link-type="dfn" href="#performance-data" id="ref-for-performance-data">performance data</a> for the performance of its CWMNX parent element that a producer would normally
 generate.</p>
-     <p>Within <code><a data-link-type="element" href="#elementdef-interpretation" id="ref-for-elementdef-interpretation①">interpretation</a></code>, a set of child <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event①">performance-event</a></code> elements supply
+     <p>Within <code><a data-link-type="element" href="#elementdef-interpret" id="ref-for-elementdef-interpret①">interpret</a></code>, a set of child <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event①">performance-event</a></code> and <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo②">performance-tempo</a></code> elements supply
 this performance information. The <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit">notated time units</a> for all such
 events are equal to the same units used by the containing element to represent
 note values, and are thus modified in the case of elements for which the <a data-link-type="dfn" href="#time-modification-ratio" id="ref-for-time-modification-ratio⑧">time modification ratio</a> is not unity, such as <code><a data-link-type="element" href="#elementdef-tuplet" id="ref-for-elementdef-tuplet①②">tuplet</a></code>.</p>
      <p>The notated time coordinate of zero refers to the measure location of the
-containing element. All performance event times within <code><a data-link-type="element" href="#elementdef-interpretation" id="ref-for-elementdef-interpretation②">interpretation</a></code> are thus
+containing element. All performance event times within <code><a data-link-type="element" href="#elementdef-interpret" id="ref-for-elementdef-interpret②">interpret</a></code> are thus
 relative to this origin. Negative event times are permitted, and specify
 performance events which precede the location of the containing element.</p>
-     <p>When <code><a data-link-type="element" href="#elementdef-interpretation" id="ref-for-elementdef-interpretation③">interpretation</a></code> occurs within an <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event①①">event</a></code> or <code><a data-link-type="element" href="#elementdef-note" id="ref-for-elementdef-note③">note</a></code> element, all <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event②">performance-event</a></code> attributes are defaulted to the values that would be
+     <p>When <code><a data-link-type="element" href="#elementdef-interpret" id="ref-for-elementdef-interpret③">interpret</a></code> occurs within an <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event①①">event</a></code> or <code><a data-link-type="element" href="#elementdef-note" id="ref-for-elementdef-note③">note</a></code> element, all <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event②">performance-event</a></code> attributes are defaulted to the values that would be
 generated by an implementation for the first note in the containing element.</p>
-     <p>As one example, consider this use of <code><a data-link-type="element" href="#elementdef-interpretation" id="ref-for-elementdef-interpretation④">interpretation</a></code> to play a beamed pair of eighth
+     <p>As one example, consider this use of <code><a data-link-type="element" href="#elementdef-interpret" id="ref-for-elementdef-interpret④">interpret</a></code> to play a beamed pair of eighth
 notes in a swung triplet rhythm instead:</p>
      <div class="example" id="example-f2d32a1a">
       <a class="self-link" href="#example-f2d32a1a"></a> 
@@ -3955,6 +3970,22 @@ default onset time.</p>
       <span class="nt">&lt;performance-event</span> <span class="na">start=</span><span class="s">"1/24"</span> <span class="na">duration=</span><span class="s">"1/12"</span><span class="nt">/></span>
     <span class="nt">&lt;/interpret></span>
   <span class="nt">&lt;/event></span>
+  ...following sequence content...
+<span class="nt">&lt;/sequence></span>
+</pre>
+     </div>
+     <p>As a final example, this case uses an <code><a data-link-type="element" href="#elementdef-instruction" id="ref-for-elementdef-instruction②">instruction</a></code> element to specify
+a tempo via an explicit interpretation:</p>
+     <div class="example" id="example-624b8427">
+      <a class="self-link" href="#example-624b8427"></a> 
+<pre class="language-xml highlight"><span class="nt">&lt;sequence></span>
+  ...preceding sequence content...
+  <span class="nt">&lt;instruction</span> <span class="na">class=</span><span class="s">"tempo"</span><span class="nt">></span>
+    <span class="nt">&lt;interpret></span>
+      <span class="nt">&lt;performance-tempo</span> <span class="na">beat=</span><span class="s">"/4"</span> <span class="na">bpm=</span><span class="s">"60"</span><span class="nt">/></span>
+    <span class="nt">&lt;/interpret></span>
+    Langsamer
+  <span class="nt">&lt;/instruction></span>
   ...following sequence content...
 <span class="nt">&lt;/sequence></span>
 </pre>
@@ -4079,11 +4110,11 @@ apply to all descendants of the element within which they are specified.</p>
       <dd><a data-link-type="dfn" href="#note-content" id="ref-for-note-content④">Note content</a>
       <dd><a data-link-type="dfn" href="#liaison-content" id="ref-for-liaison-content③">Liaison content</a>
       <dt>Value:
-      <dd><a class="css" data-link-type="maybe" href="#valdef-display-normal" id="ref-for-valdef-display-normal">normal</a> | <a class="css" data-link-type="maybe" href="#valdef-display-none" id="ref-for-valdef-display-none">none</a>
+      <dd><a class="css" data-link-type="maybe" href="#valdef-display-normal" id="ref-for-valdef-display-normal">normal</a> | <a class="css" data-link-type="maybe" href="#valdef-display-none" id="ref-for-valdef-display-none①">none</a>
       <dt>Inherited:
       <dd>yes
      </dl>
-     <p>The <a class="property" data-link-type="propdesc" href="#propdef-display" id="ref-for-propdef-display">display</a> property controls the way in which an element and its
+     <p>The <a class="property" data-link-type="propdesc" href="#propdef-display" id="ref-for-propdef-display①">display</a> property controls the way in which an element and its
 descendants interact with the layout of the document.</p>
      <p>Permitted values include:</p>
      <ul>
@@ -4110,7 +4141,7 @@ descendants interact with the layout of the document.</p>
      </dl>
      <p>The <a class="property" data-link-type="propdesc" href="#propdef-visibility" id="ref-for-propdef-visibility">visibility</a> property controls whether an element’s contents (including
 all of its descendants) are displayed by a consumer or not.</p>
-     <p>In contrast to <a class="property" data-link-type="propdesc" href="#propdef-display" id="ref-for-propdef-display①">display</a> with a value of <a class="css" data-link-type="maybe" href="#valdef-display-none" id="ref-for-valdef-display-none①">none</a>, a <a class="property" data-link-type="propdesc" href="#propdef-visibility" id="ref-for-propdef-visibility①">visibility</a> value of <a class="css" data-link-type="maybe" href="#valdef-visibility-hidden" id="ref-for-valdef-visibility-hidden①">hidden</a> does not affect the layout of any other
+     <p>In contrast to <a class="property" data-link-type="propdesc" href="#propdef-display" id="ref-for-propdef-display②">display</a> with a value of <a class="css" data-link-type="maybe" href="#valdef-display-none" id="ref-for-valdef-display-none②">none</a>, a <a class="property" data-link-type="propdesc" href="#propdef-visibility" id="ref-for-propdef-visibility①">visibility</a> value of <a class="css" data-link-type="maybe" href="#valdef-visibility-hidden" id="ref-for-valdef-visibility-hidden①">hidden</a> does not affect the layout of any other
 elements in the document. For example, the contents of a hidden <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event①②">event</a></code> will not be shown, but the place where the event would have appeared
 will still occupy space in the containing measure.</p>
      <p>Permitted values include:</p>
@@ -4435,14 +4466,14 @@ terms of discrete, parameterized sonic events</p>
        <dd><code><a data-link-type="element" href="#elementdef-gmnx" id="ref-for-elementdef-gmnx②">gmnx</a></code>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model③⑥">Content Model</a>:
        <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content①③">Metadata content</a>.
-       <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo">performance-tempo</a></code> elements.
+       <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo③">performance-tempo</a></code> elements.
        <dd>Zero or one <code><a data-link-type="element" href="#elementdef-performance-mapping" id="ref-for-elementdef-performance-mapping">performance-mapping</a></code> elements.
        <dd>One or more <code><a data-link-type="element" href="#elementdef-performance-audio-media" id="ref-for-elementdef-performance-audio-media">performance-audio-media</a></code> elements.
       </dl>
       <p>The <code><a data-link-type="element" href="#elementdef-performance-audio" id="ref-for-elementdef-performance-audio">performance-audio</a></code> element defines one or more <a data-link-type="dfn" href="#audio-media" id="ref-for-audio-media①">audio media</a> files
 that constitute a single performance of the score, and whose contents are
 presumed to be temporally synchronized with each other.</p>
-      <p>Additionally, <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo①">performance-tempo</a></code> elements may establish an proportional
+      <p>Additionally, <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo④">performance-tempo</a></code> elements may establish an proportional
 mapping between an arbitrary <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit①">notated time unit</a> and a time interval. This mapping
 may change throughout the course of the performance.  If no such elements occur,
 the <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit②">notated time unit</a> is defined as equal to 1 second of performance time.</p>
@@ -4470,7 +4501,7 @@ in the <dfn class="dfn-paneled" data-dfn-for="performance-audio-media" data-dfn-
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model③⑧">Content Model</a>:
        <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content①⑤">Metadata content</a>.
        <dd>One or more <code><a data-link-type="element" href="#elementdef-performance-part" id="ref-for-elementdef-performance-part">performance-part</a></code> elements.
-       <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo②">performance-tempo</a></code> elements.
+       <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo⑤">performance-tempo</a></code> elements.
        <dd>Zero or one <code><a data-link-type="element" href="#elementdef-performance-mapping" id="ref-for-elementdef-performance-mapping②">performance-mapping</a></code> elements.
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute③④">Attributes</a>:
       </dl>
@@ -4478,7 +4509,7 @@ in the <dfn class="dfn-paneled" data-dfn-for="performance-audio-media" data-dfn-
 discrete sonic events suitable for synthesis or analysis.</p>
       <p>It consists of some number of parts, plus optional mappings between performance time
 and regions of graphical media.</p>
-      <p>Additionally, <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo③">performance-tempo</a></code> elements may establish an proportional
+      <p>Additionally, <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo⑥">performance-tempo</a></code> elements may establish an proportional
 mapping between an arbitrary <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit③">notated time unit</a> and a time interval. This mapping
 may change throughout the course of the performance.  If no such elements occur,
 the <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit④">notated time unit</a> is defined as equal to 1 second of performance time.</p>
@@ -4505,7 +4536,7 @@ for this part.</p>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts③⑨">Contexts</a>:
-       <dd><code><a data-link-type="element" href="#elementdef-performance-data" id="ref-for-elementdef-performance-data②">performance-data</a></code>, <code><a data-link-type="element" href="#elementdef-performance-audio" id="ref-for-elementdef-performance-audio①">performance-audio</a></code>
+       <dd><code><a data-link-type="element" href="#elementdef-performance-data" id="ref-for-elementdef-performance-data②">performance-data</a></code>, <code><a data-link-type="element" href="#elementdef-performance-audio" id="ref-for-elementdef-performance-audio①">performance-audio</a></code>, <code><a data-link-type="element" href="#elementdef-interpret" id="ref-for-elementdef-interpret⑤">interpret</a></code>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model④⓪">Content Model</a>:
        <dd>None.
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute③⑥">Attributes</a>:
@@ -4513,10 +4544,10 @@ for this part.</p>
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-tempo-beat" id="ref-for-element-attrdef-performance-tempo-beat">beat</a></code> - notated time units per beat
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-tempo-bpm" id="ref-for-element-attrdef-performance-tempo-bpm">bpm</a></code> - number of beats per minute
       </dl>
-      <p>The <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo④">performance-tempo</a></code> element describes a proportional relationship between
+      <p>The <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo⑦">performance-tempo</a></code> element describes a proportional relationship between
 time and an arbitrary <dfn class="dfn-paneled" data-dfn-for="performance-tempo" data-dfn-type="dfn" data-noexport="" id="performance-tempo-notated-time-unit">notated time unit</dfn> that may be used by the score.</p>
       <p>This relationship applies to a time range beginning at the time in seconds
-specified by <dfn class="dfn-paneled" data-dfn-for="performance-tempo" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-tempo-start"><code>start</code></dfn> and continuing until the next <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo⑤">performance-tempo</a></code> element. The default value is 0.</p>
+specified by <dfn class="dfn-paneled" data-dfn-for="performance-tempo" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-tempo-start"><code>start</code></dfn> and continuing until the next <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo⑧">performance-tempo</a></code> element. The default value is 0.</p>
       <p>The <dfn class="dfn-paneled" data-dfn-for="performance-tempo" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-tempo-beat"><code>beat</code></dfn> element is a <a data-link-type="dfn" href="#note-value" id="ref-for-note-value⑥">note value</a> which
 establishes a beat as some fraction or multiple of a notated time unit (which
 in CWMN a whole note by convention). The default value is 1.</p>
@@ -4525,14 +4556,15 @@ default value is 60.</p>
       <p class="note" role="note"><span>NOTE:</span> The defaults for both of the above attributes establish a notated
 time unit as equal to 1 second. Thus, if no attribute values are provided,
 score time is equal to real performance time.</p>
-      <p class="note" role="note"><span>NOTE:</span> The set of <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo⑥">performance-tempo</a></code> elements establish a variable-rate progression
+      <p class="note" role="note"><span>NOTE:</span> The set of <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo⑨">performance-tempo</a></code> elements establish a variable-rate progression
 of a scoring time unit relative to performance time, similar to a MIDI tempo track.</p>
+      <p class="issue" id="issue-a3eb060f"><a class="self-link" href="#issue-a3eb060f"></a> continuous changes need to be supported</p>
      </section>
      <h5 class="heading settled" data-level="6.1.3.6" id="the-performance-event-element"><span class="secno">6.1.3.6. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-event"><code>performance-event</code></dfn> element</span><a class="self-link" href="#the-performance-event-element"></a></h5>
      <section>
       <dl class="def">
        <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts④⓪">Contexts</a>:
-       <dd><code><a data-link-type="element" href="#elementdef-performance-part" id="ref-for-elementdef-performance-part③">performance-part</a></code>, <code><a data-link-type="element" href="#elementdef-interpretation" id="ref-for-elementdef-interpretation⑤">interpretation</a></code>
+       <dd><code><a data-link-type="element" href="#elementdef-performance-part" id="ref-for-elementdef-performance-part③">performance-part</a></code>, <code><a data-link-type="element" href="#elementdef-interpret" id="ref-for-elementdef-interpret⑥">interpret</a></code>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model④①">Content Model</a>:
        <dd>None.
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute③⑦">Attributes</a>:
@@ -4544,7 +4576,7 @@ of a scoring time unit relative to performance time, similar to a MIDI tempo tra
       </dl>
       <p>The <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event⑦">performance-event</a></code> element describes a single musical event in terms of its
 performance parameters.</p>
-      <p>All times given are in <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit⑤">notated time units</a>, whose relationship to performance time is described by <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo⑦">performance-tempo</a></code> elements. These times may be expressed in the following forms which are
+      <p>All times given are in <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit⑤">notated time units</a>, whose relationship to performance time is described by <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo①⓪">performance-tempo</a></code> elements. These times may be expressed in the following forms which are
 syntactically distinct:</p>
       <ul>
        <li data-md="">
@@ -4793,7 +4825,7 @@ the intersection lies at infinity.</p>
           <li><a href="#elementdef-instrument-sound">(element)</a><span>, in §5.2.12.3</span>
           <li><a href="#element-attrdef-performance-part-instrument-sound">element-attr for performance-part</a><span>, in §6.1.3.4</span>
          </ul>
-        <li><a href="#elementdef-interpretation">interpretation</a><span>, in §5.2.13.1</span>
+        <li><a href="#elementdef-interpret">interpret</a><span>, in §5.2.13.1</span>
         <li><a href="#interpretation-content">Interpretation content</a><span>, in §5.2.13</span>
         <li><a href="#attr-valuedef-clef-sign-jianpu">jianpu</a><span>, in §5.2.11.5</span>
         <li><a href="#elementdef-key">key</a><span>, in §5.2.11.1</span>
@@ -5128,7 +5160,12 @@ the intersection lies at infinity.</p>
       </div>
      </section>
      <section>
-      <div data-fill-with="issues-index"></div>
+      <div data-fill-with="issues-index">
+       <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
+       <div style="counter-reset:issue">
+        <div class="issue"> continuous changes need to be supported<a href="#issue-a3eb060f"> ↵ </a></div>
+       </div>
+      </div>
      </section>
     </section>
    </ol>
@@ -5491,7 +5528,7 @@ the intersection lies at infinity.</p>
     <li><a href="#ref-for-content-model②⑦">5.2.11.3. The tempo element</a>
     <li><a href="#ref-for-content-model②⑧">5.2.11.4. The staves element</a>
     <li><a href="#ref-for-content-model②⑨">5.2.11.5. The clef element</a>
-    <li><a href="#ref-for-content-model③⓪">5.2.13.1. The interpretation element</a>
+    <li><a href="#ref-for-content-model③⓪">5.2.13.1. The interpret element</a>
     <li><a href="#ref-for-content-model③①">5.4.1. The style-class element</a>
     <li><a href="#ref-for-content-model③②">5.4.2. The style-selector element</a>
     <li><a href="#ref-for-content-model③③">6.1.1.1. The gmnx element</a>
@@ -5953,7 +5990,7 @@ the intersection lies at infinity.</p>
     <li><a href="#ref-for-time-modification-ratio①">5.2.5. Sequence content</a> <a href="#ref-for-time-modification-ratio②">(2)</a> <a href="#ref-for-time-modification-ratio③">(3)</a> <a href="#ref-for-time-modification-ratio④">(4)</a>
     <li><a href="#ref-for-time-modification-ratio⑤">5.2.5.1. The event element</a>
     <li><a href="#ref-for-time-modification-ratio⑥">5.2.5.2. The tuplet element</a> <a href="#ref-for-time-modification-ratio⑦">(2)</a>
-    <li><a href="#ref-for-time-modification-ratio⑧">5.2.13.1. The interpretation element</a>
+    <li><a href="#ref-for-time-modification-ratio⑧">5.2.13.1. The interpret element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="sequence-the-content">
@@ -5979,7 +6016,7 @@ the intersection lies at infinity.</p>
     <li><a href="#ref-for-elementdef-event⑥">5.2.5.4. The forward element</a>
     <li><a href="#ref-for-elementdef-event⑦">5.2.6.1. The note element</a> <a href="#ref-for-elementdef-event⑧">(2)</a> <a href="#ref-for-elementdef-event⑨">(3)</a>
     <li><a href="#ref-for-elementdef-event①⓪">5.2.6.2. The rest element</a>
-    <li><a href="#ref-for-elementdef-event①①">5.2.13.1. The interpretation element</a>
+    <li><a href="#ref-for-elementdef-event①①">5.2.13.1. The interpret element</a>
     <li><a href="#ref-for-elementdef-event①②">5.3.3.5. The visibility property</a>
     <li><a href="#ref-for-elementdef-event①③">5.4.2. The style-selector element</a>
    </ul>
@@ -6038,7 +6075,7 @@ the intersection lies at infinity.</p>
     <li><a href="#ref-for-elementdef-tuplet⑨">5.2.5.3. The beamed element</a>
     <li><a href="#ref-for-elementdef-tuplet①⓪">5.2.5.4. The forward element</a>
     <li><a href="#ref-for-elementdef-tuplet①①">5.2.5.5. The grace element</a>
-    <li><a href="#ref-for-elementdef-tuplet①②">5.2.13.1. The interpretation element</a>
+    <li><a href="#ref-for-elementdef-tuplet①②">5.2.13.1. The interpret element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-tuplet-outer">
@@ -6130,7 +6167,7 @@ the intersection lies at infinity.</p>
    <ul>
     <li><a href="#ref-for-elementdef-note">5.2.5.1. The event element</a> <a href="#ref-for-elementdef-note①">(2)</a>
     <li><a href="#ref-for-elementdef-note②">5.2.6.1. The note element</a>
-    <li><a href="#ref-for-elementdef-note③">5.2.13.1. The interpretation element</a>
+    <li><a href="#ref-for-elementdef-note③">5.2.13.1. The interpret element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-note-pitch">
@@ -6259,6 +6296,8 @@ the intersection lies at infinity.</p>
    <b><a href="#elementdef-instruction">#elementdef-instruction</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-elementdef-instruction">5.2.9.3. The instruction element</a>
+    <li><a href="#ref-for-elementdef-instruction①">5.2.11.3. The tempo element</a>
+    <li><a href="#ref-for-elementdef-instruction②">5.2.13.1. The interpret element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-expression">
@@ -6271,6 +6310,7 @@ the intersection lies at infinity.</p>
    <b><a href="#elementdef-dirgroup">#elementdef-dirgroup</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-elementdef-dirgroup">5.2.9.11. The dirgroup element</a>
+    <li><a href="#ref-for-elementdef-dirgroup①">5.2.11.3. The tempo element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="span-attributes">
@@ -6350,7 +6390,7 @@ the intersection lies at infinity.</p>
   <aside class="dfn-panel" data-for="elementdef-tempo">
    <b><a href="#elementdef-tempo">#elementdef-tempo</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-tempo">5.2.11.3. The tempo element</a> <a href="#ref-for-elementdef-tempo①">(2)</a>
+    <li><a href="#ref-for-elementdef-tempo">5.2.11.3. The tempo element</a> <a href="#ref-for-elementdef-tempo①">(2)</a> <a href="#ref-for-elementdef-tempo②">(3)</a> <a href="#ref-for-elementdef-tempo③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-tempo-value">
@@ -6417,13 +6457,15 @@ the intersection lies at infinity.</p>
     <li><a href="#ref-for-interpretation-content③">5.2.5.2. The tuplet element</a>
     <li><a href="#ref-for-interpretation-content④">5.2.5.3. The beamed element</a>
     <li><a href="#ref-for-interpretation-content⑤">5.2.5.5. The grace element</a>
+    <li><a href="#ref-for-interpretation-content⑥">5.2.11.3. The tempo element</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="elementdef-interpretation">
-   <b><a href="#elementdef-interpretation">#elementdef-interpretation</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="elementdef-interpret">
+   <b><a href="#elementdef-interpret">#elementdef-interpret</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-interpretation">5.2.13.1. The interpretation element</a> <a href="#ref-for-elementdef-interpretation①">(2)</a> <a href="#ref-for-elementdef-interpretation②">(3)</a> <a href="#ref-for-elementdef-interpretation③">(4)</a> <a href="#ref-for-elementdef-interpretation④">(5)</a>
-    <li><a href="#ref-for-elementdef-interpretation⑤">6.1.3.6. The performance-event element</a>
+    <li><a href="#ref-for-elementdef-interpret">5.2.13.1. The interpret element</a> <a href="#ref-for-elementdef-interpret①">(2)</a> <a href="#ref-for-elementdef-interpret②">(3)</a> <a href="#ref-for-elementdef-interpret③">(4)</a> <a href="#ref-for-elementdef-interpret④">(5)</a>
+    <li><a href="#ref-for-elementdef-interpret⑤">6.1.3.5. The performance-tempo element</a>
+    <li><a href="#ref-for-elementdef-interpret⑥">6.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="style-properties">
@@ -6482,8 +6524,9 @@ the intersection lies at infinity.</p>
   <aside class="dfn-panel" data-for="propdef-display">
    <b><a href="#propdef-display">#propdef-display</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-propdef-display">5.3.3.4. The display property</a>
-    <li><a href="#ref-for-propdef-display①">5.3.3.5. The visibility property</a>
+    <li><a href="#ref-for-propdef-display">5.2.11.3. The tempo element</a>
+    <li><a href="#ref-for-propdef-display①">5.3.3.4. The display property</a>
+    <li><a href="#ref-for-propdef-display②">5.3.3.5. The visibility property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valdef-display-normal">
@@ -6495,8 +6538,9 @@ the intersection lies at infinity.</p>
   <aside class="dfn-panel" data-for="valdef-display-none">
    <b><a href="#valdef-display-none">#valdef-display-none</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-valdef-display-none">5.3.3.4. The display property</a>
-    <li><a href="#ref-for-valdef-display-none①">5.3.3.5. The visibility property</a>
+    <li><a href="#ref-for-valdef-display-none">5.2.11.3. The tempo element</a>
+    <li><a href="#ref-for-valdef-display-none①">5.3.3.4. The display property</a>
+    <li><a href="#ref-for-valdef-display-none②">5.3.3.5. The visibility property</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="propdef-visibility">
@@ -6689,7 +6733,7 @@ the intersection lies at infinity.</p>
   <aside class="dfn-panel" data-for="performance-data">
    <b><a href="#performance-data">#performance-data</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-performance-data">5.2.13.1. The interpretation element</a>
+    <li><a href="#ref-for-performance-data">5.2.13.1. The interpret element</a>
     <li><a href="#ref-for-performance-data①">6. GMNX</a>
     <li><a href="#ref-for-performance-data②">6.1.3.3. The performance-data element</a>
    </ul>
@@ -6741,16 +6785,18 @@ the intersection lies at infinity.</p>
   <aside class="dfn-panel" data-for="elementdef-performance-tempo">
    <b><a href="#elementdef-performance-tempo">#elementdef-performance-tempo</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-performance-tempo">6.1.3.1. The performance-audio element</a> <a href="#ref-for-elementdef-performance-tempo①">(2)</a>
-    <li><a href="#ref-for-elementdef-performance-tempo②">6.1.3.3. The performance-data element</a> <a href="#ref-for-elementdef-performance-tempo③">(2)</a>
-    <li><a href="#ref-for-elementdef-performance-tempo④">6.1.3.5. The performance-tempo element</a> <a href="#ref-for-elementdef-performance-tempo⑤">(2)</a> <a href="#ref-for-elementdef-performance-tempo⑥">(3)</a>
-    <li><a href="#ref-for-elementdef-performance-tempo⑦">6.1.3.6. The performance-event element</a>
+    <li><a href="#ref-for-elementdef-performance-tempo">5.2.11.3. The tempo element</a>
+    <li><a href="#ref-for-elementdef-performance-tempo①">5.2.13.1. The interpret element</a> <a href="#ref-for-elementdef-performance-tempo②">(2)</a>
+    <li><a href="#ref-for-elementdef-performance-tempo③">6.1.3.1. The performance-audio element</a> <a href="#ref-for-elementdef-performance-tempo④">(2)</a>
+    <li><a href="#ref-for-elementdef-performance-tempo⑤">6.1.3.3. The performance-data element</a> <a href="#ref-for-elementdef-performance-tempo⑥">(2)</a>
+    <li><a href="#ref-for-elementdef-performance-tempo⑦">6.1.3.5. The performance-tempo element</a> <a href="#ref-for-elementdef-performance-tempo⑧">(2)</a> <a href="#ref-for-elementdef-performance-tempo⑨">(3)</a>
+    <li><a href="#ref-for-elementdef-performance-tempo①⓪">6.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="performance-tempo-notated-time-unit">
    <b><a href="#performance-tempo-notated-time-unit">#performance-tempo-notated-time-unit</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-performance-tempo-notated-time-unit">5.2.13.1. The interpretation element</a>
+    <li><a href="#ref-for-performance-tempo-notated-time-unit">5.2.13.1. The interpret element</a>
     <li><a href="#ref-for-performance-tempo-notated-time-unit①">6.1.3.1. The performance-audio element</a> <a href="#ref-for-performance-tempo-notated-time-unit②">(2)</a>
     <li><a href="#ref-for-performance-tempo-notated-time-unit③">6.1.3.3. The performance-data element</a> <a href="#ref-for-performance-tempo-notated-time-unit④">(2)</a>
     <li><a href="#ref-for-performance-tempo-notated-time-unit⑤">6.1.3.6. The performance-event element</a>
@@ -6778,7 +6824,7 @@ the intersection lies at infinity.</p>
   <aside class="dfn-panel" data-for="elementdef-performance-event">
    <b><a href="#elementdef-performance-event">#elementdef-performance-event</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-elementdef-performance-event">5.2.13.1. The interpretation element</a> <a href="#ref-for-elementdef-performance-event①">(2)</a> <a href="#ref-for-elementdef-performance-event②">(3)</a>
+    <li><a href="#ref-for-elementdef-performance-event">5.2.13.1. The interpret element</a> <a href="#ref-for-elementdef-performance-event①">(2)</a> <a href="#ref-for-elementdef-performance-event②">(3)</a>
     <li><a href="#ref-for-elementdef-performance-event③">6.1.2.2. The score-mapping element</a> <a href="#ref-for-elementdef-performance-event④">(2)</a>
     <li><a href="#ref-for-elementdef-performance-event⑤">6.1.3.4. The performance-part element</a> <a href="#ref-for-elementdef-performance-event⑥">(2)</a>
     <li><a href="#ref-for-elementdef-performance-event⑦">6.1.3.6. The performance-event element</a>
@@ -6799,7 +6845,7 @@ the intersection lies at infinity.</p>
   <aside class="dfn-panel" data-for="element-attrdef-performance-event-pitch">
    <b><a href="#element-attrdef-performance-event-pitch">#element-attrdef-performance-event-pitch</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-performance-event-pitch">5.2.13.1. The interpretation element</a>
+    <li><a href="#ref-for-element-attrdef-performance-event-pitch">5.2.13.1. The interpret element</a>
     <li><a href="#ref-for-element-attrdef-performance-event-pitch①">6.1.3.6. The performance-event element</a>
    </ul>
   </aside>
