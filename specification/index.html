@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="ad47ed69db98e42d1a8f5fcd9a6e32552de2ea6c" name="document-revision">
+  <meta content="c1bf76f098c3839b02d96fc17ae1c156d6137f51" name="document-revision">
 <style>
   .language-xml {
     font-size: 11px;
@@ -1825,28 +1825,28 @@ MusicXML into MNX. This is essential for migration purposes.</p>
   introduction to the topic.</p>
    <h3 class="heading settled" data-level="2.7" id="design-notes"><span class="secno">2.7. </span><span class="content">Design notes</span><a class="self-link" href="#design-notes"></a></h3>
    <p><em>This section is non-normative.</em></p>
-   <p>Some general notes regarding the design of this specification follow.</p>
+   <p>Some general principles regarding the design of this specification follow.</p>
    <dl>
-    <dt>Preserve ease of reading and writing for simple content.
-    <dd>While complex scores will necessarily be generated and parsed by machines, it’s valuable to
-    allow humans to easily create and read simple content. Therefore in some cases, encodings
-    are intentionally more compact than strictly necessary. Examples in MNX include microsyntaxes
-    and the use of XML attributes instead of elements for the most frequent properties. 
     <dt>Make schematic form follow function.
     <dd>The schema of MNX tries where possible to let the constraints of an element hierarchy
     serve a useful purpose, by embodying analogous constraints in music notation. Examples include
     the use of <code><a data-link-type="element" href="#elementdef-beamed" id="ref-for-elementdef-beamed">beamed</a></code> for a run of beamed elements that cannot be interleaved with other
     elements such as <code><a data-link-type="element" href="#elementdef-tuplet" id="ref-for-elementdef-tuplet">tuplet</a></code>. 
-    <dt>Be specific about what is valid and what is not.
-    <dd>Some prior music notation markup languages have taken a more permissive approach to the
-    free combination of features. MNX attempts to keep things more tightly wrapped, while permitting
-    rules to be broken for documents that explicitly step outside of a "standard" profile. 
+    <dt>Preserve ease of reading and writing for simple content.
+    <dd>While complex scores will necessarily be generated and parsed by machines, it’s valuable to
+    allow humans to easily create and read simple content. Therefore in some cases, encodings
+    are intentionally more compact than strictly necessary. Examples in MNX include microsyntaxes
+    and the use of XML attributes instead of elements for the most frequent properties. 
     <dt>Address both literal encoding and semantic encoding.
     <dd>MNX includes two separate approaches to encoding music: high-level semantic encodings
     described by <a data-link-type="dfn" href="#cwmnx" id="ref-for-cwmnx①">CWMNX</a> (and other future modules), and low-level literal
     encodings described by <a data-link-type="dfn" href="#gmnx" id="ref-for-gmnx②">GMNX</a>. The literal encoding attempts to eliminate cultural
     and semantic assumptions within its scope, while still allowing linkage between the literal and
     semantic layers. 
+    <dt>Be specific about what is valid and what is not.
+    <dd>MNX attempts to keep things constrained in its semantic layers, while
+    the literal encoding is wide-open. While this constrains some potential expression towards the
+    edges of CWMN, it enhances interoperability at the core. 
     <dt>Address culturally specific needs in a modular fashion
     <dd>While much of the MNX specification addresses common Western music notation, nothing
     in the specification prevents the development of additional modules targeting other notation

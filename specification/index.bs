@@ -217,16 +217,9 @@ A companion document details a set of [known use cases for music notation](../us
 
   <em>This section is non-normative.</em>
 
-Some general notes regarding the design of this specification follow.
+Some general principles regarding the design of this specification follow.
 
 <dl>
-  <dt>Preserve ease of reading and writing for simple content.</dt>
-  <dd>While complex scores will necessarily be generated and parsed by machines, it's valuable to
-    allow humans to easily create and read simple content. Therefore in some cases, encodings
-    are intentionally more compact than strictly necessary. Examples in MNX include microsyntaxes
-    and the use of XML attributes instead of elements for the most frequent properties.
-  </dd>
-
   <dt>Make schematic form follow function.</dt>
   <dd>The schema of MNX tries where possible to let the constraints of an element hierarchy
     serve a useful purpose, by embodying analogous constraints in music notation. Examples include
@@ -234,10 +227,11 @@ Some general notes regarding the design of this specification follow.
     elements such as <{tuplet}>.
   </dd>
 
-  <dt>Be specific about what is valid and what is not.</dt>
-  <dd>Some prior music notation markup languages have taken a more permissive approach to the
-    free combination of features. MNX attempts to keep things more tightly wrapped, while permitting
-    rules to be broken for documents that explicitly step outside of a "standard" profile.
+  <dt>Preserve ease of reading and writing for simple content.</dt>
+  <dd>While complex scores will necessarily be generated and parsed by machines, it's valuable to
+    allow humans to easily create and read simple content. Therefore in some cases, encodings
+    are intentionally more compact than strictly necessary. Examples in MNX include microsyntaxes
+    and the use of XML attributes instead of elements for the most frequent properties.
   </dd>
 
   <dt>Address both literal encoding and semantic encoding.</dt>
@@ -246,6 +240,12 @@ Some general notes regarding the design of this specification follow.
     encodings described by <a>GMNX</a>. The literal encoding attempts to eliminate cultural
     and semantic assumptions within its scope, while still allowing linkage between the literal and
     semantic layers.
+  </dd>
+
+  <dt>Be specific about what is valid and what is not.</dt>
+  <dd>MNX attempts to keep things constrained in its semantic layers, while
+    the literal encoding is wide-open. While this constrains some potential expression towards the
+    edges of CWMN, it enhances interoperability at the core.
   </dd>
 
   <dt>Address culturally specific needs in a modular fashion</dt>
