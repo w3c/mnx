@@ -1,109 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Example of pure semantic encoding. -->
 <mnx>
-    <head>
-        <identification>
-            <title>Hot Cross Buns</title>
-        </identification>
-    </head>
-    <score content="cwmn">
-        <system>
-            <measure>
-                <attributes>
-                    <tempo bpm="120" value="4"/>
-                    <time signature="4/4"/>
-                </attributes>
-                <direction placement="above">
-                    <words>With heavy irony</words>
-                </direction>
-            </measure>
-            <measure/>
-            <measure/>
-            <measure/>
-        </system>
-        <part>
-            <part-name>Piano</part-name>
-            <measure>
-                <attributes>
-                    <staff>
-                        <clef sign="G" line="2"/>
-                    </staff>
-                    <staff>
-                        <clef sign="F" line="4"/>
-                    </staff>
-                    <instrument-sound>keyboard.piano</instrument-sound>
-                </attributes>
-                <sequence staff="1">
-                    <direction><dynamics><f/></dynamics></direction>
-                    <event value="4"><note pitch="E4"/></event>
-                    <event value="4"><note pitch="D4"/></event>
-                    <event value="2"><note pitch="C4"/></event>
-                </sequence>
-                <sequence staff="2">
-                    <event value="2*"><rest/></event>
-                    <direction placement="below"><dynamics><p/></dynamics></direction>
-                    <event value="4">
-                        <note pitch="C3"/>
-                        <note pitch="E3"/>
-                        <note pitch="G3"/>
-                    </event>
-                </sequence>
-            </measure>
-            <measure>
-                <sequence staff="1">
-                    <event value="4"><note pitch="E4"/></event>
-                    <event value="4"><note pitch="D4"/></event>
-                    <event value="2"><note pitch="C4"/></event>
-                </sequence>
-                <sequence staff="2">
-                    <event value="2*"><rest/></event>
-                    <event value="4">
-                        <note pitch="C3"/>
-                        <note pitch="E3"/>
-                        <note pitch="G3"/>
-                    </event>
-                </sequence>
-            </measure>
-            <measure>
-                <sequence staff="1">
-                    <event value="8"><note pitch="C4"/></event>
-                    <event value="8"><note pitch="C4"/></event>
-                    <event value="8"><note pitch="C4"/></event>
-                    <event value="8"><note pitch="C4"/></event>
-                    <event value="8"><note pitch="D4"/></event>
-                    <event value="8"><note pitch="D4"/></event>
-                    <event value="8"><note pitch="D4"/></event>
-                    <event value="8"><note pitch="D4"/></event>
-                </sequence>
-                <sequence staff="2">
-                    <event value="4"><rest/></event>
-                    <event value="4">
-                        <note pitch="C3"/>
-                        <note pitch="E3"/>
-                        <note pitch="G3"/>
-                    </event>
-                    <event value="4"><rest/></event>
-                    <event value="4">
-                        <note pitch="G3"/>
-                        <note pitch="B3"/>
-                    </event>
-                </sequence>
-            </measure>
-            <measure>
-                <sequence staff="1">
-                    <event value="4"><note pitch="E4"/></event>
-                    <event value="4"><note pitch="D4"/></event>
-                    <event value="2"><note pitch="C4"/></event>
-                </sequence>
-                <sequence staff="2">
-                    <event value="2*"><rest/></event>
-                    <event value="4">
-                        <note pitch="C3"/>
-                        <note pitch="E3"/>
-                        <note pitch="G3"/>
-                    </event>
-                </sequence>
-            </measure>
-        </part>
-    </score>
+  <head>
+    <title>Hot Cross Buns</title>
+  </head>
+  <score>
+    <cwmnx profile="standard">
+      <global>
+        <measure>
+          <time signature="4/4"/>
+          <dirgroup>
+            <tempo bpm="120" value="4"/>
+            <instruction>With heavy irony</instruction>
+          </dirgroup>
+        </measure>
+        <measure/>
+        <measure/>
+        <measure/>
+      </global>
+      <part>
+        <part-name>Piano</part-name>
+        <instrument-sound>keyboard.piano</instrument-sound>
+        <measure>
+          <directions>
+            <staves number="2"/>
+          </directions>
+          <sequence staff="1">
+            <clef line="2" sign="G"/>
+            <dynamics type="f"/>
+            <event value="/4">
+              <note pitch="E4"/>
+            </event>
+            <event value="/4">
+              <note pitch="D4"/>
+            </event>
+            <event value="/2">
+              <note pitch="C4"/>
+            </event>
+          </sequence>
+          <sequence staff="2">
+            <clef line="4" sign="F"/>
+            <event value="/2d">
+              <rest/>
+            </event>
+            <dynamics type="p"/>
+            <event value="/4">
+              <note pitch="C3"/>
+              <note pitch="E3"/>
+              <note pitch="G3"/>
+            </event>
+          </sequence>
+        </measure>
+        <measure>
+          <sequence staff="1">
+            <event value="/4">
+              <note pitch="E4"/>
+            </event>
+            <event value="/4">
+              <note pitch="D4"/>
+            </event>
+            <event value="/2">
+              <note pitch="C4"/>
+            </event>
+          </sequence>
+          <sequence staff="2">
+            <event value="/2d">
+              <rest/>
+            </event>
+            <event value="/4">
+              <note pitch="C3"/>
+              <note pitch="E3"/>
+              <note pitch="G3"/>
+            </event>
+          </sequence>
+        </measure>
+        <measure>
+          <sequence staff="1">
+            <beamed>
+              <event value="/8">
+                <note pitch="C4"/>
+              </event>
+              <event value="/8">
+                <note pitch="C4"/>
+              </event>
+              <event value="/8">
+                <note pitch="C4"/>
+              </event>
+              <event value="/8">
+                <note pitch="C4"/>
+              </event>
+            </beamed>
+            <beamed>
+              <event value="/8">
+                <note pitch="D4"/>
+              </event>
+              <event value="/8">
+                <note pitch="D4"/>
+              </event>
+              <event value="/8">
+                <note pitch="D4"/>
+              </event>
+              <event value="/8">
+                <note pitch="D4"/>
+              </event>
+            </beamed>
+          </sequence>
+          <sequence staff="2">
+            <event value="/4">
+              <rest/>
+            </event>
+            <event value="/4">
+              <note pitch="C3"/>
+              <note pitch="E3"/>
+              <note pitch="G3"/>
+            </event>
+            <event value="/4">
+              <rest/>
+            </event>
+            <event value="/4">
+              <note pitch="G3"/>
+              <note pitch="B3"/>
+            </event>
+          </sequence>
+        </measure>
+        <measure>
+          <sequence staff="1">
+            <event value="/4">
+              <note pitch="E4"/>
+            </event>
+            <event value="/4">
+              <note pitch="D4"/>
+            </event>
+            <event value="/2">
+              <note pitch="C4"/>
+            </event>
+          </sequence>
+          <sequence staff="2">
+            <event value="/2d">
+              <rest/>
+            </event>
+            <event value="/4">
+              <note pitch="C3"/>
+              <note pitch="E3"/>
+              <note pitch="G3"/>
+            </event>
+          </sequence>
+        </measure>
+      </part>
+    </cwmnx>
+  </score>
 </mnx>
