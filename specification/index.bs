@@ -213,18 +213,74 @@ A companion document details a set of [known use cases for music notation](../us
   for completeness. More approachable tutorials and authoring guides can provide a gentler
   introduction to the topic.
 
-<h3 id="history">History</h3>
-
-  <em>This section is non-normative.</em>
-
-  <em>Content TBD</em>
-
-
 <h3 id="design-notes">Design notes</h3>
 
   <em>This section is non-normative.</em>
 
-  <em>Content TBD</em>
+Some general notes regarding the design of this specification follow.
+
+<dl>
+  <dt>Preserve ease of reading and writing for simple content.</dt>
+  <dd>While complex scores will necessarily be generated and parsed by machines, it's valuable to
+    allow humans to easily create and read simple content. Therefore in some cases, encodings
+    are intentionally more compact than strictly necessary. Examples in MNX include microsyntaxes
+    and the use of XML attributes instead of elements for the most frequent properties.
+  </dd>
+
+  <dt>Make schematic form follow function.</dt>
+  <dd>The schema of MNX tries where possible to let the constraints of an element hierarchy
+    serve a useful purpose, by embodying analogous constraints in music notation. Examples include
+    the use of <{beamed}> for a run of beamed elements that cannot be interleaved with other
+    elements such as <{tuplet}>.
+  </dd>
+
+  <dt>Be specific about what is valid and what is not.</dt>
+  <dd>Some prior music notation markup languages have taken a more permissive approach to the
+    free combination of features. MNX attempts to keep things more tightly wrapped, while permitting
+    rules to be broken for documents that explicitly step outside of a "standard" profile.
+  </dd>
+
+  <dt>Address both literal encoding and semantic encoding.</dt>
+  <dd>MNX includes two separate approaches to encoding music: high-level semantic encodings
+    described by <a>CWMNX</a> (and other future modules), and low-level literal
+    encodings described by <a>GMNX</a>. The literal encoding attempts to eliminate cultural
+    and semantic assumptions within its scope, while still allowing linkage between the literal and
+    semantic layers.
+  </dd>
+
+  <dt>Address culturally specific needs in a modular fashion</dt>
+  <dd>While much of the MNX specification addresses common Western music notation, nothing
+    in the specification prevents the development of additional modules targeting other notation
+    systems at a semantic level, or from taking other semantic approaches to Western music.
+    The <a>GMNX</a> module avoids cultural specificity due to its literal focus.
+  </dd>
+
+  <dt>Separate semantic concerns from presentation/interpretation concerns.</dt>
+  <dd>Within its semantic encoding for CWMNX, this specification strives to keep semantic
+    descriptions from answering to the multitude of tiny features that control presentation and
+    performance interpretation. These are segregated in the parallel domains of <a>style properties</a>
+    and <a>interpretation content</a>.
+  </dd>
+
+  <dd>While it is challenging to ground the definition of what is "semantic" in music notation, the litmus
+    test used here is the practical one of <em>widely shared understanding</em>: if the performance interpretation of some notation
+    is widely shared within the culture targeted by some semantic module, then that
+    aspect may be classified as semantic.</dd>
+
+  <dt>Allow semantic encodings to "tunnel through" to the literal encoding.</dt>
+  <dd>A semantic module such as CWMNX cannot supply all known information about rendering and performance, in cases
+    where this knowledge lives outside the semantic markup. MNX allows semantic layers to "tunnel"
+    through to employ the literal constructs of GMNX, allowing the same primitives to describe
+    both entire scores at a literal level, and those fragments of a semantic score that require
+    an embedded, literal description.
+  </dd>
+
+  <dt>Leverage existing value in the world</dt>
+  <dd>The ecosystem of the Web is broad and valuable. MNX attempts to exploit this by making use of existing
+    patterns and tooling. Examples include the reuse of many CSS concepts, and the ability to employ completely standard SVG
+    documents within GMNX without need of alteration.
+  </dd>
+</dl>
 
 <h4 id="design-notes-extensibility">Extensibility</h4>
 
@@ -245,9 +301,9 @@ A companion document details a set of [known use cases for music notation](../us
     :: Scaffolding material on which the remainder of the specification relies
     : [[#mnx-container]]
     :: The high-level structure of MNX which organizes a hierarchy of musical resources in a document
-    : [[#cwmnx]]
+    : [[#cwmnx-section]]
     :: A schema describing a musical score in Conventional Western Music Notation.
-    : [[#gmnx]]
+    : [[#gmnx-section]]
     :: A schema describing an arbitrary graphical score in conjunction with audio and performance data.
   </div>
 
@@ -702,12 +758,15 @@ bibliographic data and other descriptive information.
 The <{title}> element assigns a title to its parent element in the context of the document as a whole.
 </section>
 
-<h2 id="cwmnx">CWMNX</h2>
+<h2 id="cwmnx-section">CWMNX</h2>
 
 <section>
 <h3 id="cwmnx-scope">Scope</h3>
 
   <em>This section is non-normative.</em>
+
+  This part of the specification is called <dfn>CWMNX</dfn>, and describes a
+  semantic dialect of MNX designed to encode Conventional Western Music Notation.
 
 </section>
 
@@ -3305,9 +3364,9 @@ The intent is to set out the normative constraints that CWMNX rendering must fol
 </section>
 
 <section>
-<h2 id="gmnx">GMNX</h2>
+<h2 id="gmnx-section">GMNX</h2>
 
-GMNX is a general format for representing musical scores in terms of linked
+<dfn>GMNX</dfn> is a general format for representing musical scores in terms of linked
 graphical media, audio media and performance data.
 
 In contrast to CWMNX, there is no attempt to represent semantics directly in
