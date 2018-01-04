@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="b9b1fba417e3fed9226fcbbdb9a7e20586b901ac" name="document-revision">
+  <meta content="93f2ef990ff3fe59068abaac1d0c5b7aafda0f80" name="document-revision">
 <style>
   .language-xml {
     font-size: 11px;
@@ -4100,15 +4100,21 @@ which apply to its parent element. The attribute value must be a valid <a data-l
      <p>The <code><a data-link-type="element-sub" href="#element-attrdef-global-class" id="ref-for-element-attrdef-global-class②">class</a></code> attribute may be used on any MNX element, and supplies the value
 of a <a data-link-type="dfn" href="#style-class-style-class-definition" id="ref-for-style-class-style-class-definition①">style class definition</a> which applies to a that element as per the
 rules of <a data-link-type="dfn" href="#style-property-computation" id="ref-for-style-property-computation">style property computation</a>.</p>
-     <p>The value of this attribute supplies the name of a style class
-definition which applies to the containing element as an <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens" id="ref-for-space-separated-tokens②">ordered set of
-space-separated tokens</a>. All style property values supplied by the class
-definition are applied to the element in the order in which they were defined.</p>
-     <p>For example, the following definition applies a class named <code>emphasis</code> to
+     <p>The value of this attribute supplies the names of one or more style class
+definitions which apply to the containing element as an <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens" id="ref-for-space-separated-tokens②">ordered set of
+space-separated tokens</a>. All style property values supplied by each class
+definition are applied to the element, in the order in which they were defined.</p>
+     <p>For example, the following applies a class named <code>emphasis</code> to
 a note:</p>
      <div class="example" id="example-c9833bfa">
       <a class="self-link" href="#example-c9833bfa"></a> 
 <pre class="language-xml highlight"><span class="nt">&lt;note</span> <span class="na">class=</span><span class="s">"emphasis"</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span>
+</pre>
+     </div>
+     <p>In this case, two different classes <code>emphasis</code> and <code>alternate</code> are applied, along with a local overriding color:</p>
+     <div class="example" id="example-2e21dc66">
+      <a class="self-link" href="#example-2e21dc66"></a> 
+<pre class="language-xml highlight"><span class="nt">&lt;note</span> <span class="na">class=</span><span class="s">"emphasis alternate"</span> <span class="na">style=</span><span class="s">"color: blue;"</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span>
 </pre>
      </div>
     </section>

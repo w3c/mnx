@@ -2952,17 +2952,25 @@ The <{global/class}> attribute may be used on any MNX element, and supplies the 
 of a <a>style class definition</a> which applies to a that element as per the
 rules of <a>style property computation</a>.
 
-The value of this attribute supplies the name of a style class
-definition which applies to the containing element as an <a>ordered set of
-space-separated tokens</a>. All style property values supplied by the class
-definition are applied to the element in the order in which they were defined.
+The value of this attribute supplies the names of one or more style class
+definitions which apply to the containing element as an <a>ordered set of
+space-separated tokens</a>. All style property values supplied by each class
+definition are applied to the element, in the order in which they were defined.
 
-For example, the following definition applies a class named `emphasis` to
+For example, the following applies a class named `emphasis` to
 a note:
 
 <div class="example">
 ```xml
 <note class="emphasis" pitch="C4"/>
+```
+</div>
+
+In this case, two different classes `emphasis` and `alternate` are applied, along with a local overriding color:
+
+<div class="example">
+```xml
+<note class="emphasis alternate" style="color: blue;" pitch="C4"/>
 ```
 </div>
 
