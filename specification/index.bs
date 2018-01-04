@@ -2101,6 +2101,7 @@ of a single event, that is performed at a distinct time.
     <dt><a>Attributes</a>:</dt>
     <dd><{note/pitch}> - the musical pitch of this note </dd>
     <dd><{note/staff}> - an optional staff index for this note </dd>
+    <dd><{note/accidental}> - an optional accidental for this note </dd>
     <dd><{note/value}> - an optional note value for this note </dd>
   </dl>
 
@@ -2114,10 +2115,22 @@ Optionally, the <dfn element-attr>staff</dfn> attribute supplies a <a>staff inde
 for this note where this differs from the staff index which applies to the containing
 <{event}> as a whole.
 
+The <dfn element-attr>accidental</dfn> attribute supplies an accidental value
+for this note. In the <{cwmnx/profile/standard}> CWMNX profile, this attribute
+must match the <a>alteration</a> of the <{note/pitch}> attribute. Omission of
+the  attribute indicates that no accidental is to be displayed. The special
+value <dfn attr-value for="note/accidental">auto</dfn> indicates that a
+consumer application should determine the proper accidental based on musical
+context.
+
+<em>(Import values here from MusicXML specification. Add style properties for
+editorial indications. Handle the case of "explicit" accidentals that should
+be preserved even if the chromatic context is changed by edits.)</em>
+
 Advisement: The following features are not supported by the
 <{cwmnx/profile/standard}> CWMNX profile.
 
-Optionally, the <dfn element-attr>value</dfn> attribute supplies a <a>note
+The <dfn element-attr>value</dfn> attribute optionally supplies a <a>note
 value</a> for this note, where this differs from the containing <{event}>'s
 note value.  The value of the note must be less than or equal to the value of
 the containing event.
@@ -2168,10 +2181,6 @@ ignored for this purpose.
 
 <dfn>Note content</dfn> comprises elements that describe the musical nature
 of a single note within an event.
-
-<h5 id="the-accidental-element">The <dfn element><code>accidental</code></dfn> element</h5>
-<section dfn-for="accidental">
-</section>
 
 <h5 id="the-notehead-element">The <dfn element><code>notehead</code></dfn> element</h5>
 <section dfn-for="notehead">
