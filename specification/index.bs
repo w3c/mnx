@@ -32,8 +32,6 @@ urlPrefix: https://www.w3.org/TR/css3-syntax/; type: dfn; spec: css3-syntax;
     text: consume a component value
     text: component value
     text: environment encoding
-url: https://www.w3.org/TR/css-style-attr/#syntax; type: dfn; spec: css-style-attr;
-    text: style attribute
 
 urlPrefix: https://www.w3.org/TR/selectors4/#; type: dfn; spec: SELECTORS4
     text: type selector
@@ -472,6 +470,38 @@ criteria for content in those formats, and how to parse them.
 An <dfn>element location</dfn> constitutes a reference to a specific element
 in the document. It consists of the character `#`, immediately followed by the
 XML ID of the referenced element.
+
+<h4 id="style-property-lists">Style property lists</h5>
+
+MNX supports a simple and compact <dfn>style property list</dfn> syntax, allowing
+a map of key-value pairs to be represented in a single string where the keys
+are names of <a>style properties</a>.
+
+To parse a <a>style property list</a>:
+
+  1. Let <var>input</var> be the string being parsed.
+  1. Let <var>defs</var> be the result of <a>strictly splitting the string</a> <var>input</var> using U+003B SEMICOLON as a delimiter.
+  1. Let <var>properties</var> be an empty map.
+  1. While <var>defs</var> is not empty,
+      1. Let <var>definition</var> be the first element of <var>defs</var>, and remove it from <var>defs</var>.
+      1. <a>Collect a sequence of characters</a> from <var>definition</var> that are not U+003A COLON, and let <var>property name</var>
+          be the result after <a>stripping leading and trailing white space</a>.
+      1. If <var>property name</var> is empty, return an error.
+      1. If the next character of <var>definition</var> is not U+003A COLON,
+          return an error.
+      1. Skip the next character of <var>definition</var>.
+      1. Let <var>property value</var> be the remaining characters of <var>definition</var>, after <a>stripping leading and trailing white space</a>.
+      1. Add a new entry to <var>properties</var> with key <var>property name</var> and value <var>property value</var>.
+  1. Return <var>properties</var>.
+
+Examples include:
+
+: `color: red`
+:: A definition of the property `color` as having the value `red`.
+: `color: green;`
+:: A definition of the property `color` as having the value `green`. Note that a terminal `;` is provided in this case, but has no effect.
+: `smufl-font: Bravura; color: red;`
+:: A definition of two properties: `smufl-font` with value `Bravura`, and `color` with value `red`.
 
 <h3 id="content-models">Content models and categories</h3>
 
@@ -969,8 +999,9 @@ Examples include:
 <h5 id="time-signature-syntax">Time signature syntax</h5>
 
 MNX allows the specification of a <dfn>time signature</dfn>, consisting of a
-sequence of undotted note value quantities which may optionally share the same
-denominator. To parse a time signature, use the following procedure:
+sum of ordered, undotted note value quantities defining the meter of a
+measure. The sum may optionally share a common denominator. To parse a time
+signature, use the following procedure:
 
   1. Let <var>input</var> be the string being parsed.
   1. Let <var>tokens</var> be the result of <a>strictly splitting the string</a> <var>input</var> using U+002B PLUS as a delimiter.
@@ -2591,7 +2622,7 @@ assume the following values:
   <dd>Jianpu clef</dd>
 </dl>
 
-<em>Is the <em>none</em> value from MusicXML needed? Why?</em>
+<em>Is the `none` value from MusicXML needed? Why?</em>
 
 The optional <dfn element-attr>octave</dfn> attribute is a <a>signed
 integer</a> giving the number of octaves by which the pitches normally
@@ -2601,17 +2632,18 @@ indicated by the given clef sign should be transposed. It defaults to zero.
 
 <h5 id="the-staff-details-element">The <dfn element><code>staff-details</code></dfn> element</h5>
 <section dfn-for="staff-details">
+
 <em>Details TBD.</em>
 
 <em>Describes the nature of a particular staff; applies to this staff in all succeeeding
-  measure content in the part until changed. Expected to resemble MusicXML's corresponding element.</em>
+measure content in the part until changed. Expected to resemble MusicXML's corresponding element.</em>
 
 </section>
 
 <h5 id="the-barline-element">The <dfn element><code>barline</code></dfn> element</h5>
 <section dfn-for="barline">
   <em>Only describes a barline explicitly placed elsewhere than the end of a measure. Barlines at the end of a measure
-      are more simply described by the <{measure/barline}> attribute.
+      are more simply described by the <{measure/barline}> attribute.</em>
 </section>
 
 <h5 id="the-use-instrument-element">The <dfn element><code>use-instrument</code></dfn> element</h5>
@@ -2756,15 +2788,16 @@ procedure for <dfn>style property computation</dfn>:
     that they were encountered in processing of the document.
   </li>
 
-  <li>For each <{style/class}> attribute belonging to the semantic element, in the order
+  <li>For each <{global/class}> attribute belonging to the semantic element, in the order
     of occurrence, apply the property values from each <a>style class definition</a>
-    whose class name matches the <{style/class}> attribute.
+    whose class name matches the <{global/class}> attribute.
     All definitions with a matching name are applied in the order
     that they were encountered in processing of the document.
   </li>
 
-  <li>For each <{style}> element belonging to the semantic element,
-    in the order of occurrence, apply its property value.
+  <li>For each <{global/style}> attribute belonging to the semantic element,
+    apply its property name-value pairs
+    in the order of their processing in the given <a>style property list</a>.
   </li>
 
 Properties are documented in the following places:
@@ -2775,47 +2808,24 @@ Properties are documented in the following places:
 
 - Properties applying to a specific element are defined in the description of that element.
 
-<h4 id="the-style-element">The <dfn element><code>style</code></dfn> element</h4>
-<section dfn-for="style">
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd>Any.</dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd>Empty.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{style/property}> - the name of the property being defined</dd>
-    <dd><{style/value}> - the value of the property being defined</dd>
-  </dl>
-
-The <{style}> element supplies the value of an explicit style property
-which applies to the containing element.
-
-The <dfn element-attr>property</dfn> attribute gives the name of a property
-whose value is supplied by this <{style}> element's <dfn element-attr>value</dfn>
-attribute, applying to the rendering or interpretation of the
-containing element.
+<h4 id="the-style-element">The <dfn element-attr for="global"><code>style</code></dfn> attribute</h4>
+The <{global/style}> attribute supplies the value of one or more explicit style properties
+which apply to its parent element. The attribute value must be a valid <a>style property list</a>.
 
 Here's an example of a style property definition adding color to a note:
 
 <div class="example">
 ```xml
-<note pitch="C4">
-  <style property="color" value="#000099"/>
-</note>
+<note pitch="C4" style="color: #000099;"/>
 ```
 </div>
 
-Note: Use of inline CSS-style syntax as in `style="color: #000099;"` would
-certainly be far more compact; at present, the spec attempts to address some
-members' preference to avoid introducing complex microsyntaxes. Even "simple"
-CSS requires an approach to escaping, etc.
-
 </section>
 
-<h4 id="the-class-attribute">The <dfn element-attr for="style"><code>class</code></dfn> attribute</h4>
+<h4 id="the-class-attribute">The <dfn element-attr for="global"><code>class</code></dfn> attribute</h4>
 <section dfn-for="style">
 
-The <{style/class}> attribute may be used on any MNX element, and supplies the value
+The <{global/class}> attribute may be used on any MNX element, and supplies the value
 of a <a>style class definition</a> which applies to a that element as per the
 rules of <a>style property computation</a>.
 
@@ -3062,19 +3072,20 @@ element, or in a separate linked stylesheet.
     <dt><a>Contexts</a>:</dt>
     <dd>Any.</dd>
     <dt><a>Content Model</a>:</dt>
-    <dd>One or more <{style}> elements.</dd>
+    <dd>None.</dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{style-class/name}> - the name of this style class definition</dd>
+    <dd><{global/style}> - the style property list applied by this definition</dd>
   </dl>
 
 The <{style-class}> element supplies a <dfn>style class definition</dfn>,
 which associates a list of style property values with a class that can be
 referenced elsewhere using its name alone, as per the rules of <a>style
-property computation</a>. The list of property values in the class is
-contained in a set of child <{style}> elements.
+property computation</a>. 
 
 The <dfn element-attr>name</dfn> attribute supplies the name of this style class
-definition.
+definition; the <{global/style}> attribute supplies the properties that make up the
+content of the definition.
 
 Multiple occurrences of <{style-class}> are permitted to share the same value
 of <{style-class/name}>. These are equivalent to a single occurrence of
@@ -3087,10 +3098,7 @@ in the case of events:
 
 <div class="example">
 ```xml
-<style-class name="emphasis">
-  <style property="color" value="#FF0000"/>
-  <style property="stem-width" value="0.05"/>
-</style-class>
+<style-class name="emphasis" style="color: #FF0000; stem-width: 0.05;"/>
 ```
 </div>
 
@@ -3102,16 +3110,16 @@ in the case of events:
     <dt><a>Contexts</a>:</dt>
     <dd>Any.</dd>
     <dt><a>Content Model</a>:</dt>
-    <dd>One or more <{style}> elements.</dd>
+    <dd>None.</dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{style-selector/rule}> - a set of element names to which this style selector definition applies</dd>
+    <dd><{global/style}> - the style property list applied by this definition</dd>
   </dl>
 
 The <{style-selector}> element supplies a <dfn>style selector
 definition</dfn>, which defines a list of style property values applying to
 all elements matching a <a>style selector rule</a>, as per the rules of <a>style
-property computation</a>. The list is contained in a set of child <{style}>
-elements that belong to the class selector.
+property computation</a>.
 
 The <dfn element-attr>rule</dfn> attribute supplies a <dfn>style selector rule</dfn>
 that is automatically applied to all semantic MNX elements to determine a set of
@@ -3121,20 +3129,23 @@ implied style properties. The following rule syntax is supported:
     of an MNX element. Elements whose names belong to this set are considered to
     match the rule.
 
+The <{global/style}> attribute supplies the properties that make up the
+content of the rule.
+
 Multiple occurrences of <{style-selector}> are permitted to share the same value
 of <{style-selector/rule}>. These are equivalent to a single occurrence of
 <{style-selector}> with the same constituent definitions of style property values
 in the same order.
 
 Note: The scope of a defined rule is not limited to descendants of the element in which
-the <{style-selector}> element occurs, but is global.
+the <{style-selector}> element occurs, but is global to the entire document.
+
+For example, the following specifies that all <{event}> elements in the document
+will employ a given stem width:
 
 <div class="example">
 ```xml
-<style-selector rule="event">
-  <style property="color" value="#FF0000"/>
-  <style property="stem-width" value="0.05"/>
-</style-class>
+<style-selector rule="event" style="stem-width: 0.05;"/>
 ```
 </div>
 
