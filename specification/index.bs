@@ -2755,6 +2755,9 @@ within <{global}>.
 The required <dfn element-attr>number</dfn> attribute supplies the number of staves
 in the part, as a <a>valid non-negative integer</a> other than zero.
 
+If no <{staves}> element is encountered at the start of a part, the number of staves
+is taken as 1.
+
 </section>
 
 <h5 id="the-clef-element">The <dfn element><code>clef</code></dfn> element</h5>
