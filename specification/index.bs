@@ -2678,7 +2678,8 @@ no accidentals.
     <dt><a>Content Model</a>:</dt>
     <dd>None</dd>
     <dt><a>Attributes</a>:</dt>
-    <dd><{time/signature}> - the applicable <a>time signature</a></dd>
+    <dd><{time/signature}> - the displayed <a>time signature</a></dd>
+    <dd><{time/measure}> - an <a>time signature</a> which describes the content of the current measure only, and which is not displayed</dd>
   </dl>
 
 The <{time}> element defines a time signature applicable to this and following
@@ -2691,7 +2692,53 @@ It is invalid to place more than one <{time}> element within a <{measure}>.
 In the <{cwmnx/profile/standard}> CWMNX profile, a <{time}> element may only appear
 inside <{global}> measure content, not within a <{part}>.
 
-The required <dfn element-attr>signature</dfn> attribute supplies a <a>time signature</a>.
+The required <dfn element-attr>signature</dfn> attribute supplies a <a>time signature</a> that gives the time signature for this measure and for subsequent measures. By default this signature is displayed in normative rendering.
+
+Here is an example of a 4/4 time signature:
+
+<div class="example">
+```xml
+<global>
+  <measure>
+    <directions>
+      <time signature="4/4"/>
+    </directions>
+    ...
+  </measure>
+  ...
+</global>
+```
+</div>
+
+Optionally, the <dfn element-attr>measure</dfn> attribute may be used to
+override the notated <a>time signature</a> for <em>the current measure
+only</em>, where this value differs from <{time/signature}>. This is of particular use
+for anacruses and for shortened measures prior to a repeat or jump back to an anacrusis.
+
+For example, here is an example of a 3/4 time signature beginning with an anacrusis
+or pickup measure containing a single beat:
+
+<div class="example">
+```xml
+<global>
+  <measure>
+    <directions>
+      <time signature="3/4" measure="1/4"/>
+    </directions>
+    ...this pickup measure contains only 1 beat...
+  </measure>
+  <measure>
+    ...the following measure contains 3 beats...
+  </measure>
+  ...
+</global>
+```
+</div>
+
+Note: The <{time/measure}> attribute must be provided in all cases where the
+actual content of a measure is of a different length from that indicated by
+<{time/signature}>. MNX does not require consumer implementations to examine
+the contents of measures to determine their intended length.
 
 </section>
 
