@@ -16,10 +16,12 @@
       <!-- Global score structure and directions -->
       <global>
         <measure number="1">
-          <tempo bpm="60" value="4"/>
-          <time signature="3/4"/>
-          <key fifths="-3" mode="major"/>
-          <instruction class="tempo-indication">Andantino</instruction>
+          <directions>
+            <tempo bpm="60" value="4"/>
+            <time signature="3/4"/>
+            <key fifths="-3" mode="major"/>
+            <instruction class="tempo-indication">Andantino</instruction>
+          </directions>
         </measure>
         <measure number="2"/>
         <measure number="3"/>
