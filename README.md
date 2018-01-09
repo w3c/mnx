@@ -3,6 +3,6 @@
 
 Resources:
 
-- Read the [current MNX draft specification](https://w3c.github.io/mnx/specification/).
+- Read the [current MNX draft specification](https://w3c.github.io/mnx/specification/index.html).
 - Peruse the [CWMNX examples](https://github.com/w3c/mnx/tree/master/examples).
 - Look at the [GMNX examples](https://joeberkovitz.github.io/gmnx-viewer/).
