@@ -14,10 +14,7 @@ Abstract: A draft specification for the MNX music notation document format.
     MNX is a proposed music notation markup standard. Its aim is to improve
     MusicXML in fundamental ways, while retaining many of its key concepts, terms
     and features. MNX seeks to provide a high degree of interoperability and
-    exchange between different applications working with music notation. The
-    emphasis on interoperability is a differentiator between MNX and other
-    notation encoding approaches, and takes it in a different direction from its
-    predecessors.
+    exchange between different applications working with music notation. 
 Markup Shorthands: markdown yes
 Repository: w3c/mnx
 !Participate: <a href="https://github.com/w3c/mnx/issues/new">File an issue</a> (<a href="https://github.com/w3c/mnx/issues">open issues</a>)
@@ -128,9 +125,7 @@ are referred to the <a>MusicXML specification</a> as a placeholder.
 
   MNX is a proposed music notation markup standard, which seeks to provide a
   high degree of interoperability and exchange between different applications
-  working with music notation. This emphasis on interoperability is a
-  differentiator between MNX and other notation encoding approaches, and takes
-  it in a different direction from its predecessors.
+  working with music notation.
 
   Many different sources of inspiration inform the design of MNX including
   MusicXML, the <a>Music Encoding Initiative</a>, the IEEE 1599 specification,
@@ -160,9 +155,9 @@ The present draft of this specification deals with two <a>score types</a>:
 
 The CWMNX score type of MNX is a lineal descendant of MusicXML, and employs
 many of the same concepts. However it sacrifices some features and flexibility
-in favor of tighter interoperability, and simplifies the element structure
-considerably. It also moves all non-semantic information into CSS properties.
-The features in GMNX have no analogue in MusicXML.
+of MusicXML in favor of tighter interoperability, and simplifies the element
+structure considerably. CWMNX also moves all non-semantic information into CSS
+properties.
 
 MEI is a very general and expressive medium for encoding arbitrary musical
 documents, with particular attention to the needs of scholars. Due to its
