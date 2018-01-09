@@ -1594,7 +1594,7 @@ note which occupies the entire measure:
 
 The <{directions}> element organizes <a>direction content</a> within a containing
 <{measure}> or <{sequence}> element. Within <{directions}>, each child direction element
-is assigned a explicit measure location, via its <{direction/location}> attribute.
+must be assigned a explicit measure location, via its <{direction/location}> attribute.
 
 The order of occurrence of child elements is not significant, since each child has an
 explicit location independent of this order.
@@ -1606,8 +1606,6 @@ The context of the <{directions}> element defines a scope for contained directio
 - Directions in a <{measure}> within a <{part}> element apply to all sequences of the measure in a given part.
 
 - Directions in a <{sequence}> apply to the sequence in which it occurs.
-
-- Directions in an <{event}> apply to the event in which it occurs.
 
 </section>
 

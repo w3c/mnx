@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="a6ae925f4043137a5f2410f3ce7b969737706bf8" name="document-revision">
+  <meta content="174feefec56dff899866979ca45cf309bf397fe0" name="document-revision">
 <style>
   .language-xml {
     font-size: 11px;
@@ -3114,7 +3114,7 @@ note which occupies the entire measure:</p>
       <dd>None.
      </dl>
      <p>The <code><a data-link-type="element" href="#elementdef-directions" id="ref-for-elementdef-directions③">directions</a></code> element organizes <a data-link-type="dfn" href="#direction-content" id="ref-for-direction-content②">direction content</a> within a containing <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure⑨">measure</a></code> or <code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence⑨">sequence</a></code> element. Within <code><a data-link-type="element" href="#elementdef-directions" id="ref-for-elementdef-directions④">directions</a></code>, each child direction element
-is assigned a explicit measure location, via its <code><a data-link-type="element-sub" href="#element-attrdef-direction-location" id="ref-for-element-attrdef-direction-location">location</a></code> attribute.</p>
+must be assigned a explicit measure location, via its <code><a data-link-type="element-sub" href="#element-attrdef-direction-location" id="ref-for-element-attrdef-direction-location">location</a></code> attribute.</p>
      <p>The order of occurrence of child elements is not significant, since each child has an
 explicit location independent of this order.</p>
      <p>The context of the <code><a data-link-type="element" href="#elementdef-directions" id="ref-for-elementdef-directions⑤">directions</a></code> element defines a scope for contained directions as follows:</p>
@@ -3125,8 +3125,6 @@ explicit location independent of this order.</p>
        <p>Directions in a <code><a data-link-type="element" href="#elementdef-measure" id="ref-for-elementdef-measure①①">measure</a></code> within a <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part⑧">part</a></code> element apply to all sequences of the measure in a given part.</p>
       <li data-md="">
        <p>Directions in a <code><a data-link-type="element" href="#elementdef-sequence" id="ref-for-elementdef-sequence①⓪">sequence</a></code> apply to the sequence in which it occurs.</p>
-      <li data-md="">
-       <p>Directions in an <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event③">event</a></code> apply to the event in which it occurs.</p>
      </ul>
     </section>
     <h4 class="heading settled" data-level="5.2.5" id="cwmnx-sequence-content"><span class="secno">5.2.5. </span><span class="content">Sequence content</span><a class="self-link" href="#cwmnx-sequence-content"></a></h4>
@@ -3163,7 +3161,7 @@ following procedure, called <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt
          <li>Set <var>beamed group</var> to an undefined value.
         </ol>
        <li>
-        If <var>next</var> is an <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event④">event</a></code> element: 
+        If <var>next</var> is an <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event③">event</a></code> element: 
         <ol>
          <li>
           If <var>next</var> has a <code><a data-link-type="element-sub" href="#element-attrdef-event-measure" id="ref-for-element-attrdef-event-measure">measure</a></code> value of <code><a data-link-type="attr-value" href="#attr-valuedef-event-measure-yes" id="ref-for-attr-valuedef-event-measure-yes">yes</a></code>, 
@@ -3228,7 +3226,7 @@ following procedure, called <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt
       <dt><a data-link-type="dfn" href="#style-properties" id="ref-for-style-properties④">Style properties</a>:
       <dd><a class="property" data-link-type="propdesc" href="#propdef-stem-direction" id="ref-for-propdef-stem-direction">stem-direction</a> - the stem direction of this event
      </dl>
-     <p>The <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event⑤">event</a></code> element represents a <a data-link-type="dfn" href="#notated-event" id="ref-for-notated-event②">notated event</a>: a discrete period of
+     <p>The <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event④">event</a></code> element represents a <a data-link-type="dfn" href="#notated-event" id="ref-for-notated-event②">notated event</a>: a discrete period of
 time within a sequence during which one or more notes are performed, or in
 which a rest occurs.</p>
      <p>All events other than <a data-link-type="dfn" href="#event-whole-measure-event" id="ref-for-event-whole-measure-event">whole-measure events</a> require a <dfn class="dfn-paneled" data-dfn-for="event" data-dfn-type="element-attr" data-export="" data-lt="value" id="element-attrdef-event-value"><code> value</code></dfn> attribute to provide their duration as a <a data-link-type="dfn" href="#note-value" id="ref-for-note-value②">note value</a>.
@@ -3496,7 +3494,7 @@ in which no sequence content occurs. It embodies the idea of blank space
 within a measure.</p>
      <p>The <dfn class="dfn-paneled" data-dfn-for="forward" data-dfn-type="element-attr" data-export="" id="element-attrdef-forward-duration"><code>duration</code></dfn> attribute specifies a <a data-link-type="dfn" href="#note-value-quantity" id="ref-for-note-value-quantity⑤">note value
 quantity</a> that provides the length of this <code><a data-link-type="element" href="#elementdef-forward" id="ref-for-elementdef-forward③">forward</a></code>.</p>
-     <p class="note" role="note"><span>NOTE:</span> In contrast to <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event⑥">event</a></code>'s <code><a data-link-type="element-sub" href="#element-attrdef-event-value" id="ref-for-element-attrdef-event-value②">value</a></code> attribute, the <code><a data-link-type="element-sub" href="#element-attrdef-forward-duration" id="ref-for-element-attrdef-forward-duration①">duration</a></code> attribute is not constrained to a single note value, but
+     <p class="note" role="note"><span>NOTE:</span> In contrast to <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event⑤">event</a></code>'s <code><a data-link-type="element-sub" href="#element-attrdef-event-value" id="ref-for-element-attrdef-event-value②">value</a></code> attribute, the <code><a data-link-type="element-sub" href="#element-attrdef-forward-duration" id="ref-for-element-attrdef-forward-duration①">duration</a></code> attribute is not constrained to a single note value, but
 may be a multiple of one.</p>
     </section>
     <h5 class="heading settled" data-level="5.2.5.5" id="the-grace-element"><span class="secno">5.2.5.5. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-grace"><code>grace</code></dfn> element</span><a class="self-link" href="#the-grace-element"></a></h5>
@@ -3560,7 +3558,7 @@ of a single event, that is performed at a distinct time.</p>
     <section>
      <dl class="def">
       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts①⑥">Contexts</a>:
-      <dd><code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event⑦">event</a></code>
+      <dd><code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event⑥">event</a></code>
       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model①⑥">Content Model</a>:
       <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content①⓪">Metadata content</a>
       <dd><a data-link-type="dfn" href="#note-content" id="ref-for-note-content">Note content</a>
@@ -3575,7 +3573,7 @@ of a single event, that is performed at a distinct time.</p>
 information pertaining to the note itself rather than to its containing event.</p>
      <p>The <dfn class="dfn-paneled" data-dfn-for="note" data-dfn-type="element-attr" data-export="" id="element-attrdef-note-pitch"><code>pitch</code></dfn> attribute supplies the pitch of the note
 as a <a data-link-type="dfn" href="#chromatic-pitch" id="ref-for-chromatic-pitch①">chromatic pitch</a>, using the <a data-link-type="dfn" href="#rules-for-parsing-a-chromatic-pitch" id="ref-for-rules-for-parsing-a-chromatic-pitch">rules for parsing a chromatic pitch</a>.</p>
-     <p>Optionally, the <dfn class="dfn-paneled" data-dfn-for="note" data-dfn-type="element-attr" data-export="" id="element-attrdef-note-staff"><code>staff</code></dfn> attribute supplies a <a data-link-type="dfn" href="#staff-index" id="ref-for-staff-index⑦">staff index</a> for this note where this differs from the staff index which applies to the containing <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event⑧">event</a></code> as a whole.</p>
+     <p>Optionally, the <dfn class="dfn-paneled" data-dfn-for="note" data-dfn-type="element-attr" data-export="" id="element-attrdef-note-staff"><code>staff</code></dfn> attribute supplies a <a data-link-type="dfn" href="#staff-index" id="ref-for-staff-index⑦">staff index</a> for this note where this differs from the staff index which applies to the containing <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event⑦">event</a></code> as a whole.</p>
      <p>The <dfn class="dfn-paneled" data-dfn-for="note" data-dfn-type="element-attr" data-export="" id="element-attrdef-note-accidental"><code>accidental</code></dfn> attribute supplies an accidental value
 for this note. In the <code><a data-link-type="attr-value" href="#attr-valuedef-cwmnx-profile-standard" id="ref-for-attr-valuedef-cwmnx-profile-standard">standard</a></code> CWMNX profile, this attribute
 must match the <a data-link-type="dfn" href="#alteration" id="ref-for-alteration">alteration</a> of the <code><a data-link-type="element-sub" href="#element-attrdef-note-pitch" id="ref-for-element-attrdef-note-pitch①">pitch</a></code> attribute. Omission of
@@ -3588,7 +3586,7 @@ editorial indications. Handle the case of "explicit" accidentals that should
 be preserved even if the chromatic context is changed by edits.)</em></p>
      <p><strong class="advisement"> The following features are not supported by the <code><a data-link-type="attr-value" href="#attr-valuedef-cwmnx-profile-standard" id="ref-for-attr-valuedef-cwmnx-profile-standard①">standard</a></code> CWMNX profile.</strong></p>
      <p>The <dfn class="dfn-paneled" data-dfn-for="note" data-dfn-type="element-attr" data-export="" id="element-attrdef-note-value"><code>value</code></dfn> attribute optionally supplies a <a data-link-type="dfn" href="#note-value" id="ref-for-note-value④">note
-value</a> for this note, where this differs from the containing <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event⑨">event</a></code>'s
+value</a> for this note, where this differs from the containing <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event⑧">event</a></code>'s
 note value.  The value of the note must be less than or equal to the value of
 the containing event.</p>
     </section>
@@ -3596,7 +3594,7 @@ the containing event.</p>
     <section>
      <dl class="def">
       <dt><a data-link-type="dfn" href="#contexts" id="ref-for-contexts①⑦">Contexts</a>:
-      <dd><code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event①⓪">event</a></code>
+      <dd><code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event⑨">event</a></code>
       <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model①⑦">Content Model</a>:
       <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content①①">Metadata content</a>
       <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute①⑥">Attributes</a>:
@@ -3649,7 +3647,7 @@ on this attribute vary from one liaison to another.</p>
      </dl>
      <p>The <code><a data-link-type="element" href="#elementdef-tied" id="ref-for-elementdef-tied">tied</a></code> element is used to indicate that a note is tied to a successor <code><a data-link-type="element" href="#elementdef-note" id="ref-for-elementdef-note⑤">note</a></code> element.</p>
      <p>If the <code><a data-link-type="element-sub" href="#element-attrdef-liaisons-target" id="ref-for-element-attrdef-liaisons-target①">target</a></code> attribute is provided, it must specify the element
-ID of a <code><a data-link-type="element" href="#elementdef-note" id="ref-for-elementdef-note⑥">note</a></code> which lies in the same part, and whose containing <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event①①">event</a></code> begins directly after the end of the of this note’s event. The step, alteration and
+ID of a <code><a data-link-type="element" href="#elementdef-note" id="ref-for-elementdef-note⑥">note</a></code> which lies in the same part, and whose containing <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event①⓪">event</a></code> begins directly after the end of the of this note’s event. The step, alteration and
 octave values for the target note must be identical to this one.</p>
      <p>If <code><a data-link-type="element-sub" href="#element-attrdef-liaisons-target" id="ref-for-element-attrdef-liaisons-target②">target</a></code> is not provided, the tie does not connect to a
 particular destination note. In this case <dfn class="dfn-paneled" data-dfn-for="tied" data-dfn-type="element-attr" data-export="" id="element-attrdef-tied-location"><code>location</code></dfn> attribute may be used to specify the <a data-link-type="dfn" href="#measure-location" id="ref-for-measure-location⑥">measure location</a> of the other end
@@ -4139,7 +4137,7 @@ note values, and are thus modified in the case of elements for which the <a data
 containing element. All performance event times within <code><a data-link-type="element" href="#elementdef-interpret" id="ref-for-elementdef-interpret②">interpret</a></code> are thus
 relative to this origin. Negative event times are permitted, and specify
 performance events which precede the location of the containing element.</p>
-     <p>When <code><a data-link-type="element" href="#elementdef-interpret" id="ref-for-elementdef-interpret③">interpret</a></code> occurs within an <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event①②">event</a></code> or <code><a data-link-type="element" href="#elementdef-note" id="ref-for-elementdef-note⑦">note</a></code> element, all <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event②">performance-event</a></code> attributes are defaulted to the values that would be
+     <p>When <code><a data-link-type="element" href="#elementdef-interpret" id="ref-for-elementdef-interpret③">interpret</a></code> occurs within an <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event①①">event</a></code> or <code><a data-link-type="element" href="#elementdef-note" id="ref-for-elementdef-note⑦">note</a></code> element, all <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event②">performance-event</a></code> attributes are defaulted to the values that would be
 generated by an implementation for the first note in the containing element.</p>
      <p>As one example, consider this use of <code><a data-link-type="element" href="#elementdef-interpret" id="ref-for-elementdef-interpret④">interpret</a></code> to play a beamed pair of eighth
 notes in a swung triplet rhythm instead:</p>
@@ -4360,7 +4358,7 @@ descendants interact with the layout of the document.</p>
      <p>The <a class="property" data-link-type="propdesc" href="#propdef-visibility" id="ref-for-propdef-visibility">visibility</a> property controls whether an element’s contents (including
 all of its descendants) are displayed by a consumer or not.</p>
      <p>In contrast to <a class="property" data-link-type="propdesc" href="#propdef-display" id="ref-for-propdef-display②">display</a> with a value of <a class="css" data-link-type="maybe" href="#valdef-display-none" id="ref-for-valdef-display-none②">none</a>, a <a class="property" data-link-type="propdesc" href="#propdef-visibility" id="ref-for-propdef-visibility①">visibility</a> value of <a class="css" data-link-type="maybe" href="#valdef-visibility-hidden" id="ref-for-valdef-visibility-hidden①">hidden</a> does not affect the layout of any other
-elements in the document. For example, the contents of a hidden <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event①③">event</a></code> will not be shown, but the place where the event would have appeared
+elements in the document. For example, the contents of a hidden <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event①②">event</a></code> will not be shown, but the place where the event would have appeared
 will still occupy space in the containing measure.</p>
      <p>Permitted values include:</p>
      <ul>
@@ -4512,7 +4510,7 @@ of <code><a data-link-type="element-sub" href="#element-attrdef-style-selector-r
 in the same order.</p>
      <p class="note" role="note"><span>Note:</span> The scope of a defined rule is not limited to descendants of the element in which
 the <code><a data-link-type="element" href="#elementdef-style-selector" id="ref-for-elementdef-style-selector④">style-selector</a></code> element occurs, but is global to the entire document.</p>
-     <p>For example, the following specifies that all <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event①④">event</a></code> elements in the document
+     <p>For example, the following specifies that all <code><a data-link-type="element" href="#elementdef-event" id="ref-for-elementdef-event①③">event</a></code> elements in the document
 will employ a given stem width:</p>
      <div class="example" id="example-1bf71ab5">
       <a class="self-link" href="#example-1bf71ab5"></a> 
@@ -6262,16 +6260,15 @@ for only some of a time signature’s fractions, which would require a grouping 
     <li><a href="#ref-for-elementdef-event">2.7. Design notes</a>
     <li><a href="#ref-for-elementdef-event①">5.2.1.2. Notated events</a>
     <li><a href="#ref-for-elementdef-event②">5.2.2.5. Measure location syntax</a>
-    <li><a href="#ref-for-elementdef-event③">5.2.4.3. The directions element</a>
-    <li><a href="#ref-for-elementdef-event④">5.2.5. Sequence content</a>
-    <li><a href="#ref-for-elementdef-event⑤">5.2.5.1. The event element</a>
-    <li><a href="#ref-for-elementdef-event⑥">5.2.5.4. The forward element</a>
-    <li><a href="#ref-for-elementdef-event⑦">5.2.6.1. The note element</a> <a href="#ref-for-elementdef-event⑧">(2)</a> <a href="#ref-for-elementdef-event⑨">(3)</a>
-    <li><a href="#ref-for-elementdef-event①⓪">5.2.6.2. The rest element</a>
-    <li><a href="#ref-for-elementdef-event①①">5.2.8.2. The tied element</a>
-    <li><a href="#ref-for-elementdef-event①②">5.2.13.1. The interpret element</a>
-    <li><a href="#ref-for-elementdef-event①③">5.3.3.5. The visibility property</a>
-    <li><a href="#ref-for-elementdef-event①④">5.4.2. The style-selector element</a>
+    <li><a href="#ref-for-elementdef-event③">5.2.5. Sequence content</a>
+    <li><a href="#ref-for-elementdef-event④">5.2.5.1. The event element</a>
+    <li><a href="#ref-for-elementdef-event⑤">5.2.5.4. The forward element</a>
+    <li><a href="#ref-for-elementdef-event⑥">5.2.6.1. The note element</a> <a href="#ref-for-elementdef-event⑦">(2)</a> <a href="#ref-for-elementdef-event⑧">(3)</a>
+    <li><a href="#ref-for-elementdef-event⑨">5.2.6.2. The rest element</a>
+    <li><a href="#ref-for-elementdef-event①⓪">5.2.8.2. The tied element</a>
+    <li><a href="#ref-for-elementdef-event①①">5.2.13.1. The interpret element</a>
+    <li><a href="#ref-for-elementdef-event①②">5.3.3.5. The visibility property</a>
+    <li><a href="#ref-for-elementdef-event①③">5.4.2. The style-selector element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-event-value">
