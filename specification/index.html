@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="3315278b4712ab8f316f7586beb4fef1ce680020" name="document-revision">
+  <meta content="160560b1cf3ba4fd44c621cce4c8b4a07d8b3253" name="document-revision">
 <style>
   .language-xml {
     font-size: 11px;
@@ -1429,7 +1429,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Draft Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-08">8 January 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-09">9 January 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1444,7 +1444,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 8 January 2018,
+In addition, as of 9 January 2018,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -4624,33 +4624,22 @@ between performance and graphics.</p>
        <dd>None.
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute③④">Attributes</a>:
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-score-mapping-graphics" id="ref-for-element-attrdef-score-mapping-graphics">graphics</a></code> - an element ID within the SVG content described by the parent <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑤">score-view</a></code>
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-score-mapping-events" id="ref-for-element-attrdef-score-mapping-events">events</a></code> - one or more optional IDs of corresponding <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event③">performance-event</a></code> elements
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-score-mapping-semantics" id="ref-for-element-attrdef-score-mapping-semantics">semantics</a></code> - one or more optional IDs of corresponding element(s) within source semantic documents
       </dl>
       <p>The <code><a data-link-type="element" href="#elementdef-score-mapping" id="ref-for-elementdef-score-mapping①">score-mapping</a></code> element supplies information on the correspondence
 between an SVG element in a <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑥">score-view</a></code>, and sets of other
-semantic and performance elements.</p>
+semantic elements in this or other documents.</p>
       <p>The <dfn class="dfn-paneled" data-dfn-for="score-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-score-mapping-graphics"><code>graphics</code></dfn> attribute is required, and gives a single
 ID of an element in the score view’s SVG content. There is no restriction on
 the nature or structure of this element, nor on its relationship to other
 elements.</p>
-      <p>The optional <dfn class="dfn-paneled" data-dfn-for="score-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-score-mapping-events"><code>events</code></dfn> attribute supplies one or more IDs
-of <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event④">performance-event</a></code> elements in the same document. This asserts that each
-of the referenced events are considered to be part of the performance
-interpretation of the SVG content described by <code><a data-link-type="element-sub" href="#element-attrdef-score-mapping-graphics" id="ref-for-element-attrdef-score-mapping-graphics①">graphics</a></code>.</p>
-      <p class="note" role="note"><span>Note:</span> It is common for multiple performance events to correspond to the
-same graphic. For example, consider repeated sections in which each notation
-generates multiple events over the course of a musical form, or the individual
-musical events generated by the same note bearing an ornament.</p>
       <p>The optional <dfn class="dfn-paneled" data-dfn-for="score-mapping" data-dfn-type="element-attr" data-export="" id="element-attrdef-score-mapping-semantics"><code>semantics</code></dfn> attribute supplies one or more
 IDs of elements in a semantic source document, for example a CWMNX document.
 This asserts that each of the referenced semantic source elements are considered as
-generating the SVG content described by <code><a data-link-type="element-sub" href="#element-attrdef-score-mapping-graphics" id="ref-for-element-attrdef-score-mapping-graphics②">graphics</a></code>.</p>
+generating the SVG content described by <code><a data-link-type="element-sub" href="#element-attrdef-score-mapping-graphics" id="ref-for-element-attrdef-score-mapping-graphics①">graphics</a></code>.</p>
       <p class="note" role="note"><span>Note:</span> While this element describes only a single SVG element, it is commonly
-the case that multiple SVG graphics may be associated with the same event or
-semantic source. (For example, consider that multiple tied notes in CWMN may
-define a single performance event.) Therefore, multiple <code><a data-link-type="element" href="#elementdef-score-mapping" id="ref-for-elementdef-score-mapping②">score-mapping</a></code> elements for different graphics may reference the same performance events
-and/or semantic sources.</p>
+the case that multiple SVG graphics may be associated with the same
+semantic source.</p>
      </section>
      <h4 class="heading settled" data-level="6.1.3" id="gmnx-performance"><span class="secno">6.1.3. </span><span class="content">Performance content</span><a class="self-link" href="#gmnx-performance"></a></h4>
      <p>The category of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="performance-content">performance content</dfn> includes both of the following:</p>
@@ -4725,11 +4714,11 @@ between the performance data and the graphical score.</p>
        <dd><code><a data-link-type="element" href="#elementdef-performance-data" id="ref-for-elementdef-performance-data①">performance-data</a></code>
        <dt><a data-link-type="dfn" href="#content-model" id="ref-for-content-model④⓪">Content Model</a>:
        <dd><a data-link-type="dfn" href="#metadata-content" id="ref-for-metadata-content①⑦">Metadata content</a>.
-       <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event⑤">performance-event</a></code> elements.
+       <dd>Zero or more <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event③">performance-event</a></code> elements.
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute③⑦">Attributes</a>:
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-part-instrument-sound" id="ref-for-element-attrdef-performance-part-instrument-sound">instrument-sound</a></code> - the sound ID of the instrument for this part.
       </dl>
-      <p>The <code><a data-link-type="element" href="#elementdef-performance-part" id="ref-for-elementdef-performance-part①">performance-part</a></code> element organizes a list of <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event⑥">performance-event</a></code> elements, within a given performance.</p>
+      <p>The <code><a data-link-type="element" href="#elementdef-performance-part" id="ref-for-elementdef-performance-part①">performance-part</a></code> element organizes a list of <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event④">performance-event</a></code> elements, within a given performance.</p>
       <p>The <dfn class="dfn-paneled" data-dfn-for="performance-part" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-part-instrument-sound"><code>instrument-sound</code></dfn> attribute gives the MusicXML sound ID of the instrument
 for this part.</p>
       <p class="note" role="note"><span>Note:</span> <code><a data-link-type="element" href="#elementdef-performance-part" id="ref-for-elementdef-performance-part②">performance-part</a></code> elements do not necessarily correspond to CWMNX <code><a data-link-type="element" href="#elementdef-part" id="ref-for-elementdef-part①⑧">part</a></code> elements, as they pertain to a single instrument.</p>
@@ -4775,8 +4764,10 @@ of a scoring time unit relative to performance time, similar to a MIDI tempo tra
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-pitch" id="ref-for-element-attrdef-performance-event-pitch①">pitch</a></code> - pitch of this event
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-dynamics" id="ref-for-element-attrdef-performance-event-dynamics">dynamics</a></code> - dynamics for this event
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-techniques" id="ref-for-element-attrdef-performance-event-techniques">techniques</a></code> - set of performance techniques for this event
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-view" id="ref-for-element-attrdef-performance-event-view">view</a></code> - optional element ID of the <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑦">score-view</a></code> containing graphics for this event
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-event-graphics" id="ref-for-element-attrdef-performance-event-graphics">graphics</a></code> - optional SVG elements for specific event graphics
       </dl>
-      <p>The <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event⑦">performance-event</a></code> element describes a single musical event in terms of its
+      <p>The <code><a data-link-type="element" href="#elementdef-performance-event" id="ref-for-elementdef-performance-event⑤">performance-event</a></code> element describes a single musical event in terms of its
 performance parameters.</p>
       <p>All times given are in <a data-link-type="dfn" href="#performance-tempo-notated-time-unit" id="ref-for-performance-tempo-notated-time-unit⑤">notated time units</a>, whose relationship to performance time is described by <code><a data-link-type="element" href="#elementdef-performance-tempo" id="ref-for-elementdef-performance-tempo①⓪">performance-tempo</a></code> elements. These times may be expressed in the following forms which are
 syntactically distinct:</p>
@@ -4804,6 +4795,10 @@ MusicXML definition as "percentage of forte" is hard to interpret clearly.</em><
 to the event as a <a data-link-type="dfn" href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens" id="ref-for-space-separated-tokens④">unordered set of space-separated tokens</a>.</p>
       <p class="note" role="note"><span>Note:</span> These presumably correspond to articulatory variations of the instrument sound.
 Proper definition remains TBD.</p>
+      <p>If present, the <dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-view"><code>view</code></dfn> and <dfn class="dfn-paneled" data-dfn-for="performance-event" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-event-graphics"><code>graphics</code></dfn> attributes
+together define a set of SVG graphics in a <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑧">score-view</a></code> element which comprise the visual
+representation corresponding to this event. Other than the fact of this correspondence, no other
+information about the graphics is encoded.</p>
      </section>
      <h5 class="heading settled" data-level="6.1.3.7" id="the-performance-mapping-element"><span class="secno">6.1.3.7. </span><span class="content">The <dfn class="dfn-paneled" data-dfn-type="element" data-export="" id="elementdef-performance-mapping"><code>performance-mapping</code></dfn> element</span><a class="self-link" href="#the-performance-mapping-element"></a></h5>
      <section>
@@ -4834,7 +4829,7 @@ equal to the <code><a data-link-type="element-sub" href="#element-attrdef-perfor
        <dt><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-attribute" id="ref-for-concept-attribute④①">Attributes</a>:
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-start" id="ref-for-element-attrdef-performance-region-start①">start</a></code> - start time of the time region being mapped
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-end" id="ref-for-element-attrdef-performance-region-end①">end</a></code> - end time of the time region
-       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-view" id="ref-for-element-attrdef-performance-region-view">view</a></code> - the element ID of the <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑦">score-view</a></code> containing the visual region
+       <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-view" id="ref-for-element-attrdef-performance-region-view">view</a></code> - the element ID of the <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑨">score-view</a></code> containing the visual region
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-region" id="ref-for-element-attrdef-performance-region-region">region</a></code> - the definition of the visual region itself
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-cursor-start" id="ref-for-element-attrdef-performance-region-cursor-start">cursor-start</a></code> - a starting line segment for a cursor
        <dd><code><a data-link-type="element-sub" href="#element-attrdef-performance-region-cursor-end" id="ref-for-element-attrdef-performance-region-cursor-end">cursor-end</a></code> - an ending line segment for a cursor
@@ -4846,7 +4841,7 @@ regions of the graphical score and regions of one or more audio performances.</p
       <p><dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-start"><code>start</code></dfn> gives the start of the time region.</p>
       <p><dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-end"><code>end</code></dfn> gives the end of the time region.</p>
       <p><dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-view"><code>view</code></dfn> identifies a view of some section of the score, by
-providing the XML ID of its <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view⑧">score-view</a></code> element.</p>
+providing the XML ID of its <code><a data-link-type="element" href="#elementdef-score-view" id="ref-for-elementdef-score-view①⓪">score-view</a></code> element.</p>
       <p><dfn class="dfn-paneled" data-dfn-for="performance-region" data-dfn-type="element-attr" data-export="" id="element-attrdef-performance-region-region"><code>region</code></dfn> identifies the visual region for the mapping
 using a fragment identifier in accordance with <a data-link-type="dfn" href="https://www.w3.org/TR/SVG/linking.html#LinksIntoSVG" id="ref-for-LinksIntoSVG①">linking into SVG content</a>.
 The fragment identifier refers to the same document identified by the <code><a data-link-type="element-sub" href="#element-attrdef-performance-region-view" id="ref-for-element-attrdef-performance-region-view①">view</a></code> attribute.</p>
@@ -4990,7 +4985,6 @@ the intersection lies at infinity.</p>
         <li><a href="#elementdef-ending">ending</a><span>, in §5.2.9.5</span>
         <li><a href="#elementdef-event">event</a><span>, in §5.2.5.1</span>
         <li><a href="#event-content">Event content</a><span>, in §5.2.6</span>
-        <li><a href="#element-attrdef-score-mapping-events">events</a><span>, in §6.1.2.2</span>
         <li><a href="#elementdef-expression">expression</a><span>, in §5.2.9.4</span>
         <li><a href="#attr-valuedef-clef-sign-f">F</a><span>, in §5.2.11.5</span>
         <li><a href="#attr-valuedef-dynamics-type-f">f</a><span>, in §5.2.9.2</span>
@@ -5013,7 +5007,12 @@ the intersection lies at infinity.</p>
         <li><a href="#elementdef-gmnx">gmnx</a><span>, in §6.1.1.1</span>
         <li><a href="#elementdef-grace">grace</a><span>, in §5.2.5.5</span>
         <li><a href="#propdef-grace-slash">grace-slash</a><span>, in §5.3.3.9</span>
-        <li><a href="#element-attrdef-score-mapping-graphics">graphics</a><span>, in §6.1.2.2</span>
+        <li>
+         graphics
+         <ul>
+          <li><a href="#element-attrdef-score-mapping-graphics">element-attr for score-mapping</a><span>, in §6.1.2.2</span>
+          <li><a href="#element-attrdef-performance-event-graphics">element-attr for performance-event</a><span>, in §6.1.3.6</span>
+         </ul>
         <li><a href="#elementdef-hammer-on">hammer-on</a><span>, in §5.2.8.7</span>
         <li><a href="#elementdef-harmony">harmony</a><span>, in §5.2.9.9</span>
         <li><a href="#elementdef-head">head</a><span>, in §4.1.2</span>
@@ -5324,6 +5323,7 @@ the intersection lies at infinity.</p>
          view
          <ul>
           <li><a href="#element-attrdef-score-view-view">element-attr for score-view</a><span>, in §6.1.2.1</span>
+          <li><a href="#element-attrdef-performance-event-view">element-attr for performance-event</a><span>, in §6.1.3.6</span>
           <li><a href="#element-attrdef-performance-region-view">element-attr for performance-region</a><span>, in §6.1.3.8</span>
          </ul>
         <li><a href="#propdef-visibility">visibility</a><span>, in §5.3.3.5</span>
@@ -6980,7 +6980,8 @@ the intersection lies at infinity.</p>
     <li><a href="#ref-for-elementdef-score-view">6.1.1.1. The gmnx element</a>
     <li><a href="#ref-for-elementdef-score-view①">6.1.2.1. The score-view element</a> <a href="#ref-for-elementdef-score-view②">(2)</a> <a href="#ref-for-elementdef-score-view③">(3)</a>
     <li><a href="#ref-for-elementdef-score-view④">6.1.2.2. The score-mapping element</a> <a href="#ref-for-elementdef-score-view⑤">(2)</a> <a href="#ref-for-elementdef-score-view⑥">(3)</a>
-    <li><a href="#ref-for-elementdef-score-view⑦">6.1.3.8. The performance-region element</a> <a href="#ref-for-elementdef-score-view⑧">(2)</a>
+    <li><a href="#ref-for-elementdef-score-view⑦">6.1.3.6. The performance-event element</a> <a href="#ref-for-elementdef-score-view⑧">(2)</a>
+    <li><a href="#ref-for-elementdef-score-view⑨">6.1.3.8. The performance-region element</a> <a href="#ref-for-elementdef-score-view①⓪">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-score-view-view">
@@ -6993,19 +6994,13 @@ the intersection lies at infinity.</p>
    <b><a href="#elementdef-score-mapping">#elementdef-score-mapping</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-elementdef-score-mapping">6.1.2.1. The score-view element</a>
-    <li><a href="#ref-for-elementdef-score-mapping①">6.1.2.2. The score-mapping element</a> <a href="#ref-for-elementdef-score-mapping②">(2)</a>
+    <li><a href="#ref-for-elementdef-score-mapping①">6.1.2.2. The score-mapping element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-score-mapping-graphics">
    <b><a href="#element-attrdef-score-mapping-graphics">#element-attrdef-score-mapping-graphics</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-element-attrdef-score-mapping-graphics">6.1.2.2. The score-mapping element</a> <a href="#ref-for-element-attrdef-score-mapping-graphics①">(2)</a> <a href="#ref-for-element-attrdef-score-mapping-graphics②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="element-attrdef-score-mapping-events">
-   <b><a href="#element-attrdef-score-mapping-events">#element-attrdef-score-mapping-events</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-element-attrdef-score-mapping-events">6.1.2.2. The score-mapping element</a>
+    <li><a href="#ref-for-element-attrdef-score-mapping-graphics">6.1.2.2. The score-mapping element</a> <a href="#ref-for-element-attrdef-score-mapping-graphics①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-score-mapping-semantics">
@@ -7124,9 +7119,8 @@ the intersection lies at infinity.</p>
    <b><a href="#elementdef-performance-event">#elementdef-performance-event</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-elementdef-performance-event">5.2.13.1. The interpret element</a> <a href="#ref-for-elementdef-performance-event①">(2)</a> <a href="#ref-for-elementdef-performance-event②">(3)</a>
-    <li><a href="#ref-for-elementdef-performance-event③">6.1.2.2. The score-mapping element</a> <a href="#ref-for-elementdef-performance-event④">(2)</a>
-    <li><a href="#ref-for-elementdef-performance-event⑤">6.1.3.4. The performance-part element</a> <a href="#ref-for-elementdef-performance-event⑥">(2)</a>
-    <li><a href="#ref-for-elementdef-performance-event⑦">6.1.3.6. The performance-event element</a>
+    <li><a href="#ref-for-elementdef-performance-event③">6.1.3.4. The performance-part element</a> <a href="#ref-for-elementdef-performance-event④">(2)</a>
+    <li><a href="#ref-for-elementdef-performance-event⑤">6.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-attrdef-performance-event-start">
@@ -7158,6 +7152,18 @@ the intersection lies at infinity.</p>
    <b><a href="#element-attrdef-performance-event-techniques">#element-attrdef-performance-event-techniques</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-element-attrdef-performance-event-techniques">6.1.3.6. The performance-event element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-performance-event-view">
+   <b><a href="#element-attrdef-performance-event-view">#element-attrdef-performance-event-view</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-performance-event-view">6.1.3.6. The performance-event element</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="element-attrdef-performance-event-graphics">
+   <b><a href="#element-attrdef-performance-event-graphics">#element-attrdef-performance-event-graphics</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-element-attrdef-performance-event-graphics">6.1.3.6. The performance-event element</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="elementdef-performance-mapping">
