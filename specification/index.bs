@@ -1735,7 +1735,6 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
     <dd><{event/measure}> - optional flag indicating that the event occupies the entire measure.</dd>
     <dd><{event/orient}> - optional <a>orientation</a> of this event </dd>
     <dd><{event/staff}> - optional <a>staff index</a> of this event </dd>
-    <dd><{event/beam-count}> - optional count of beams connecting this event to its successor</dd>
     <dt><a>Style properties</a>:</dt>
     <dd>'stem-direction' - the stem direction of this event</dd>
   </dl>
@@ -1837,11 +1836,6 @@ keyboard voice that temporarily crosses into the upper staff:
 ```
 </div>
 
-The optional <dfn element-attr>beam-count</dfn> attribute defines a specific
-number of beams that connect this event to its successor within a <a>beamed group</a>
-of events. A typical use of this attribute would be to specify a beam count of 1
-on, say the fourth note in a beamed group of eight 32nd notes to emphasize a
-secondary grouping at the eighth-note level.
 </section>
 
 <h5 id="the-tuplet-element">The <dfn element><code>tuplet</code></dfn> element</h5>
@@ -1911,13 +1905,14 @@ rendering rules.
 <section dfn-for="beamed">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
-    <dd><{sequence}>, <{tuplet}></dd>
+    <dd><{sequence}>, <{tuplet}>, <{grace}>, <{beamed}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
     <dd><a>Sequence content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
-    <dd><{beamed/continue}> - optional continuing beam group in following measure</dd>
+    <dd><{beamed/value}> - optional value of a beamed group within a parent</dd>
+    <dd><{beamed/continue}> - optional beam group in following measure which continues this one</dd>
   </dl>
 
 The <{beamed}> element defines a <dfn>beamed group</dfn> of events that are
@@ -1925,13 +1920,10 @@ joined by beams to conceptually mark them as belonging to a distinct run. In
 CWMNX, beams cannot begin or end in the middle of other groupings such as
 tuplets or grace notes, and this element acts to enforce that constraint.
 
-It is not valid to nest a <{beamed}> element inside another, directly or indirectly.
-
 NOTE: In general, the number of beams and the use of forward or backward hooks
-is determined automatically by implementations, using both <{beamed}> and the
-<{event/beam-count}> attribute of <{event}>. More detailed beam specifications
-may be overridden using style properties, but do not amount to semantic
-markup.
+is determined automatically by implementations. There is thus no CWMNX element
+that represents an individual beam.  More detailed beam specifications may be
+overridden using style properties, but do not amount to semantic markup.
 
 Here is a simple beaming example in a 6/8 time signature. The grouping
 suffices; there is no need to describe individual beams within the beamed
@@ -1953,6 +1945,63 @@ group:
       <event value="/8">...</event>
     </beamed>
 </sequence>
+```
+</div>
+
+The <{beamed}> element may also be nested in order to place child beamed groups
+in a parent beamed group. A common scenario occurs when groups of short beamed
+notes are themselves organized at a higher level. The <dfn element-attr>value</dfn>
+attribute optionally gives the <a>base note value</a> to be assigned to the child
+group for beaming purposes.
+
+The following example illustrates two child beamed groups of four 32nd notes
+each, which are in turn placed within a higher-parent beamed group. Each of
+the two subgroups has a note value of one eighth note for beaming purposes,
+and so the subgroups are themselves connected by a single beam to constitute
+the larger group:
+
+<div class="example">
+```xml
+<beamed>
+  <beamed value="/8">
+    <event value="/32">...</event>
+    <event value="/32">...</event>
+    <event value="/32">...</event>
+    <event value="/32">...</event>
+  </beamed>
+  <beamed value="/8">
+    <event value="/32">...</event>
+    <event value="/32">...</event>
+    <event value="/32">...</event>
+    <event value="/32">...</event>
+  </beamed>
+</beamed>
+```
+</div>
+
+Note: The <{beamed/value}> attribute does not affect beaming <em>within</em> a
+beamed group, and so has no consequences unless beamed groups are nested.
+
+Indirect nesting of beam groups also occurs. One example is a set of grace
+notes sharing their own beam, preceding a regular non-grace note within a
+larger beamed group:
+
+<div class="example">
+```xml
+<beamed>
+  <event value="/8">...</event>
+  <event value="/8">...</event>
+  <grace>
+    <beamed>
+      <event value="/8">...</event>
+      <event value="/8">...</event>
+      <event value="/8">...</event>
+      <event value="/8">...</event>
+    </beamed>
+  </grace>
+  <event value="/8">...</event>
+  <event value="/8">...</event>
+</beamed>
 ```
 </div>
 
