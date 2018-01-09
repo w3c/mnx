@@ -170,7 +170,7 @@ interoperable medium for encoding CWMN (sometimes known as "MEI Go").
 IEEE 1599 is a specification that has paid unique attention to the
 relationships between different layers of musical information. Its Logic layer
 is similar in content to CWMNX, while its Notational, Performance and Audio
-layers answer some of the same concerns as GWMNX. GMNX takes a different
+layers answer some of the same concerns as GMNX. GMNX takes a different
 approach to connecting these layers, and does not attempt to fully
 unify semantic information with visual and performance data. It relies
 to a greater degree on SVG, and to a lesser degree on MIDI.
@@ -217,9 +217,8 @@ Some general principles regarding the design of this specification follow.
 <dl>
   <dt>Make schematic form follow function.</dt>
   <dd>The schema of MNX tries where possible to let the constraints of an element hierarchy
-    serve a useful purpose, by embodying analogous constraints in music notation. Examples include
-    the use of <{beamed}> for a run of beamed elements that cannot be interleaved with other
-    elements such as <{tuplet}>.
+    serve a useful purpose, by embodying analogous constraints in music notation. For example,
+    the <{sequence}> and <{event}> elements force a musical voice in CWMN to follow conventional rules for avoiding temporal overlap.
   </dd>
 
   <dt>Preserve ease of reading and writing for simple content.</dt>
@@ -329,9 +328,9 @@ Some general principles regarding the design of this specification follow.
 
     <p class="example">This is an example.</p>
 
-    <p class="&#x0058;&#x0058;&#x0058;">This is an open issue.</p>
+    <p class="issue">This is an open issue.</p>
 
-    <p class="warning">This is a warning.</p>
+    <p class="advisement">This is a warning.</p>
 
     <pre class="css" highlight="css">/* this is a CSS fragment */</pre>
 
@@ -781,10 +780,13 @@ a slice of content that is relevant to a single instrument or a group of
 related instruments.
 
 A part may employ one or more <dfn lt="staff|staves">staves</dfn>. Each <a>staff</a>
-supplies a pair of dimensions, one for pitch and one for time, within which
+supplies a pair of dimensions, usually one for pitch and one for time, within which
 notes may be placed.  Conventionally, the time dimension is horizontally oriented; 
 for pitched instruments, the pitch dimension is vertically oriented. All <a>staves</a>
 within a <a>part</a> share the same time dimension.
+
+For unpitched instruments, the vertical dimension indicates a choice of sound rather
+than a pitch, governed by a set of conventions that map note placement to sound.
 
 Every segment of a staff possesses a <dfn>clef</dfn> that determines the
 mapping between its pitch dimension and some set of performable pitches, with
@@ -1089,6 +1091,9 @@ Examples include:
 :: A compound time signature of 2/8, 3/4 and 2/8 as separate fractions (note that the spaces
     are ignored)
 
+Issue: Shared denominators are all-or-nothing. So there's currently no way to share a denominator
+for only some of a time signature's fractions, which would require a grouping construct like
+`2/4+(2+3/8)` or such.
 
 <h5 id="chromatic-pitch-syntax">Chromatic pitch syntax</h5>
 
@@ -1917,8 +1922,9 @@ rendering rules.
 
 The <{beamed}> element defines a <dfn>beamed group</dfn> of events that are
 joined by beams to conceptually mark them as belonging to a distinct run. In
-CWMNX, beams cannot begin or end in the middle of other groupings such as
-tuplets or grace notes, and this element acts to enforce that constraint.
+CWMN, beams cannot have one end inside a grouping such as tuplets or grace
+notes and the other end outside the same grouping. This element acts to
+enforce that constraint.
 
 NOTE: In general, the number of beams and the use of forward or backward hooks
 is determined automatically by implementations. There is thus no CWMNX element
@@ -2084,16 +2090,16 @@ subordinate relationship to the surrounding non-grace events.
 The <dfn element-attr>type</dfn> attribute describes the kind of grace notes
 included in this element. Values include:
 
-: <dfn attr-value dfn-for="grace/type">steal-following</dfn> (default)
-
-:: The run of grace notes occupies a time interval starting at the expected
-    onset of the next non-grace event, both delaying its onset and shortening its duration.
-
-: <dfn attr-value dfn-for="grace/type">steal-previous</dfn>
+: <dfn attr-value dfn-for="grace/type">steal-previous</dfn> (default)
 
 :: The run of grace notes occupies a time interval that ends before the
     expected onset of the next non-grace event, shortening the duration of
     the preceding non-grace event.
+
+: <dfn attr-value dfn-for="grace/type">steal-following</dfn>
+
+:: The run of grace notes occupies a time interval starting at the expected
+    onset of the next non-grace event, both delaying its onset and shortening its duration.
 
 : <dfn attr-value dfn-for="grace/type">make-time</dfn>
 
@@ -3160,6 +3166,9 @@ apply to all descendants of the element within which they are specified.
   </dl>
   The 'color' property specifies a <a>simple color</a> to be used to render notational objects
   at or below the level of the element.
+
+  Issue: Simple colors as per the HTML5 spec don't support an alpha property, so perhaps we
+  should adopt a separate syntactical definition here.
 </section>
 
 <h5 id="the-smufl-font-property">The <dfn property><code>smufl-font</code></dfn> property</h5>
