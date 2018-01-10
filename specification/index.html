@@ -1177,10 +1177,15 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="174feefec56dff899866979ca45cf309bf397fe0" name="document-revision">
+  <meta content="26e275d5b06efe5b0b8c3e41a960c5b971678361" name="document-revision">
 <style>
   .language-xml {
     font-size: 11px;
+  }
+
+  .example img {
+    background-color: hsl(24, 20%, 95%);
+    padding: 10px;
   }
 </style>
 <style>/* style-md-lists */
@@ -1429,7 +1434,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Draft Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-09">9 January 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-10">10 January 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1452,7 +1457,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
    </div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 9 January 2018,
+In addition, as of 10 January 2018,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2859,12 +2864,14 @@ within <code><a data-link-type="element" href="#elementdef-global" id="ref-for-e
       <p>Typical examples of such content include key signatures, time signatures and
 tempo indications.</p>
       <p><a data-link-type="dfn" href="#notated-event" id="ref-for-notated-event①">Notated events</a> like notes or rests cannot be shared between parts in CWMN. Consequently, <a data-link-type="dfn" href="#sequence-content" id="ref-for-sequence-content②">sequence content</a> cannot occur in the measures within <code><a data-link-type="element" href="#elementdef-global" id="ref-for-elementdef-global⑥">global</a></code>.</p>
-      <div class="example" id="example-e24a6e5f">
-       <a class="self-link" href="#example-e24a6e5f"></a> 
+      <div class="example" id="example-ef43d98e">
+       <a class="self-link" href="#example-ef43d98e"></a> 
 <pre class="language-xml highlight"><span class="nt">&lt;system></span>
   <span class="nt">&lt;measure></span>
-    <span class="nt">&lt;tempo</span> <span class="na">bpm=</span><span class="s">"120"</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">/></span>
-    <span class="nt">&lt;time</span> <span class="na">signature=</span><span class="s">"4/4"</span><span class="nt">/></span>
+    <span class="nt">&lt;directions></span>
+      <span class="nt">&lt;tempo</span> <span class="na">bpm=</span><span class="s">"120"</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">/></span>
+      <span class="nt">&lt;time</span> <span class="na">signature=</span><span class="s">"4/4"</span><span class="nt">/></span>
+    <span class="nt">&lt;/directions></span>
   <span class="nt">&lt;/measure></span>
   <span class="nt">&lt;measure/></span>
   <span class="nt">&lt;measure/></span>
@@ -2951,8 +2958,8 @@ for the barline drawn at the end of the measure. Allowed values include:</p>
      </dl>
      <p>The following example shows both direction content and a single-voice sequence
 with two monophonic half notes:</p>
-     <div class="example" id="example-74318b26">
-      <a class="self-link" href="#example-74318b26"></a> 
+     <div class="example" id="example-b223641b">
+      <a class="self-link" href="#example-b223641b"></a> <img src="images/measure-el-1.svg"> 
 <pre class="language-xml highlight"><span class="nt">&lt;measure</span> <span class="na">number=</span><span class="s">"2"</span><span class="nt">></span>
   <span class="nt">&lt;directions></span>
     <span class="nt">&lt;dynamics</span> <span class="na">type=</span><span class="s">"f"</span> <span class="na">location=</span><span class="s">"0"</span><span class="nt">/></span>
@@ -3088,8 +3095,8 @@ the measure if there are no more events. The following example specifies a <code
 start of a sequence, in which case they are assigned explicit locations. In
 this example, dynamic changes are specified over the course of a single whole
 note which occupies the entire measure:</p>
-     <div class="example" id="example-a1c11caa">
-      <a class="self-link" href="#example-a1c11caa"></a> 
+     <div class="example" id="example-153b165a">
+      <a class="self-link" href="#example-153b165a"></a> <img src="images/sequence-el-6.svg"> 
 <pre class="language-xml highlight"><span class="nt">&lt;sequence></span>
   <span class="nt">&lt;directions></span>
     <span class="nt">&lt;dynamics</span> <span class="na">type=</span><span class="s">"f"</span> <span class="na">location=</span><span class="s">"0"</span><span class="nt">/></span>
@@ -3234,16 +3241,16 @@ This duration is implicitly multiplied by the current <a data-link-type="dfn" hr
 ratio</a>, as specified by the process of <a data-link-type="dfn" href="#sequence-the-content" id="ref-for-sequence-the-content③">sequencing the content</a> of the
 event’s containing element.</p>
      <p>Here’s an example of a simple event representing a half note:</p>
-     <div class="example" id="example-69926256">
-      <a class="self-link" href="#example-69926256"></a> 
+     <div class="example" id="example-71e6c8c1">
+      <a class="self-link" href="#example-71e6c8c1"></a> <img src="images/event-el-1.svg"> 
 <pre class="language-xml highlight"><span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"/2"</span><span class="nt">></span>
   <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span>
 <span class="nt">&lt;/event></span>
 </pre>
      </div>
      <p>With more than one <code><a data-link-type="element" href="#elementdef-note" id="ref-for-elementdef-note①">note</a></code>, the event becomes a chord:</p>
-     <div class="example" id="example-d89601be">
-      <a class="self-link" href="#example-d89601be"></a> 
+     <div class="example" id="example-fa634daf">
+      <a class="self-link" href="#example-fa634daf"></a> <img src="images/event-el-2.svg"> 
 <pre class="language-xml highlight"><span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"/2"</span><span class="nt">></span>
   <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"C4"</span><span class="nt">/></span>
   <span class="nt">&lt;note</span> <span class="na">pitch=</span><span class="s">"E4"</span><span class="nt">/></span>
@@ -3252,8 +3259,8 @@ event’s containing element.</p>
 </pre>
      </div>
      <p>With a <code><a data-link-type="element" href="#elementdef-rest" id="ref-for-elementdef-rest①">rest</a></code> element alone, the event is a rest:</p>
-     <div class="example" id="example-ce2551d0">
-      <a class="self-link" href="#example-ce2551d0"></a> 
+     <div class="example" id="example-e4d917b4">
+      <a class="self-link" href="#example-e4d917b4"></a> <img src="images/event-el-3.svg"> 
 <pre class="language-xml highlight"><span class="nt">&lt;event</span> <span class="na">value=</span><span class="s">"/2"</span><span class="nt">></span>
   <span class="nt">&lt;rest/></span>
 <span class="nt">&lt;/event></span>
@@ -3267,8 +3274,8 @@ thereof.</p>
 event</dfn> which occupies the entire measure. Whole-measure events may not
 specify a <code><a data-link-type="element-sub" href="#element-attrdef-event-value" id="ref-for-element-attrdef-event-value①">value</a></code> attribute, and must either be empty or contain
 exactly one <code><a data-link-type="element" href="#elementdef-rest" id="ref-for-elementdef-rest②">rest</a></code>. Here’s an example:</p>
-     <div class="example" id="example-8b33cef3">
-      <a class="self-link" href="#example-8b33cef3"></a> 
+     <div class="example" id="example-4ec697ff">
+      <a class="self-link" href="#example-4ec697ff"></a> <img src="images/event-el-4.svg"> 
 <pre class="language-xml highlight"><span class="nt">&lt;event</span> <span class="na">measure=</span><span class="s">"yes"</span><span class="nt">></span>
   <span class="nt">&lt;rest/></span>
 <span class="nt">&lt;/event></span>

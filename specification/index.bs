@@ -2,6 +2,11 @@
   .language-xml {
     font-size: 11px;
   }
+
+  .example img {
+    background-color: hsl(24, 20%, 95%);
+    padding: 10px;
+  }
 </style>
 
 <pre class="metadata">
@@ -1296,8 +1301,8 @@ tempo indications.
 <system>
   <measure>
     <directions>
-    <tempo bpm="120" value="4"/>
-    <time signature="4/4"/>
+      <tempo bpm="120" value="4"/>
+      <time signature="4/4"/>
     </directions>
   </measure>
   <measure/>
@@ -1401,6 +1406,7 @@ The following example shows both direction content and a single-voice sequence
 with two monophonic half notes:
 
 <div class="example">
+<img src="images/measure-el-1.svg"/>
 ```xml
 <measure number="2">
   <directions>
@@ -1567,6 +1573,7 @@ this example, dynamic changes are specified over the course of a single whole
 note which occupies the entire measure:
 
 <div class="example">
+<img src="images/sequence-el-6.svg"/>
 ```xml
 <sequence>
   <directions>
@@ -1758,6 +1765,7 @@ event's containing element.
 Here's an example of a simple event representing a half note:
 
 <div class="example">
+<img src="images/event-el-1.svg"/>
 ```xml
 <event value="/2">
   <note pitch="C4"/>
@@ -1768,6 +1776,7 @@ Here's an example of a simple event representing a half note:
 With more than one <{note}>, the event becomes a chord:
 
 <div class="example">
+<img src="images/event-el-2.svg"/>
 ```xml
 <event value="/2">
   <note pitch="C4"/>
@@ -1779,6 +1788,7 @@ With more than one <{note}>, the event becomes a chord:
 
 With a <{rest}> element alone, the event is a rest:
 <div class="example">
+<img src="images/event-el-3.svg"/>
 ```xml
 <event value="/2">
   <rest/>
@@ -1798,6 +1808,7 @@ specify a <{event/value}> attribute, and must either be empty or contain
 exactly one <{rest}>. Here's an example:
 
 <div class="example">
+<img src="images/event-el-4.svg"/>
 ```xml
 <event measure="yes">
   <rest/>
