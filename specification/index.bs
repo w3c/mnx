@@ -1257,9 +1257,9 @@ The following example provides the basic skeleton of a <{cwmnx}> musical body:
 <div class="example">
 ```xml
 <cwmnx>
-  <system>
+  <global>
       ...measure content describing system-wide features...
-  </system>
+  </global>
   <part>
       ...part description content...
       ...measure content for part 1...
@@ -1298,7 +1298,7 @@ tempo indications.
 
 <div class="example">
 ```xml
-<system>
+<global>
   <measure>
     <directions>
       <tempo bpm="120" value="4"/>
@@ -1308,7 +1308,7 @@ tempo indications.
   <measure/>
   <measure/>
   <measure barline="final"/>
-</system>
+</global>
 ```
 </div>
 </section>
