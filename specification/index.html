@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="26e275d5b06efe5b0b8c3e41a960c5b971678361" name="document-revision">
+  <meta content="9d52ecb04a15e7be8f0ebe1201d5d17cb57de667" name="document-revision">
 <style>
   .language-xml {
     font-size: 11px;
@@ -1434,7 +1434,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Draft Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-10">10 January 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-12">12 January 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1457,7 +1457,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
    </div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 10 January 2018,
+In addition, as of 12 January 2018,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2830,12 +2830,12 @@ constraints that they represent:</p>
       <dd>All notated events in a chord share the same duration
      </dl>
      <p>The following example provides the basic skeleton of a <code><a data-link-type="element" href="#elementdef-cwmnx" id="ref-for-elementdef-cwmnx①">cwmnx</a></code> musical body:</p>
-     <div class="example" id="example-25d051f4">
-      <a class="self-link" href="#example-25d051f4"></a> 
+     <div class="example" id="example-fc4be726">
+      <a class="self-link" href="#example-fc4be726"></a> 
 <pre class="language-xml highlight"><span class="nt">&lt;cwmnx></span>
-  <span class="nt">&lt;system></span>
+  <span class="nt">&lt;global></span>
       ...measure content describing system-wide features...
-  <span class="nt">&lt;/system></span>
+  <span class="nt">&lt;/global></span>
   <span class="nt">&lt;part></span>
       ...part description content...
       ...measure content for part 1...
@@ -2864,9 +2864,9 @@ within <code><a data-link-type="element" href="#elementdef-global" id="ref-for-e
       <p>Typical examples of such content include key signatures, time signatures and
 tempo indications.</p>
       <p><a data-link-type="dfn" href="#notated-event" id="ref-for-notated-event①">Notated events</a> like notes or rests cannot be shared between parts in CWMN. Consequently, <a data-link-type="dfn" href="#sequence-content" id="ref-for-sequence-content②">sequence content</a> cannot occur in the measures within <code><a data-link-type="element" href="#elementdef-global" id="ref-for-elementdef-global⑥">global</a></code>.</p>
-      <div class="example" id="example-ef43d98e">
-       <a class="self-link" href="#example-ef43d98e"></a> 
-<pre class="language-xml highlight"><span class="nt">&lt;system></span>
+      <div class="example" id="example-bbeb2d7b">
+       <a class="self-link" href="#example-bbeb2d7b"></a> 
+<pre class="language-xml highlight"><span class="nt">&lt;global></span>
   <span class="nt">&lt;measure></span>
     <span class="nt">&lt;directions></span>
       <span class="nt">&lt;tempo</span> <span class="na">bpm=</span><span class="s">"120"</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">/></span>
@@ -2876,7 +2876,7 @@ tempo indications.</p>
   <span class="nt">&lt;measure/></span>
   <span class="nt">&lt;measure/></span>
   <span class="nt">&lt;measure</span> <span class="na">barline=</span><span class="s">"final"</span><span class="nt">/></span>
-<span class="nt">&lt;/system></span>
+<span class="nt">&lt;/global></span>
 </pre>
       </div>
      </section>
