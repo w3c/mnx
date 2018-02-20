@@ -1177,7 +1177,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 9b7c5fcba4e4901bfd8c4c36c6ce8b0937060911" name="generator">
-  <meta content="9d52ecb04a15e7be8f0ebe1201d5d17cb57de667" name="document-revision">
+  <meta content="96c9abdc92633ec7f8c7dd464f8c57fa3e6e5668" name="document-revision">
 <style>
   .language-xml {
     font-size: 11px;
@@ -1434,7 +1434,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">MNX Draft Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-12">12 January 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-02-20">20 February 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Issue Tracking:
@@ -1457,7 +1457,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
    </div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 12 January 2018,
+In addition, as of 20 February 2018,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1782,8 +1782,10 @@ are referred to the <a data-link-type="dfn" href="https://w3c.github.io/musicxml
 to some portion of a <a data-link-type="dfn" href="#container-document" id="ref-for-container-document">container document</a>.</p>
    <p>The present draft of this specification deals with two <a data-link-type="dfn" href="#score-types" id="ref-for-score-types">score types</a>:</p>
    <ul>
-    <li><a href="#cwmnx" id="ref-for-cwmnx">CWMNX</a>, which encodes Conventional Western Music Notation (CWMN) in a
-  semantically rich fashion. It inherits many ideas and concepts from MusicXML.
+    <li><a href="#cwmnx" id="ref-for-cwmnx">CWMNX</a>, which encodes Conventional Western Music
+  Notation (CWMN) using <a data-link-type="dfn" href="https://www.w3.org/TR/html5/dom.html#elements-semantics" id="ref-for-elements-semantics">semantic markup</a> as defined in the
+  HTML5 standard, allowing applications to present the same information consistently in
+  different contexts. It inherits many ideas and concepts from MusicXML.
     <li><a href="#gmnx" id="ref-for-gmnx">GMNX</a>, where "G" is for <strong>G</strong>eneral. It serves as a kind of universal encoding for
   scores having arbitary graphical and audio content. In consequence, it is
   relatively free of semantics.
@@ -2298,7 +2300,7 @@ bibliographic data and other descriptive information.</p>
     <h3 class="heading settled" data-level="5.1" id="cwmnx-scope"><span class="secno">5.1. </span><span class="content">Scope</span><a class="self-link" href="#cwmnx-scope"></a></h3>
     <p><em>This section is non-normative.</em></p>
     <p>This part of the specification is called <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="cwmnx">CWMNX</dfn>, and describes a
-  semantic dialect of MNX designed to encode Conventional Western Music Notation.</p>
+  semantic dialect of MNX designed to encode Conventional Western Music Notation (CWMN).</p>
    </section>
    <h3 class="heading settled" data-level="5.2" id="cwmnx-semantics"><span class="secno">5.2. </span><span class="content">Semantics</span><a class="self-link" href="#cwmnx-semantics"></a></h3>
    <h4 class="heading settled" data-level="5.2.1" id="cwmnx-notational-concepts"><span class="secno">5.2.1. </span><span class="content">Notational concepts</span><a class="self-link" href="#cwmnx-notational-concepts"></a></h4>
@@ -5375,6 +5377,7 @@ the intersection lies at infinity.</p>
           <li><a href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens">ordered set of space-separated tokens</a>
           <li><a href="https://www.w3.org/TR/html5/infrastructure.html#signed-integers">rules for parsing integers</a>
           <li><a href="https://www.w3.org/TR/html5/infrastructure.html#signed-integers">rules for parsing signed integers</a>
+          <li><a href="https://www.w3.org/TR/html5/dom.html#elements-semantics">semantic markup</a>
           <li><a href="https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens">set of space-separated tokens</a>
           <li><a href="https://www.w3.org/TR/html5/infrastructure.html#signed-integers">signed integer</a>
           <li><a href="https://www.w3.org/TR/html5/infrastructure.html#colors">simple color</a>
