@@ -23,10 +23,10 @@ git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 
 # Clean out existing contents
-rm -rf out/index.html
+rm -rf out/specification/index.html
 
 # Copy files
-cp -fv specification/index.html ./out
+cp -fv specification/index.html ./out/specification
 cp -fv *.md ./out
 
 # Now let's go have some fun with the cloned repo
