@@ -1229,7 +1229,7 @@ These elements of a CWMNX score supply its high-level description and structure.
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a>.</dd>
     <dd><a>Stylesheet definitions</a>.</dd>
-    <dd>Exactly one <{global}> element - <a>measure content</a> that is common to all parts within the score</dd>
+    <dd>One or more <{global}> elements - <a>measure content</a> shared by sets of parts within the score</dd>
     <dd>One or more <{part}> elements - description and <a>measure content</a> of each part in the score.</dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{cwmnx/profile}> — profile describing constraints on the contents of this score</dd>
@@ -1247,6 +1247,7 @@ constraints that they represent:
 <dl dfn-for="cwmnx/profile">
     <dt><dfn attr-value><code>standard</code></dfn></dt>
     <dd>The <a>measure content</a> in all <{global}> or <{part}> elements consists of an identical number of measures.</dd>
+    <dd>Only a single <{global}> element exists.</dd>
     <dd>Time signatures and tempo indications only occur in measures within the <{global}> element.</dd>
     <dd>Key signatures within the <{global}> element only occur in enharmonic/transposed forms that are equivalent within <{part}> elements.</dd>
     <dd>All notated events in a chord share the same duration</dd>
@@ -1283,12 +1284,16 @@ The following example provides the basic skeleton of a <{cwmnx}> musical body:
     <dd><{cwmnx}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Measure content</a>, which must not include any <a>sequence content</a></dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{global/parts}> - an optional set of IDs of <{part}> elements to which this global content applies
   </dl>
 
 The <{global}> element represents a set of measures, each of which provides
-content that is shared by all parts within the score. Each <{measure}> element
+content that is shared by a set of parts within the score. Each <{measure}> element
 within <{global}> supplies the shared content for all other <{measure}>
-elements which share the same measure number.
+elements which share the same <{measure/index}>.
+
+By default, the content in <{global}> applies to <em>all</em> parts in the score.
 
 Typical examples of such content include key signatures, time signatures and
 tempo indications.
@@ -1299,18 +1304,56 @@ tempo indications.
 <div class="example">
 ```xml
 <global>
-  <measure>
+  <measure index="1">
     <directions>
       <tempo bpm="120" value="4"/>
       <time signature="4/4"/>
     </directions>
   </measure>
-  <measure/>
-  <measure/>
-  <measure barline="final"/>
+  ...Note the omission of measures 2 and 3, which would have no content...
+  <measure index="4" barline="final"/>
 </global>
 ```
 </div>
+
+Advisement: The following features are not supported by the
+<{cwmnx/profile/standard}> CWMNX profile.
+
+The <dfn element-attr>parts</dfn> attribute optionally supplies a list of
+<{part}> element IDs as an <a>unordered set of space-separated tokens</a>.
+This restricts the scope of the <{global}> element to the set of parts given, allowing
+subsets of parts in the score to share dissimilar structures (for example, in scores
+having different parts in different meters). The default value of this attribute is
+the list of all part IDs.
+
+No two <{global}> elements may include the same part in their <{global/parts}> list, to prevent
+conflicting definitions.
+
+<div class="example">
+```xml
+<global parts="p1 p2">
+  <measure>
+    <directions>
+      <time signature="6/8"/>
+    </directions>
+  </measure>
+  <measure sequence="4" barline="final"/>
+</global>
+<global parts="p3 p4">
+  <measure>
+    <directions>
+      <time signature="4/4"/>
+    </directions>
+  </measure>
+  <measure sequence="3" barline="final"/>
+</global>
+<part id="p1">...</part>
+<part id="p2">...</part>
+<part id="p3">...</part>
+<part id="p4">...</part>
+```
+</div>
+
 </section>
 
 <h5 id="the-part-element">The <dfn element><code>part</code></dfn> element</h5>
@@ -1325,8 +1368,8 @@ tempo indications.
 </section>
 
 The <{part}> element represents a set of measures which describe a single part
-within the score. The sequence of measures must match the sequences found in the
-score's <{global}> element, and in all other <{part}> elements.
+within the score. The sequence of measures must match the measure found in the
+<{global}> element applying to this part.
 
 <div class="example">
 ```xml
@@ -1353,7 +1396,7 @@ score's <{global}> element, and in all other <{part}> elements.
 </section>
 
 
-<h4 id="cwmnx-system-content">Measure content</h4>
+<h4 id="cwmnx-measure-content">Measure content</h4>
 
 <dfn>Measure content</dfn> supplies a sequence of <{measure}> elements, each of
 which supplies musical content for a time interval within a score.
@@ -1362,6 +1405,16 @@ The placement of the measures in measure content constitutes their <dfn>score
 order</dfn>, which is the order in which they are logically presented to a
 reader. This is distinct from their <dfn>performance order</dfn>, which is the
 order in which they are played by a performer.
+
+Each measure may bear the <{measure/index}> attribute, which provides its
+index within the <a>score order</a>. The first measure has an <{measure/index}>
+of 1.
+
+Measures with no content or attributes other than their index, may
+be omitted from <a>measure content</a>, allowing sparse representation of a
+score within <{global}> or <{part}>. The remaining measures must still occur
+in <a>performance order</a>.
+
 
 <h5 id="the-measure-element">The <dfn element><code>measure</code></dfn> element</h5>
 <section dfn-for="measure">
@@ -1374,16 +1427,24 @@ order in which they are played by a performer.
     <dd>One or more <{sequence}> elements (for measures within <{part}> elements only)</dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
-    <dd><{measure/number}> - an optional numeric index for the measure
+    <dd><{measure/index}> - an optional integer index for the measure
+    <dd><{measure/number}> - an optional textual number to be displayed for the measure
     <dd><{measure/barline}> - an optional ending barline type for the measure
   </dl>
 
 The <{measure}> element encloses the direction and sequence content that together
 make up the majority of musical content in a CWMNX score.
 
+The optional attribute <dfn element-attr>index</dfn> defines the one-based
+index of this measure within score order. This is used for cross-
+referencing <{measure}> elements in corresponding runs of <a>measure
+content</a>. The default value of <{measure/index}> is 1 for the first <{measure}> element
+within a run of content; for all other <{measure}>s its default is the index of the previous
+<{measure}> element plus 1.
+
 The optional attribute <dfn element-attr>number</dfn> provides an <a>non-negative integer</a>
-which can be used for visually cross-referencing <{measure}> elements in different parts.
-If provided, corresponding measures must share the same value for <{measure/number}>.
+which is to be used as a visual label for the measure. It is not required to be unique.
+If omitted, its default value is the same as <{measure/index}>.
 
 The optional attribute <dfn element-attr>barline</dfn> defines a barline type
 for the barline drawn at the end of the measure. Allowed values include:
@@ -1408,7 +1469,7 @@ with two monophonic half notes:
 <div class="example">
 <img src="images/measure-el-1.svg"/>
 ```xml
-<measure number="2">
+<measure index="2">
   <directions>
     <dynamics type="f" location="0"/>
     <wedge type="diminuendo" location="0" end="1/2"/>
@@ -1610,7 +1671,7 @@ explicit location independent of this order.
 
 The context of the <{directions}> element defines a scope for contained directions as follows:
 
-- Directions in a <{measure}> within the <{global}> element apply to all sequences of the measure in all parts. Directions with an orientation of ''orientation/up'' appear above the first displayed part; those with an orientation of ''orientation/down'' below the last displayed part.
+- Directions in a <{measure}> within the <{global}> element apply to all sequences of the measure in all applicable parts. Directions with an orientation of ''orientation/up'' appear above the first displayed part; those with an orientation of ''orientation/down'' below the last displayed part.
 
 - Directions in a <{measure}> within a <{part}> element apply to all sequences of the measure in a given part.
 
@@ -2037,7 +2098,7 @@ The following example illustrates a beam that crosses a measure boundary:
 
 <div class="example">
 ```xml
-<measure number="9">
+<measure index="9">
   <sequence>
       ...preceding sequence content...
       <beamed continue="#beamcont1">
@@ -2046,7 +2107,7 @@ The following example illustrates a beam that crosses a measure boundary:
       </beamed>
   </sequence>
 </measure>
-<measure number="10">
+<measure index="10">
   <sequence>
       <beamed id="beamcont1">
         <event value="/8">...</event>
