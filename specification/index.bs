@@ -97,6 +97,9 @@ url: https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens; typ
 url: https://www.w3.org/TR/html5/infrastructure.html#colors; type:dfn; spec: html;
     text: simple color
 
+url: https://www.w3.org/TR/html5/dom.html#elements-semantics; type:dfn; spec: html;
+    text: semantic markup
+
 url: https://w3c.github.io/musicxml/#; type: dfn;
     text: MusicXML specification
 
@@ -146,8 +149,10 @@ to some portion of a <a>container document</a>.
 The present draft of this specification deals with two <a>score types</a>:
 
 <ul>
-  <li><a href="#cwmnx">CWMNX</a>, which encodes Conventional Western Music Notation (CWMN) in a
-  semantically rich fashion. It inherits many ideas and concepts from MusicXML.</li>
+  <li><a href="#cwmnx">CWMNX</a>, which encodes Conventional Western Music
+  Notation (CWMN) using <a>semantic markup</a> as defined in the
+  HTML5 standard, allowing applications to present the same information consistently in
+  different contexts. It inherits many ideas and concepts from MusicXML.</li>
 
   <li><a href="#gmnx">GMNX</a>, where "G" is for
   <strong>G</strong>eneral. It serves as a kind of universal encoding for
@@ -261,11 +266,6 @@ Some general principles regarding the design of this specification follow.
     performance interpretation. These are segregated in the parallel domains of <a>style properties</a>
     and <a>interpretation content</a>.
   </dd>
-
-  <dd>While it is challenging to ground the definition of what is "semantic" in music notation, the litmus
-    test used here is the practical one of <em>widely shared understanding</em>: if the performance interpretation of some notation
-    is widely shared within the culture targeted by some semantic module, then that
-    aspect may be classified as semantic.</dd>
 
   <dt>Allow semantic encodings to "tunnel through" to the literal encoding.</dt>
   <dd>A semantic module such as CWMNX cannot supply all known information about rendering and performance, in cases
@@ -766,7 +766,7 @@ The <{title}> element assigns a title to its parent element in the context of th
   <em>This section is non-normative.</em>
 
   This part of the specification is called <dfn>CWMNX</dfn>, and describes a
-  semantic dialect of MNX designed to encode Conventional Western Music Notation.
+  semantic dialect of MNX designed to encode Conventional Western Music Notation (CWMN).
 
 </section>
 
