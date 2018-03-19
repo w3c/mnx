@@ -1310,7 +1310,8 @@ tempo indications.
       <time signature="4/4"/>
     </directions>
   </measure>
-  ...Note the omission of measures 2 and 3, which would have no content...
+  <measure index="2"/>
+  <measure index="3"/>
   <measure index="4" barline="final"/>
 </global>
 ```
@@ -1409,12 +1410,6 @@ order in which they are played by a performer.
 Each measure may bear the <{measure/index}> attribute, which provides its
 index within the <a>score order</a>. The first measure has an <{measure/index}>
 of 1.
-
-Measures with no content or attributes other than their index, may
-be omitted from <a>measure content</a>, allowing sparse representation of a
-score within <{global}> or <{part}>. The remaining measures must still occur
-in <a>performance order</a>.
-
 
 <h5 id="the-measure-element">The <dfn element><code>measure</code></dfn> element</h5>
 <section dfn-for="measure">
