@@ -28,8 +28,10 @@
             <staves number="2"/>
           </directions>
           <sequence staff="1">
-            <clef line="2" sign="G"/>
-            <dynamics type="f"/>
+            <directions>
+              <clef line="2" sign="G"/>
+              <dynamics type="f"/>
+            </directions>
             <event value="/4">
               <note pitch="E4"/>
             </event>
@@ -41,7 +43,9 @@
             </event>
           </sequence>
           <sequence staff="2">
-            <clef line="4" sign="F"/>
+            <directions>
+              <clef line="4" sign="F"/>
+            </directions>
             <event value="/2d">
               <rest/>
             </event>

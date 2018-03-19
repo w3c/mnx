@@ -1557,8 +1557,10 @@ the measure if there are no more events. The following example specifies a
 <div class="example">
 ```xml
 <sequence>
+  <directions>
+    <dynamics location="0" type="mp"/>
+  </directions>
   ...preceding sequence content...
-  <dynamics type="mp"/>
   <event value="/4">
     <note pitch="C4"/>
   </event>
@@ -1715,13 +1717,6 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
           <li>
             Process the contents of <var>next</var>, assigning them a non-metrical ordering
             relative to preceding or following elements as appropriate.
-        </ol>
-      </li>
-      <li>Else, if <var>next</var> is <a>direction content</a>:
-        <ol>
-          <li>
-            Take the current value of <var>sequence cursor</var> as the <a>measure location</a> of <var>next</var>.
-          </li>
         </ol>
       </li>
       <li>
@@ -2380,11 +2375,11 @@ Examples:
 <dfn>directions</dfn> that modify or accompany the performance of events in
 one or more measures. Directions may be included in a CWMNX score in two ways:
 
-- Within a <{directions}> element below a <{measure}> or <{sequence}>, with
-    explicitly defined measure locations for each direction.
+- Within a <{directions}> element below a <{measure}>. The direction is considered
+    to apply to all sequences.
 
-- Within <a>sequence content</a>, in which case measure locations are assigned
-    as an outcome of <a>sequencing the content</a>.
+- Within a <{directions}> element below a <{sequence}>. The direction applies only
+    to the content within this sequence.
 
 <h5 id="cwmnx-direction-attributes">Direction attributes</h5>
 
@@ -2397,11 +2392,9 @@ Directions share a set of common <dfn>direction attributes</dfn> in an attribute
     <dd><{direction/orient}> - an optional <a>orientation</a></dd>
   </dl>
 
-All directions within a <{directions}> parent element may be given an explicit
+All directions within a <{directions}> parent element must be given an explicit
 <a>measure location</a> by supplying a <dfn element-attr dfn-
-for="direction">location</dfn> attribute. If omitted, this is determined by
-the process of <a>sequencing the content</a> in which it occurs; if not within
-a <{sequence}>, the default measure location is zero.
+for="direction">location</dfn> attribute. The default measure location is zero.
 
 Conversely, directions occurring within <a>sequence content</a> must omit this
 attribute as their location is determined during the procedure of
@@ -2517,10 +2510,12 @@ consistent with describing musical expression.
 <div class="example">
 ```xml
 <sequence>
-  <dirgroup>
-    <expression>subito</expression>
-    <dynamics>p</dynamics>
-  </dirgroup>
+  <directions>
+    <dirgroup location="0">
+      <expression>subito</expression>
+      <dynamics>p</dynamics>
+    </dirgroup>
+  </directions>
   ...following sequence content...
 </sequence>
 ```
@@ -3045,13 +3040,14 @@ a tempo via an explicit interpretation:
 <div class="example">
 ```xml
 <sequence>
-  ...preceding sequence content...
-  <instruction class="tempo">
-    <interpret>
-      <performance-tempo beat="/4" bpm="60"/>
-    </interpret>
-    Langsamer
-  </instruction>
+  <directions>
+    <instruction class="tempo">
+      <interpret>
+        <performance-tempo beat="/4" bpm="60"/>
+      </interpret>
+      Langsamer
+    </instruction>
+  </directions>
   ...following sequence content...
 </sequence>
 ```
@@ -3300,6 +3296,42 @@ Permitted values include:
 
 </section>
 
+<h5 id="the-x-property">The <dfn property><code>x</code></dfn> property</h5>
+<section dfn-for="x">
+  <dl class="def">
+    <dt>Applies to:</dt>
+    <dd><a>Direction content</a>, <a>Sequence content</a></dd>
+    <dt>Value:</dt>
+    <dd><var>staff position</var></dd>
+    <dt>Inherited:</dt>
+    <dd>no</dd>
+  </dl>
+
+The 'x' property places the horizontal anchor point of an event or direction
+at a given graphical offset relative to its specified <a>measure location</a>,
+given as a <a>valid floating-point number</a> of staff lines starting from the
+measure location's assigned position in the layout and proceeding to the right
+in a positive direction.
+</section>
+
+<h5 id="the-end-x-property">The <dfn property><code>end-x</code></dfn> property</h5>
+<section dfn-for="end-x">
+  <dl class="def">
+    <dt>Applies to:</dt>
+    <dd><a>Direction content</a></dd>
+    <dt>Value:</dt>
+    <dd><var>staff position</var></dd>
+    <dt>Inherited:</dt>
+    <dd>no</dd>
+  </dl>
+
+The 'end-x' property places the horizontal anchor point of the end of a
+<a>spanning direction</a> at a given graphical offset relative to its
+specified <a>measure location</a>, given as a <a>valid floating-point
+number</a> of staff lines starting from the measure location's assigned
+position in the layout and proceeding to the right in a positive direction.
+</section>
+
 <h5 id="the-y-property">The <dfn property><code>y</code></dfn> property</h5>
 <section dfn-for="y">
   <dl class="def">
@@ -3311,7 +3343,7 @@ Permitted values include:
     <dd>no</dd>
   </dl>
 The 'y' property places a direction at a given <var>staff position</var> given as a
-<a>valid floating-point number</a> of staff lines starting from the top line and
+<a>valid floating-point number</a> of staff lines starting from the center of the top staff line and
 proceeding downwards in a positive direction.
 
 The special values <dfn value>above</dfn> and <dfn value>below</dfn> delegate

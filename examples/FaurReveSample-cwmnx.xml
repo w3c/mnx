@@ -47,7 +47,9 @@
             <wedge end="5/8" start="1/8" type="crescendo"/>
           </directions>
           <sequence>
-            <expression>dolce</expression>
+            <directions>
+              <expression>dolce</expression>
+            </directions>
             <event value="/4">
               <note pitch="G4"/>
               <lyric syllabic="single">Dans</lyric>
@@ -106,7 +108,9 @@
 
         <measure number="4">
           <sequence>
-            <wedge end="#p1m4n2" style="start-offset: 1.2; end-offset: 1.2;" type="diminuendo"/>
+            <directions>
+              <wedge location="0" end="#p1m4n2" style="x: 1.2; end-x: 1.2;" type="diminuendo"/>
+            </directions>
             <event value="/2">
               <note pitch="C5"/>
               <lyric syllabic="middle">ma</lyric>
@@ -231,7 +235,9 @@
             <clef line="4" sign="F" staff="2"/>
           </directions>
           <sequence staff="1">
-            <dynamics style="y: below; horizontal-align: center;" type="pp"/>
+            <directions>
+              <dynamics style="y: below; horizontal-align: center;" type="pp"/>
+            </directions>
             <beamed>
               <event value="/8">
                 <note pitch="C4"/>
