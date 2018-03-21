@@ -1333,20 +1333,23 @@ conflicting definitions.
 <div class="example">
 ```xml
 <global parts="p1 p2">
-  <measure>
+  <measure index="1">
     <directions>
       <time signature="6/8"/>
     </directions>
   </measure>
-  <measure sequence="4" barline="final"/>
+  <measure index="2"/>
+  <measure index="3"/>
+  <measure index="4" barline="final"/>
 </global>
 <global parts="p3 p4">
-  <measure>
+  <measure index="1">
     <directions>
       <time signature="4/4"/>
     </directions>
   </measure>
-  <measure sequence="3" barline="final"/>
+  <measure index="2"/>
+  <measure index="3" barline="final"/>
 </global>
 <part id="p1">...</part>
 <part id="p2">...</part>
