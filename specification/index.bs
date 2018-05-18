@@ -1737,9 +1737,11 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
               <li>
                 Set the <a>metrical position</a> of <var>next</var> to <var>sequence cursor</var>.
               </li>
+              <li>If <var>next</var> has a <{event/duration}> attribute, assign it to <var>event duration</var>.</li>
+              <li>Else, set <var>event duration</var> to <var>next</var>'s <{event/value}> attribute.</li>
               <li>
-                Add the duration of <var>next</var>, multiplied by the
-                  <a>time modification ratio</a>, to <var>sequence cursor</var>.
+                Multiply <var>event duration</var> by the
+                  <a>time modification ratio</a>, and add the result to <var>sequence cursor</var>.
               </li>
               <li>
                 If <var>beamed group</var> is a list, append <var>next</var> to <var>beamed group</var>.
@@ -1800,10 +1802,11 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
     <dd><a>Event content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
-    <dd><{event/value}> - the metrical duration of this event</dd>
+    <dd><{event/value}> - the notated metrical duration of this event</dd>
     <dd><{event/measure}> - optional flag indicating that the event occupies the entire measure.</dd>
     <dd><{event/orient}> - optional <a>orientation</a> of this event </dd>
     <dd><{event/staff}> - optional <a>staff index</a> of this event </dd>
+    <dd><{event/duration}> - optional performed metrical duration, if different from <{event/value}></dd>
     <dt><a>Style properties</a>:</dt>
     <dd>'stem-direction' - the stem direction of this event</dd>
   </dl>
@@ -1908,6 +1911,47 @@ keyboard voice that temporarily crosses into the upper staff:
 </sequence>
 ```
 </div>
+
+The optional <dfn element-attr>duration</dfn> attribute specifies the
+actual, performed duration of the event, if different from the notated
+value given by
+<{event/value}>.  The duration is specified as a <a>note value quantity</a>,
+which is less constrained than <a>note value</a>: it may be any desired
+multiple of a note value.
+
+The <{event/duration}> attribute not only alters the performance of the event,
+but determines the amount of time the event takes up in the measure, affecting
+the location of subsequent events in the containing sequence. This can change
+the layout of the measure, as subsequent <{event}>s will occur earlier or
+later as a result and be positioned accordingly (see <a>sequencing the
+content</a>). It also affects the validation  of the measure for metrical
+correctness.
+
+This attribute is unlikely to be frequently encountered, but is needed to
+handle cases in which composers employ notated values that are not
+interpreted literally. Some examples follow.
+
+One case occurs in Brahms, in which a dotted half is used to specify
+a note that is traditionally understood as occupying the space of 11
+sixteenth notes:
+
+<div class="example">
+<img src="images/duration-attr-1.png">
+```xml
+<sequence>
+  <event value="/16">
+    <rest/>
+  </event>
+  <event value="/2d" duration="11/16">
+    <note pitch="E4"/>
+  </event>
+</sequence>
+```
+</div>
+
+Because <{event/duration}> must be specified as a legal note value multiple,
+an enclosing <{tuplet}> element may be required in some cases to impose an appropriate
+time modification ratio.
 
 </section>
 
@@ -3411,7 +3455,31 @@ The special values <dfn value>above</dfn> and <dfn value>below</dfn> delegate
 exact positioning of the direction to the implementation and request that
 the direction be placed respectively above or below the staff.
 
-<em>TBD: describe rendering model and regisration</em>
+<em>TBD: describe rendering model and registration</em>
+</section>
+
+<h5 id="the-location-property">The <dfn property><code>location</code></dfn> property</h5>
+<section dfn-for="location">
+  <dl class="def">
+    <dt>Applies to:</dt>
+    <dd><a>Direction content</a>, <a>Sequence content</a></dd>
+    <dt>Value:</dt>
+    <dd><var>location</var></dd>
+    <dt>Inherited:</dt>
+    <dd>no</dd>
+  </dl>
+
+For layout purposes only, the 'location' property overrides the measure location of an event or
+direction determined by <a>sequencing the content</a>, replacing it with
+the value <var>location</var> expressed as a <a>measure location</a>
+within the containing measure.
+
+This is useful for forcing the positioning or alignment of objects that would otherwise
+be placed elsewhere, without otherwise altering their semantics.
+
+</section>
+
+
 
 </section>
 
