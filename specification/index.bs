@@ -1969,6 +1969,9 @@ time modification ratio.
     <dd><{tuplet/inner}> - duration of the enclosed sequence content</dd>
     <dd><{sequence/orient}> - optional <a>orientation</a> of this tuplet </dd>
     <dd><{sequence/staff}> - optional <a>staff index</a> of this tuplet </dd>
+    <dd><{tuplet/show-number}> - optional control over the display of the tuplet ratio numbers</dd>
+    <dd><{tuplet/show-value}> - optional control over the display of the tuplet ratio note values</dd>
+    <dd><{tuplet/bracket}> - optional control over the display of brackets</dd>
   </dl>
 
 The <{tuplet}> element organizes a set of musical events that form a distinct
@@ -2001,6 +2004,46 @@ The <dfn element-attr>staff</dfn> attribute provides a specific
 <a>staff index</a> for all content within this tuplet.  If not provided, the
 staff index is determined automatically according to the implementation's
 rendering rules.
+
+The optional <dfn element-attr>show-number</dfn> attribute controls the display
+of the quantity of inner and outer note value units for the tuplet. Permissible values
+include:
+
+<dl dfn-for="tuplet/show-number">
+  <dt><dfn attr-value><code>none</code></dfn></dt>
+  <dd>Do not show any tuplet number.</dd>
+  <dt><dfn attr-value><code>inner</code></dfn> (default)</dt>
+  <dd>Display only the numerator of the tuplet's <{tuplet/inner}> attribute.</dd>
+  <dt><dfn attr-value><code>both</code></dfn></dt>
+  <dd>Display the numerators of the tuplet's <{tuplet/inner}> and <{tuplet/outer}> attributes.</dd>
+</dl>
+
+The optional <dfn element-attr>show-value</dfn> attribute controls the display
+of the note value units used inside and outside the tuplet. Permissible values
+include:
+
+<dl dfn-for="tuplet/show-value">
+  <dt><dfn attr-value><code>none</code></dfn> (default)</dt>
+  <dd>Do not show any tuplet units.</dd>
+  <dt><dfn attr-value><code>inner</code></dfn></dt>
+  <dd>Display only the note value unit of the tuplet's <{tuplet/inner}> attribute.</dd>
+  <dt><dfn attr-value><code>both</code></dfn></dt>
+  <dd>Display both the note value units of the tuplet's <{tuplet/inner}> and <{tuplet/outer}> attributes.</dd>
+</dl>
+
+The optional <dfn element-attr>bracket</dfn> attribute controls the display of
+a bracket in conjunction with the tuplet. 
+It is disregarded if <{tuplet/show-number}> has a value of <{tuplet/show-number/none}>.
+Values include:
+
+<dl dfn-for="tuplet/bracket">
+  <dt><dfn attr-value><code>auto</code></dfn> (default)</dt>
+  <dd>A bracket is shown for the tuplet if and only if the notes are unbeamed.</dd>
+  <dt><dfn attr-value><code>no</code></dfn></dt>
+  <dd>Do not display a bracket.</dd>
+  <dt><dfn attr-value><code>yes</code></dfn></dt>
+  <dd>Always display a bracket.</dd>
+</dl>
 
 <div class="example">
 ```xml
