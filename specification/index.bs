@@ -643,7 +643,7 @@ The <{mnx}> element encloses an MNX document as a whole.
     <dd>Any.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a>.</dd>
-    <dd><{style-defs}></dd>
+    <dd><{stylesheet}></dd>
     <dt><a>Attributes</a>:</dt>
     <dd>None.</dd>
   </dl>
@@ -1235,7 +1235,7 @@ These elements of an MNX-Common score supply its high-level description and stru
     <dd>Wherever a <a>musical body</a> is expected.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a>.</dd>
-    <dd><{style-defs}>.</dd>
+    <dd><{stylesheet}>.</dd>
     <dd>One or more <{global}> elements - <a>measure content</a> shared by sets of parts within the score</dd>
     <dd>One or more <{part}> elements - description and <a>measure content</a> of each part in the score.</dd>
     <dt><a>Attributes</a>:</dt>
@@ -3575,7 +3575,7 @@ styles per se) and will need to be migrated.
 
 <h3 id="common-stylesheet-definitions">Stylesheet definitions</h3>
 
-The <{style-defs}> element may be used to define style properties using rules that
+The <{stylesheet}> element may be used to define style properties using rules that
 can be applied in a unitary fashion to other elements, respectively by name
 matching in a <a>style class definition</a>, or by algorithmic rule matching
 in a <a>style selector definition</a>. Taken together, these supply a set of
@@ -3585,8 +3585,8 @@ interpretation of the document.
 These definitions may be placed in the <{head}>, the <{mnx-common}>
 element, or in a separate linked stylesheet.
 
-<h4 id="the-style-defs-element">The <dfn element><code>style-defs</code></dfn> element</h4>
-<section dfn-for="style-defs">
+<h4 id="the-stylesheet-element">The <dfn element><code>stylesheet</code></dfn> element</h4>
+<section dfn-for="stylesheet">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
     <dd><{head}>, <{mnx-common}></dd>
@@ -3594,7 +3594,7 @@ element, or in a separate linked stylesheet.
     <dd><a>Stylesheet definitions</a>.</dd>
   </dl>
 
-The <{style-defs}> element serves to place stylesheet definition elements under a
+The <{stylesheet}> element serves to place stylesheet definition elements under a
 single container to support clean document organization and validation.
 </section>
 
@@ -3602,7 +3602,7 @@ single container to support clean document organization and validation.
 <section dfn-for="style-class">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
-    <dd><{style-defs}></dd>
+    <dd><{stylesheet}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd>None.</dd>
     <dt><a>Attributes</a>:</dt>
@@ -3640,7 +3640,7 @@ in the case of events:
 <section dfn-for="style-selector">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
-    <dd><{style-defs}></dd>
+    <dd><{stylesheet}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd>None.</dd>
     <dt><a>Attributes</a>:</dt>
