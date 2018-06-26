@@ -15,7 +15,7 @@
     <mnx-common profile="standard">
       <!-- Global score structure and directions -->
       <global>
-        <measure number="1">
+        <measure index="1">
           <directions>
             <tempo bpm="60" value="/4"/>
             <time signature="3/4"/>
@@ -23,17 +23,17 @@
             <instruction class="tempo-indication">Andantino</instruction>
           </directions>
         </measure>
-        <measure number="2"/>
-        <measure number="3"/>
-        <measure number="4"/>
+        <measure index="2"/>
+        <measure index="3"/>
+        <measure index="4"/>
       </global>
       <!-- Part 1 =======================================================-->
       <part style="y: above;">
         <part-name>Voice</part-name>
         <instrument-sound>voice.aa</instrument-sound>
-        <measure number="1">
+        <measure index="1">
           <directions>
-            <staves number="1"/>
+            <staves index="1"/>
             <clef line="2" sign="G"/>
           </directions>
           <sequence>
@@ -42,7 +42,7 @@
             </event>
           </sequence>
         </measure>
-        <measure number="2">
+        <measure index="2">
           <directions>
             <wedge end="5/8" start="1/8" type="crescendo"/>
           </directions>
@@ -64,7 +64,7 @@
             </event>
           </sequence>
         </measure>
-        <measure number="3">
+        <measure index="3">
           <sequence>
             <event value="/4">
               <note pitch="Eb5">
@@ -106,7 +106,7 @@
           </sequence>
         </measure>
 
-        <measure number="4">
+        <measure index="4">
           <sequence>
             <directions>
               <wedge location="0" end="#p1m4n2" style="x: 1.2; end-x: 1.2;" type="diminuendo"/>
@@ -122,7 +122,7 @@
           </sequence>
         </measure>
 
-        <measure number="5">
+        <measure index="5">
           <sequence>
             <beamed>
               <event value="/8">
@@ -151,7 +151,7 @@
           </sequence>
         </measure>
 
-        <measure number="6">
+        <measure index="6">
           <directions>
             <wedge type="crescendo" location="0" end="0.625"/>
           </directions>
@@ -177,7 +177,7 @@
           </sequence>
         </measure>
 
-        <measure number="7">
+        <measure index="7">
           <directions>
             <wedge type="diminuendo" location="0.125" end="0.667"/>
           </directions>
@@ -214,7 +214,7 @@
           </sequence>
         </measure>
 
-        <measure number="8">
+        <measure index="8">
           <sequence>
             <event value="/2d">
               <note pitch="G4"/>
@@ -228,9 +228,9 @@
       <part style="measure-numbering: none;">
         <part-name>Piano</part-name>
         <instrument-sound>keyboard.piano</instrument-sound>
-        <measure number="1">
+        <measure index="1">
           <directions>
-            <staves number="2"/>
+            <staves index="2"/>
             <clef line="2" sign="G" staff="1"/>
             <clef line="4" sign="F" staff="2"/>
           </directions>
@@ -278,7 +278,7 @@
           </sequence>
         </measure>
 
-        <measure number="2">
+        <measure index="2">
           <sequence staff="1">
             <beamed>
               <event value="/8">
@@ -320,7 +320,7 @@
           </sequence>
         </measure>
 
-        <measure number="3">
+        <measure index="3">
           <sequence orient="up" staff="1">
             <beamed>
               <event value="/8">
@@ -369,7 +369,7 @@
           </sequence>
         </measure>
 
-        <measure number="4">
+        <measure index="4">
           <sequence orient="up" staff="1">
             <beamed>
               <event value="/8">
@@ -418,7 +418,7 @@
           </sequence>
         </measure>
 
-        <measure number="5">
+        <measure index="5">
           <sequence orient="up" staff="1">
             <beamed>
               <event value="/8">
@@ -461,7 +461,7 @@
           </sequence>
         </measure>
 
-        <measure number="6">
+        <measure index="6">
           <sequence orient="up" staff="1">
             <beamed>
               <event value="/8">
@@ -508,7 +508,7 @@
           </sequence>
         </measure>
 
-        <measure number="7">
+        <measure index="7">
           <sequence orient="up" staff="1">
             <beamed>
               <event value="/8">
@@ -561,7 +561,7 @@
           </sequence>
         </measure>
 
-        <measure number="8">
+        <measure index="8">
           <sequence orient="up" staff="1">
             <beamed>
               <event value="/8">
