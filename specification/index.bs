@@ -374,7 +374,7 @@ Some general principles regarding the design of this specification follow.
 
   The following documents might be of interest to readers of this specification.
 
-<section>
+<section noexport>
 <h2 id="infrastructure">Infrastructure</h2>
 
 <h3 id="terminology">Terminology</h3>
@@ -529,7 +529,7 @@ An <dfn>element location</dfn> constitutes a reference to a specific element
 in the document. It consists of the character `#`, immediately followed by the
 XML ID of the referenced element.
 
-<h4 id="style-property-lists">Style property lists</h5>
+<h4 id="style-property-lists">Style property lists</h4>
 
 MNX supports a simple and compact <dfn>style property list</dfn> syntax, allowing
 a map of key-value pairs to be represented in a single string where the keys
@@ -596,8 +596,9 @@ Examples include:
   additional normative conformance criteria that may apply to producers and consumers
   and implementations. Examples are sometimes also included.
 
-</section>
+</section> <!-- end Infrastructure section -->
 
+<section noexport>
 <h2 id="mnx-container">MNX-Container</h2>
 
 Each MNX document acts as a <dfn>container document</dfn>, which contains a
@@ -760,7 +761,11 @@ bibliographic data and other descriptive information.
 The <{title}> element assigns a title to its parent element in the context of the document as a whole.
 </section>
 
+</section>  <!-- end MNX-Container section -->
+
 <h2 id="common">MNX-Common</h2>
+
+<section noexport>
 
 <section>
 <h3 id="common-scope">Scope</h3>
@@ -842,7 +847,7 @@ after the start of its containing measure. This position may be thought of as
 the event's "address" and plays a determining role in the normative rendering
 and performance of events.
 
-<h5 id="chromatic-pitches">Chromatic pitches</h4>
+<h5 id="chromatic-pitches">Chromatic pitches</h5>
 
 A <dfn>chromatic pitch</dfn> describes a pitch situated in a 12-tone
 temperament notated as per CWMN conventions. The description incorporates
@@ -3246,6 +3251,7 @@ procedure for <dfn>style property computation</dfn>:
     apply its property name-value pairs
     in the order of their processing in the given <a>style property list</a>.
   </li>
+</ol>
 
 Properties are documented in the following places:
 
@@ -3686,7 +3692,9 @@ The intent is to set out the normative constraints that MNX-Common rendering mus
 
 </section>
 
-<section>
+</section> <!-- end MNX-Common section -->
+
+<section noexport>
 <h2 id="generic">MNX-Generic</h2>
 
 <dfn>MNX-Generic</dfn> is a general format for representing musical scores in terms of linked
@@ -3887,7 +3895,7 @@ between the performance data and the graphical score.
 
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
-    <dd><{mnx-generic}></dd>
+    <dd><{performance-audio}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a>.</dd>
     <dt><a>Attributes</a>:</dt>
@@ -4151,7 +4159,7 @@ the intersection lies at infinity.
 
 </section>
 
-
+</section>  <!-- end MNX-Generic section -->
 
 <section>
 <div data-fill-with="index"></div>
