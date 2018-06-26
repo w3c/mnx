@@ -1186,8 +1186,8 @@ The following cases exist for specifying <a>measure locations</a>:
   measure.</li>
 
   <li>If the <a>measure location</a> is a <a>metrical position</a> in the context
-  of an arbitrary <{measure}> in the score, then it is specified as a <a>set of
-  space-separated tokens</a>. The first token is a <a>element location</a>
+  of an arbitrary <{measure}> in the score, then it is specified as a pair of tokens
+  separated by U+003A COLON.  The first token is a <a>measure index</a>
   identifying the measure, and the second token is a <a>valid floating-point
   number</a> or <a>note value quantity</a> that gives the number of whole notes from the start of the
   identified measure. The identified measure must belong to the same
@@ -1206,9 +1206,9 @@ Here are some instances of the measure location syntax:
 :: one quarter note after the start of a containing measure
 : `3/8`
 :: three eighth notes after the start of a containing measure
-: `#m4 0.25`
-:: one quarter note after the start of the measure whose element ID is `m4`
-: `#m4 1/4`
+: `4:0.25`
+:: one quarter note after the start of the measure with index `4`
+: `4:1/4`
 :: the same as the preceding example
 : `#event235`
 :: the same metrical position as the event whose element ID is `event235`
