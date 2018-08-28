@@ -26,9 +26,10 @@ cd ..
 rm -rf out/specification/index.html
 
 # Copy files
+cp -fv *.md ./out
+cp -fv examples/* ./out/examples
 cp -fv specification/index.html ./out/specification
 cp -fv specification/images/* ./out/specification/images
-cp -fv *.md ./out
 
 # Now let's go have some fun with the cloned repo
 cd out

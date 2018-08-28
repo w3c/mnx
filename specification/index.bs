@@ -1186,12 +1186,15 @@ The following cases exist for specifying <a>measure locations</a>:
   measure.</li>
 
   <li>If the <a>measure location</a> is a <a>metrical position</a> in the context
-  of an arbitrary <{measure}> in the score, then it is specified as a <a>set of
-  space-separated tokens</a>. The first token is a <a>element location</a>
+  of an arbitrary <{measure}> in the score, then it is specified as a pair of tokens
+  separated by U+003A COLON.  The first token is a <a>measure index</a>
   identifying the measure, and the second token is a <a>valid floating-point
   number</a> or <a>note value quantity</a> that gives the number of whole notes from the start of the
   identified measure. The identified measure must belong to the same
-  <a>measure content</a> as the element in which the measure location is given.</li>
+  <a>measure content</a> as the element in which the measure location is given. This
+  requirement has the effect of ensuring that the measure index is unique, since
+  measure locations cannot reference measures in other systems with different
+  barring.</li>
 
   <li>If the <a>measure location</a> is identical to the <a>metrical position</a>
   of some known <{event}> in the score, then it is specified as a <a>element location</a>
@@ -1206,9 +1209,9 @@ Here are some instances of the measure location syntax:
 :: one quarter note after the start of a containing measure
 : `3/8`
 :: three eighth notes after the start of a containing measure
-: `#m4 0.25`
-:: one quarter note after the start of the measure whose element ID is `m4`
-: `#m4 1/4`
+: `4:0.25`
+:: one quarter note after the start of the measure with index `4`
+: `4:1/4`
 :: the same as the preceding example
 : `#event235`
 :: the same metrical position as the event whose element ID is `event235`
@@ -1236,8 +1239,9 @@ These elements of an MNX-Common score supply its high-level description and stru
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a>.</dd>
     <dd><{stylesheet}>.</dd>
-    <dd>One or more <{global}> elements - <a>measure content</a> shared by sets of parts within the score</dd>
+    <dd>One or more <{global}> elements - <a>measure content</a> shared by sets of parts within the score.</dd>
     <dd>One or more <{part}> elements - description and <a>measure content</a> of each part in the score.</dd>
+    <dd>Zero or more <{score-audio}> elements - recordings of the score and their associated synchronization date.</dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{mnx-common/profile}> — profile describing constraints on the contents of this score</dd>
   </dl>
@@ -1418,8 +1422,8 @@ reader. This is distinct from their <dfn>performance order</dfn>, which is the
 order in which they are played by a performer.
 
 Each measure may bear the <{measure/index}> attribute, which provides its
-index within the <a>score order</a>. The first measure has an <{measure/index}>
-of 1.
+unique <dfn>measure index</dfn> within the <a>score order</a> for this measure
+content. The first measure in a system has an <{measure/index}> of 1.
 
 <h5 id="the-measure-element">The <dfn element><code>measure</code></dfn> element</h5>
 <section dfn-for="measure">
@@ -3222,6 +3226,159 @@ the handling of grace notes, for example.
     Replace:
         <h5 id="the-$1-element">The <dfn element><code>$1</code></dfn> element</h5>\n<section dfn-for="$1">\n</section>\n
 -->
+<h4 id="score-synchronization">Synchronization content</h4>
+
+The following elements describe the synchronization of a semantic CWMN score with one or more
+audio media representing recordings of the score.
+
+<h5 id="the-score-audio-element">The <dfn element><code>score-audio</code></dfn> element</h5>
+
+<section dfn-for="score-audio">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{mnx-common}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>One or more <{score-audio-media}> elements.</dd>
+    <dd>Zero or one <{score-audio-mapping}> elements.</dd>
+  </dl>
+
+The <{score-audio}> element defines one or more <a>audio media</a> files that
+constitute a single recording of a performance of the score, and whose
+contents are presumed to be temporally synchronized with each other.
+
+A set of optional <{score-audio-mapping}> elements, if given, may establish a mapping
+between the audio file and the semantic content of the score.
+
+</section>
+
+<h5 id="the-score-audio-media-element">The <dfn element><code>score-audio-media</code></dfn> element</h5>
+
+<section dfn-for="score-audio-media">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{score-audio}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a>.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{score-audio-media/src}> - URL of an audio file of the score</dd>
+  </dl>
+
+The <{score-audio-media}> element includes an <a>audio media</a> file, via the URL provided
+in the <dfn element-attr>src</dfn> attribute.
+
+</section>
+
+<h5 id="the-score-audio-mapping-element">The <dfn element><code>score-audio-mapping</code></dfn> element</h5>
+
+<section dfn-for="score-audio-mapping">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{score-audio}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>Zero or more <{score-audio-region}> elements.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{score-audio-mapping/system}> - an optional reference to a <{global}> element whose measures support the mapping</dd>
+  </dl>
+
+The <{score-audio-mapping}> element defines a sequence of disjoint,
+monotonically increasing time ranges within a specific recording.
+Each such range corresponds to a range of notated time within the semantic
+score.
+
+Note: Semantic score ranges are not required to be disjoint nor monotonically
+increasing, due to the possibility of repeats and form jumps.
+
+Each <{score-audio-region}> element describes the mapping of a single absolute
+audio media time range to a single notated time range.  The elements must
+occur in forward time order in audio media time: the <{score-audio-region/end}> value of each region must be less than or equal to the <{score-audio-region/start}> value of the next region.
+
+<dfn element-attr>system</dfn>, if present, this attribute gives the ID of the
+<{global}> element whose measures will be used as references for the
+synchronization mappings. If absent, the first <{global}> element is used.
+
+</section>
+
+<h5 id="the-score-audio-region-element">The <dfn element><code>score-audio-region</code></dfn> element</h5>
+
+<section dfn-for="score-audio-region">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{score-audio-mapping}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{score-audio-region/start}> - audio start time of the time region being mapped (inclusive)</dd>
+    <dd><{score-audio-region/end}> - audio end time of the time region (exclusive)</dd>
+    <dd><{score-audio-region/score-start}> - a reference to a <{measure}> element</dd>
+    <dd><{score-audio-region/score-end}> - an ending line segment for a cursor</dd>
+  </dl>
+
+The <{score-audio-region}> element describes the relationship between a media
+time region expressed as a pair of offsets in seconds, and a contiguous region
+of the semantic score expressed as a pair of <a>measure locations</a>. Each
+range is considered <strong>half-open</strong>: the range includes the start
+point, and all intermediate times up to <strong>and excluding</strong> the end
+point.
+
+The range within the semantic score is required to a contiguous
+sequence of measures as specified within the score, with no gaps: if the range spans more than
+one measure, then it includes all intermediate measures, in forward <a>measure index</a> order
+(i.e. in their notated sequence, rather than in any presumed performance order involving repeats
+or form jumps). Consequently, each form jump in a performance must initiate a new <{score-audio-region}>
+within the parent <{score-audio-mapping}>.
+
+<dfn element-attr>start</dfn> gives the start of the region within the audio media as an offset in seconds.
+
+<dfn element-attr>end</dfn> gives the end of the region within the audio media as an offset in seconds. Its value must be
+greater than the value <{score-audio-region/start}>.
+
+<dfn element-attr>score-start</dfn> gives the start of the region within the
+semantic score as a <a>measure location</a>, in terms of the measure
+indices defined by <{score-audio-mapping/system}>.
+
+<dfn element-attr>score-end</dfn> gives the end of the region within the
+semantic score as a <a>measure location</a>, in terms of the measure
+indices defined by <{score-audio-mapping/system}>.  Its value must logically follow the
+location within the score given by <{score-audio-region/score-start}>.
+
+Note: Gaps in mapping coverage for either the audio or the semantic score are
+allowed, and indeed are meaningful. Audio gaps represent portions of the
+recording where no music is being played; semantic score gaps represent
+portions of the score that were not performed in the recording.
+
+The following example illustrates a possible recording and its synchronization
+to a score. The score contains 7 notated measures, while the audio contains 10
+performed measures reflecting a 4-bar repeat with two endings, beginning at
+measure 3.  The performance order in the recording is thus 1, 2, 3, 4, 5, 6,
+3, 4, 5, 7, for a total of 10 performed measures.  The tempo slows during the
+performance of the latter half of measure 2, and remains slower for the
+remainder of the recording.
+
+<div class="example">
+```xml
+<mnx-common>
+  <global id="global1">...</global>
+  <part>...</part>
+  <part>...</part>
+  <score-audio system="global1">
+     <score-audio-media src="recording.mp4"/>
+     <score-audio-mapping start="1.43" end="2.43" start="1:0" end="1:1"/>
+     <score-audio-mapping start="2.43" end="2.98" start="2:0" end="2:0.5"/>
+     <score-audio-mapping start="2.98" end="3.53" start="2:0.5" end="2:1"/>  ...slowing down...
+     <score-audio-mapping start="3.53" end="7.53" start="3:0" end="6:1"/>    ...1st repeat + ending...
+     <score-audio-mapping start="7.53" end="10.53" start="3:0" end="5:1"/>   ...2nd repeat...
+     <score-audio-mapping start="10.53" end="11.53" start="7:0" end="7:1"/>  ...2nd and final ending.
+  </score-audio>
+</mnx-common>
+```
+</div>
+
+</section>
+
 </section>
 
 <h3 id="common-style-properties">Style properties</h3>
