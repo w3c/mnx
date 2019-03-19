@@ -14,7 +14,7 @@ MNX-Common is a new, open standard for representing music notation as machine-re
 
 Conceptually, MNX-Common is a way to represent this image:
 
-![Image of music notation with middle C](https://w3c.github.io/mnx/middle-c.png)
+<img src="https://github.com/w3c/mnx/blob/master/middle-c.png" alt="Image of music notation with middle C" width="300">
 
 ...as something like this:
 
