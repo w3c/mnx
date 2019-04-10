@@ -10,7 +10,7 @@ Quick links:
 
 ## An introduction to MNX-Common
 
-MNX-Common is a new, open standard for representing music notation as machine-readable data. It’s still being created, but this document gives context on our goals and plans.
+MNX-Common is a new, open standard for representing Common Western Music Notation (CWMN) as machine-readable data. It’s still being created, but this document gives context on our goals and plans.
 
 Conceptually, MNX-Common is a way to represent this image:
 
