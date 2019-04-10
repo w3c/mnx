@@ -10,7 +10,7 @@ Quick links:
 
 ## An introduction to MNX-Common
 
-MNX-Common is a new, open standard for representing Common Western Music Notation (CWMN) as machine-readable data. It’s still being created, but this document gives context on our goals and plans.
+MNX-Common is a new, open standard for representing music notation as machine-readable data. It’s still being created, but this document gives context on our goals and plans.
 
 Conceptually, MNX-Common is a way to represent this image:
 
@@ -29,7 +29,7 @@ The former, an image, is intended for humans. A computer can’t understand it w
 
 The latter — which encodes the _meaning_ (aka _semantics_) of the music, as opposed to a specific collection of pixels — is much easier for a computer to understand. Treating music in this way means it can be shared among different programs, automatically manipulated and much more.
 
-MNX-Common is a standard that abstractly encodes CWMN and its performance. CWMN notation editors will be able to create concrete score instantiations from MNX-Common, that will be consumable by web browsers and other software.
+MNX-Common is a standard that describes how to encode music, so that computers can have a shared understanding on how to interpret it. As HTML describes a web page such that any web browser can read it, MNX-Common describes a piece of music such that any notation software can read or write it.
 
 ### Motivation
 
@@ -40,9 +40,9 @@ Each music encoding format has its own biases and priorities. The [ABC format](h
 Our goal with MNX-Common is to create a format that does all of the following:
 
 * **It’s open**, meaning: it’s clearly documented, free to use and developed in a vendor-independent, inclusive way.
-* **It supports all of Common Western Musical Notation (CWMN)**, meaning: it has a clear answer for how to encode any musical concept found in CWMN.
+* **It supports all of Common Western Musical Notation (CWMN)**, meaning: it has a clear answer for how to encode any musical concept found in CWMN. (CWMN is, by nature, an [imprecise concept](https://w3c.github.io/mnx/overview/#mnx-score-types).)
 * **It prioritizes interchange**, meaning: it can be generated unambiguously, it can be parsed unambiguously, it favors one-and-only-one way to express concepts, and multiple programs reading the same MNX-Common file will interpret it the same way.
-* **It’s abstract**, meaning that while containing semantically rich descriptions of scores, it does not describe concrete score instantiations.
+* **It’s semantically rich**, meaning: it’s biased toward encoding concepts rather than presentation when prudent.
 * **It can be used as a native format**, meaning: it’s robust enough for programs to use directly instead of needing to invent their own format.
 
 The existing format that comes closest to these goals is MusicXML. In fact, MNX-Common’s creation is being led by the [W3C Music Notation Community Group](https://www.w3.org/community/music-notation/), which also oversees the MusicXML standard. So what’s the difference?
@@ -61,6 +61,6 @@ Finally, we should note there are many music notation systems throughout the wor
 
 The first step in our design was assembling an exhaustive list of roles and use cases for music notation in general. We published this document, [MNX Use Cases](https://w3c.github.io/mnx/use-cases/), in 2017. Not every use case there is meant to be covered by MNX-Common, but this is a solid reference that helps us consider the spectrum of what people do with digital music notation. It also gives us a common language around “roles” such as Composer, Performer or Developer.
 
-The [MNX GitHub issue tracker](https://github.com/w3c/mnx/issues) collects open issues we need to work through in designing the format.
+Beyond that, we’ve jumped into writing [an early draft specification for MNX-Common](https://w3c.github.io/mnx/overview/). The [MNX GitHub issue tracker](https://github.com/w3c/mnx/issues) collects open issues we need to work through in designing the format.
 
 Our plan of action is to start with large questions — such as whether notes are stored by their sounding pitch or written pitch — and progressively nail down the format.
