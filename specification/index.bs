@@ -19,7 +19,7 @@ Abstract: A draft specification for the MNX music notation document format.
     MNX is a proposed music notation markup standard. Its aim is to improve
     MusicXML in fundamental ways, while retaining many of its key concepts, terms
     and features. MNX seeks to provide a high degree of interoperability and
-    exchange between different applications working with music notation. 
+    exchange between different applications working with music notation.
 Markup Shorthands: markdown yes
 Repository: w3c/mnx
 Warning: Not Ready
@@ -724,7 +724,7 @@ concrete musical content that can be rendered and/or performed.
     <dt><a>Contexts</a>:</dt>
     <dd><{mnx}>, <{collection}>.</dd>
     <dt><a>Content Model</a>:</dt>
-    <dd><a>Metadata content</a></dd>    
+    <dd><a>Metadata content</a></dd>
     <dd>Zero or one <a>musical body</a> elements.</dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{score/src}> - optional relative path to an external source file</dd>
@@ -782,7 +782,7 @@ The <{title}> element assigns a title to its parent element in the context of th
 <h4 id="common-notational-concepts">Notational concepts</h4>
 
 This section describes various foundational concepts in music notation that
-are frequently referenced by this specification. 
+are frequently referenced by this specification.
 
 <h5 id="common-parts-staves">Parts and staves</h5>
 
@@ -794,7 +794,7 @@ related instruments.
 
 A part may employ one or more <dfn lt="staff|staves">staves</dfn>. Each <a>staff</a>
 supplies a pair of dimensions, usually one for pitch and one for time, within which
-notes may be placed.  Conventionally, the time dimension is horizontally oriented; 
+notes may be placed.  Conventionally, the time dimension is horizontally oriented;
 for pitched instruments, the pitch dimension is vertically oriented. All <a>staves</a>
 within a <a>part</a> share the same time dimension.
 
@@ -2041,7 +2041,7 @@ include:
 </dl>
 
 The optional <dfn element-attr>bracket</dfn> attribute controls the display of
-a bracket in conjunction with the tuplet. 
+a bracket in conjunction with the tuplet.
 It is disregarded if <{tuplet/show-number}> has a value of <{tuplet/show-number/none}>.
 Values include:
 
@@ -3770,7 +3770,7 @@ single container to support clean document organization and validation.
 The <{style-class}> element supplies a <dfn>style class definition</dfn>,
 which associates a list of style property values with a class that can be
 referenced elsewhere using its name alone, as per the rules of <a>style
-property computation</a>. 
+property computation</a>.
 
 The <dfn element-attr>name</dfn> attribute supplies the name of this style class
 definition; the <{global/style}> attribute supplies the properties that make up the
@@ -3847,7 +3847,7 @@ will employ a given stem width:
 <em>TBD: section describing normative MNX-Common rendering procedure, leaving room for implementation decisions.
 The intent is to set out the normative constraints that MNX-Common rendering must follow, including at least:
 
-- 
+-
 - normative registration
 
 </em>
