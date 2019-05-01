@@ -979,9 +979,12 @@ the pitch that an instrument generates.
 A note's written pitch differs from its sounded pitch in case of a
 part written for a transposing instrument, such as a clarinet.
 
-<em>Needs clarity about how 8va markings are taken into account. Is the
-written pitch the literal pitch that's printed on the page, or is it the
-pitch that the musician is "thinking of" (after applying the 8va)?</em>
+MNX considers ottava markings (e.g., "8va," "8vb") to be purely
+presentational. Hence, ottava markings have no effect on a note's
+written pitch. For example, if a note is rendered on the bottom
+staff line without an ottava marking, and a second note is
+rendered on the top staff space with an "8vb" marking, the two
+notes have the same written pitch.
 
 <h4 id="common-notational-syntaxes">Notational syntaxes</h4>
 
