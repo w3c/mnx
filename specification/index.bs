@@ -970,6 +970,19 @@ and articulations accordingly.</li>
 and articulations accordingly.</li>
 </ul>
 
+<h5 id="written-pitch">Written pitch</h5>
+
+A note's <dfn>written pitch</dfn> is the pitch that is rendered in
+notation. This might be different from its sounded pitch, which is
+the pitch that an instrument generates.
+
+A note's written pitch differs from its sounded pitch in case of a
+part written for a transposing instrument, such as a clarinet.
+
+<em>Needs clarity about how 8va markings are taken into account. Is the
+written pitch the literal pitch that's printed on the page, or is it the
+pitch that the musician is "thinking of" (after applying the 8va)?</em>
+
 <h4 id="common-notational-syntaxes">Notational syntaxes</h4>
 
 <h5 id="note-value-syntax">Note value syntax</h5>
@@ -2322,7 +2335,7 @@ of a single event, that is performed at a distinct time.
 The <{note}> element defines a single note within an event, along with other
 information pertaining to the note itself rather than to its containing event.
 
-The <dfn element-attr>pitch</dfn> attribute supplies the pitch of the note
+The <dfn element-attr>pitch</dfn> attribute supplies the <a>written pitch</a> of the note
 as a <a>chromatic pitch</a>, using the <a>rules for parsing a chromatic pitch</a>.
 
 Optionally, the <dfn element-attr>staff</dfn> attribute supplies a <a>staff index</a>
