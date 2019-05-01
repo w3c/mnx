@@ -331,7 +331,7 @@ The MNX specification will maintain a registry of recognized values for
 It's also possible to combine different representations of music in the same
 MNX document by using the <{collection}> element to combine  multiple chunks
 of music into a single chunk.  Each chunk may possess a distinct encoding.
-<{collection}> elements can be nested, allowing a subordinate collection to be 
+<{collection}> elements can be nested, allowing a subordinate collection to be
 embedded in a higher-level one.
 
 Metadata elements such as <{identification}> or formatting elements like
@@ -344,7 +344,7 @@ that some of these could employ non-CWMN encodings as well.)
 ```xml
 <mnx xmlns="http://www.w3.org/mnx">
     <head>
-        // 
+        //
     </head>
     <collection>
         <score type="section" content="cwmn">
@@ -386,7 +386,7 @@ registry of valid profile names for each allowed score encoding is maintained
 as part of the specification.
 
 The intent of profiles is to allow programmatic validation of documents, and
-to permit different levels of validation to be enforced where appropriate. 
+to permit different levels of validation to be enforced where appropriate.
 MNX parsers may be also be constructed to specifically support certain
 profiles, significantly decreasing programming effort.
 
@@ -677,7 +677,7 @@ MNX has a less constrained notion of a *general timespan* which is used in
 situations where no constraint to an exact note value multiple is desired.
 
 General timespans are encoded as a real number followed by one of the following
-suffixes. 
+suffixes.
 
 : `/`*note-value*
 :: displacement based on contextual time within the containing measure or tuplet.
@@ -1030,7 +1030,7 @@ The CWMNX <{direction}> element carries over the features of the MusicXML
 <{direction}> element.
 
 This proposal does not yet attempt to examine how CWMNX directions will work in
-detail or how they differ from MusicXML directions.    
+detail or how they differ from MusicXML directions.
 
 CWMNX is, however, expected to include strong semantic types for different
 musical purposes of text. Dynamics, tempo markings, lyrics, playing
@@ -1052,7 +1052,7 @@ A <{tuplet}> uses the two attributes `actual` and `normal` making use of
 It thus combines the function of MusicXML's <{tuplet}> and <{time-modification}>
 elements into a single construct: the contained elements are automatically
 subject to time modification, and CSS styling can control the appearance of
-the tuplet. 
+the tuplet.
 
 Numerals and brackets may or may not be shown in conjunction with a
 <{tuplet}>, by using the relevant MusicXML attributes which carry over into CWMNX.
@@ -1379,7 +1379,7 @@ It's often useful to separate stylesheet definitions in a separate `.css` file. 
         </style>
     </head>
     <score>
-        // 
+        //
     </score>
 </mnx>
 ```
@@ -1450,7 +1450,7 @@ Examples of migrated MusicXML properties from notation markup include:
 - `new-system` and `new-page`
 
 In keeping with CSS conventions, MusicXML's values of `yes` and `no` will be
-generally replaced with `true` and `false`. 
+generally replaced with `true` and `false`.
 
 ### New CWMNX properties
 
@@ -1480,7 +1480,7 @@ or on printed paper.
 }
 ```
 
-In CWMNX, media queries can be used in exactly the same way, but they 
+In CWMNX, media queries can be used in exactly the same way, but they
 can also be used to govern how parts are displayed. This permits high quality
 parts to be generated from the same document as the full score, formatted in a
 specialized way.
@@ -1598,7 +1598,7 @@ Naturally, one might wish to use CSS classes to specify this:
         </style>
     </head>
     <score>
-        // 
+        //
             <event value="4">
                 <note pitch="C4" class="forte"/>
             </event>
@@ -1751,7 +1751,7 @@ abstract visual, performance and audio information. There is no attempt
 to represent semantics directly in GMNX, although GMNX may cross-reference
 elements in a separate, semantic document for traceability.
 
-Advisement: This entire section is a rough sketch of a possible approach and 
+Advisement: This entire section is a rough sketch of a possible approach and
 needs considerable work.
 
 ## GMNX Goals
@@ -1968,7 +1968,7 @@ for the region, while the `time` attribute supplies a time range within the perf
 given in seconds since start.
 
 ```xml
-<performance-regions>                
+<performance-regions>
     <region graphic="#m1" time="0 1.8"/>
     <region graphic="#m2" time="1.8 3.61"/>
     <region graphic="#m3" time="3.61 5.38"/>
@@ -1994,7 +1994,7 @@ which include among others:
 Thus, one can have region lists like this:
 
 ```xml
-<performance-regions>                
+<performance-regions>
     <region graphic="#m1part1" time="0 1.8"/>
     <region graphic="#m1part2" time="0 1.8"/>     // two regions exist for this time range
     <region graphic="#m1part1" time="1.8 3.61"/>  // same region is repeated in performance
@@ -2050,7 +2050,7 @@ position of the flow cursor is advanced from its starting value to its ending
 value:
 
 ```xml
-<performance-regions>                
+<performance-regions>
     <region-flow graphic="#m1" time="0 1.8" pos="0 4"/>
     <region-flow graphic="#m2" time="1.8 3.61" pos="0 4"/>
     <region-flow graphic="#m3" time="3.61 5.38" pos="0 4"/>
@@ -2124,7 +2124,7 @@ This example merely uses a CWMN score because it's familiar material.
                 <g id="m1" transform="translate(20,0)">
                     // Describe a time flow in terms of an arbitrary notation position, mapped to local coordinates.
                     // The flow is an imaginary cursor that moves smoothly along a path described
-                    // using the same commands as the SVG <path> element. The `pos` ranges 
+                    // using the same commands as the SVG <path> element. The `pos` ranges
                     // are in notation position units (which here are quarter notes), not time or pixels.
                     <mnx:flow cursor="0 40">
                         <flow-path d="M 0 0 h 15" pos="0 1"/>
@@ -2156,7 +2156,7 @@ This example merely uses a CWMN score because it's familiar material.
             <performance-media>
                 <media-file src="hot-cross-buns.mp4"/>
             </performance-media>
-            <performance-regions>                
+            <performance-regions>
                 <region-flow graphic="#m1" time="0 1.8" pos="0 4"/>
                 <region-flow graphic="#m2" time="1.8 3.61" pos="0 4"/>
                 <region-flow graphic="#m3" time="3.61 5.38" pos="0 4"/>
@@ -2192,7 +2192,7 @@ This example merely uses a CWMN score because it's familiar material.
                     </sequence>
                 </part>
             </performance-events>
-            <performance-regions>                
+            <performance-regions>
                 <region-flow graphic="#m1" time="0 1" pos="0 4"/>
                 <region-flow graphic="#m2" time="1 2" pos="0 4"/>
                 <region-flow graphic="#m3" time="2 3" pos="0 4"/>

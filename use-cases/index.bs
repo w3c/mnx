@@ -91,7 +91,7 @@ ED receives two different digital sheet music documents which purport to be the 
 <h4 id="MC5">MC5: Arranger/Orchestrator wants to annotate Composer’s score with comments and suggestions</h4>
 C has created a composition and has engaged A to arrange and orchestrate this piece. C provides A with a digital encoding of the composition. A wishes to annotate C's composition with comments and suggestions. Some of A's suggestions include visual and audio media of performance techniques that may be appropriate for the music. Others include hyperlinks to relevant online resources. A returns these annotations to C.
 
-In general A's suggestions could incorporate any content or media or pointers that might be found in a web page, and should not be limited to plain text or even rich formatted text. 
+In general A's suggestions could incorporate any content or media or pointers that might be found in a web page, and should not be limited to plain text or even rich formatted text.
 
 To avoid issues with converting the entire score back and forth, A wishes to separate these annotations from C's original score, capturing them a distinct document that refers to elements of C's original score using pointers. Consider related use cases for Web Annotation.
 
@@ -128,7 +128,7 @@ C wants the score to be as visually expressive as possible, and supplies a custo
 
 <h4 id="MC13">MC13: Composer of a multimedia work wants to write a score that synchronises sound and vision.</h4>
 Digital encoding (see MC0) can refer to both audio and visual data. Note also, that the C of the sounds need not be the same as the C of the lighting. (see MC1)
- 
+
 <h4 id="MC14">MC14: Composer wants to use software that allows the use of both Common Western Music Notation and the Web MIDI API</h4>
 CWMN uses a time model based on tempi and fractional durations. The Web MIDI API has no concept of tempo, and uses indivisible durations (milliseconds). The software handles the conversion from fractions to integers.
 
@@ -209,7 +209,7 @@ PU would like to be able to create these renderings by combining any given score
 *Support:* <a>MNX</a> with various <a>external stylesheets</a> as needed.
 
 <h4 id="MP7">MP7: Publisher wants to create multiple foreign-language editions of a work</h4>
-PU wishes to simplify the creation and maintenance of a work in multiple languages, minimizing the amount of work necessary to independently revise either the original notated music or the various translations of directions, lyrics, etc. 
+PU wishes to simplify the creation and maintenance of a work in multiple languages, minimizing the amount of work necessary to independently revise either the original notated music or the various translations of directions, lyrics, etc.
 
 <h4 id="MP8">MP8: Publisher wants to minimize difficulty of managing related material for a work in a unitary fashion</h4>
 PU maintains multiple assets relating to the same musical work. For instance, one composition is associated with a digital music encoding, a PDF, an audio backing track, a sequence in a MIDI file, and more. PU would like to be able to cross-reference these items, potentially linking to related assets in some way from metadata in the music encoding file. Some of this metadata is unique to PU's business and does not fit into any standardized metadata schema.
@@ -275,7 +275,7 @@ PF is an alto singer in a chorus. PF receives a digital piano-vocal score, with 
 PF is practicing a bassoon part in an orchestral work. At times PF would like to hear a synthesized audio rendition of PF's own part, for reference. At other times PF would like to play along with an audio rendition of all the other parts in the score. In both cases, PF expects the currently audible place in the score to be visually identified in some way. PF doesn't have an expectation that these audio renditions will approach the richness and fidelity of a recording of an actual orchestra.
 
 <h4 id="RLP8">RLP8: Performer wants to hear a recorded audio track of the music being displayed, synchronized with the notational display</h4>
-PF is practicing a bassoon part in an orchestral work. PF would like to hear a recorded audio track of a high quality performance of PF's part and/or other parts in the work for reference. In both cases, PF expects the currently audible place in the score to be visually identified in some way.  
+PF is practicing a bassoon part in an orchestral work. PF would like to hear a recorded audio track of a high quality performance of PF's part and/or other parts in the work for reference. In both cases, PF expects the currently audible place in the score to be visually identified in some way.
 
 The publisher PU for this piece has previously prepared an encoding of the piece along with an audio or video recording, which does not follow a uniform tempo. PU was able to create (automatically or manually) an encoding of the mapping between the musical form of the piece and regions of the audio recording, allowing the two to be synchronized. PF's application is likewise able to employ this same mapping to maintain the correspondence.
 
