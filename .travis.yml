@@ -7,7 +7,7 @@ install:
   - pip install --editable $PWD/bikeshed
   - bikeshed update
 script:
-  - bikeshed spec specification/index.bs specification/index.html
+  - bikeshed spec specification/common/index.bs specification/common/index.html
   - bash ./deploy.sh
 env:
   global:

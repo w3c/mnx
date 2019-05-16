@@ -13,13 +13,13 @@ function doCompile {
     # Here, we merely do some cleanup.
 
     # Clean out existing contents
-    rm -rf out/specification/index.html
+    rm -rf out/specification/common/index.html
 
     # Copy files
     cp -fv *.md ./out
     cp -fv examples/* ./out/examples
-    cp -fv specification/index.html ./out/specification
-    cp -fv specification/images/* ./out/specification/images
+    cp -fv specification/common/index.html ./out/specification/common
+    cp -fv specification/common/images/* ./out/specification/common/images
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
