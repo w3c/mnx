@@ -14,11 +14,11 @@ Status: LD
 Title: MNX Draft Specification
 Shortname: mnx-draft
 Level: 1
-Editor: Joe Berkovitz, Risible LLC
-Abstract: A draft specification for the MNX music notation document format.
-    MNX is a proposed music notation markup standard. Its aim is to improve
+Editor: Joe Berkovitz (Risible LLC), Adrian Holovaty (Soundslice)
+Abstract: A draft specification for the MNX-Common music notation document format.
+    MNX-Common is a proposed music notation markup standard. Its aim is to improve
     MusicXML in fundamental ways, while retaining many of its key concepts, terms
-    and features. MNX seeks to provide a high degree of interoperability and
+    and features. MNX-Common seeks to provide a high degree of interoperability and
     exchange between different applications working with music notation.
 Markup Shorthands: markdown yes
 Repository: w3c/mnx
@@ -123,7 +123,7 @@ spec:dom; type:dfn; text:attribute
 <h2 id="status">Status of this document</h2>
 
 This document is an early draft and focuses on the main structural features
-that distinguish MNX from MusicXML 3.1. Many elements are omitted, or their details
+that distinguish MNX-Common from MusicXML 3.1. Many elements are omitted, or their details
 are referred to the <a>MusicXML specification</a> as a placeholder.
 
 <h2 id="introduction">Introduction</h2>
@@ -132,38 +132,23 @@ are referred to the <a>MusicXML specification</a> as a placeholder.
 
   <em>This section is non-normative.</em>
 
-  MNX is a proposed music notation markup standard, which seeks to provide a
+  MNX-Common is a proposed music notation markup standard, which seeks to provide a
   high degree of interoperability and exchange between different applications
   working with music notation.
 
-  Many different sources of inspiration inform the design of MNX including
-  MusicXML, the <a>Music Encoding Initiative</a>, the IEEE 1599 specification,
+  The standard encodes Conventional Western Music Notation (CWMN) using
+  <a>semantic markup</a> as defined in the HTML5 standard, allowing applications
+  to present the same information consistently in different contexts.
+
+  Many different sources of inspiration inform the design of MNX-Common, including
+  MusicXML, the <a>Music Encoding Initiative</a>, the IEEE 1599 specification
   and others.
-<h3 id="mnx-score-types">MNX score types</h3>
-
-  <em>This section is non-normative.</em>
-
-MNX can support multiple <dfn>score types</dfn>. Each score type is a specific encoding that applies
-to some portion of a <a>container document</a>.
-
-The present draft of this specification deals with two <a>score types</a>:
-
-<ul>
-  <li><a href="#common">MNX-Common</a>, which encodes Conventional Western Music
-  Notation (CWMN) using <a>semantic markup</a> as defined in the
-  HTML5 standard, allowing applications to present the same information consistently in
-  different contexts. It inherits many ideas and concepts from MusicXML.</li>
-
-  <li><a href="#generic">MNX-Generic</a>, which serves as a universal encoding for
-  score instances having arbitrary graphical and audio content. In consequence, it is
-  relatively free of semantics.</li>
-</ul>
 
 <h3 id="comparisons">Comparisons with other notation standards</h3>
 
   <em>This section is non-normative.</em>
 
-The MNX-Common score type of MNX is a lineal descendant of MusicXML, and employs
+MNX-Common is a lineal descendant of MusicXML, and employs
 many of the same concepts. However it sacrifices some features and flexibility
 of MusicXML in favor of tighter interoperability, and simplifies the element
 structure considerably. MNX-Common also moves all non-semantic information into CSS
@@ -179,24 +164,20 @@ interoperable medium for encoding CWMN (sometimes known as "MEI Go").
 
 IEEE 1599 is a specification that has paid unique attention to the
 relationships between different layers of musical information. Its Logic layer
-is similar in content to MNX-Common, while its Notational, Performance and Audio
-layers answer some of the same concerns as MNX-Generic. MNX-Generic takes a different
-approach to connecting these layers, and does not attempt to fully
-unify semantic information with visual and performance data. It relies
-to a greater degree on SVG, and to a lesser degree on MIDI.
+is similar in content to MNX-Common.
 
 <h3 id="compatibility">Compatibility with MusicXML</h3>
 
   <em>This section is non-normative.</em>
 
-MNX uses MusicXML as a point of departure in many ways, but it does not
+MNX-Common uses MusicXML as a point of departure in many ways, but it does not
 attempt to be backward-compatible with MusicXML, nor is it a superset of
 MusicXML. However, a large proportion of MusicXML markup is expected to be
 preserved. In these examples, MusicXML constructs are used freely throughout
 as a way to show how proposed new concepts dovetail with existing ones.
 
 Backward compatibility aside, it is a goal to be able to machine-translate
-MusicXML into MNX. This is essential for migration purposes.
+MusicXML into MNX-Common. This is essential for migration purposes.
 
 <h3 id="use-cases">Use cases</h3>
 
@@ -226,7 +207,7 @@ Some general principles regarding the design of this specification follow.
 
 <dl>
   <dt>Make schematic form follow function.</dt>
-  <dd>The schema of MNX tries where possible to let the constraints of an element hierarchy
+  <dd>The schema of MNX-Common tries where possible to let the constraints of an element hierarchy
     serve a useful purpose, by embodying analogous constraints in music notation. For example,
     the <{sequence}> and <{event}> elements force a musical voice in CWMN to follow conventional rules for avoiding temporal overlap.
   </dd>
@@ -234,50 +215,26 @@ Some general principles regarding the design of this specification follow.
   <dt>Preserve ease of reading and writing for simple content.</dt>
   <dd>While complex scores will necessarily be generated and parsed by machines, it's valuable to
     allow humans to easily create and read simple content. Therefore in some cases, encodings
-    are intentionally more compact than strictly necessary. Examples in MNX include microsyntaxes
+    are intentionally more compact than strictly necessary. Examples in MNX-Common include microsyntaxes
     and the use of XML attributes instead of elements for the most frequent properties.
   </dd>
 
-  <dt>Address both literal encoding and semantic encoding.</dt>
-  <dd>MNX includes two separate approaches to encoding music: high-level semantic encodings
-    described by <a>MNX-Common</a> (and other future modules), and low-level literal
-    encodings described by <a>MNX-Generic</a>. The literal encoding attempts to eliminate cultural
-    and semantic assumptions within its scope, while still allowing linkage between the literal and
-    semantic layers.
-  </dd>
-
   <dt>Be specific about what is valid and what is not.</dt>
-  <dd>MNX attempts to keep things constrained in its semantic layers, while
+  <dd>MNX-Common attempts to keep things constrained in its semantic layers, while
     the literal encoding is wide-open. While this constrains some potential expression towards the
     edges of CWMN, it enhances interoperability at the core.
   </dd>
 
-  <dt>Address culturally specific needs in a modular fashion</dt>
-  <dd>While much of the MNX specification addresses common Western music notation, nothing
-    in the specification prevents the development of additional modules targeting other notation
-    systems at a semantic level, or from taking other semantic approaches to Western music.
-    The <a>MNX-Generic</a> module avoids cultural specificity due to its literal focus.
-  </dd>
-
   <dt>Separate semantic concerns from presentation/interpretation concerns.</dt>
-  <dd>Within its semantic encoding for MNX-Common, this specification strives to keep semantic
+  <dd>This specification strives to keep semantic
     descriptions from answering to the multitude of tiny features that control presentation and
     performance interpretation. These are segregated in the parallel domains of <a>style properties</a>
     and <a>interpretation content</a>.
   </dd>
 
-  <dt>Allow semantic encodings to "tunnel through" to the literal encoding.</dt>
-  <dd>A semantic module such as MNX-Common cannot supply all known information about rendering and performance, in cases
-    where this knowledge lives outside the semantic markup. MNX allows semantic layers to "tunnel"
-    through to employ the literal constructs of MNX-Generic, allowing the same primitives to describe
-    both entire scores at a literal level, and those fragments of a semantic score that require
-    an embedded, literal description.
-  </dd>
-
   <dt>Leverage existing value in the world</dt>
-  <dd>The ecosystem of the Web is broad and valuable. MNX attempts to exploit this by making use of existing
-    patterns and tooling. Examples include the reuse of many CSS concepts, and the ability to employ completely standard SVG
-    documents within MNX-Generic without need of alteration.
+  <dd>The ecosystem of the Web is broad and valuable. MNX-Common attempts to exploit this by making use of existing
+    patterns and tooling. For example, it reuses many CSS concepts.
   </dd>
 </dl>
 
@@ -302,8 +259,6 @@ Some general principles regarding the design of this specification follow.
     :: The high-level structure of MNX which organizes a hierarchy of musical resources in a document
     : [[#common]]
     :: A schema describing a musical score in Conventional Western Music Notation.
-    : [[#generic]]
-    :: A schema describing an arbitrary graphical score in conjunction with audio and performance data.
   </div>
 
 <h4 id="how-to-read-this-specification">How to read this specification</h4>
@@ -3882,483 +3837,6 @@ The intent is to set out the normative constraints that MNX-Common rendering mus
 </section>
 
 </section> <!-- end MNX-Common section -->
-
-<section noexport>
-<h2 id="generic">MNX-Generic</h2>
-
-<dfn>MNX-Generic</dfn> is a general format for representing musical scores in terms of linked
-graphical media, audio media and performance data.
-
-In contrast to MNX-Common, there is no attempt to represent semantics directly in
-MNX-Generic. Thus, MNX-Generic can be described as a low-level, literal format that
-represents instances of scores, rather than their semantic content. MNX-Generic is
-intended to support applications which <em>must</em> be able to faithfully
-execute a visual and/or audible rendition of a score, with an awareness of the
-relationship between what is seen and what is heard.
-
-MNX-Generic can be employed as a <dfn>target format</dfn> for applications that
-render semantic notation into media. And even though MNX-Generic is not a semantic
-format, MNX-Generic elements may cross-reference elements in a semantic source
-document that was rendered into MNX-Generic. This supports a connection between  the
-original semantic markup and an MNX-Generic rendering of same.
-
-Given MNX-Generic's characteristics as a target format, some features of MNX-Generic are
-employed within MNX-Common to provide literal descriptions of rendering where
-semantic information does not suffice to yield the desired musical result.
-
-The only constraints on the nature of an MNX-Generic score are:
-
-1. The visual content of the score must be encoded in SVG.
-
-1. The audible content of the score must be encoded either as <a>audio media</a>
-    or <a>performance data</a>.
-
-
-<h3 id="generic-elements">Elements</h3>
-
-<h4 id="generic-body">Musical body content</h4>
-
-<h5 id="the-mnx-generic-element">The <dfn element><code>mnx-generic</code></dfn> element</h5>
-
-<section dfn-for="mnx-generic">
-
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd>Wherever a <a>musical body</a> is expected.</dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd><a>Metadata content</a>.</dd>
-    <dd>One or more <{score-view}> elements.</dd>
-    <dd><a>Performance content</a>.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd>None.</dd>
-  </dl>
-
-The <{mnx-generic}> element is a <a>musical body</a> that describes an MNX-Generic
-score as a whole.
-
-The following example illustrates an entire MNX-Generic document; the elements
-are described individually in the remainder of this section.
-
-<div class="example">
-```xml
-<mnx-generic>
-  <score-view id="page1" view="score.svg#page1"/>
-  <score-view id="page2" view="score.svg#page2"/>
-  <score-view id="page3" view="score.svg#page3"/>
-
-  <performance-audio>
-    <performance-audio-media src="score.mp4"/>
-    <performance-mapping>
-      <performance-region start="0" end="0.72" view="page1" region="m1"/>
-      <performance-region start="0.72" end="1.43" view="page1" region="m2"/>
-      <performance-region start="1.43" end="2.99" view="page1" region="m3"/>
-      <performance-region start="2.99" end="3.65" view="page1" region="m4"/>
-    </performance-mapping>
-  </performance-audio>
-
-  <performance-data>
-    <performance-tempo beat="/4" bpm="80"/>
-    <performance-mapping>
-      <performance-region start="0" end="1" view="page1" region="m1"/>
-      <performance-region start="1" end="2" view="page1" region="m2"/>
-      <performance-region start="2" end="3" view="page1" region="m3"/>
-      <performance-region start="3" end="4" view="page1" region="m4"/>
-    </performance-mapping>
-    <performance-part>
-      <instrument-sound>strings.violin</instrument-sound>
-      <performance-event start="0" duration="1/4" pitch="C4" dynamics="100"/>
-      <performance-event start="1/4" duration="1/4" pitch="D4" dynamics="100"/>
-      ...following events...
-    </performance-part>
-  </performance-data>
-</mnx-generic>
-```
-</div>
-
-</section>
-
-<h4 id="generic-graphics">Graphics media</h4>
-
-<h5 id="the-score-view-element">The <dfn element><code>score-view</code></dfn> element</h5>
-
-<section dfn-for="score-view">
-
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{mnx-generic}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd>Any number of <{score-mapping}> elements.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{score-view/view}> - link to an SVG view of the score</dd>
-  </dl>
-
-The <{score-view}> element references a specific view within a separate
-SVG document, via the URL provided in the <dfn element-attr>view</dfn>
-attribute. This URL must follow the rules for <a>linking into SVG content</a>.
-
-Each <{score-view}> element represents a single page of the score. A
-default sequence of pages is established by the order of occurrence of
-<{score-view}> elements within the document.
-
-The sequence of page presentation in conjunction with <a>performance
-content</a> may differ from the default sequence, according to the mapping
-between performance and graphics.
-
-</section>
-
-<h5 id="the-score-mapping-element">The <dfn element><code>score-mapping</code></dfn> element</h5>
-
-<section dfn-for="score-mapping">
-
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{score-view}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd>None.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{score-mapping/graphics}> - an element ID within the SVG content described by the parent <{score-view}></dd>
-    <dd><{score-mapping/semantics}> - one or more optional IDs of corresponding element(s) within source semantic documents</dd>
-  </dl>
-
-The <{score-mapping}> element supplies information on the correspondence
-between an SVG element in a <{score-view}>, and sets of other
-semantic elements in this or other documents.
-
-The <dfn element-attr>graphics</dfn> attribute is required, and gives a single
-ID of an element in the score view's SVG content. There is no restriction on
-the nature or structure of this element, nor on its relationship to other
-elements.
-
-The optional <dfn element-attr>semantics</dfn> attribute supplies one or more
-IDs of elements in a semantic source document, for example an MNX-Common document.
-This asserts that each of the referenced semantic source elements are considered as
-generating the SVG content described by <{score-mapping/graphics}>.
-
-Note: While this element describes only a single SVG element, it is commonly
-the case that multiple SVG graphics may be associated with the same
-semantic source.
-
-</section>
-
-<h4 id="generic-performance">Performance content</h4>
-
-The category of <dfn>performance content</dfn> includes both of the following:
-
-- <dfn>audio media</dfn> supplying a performance of an MNX-Generic score in an audio file format
-
-- <dfn>performance data</dfn>, describing a performance of an MNX-Generic score in
-    terms of discrete, parameterized sonic events
-
-<h5 id="the-performance-audio-element">The <dfn element><code>performance-audio</code></dfn> element</h5>
-
-<section dfn-for="performance-audio">
-
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{mnx-generic}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd><a>Metadata content</a>.</dd>
-    <dd>Zero or more <{performance-tempo}> elements.</dd>
-    <dd>Zero or one <{performance-mapping}> elements.</dd>
-    <dd>One or more <{performance-audio-media}> elements.</dd>
-  </dl>
-
-The <{performance-audio}> element defines one or more <a>audio media</a> files
-that constitute a single performance of the score, and whose contents are
-presumed to be temporally synchronized with each other.
-
-
-Additionally, <{performance-tempo}> elements may establish an proportional
-mapping between an arbitrary <a>notated time unit</a> and a time interval. This mapping
-may change throughout the course of the performance.  If no such elements occur,
-the <a>notated time unit</a> is defined as equal to 1 second of performance time.
-
-A set of optional <{performance-mapping}> elements, if given, may establish a mapping
-between the performance data and the graphical score.
-
-</section>
-
-<h5 id="the-performance-audio-media-element">The <dfn element><code>performance-audio-media</code></dfn> element</h5>
-
-<section dfn-for="performance-audio-media">
-
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{performance-audio}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd><a>Metadata content</a>.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{performance-audio-media/src}> - URL of an audio file of the score</dd>
-  </dl>
-
-The <{performance-audio-media}> element includes an <a>audio media</a> file, via the URL provided
-in the <dfn element-attr>src</dfn> attribute.
-
-</section>
-
-<h5 id="the-performance-data-element">The <dfn element><code>performance-data</code></dfn> element</h5>
-
-<section dfn-for="performance-data">
-
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{mnx-generic}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd><a>Metadata content</a>.</dd>
-    <dd>One or more <{performance-part}> elements.</dd>
-    <dd>Zero or more <{performance-tempo}> elements.</dd>
-    <dd>Zero or one <{performance-mapping}> elements.</dd>
-    <dt><a>Attributes</a>:</dt>
-  </dl>
-
-The <{performance-data}> element provides <a>performance data</a> in the form of
-discrete sonic events suitable for synthesis or analysis.
-
-It consists of some number of parts, plus optional mappings between performance time
-and regions of graphical media.
-
-Additionally, <{performance-tempo}> elements may establish an proportional
-mapping between an arbitrary <a>notated time unit</a> and a time interval. This mapping
-may change throughout the course of the performance.  If no such elements occur,
-the <a>notated time unit</a> is defined as equal to 1 second of performance time.
-
-A set of optional <{performance-mapping}> elements, if given, may establish a mapping
-between the performance data and the graphical score.
-
-</section>
-
-<h5 id="the-performance-part-element">The <dfn element><code>performance-part</code></dfn> element</h5>
-
-<section dfn-for="performance-part">
-
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{performance-data}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd><a>Metadata content</a>.</dd>
-    <dd>Zero or more <{performance-event}> elements.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{performance-part/instrument-sound}> - the sound ID of the instrument for this part.</dd>
-  </dl>
-
-The <{performance-part}> element organizes a list of <{performance-event}>
-elements, within a given performance.
-
-The <dfn element-attr>instrument-sound</dfn> attribute gives the MusicXML sound ID of the instrument
-for this part.
-
-Note: <{performance-part}> elements do not necessarily correspond to MNX-Common
-<{part}> elements, as they pertain to a single instrument.
-
-</section>
-
-<h5 id="the-performance-tempo-element">The <dfn element><code>performance-tempo</code></dfn> element</h5>
-
-<section dfn-for="performance-tempo">
-
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{performance-data}>, <{performance-audio}>, <{interpret}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd>None.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{performance-tempo/start}> - start time of this performance tempo</dd>
-    <dd><{performance-tempo/beat}> - notated time units per beat</dd>
-    <dd><{performance-tempo/bpm}> - number of beats per minute</dd>
-  </dl>
-
-The <{performance-tempo}> element describes a proportional relationship between
-time and an arbitrary <dfn>notated time unit</dfn> that may be used by the score.
-
-This relationship applies to a time range beginning at the time in seconds
-specified by <dfn element-attr>start</dfn> and continuing until the next
-<{performance-tempo}> element. The default value is 0.
-
-The <dfn element-attr>beat</dfn> element is a <a>note value</a> which
-establishes a beat as some fraction or multiple of a notated time unit (which
-in CWMN a whole note by convention). The default value is 1.
-
-The <dfn element-attr>bpm</dfn> element establishes a tempo, expressed as a
-<a>valid floating-point number</a> giving the number of beats per minute. The
-default value is 60.
-
-NOTE: The defaults for both of the above attributes establish a notated
-time unit as equal to 1 second. Thus, if no attribute values are provided,
-score time is equal to real performance time.
-
-NOTE: The set of <{performance-tempo}> elements establish a variable-rate progression
-of a scoring time unit relative to performance time, similar to a MIDI tempo track.
-
-Issue: continuous changes need to be supported
-
-</section>
-
-<h5 id="the-performance-event-element">The <dfn element><code>performance-event</code></dfn> element</h5>
-
-<section dfn-for="performance-event">
-
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{performance-part}>, <{interpret}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd>None.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{performance-event/start}> - start time of this event</dd>
-    <dd><{performance-event/duration}> - duration of this event</dd>
-    <dd><{performance-event/pitch}> - pitch of this event</dd>
-    <dd><{performance-event/dynamics}> - dynamics for this event</dd>
-    <dd><{performance-event/techniques}> - set of performance techniques for this event</dd>
-    <dd><{performance-event/view}> - optional element ID of the <{score-view}> containing graphics for this event</dd>
-    <dd><{performance-event/graphics}> - optional SVG elements for specific event graphics</dd>
-  </dl>
-
-The <{performance-event}> element describes a single musical event in terms of its
-performance parameters.
-
-All times given are in <a>notated time units</a>, whose relationship to performance time is described by
-<{performance-tempo}> elements. These times may be expressed in the following forms which are
-syntactically distinct:
-
-- <a>Rational numbers</a>
-- <a>Valid floating-point numbers</a>
-
-<dfn element-attr>start</dfn> gives the starting time of the event.  This
-specifies the actual start time, not a notated start time to be interpreted by
-a performer. The default value is zero.
-
-<dfn element-attr>duration</dfn> gives the duration of the event. This
-specifies the actual duration to be performed, not a notated duration subject
-to interpretation by a performer.
-
-<dfn element-attr>pitch</dfn> gives the pitch of the event expressed as either
-a <a>valid floating-point number</a> providing a frequency in Hertz, or a
-<a>chromatic pitch</a>.
-
-Note: The interpretation of pitch at the event level needs to be much more carefully nailed down.
-Issues include how to control unpitched instruments, the temperament (if any) applied to chromatic pitches,
-and no doubt more.
-
-<dfn element-attr>dynamics</dfn> gives the dynamics of the event expressed in
-a scale from 0 to 127.  <em>This scale needs to be better defined; the existing
-MusicXML definition as "percentage of forte" is hard to interpret clearly.</em>
-
-<dfn element-attr>techniques</dfn> gives a set of performance techniques applying
-to the event as a <a>unordered set of space-separated tokens</a>.
-
-Note: These presumably correspond to articulatory variations of the instrument sound.
-Proper definition remains TBD.
-
-If present, the <dfn element-attr>view</dfn> and <dfn element-attr>graphics</dfn> attributes
-together define a set of SVG graphics in a <{score-view}> element which comprise the visual
-representation corresponding to this event. Other than the fact of this correspondence, no other
-information about the graphics is encoded.
-
-</section>
-
-
-<h5 id="the-performance-mapping-element">The <dfn element><code>performance-mapping</code></dfn> element</h5>
-
-<section dfn-for="performance-mapping">
-
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{performance-audio}>, <{performance-data}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd>Zero or more <{performance-region}> elements.</dd>
-    <dt><a>Attributes</a>:</dt>
-  </dl>
-</section>
-
-The <{performance-mapping}> element defines a sequence of piecewise, non-
-overlapping ranges in notated time which correspond to piecewise regions
-within score graphics media views. In essence, it is a timeline that
-correlates a performance with elements within a series of views of the score
-from which that performance is derived.
-
-The <{performance-region}> elements in a mapping provide the detailed
-descriptions of these ranges. The elements must occur in forward time order,
-and the <{performance-region/end}> value of each region must be less than or
-equal to the <{performance-region/start}> value of the next region.
-
-<h5 id="the-performance-region-element">The <dfn element><code>performance-region</code></dfn> element</h5>
-
-<section dfn-for="performance-region">
-
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{performance-mapping}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd>None.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{performance-region/start}> - start time of the time region being mapped</dd>
-    <dd><{performance-region/end}> - end time of the time region</dd>
-    <dd><{performance-region/view}> - the element ID of the <{score-view}> containing the visual region</dd>
-    <dd><{performance-region/region}> - the definition of the visual region itself</dd>
-    <dd><{performance-region/cursor-start}> - a starting line segment for a cursor</dd>
-    <dd><{performance-region/cursor-end}> - an ending line segment for a cursor</dd>
-  </dl>
-
-The <{performance-region}> element describes the relationship between a
-performance time region expressed in <a>notated time units</a>, and a visual region of a
-score page. This allows consumers to understand the correspondence between
-regions of the graphical score and regions of one or more audio performances.
-
-<dfn element-attr>start</dfn> gives the start of the time region.
-
-<dfn element-attr>end</dfn> gives the end of the time region.
-
-<dfn element-attr>view</dfn> identifies a view of some section of the score, by
-providing the XML ID of its <{score-view}> element.
-
-<dfn element-attr>region</dfn> identifies the visual region for the mapping
-using a fragment identifier in accordance with <a>linking into SVG content</a>.
-The fragment identifier refers to the same document identified by the
-<{performance-region/view}> attribute.
-
-If the pair of attributes <dfn element-attr>cursor-start</dfn> and <dfn
-element-attr>cursor-end</dfn> are defined, then a mapping is defined between
-points in performance time and line segments in the visual region. Each
-attribute supplies an <a>ordered set of space-separated tokens</a> giving the
-cursor's endpoints as successive X/Y pairs in user coordinates applicable to
-the region.
-
-The special tokens `left`, `right`, `top` and `bottom` may be used here to
-define both endpoints of a cursor in terms of the corresponding edge of the
-region's SVG bounding box.
-
-Under this mapping, a time <var>t</var> in the time region corresponds to a
-line segment in the visual region connecting two points given by the respective
-formulae of:
-
-- <var>cursor-start.p1</var> + (<var ignore=''>cursor-end.p1</var> - <var>cursor-start.p1</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).
-- <var>cursor-start.p2</var> + (<var ignore=''>cursor-end.p2</var> - <var>cursor-start.p2</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).
-
-If either or both of <{performance-region/cursor-start}> and
-<{performance-region/cursor-end}> are undefined, then the entire time region corresponds
-to the entire visual region, with no further decomposition.
-
-Note: To more easily support cursor motion through curved arcs,  non-parallel
-start and end cursors could be considered as segments of two rays whose common
-origin lies at the point of intersection between these cursors. Interpolation
-would then be performed in radial coordinates, smoothly sweeping both the
-angle and the distances from the origin to move the cursor's endpoints along
-roughly circular arcs. Straight-line motion would be merely a special case in which
-the intersection lies at infinity.
-  <dd></dd>
-
-</section>
-
-</section>  <!-- end MNX-Generic section -->
-
-<section>
-<div data-fill-with="index"></div>
-
-<!-- <pre class="include">
-path: sections/elements.include
-</pre>
-
- -->
-</section>
 
 <!--  -->
 <section>
