@@ -30,3 +30,25 @@ generated corresponding commit on `gh-pages`.
 
 Please note that the `gh-pages` branch won't be instantly updated. The
 Travis CI job might take 5 or 10 minutes to run.
+
+## Issue reporting
+
+Here's the general process of how we organize ideas, issues and pull
+requests:
+
+1. Anybody can raise an issue in
+   [our issue tracker](https://github.com/w3c/mnx/issues/).
+2. The group co-chairs discuss and triage the issue. If it's out of
+   scope, it might get closed outright. Otherwise, it'll be assigned a
+   milestone -- which essentially sets a priority for the issue. See
+   the [list of milestones](https://github.com/w3c/mnx/milestones) for
+   descriptions of their meanings. The most important one is "V1",
+   which covers issues that *must* be addressed in the first version
+   of the MNX spec.
+3. We assign the "Active Review"
+   [label](https://github.com/w3c/mnx/labels) to issues that the
+   community group wants to resolve in the near future. This basically
+   amounts to our near-term to-do list.
+
+We welcome pull requests, but please note that each pull request should
+have an associated issue in our issue tracker.
