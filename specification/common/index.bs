@@ -11,8 +11,8 @@
 
 <pre class="metadata">
 Status: LD
-Title: MNX Draft Specification
-Shortname: mnx-draft
+Title: MNX-Common Draft Specification
+Shortname: mnx-common-draft
 Level: 1
 Editor: Joe Berkovitz (Risible LLC), Adrian Holovaty (Soundslice)
 Abstract: A draft specification for the MNX-Common music notation document format.
@@ -255,10 +255,12 @@ Some general principles regarding the design of this specification follow.
     :: Non-normative materials providing a context for the HTML specification.
     : [[#infrastructure]]
     :: Scaffolding material on which the remainder of the specification relies
-    : [[#mnx-container]]
-    :: The high-level structure of MNX which organizes a hierarchy of musical resources in a document
-    : [[#common]]
-    :: A schema describing a musical score in Conventional Western Music Notation.
+    : [[#notational-concepts]]
+    :: Various foundational concepts in music notation that are frequently referenced in this specification.
+    : [[#notational-syntaxes]]
+    :: Various syntaxes of music notation that are used by this specification.
+    : [[#document-structure]]
+    :: The elements that make up the MNX-Common format.
   </div>
 
 <h4 id="how-to-read-this-specification">How to read this specification</h4>
@@ -349,11 +351,11 @@ limited to) Western European music from circa 1600 to the present day.
 
 A <dfn>score profile</dfn> is a set of constraints on the rules in a notational idiom.
 Score profiles are designed to narrow the set of constructs that can be produced or consumed
-in MNX to a practical scope.
+in MNX-Common to a practical scope.
 
 <h3 id="common-syntaxes">Common syntaxes</h3>
 
-There are various places in MNX that accept particular data types, such as
+There are various places in MNX-Common that accept particular data types, such as
 note values, numbers or durations. This section describes the conformance
 criteria for content in those formats, and how to parse them.
 
@@ -486,7 +488,7 @@ XML ID of the referenced element.
 
 <h4 id="style-property-lists">Style property lists</h4>
 
-MNX supports a simple and compact <dfn>style property list</dfn> syntax, allowing
+MNX-Common supports a simple and compact <dfn>style property list</dfn> syntax, allowing
 a map of key-value pairs to be represented in a single string where the keys
 are names of <a>style properties</a>.
 
@@ -518,7 +520,7 @@ Examples include:
 
 <h3 id="content-models">Content models and categories</h3>
 
-  Each element in MNX falls into zero or more <dfn lt="content
+  Each element in MNX-Common falls into zero or more <dfn lt="content
   categories|content category">categories</dfn> that group elements with
   similar characteristics together. Examples of content categories
   include <a>event content</a> and <a>sequence content</a>, among
@@ -554,13 +556,479 @@ Examples include:
 </section> <!-- end Infrastructure section -->
 
 <section noexport>
-<h2 id="mnx-container">MNX-Container</h2>
+<h2 id="notational-concepts">Notational concepts</h2>
 
-Each MNX document acts as a <dfn>container document</dfn>, which contains a
-hierarchy of components which collectively make up the
-document as a whole.
+This section describes various foundational concepts in music notation that
+are frequently referenced by this specification.
 
-<h3 id="structural-elements">Structural Elements</h3>
+<h3 id="common-parts-staves">Parts and staves</h3>
+
+A score consists of multiple <dfn>parts</dfn>.  Each <a>part</a> is a grouping
+of related musical material that relates to a single performer or set of
+performers.  It has the same temporal extent as the score overall, but presents
+a slice of content that is relevant to a single instrument or a group of
+related instruments.
+
+A part may employ one or more <dfn lt="staff|staves">staves</dfn>. Each <a>staff</a>
+supplies a pair of dimensions, usually one for pitch and one for time, within which
+notes may be placed.  Conventionally, the time dimension is horizontally oriented;
+for pitched instruments, the pitch dimension is vertically oriented. All <a>staves</a>
+within a <a>part</a> share the same time dimension.
+
+For unpitched instruments, the vertical dimension indicates a choice of sound rather
+than a pitch, governed by a set of conventions that map note placement to sound.
+
+Every segment of a staff possesses a <dfn>clef</dfn> that determines the
+mapping between its pitch dimension and some set of performable pitches, with
+additional information supplied by a <dfn>key signature</dfn>. <dfn>Accidental</dfn>
+symbols on <a>notes</a> further modify this mapping on an ad-hoc basis.
+
+Staves in CWMN are identified within a part by a unique <dfn>staff
+index</dfn>. The topmost staff in a part has a staff index of 1; staves below
+the topmost staff are identified with successively increasing indices.
+
+<h3 id="common-notated-events">Notated events</h3>
+
+A <dfn>notated event</dfn> in CWMN is a discrete action in the score with a
+notated duration. It has an onset that
+is relative to the start of its containing sequence as well as to other
+elements in that sequence, subject to the conventions of CWMN.  Events belong
+to a specific <a>staff</a> within a part, denoted by its <a>staff index</a>.
+
+A notated event may include one or more <dfn>notes</dfn> possessing a
+pitch, or a <dfn>rest</dfn> indicating silence.  Events including more than
+one note are referred to as <dfn>chords</dfn>.
+
+In both cases, the event possesses an associated <a>note value</a> that
+indicates its notated duration. This value is not literal, but is subject to
+performance interpretation.
+
+The content of a notated event includes only the specific notes and chords
+within it. In particular a notated event does not account for ties, ornamental
+interpretation or many other kinds of performance reading. As such, the onset,
+duration, pitch and other properties of notated events will often differ from
+those in the corresponding <a>performance events</a>.
+
+Events may further possess <dfn>articulations</dfn>, additional properties
+that modulate their musical performance in commonly understood ways. In this
+specification, we use the term <a>articulation</a> in an expanded sense to
+cover all such additional properties.
+
+Notated events are represented by the <{event}> element.
+
+<h3 id="common-metrical-position">Metrical position</h3>
+
+Most notated events possess a well-defined <dfn>metrical position</dfn>,
+giving a time onset expressed as a rational number of whole note durations
+after the start of its containing measure. This position may be thought of as
+the event's "address" and plays a determining role in the normative rendering
+and performance of events.
+
+<h3 id="chromatic-pitches">Chromatic pitches</h3>
+
+A <dfn>chromatic pitch</dfn> describes a pitch situated in a 12-tone
+temperament notated as per CWMN conventions. The description incorporates
+three elements:
+
+- The <dfn>diatonic step</dfn>, which is one of the letters `A` through `G`, describing
+    the corresponding diatonic steps.
+
+- The <dfn>octave</dfn>, which is an integer giving the octave in which
+    the step occurs. The assignment of pitches to octaves follows the <a href="https://en.wikipedia.org/wiki/Scientific_pitch_notation">
+    Scientific Pitch Notation (SPN)</a> convention, in which the octave number increases
+    on the step from `B` to `C`.  For example, the SPN for the range of steps around
+    middle C on the piano keyboard includes the sequence: `...A3, B3, C4, D4...`.
+
+- The <dfn>alteration</dfn>, which is a fractional alteration of pitch
+    from the given step and octave, expressed in terms of the prevailing temperament of the work.
+
+<h3 id="common-directions">Directions</h3>
+
+A <dfn>direction</dfn> is a discrete instruction in the score
+that applies to notated events.
+
+Directions do not have a duration, although they have a specific location in
+relation to a containing measure or sequence. Like events, directions also
+belong to a specific <a>staff</a> within a part, denoted by its one-based
+<a>staff index</a>.
+
+Directions come in the following flavors:
+
+<dfn>Single-ended</dfn> directions begin at a point in time in some part and
+generally continue to apply until superseded by another direction, or by some
+notation in the score that is understood to terminate it. An example is a
+<em>piano</em> dynamic.
+
+<dfn>Span</dfn> directions begin at a point in time in some part and end at a
+later point within the same part. One common example of a span direction is a
+slur.
+
+<dfn>Liaison</dfn> directions begin on one note and end on an immediately
+succeeding note. A common example of a liaison direction is a tie.
+
+<h3 id="sequence">Notated sequences</h3>
+
+A <dfn>notated sequence</dfn> is a set of <a>notated events</a> whose notional
+time intervals do not overlap, which lie within the same measure and the same
+part, and which occur at progressively greater temporal offsets within a
+measure.
+
+Notated sequences are represented by the <{sequence}> element.
+
+<h3 id="voice">Voices</h3>
+
+Notated sequences may also belong to <dfn>voices</dfn>. A voice is a set of
+sequences in different measures, but within the same part. The sequences
+within this set can be thought of as constituting a single musical voice
+throughout the score. Thus they are an organizational construct, rather than a
+notational one.
+
+A given voice need not be expressed in every single measure of a part. It may
+be present in some measures, and absent in others.
+
+Even so, the assignment of sequences to voices has concrete implications for
+MNX implementations. Producer implementations may interpret a voice as
+affecting the way that musical material is organized, for example by cutting
+and pasting material from  a given voice in one measure into the same voice in
+a different measure. Consumer implementations might allow users to isolate the
+playback of a single voice, including only the sequences that belong to it.
+
+<h3 id="common-performance-interpretation">Performance Interpretation</h3>
+
+A <dfn>performance interpretation</dfn> is the end result of deriving
+a set of <a>performance events</a> from a score. Human performers do this
+by reading music, while MNX consumers will generally do this algorithmically.
+
+In MNX-Generic, a consumer is given the exact performance interpretation as part of
+the document.  In MNX-Common, a consumer will typically employ a set of rules that
+mimic the actions of a human performer, overriding these with exact
+performance events where these are explicitly supplied within the document.
+
+<h3 id="common-performance-events">Performance events</h3>
+
+A <dfn>performance event</dfn> is a description of a single timed
+element of a musical performance with specific attributes for its onset,
+duration, pitch, dynamics, articulation and instrument. Unlike a notated
+event, these attributes are specific and not subject to interpretation, and
+they are independent of any notational concepts.
+
+Performance events in MNX are used to describe the exact <a>performance
+interpretation</a> of some or all of a score, as distinct from its notation.
+
+<h3 id="note-values">Note values</h3>
+
+There are a variety of situations in which the <dfn>note value</dfn> of a
+musical event needs to be described, in terms of some fraction or multiple of
+a CWMN whole-note unit.
+
+In CWMN, fractions for undotted <dfn>base note values</dfn> are constrained to
+be exact powers of two.  The most common note values of whole, half, quarter,
+etc. correspond to whole-note fractions expressed by the non-negative powers
+2<sup>0</sup>, 2<sup>-1</sup>, 2<sup>-2</sup>. The less frequently used note
+values of breve, longa, etc. are expressed by the positive powers
+2<sup>1</sup>, 2<sup>2</sup>, ...
+
+In the broader case of <dfn>general note values</dfn>, some <dfn>number of dots</dfn>
+act as a multiplier on the <a>base note value</a>. These multipliers take the form
+(2<sup><em>n</em>+1</sup>-1) / 2<sup><em>n</em></sup>, where <em>n</em> is the
+<a>number of dots</a>.
+
+<h3 id="event-orientation">Orientation</h3>
+
+Events and sequences may possess an optional <dfn>orientation</dfn> that
+determines a the placement and rendering of content according to a complex set
+of CWMN conventions. For the purposes of MNX-Common there are two orientations:
+
+<ul>
+<li>An orientation of <dfn value dfn-for="orientation">up</dfn> orients note stems pointing upwards, and places beams, directions
+and articulations accordingly.</li>
+
+<li>An orientation of <dfn value dfn-for="orientation">down</dfn> orients note stems pointing upwards, and places beams, directions
+and articulations accordingly.</li>
+</ul>
+
+<h3 id="written-pitches">Written pitches</h3>
+
+A note's <dfn>written pitch</dfn> is the pitch that would sound
+if the note's notation were performed by a concert-pitch instrument.
+Written pitch can be thought of as the note's pitch from the
+musician's instrument-specific perspective.
+
+A note's written pitch might be different from its sounded pitch,
+which is the pitch that an instrument generates. Written pitch
+differs from sounded pitch in case of notation written for a
+transposing instrument, such as a clarinet.
+
+MNX considers ottava markings (e.g., "8va," "8vb") to be purely
+presentational. Hence, ottava markings have no effect on a note's
+written pitch. For example, if a note is rendered on the bottom
+staff line without an ottava marking, and a second note is
+rendered on the top staff space with an "8vb" marking, the two
+notes have the same written pitch.
+
+</section>  <!-- end Notational concepts section -->
+
+<section noexport>
+<h2 id="notational-syntaxes">Notational syntaxes</h2>
+
+<h3 id="note-value-syntax">Note value syntax</h3>
+
+MNX provides a microsyntax for encoding note values whose syntactic
+constraints map to the above requirements. Its syntax is designed to be
+distinguishable from other syntaxes for integers, floating point numbers or
+rational numbers.  The syntax for <a>base note values</a> consists of either
+of the following forms:
+
+1. For values less than or equal to a whole note:
+    1. The character U+002F SLASH
+    1. One or more <a>ASCII digits</a> encoding the <a>base note value</a> as a power-of-two fractional denominator
+1. For values greater than a whole note:
+    1. The character U+002A ASTERISK
+    1. One or more <a>ASCII digits</a> encoding the <a>base note value</a> as a power-of-two multiplying factor
+
+The syntax for <a>general note values</a> consists of these components:
+
+1. A <a>base note value</a> encoding.
+1. Zero or more occurrences of U+0064 LOWERCASE D characters. The number of occurrences
+      supply the <a>number of dots</a>.
+
+To <dfn>parse a note value</dfn>, use the following procedure:
+
+  1. Let <var>input</var> be the string being parsed.
+  1. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
+      the string.
+  1. Let <var>number of dots</var> be 0.
+  1. If the character indicated by <var>position</var> is a U+002A ASTERISK character (*), let <var>fractional</var>
+      be <code>false</code> and advance <var>position</var> by 1.
+  1. Else, if the character indicated by <var>position</var> is a U+002E SLASH character (/), let <var>fractional</var>
+      be <code>true</code> and advance <var>position</var> by 1.
+  1. Else, return an error.
+  1. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a> only and let <var>unparsed number</var>
+      be the result.
+  1. Let <var>base value</var> be the result of parsing <var>unparsed number</var> using the
+      <a>rules for parsing integers</a>.
+  1. If parsing a general note value, <a>collect a sequence of characters</a> that are U+0064 LOWERCASE D
+      characters. Set <var>number of dots</var> to the length of this sequence.
+  1. If <var>position</var> is not at the end of the string, return an error.
+  1. If <var>base value</var> is not equal to a power of 2, return an error.
+  1. If <var>base value</var> is equal to 1 and <var>fractional</var> is false, return an error.
+  1. If <var>fractional</var> is true, set <var>base value</var> to (1 / <var>base value</var>).
+  1. Return <var>base value</var> and <var>number of dots</var>.
+
+<div class="example">
+Here are some instances of the note value syntax:
+
+: `/1`
+:: a whole note
+: `/4`
+:: a quarter note
+: `/8`
+:: an eighth note
+: `/8d`
+:: a dotted eighth note
+: `/8dd`
+:: a double-dotted eighth note
+: `*2`
+:: a breve (double whole note)
+: `*2d`
+:: a dotted breve
+
+</div>
+
+<h3 id="note-value-multiple">Note value quantity syntax</h3>
+
+MNX allows the specification of a <dfn>note value quantity</dfn>, defined as
+an integer multiple of a <a>note value</a>. To parse a note value quantity,
+use the following procedure:
+
+  1. Let <var>input</var> be the string being parsed.
+  1. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
+      the string.
+  1. Let <var>multiplier</var> be 1.
+  1. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a> only, and let <var>unparsed number</var>
+      be the result.
+  1. If <var>unparsed number</var> is not empty, assign <var>unparsed number</var> to <var>multiplier</var>
+      using the <a>rules for parsing integers</a>.
+  1. Let <var>note value</var> be the result of parsing the remainder of string beginning at <var>position</var>
+      according to the rules to <a>parse a note value</a>.
+  1. Return <var>multiplier</var> and <var>note value</var> as the result.
+
+Examples include:
+
+: `/8`
+:: a single eighth note
+: `6/8`
+:: six eighth notes
+: `6/8d`
+:: six dotted eighth notes
+: `5/1`
+:: five whole notes
+
+<h3 id="time-signature-syntax">Time signature syntax</h3>
+
+MNX allows the specification of a <dfn>time signature</dfn>, consisting of a
+sum of ordered, undotted note value quantities defining the meter of a
+measure. The sum may optionally share a common denominator. To parse a time
+signature, use the following procedure:
+
+  1. Let <var>input</var> be the string being parsed.
+  1. Let <var>tokens</var> be the result of <a>strictly splitting the string</a> <var>input</var> using U+002B PLUS as a delimiter.
+  1. If <var>tokens</var> is empty, return an error.
+  1. Let <var>shared denominator</var> be true.
+  1. Let <var>fractions</var> be an empty list.
+  1. While <var>tokens</var> is not empty,
+      1. Remove the first element of <var>tokens</var> and assign it to <var>t</var> after <a>stripping leading and trailing white space</a>.
+      1. If <var>t</var> contains the characters U+002F SLASH or U+002A ASTERISK,
+          1. Let <var>nv</var> be the result of parsing <var>t</var> as a <a>note value quantity</a>.
+          1. If <var>nv</var> has a <var>number of dots</var> greater than zero, return an error.
+          1. If <var>shared denominator</var> is true,
+              1. Replace the denominator in each element of <var>fractions</var> with the denominator of <var>nv</var>.
+              1. If more elements remain in <var>tokens</var>,
+                  1. Set <var>shared denominator</var> to false.
+          1. Append <var>nv</var> to <var>fractions</var>.
+      1. Else,
+          1. If <var>tokens</var> is empty, return an error.
+          1. If <var>shared denominator</var> is false, return an error.
+          1. Let <var>numerator</var> be the result of parsing <var>t</var> as a <a>valid integer</a>.
+          1. Append the fraction composed of <var>numerator</var> and the denominator 1 to <var>fractions</var>.
+  1. Return <var>fractions</var> and <var>shared denominator</var> as the result.
+
+Examples include:
+
+: `3/4`
+:: Three-quarters time
+: `2+3+2/8`
+:: A compound time signature of 2/8, 3/8 and 2/8, with 2+3+2 over the shared denominator 8.
+: `2/8 + 3/4 + 2/8`
+:: A compound time signature of 2/8, 3/4 and 2/8 as separate fractions (note that the spaces
+    are ignored)
+
+Issue: Shared denominators are all-or-nothing. So there's currently no way to share a denominator
+for only some of a time signature's fractions, which would require a grouping construct like
+`2/4+(2+3/8)` or such.
+
+<h3 id="chromatic-pitch-syntax">Chromatic pitch syntax</h3>
+
+MNX allows the specification of a <a>chromatic pitch</a> in a single string,
+by employing the <dfn>rules for parsing a chromatic pitch</dfn>. To parse this
+syntax, employ the following procedure:
+
+  1. Let <var>input</var> be the string being parsed.
+  1. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
+      the string.
+  1. Let <var>alteration</var> be 0.
+  1. If the character at <var>position</var> is not an <a>uppercase ASCII letter</a> in the range from
+    U+0041 UPPERCASE A - U+0047 UPPERCASE G, return an error.
+  1. Let <var>step</var> be the character at <var>position</var>, and advance <var>position</var> by 1.
+  1. If the character at <var>position</var> is U+0023 HASH,
+       1. While the character at <var>position</var> is U+0023 HASH,
+           1. Increase <var>alteration</var> by 1.
+           1. Advance <var>position</var> by 1.
+  1. Else, if the character at <var>position</var> is U+0062 b,
+       1. While the character at <var>position</var> is U+0062 b,
+           1. Decrease <var>alteration</var> by 1.
+           1. Advance <var>position</var> by 1.
+  1. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a> only and let <var>unparsed number</var>
+      be the result.
+  1. Let <var>octave</var> be the result of parsing <var>unparsed number</var> using the
+      <a>rules for parsing integers</a>.
+  1. Let <var>alteration factor</var> be 0.
+  1. If the character at <var>position</var> is U+002B PLUS,
+       1. Set <var>alteration factor</var> to 1.
+       1. Advance <var>position</var> by 1.
+  1. If the character at <var>position</var> is U+002D HYPHEN-MINUS,
+       1. Set <var>alteration factor</var> to -1.
+       1. Advance <var>position</var> by 1.
+  1. If <var>alteration factor</var> is not equal to zero,
+       1. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a>, U+002E FULL STOP, or
+           U+002F SLASH and place the result in <var>unparsed number</var>.
+       1. If the character at <var>position</var> is U+006F LOWERCASE o
+           1. Multiply <var>alteration factor</var> by 12.
+           1. Advance <var>position</var> by 1.
+       1. Else, if the character at <var>position</var> is U+0077 LOWERCASE w
+           1. Multiply <var>alteration factor</var> by 2.
+           1. Advance <var>position</var> by 1.
+       1. If <var>unparsed number</var> contains U+002F SLASH, parse it as a <a>rational number</a>, otherwise parse it as a <a>valid floating-point number</a>. Multiply the result by <var>alteration factor</var> and add this to <var>alteration</var>.
+  1. If <var>position</var> is not at the end of the string, return an error.
+  1. Return <var>step</var>, <var>octave</var> and <var>alteration</var> as the result.
+
+Examples include:
+
+: `C4`
+:: Middle C
+: `C#4`
+:: The C-sharp above middle C
+: `Db4`
+:: The D-flat above middle C
+: `Dbb4`
+:: The D-double-flat very near middle C
+: `C4+0.5`
+:: The pitch one quarter-tone above middle C
+: `C4+0.25w`
+:: The pitch one quarter-tone above middle C (identical to the above, but expressed in whole tone units)
+: `C4+1/4w`
+:: The pitch one quarter-tone above middle C (identical to the above, but expressed as whole tone fraction)
+: `C4+1/24o`
+:: The pitch one quarter-tone above middle C  (identical to the above, but expressed as octave fraction)
+
+<h3 id="measure-locations">Measure location syntax</h3>
+
+There are a variety of situations in which the <dfn>measure location</dfn> of a
+musical event needs to be described, in terms of the content of the measure.
+
+The following cases exist for specifying <a>measure locations</a>:
+
+<ol>
+  <li>If the <a>measure location</a> is a <a>metrical position</a> in the context
+  of some containing measure, then it is specified as a <a>valid floating-point
+  number</a> or <a>note value quantity</a> that gives the number of whole notes from the start of the
+  measure.</li>
+
+  <li>If the <a>measure location</a> is a <a>metrical position</a> in the context
+  of an arbitrary <{measure}> in the score, then it is specified as a pair of tokens
+  separated by U+003A COLON.  The first token is a <a>measure index</a>
+  identifying the measure, and the second token is a <a>valid floating-point
+  number</a> or <a>note value quantity</a> that gives the number of whole notes from the start of the
+  identified measure. The identified measure must belong to the same
+  <a>measure content</a> as the element in which the measure location is given. This
+  requirement has the effect of ensuring that the measure index is unique, since
+  measure locations cannot reference measures in other systems with different
+  barring.</li>
+
+  <li>If the <a>measure location</a> is identical to the <a>metrical position</a>
+  of some known <{event}> in the score, then it is specified as a <a>element location</a>
+  identifying the event. The identified event must belong to the same
+  <a>measure content</a> as the element in which the measure location is given.</li>
+</ol>
+
+<div class="example">
+Here are some instances of the measure location syntax:
+
+: `0.25`
+:: one quarter note after the start of a containing measure
+: `3/8`
+:: three eighth notes after the start of a containing measure
+: `4:0.25`
+:: one quarter note after the start of the measure with index `4`
+: `4:1/4`
+:: the same as the preceding example
+: `#event235`
+:: the same metrical position as the event whose element ID is `event235`
+
+</div>
+
+<h3 id="glyph-names">SMuFL glyph name syntax</h3>
+
+Some contexts, particularly the 'glyph' property, permit the specification of
+a <a>SMuFL glyph name</a> from the catalog of glyph names defined in the
+<a>SMuFL specification</a>.
+
+</section>  <!-- end Notational syntaxes section -->
+
+<section noexport>
+<h2 id="document-structure">Document structure</h2>
+
+<h3 id="root-structure">Root structure and metadata</h3>
 
 <h4 id="the-mnx-element">The <dfn element><code>mnx</code></dfn> element</h4>
 <section dfn-for="mnx">
@@ -574,7 +1042,7 @@ document as a whole.
     <dd>None.</dd>
   </dl>
 
-The <{mnx}> element encloses an MNX document as a whole.
+The <{mnx}> element encloses the document as a whole.
 
 <div class="example">
 ```xml
@@ -588,7 +1056,6 @@ The <{mnx}> element encloses an MNX document as a whole.
 </mnx>
 ```
 </div>
-
 </section>
 
 <h4 id="the-head-element">The <dfn element><code>head</code></dfn> element</h4>
@@ -602,7 +1069,7 @@ The <{mnx}> element encloses an MNX document as a whole.
     <dt><a>Attributes</a>:</dt>
     <dd>None.</dd>
   </dl>
-The <{head}> element supplies overall descriptive information for an MNX document,
+The <{head}> element supplies overall descriptive information for an MNX-Common document,
 such as document-scoped metadata or <a>stylesheet definitions</a>.
 </section>
 
@@ -667,12 +1134,6 @@ The following example shows a hierarchy of collections and scores.
 
 </section>
 
-<h3 id="mnx-musical body">Musical body content</h3>
-
-A <dfn lt="musical body|musical bodies|musical body content">musical
-body</dfn> consists of a score in some <a>notational idiom</a> supplying
-concrete musical content that can be rendered and/or performed.
-
 <h4 id="the-score-element">The <dfn element><code>score</code></dfn> element</h4>
 <section dfn-for="score">
   <dl class="def">
@@ -691,11 +1152,9 @@ a portion or the entirety of a musical work.
 If the <dfn element-attr>src</dfn> attribute is provided, this specifies a
 relative path where the score's <a>musical body</a> lives. Otherwise, the body
 must be provided within the content of the <{score}> element.
-
 </section>
 
-
-<h3 id="mnx-metadata-content">Metadata content</h3>
+<h4 id="mnx-metadata-content">Metadata content</h4>
 
 <dfn>Metadata content</dfn> may be included in many elements to supply
 bibliographic data and other descriptive information.
@@ -716,494 +1175,7 @@ bibliographic data and other descriptive information.
 The <{title}> element assigns a title to its parent element in the context of the document as a whole.
 </section>
 
-</section>  <!-- end MNX-Container section -->
-
-<h2 id="common">MNX-Common</h2>
-
-<section noexport>
-
-<section>
-<h3 id="common-scope">Scope</h3>
-
-  <em>This section is non-normative.</em>
-
-  This part of the specification is called <dfn>MNX-Common</dfn>, and describes a
-  semantic dialect of MNX designed to encode Conventional Western Music Notation (CWMN).
-
-</section>
-
-<h3 id="common-semantics">Semantics</h3>
-
-<h4 id="common-notational-concepts">Notational concepts</h4>
-
-This section describes various foundational concepts in music notation that
-are frequently referenced by this specification.
-
-<h5 id="common-parts-staves">Parts and staves</h5>
-
-A score consists of multiple <dfn>parts</dfn>.  Each <a>part</a> is a grouping
-of related musical material that relates to a single performer or set of
-performers.  It has the same temporal extent as the score overall, but presents
-a slice of content that is relevant to a single instrument or a group of
-related instruments.
-
-A part may employ one or more <dfn lt="staff|staves">staves</dfn>. Each <a>staff</a>
-supplies a pair of dimensions, usually one for pitch and one for time, within which
-notes may be placed.  Conventionally, the time dimension is horizontally oriented;
-for pitched instruments, the pitch dimension is vertically oriented. All <a>staves</a>
-within a <a>part</a> share the same time dimension.
-
-For unpitched instruments, the vertical dimension indicates a choice of sound rather
-than a pitch, governed by a set of conventions that map note placement to sound.
-
-Every segment of a staff possesses a <dfn>clef</dfn> that determines the
-mapping between its pitch dimension and some set of performable pitches, with
-additional information supplied by a <dfn>key signature</dfn>. <dfn>Accidental</dfn>
-symbols on <a>notes</a> further modify this mapping on an ad-hoc basis.
-
-Staves in CWMN are identified within a part by a unique <dfn>staff
-index</dfn>. The topmost staff in a part has a staff index of 1; staves below
-the topmost staff are identified with successively increasing indices.
-
-<h5 id="common-notated-events">Notated events</h5>
-
-A <dfn>notated event</dfn> in CWMN is a discrete action in the score with a
-notated duration. It has an onset that
-is relative to the start of its containing sequence as well as to other
-elements in that sequence, subject to the conventions of CWMN.  Events belong
-to a specific <a>staff</a> within a part, denoted by its <a>staff index</a>.
-
-A notated event may include one or more <dfn>notes</dfn> possessing a
-pitch, or a <dfn>rest</dfn> indicating silence.  Events including more than
-one note are referred to as <dfn>chords</dfn>.
-
-In both cases, the event possesses an associated <a>note value</a> that
-indicates its notated duration. This value is not literal, but is subject to
-performance interpretation.
-
-The content of a notated event includes only the specific notes and chords
-within it. In particular a notated event does not account for ties, ornamental
-interpretation or many other kinds of performance reading. As such, the onset,
-duration, pitch and other properties of notated events will often differ from
-those in the corresponding <a>performance events</a>.
-
-Events may further possess <dfn>articulations</dfn>, additional properties
-that modulate their musical performance in commonly understood ways. In this
-specification, we use the term <a>articulation</a> in an expanded sense to
-cover all such additional properties.
-
-Notated events are represented by the <{event}> element.
-
-<h5 id="common-metrical-position">Metrical position</h5>
-
-Most notated events possess a well-defined <dfn>metrical position</dfn>,
-giving a time onset expressed as a rational number of whole note durations
-after the start of its containing measure. This position may be thought of as
-the event's "address" and plays a determining role in the normative rendering
-and performance of events.
-
-<h5 id="chromatic-pitches">Chromatic pitches</h5>
-
-A <dfn>chromatic pitch</dfn> describes a pitch situated in a 12-tone
-temperament notated as per CWMN conventions. The description incorporates
-three elements:
-
-- The <dfn>diatonic step</dfn>, which is one of the letters `A` through `G`, describing
-    the corresponding diatonic steps.
-
-- The <dfn>octave</dfn>, which is an integer giving the octave in which
-    the step occurs. The assignment of pitches to octaves follows the <a href="https://en.wikipedia.org/wiki/Scientific_pitch_notation">
-    Scientific Pitch Notation (SPN)</a> convention, in which the octave number increases
-    on the step from `B` to `C`.  For example, the SPN for the range of steps around
-    middle C on the piano keyboard includes the sequence: `...A3, B3, C4, D4...`.
-
-- The <dfn>alteration</dfn>, which is a fractional alteration of pitch
-    from the given step and octave, expressed in terms of the prevailing temperament of the work.
-
-<h5 id="common-directions">Directions</h5>
-
-A <dfn>direction</dfn> is a discrete instruction in the score
-that applies to notated events.
-
-Directions do not have a duration, although they have a specific location in
-relation to a containing measure or sequence. Like events, directions also
-belong to a specific <a>staff</a> within a part, denoted by its one-based
-<a>staff index</a>.
-
-Directions come in the following flavors:
-
-<dfn>Single-ended</dfn> directions begin at a point in time in some part and
-generally continue to apply until superseded by another direction, or by some
-notation in the score that is understood to terminate it. An example is a
-<em>piano</em> dynamic.
-
-<dfn>Span</dfn> directions begin at a point in time in some part and end at a
-later point within the same part. One common example of a span direction is a
-slur.
-
-<dfn>Liaison</dfn> directions begin on one note and end on an immediately
-succeeding note. A common example of a liaison direction is a tie.
-
-<h5 id="sequence">Notated sequences</h5>
-
-A <dfn>notated sequence</dfn> is a set of <a>notated events</a> whose notional
-time intervals do not overlap, which lie within the same measure and the same
-part, and which occur at progressively greater temporal offsets within a
-measure.
-
-Notated sequences are represented by the <{sequence}> element.
-
-<h5 id="voice">Voices</h5>
-
-Notated sequences may also belong to <dfn>voices</dfn>. A voice is a set of
-sequences in different measures, but within the same part. The sequences
-within this set can be thought of as constituting a single musical voice
-throughout the score. Thus they are an organizational construct, rather than a
-notational one.
-
-A given voice need not be expressed in every single measure of a part. It may
-be present in some measures, and absent in others.
-
-Even so, the assignment of sequences to voices has concrete implications for
-MNX implementations. Producer implementations may interpret a voice as
-affecting the way that musical material is organized, for example by cutting
-and pasting material from  a given voice in one measure into the same voice in
-a different measure. Consumer implementations might allow users to isolate the
-playback of a single voice, including only the sequences that belong to it.
-
-<h5 id="common-performance-interpretation">Performance Interpretation</h5>
-
-A <dfn>performance interpretation</dfn> is the end result of deriving
-a set of <a>performance events</a> from a score. Human performers do this
-by reading music, while MNX consumers will generally do this algorithmically.
-
-In MNX-Generic, a consumer is given the exact performance interpretation as part of
-the document.  In MNX-Common, a consumer will typically employ a set of rules that
-mimic the actions of a human performer, overriding these with exact
-performance events where these are explicitly supplied within the document.
-
-<h5 id="common-performance-events">Performance events</h5>
-
-A <dfn>performance event</dfn> is a description of a single timed
-element of a musical performance with specific attributes for its onset,
-duration, pitch, dynamics, articulation and instrument. Unlike a notated
-event, these attributes are specific and not subject to interpretation, and
-they are independent of any notational concepts.
-
-Performance events in MNX are used to describe the exact <a>performance
-interpretation</a> of some or all of a score, as distinct from its notation.
-
-<h5 id="note-values">Note values</h5>
-
-There are a variety of situations in which the <dfn>note value</dfn> of a
-musical event needs to be described, in terms of some fraction or multiple of
-a CWMN whole-note unit.
-
-In CWMN, fractions for undotted <dfn>base note values</dfn> are constrained to
-be exact powers of two.  The most common note values of whole, half, quarter,
-etc. correspond to whole-note fractions expressed by the non-negative powers
-2<sup>0</sup>, 2<sup>-1</sup>, 2<sup>-2</sup>. The less frequently used note
-values of breve, longa, etc. are expressed by the positive powers
-2<sup>1</sup>, 2<sup>2</sup>, ...
-
-In the broader case of <dfn>general note values</dfn>, some <dfn>number of dots</dfn>
-act as a multiplier on the <a>base note value</a>. These multipliers take the form
-(2<sup><em>n</em>+1</sup>-1) / 2<sup><em>n</em></sup>, where <em>n</em> is the
-<a>number of dots</a>.
-
-<h5 id="event-orientation">Orientation</h5>
-
-Events and sequences may possess an optional <dfn>orientation</dfn> that
-determines a the placement and rendering of content according to a complex set
-of CWMN conventions. For the purposes of MNX-Common there are two orientations:
-
-<ul>
-<li>An orientation of <dfn value dfn-for="orientation">up</dfn> orients note stems pointing upwards, and places beams, directions
-and articulations accordingly.</li>
-
-<li>An orientation of <dfn value dfn-for="orientation">down</dfn> orients note stems pointing upwards, and places beams, directions
-and articulations accordingly.</li>
-</ul>
-
-<h5 id="written-pitches">Written pitches</h5>
-
-A note's <dfn>written pitch</dfn> is the pitch that would sound
-if the note's notation were performed by a concert-pitch instrument.
-Written pitch can be thought of as the note's pitch from the
-musician's instrument-specific perspective.
-
-A note's written pitch might be different from its sounded pitch,
-which is the pitch that an instrument generates. Written pitch
-differs from sounded pitch in case of notation written for a
-transposing instrument, such as a clarinet.
-
-MNX considers ottava markings (e.g., "8va," "8vb") to be purely
-presentational. Hence, ottava markings have no effect on a note's
-written pitch. For example, if a note is rendered on the bottom
-staff line without an ottava marking, and a second note is
-rendered on the top staff space with an "8vb" marking, the two
-notes have the same written pitch.
-
-<h4 id="common-notational-syntaxes">Notational syntaxes</h4>
-
-<h5 id="note-value-syntax">Note value syntax</h5>
-
-MNX provides a microsyntax for encoding note values whose syntactic
-constraints map to the above requirements. Its syntax is designed to be
-distinguishable from other syntaxes for integers, floating point numbers or
-rational numbers.  The syntax for <a>base note values</a> consists of either
-of the following forms:
-
-1. For values less than or equal to a whole note:
-    1. The character U+002F SLASH
-    1. One or more <a>ASCII digits</a> encoding the <a>base note value</a> as a power-of-two fractional denominator
-1. For values greater than a whole note:
-    1. The character U+002A ASTERISK
-    1. One or more <a>ASCII digits</a> encoding the <a>base note value</a> as a power-of-two multiplying factor
-
-The syntax for <a>general note values</a> consists of these components:
-
-1. A <a>base note value</a> encoding.
-1. Zero or more occurrences of U+0064 LOWERCASE D characters. The number of occurrences
-      supply the <a>number of dots</a>.
-
-To <dfn>parse a note value</dfn>, use the following procedure:
-
-  1. Let <var>input</var> be the string being parsed.
-  1. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
-      the string.
-  1. Let <var>number of dots</var> be 0.
-  1. If the character indicated by <var>position</var> is a U+002A ASTERISK character (*), let <var>fractional</var>
-      be <code>false</code> and advance <var>position</var> by 1.
-  1. Else, if the character indicated by <var>position</var> is a U+002E SLASH character (/), let <var>fractional</var>
-      be <code>true</code> and advance <var>position</var> by 1.
-  1. Else, return an error.
-  1. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a> only and let <var>unparsed number</var>
-      be the result.
-  1. Let <var>base value</var> be the result of parsing <var>unparsed number</var> using the
-      <a>rules for parsing integers</a>.
-  1. If parsing a general note value, <a>collect a sequence of characters</a> that are U+0064 LOWERCASE D
-      characters. Set <var>number of dots</var> to the length of this sequence.
-  1. If <var>position</var> is not at the end of the string, return an error.
-  1. If <var>base value</var> is not equal to a power of 2, return an error.
-  1. If <var>base value</var> is equal to 1 and <var>fractional</var> is false, return an error.
-  1. If <var>fractional</var> is true, set <var>base value</var> to (1 / <var>base value</var>).
-  1. Return <var>base value</var> and <var>number of dots</var>.
-
-<div class="example">
-Here are some instances of the note value syntax:
-
-: `/1`
-:: a whole note
-: `/4`
-:: a quarter note
-: `/8`
-:: an eighth note
-: `/8d`
-:: a dotted eighth note
-: `/8dd`
-:: a double-dotted eighth note
-: `*2`
-:: a breve (double whole note)
-: `*2d`
-:: a dotted breve
-
-</div>
-
-<h5 id="note-value-multiple">Note value quantity syntax</h5>
-
-MNX allows the specification of a <dfn>note value quantity</dfn>, defined as
-an integer multiple of a <a>note value</a>. To parse a note value quantity,
-use the following procedure:
-
-  1. Let <var>input</var> be the string being parsed.
-  1. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
-      the string.
-  1. Let <var>multiplier</var> be 1.
-  1. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a> only, and let <var>unparsed number</var>
-      be the result.
-  1. If <var>unparsed number</var> is not empty, assign <var>unparsed number</var> to <var>multiplier</var>
-      using the <a>rules for parsing integers</a>.
-  1. Let <var>note value</var> be the result of parsing the remainder of string beginning at <var>position</var>
-      according to the rules to <a>parse a note value</a>.
-  1. Return <var>multiplier</var> and <var>note value</var> as the result.
-
-Examples include:
-
-: `/8`
-:: a single eighth note
-: `6/8`
-:: six eighth notes
-: `6/8d`
-:: six dotted eighth notes
-: `5/1`
-:: five whole notes
-
-<h5 id="time-signature-syntax">Time signature syntax</h5>
-
-MNX allows the specification of a <dfn>time signature</dfn>, consisting of a
-sum of ordered, undotted note value quantities defining the meter of a
-measure. The sum may optionally share a common denominator. To parse a time
-signature, use the following procedure:
-
-  1. Let <var>input</var> be the string being parsed.
-  1. Let <var>tokens</var> be the result of <a>strictly splitting the string</a> <var>input</var> using U+002B PLUS as a delimiter.
-  1. If <var>tokens</var> is empty, return an error.
-  1. Let <var>shared denominator</var> be true.
-  1. Let <var>fractions</var> be an empty list.
-  1. While <var>tokens</var> is not empty,
-      1. Remove the first element of <var>tokens</var> and assign it to <var>t</var> after <a>stripping leading and trailing white space</a>.
-      1. If <var>t</var> contains the characters U+002F SLASH or U+002A ASTERISK,
-          1. Let <var>nv</var> be the result of parsing <var>t</var> as a <a>note value quantity</a>.
-          1. If <var>nv</var> has a <var>number of dots</var> greater than zero, return an error.
-          1. If <var>shared denominator</var> is true,
-              1. Replace the denominator in each element of <var>fractions</var> with the denominator of <var>nv</var>.
-              1. If more elements remain in <var>tokens</var>,
-                  1. Set <var>shared denominator</var> to false.
-          1. Append <var>nv</var> to <var>fractions</var>.
-      1. Else,
-          1. If <var>tokens</var> is empty, return an error.
-          1. If <var>shared denominator</var> is false, return an error.
-          1. Let <var>numerator</var> be the result of parsing <var>t</var> as a <a>valid integer</a>.
-          1. Append the fraction composed of <var>numerator</var> and the denominator 1 to <var>fractions</var>.
-  1. Return <var>fractions</var> and <var>shared denominator</var> as the result.
-
-Examples include:
-
-: `3/4`
-:: Three-quarters time
-: `2+3+2/8`
-:: A compound time signature of 2/8, 3/8 and 2/8, with 2+3+2 over the shared denominator 8.
-: `2/8 + 3/4 + 2/8`
-:: A compound time signature of 2/8, 3/4 and 2/8 as separate fractions (note that the spaces
-    are ignored)
-
-Issue: Shared denominators are all-or-nothing. So there's currently no way to share a denominator
-for only some of a time signature's fractions, which would require a grouping construct like
-`2/4+(2+3/8)` or such.
-
-<h5 id="chromatic-pitch-syntax">Chromatic pitch syntax</h5>
-
-MNX allows the specification of a <a>chromatic pitch</a> in a single string,
-by employing the <dfn>rules for parsing a chromatic pitch</dfn>. To parse this
-syntax, employ the following procedure:
-
-  1. Let <var>input</var> be the string being parsed.
-  1. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
-      the string.
-  1. Let <var>alteration</var> be 0.
-  1. If the character at <var>position</var> is not an <a>uppercase ASCII letter</a> in the range from
-    U+0041 UPPERCASE A - U+0047 UPPERCASE G, return an error.
-  1. Let <var>step</var> be the character at <var>position</var>, and advance <var>position</var> by 1.
-  1. If the character at <var>position</var> is U+0023 HASH,
-       1. While the character at <var>position</var> is U+0023 HASH,
-           1. Increase <var>alteration</var> by 1.
-           1. Advance <var>position</var> by 1.
-  1. Else, if the character at <var>position</var> is U+0062 b,
-       1. While the character at <var>position</var> is U+0062 b,
-           1. Decrease <var>alteration</var> by 1.
-           1. Advance <var>position</var> by 1.
-  1. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a> only and let <var>unparsed number</var>
-      be the result.
-  1. Let <var>octave</var> be the result of parsing <var>unparsed number</var> using the
-      <a>rules for parsing integers</a>.
-  1. Let <var>alteration factor</var> be 0.
-  1. If the character at <var>position</var> is U+002B PLUS,
-       1. Set <var>alteration factor</var> to 1.
-       1. Advance <var>position</var> by 1.
-  1. If the character at <var>position</var> is U+002D HYPHEN-MINUS,
-       1. Set <var>alteration factor</var> to -1.
-       1. Advance <var>position</var> by 1.
-  1. If <var>alteration factor</var> is not equal to zero,
-       1. <a>Collect a sequence of characters</a> that are <a>ASCII digits</a>, U+002E FULL STOP, or
-           U+002F SLASH and place the result in <var>unparsed number</var>.
-       1. If the character at <var>position</var> is U+006F LOWERCASE o
-           1. Multiply <var>alteration factor</var> by 12.
-           1. Advance <var>position</var> by 1.
-       1. Else, if the character at <var>position</var> is U+0077 LOWERCASE w
-           1. Multiply <var>alteration factor</var> by 2.
-           1. Advance <var>position</var> by 1.
-       1. If <var>unparsed number</var> contains U+002F SLASH, parse it as a <a>rational number</a>, otherwise parse it as a <a>valid floating-point number</a>. Multiply the result by <var>alteration factor</var> and add this to <var>alteration</var>.
-  1. If <var>position</var> is not at the end of the string, return an error.
-  1. Return <var>step</var>, <var>octave</var> and <var>alteration</var> as the result.
-
-Examples include:
-
-: `C4`
-:: Middle C
-: `C#4`
-:: The C-sharp above middle C
-: `Db4`
-:: The D-flat above middle C
-: `Dbb4`
-:: The D-double-flat very near middle C
-: `C4+0.5`
-:: The pitch one quarter-tone above middle C
-: `C4+0.25w`
-:: The pitch one quarter-tone above middle C (identical to the above, but expressed in whole tone units)
-: `C4+1/4w`
-:: The pitch one quarter-tone above middle C (identical to the above, but expressed as whole tone fraction)
-: `C4+1/24o`
-:: The pitch one quarter-tone above middle C  (identical to the above, but expressed as octave fraction)
-
-<h5 id="measure-locations">Measure location syntax</h5>
-
-There are a variety of situations in which the <dfn>measure location</dfn> of a
-musical event needs to be described, in terms of the content of the measure.
-
-The following cases exist for specifying <a>measure locations</a>:
-
-<ol>
-  <li>If the <a>measure location</a> is a <a>metrical position</a> in the context
-  of some containing measure, then it is specified as a <a>valid floating-point
-  number</a> or <a>note value quantity</a> that gives the number of whole notes from the start of the
-  measure.</li>
-
-  <li>If the <a>measure location</a> is a <a>metrical position</a> in the context
-  of an arbitrary <{measure}> in the score, then it is specified as a pair of tokens
-  separated by U+003A COLON.  The first token is a <a>measure index</a>
-  identifying the measure, and the second token is a <a>valid floating-point
-  number</a> or <a>note value quantity</a> that gives the number of whole notes from the start of the
-  identified measure. The identified measure must belong to the same
-  <a>measure content</a> as the element in which the measure location is given. This
-  requirement has the effect of ensuring that the measure index is unique, since
-  measure locations cannot reference measures in other systems with different
-  barring.</li>
-
-  <li>If the <a>measure location</a> is identical to the <a>metrical position</a>
-  of some known <{event}> in the score, then it is specified as a <a>element location</a>
-  identifying the event. The identified event must belong to the same
-  <a>measure content</a> as the element in which the measure location is given.</li>
-</ol>
-
-<div class="example">
-Here are some instances of the measure location syntax:
-
-: `0.25`
-:: one quarter note after the start of a containing measure
-: `3/8`
-:: three eighth notes after the start of a containing measure
-: `4:0.25`
-:: one quarter note after the start of the measure with index `4`
-: `4:1/4`
-:: the same as the preceding example
-: `#event235`
-:: the same metrical position as the event whose element ID is `event235`
-
-</div>
-
-<h5 id="glyph-names">SMuFL glyph name syntax</h5>
-
-Some contexts, particularly the 'glyph' property, permit the specification of
-a <a>SMuFL glyph name</a> from the catalog of glyph names defined in the
-<a>SMuFL specification</a>.
-
-<section>
-<h4 id="common-body-content">MNX-Common body content</h4>
-
-These elements of an MNX-Common score supply its high-level description and structure.
-
-<h5 id="the-mnx-common-element">The <dfn element><code>mnx-common</code></dfn> element</h5>
+<h4 id="the-mnx-common-element">The <dfn element><code>mnx-common</code></dfn> element</h4>
 
 <section dfn-for="mnx-common">
 
@@ -1261,8 +1233,7 @@ The following example provides the basic skeleton of a <{mnx-common}> musical bo
 </section>
 
 <section>
-
-<h5 id="the-global-element">The <dfn element><code>global</code></dfn> element</h5>
+<h4 id="the-global-element">The <dfn element><code>global</code></dfn> element</h4>
 <section dfn-for="global">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -1345,7 +1316,7 @@ conflicting definitions.
 
 </section>
 
-<h5 id="the-part-element">The <dfn element><code>part</code></dfn> element</h5>
+<h4 id="the-part-element">The <dfn element><code>part</code></dfn> element</h4>
 <section dfn-for="part">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -1384,8 +1355,7 @@ within the score. The sequence of measures must match the measure found in the
 </div>
 </section>
 
-
-<h4 id="common-measure-content">Measure content</h4>
+<h3 id="common-measure-content">Measure content</h3>
 
 <dfn>Measure content</dfn> supplies a sequence of <{measure}> elements, each of
 which supplies musical content for a time interval within a score.
@@ -1399,7 +1369,7 @@ Each measure may bear the <{measure/index}> attribute, which provides its
 unique <dfn>measure index</dfn> within the <a>score order</a> for this measure
 content. The first measure in a system has an <{measure/index}> of 1.
 
-<h5 id="the-measure-element">The <dfn element><code>measure</code></dfn> element</h5>
+<h4 id="the-measure-element">The <dfn element><code>measure</code></dfn> element</h4>
 <section dfn-for="measure">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -1472,7 +1442,7 @@ with two monophonic half notes:
 
 </section>
 
-<h5 id="the-sequence-element">The <dfn element><code>sequence</code></dfn> element</h5>
+<h4 id="the-sequence-element">The <dfn element><code>sequence</code></dfn> element</h4>
 
 <section dfn-for="sequence">
   <dl class="def">
@@ -1636,7 +1606,7 @@ note which occupies the entire measure:
 
 </section>
 
-<h5 id="the-directions-element">The <dfn element><code>directions</code></dfn> element</h5>
+<h4 id="the-directions-element">The <dfn element><code>directions</code></dfn> element</h4>
 <section dfn-for="directions">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -1664,7 +1634,7 @@ The context of the <{directions}> element defines a scope for contained directio
 
 </section>
 
-<h4 id="common-sequence-content">Sequence content</h4>
+<h3 id="common-sequence-content">Sequence content</h3>
 
 <dfn>Sequence content</dfn> supplies a series of musical events that are
 both presented and performed in a given order, each at a distinct time. Such
@@ -1774,7 +1744,7 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
   </li>
 </ol>
 
-<h5 id="the-event-element">The <dfn element><code>event</code></dfn> element</h5>
+<h4 id="the-event-element">The <dfn element><code>event</code></dfn> element</h4>
 <section dfn-for="event">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -1938,7 +1908,7 @@ time modification ratio.
 
 </section>
 
-<h5 id="the-tuplet-element">The <dfn element><code>tuplet</code></dfn> element</h5>
+<h4 id="the-tuplet-element">The <dfn element><code>tuplet</code></dfn> element</h4>
 <section dfn-for="tuplet">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2044,7 +2014,7 @@ Values include:
 
 </section>
 
-<h5 id="the-beamed-element">The <dfn element><code>beamed</code></dfn> element</h5>
+<h4 id="the-beamed-element">The <dfn element><code>beamed</code></dfn> element</h4>
 <section dfn-for="beamed">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2185,7 +2155,7 @@ The following example illustrates a beam that crosses a measure boundary:
 </div>
 </section>
 
-<h5 id="the-forward-element">The <dfn element><code>forward</code></dfn> element</h5>
+<h4 id="the-forward-element">The <dfn element><code>forward</code></dfn> element</h4>
 <section dfn-for="forward">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2208,7 +2178,7 @@ NOTE: In contrast to <{event}>'s <{event/value}> attribute, the
 may be a multiple of one.
 </section>
 
-<h5 id="the-grace-element">The <dfn element><code>grace</code></dfn> element</h5>
+<h4 id="the-grace-element">The <dfn element><code>grace</code></dfn> element</h4>
 <section dfn-for="grace">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2272,12 +2242,12 @@ The following example illustrates a run of two grace notes up to a quarter note.
 
 </section>
 
-<h4 id="common-event-content">Event content</h4>
+<h3 id="common-event-content">Event content</h3>
 
 <dfn>Event content</dfn> comprises elements that describe the musical content
 of a single event, that is performed at a distinct time.
 
-<h5 id="the-note-element">The <dfn element><code>note</code></dfn> element</h5>
+<h4 id="the-note-element">The <dfn element><code>note</code></dfn> element</h4>
 <section dfn-for="note">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2325,7 +2295,7 @@ the containing event.
 
 </section>
 
-<h5 id="the-rest-element">The <dfn element><code>rest</code></dfn> element</h5>
+<h4 id="the-rest-element">The <dfn element><code>rest</code></dfn> element</h4>
 <section dfn-for="rest">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2345,52 +2315,52 @@ the rest be placed on the staff line corresponding to the provided
 ignored for this purpose.
 </section>
 
-<h5 id="the-articulations-element">The <dfn element><code>articulations</code></dfn> element</h5>
+<h4 id="the-articulations-element">The <dfn element><code>articulations</code></dfn> element</h4>
 <section dfn-for="articulations">
 <em>Needs migration from MusicXML.</em>
 </section>
 
-<h5 id="the-lyric-element">The <dfn element><code>lyric</code></dfn> element</h5>
+<h4 id="the-lyric-element">The <dfn element><code>lyric</code></dfn> element</h4>
 <section dfn-for="lyric">
 <em>Needs migration from MusicXML.</em>
 </section>
 
-<h5 id="the-ornaments-element">The <dfn element><code>ornaments</code></dfn> element</h5>
+<h4 id="the-ornaments-element">The <dfn element><code>ornaments</code></dfn> element</h4>
 <section dfn-for="ornaments">
 <em>Needs migration from MusicXML.</em>
 </section>
 
-<h5 id="the-technical-element">The <dfn element><code>technical</code></dfn> element</h5>
+<h4 id="the-technical-element">The <dfn element><code>technical</code></dfn> element</h4>
 <section dfn-for="technical">
 <em>Needs migration from MusicXML.</em>
 </section>
 
-<h4 id="common-note-content">Note content</h4>
+<h3 id="common-note-content">Note content</h3>
 
 <dfn>Note content</dfn> comprises elements that describe the musical nature
 of a single note within an event.
 
-<h5 id="the-notehead-element">The <dfn element><code>notehead</code></dfn> element</h5>
+<h4 id="the-notehead-element">The <dfn element><code>notehead</code></dfn> element</h4>
 <section dfn-for="notehead">
 <em>Needs migration from MusicXML.</em>
 </section>
 
-<h5 id="the-fret-element">The <dfn element><code>fret</code></dfn> element</h5>
+<h4 id="the-fret-element">The <dfn element><code>fret</code></dfn> element</h4>
 <section dfn-for="fret">
 <em>Needs migration from MusicXML.</em>
 </section>
 
-<h5 id="the-string-element">The <dfn element><code>string</code></dfn> element</h5>
+<h4 id="the-string-element">The <dfn element><code>string</code></dfn> element</h4>
 <section dfn-for="string">
 <em>Needs migration from MusicXML.</em>
 </section>
 
-<h4 id="common-liaison-content">Liaison content</h4>
+<h3 id="common-liaison-content">Liaison content</h3>
 
 <dfn>Liaison content</dfn> comprises elements that describe the liaison or connection
 between a single note within an event, and some other note.
 
-<h5 id="common-liaison-attributes">Liaison attributes</h5>
+<h4 id="common-liaison-attributes">Liaison attributes</h4>
 
 Liaison elements share a set of common <dfn>liaison attributes</dfn> in an attribute group.
 
@@ -2403,7 +2373,7 @@ Liaisons in general must be provided with the ID of a <{note}> on which they end
 given via the <dfn element-attr dfn-for="liaisons">target</dfn> attribute. The constraints
 on this attribute vary from one liaison to another.
 
-<h5 id="the-tied-element">The <dfn element><code>tied</code></dfn> element</h5>
+<h4 id="the-tied-element">The <dfn element><code>tied</code></dfn> element</h4>
 <section dfn-for="tied">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2469,38 +2439,38 @@ Examples:
 
 </section>
 
-<h5 id="the-arpeggiate-element">The <dfn element><code>arpeggiate</code></dfn> element</h5>
+<h4 id="the-arpeggiate-element">The <dfn element><code>arpeggiate</code></dfn> element</h4>
 <section dfn-for="arpeggiate">
 <em>Needs migration from MusicXML. In this case the liaison target will be constrained to lie within the same event.</em>
 </section>
 
-<h5 id="the-glissando-element">The <dfn element><code>glissando</code></dfn> element</h5>
+<h4 id="the-glissando-element">The <dfn element><code>glissando</code></dfn> element</h4>
 <section dfn-for="glissando">
 <em>Needs migration from MusicXML.</em>
 </section>
 
-<h5 id="the-slide-element">The <dfn element><code>slide</code></dfn> element</h5>
+<h4 id="the-slide-element">The <dfn element><code>slide</code></dfn> element</h4>
 <section dfn-for="slide">
 <em>Needs migration from MusicXML.</em>
 </section>
 
-<h5 id="the-bend-element">The <dfn element><code>bend</code></dfn> element</h5>
+<h4 id="the-bend-element">The <dfn element><code>bend</code></dfn> element</h4>
 <section dfn-for="bend">
 <em>Needs migration from MusicXML, and probably some simplification and better handling of pre-bends.</em>
 </section>
 
-<h5 id="the-hammer-on-element">The <dfn element><code>hammer-on</code></dfn> element</h5>
+<h4 id="the-hammer-on-element">The <dfn element><code>hammer-on</code></dfn> element</h4>
 <section dfn-for="hammer-on">
 <em>Needs migration from MusicXML.</em>
 </section>
 
-<h5 id="the-pull-off-element">The <dfn element><code>pull-off</code></dfn> element</h5>
+<h4 id="the-pull-off-element">The <dfn element><code>pull-off</code></dfn> element</h4>
 <section dfn-for="pull-off">
 <em>Needs migration from MusicXML.</em>
 </section>
 
 
-<h4 id="common-direction-content">Direction content</h4>
+<h3 id="common-direction-content">Direction content</h3>
 
 <dfn>Direction content</dfn> consists of some number of musical
 <dfn>directions</dfn> that modify or accompany the performance of events in
@@ -2512,7 +2482,7 @@ one or more measures. Directions may be included in an MNX-Common score in two w
 - Within a <{directions}> element below a <{sequence}>. The direction applies only
     to the content within this sequence.
 
-<h5 id="common-direction-attributes">Direction attributes</h5>
+<h4 id="common-direction-attributes">Direction attributes</h4>
 
 Directions share a set of common <dfn>direction attributes</dfn> in an attribute group.
 
@@ -2543,7 +2513,7 @@ the orientation is inherited from any <{sequence}> ancestor which specified
 it. If no ancestor did so, it is determined automatically according to the
 implementation's rendering rules.
 
-<h5 id="the-dynamics-element">The <dfn element><code>dynamics</code></dfn> element</h5>
+<h4 id="the-dynamics-element">The <dfn element><code>dynamics</code></dfn> element</h4>
 <section dfn-for="dynamics">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2598,7 +2568,7 @@ dynamics are supported:
 
 </section>
 
-<h5 id="the-instruction-element">The <dfn element><code>instruction</code></dfn> element</h5>
+<h4 id="the-instruction-element">The <dfn element><code>instruction</code></dfn> element</h4>
 <section dfn-for="instruction">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2624,7 +2594,7 @@ consistent with general instructions to the performer.
 
 </section>
 
-<h5 id="the-expression-element">The <dfn element><code>expression</code></dfn> element</h5>
+<h4 id="the-expression-element">The <dfn element><code>expression</code></dfn> element</h4>
 <section dfn-for="expression">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2654,39 +2624,39 @@ consistent with describing musical expression.
 
 </section>
 
-<h5 id="the-ending-element">The <dfn element><code>ending</code></dfn> element</h5>
+<h4 id="the-ending-element">The <dfn element><code>ending</code></dfn> element</h4>
 <section dfn-for="ending">
   <em>Needs migration from MusicXML. Applies from the start of the containing measure (i.e. does not belong to a &lt;barline&gt;)</em>
 </section>
 
-<h5 id="the-repeat-element">The <dfn element><code>repeat</code></dfn> element</h5>
+<h4 id="the-repeat-element">The <dfn element><code>repeat</code></dfn> element</h4>
 <section dfn-for="repeat">
   <em>Needs migration from MusicXML. Applies to the containing measure (i.e. does not belong to a &lt;barline&gt;).
       Thus, "start" means a repeat starting from the beginning of this measure; "end" means a repeat ending at the end
       of this measure.</em>
 </section>
 
-<h5 id="the-coda-element">The <dfn element><code>coda</code></dfn> element</h5>
+<h4 id="the-coda-element">The <dfn element><code>coda</code></dfn> element</h4>
 <section dfn-for="coda">
   <em>Needs migration from MusicXML. May need to distinguish musical form use from textual reference to the symbol.</em>
 </section>
 
-<h5 id="the-segno-element">The <dfn element><code>segno</code></dfn> element</h5>
+<h4 id="the-segno-element">The <dfn element><code>segno</code></dfn> element</h4>
 <section dfn-for="segno">
   <em>Needs migration from MusicXML. May need to distinguish musical form use from textual reference to the symbol.</em>
 </section>
 
-<h5 id="the-harmony-element">The <dfn element><code>harmony</code></dfn> element</h5>
+<h4 id="the-harmony-element">The <dfn element><code>harmony</code></dfn> element</h4>
 <section dfn-for="harmony">
 <em>Needs migration from MusicXML.</em>
 </section>
 
-<h5 id="the-symbol-element">The <dfn element><code>symbol</code></dfn> element</h5>
+<h4 id="the-symbol-element">The <dfn element><code>symbol</code></dfn> element</h4>
 <section dfn-for="symbol">
 <em>Needs migration from MusicXML -- arbitrary SMuFL glyph. (How will visual registration work?)</em>
 </section>
 
-<h5 id="the-dirgroup-element">The <dfn element><code>dirgroup</code></dfn> element</h5>
+<h4 id="the-dirgroup-element">The <dfn element><code>dirgroup</code></dfn> element</h4>
 <section dfn-for="dirgroup">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2703,12 +2673,12 @@ to arrange them horizontally from left to right.
 TBD: spacing properties
 
 </section>
-<h4 id="common-spanning-directions">Spanning directions</h4>
+<h3 id="common-spanning-directions">Spanning directions</h3>
 
 <dfn>Spanning directions</dfn> are directions whose temporal extent within a part is
 characterized by a <a>span</a>.
 
-<h5 id="common-span-attributes">Span attributes</h5>
+<h4 id="common-span-attributes">Span attributes</h4>
 
 Spanning directions share a set of common <dfn>span attributes</dfn> in an attribute group.
 
@@ -2722,11 +2692,11 @@ by supplying a <dfn element-attr dfn-for="spans">end</dfn> attribute. This
 measure location must lie within the same run of <a>measure content</a> as the
 location given for the start of the spanning direction.
 
-<h5 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h5>
+<h4 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h4>
 <section dfn-for="slur">
 </section>
 
-<h5 id="the-wedge-element">The <dfn element><code>wedge</code></dfn> element</h5>
+<h4 id="the-wedge-element">The <dfn element><code>wedge</code></dfn> element</h4>
 <section dfn-for="wedge">
    <dl class="def">
      <dt><a>Contexts</a>:</dt>
@@ -2750,7 +2720,7 @@ The <dfn element-attr>type</dfn> attribute describes the nature of the wedge:
 </dl>
 </section>
 
-<h5 id="the-cresc-element">The <dfn element><code>cresc</code></dfn> element</h5>
+<h4 id="the-cresc-element">The <dfn element><code>cresc</code></dfn> element</h4>
 <section dfn-for="cresc">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2771,7 +2741,7 @@ displayed in the score for this element.
 
 </section>
 
-<h5 id="the-dim-element">The <dfn element><code>dim</code></dfn> element</h5>
+<h4 id="the-dim-element">The <dfn element><code>dim</code></dfn> element</h4>
 <section dfn-for="dim">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2793,12 +2763,12 @@ displayed in the score for this element.
 
 </section>
 
-<h5 id="the-pedal-element">The <dfn element><code>pedal</code></dfn> element</h5>
+<h4 id="the-pedal-element">The <dfn element><code>pedal</code></dfn> element</h4>
 <section dfn-for="pedal">
   <em>Details TBD.</em>
 </section>
 
-<h5 id="the-bracket-element">The <dfn element><code>bracket</code></dfn> element</h5>
+<h4 id="the-bracket-element">The <dfn element><code>bracket</code></dfn> element</h4>
 <section dfn-for="bracket">
 <em>TBD: This should be separated into distinct elements with their own semantics.
   Brackets in MusicXML are too much of a catch-all.</em>
@@ -2806,7 +2776,7 @@ displayed in the score for this element.
 
 Advisement: Other spans exist in MusicXML and need to be migrated.
 
-<h4 id="common-staff-directions">Staff directions</h4>
+<h3 id="common-staff-directions">Staff directions</h3>
 
 <dfn>Staff directions</dfn> are directions that apply as a whole to the
 one or more musical staves in a part, and which determine the interpretation
@@ -2826,7 +2796,7 @@ from the start of that <{measure}> to all subsequent measures within the same
 Most staff directions have a fixed location, typically the beginning or
 end of the measure in which they occur.
 
-<h5 id="the-key-element">The <dfn element><code>key</code></dfn> element</h5>
+<h4 id="the-key-element">The <dfn element><code>key</code></dfn> element</h4>
 <section dfn-for="key">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2858,7 +2828,7 @@ integer</a> which supplies a number of fifths distance from a signature with
 no accidentals.
 </section>
 
-<h5 id="the-time-element">The <dfn element><code>time</code></dfn> element</h5>
+<h4 id="the-time-element">The <dfn element><code>time</code></dfn> element</h4>
 <section dfn-for="time">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2930,7 +2900,7 @@ the contents of measures to determine their intended length.
 
 </section>
 
-<h5 id="the-tempo-element">The <dfn element><code>tempo</code></dfn> element</h5>
+<h4 id="the-tempo-element">The <dfn element><code>tempo</code></dfn> element</h4>
 <section dfn-for="tempo">
 
   <dl class="def">
@@ -2966,7 +2936,7 @@ singly or in combination:
 
 </section>
 
-<h5 id="the-staves-element">The <dfn element><code>staves</code></dfn> element</h5>
+<h4 id="the-staves-element">The <dfn element><code>staves</code></dfn> element</h4>
 <section dfn-for="staves">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -2995,7 +2965,7 @@ is taken as 1.
 
 </section>
 
-<h5 id="the-clef-element">The <dfn element><code>clef</code></dfn> element</h5>
+<h4 id="the-clef-element">The <dfn element><code>clef</code></dfn> element</h4>
 <section dfn-for="clef">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
@@ -3040,7 +3010,7 @@ indicated by the given clef sign should be transposed. It defaults to zero.
 
 </section>
 
-<h5 id="the-staff-details-element">The <dfn element><code>staff-details</code></dfn> element</h5>
+<h4 id="the-staff-details-element">The <dfn element><code>staff-details</code></dfn> element</h4>
 <section dfn-for="staff-details">
 
 <em>Details TBD.</em>
@@ -3050,19 +3020,19 @@ measure content in the part until changed. Expected to resemble MusicXML's corre
 
 </section>
 
-<h5 id="the-barline-element">The <dfn element><code>barline</code></dfn> element</h5>
+<h4 id="the-barline-element">The <dfn element><code>barline</code></dfn> element</h4>
 <section dfn-for="barline">
   <em>Only describes a barline explicitly placed elsewhere than the end of a measure. Barlines at the end of a measure
       are more simply described by the <{measure/barline}> attribute.</em>
 </section>
 
-<h5 id="the-use-instrument-element">The <dfn element><code>use-instrument</code></dfn> element</h5>
+<h4 id="the-use-instrument-element">The <dfn element><code>use-instrument</code></dfn> element</h4>
 <section dfn-for="use-instrument">
 
   <em>Details TBD - applies a specific instrument sound to the staff as a whole.</em>
 </section>
 
-<h5 id="the-transpose-element">The <dfn element><code>transpose</code></dfn> element</h5>
+<h4 id="the-transpose-element">The <dfn element><code>transpose</code></dfn> element</h4>
 <section dfn-for="transpose">
   <em>Details TBD - determines the transposition applicable to all staves in the part.</em>
 </section>
@@ -3070,29 +3040,29 @@ measure content in the part until changed. Expected to resemble MusicXML's corre
 Advisement: Other staff direction elements exist in MusicXML and need to be migrated.
 
 
-<h4 id="common-part-description-content">Part description content</h4>
+<h3 id="common-part-description-content">Part description content</h3>
 
 <dfn>Part description content</dfn> consists of elements that supply information describing a part,
 and occur at the beginning of a <{part}> element.
 
-<h5 id="the-part-name-element">The <dfn element><code>part-name</code></dfn> element</h5>
+<h4 id="the-part-name-element">The <dfn element><code>part-name</code></dfn> element</h4>
 <section dfn-for="part-name">
 </section>
 
-<h5 id="the-part-abbreviation-element">The <dfn element><code>part-abbreviation</code></dfn> element</h5>
+<h4 id="the-part-abbreviation-element">The <dfn element><code>part-abbreviation</code></dfn> element</h4>
 <section dfn-for="part-abbreviation">
 </section>
 
-<h5 id="the-instrument-sound-element">The <dfn element><code>instrument-sound</code></dfn> element</h5>
+<h4 id="the-instrument-sound-element">The <dfn element><code>instrument-sound</code></dfn> element</h4>
 <section dfn-for="instrument-sound">
 </section>
 
-<h4 id="common-interpretation-content">Interpretation content</h4>
+<h3 id="common-interpretation-content">Interpretation content</h3>
 
 <dfn>Interpretation content</dfn> may be included in some elements to control
 the specific way in which the element is interpreted as a musical performance.
 
-<h5 id="the-interpret-element">The <dfn element><code>interpret</code></dfn> element</h5>
+<h4 id="the-interpret-element">The <dfn element><code>interpret</code></dfn> element</h4>
 <section dfn-for="interpret">
   <dl class="def">
     <dt><a>Content Model</a>:</dt>
@@ -3200,12 +3170,12 @@ the handling of grace notes, for example.
     Replace:
         <h5 id="the-$1-element">The <dfn element><code>$1</code></dfn> element</h5>\n<section dfn-for="$1">\n</section>\n
 -->
-<h4 id="score-synchronization">Synchronization content</h4>
+<h3 id="score-synchronization">Synchronization content</h3>
 
 The following elements describe the synchronization of a semantic CWMN score with one or more
 audio media representing recordings of the score.
 
-<h5 id="the-score-audio-element">The <dfn element><code>score-audio</code></dfn> element</h5>
+<h4 id="the-score-audio-element">The <dfn element><code>score-audio</code></dfn> element</h4>
 
 <section dfn-for="score-audio">
 
@@ -3226,7 +3196,7 @@ between the audio file and the semantic content of the score.
 
 </section>
 
-<h5 id="the-score-audio-media-element">The <dfn element><code>score-audio-media</code></dfn> element</h5>
+<h4 id="the-score-audio-media-element">The <dfn element><code>score-audio-media</code></dfn> element</h4>
 
 <section dfn-for="score-audio-media">
 
@@ -3244,7 +3214,7 @@ in the <dfn element-attr>src</dfn> attribute.
 
 </section>
 
-<h5 id="the-score-audio-mapping-element">The <dfn element><code>score-audio-mapping</code></dfn> element</h5>
+<h4 id="the-score-audio-mapping-element">The <dfn element><code>score-audio-mapping</code></dfn> element</h4>
 
 <section dfn-for="score-audio-mapping">
 
@@ -3275,7 +3245,7 @@ synchronization mappings. If absent, the first <{global}> element is used.
 
 </section>
 
-<h5 id="the-score-audio-region-element">The <dfn element><code>score-audio-region</code></dfn> element</h5>
+<h4 id="the-score-audio-region-element">The <dfn element><code>score-audio-region</code></dfn> element</h4>
 
 <section dfn-for="score-audio-region">
 
