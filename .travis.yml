@@ -8,6 +8,7 @@ install:
   - bikeshed update
 script:
   - bikeshed spec specification/common/index.bs specification/common/index.html
+  - bikeshed spec specification/generic/index.bs specification/generic/index.html
   - bash ./deploy.sh
 env:
   global:

@@ -14,7 +14,7 @@ Status: LD
 Title: MNX-Common Draft Specification
 Shortname: mnx-common-draft
 Level: 1
-Editor: Joe Berkovitz (Risible LLC), Adrian Holovaty (Soundslice)
+Editor: Joe Berkovitz (Risible LLC); Adrian Holovaty (Soundslice)
 Abstract: A draft specification for the MNX-Common music notation document format.
     MNX-Common is a proposed music notation markup standard. Its aim is to improve
     MusicXML in fundamental ways, while retaining many of its key concepts, terms
@@ -1141,7 +1141,7 @@ The following example shows a hierarchy of collections and scores.
     <dd><{mnx}>, <{collection}>.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
-    <dd>Zero or one <a>musical body</a> elements.</dd>
+    <dd>Zero or one <{mnx-common}> elements.</dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{score/src}> - optional relative path to an external source file</dd>
   </dl>
@@ -1150,7 +1150,7 @@ The <{score}> element encloses a self-contained description of the score for
 a portion or the entirety of a musical work.
 
 If the <dfn element-attr>src</dfn> attribute is provided, this specifies a
-relative path where the score's <a>musical body</a> lives. Otherwise, the body
+relative path where the score's musical body lives. Otherwise, the body
 must be provided within the content of the <{score}> element.
 </section>
 
@@ -1181,7 +1181,7 @@ The <{title}> element assigns a title to its parent element in the context of th
 
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
-    <dd>Wherever a <a>musical body</a> is expected.</dd>
+    <dd><{score}>.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a>.</dd>
     <dd><{stylesheet}>.</dd>
@@ -1192,8 +1192,7 @@ The <{title}> element assigns a title to its parent element in the context of th
     <dd><{mnx-common/profile}> — profile describing constraints on the contents of this score</dd>
   </dl>
 
-The <{mnx-common}> element is a <a>musical body</a> that describes an MNX-Common
-score as a whole.
+The <{mnx-common}> element describes an MNX-Common score as a whole.
 
 The <dfn element-attr><code>profile</code></dfn> attribute declares a <a>score
 profile</a> that supplies constraints to which the score is expected to obey.
@@ -3187,7 +3186,7 @@ audio media representing recordings of the score.
     <dd>Zero or one <{score-audio-mapping}> elements.</dd>
   </dl>
 
-The <{score-audio}> element defines one or more <a>audio media</a> files that
+The <{score-audio}> element defines one or more audio media files that
 constitute a single recording of a performance of the score, and whose
 contents are presumed to be temporally synchronized with each other.
 
@@ -3209,7 +3208,7 @@ between the audio file and the semantic content of the score.
     <dd><{score-audio-media/src}> - URL of an audio file of the score</dd>
   </dl>
 
-The <{score-audio-media}> element includes an <a>audio media</a> file, via the URL provided
+The <{score-audio-media}> element includes an audio media file, via the URL provided
 in the <dfn element-attr>src</dfn> attribute.
 
 </section>
