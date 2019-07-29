@@ -1,0 +1,1069 @@
+<style>
+  .language-xml {
+    font-size: 11px;
+  }
+
+  .example img {
+    background-color: hsl(24, 20%, 95%);
+    padding: 10px;
+  }
+</style>
+
+<pre class="metadata">
+Status: LD
+Title: MNX-Generic Draft Specification
+Shortname: mnx-generic-draft
+Level: 1
+Editor: Joe Berkovitz (Risible LLC); Adrian Holovaty (Soundslice)
+Abstract: A draft specification for the MNX-Generic music notation document format.
+    MNX-Generic is a general format for representing musical scores in terms
+    of linked graphical media, audio media and performance data.
+Markup Shorthands: markdown yes
+Repository: w3c/mnx
+Warning: Not Ready
+!Participate: <a href="https://github.com/w3c/mnx/issues/new">File an issue</a> (<a href="https://github.com/w3c/mnx/issues">open issues</a>)
+</pre>
+
+<pre class="anchors">
+url: https://www.w3.org/TR/REC-xml-names#NT-QName; type: dfn;
+    text: QName;
+url: https://www.w3.org/TR/1999/REC-xpath-19991116#dt-expanded-name; type: dfn;
+    text: expanded-name;
+urlPrefix: https://www.w3.org/TR/css3-syntax/; type: dfn; spec: css3-syntax;
+    text: consume a component value
+    text: component value
+    text: environment encoding
+
+urlPrefix: https://www.w3.org/TR/selectors4/#; type: dfn; spec: SELECTORS4
+    text: type selector
+    text: attribute selector
+    text: pseudo-class
+
+urlPrefix: https://www.w3.org/TR/css-cascade-4/#; type: dfn; spec: CSS-CASCADE-4
+    text: specified value
+    text: computed value
+
+urlPrefix: https://www.w3.org/TR/xml/#; spec: XML; for: xml
+    type: dfn; url: NT-Name; text: Name
+    type: element-attr;
+        url: sec-white-space; text: space
+
+urlPrefix: https://www.w3.org/TR/xlink11/#; spec: XLINK; for: xlink; type: element-attr
+    text: actuate; url: actuate-att
+    text: href; url: link-locators
+    url: link-semantics
+        text: arcrole
+        text: role
+        text: title
+    text: show; url: show-att
+    text: type; url: link-types
+    text: xlink; url: att-method
+
+urlPrefix: https://www.w3.org/TR/xml-names/#; spec: XML-NAMES; for: xmlns; type: element-attr
+    text: xmlns; url: ns-decl
+
+url: https://www.w3.org/TR/html5/infrastructure.html#signed-integers; type: dfn; spec: html;
+    text: rules for parsing integers
+    text: rules for parsing signed integers
+    text: valid integer
+    text: signed integer
+
+url: https://www.w3.org/TR/html5/infrastructure.html#non-negative-integers; type: dfn; spec: html;
+    text: non-negative integer
+    text: valid non-negative integer
+    text: rules for parsing non-negative integers
+
+url: https://www.w3.org/TR/html5/infrastructure.html#floating-point-numbers; type: dfn; spec: html;
+    text: floating-point number
+    text: valid floating-point number
+    text: rules for parsing floating-point numbers
+
+url: https://www.w3.org/TR/html5/infrastructure.html#percentages-and-lengths; type: dfn; spec: html;
+    text: rules for parsing dimension values
+
+url: https://www.w3.org/TR/html5/infrastructure.html#lists-of-floating-point-numbers; type: dfn; spec: html;
+    text: valid list of floating-point numbers
+    text: list of floating-point numbers
+    text: rules for parsing a list of floating-point numbers
+
+url: https://www.w3.org/TR/html5/infrastructure.html#space-separated-tokens; type: dfn; spec: html;
+    text: set of space-separated tokens
+    text: ordered set of space-separated tokens
+    text: unordered set of space-separated tokens
+    text: split a string on spaces
+
+url: https://www.w3.org/TR/html5/infrastructure.html#colors; type:dfn; spec: html;
+    text: simple color
+
+url: https://www.w3.org/TR/html5/dom.html#elements-semantics; type:dfn; spec: html;
+    text: semantic markup
+
+url: https://w3c.github.io/musicxml/#; type: dfn;
+    text: MusicXML specification
+
+url: https://w3c.github.io/smufl/gitbook/specification#; type: dfn;
+    text: SMuFL specification
+
+url: https://w3c.github.io/smufl/gitbook/specification/glyphnames.html#; type: dfn;
+    text: SMuFL glyph names
+
+url: http://music-encoding.org/#; type: dfn;
+    text: Music Encoding Initiative
+
+url: https://www.w3.org/TR/SVG/linking.html#LinksIntoSVG; type: dfn;
+    text: Linking into SVG content
+
+</pre>
+<pre class="link-defaults">
+spec:dom; type:dfn; text:attribute
+</pre>
+
+<h2 id="status">Status of this document</h2>
+
+This document is an early draft.
+
+<h2 id="introduction">Introduction</h2>
+
+<h3 id="background">Background</h3>
+
+  <em>This section is non-normative.</em>
+
+MNX-Generic is a general format for representing musical scores in terms of linked
+graphical media, audio media and performance data.
+
+In contrast to MNX-Common, there is no attempt to represent semantics directly in
+MNX-Generic. Thus, MNX-Generic can be described as a low-level, literal format that
+represents instances of scores, rather than their semantic content. MNX-Generic is
+intended to support applications which <em>must</em> be able to faithfully
+execute a visual and/or audible rendition of a score, with an awareness of the
+relationship between what is seen and what is heard.
+
+MNX-Generic can be employed as a <dfn>target format</dfn> for applications that
+render semantic notation into media. And even though MNX-Generic is not a semantic
+format, MNX-Generic elements may cross-reference elements in a semantic source
+document that was rendered into MNX-Generic. This supports a connection between  the
+original semantic markup and an MNX-Generic rendering of same.
+
+Given MNX-Generic's characteristics as a target format, some features of MNX-Generic are
+employed within MNX-Common to provide literal descriptions of rendering where
+semantic information does not suffice to yield the desired musical result.
+
+The only constraints on the nature of an MNX-Generic score are:
+
+1. The visual content of the score must be encoded in SVG.
+
+1. The audible content of the score must be encoded either as <a>audio media</a>
+    or <a>performance data</a>.
+
+<h3 id="use-cases">Use cases</h3>
+
+  <em>This section is non-normative.</em>
+
+A companion document details a set of [known use cases for music notation](../use-cases/index.html).
+
+<h3 id="audience">Audience</h3>
+
+  <em>This section is non-normative.</em>
+
+  This specification is intended for authors of documents and applications that use the features defined
+  in this specification, implementors of tools that operate on documents that use the
+  features defined in this specification, and individuals wishing to establish the correctness of
+  documents or implementations with respect to the requirements of this specification.
+
+  This document is probably not suited to readers who do not already have at least a passing
+  familiarity with XML technologies. In places it sacrifices clarity for precision, and brevity
+  for completeness. More approachable tutorials and authoring guides can provide a gentler
+  introduction to the topic.
+
+<h3 id="design-notes">Design notes</h3>
+
+  <em>This section is non-normative.</em>
+
+Some general principles regarding the design of this specification follow.
+
+<dl>
+  <dt>Address both literal encoding, not semantic encoding.</dt>
+  <dd>MNX includes two separate approaches to encoding music: high-level semantic encodings
+    described by MNX-Common (and other future modules), and low-level literal
+    encodings described by MNX-Generic. The literal encoding attempts to eliminate cultural
+    and semantic assumptions within its scope, while still allowing linkage between the literal and
+    semantic layers.
+  </dd>
+
+  <dt>Leverage existing value in the world</dt>
+  <dd>The ecosystem of the Web is broad and valuable. MNX attempts to exploit this by making use of existing
+    patterns and tooling. Examples include the reuse of many CSS concepts, and the ability to employ completely standard SVG
+    documents within MNX-Generic without need of alteration.
+  </dd>
+</dl>
+
+<h4 id="design-notes-extensibility">Extensibility</h4>
+
+  <em>This section is non-normative.</em>
+
+  <em>Content TBD</em>
+
+<h3 id="structure-of-this-specification">Structure of this specification</h3>
+
+  <em>This section is non-normative.</em>
+
+  This specification is divided into the following major sections:
+
+  <div dfn-for="spec">
+    : [[#introduction]]
+    :: Non-normative materials providing a context for the HTML specification.
+    : [[#infrastructure]]
+    :: Scaffolding material on which the remainder of the specification relies
+    : [[#document-structure]]
+    :: The elements that make up the MNX-Generic format.
+  </div>
+
+<h4 id="how-to-read-this-specification">How to read this specification</h4>
+
+  As described in the conformance requirements section below, this specification describes
+  conformance criteria for a variety of conformance classes. In particular, there are conformance
+  requirements that apply to <em>producers</em>, for example authors and the documents they create,
+  and there are conformance requirements that apply to <em>consumers</em>, for example Web browsers.
+  They can be distinguished by what they are requiring: a requirement on a producer states what is
+  allowed, while a requirement on a consumer states how software is to act.
+
+  <div class="example">
+    For example, "the <code>foo</code> attribute's value must be a valid integer" is a
+    requirement on producers, as it lays out the allowed values; in contrast, the requirement "the
+    <code>foo</code> attribute's value must be parsed using the rules for parsing integers"
+    is a requirement on consumers, as it describes how to process the content.
+  </div>
+
+  <strong>Requirements on producers have no bearing whatsoever on consumers.</strong>
+
+<h4 id="typographic-conventions">Typographic conventions</h4>
+
+  <div>
+    This is a definition, requirement, or explanation.
+
+    <p class="note">This is a note.</p>
+
+    <p class="example">This is an example.</p>
+
+    <p class="issue">This is an open issue.</p>
+
+    <p class="advisement">This is a warning.</p>
+
+    <pre class="css" highlight="css">/* this is a CSS fragment */</pre>
+
+    The defining instance of a term is marked up like <dfn noexport>this</dfn>.
+    Uses of that term are marked up like [=this=] or like <a><i>this</i></a>.
+
+    The defining instance of an element, attribute, or API is marked up like
+    <dfn element noexport><code>this</code></dfn>. References to that element, attribute, or API are
+    marked up like <{this}>.
+
+    Other code fragments are marked up <code>like this</code>.
+
+    Byte sequences with bytes in the range 0x00 to 0x7F, inclusive, are marked up like
+    `this`.
+
+    Variables are marked up like <var ignore>this</var>.
+
+    In some cases, requirements are given in the form of lists with conditions and corresponding
+    requirements. In such cases, the requirements that apply to a condition are always the first set
+    of requirements that follow the condition, even in the case of there being multiple sets of
+    conditions for those requirements. Such cases are presented as follows:
+
+    <dl class="switch">
+      <dt>This is a condition</dt>
+      <dt>This is another condition</dt>
+      <dd>This is the requirement that applies to the conditions above.</dd>
+      <dt>This is a third condition</dt>
+      <dd>This is the requirement that applies to the third condition.</dd>
+    </dl>
+  </div>
+
+
+<h3 id="suggested-reading">Suggested reading</h3>
+
+  <em>This section is non-normative.</em>
+
+  The following documents might be of interest to readers of this specification.
+
+<section noexport>
+<h2 id="infrastructure">Infrastructure</h2>
+
+<h3 id="terminology">Terminology</h3>
+
+<h4 id="notational-idioms">Notational idioms</h4>
+
+A <dfn>notational idiom</dfn> is a set of rules in the world for encoding
+music as some set of visual markings, which can be interpreted by musicians to
+produce an audible performance.
+
+<h5 id="cwmn">Conventional Western music notation (CWMN)</h5>
+
+This notational idiom comprises a set of notational rules common to (but not
+limited to) Western European music from circa 1600 to the present day.
+
+<h4 id="score profiles">Score profiles</h4>
+
+A <dfn>score profile</dfn> is a set of constraints on the rules in a notational idiom.
+Score profiles are designed to narrow the set of constructs that can be produced or consumed
+in MNX-Generic to a practical scope.
+
+<h3 id="common-syntaxes">Common syntaxes</h3>
+
+There are various places in MNX-Generic that accept particular data types, such as
+note values, numbers or durations. This section describes the conformance
+criteria for content in those formats, and how to parse them.
+
+<h4 id="common-parser-idioms">Common parser idioms</h4>
+
+  The <dfn export>space characters</dfn>, for the purposes of this specification, are U+0020 SPACE, U+0009
+  CHARACTER TABULATION (tab), U+000A LINE FEED (LF), U+000C FORM FEED (FF), and U+000D CARRIAGE
+  RETURN (CR).
+
+  The <dfn lt="white_space|white_space characters">White_Space characters</dfn> are those that have the Unicode property "White_Space" in
+  the Unicode <code>PropList.txt</code> data file. [[!UNICODE]]
+
+  <p class="note">
+    This should not be confused with the "White_Space" value (abbreviated "WS") of the "Bidi_Class"
+    property in the <code>Unicode.txt</code> data file.
+  </p>
+
+  The <dfn export>control characters</dfn> are those whose Unicode "General_Category" property has the
+  value "Cc" in the Unicode <code>UnicodeData.txt</code> data file. [[!UNICODE]]
+
+  The <dfn export>uppercase ASCII letters</dfn> are the characters in the range U+0041 LATIN CAPITAL LETTER
+  A to U+005A LATIN CAPITAL LETTER Z.
+
+  The <dfn export>lowercase ASCII letters</dfn> are the characters in the range U+0061 LATIN SMALL LETTER A
+  to U+007A LATIN SMALL LETTER Z.
+
+  The <dfn export>ASCII letters</dfn> are the characters that are either [=uppercase ASCII letters=] or
+  [=lowercase ASCII letters=].
+
+  The <dfn export>ASCII digits</dfn> are the characters in the range U+0030 DIGIT ZERO (0) to U+0039 DIGIT
+  NINE (9).
+
+  The <dfn export>alphanumeric ASCII characters</dfn> are those that are either
+  <a>uppercase ASCII letters</a>, <a>lowercase ASCII letters</a>, or <a>ASCII digits</a>.
+
+  The <dfn export>ASCII hex digits</dfn> are the characters in the ranges U+0030 DIGIT ZERO (0) to U+0039
+  DIGIT NINE (9), U+0041 LATIN CAPITAL LETTER A to U+0046 LATIN CAPITAL LETTER F, and U+0061 LATIN
+  SMALL LETTER A to U+0066 LATIN SMALL LETTER F.
+
+  The <dfn export>uppercase ASCII hex digits</dfn> are the characters in the ranges U+0030 DIGIT ZERO (0)
+  to U+0039 DIGIT NINE (9) and U+0041 LATIN CAPITAL LETTER A to U+0046 LATIN CAPITAL LETTER F only.
+
+  The <dfn export>lowercase ASCII hex digits</dfn> are the characters in the ranges U+0030 DIGIT ZERO (0)
+  to U+0039 DIGIT NINE (9) and U+0061 LATIN SMALL LETTER A to U+0066 LATIN SMALL LETTER F only.
+
+  Some of the micro-parsers described below follow the pattern of having an <var>input</var>
+  variable that holds the string being parsed, and having a <var>position</var> variable pointing at
+  the next character to parse in <var>input</var>.
+
+  For parsers based on this pattern, a step that requires the consumer to <dfn>collect a sequence
+  of characters</dfn> means that the following algorithm must be run, with <var>characters</var>
+  being the set of characters that can be collected:
+
+  1. Let <var>input</var> and <var>position</var> be the same variables as those of the same name in
+      the algorithm that invoked these steps.
+  2. Let <var>result</var> be the empty string.
+  3. While <var>position</var> doesn't point past the end of <var>input</var> and the character at
+      <var>position</var> is one of the <var>characters</var>, append that character to the end of
+      <var>result</var> and advance <var>position</var> to the next character in <var>input</var>.
+  4. Return <var>result</var>.
+
+  The step <dfn>skip white space</dfn> means that the consumer must
+  <a>collect a sequence of characters</a> that are [=space characters=]. The collected characters
+  are not used.
+
+  When a consumer is to <dfn lt="stripped line breaks|strip line breaks">strip line breaks</dfn> from a string, the consumer must remove
+  any U+000A LINE FEED (LF) and U+000D CARRIAGE RETURN (CR) characters from that string.
+
+  When a consumer is to <dfn lt="strip leading and trailing white space|stripping leading and trailing white space|leading and trailing white space stripped">strip leading and trailing white space</dfn> from a string, the
+  consumer must remove all [=space characters=] that are at the start or end of the string.
+
+  When a consumer is to <dfn lt="stripping and collapsing white space|strip and collapse white space">strip and collapse white space</dfn> in a string, it must replace any
+  sequence of one or more consecutive [=space characters=] in that string with a single U+0020
+  SPACE character, and then <a>strip leading and trailing white space</a> from that string.
+
+  When a consumer has to <dfn lt="strictly splitting the string|strictly split a string|strictly split">strictly split a string</dfn> on a particular delimiter character
+  <var>delimiter</var>, it must use the following algorithm:
+
+  1. Let <var>input</var> be the string being parsed.
+  2. Let <var>position</var> be a pointer into <var>input</var>, initially
+      pointing at the start of the string.
+  3. Let <var>tokens</var> be an ordered list of tokens, initially empty.
+  4. While <var>position</var> is not past the end of <var>input</var>:
+      1. <a>Collect a sequence of characters</a> that are not the <var>delimiter</var> character.
+      2. Append the string collected in the previous step to <var>tokens</var>.
+      3. Advance <var>position</var> to the next character in <var>input</var>.
+  5. Return <var>tokens</var>.
+
+  <p class="note">
+    For the special cases of splitting a string <a lt="split a string on spaces">on spaces</a> and <a lt="split a string on commas">on commas</a>, this
+    algorithm does not apply (those algorithms also perform <a lt="strip leading and trailing white space">white space trimming</a>).
+  </p>
+
+<h4 id="numbers">Numbers</h4>
+
+<h5 id="rational-numbers">Rational numbers</h5>
+
+  A string is a <dfn>rational number</dfn> if it is either an integer, or a pair of integers
+  separated by a U+002F SLASH whose second element is nonzero.
+
+  The <dfn export>rules for parsing rational numbers</dfn> are as given in the following algorithm. When
+  invoked, the steps must be followed in the order given, aborting at the first step that returns
+  a value. This algorithm will return a pair of integers, one for the numerator and one for the denominator which  must be nonzero, or an error.
+
+  1. Let <var>input</var> be the string being parsed.
+  2. Let <var>position</var> be a pointer into <var>input</var>, initially pointing at the start of
+      the string.
+  3. Let <var>fraction</var> be an initially empty list of integers.
+  4. <a>Collect a sequence of characters</a> that are [=space characters=]. These are skipped.
+  5. While <var>position</var> is not past the end of <var>input</var>, and <var>fraction</var> contains
+      fewer than two elements:
+      1. <a>Collect a sequence of characters</a> that are not [=space characters=], <a>ASCII digits</a>, U+002D HYPHEN-MINUS or U+002F SLASH
+          characters. This skips past leading garbage.
+      2. <a>Collect a sequence of characters</a> that are not [=space characters=] or U+002F SLASH, and let <var>unparsed number</var> be the result.
+      3. Let <var>number</var> be the result of parsing <var>unparsed number</var> using the
+          <a>rules for parsing signed integers</a>.
+      4. If <var>number</var> is an error, set <var>number</var> to zero.
+      5. Append <var>number</var> to <var>fraction</var>.
+      6. <a>Collect a sequence of characters</a> that are [=space characters=], or U+002F SLASH.
+  6. If <var>fraction</var> has no elements, return zero.
+  7. If <var>fraction</var> has only one element, append 1 to <var>fraction</var>.
+  8. Return the first element of <var>fraction</var> as the numerator and the second element
+     of <var>fraction</var> as the denominator.
+
+<h4 id="element-locations">Element locations</h4>
+
+An <dfn>element location</dfn> constitutes a reference to a specific element
+in the document. It consists of the character `#`, immediately followed by the
+XML ID of the referenced element.
+
+<h4 id="style-property-lists">Style property lists</h4>
+
+MNX-Generic supports a simple and compact <dfn>style property list</dfn> syntax, allowing
+a map of key-value pairs to be represented in a single string where the keys
+are names of <a>style properties</a>.
+
+To parse a <a>style property list</a>:
+
+  1. Let <var>input</var> be the string being parsed.
+  1. Let <var>defs</var> be the result of <a>strictly splitting the string</a> <var>input</var> using U+003B SEMICOLON as a delimiter.
+  1. Let <var>properties</var> be an empty map.
+  1. While <var>defs</var> is not empty,
+      1. Let <var>definition</var> be the first element of <var>defs</var>, and remove it from <var>defs</var>.
+      1. <a>Collect a sequence of characters</a> from <var>definition</var> that are not U+003A COLON, and let <var>property name</var>
+          be the result after <a>stripping leading and trailing white space</a>.
+      1. If <var>property name</var> is empty, return an error.
+      1. If the next character of <var>definition</var> is not U+003A COLON,
+          return an error.
+      1. Skip the next character of <var>definition</var>.
+      1. Let <var>property value</var> be the remaining characters of <var>definition</var>, after <a>stripping leading and trailing white space</a>.
+      1. Add a new entry to <var>properties</var> with key <var>property name</var> and value <var>property value</var>.
+  1. Return <var>properties</var>.
+
+Examples include:
+
+: `color: red`
+:: A definition of the property `color` as having the value `red`.
+: `color: green;`
+:: A definition of the property `color` as having the value `green`. Note that a terminal `;` is provided in this case, but has no effect.
+: `smufl-font: Bravura; color: red;`
+:: A definition of two properties: `smufl-font` with value `Bravura`, and `color` with value `red`.
+
+<h3 id="content-models">Content models and categories</h3>
+
+  Each element in MNX-Generic falls into zero or more <dfn lt="content
+  categories|content category">categories</dfn> that group elements with
+  similar characteristics together. Examples of content categories
+  include <a>event content</a> and <a>sequence content</a>, among
+  many others.
+
+<h4 id="element-definitions">Element definitions</h4>
+
+  Each element in this specification has a definition that includes the following information:
+
+  : <dfn>Contexts</dfn>
+  :: A <em>non-normative</em> description of where the element can be used. This information is
+      redundant with the content models of elements that allow this one as a child, and is provided
+      only as a convenience.
+
+  : <dfn>Content model</dfn>
+  :: A normative description of what content must be included as children and descendants of the
+      element.
+
+  : <a>Attributes</a>
+  :: A normative list of attributes that may be specified on the element (except where otherwise
+      disallowed), along with non-normative descriptions of those attributes. (The content to the
+      left of the dash is normative, the content to the right of the dash is not.)
+
+  : <a>Style properties</a>
+  :: A normative list of style properties that may be specified on the element (except where otherwise
+      disallowed), along with non-normative descriptions of those attributes. Where these attributes may
+      be inherited from ancestor elements, this is indicated.
+
+  This is then followed by a description of what the element represents, along with any
+  additional normative conformance criteria that may apply to producers and consumers
+  and implementations. Examples are sometimes also included.
+
+</section> <!-- end Infrastructure section -->
+
+<section noexport>
+<h2 id="document-structure">Document structure</h2>
+
+<h3 id="root-structure">Root structure and metadata</h3>
+
+<h4 id="the-mnx-element">The <dfn element><code>mnx</code></dfn> element</h4>
+<section dfn-for="mnx">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>None: this is the top-level element.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>A single, required <{head}> element.</dd>
+    <dd>Either a <{collection}> or a <{score}> element.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None.</dd>
+  </dl>
+
+The <{mnx}> element encloses the document as a whole.
+
+<div class="example">
+```xml
+<mnx xmlns="http://www.w3.org/mnx">
+    <head>
+      ...head content...
+    </head>
+    <score>
+      ...musical body content...
+    </score>
+</mnx>
+```
+</div>
+</section>
+
+<h4 id="the-head-element">The <dfn element><code>head</code></dfn> element</h4>
+<section dfn-for="head">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Any.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a>.</dd>
+    <dd><{stylesheet}></dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None.</dd>
+  </dl>
+The <{head}> element supplies overall descriptive information for an MNX-Generic document,
+such as document-scoped metadata or <a>stylesheet definitions</a>.
+</section>
+
+<h4 id="the-collection-element">The <dfn element><code>collection</code></dfn> element</h4>
+<section dfn-for="collection">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{mnx}>, <{collection}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>Any combination of <{collection}> and <{score}> elements.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{collection/type}> - The type of the collection</dd>
+  </dl>
+
+The <{collection}> element describes a collection, which is a sequence of
+ordered elements that make up a compound musical document. Each child element
+of the collection may itself be either a collection or a score.
+
+The <dfn element-attr>type</dfn> attribute determines the nature of the collection.
+Valid collection type values include:
+
+<dl dfn-for="collection/type">
+  <dt><dfn attr-value><code>movements</code></dfn></dt>
+  <dd>Each element comprises a movement of a work.</dd>
+  <dt><dfn attr-value><code>sections</code></dfn></dt>
+  <dd>Each element comprises a section of a work, or of a movement.</dd>
+  <dt><dfn attr-value><code>parts</code></dfn></dt>
+  <dd>Each element comprises a description of of the same music, organized for different parts.</dd>
+</dl>
+
+<a>Metadata content</a> or <a>style properties</a> may be included at any level
+of the resulting structure, causing them to apply them only to those parts of
+the document.
+</section>
+
+<h4 id="the-score-element">The <dfn element><code>score</code></dfn> element</h4>
+<section dfn-for="score">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{mnx}>, <{collection}>.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a></dd>
+    <dd>Zero or one <a>musical body</a> elements.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{score/src}> - optional relative path to an external source file</dd>
+  </dl>
+
+The <{score}> element encloses a self-contained description of the score for
+a portion or the entirety of a musical work.
+
+If the <dfn element-attr>src</dfn> attribute is provided, this specifies a
+relative path where the score's <a>musical body</a> lives. Otherwise, the body
+must be provided within the content of the <{score}> element.
+</section>
+
+<h4 id="mnx-metadata-content">Metadata content</h4>
+
+<dfn>Metadata content</dfn> may be included in many elements to supply
+bibliographic data and other descriptive information.
+
+<em>Many elements TBD. Need to harmonize with existing metadata and bibliographic standards.</em>
+
+<h4 id="the-title-element">The <dfn element><code>title</code></dfn> element</h4>
+<section dfn-for="title">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Any.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>Text</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None.</dd>
+  </dl>
+
+The <{title}> element assigns a title to its parent element in the context of the document as a whole.
+</section>
+
+<h4 id="the-mnx-generic-element">The <dfn element><code>mnx-generic</code></dfn> element</h4>
+
+<section dfn-for="mnx-generic">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Wherever a <a>musical body</a> is expected.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a>.</dd>
+    <dd>One or more <{score-view}> elements.</dd>
+    <dd><a>Performance content</a>.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None.</dd>
+  </dl>
+
+The <{mnx-generic}> element is a <a>musical body</a> that describes an MNX-Generic
+score as a whole.
+
+The following example illustrates an entire MNX-Generic document; the elements
+are described individually in the remainder of this section.
+
+<div class="example">
+```xml
+<mnx-generic>
+  <score-view id="page1" view="score.svg#page1"/>
+  <score-view id="page2" view="score.svg#page2"/>
+  <score-view id="page3" view="score.svg#page3"/>
+
+  <performance-audio>
+    <performance-audio-media src="score.mp4"/>
+    <performance-mapping>
+      <performance-region start="0" end="0.72" view="page1" region="m1"/>
+      <performance-region start="0.72" end="1.43" view="page1" region="m2"/>
+      <performance-region start="1.43" end="2.99" view="page1" region="m3"/>
+      <performance-region start="2.99" end="3.65" view="page1" region="m4"/>
+    </performance-mapping>
+  </performance-audio>
+
+  <performance-data>
+    <performance-tempo beat="/4" bpm="80"/>
+    <performance-mapping>
+      <performance-region start="0" end="1" view="page1" region="m1"/>
+      <performance-region start="1" end="2" view="page1" region="m2"/>
+      <performance-region start="2" end="3" view="page1" region="m3"/>
+      <performance-region start="3" end="4" view="page1" region="m4"/>
+    </performance-mapping>
+    <performance-part>
+      <instrument-sound>strings.violin</instrument-sound>
+      <performance-event start="0" duration="1/4" pitch="C4" dynamics="100"/>
+      <performance-event start="1/4" duration="1/4" pitch="D4" dynamics="100"/>
+      ...following events...
+    </performance-part>
+  </performance-data>
+</mnx-generic>
+```
+</div>
+
+</section>
+
+<h3 id="generic-graphics">Graphics media</h3>
+
+<h4 id="the-score-view-element">The <dfn element><code>score-view</code></dfn> element</h4>
+
+<section dfn-for="score-view">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{mnx-generic}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>Any number of <{score-mapping}> elements.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{score-view/view}> - link to an SVG view of the score</dd>
+  </dl>
+
+The <{score-view}> element references a specific view within a separate
+SVG document, via the URL provided in the <dfn element-attr>view</dfn>
+attribute. This URL must follow the rules for <a>linking into SVG content</a>.
+
+Each <{score-view}> element represents a single page of the score. A
+default sequence of pages is established by the order of occurrence of
+<{score-view}> elements within the document.
+
+The sequence of page presentation in conjunction with <a>performance
+content</a> may differ from the default sequence, according to the mapping
+between performance and graphics.
+
+</section>
+
+<h4 id="the-score-mapping-element">The <dfn element><code>score-mapping</code></dfn> element</h4>
+
+<section dfn-for="score-mapping">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{score-view}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{score-mapping/graphics}> - an element ID within the SVG content described by the parent <{score-view}></dd>
+    <dd><{score-mapping/semantics}> - one or more optional IDs of corresponding element(s) within source semantic documents</dd>
+  </dl>
+
+The <{score-mapping}> element supplies information on the correspondence
+between an SVG element in a <{score-view}>, and sets of other
+semantic elements in this or other documents.
+
+The <dfn element-attr>graphics</dfn> attribute is required, and gives a single
+ID of an element in the score view's SVG content. There is no restriction on
+the nature or structure of this element, nor on its relationship to other
+elements.
+
+The optional <dfn element-attr>semantics</dfn> attribute supplies one or more
+IDs of elements in a semantic source document, for example an MNX-Common document.
+This asserts that each of the referenced semantic source elements are considered as
+generating the SVG content described by <{score-mapping/graphics}>.
+
+Note: While this element describes only a single SVG element, it is commonly
+the case that multiple SVG graphics may be associated with the same
+semantic source.
+
+</section>
+
+<h3 id="generic-performance">Performance content</h3>
+
+The category of <dfn>performance content</dfn> includes both of the following:
+
+- <dfn>audio media</dfn> supplying a performance of an MNX-Generic score in an audio file format
+
+- <dfn>performance data</dfn>, describing a performance of an MNX-Generic score in
+    terms of discrete, parameterized sonic events
+
+<h4 id="the-performance-audio-element">The <dfn element><code>performance-audio</code></dfn> element</h4>
+
+<section dfn-for="performance-audio">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{mnx-generic}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a>.</dd>
+    <dd>Zero or more <{performance-tempo}> elements.</dd>
+    <dd>Zero or one <{performance-mapping}> elements.</dd>
+    <dd>One or more <{performance-audio-media}> elements.</dd>
+  </dl>
+
+The <{performance-audio}> element defines one or more <a>audio media</a> files
+that constitute a single performance of the score, and whose contents are
+presumed to be temporally synchronized with each other.
+
+
+Additionally, <{performance-tempo}> elements may establish an proportional
+mapping between an arbitrary <a>notated time unit</a> and a time interval. This mapping
+may change throughout the course of the performance.  If no such elements occur,
+the <a>notated time unit</a> is defined as equal to 1 second of performance time.
+
+A set of optional <{performance-mapping}> elements, if given, may establish a mapping
+between the performance data and the graphical score.
+
+</section>
+
+<h4 id="the-performance-audio-media-element">The <dfn element><code>performance-audio-media</code></dfn> element</h4>
+
+<section dfn-for="performance-audio-media">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{performance-audio}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a>.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{performance-audio-media/src}> - URL of an audio file of the score</dd>
+  </dl>
+
+The <{performance-audio-media}> element includes an <a>audio media</a> file, via the URL provided
+in the <dfn element-attr>src</dfn> attribute.
+
+</section>
+
+<h4 id="the-performance-data-element">The <dfn element><code>performance-data</code></dfn> element</h4>
+
+<section dfn-for="performance-data">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{mnx-generic}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a>.</dd>
+    <dd>One or more <{performance-part}> elements.</dd>
+    <dd>Zero or more <{performance-tempo}> elements.</dd>
+    <dd>Zero or one <{performance-mapping}> elements.</dd>
+    <dt><a>Attributes</a>:</dt>
+  </dl>
+
+The <{performance-data}> element provides <a>performance data</a> in the form of
+discrete sonic events suitable for synthesis or analysis.
+
+It consists of some number of parts, plus optional mappings between performance time
+and regions of graphical media.
+
+Additionally, <{performance-tempo}> elements may establish an proportional
+mapping between an arbitrary <a>notated time unit</a> and a time interval. This mapping
+may change throughout the course of the performance.  If no such elements occur,
+the <a>notated time unit</a> is defined as equal to 1 second of performance time.
+
+A set of optional <{performance-mapping}> elements, if given, may establish a mapping
+between the performance data and the graphical score.
+
+</section>
+
+<h4 id="the-performance-part-element">The <dfn element><code>performance-part</code></dfn> element</h4>
+
+<section dfn-for="performance-part">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{performance-data}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a>.</dd>
+    <dd>Zero or more <{performance-event}> elements.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{performance-part/instrument-sound}> - the sound ID of the instrument for this part.</dd>
+  </dl>
+
+The <{performance-part}> element organizes a list of <{performance-event}>
+elements, within a given performance.
+
+The <dfn element-attr>instrument-sound</dfn> attribute gives the MusicXML sound ID of the instrument
+for this part.
+
+Note: <{performance-part}> elements do not necessarily correspond to MNX-Common
+<part> elements, as they pertain to a single instrument.
+
+</section>
+
+<h4 id="the-performance-tempo-element">The <dfn element><code>performance-tempo</code></dfn> element</h4>
+
+<section dfn-for="performance-tempo">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{performance-data}>, <{performance-audio}>, <{interpret}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{performance-tempo/start}> - start time of this performance tempo</dd>
+    <dd><{performance-tempo/beat}> - notated time units per beat</dd>
+    <dd><{performance-tempo/bpm}> - number of beats per minute</dd>
+  </dl>
+
+The <{performance-tempo}> element describes a proportional relationship between
+time and an arbitrary <dfn>notated time unit</dfn> that may be used by the score.
+
+This relationship applies to a time range beginning at the time in seconds
+specified by <dfn element-attr>start</dfn> and continuing until the next
+<{performance-tempo}> element. The default value is 0.
+
+The <dfn element-attr>beat</dfn> element is a <a>note value</a> which
+establishes a beat as some fraction or multiple of a notated time unit (which
+in CWMN a whole note by convention). The default value is 1.
+
+The <dfn element-attr>bpm</dfn> element establishes a tempo, expressed as a
+<a>valid floating-point number</a> giving the number of beats per minute. The
+default value is 60.
+
+NOTE: The defaults for both of the above attributes establish a notated
+time unit as equal to 1 second. Thus, if no attribute values are provided,
+score time is equal to real performance time.
+
+NOTE: The set of <{performance-tempo}> elements establish a variable-rate progression
+of a scoring time unit relative to performance time, similar to a MIDI tempo track.
+
+Issue: continuous changes need to be supported
+
+</section>
+
+<h4 id="the-performance-event-element">The <dfn element><code>performance-event</code></dfn> element</h4>
+
+<section dfn-for="performance-event">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{performance-part}>, <{interpret}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{performance-event/start}> - start time of this event</dd>
+    <dd><{performance-event/duration}> - duration of this event</dd>
+    <dd><{performance-event/pitch}> - pitch of this event</dd>
+    <dd><{performance-event/dynamics}> - dynamics for this event</dd>
+    <dd><{performance-event/techniques}> - set of performance techniques for this event</dd>
+    <dd><{performance-event/view}> - optional element ID of the <{score-view}> containing graphics for this event</dd>
+    <dd><{performance-event/graphics}> - optional SVG elements for specific event graphics</dd>
+  </dl>
+
+The <{performance-event}> element describes a single musical event in terms of its
+performance parameters.
+
+All times given are in <a>notated time units</a>, whose relationship to performance time is described by
+<{performance-tempo}> elements. These times may be expressed in the following forms which are
+syntactically distinct:
+
+- <a>Rational numbers</a>
+- <a>Valid floating-point numbers</a>
+
+<dfn element-attr>start</dfn> gives the starting time of the event.  This
+specifies the actual start time, not a notated start time to be interpreted by
+a performer. The default value is zero.
+
+<dfn element-attr>duration</dfn> gives the duration of the event. This
+specifies the actual duration to be performed, not a notated duration subject
+to interpretation by a performer.
+
+<dfn element-attr>pitch</dfn> gives the pitch of the event expressed as either
+a <a>valid floating-point number</a> providing a frequency in Hertz, or a
+<a>chromatic pitch</a>.
+
+Note: The interpretation of pitch at the event level needs to be much more carefully nailed down.
+Issues include how to control unpitched instruments, the temperament (if any) applied to chromatic pitches,
+and no doubt more.
+
+<dfn element-attr>dynamics</dfn> gives the dynamics of the event expressed in
+a scale from 0 to 127.  <em>This scale needs to be better defined; the existing
+MusicXML definition as "percentage of forte" is hard to interpret clearly.</em>
+
+<dfn element-attr>techniques</dfn> gives a set of performance techniques applying
+to the event as a <a>unordered set of space-separated tokens</a>.
+
+Note: These presumably correspond to articulatory variations of the instrument sound.
+Proper definition remains TBD.
+
+If present, the <dfn element-attr>view</dfn> and <dfn element-attr>graphics</dfn> attributes
+together define a set of SVG graphics in a <{score-view}> element which comprise the visual
+representation corresponding to this event. Other than the fact of this correspondence, no other
+information about the graphics is encoded.
+
+</section>
+
+
+<h4 id="the-performance-mapping-element">The <dfn element><code>performance-mapping</code></dfn> element</h4>
+
+<section dfn-for="performance-mapping">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{performance-audio}>, <{performance-data}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>Zero or more <{performance-region}> elements.</dd>
+    <dt><a>Attributes</a>:</dt>
+  </dl>
+</section>
+
+The <{performance-mapping}> element defines a sequence of piecewise, non-
+overlapping ranges in notated time which correspond to piecewise regions
+within score graphics media views. In essence, it is a timeline that
+correlates a performance with elements within a series of views of the score
+from which that performance is derived.
+
+The <{performance-region}> elements in a mapping provide the detailed
+descriptions of these ranges. The elements must occur in forward time order,
+and the <{performance-region/end}> value of each region must be less than or
+equal to the <{performance-region/start}> value of the next region.
+
+<h4 id="the-performance-region-element">The <dfn element><code>performance-region</code></dfn> element</h4>
+
+<section dfn-for="performance-region">
+
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{performance-mapping}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{performance-region/start}> - start time of the time region being mapped</dd>
+    <dd><{performance-region/end}> - end time of the time region</dd>
+    <dd><{performance-region/view}> - the element ID of the <{score-view}> containing the visual region</dd>
+    <dd><{performance-region/region}> - the definition of the visual region itself</dd>
+    <dd><{performance-region/cursor-start}> - a starting line segment for a cursor</dd>
+    <dd><{performance-region/cursor-end}> - an ending line segment for a cursor</dd>
+  </dl>
+
+The <{performance-region}> element describes the relationship between a
+performance time region expressed in <a>notated time units</a>, and a visual region of a
+score page. This allows consumers to understand the correspondence between
+regions of the graphical score and regions of one or more audio performances.
+
+<dfn element-attr>start</dfn> gives the start of the time region.
+
+<dfn element-attr>end</dfn> gives the end of the time region.
+
+<dfn element-attr>view</dfn> identifies a view of some section of the score, by
+providing the XML ID of its <{score-view}> element.
+
+<dfn element-attr>region</dfn> identifies the visual region for the mapping
+using a fragment identifier in accordance with <a>linking into SVG content</a>.
+The fragment identifier refers to the same document identified by the
+<{performance-region/view}> attribute.
+
+If the pair of attributes <dfn element-attr>cursor-start</dfn> and <dfn
+element-attr>cursor-end</dfn> are defined, then a mapping is defined between
+points in performance time and line segments in the visual region. Each
+attribute supplies an <a>ordered set of space-separated tokens</a> giving the
+cursor's endpoints as successive X/Y pairs in user coordinates applicable to
+the region.
+
+The special tokens `left`, `right`, `top` and `bottom` may be used here to
+define both endpoints of a cursor in terms of the corresponding edge of the
+region's SVG bounding box.
+
+Under this mapping, a time <var>t</var> in the time region corresponds to a
+line segment in the visual region connecting two points given by the respective
+formulae of:
+
+- <var>cursor-start.p1</var> + (<var ignore=''>cursor-end.p1</var> - <var>cursor-start.p1</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).
+- <var>cursor-start.p2</var> + (<var ignore=''>cursor-end.p2</var> - <var>cursor-start.p2</var>) * (<var>t</var> - <em>start</em>) / (<em>end</em> - <em>start</em>).
+
+If either or both of <{performance-region/cursor-start}> and
+<{performance-region/cursor-end}> are undefined, then the entire time region corresponds
+to the entire visual region, with no further decomposition.
+
+Note: To more easily support cursor motion through curved arcs,  non-parallel
+start and end cursors could be considered as segments of two rays whose common
+origin lies at the point of intersection between these cursors. Interpolation
+would then be performed in radial coordinates, smoothly sweeping both the
+angle and the distances from the origin to move the cursor's endpoints along
+roughly circular arcs. Straight-line motion would be merely a special case in which
+the intersection lies at infinity.
+  <dd></dd>
+
+</section>
+
+</section> <!-- end Document structure section -->
+
+<!--  -->
+<section>
+<div data-fill-with="issues-index"></div>
+</section>
