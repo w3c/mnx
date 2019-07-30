@@ -4,8 +4,8 @@ Welcome to the [Music Notation Community Group](https://www.w3.org/community/mus
 
 Quick links:
 
+- Read [MNX-Common by example](https://w3c.github.io/mnx/by-example/) to get a flavor of MNX-Common.
 - Read the [current MNX-Common draft specification](https://w3c.github.io/mnx/specification/common/).
-- Peruse the [MNX-Common examples](https://github.com/w3c/mnx/tree/master/examples).
 - Look at the [MNX-Generic examples](https://joeberkovitz.github.io/gmnx-viewer/).
 
 ## An introduction to MNX-Common
