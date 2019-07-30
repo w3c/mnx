@@ -22,6 +22,7 @@ function doCompile {
     cp -fv specification/common/index.html ./out/specification/common/index.html
     cp -fv specification/generic/index.html ./out/specification/generic/index.html
     cp -fv specification/common/images/* ./out/specification/common/images
+    cp -fvR by-example ./out/by-example
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
