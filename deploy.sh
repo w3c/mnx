@@ -20,7 +20,6 @@ function doCompile {
     cp -fv *.md ./out
     cp -fv examples/* ./out/examples
     cp -fv specification/common/index.html ./out/specification/common
-    cp -fv specification/common/images/* ./out/specification/common/images
     cp -fv specification/generic/index.html ./out/specification/generic
 }
 
