@@ -4,9 +4,10 @@ Welcome to the [Music Notation Community Group](https://www.w3.org/community/mus
 
 Quick links:
 
-- Read [MNX-Common by example](https://w3c.github.io/mnx/by-example/) to get a flavor of MNX-Common.
-- Read the [current MNX-Common draft specification](https://w3c.github.io/mnx/specification/common/).
-- Look at the [MNX-Generic examples](https://joeberkovitz.github.io/gmnx-viewer/).
+- [MNX-Common by example](https://w3c.github.io/mnx/by-example/)
+- [MNX-Common draft specification](https://w3c.github.io/mnx/specification/common/)
+- [MNX-Generic draft specification](https://w3c.github.io/mnx/specification/generic/)
+- [MNX-Generic examples](https://joeberkovitz.github.io/gmnx-viewer/)
 
 ## An introduction to MNX-Common
 
@@ -61,6 +62,6 @@ Finally, we should note there are many music notation systems throughout the wor
 
 The first step in our design was assembling an exhaustive list of roles and use cases for music notation in general. We published this document, [MNX Use Cases](https://w3c.github.io/mnx/use-cases/), in 2017. Not every use case there is meant to be covered by MNX-Common, but this is a solid reference that helps us consider the spectrum of what people do with digital music notation. It also gives us a common language around “roles” such as Composer, Performer or Developer.
 
-Beyond that, we’ve jumped into writing [an early draft specification for MNX-Common](https://w3c.github.io/mnx/overview/). The [MNX GitHub issue tracker](https://github.com/w3c/mnx/issues) collects open issues we need to work through in designing the format.
+Beyond that, we’ve begun designing the MNX-Common format. See [MNX-Common by example](https://w3c.github.io/mnx/by-example/) to get a flavor of MNX-Common. also see our [early draft specification for MNX-Common](https://w3c.github.io/mnx/specification/common/) and [early draft specification for MNX-Generic](https://w3c.github.io/mnx/specification/generic/). The [MNX GitHub issue tracker](https://github.com/w3c/mnx/issues) collects open issues we need to work through in designing the format.
 
 Our plan of action is to start with large questions — such as whether notes are stored by their sounding pitch or written pitch — and progressively nail down the format.
