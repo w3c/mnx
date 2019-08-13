@@ -674,7 +674,7 @@ a {
     <div class="center">
     <h2>Time signatures</h2>
     <img class="exampleimg" src="images/example05.png">
-    <p class="examplenotes">In MusicXML, each part’s <code>&lt;measure&gt;</code> can contain an <code>&lt;attributes&gt;</code> element with an optional <code>&lt;time&gt;</code>. MNX-Common uses a score-wide <code>&lt;global&gt;</code> element. MNX-Common also uses a “microsyntax” — e.g., <code>4/4</code> for common time — for brevity.</p>
+    <p class="examplenotes">In MusicXML, each part’s <code>&lt;measure&gt;</code> can contain an <code>&lt;attributes&gt;</code> element with an optional <code>&lt;time&gt;</code>. MNX-Common uses a score-wide <code>&lt;global&gt;</code> element. MNX-Common also uses a “microsyntax” — e.g., <code>4/4</code> for common time — for brevity. In both cases, you only specify the time signature when it differs from the previous bar.</p>
     <p class="showui">Show:
         <label><input type="radio" name="toggle5" class="switchdiff" data-example="5" value="1" checked> Relevant section</label>
         <label><input type="radio" name="toggle5" class="switchdiff" data-example="5" value="2"> Full document</label>
@@ -706,6 +706,40 @@ a {
                 &lt;/clef&gt;
 </div><div class="diff">            &lt;/attributes&gt;
 </div><div class="nodiff">            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;D&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;E&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;F&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+        &lt;/measure&gt;
+        &lt;measure&gt;
+            &lt;note&gt;
                 &lt;pitch&gt;
                     &lt;step&gt;C&lt;/step&gt;
                     &lt;octave&gt;5&lt;/octave&gt;
@@ -776,6 +810,7 @@ a {
                         &lt;time signature="4/4"/&gt;
                     &lt;/directions&gt;
                 &lt;/measure&gt;
+                &lt;measure/&gt;
                 &lt;measure&gt;
                     &lt;directions&gt;
                         &lt;time signature="2/4"/&gt;
@@ -789,6 +824,22 @@ a {
                         &lt;directions&gt;
                             &lt;clef sign="G" line="2"/&gt;
                         &lt;/directions&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="C5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="D5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="E5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="F5"/&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
                         &lt;event value="/4"&gt;
                             &lt;note pitch="C5"/&gt;
                         &lt;/event&gt;
