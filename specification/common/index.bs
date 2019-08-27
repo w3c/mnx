@@ -2705,10 +2705,10 @@ location given for the start of the spanning direction.
      <dd><a>Span attributes</a></dd>
    </dl>
 
-The <dfn element-attr dfn-for="spans">end</dfn> attribute specifies the
-<a>measure location</a> of the last note that is affected by this octave shift.
+The <code>end</code> attribute specifies the <a>measure location</a> of the
+last note that is affected by this octave shift.
 
-The <dfn element-attr>type</dfn> attribute specifies the type of octave shift:
+The <dfn element-attr dfn-for="octave-shift">type</dfn> attribute specifies the type of octave shift:
 
 <dl dfn-for="octave-shift/type">
   <dt><dfn attr-value><code>-8</code></dfn></dt>
