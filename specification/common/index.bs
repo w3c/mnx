@@ -2691,6 +2691,37 @@ by supplying a <dfn element-attr dfn-for="spans">end</dfn> attribute. This
 measure location must lie within the same run of <a>measure content</a> as the
 location given for the start of the spanning direction.
 
+<h4 id="the-octave-shift-element">The <dfn element><code>octave-shift</code></dfn> element</h4>
+<section dfn-for="octave-shift">
+   <dl class="def">
+     <dt><a>Contexts</a>:</dt>
+     <dd><a>Direction content</a></dd>
+     <dt><a>Content Model</a>:</dt>
+     <dd>None</dd>
+     <dt><a>Attributes</a>:</dt>
+     <dd><{octave-shift/type}> - the type of octave shift</dd>
+     <dt>Attribute Groups:</dt>
+     <dd><a>Direction attributes</a></dd>
+     <dd><a>Span attributes</a></dd>
+   </dl>
+
+The <dfn element-attr dfn-for="spans">end</dfn> attribute specifies the
+<a>measure location</a> of the last note that is affected by this octave shift.
+
+The <dfn element-attr>type</dfn> attribute specifies the type of octave shift:
+
+<dl dfn-for="octave-shift/type">
+  <dt><dfn attr-value><code>-8</code></dfn></dt>
+  <dd>8va (notes are rendered down an octave from their true pitched values)</dd>
+  <dt><dfn attr-value><code>8</code></dfn></dt>
+  <dd>8ba (notes are rendered up an octave from their true pitched values)</dd>
+  <dt><dfn attr-value><code>-15</code></dfn></dt>
+  <dd>15ma (notes are rendered down two octaves from their true pitched values)</dd>
+  <dt><dfn attr-value><code>15</code></dfn></dt>
+  <dd>15ma bassa (notes are rendered up two octaves from their true pitched values)</dd>
+</dl>
+</section>
+
 <h4 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h4>
 <section dfn-for="slur">
 </section>
