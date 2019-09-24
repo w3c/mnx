@@ -2693,6 +2693,18 @@ location given for the start of the spanning direction.
 
 <h4 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h4>
 <section dfn-for="slur">
+
+The <code>end</code> attribute specifies the <a>measure location</a> of the
+last note within the slur.
+
+The <dfn element-attr dfn-for="slur">side</dfn> attribute specifies the slur's side:
+
+<dl dfn-for="slur/side">
+  <dt><dfn attr-value><code>up</code></dfn></dt>
+  <dd>Above the notes</dd>
+  <dt><dfn attr-value><code>down</code></dfn></dt>
+  <dd>Below the notes</dd>
+</dl>
 </section>
 
 <h4 id="the-wedge-element">The <dfn element><code>wedge</code></dfn> element</h4>
