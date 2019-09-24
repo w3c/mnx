@@ -2705,6 +2705,11 @@ location given for the start of the spanning direction.
      <dd><a>Span attributes</a></dd>
    </dl>
 
+An octave shift, traditionally notated with a marking such as "8va",
+tells a musician that the affected note(s) have been shifted a
+number of octaves up or down from their normal appearance on the
+staff, for sake of readability.
+
 The <code>end</code> attribute specifies the <a>measure location</a> of the
 last note that is affected by this octave shift.
 
@@ -2712,17 +2717,17 @@ The <dfn element-attr dfn-for="octave-shift">type</dfn> attribute specifies the 
 
 <dl dfn-for="octave-shift/type">
   <dt><dfn attr-value><code>-8</code></dfn></dt>
-  <dd>8va (notes are rendered down an octave from their true pitched values)</dd>
+  <dd>8va (notes are rendered down an octave)</dd>
   <dt><dfn attr-value><code>8</code></dfn></dt>
-  <dd>8vb (notes are rendered up an octave from their true pitched values)</dd>
+  <dd>8vb (notes are rendered up an octave)</dd>
   <dt><dfn attr-value><code>-15</code></dfn></dt>
-  <dd>15ma (notes are rendered down two octaves from their true pitched values)</dd>
+  <dd>15ma (notes are rendered down two octaves)</dd>
   <dt><dfn attr-value><code>15</code></dfn></dt>
-  <dd>15mb (notes are rendered up two octaves from their true pitched values)</dd>
+  <dd>15mb (notes are rendered up two octaves)</dd>
   <dt><dfn attr-value><code>-22</code></dfn></dt>
-  <dd>22ma (notes are rendered down three octaves from their true pitched values)</dd>
+  <dd>22ma (notes are rendered down three octaves)</dd>
   <dt><dfn attr-value><code>22</code></dfn></dt>
-  <dd>22mb (notes are rendered up three octaves from their true pitched values)</dd>
+  <dd>22mb (notes are rendered up three octaves)</dd>
 </dl>
 </section>
 
