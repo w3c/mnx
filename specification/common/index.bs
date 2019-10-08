@@ -2705,6 +2705,13 @@ The <dfn element-attr dfn-for="slur">side</dfn> attribute specifies the slur's s
   <dt><dfn attr-value><code>down</code></dfn></dt>
   <dd>Below the notes</dd>
 </dl>
+
+The <dfn element-attr dfn-for="slur">side-end</dfn> attribute specifies the slur's side
+at the end of the slur, in cases where it differs from its initial side — for example,
+in cross-staff notation. If a <code>slur</code> element has no <code>side-end</code>,
+then the <code>side-end</code> is interpreted to be the same as <code>side</code>.
+<code>side-end</code> has the same allowed values as <code>side</code>.
+
 </section>
 
 <h4 id="the-wedge-element">The <dfn element><code>wedge</code></dfn> element</h4>
