@@ -2694,10 +2694,23 @@ location given for the start of the spanning direction.
 <h4 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h4>
 <section dfn-for="slur">
 
-The <code>end</code> attribute specifies the <a>measure location</a> of the
+The required <code>end</code> attribute specifies the <a>measure location</a> of the
 last note within the slur.
 
-The <dfn element-attr dfn-for="slur">side</dfn> attribute specifies the slur's side:
+The optional <dfn element-attr dfn-for="slur">line-type</dfn> attribute specifies the
+slur's line type:
+
+<dl dfn-for="slur/line-type">
+  <dt><dfn attr-value><code>solid</code></dfn></dt>
+  <dd>Solid line</dd>
+  <dt><dfn attr-value><code>dashed</code></dfn></dt>
+  <dd>Dashed line</dd>
+  <dt><dfn attr-value><code>dotted</code></dfn></dt>
+  <dd>Dotted line</dd>
+</dl>
+
+The optional <dfn element-attr dfn-for="slur">side</dfn> attribute specifies the slur's
+side:
 
 <dl dfn-for="slur/side">
   <dt><dfn attr-value><code>up</code></dfn></dt>
@@ -2706,11 +2719,11 @@ The <dfn element-attr dfn-for="slur">side</dfn> attribute specifies the slur's s
   <dd>Below the notes</dd>
 </dl>
 
-The <dfn element-attr dfn-for="slur">side-end</dfn> attribute specifies the slur's side
-at the end of the slur, in cases where it differs from its initial side — for example,
-in cross-staff notation. If a <code>slur</code> element has no <code>side-end</code>,
-then the <code>side-end</code> is interpreted to be the same as <code>side</code>.
-<code>side-end</code> has the same allowed values as <code>side</code>.
+The optional <dfn element-attr dfn-for="slur">side-end</dfn> attribute specifies the
+slur's side at the end of the slur, in cases where it differs from its initial side —
+for example, in cross-staff notation. If a <code>slur</code> element has no
+<code>side-end</code>, then the <code>side-end</code> is interpreted to be the same as
+<code>side</code>. <code>side-end</code> has the same allowed values as <code>side</code>.
 
 </section>
 
