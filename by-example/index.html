@@ -872,6 +872,162 @@ a {
     </div>
 </section>
 
+<section class="example">
+    <div class="center">
+    <h2>Octave shifts (8va)</h2>
+    <img class="exampleimg" src="images/example-octave.png">
+    <p class="examplenotes">In MusicXML, you put <code>&lt;octave-shift&gt;</code> elements around the notes that are affected by the octave shift; the issue of whether the octave shift affects the first note <em>following</em> the closing <code>&lt;octave-shift&gt;</code> is interpreted differently by different programs.</p>
+    <p class="examplenotes">In MNX-Common, you put a single <code>&lt;octave-shift&gt;</code> element just before the first note it affects. The element’s <code>end</code> attribute specifies the <a href="/mnx/specification/common/#measure-locations">measure location</a> of the <em>last note</em> for which the octave shift applies. In this example, the octave shift’s final note, the C quarter note, has measure location <code>2:1/2</code> (measure index <code>2</code>, <a href="/mnx/specification/common/#common-metrical-position">metrical position</a> one half note into the bar).</p>
+    <p class="examplenotes">In both MusicXML and MNX-Common, pitches for notes within an octave shift are specified taking the octave shift into account (see MNX-Common’s definition of “<a href="/mnx/specification/common/#written-pitches">written pitch</a>”). In this example, the final two pitches are C7 and C6, despite the notes being rendered on the same staff line.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="toggle6" class="switchdiff" data-example="6" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="toggle6" class="switchdiff" data-example="6" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamples6" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <pre><div class="nodiff">&lt;score-partwise version="3.1"&gt;
+    &lt;part-list&gt;
+        &lt;score-part id="P1"&gt;
+            &lt;part-name&gt;Music&lt;/part-name&gt;
+        &lt;/score-part&gt;
+    &lt;/part-list&gt;
+    &lt;part id="P1"&gt;
+        &lt;measure&gt;
+            &lt;attributes&gt;
+                &lt;divisions&gt;256&lt;/divisions&gt;
+                &lt;key&gt;
+                    &lt;fifths&gt;0&lt;/fifths&gt;
+                &lt;/key&gt;
+                &lt;time&gt;
+                    &lt;beats&gt;4&lt;/beats&gt;
+                    &lt;beat-type&gt;4&lt;/beat-type&gt;
+                &lt;/time&gt;
+                &lt;clef&gt;
+                    &lt;sign&gt;G&lt;/sign&gt;
+                    &lt;line&gt;2&lt;/line&gt;
+                &lt;/clef&gt;
+            &lt;/attributes&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;E&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+</div><div class="diff">            &lt;direction&gt;
+                &lt;direction-type&gt;
+                    &lt;octave-shift size="8" type="down"/&gt;
+                &lt;/direction-type&gt;
+            &lt;/direction&gt;
+</div><div class="nodiff">            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;7&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;512&lt;/duration&gt;
+                &lt;type&gt;half&lt;/type&gt;
+            &lt;/note&gt;
+        &lt;/measure&gt;
+        &lt;measure&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;E&lt;/step&gt;
+                    &lt;octave&gt;7&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;512&lt;/duration&gt;
+                &lt;type&gt;half&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;7&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+</div><div class="diff">            &lt;direction&gt;
+                &lt;direction-type&gt;
+                    &lt;octave-shift size="8" type="stop"/&gt;
+                &lt;/direction-type&gt;
+            &lt;/direction&gt;
+</div><div class="nodiff">            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;6&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+        &lt;/measure&gt;
+    &lt;/part&gt;
+&lt;/score-partwise&gt;</div></pre>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <pre><div class="nodiff">&lt;mnx&gt;
+    &lt;score&gt;
+        &lt;mnx-common profile="standard"&gt;
+            &lt;global&gt;
+                &lt;measure&gt;
+                    &lt;directions&gt;
+                        &lt;time signature="4/4"/&gt;
+                    &lt;/directions&gt;
+                &lt;/measure&gt;
+                &lt;measure/&gt;
+            &lt;/global&gt;
+            &lt;part&gt;
+                &lt;part-name&gt;Music&lt;/part-name&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;directions&gt;
+                            &lt;clef sign="G" line="2"/&gt;
+                        &lt;/directions&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="C5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="E5"/&gt;
+                        &lt;/event&gt;
+</div><div class="diff">                        &lt;directions&gt;
+                            &lt;octave-shift type="-8" end="2:1/2" /&gt;
+                        &lt;/directions&gt;
+</div><div class="nodiff">                        &lt;event value="/2"&gt;
+                            &lt;note pitch="C7"/&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;event value="/2"&gt;
+                            &lt;note pitch="E7"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="C7"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="C6"/&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+            &lt;/part&gt;
+        &lt;/mnx-common&gt;
+    &lt;/score&gt;
+&lt;/mnx&gt;</div></pre>
+        </div>
+    </div>
+</section>
+
 <script>
 function toggleDiff(e) {
     var onlyDiff = e.target.value === '1',
