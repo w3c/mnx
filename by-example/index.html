@@ -122,6 +122,12 @@ a {
     <p>For some examples, you can toggle between “Relevant section” and “Full document.” The examples default to “Relevant section,” for clarity, but you can always click “Full document” to view the entire encoding with full context.</p>
 
     <p><strong>IMPORTANT NOTE: The MNX-Common spec is not yet ready for implementation.</strong> MNX-Common is still a work in progress, and we hope you’ll get involved with its development. Does anything look weird in these examples? Hard to parse? Confusing? Potentially ambiguous? We want to hear about it. Make sure you’ve joined the <a href="https://www.w3.org/community/music-notation/">W3C Music Notation Community Group</a>, and post your ideas to <a href="https://github.com/w3c/mnx/issues">our GitHub issue tracker</a>.</p>
+
+    <p>Some notes about these examples:</p>
+    <ul>
+        <li>Note stem directions are generally not encoded in these examples, for brevity. This means the consuming program decides which stem direction to use.</li>
+        <li>Barlines are generally not encoded in these examples. <a href="https://github.com/w3c/mnx/issues/165">We’re currently deciding</a> whether to make them opt-in or opt-out.</li>
+    </ul>
 </section>
 
 <section class="example">
@@ -202,7 +208,6 @@ a {
     <div class="center">
     <h2>Two-bar C major scale</h2>
     <img class="exampleimg" src="images/example02.png">
-    <p class="examplenotes">The stem directions are not encoded here. This means the consuming program decides which stem direction to use.</p>
     </div>
     <div id="markupexamples2" class="markupexamples">
         <div class="markupexample">
