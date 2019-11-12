@@ -1267,7 +1267,7 @@ tempo indications.
   </measure>
   <measure index="2"/>
   <measure index="3"/>
-  <measure index="4" barline="final"/>
+  <measure index="4"/>
 </global>
 ```
 </div>
@@ -1295,7 +1295,7 @@ conflicting definitions.
   </measure>
   <measure index="2"/>
   <measure index="3"/>
-  <measure index="4" barline="final"/>
+  <measure index="4"/>
 </global>
 <global parts="p3 p4">
   <measure index="1">
@@ -1304,7 +1304,7 @@ conflicting definitions.
     </directions>
   </measure>
   <measure index="2"/>
-  <measure index="3" barline="final"/>
+  <measure index="3"/>
 </global>
 <part id="p1">...</part>
 <part id="p2">...</part>
@@ -1414,6 +1414,11 @@ for the barline drawn at the end of the measure. Allowed values include:
   <dd><dfn attr-value>short</dfn></dd>
   <dd><dfn attr-value>none</dfn></dd>
 </dl>
+
+If <{barline}> is not given, then the barline should be interpreted as follows:
+
+  1. If the measure is the last in the document, use <{light-heavy}>.
+  2. Otherwise, use <{regular}>.
 
 The following example shows both direction content and a single-voice sequence
 with two monophonic half notes:
