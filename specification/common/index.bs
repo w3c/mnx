@@ -2438,6 +2438,46 @@ Examples:
 
 </section>
 
+<h4 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h4>
+<section dfn-for="slur">
+
+The required <code>target</code> attribute specifies the ID of the slur's end note.
+This ID must exist in the document and must identify a <code>note</code>.
+
+The optional <dfn element-attr dfn-for="slur">line-type</dfn> attribute specifies the
+slur's line type:
+
+<dl dfn-for="slur/line-type">
+  <dt><dfn attr-value><code>solid</code></dfn></dt>
+  <dd>Solid line</dd>
+  <dt><dfn attr-value><code>dashed</code></dfn></dt>
+  <dd>Dashed line</dd>
+  <dt><dfn attr-value><code>dotted</code></dfn></dt>
+  <dd>Dotted line</dd>
+</dl>
+
+The optional <dfn element-attr dfn-for="slur">side</dfn> attribute specifies the slur's
+side:
+
+<dl dfn-for="slur/side">
+  <dt><dfn attr-value><code>up</code></dfn></dt>
+  <dd>Above the notes</dd>
+  <dt><dfn attr-value><code>down</code></dfn></dt>
+  <dd>Below the notes</dd>
+</dl>
+
+The optional <dfn element-attr dfn-for="slur">side-end</dfn> attribute specifies the
+slur's side at the end of the slur, in cases where it differs from its initial side —
+for example, in cross-staff notation. If a <code>slur</code> element has no
+<code>side-end</code>, then the <code>side-end</code> is interpreted to be the same as
+<code>side</code>. <code>side-end</code> has the same allowed values as <code>side</code>.
+
+If <code>side</code> is not provided, client code is free to decide the slur
+direction according to its own algorithms.
+
+</section>
+
+
 <h4 id="the-arpeggiate-element">The <dfn element><code>arpeggiate</code></dfn> element</h4>
 <section dfn-for="arpeggiate">
 <em>Needs migration from MusicXML. In this case the liaison target will be constrained to lie within the same event.</em>
@@ -2729,10 +2769,6 @@ The <dfn element-attr dfn-for="octave-shift">type</dfn> attribute specifies the 
   <dt><dfn attr-value><code>22</code></dfn></dt>
   <dd>22mb (notes are rendered up three octaves)</dd>
 </dl>
-</section>
-
-<h4 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h4>
-<section dfn-for="slur">
 </section>
 
 <h4 id="the-wedge-element">The <dfn element><code>wedge</code></dfn> element</h4>
