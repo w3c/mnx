@@ -123,10 +123,10 @@ a {
 
     <p><strong>IMPORTANT NOTE: The MNX-Common spec is not yet ready for implementation.</strong> MNX-Common is still a work in progress, and we hope you’ll get involved with its development. Does anything look weird in these examples? Hard to parse? Confusing? Potentially ambiguous? We want to hear about it. Make sure you’ve joined the <a href="https://www.w3.org/community/music-notation/">W3C Music Notation Community Group</a>, and post your ideas to <a href="https://github.com/w3c/mnx/issues">our GitHub issue tracker</a>.</p>
 
-    <p>Some notes about these examples:</p>
+    <p>Some notes about these MNX-Common examples:</p>
     <ul>
         <li>Note stem directions are generally not encoded in these examples, for brevity. This means the consuming program decides which stem direction to use.</li>
-        <li>Barlines are generally not encoded in these examples. <a href="https://github.com/w3c/mnx/issues/165">We’re currently deciding</a> whether to make them opt-in or opt-out.</li>
+        <li>Barlines are generally not encoded here. In MNX-Common, a standard barline is assumed to exist at the end of each measure, and a final barline is assumed to exist at the end of the last measure in the document. Thus, you only need to encode barlines if they differ from these assumed defaults.</li>
     </ul>
 </section>
 
@@ -186,7 +186,7 @@ a {
             &lt;/global&gt;
             &lt;part&gt;
                 &lt;part-name&gt;Music&lt;/part-name&gt;
-                &lt;measure&gt;
+                &lt;measure barline="regular"&gt;
                     &lt;sequence&gt;
                         &lt;directions&gt;
                             &lt;clef sign="G" line="2"/&gt;
@@ -339,7 +339,7 @@ a {
                         &lt;/event&gt;
                     &lt;/sequence&gt;
                 &lt;/measure&gt;
-                &lt;measure&gt;
+                &lt;measure barline="regular"&gt;
                     &lt;sequence&gt;
                         &lt;event value="/4"&gt;
                             &lt;note pitch="G4"/&gt;
@@ -447,7 +447,7 @@ a {
             &lt;/global&gt;
             &lt;part&gt;
                 &lt;part-name&gt;Music&lt;/part-name&gt;
-                &lt;measure&gt;
+                &lt;measure barline="regular"&gt;
                     &lt;sequence&gt;
                         &lt;directions&gt;
                             &lt;clef sign="G" line="2"/&gt;
@@ -649,7 +649,7 @@ a {
                         &lt;/event&gt;
                     &lt;/sequence&gt;
                 &lt;/measure&gt;
-                &lt;measure&gt;
+                &lt;measure barline="regular"&gt;
                     &lt;sequence&gt;
                         &lt;event value="/1"&gt;
                             &lt;note pitch="C4"/&gt;
