@@ -674,6 +674,177 @@ a {
 
 <section class="example">
     <div class="center">
+    <h2>Ties</h2>
+    <img class="exampleimg" src="images/example-ties.png">
+    <p class="examplenotes">MusicXML uses two elements: <code>&lt;tie&gt;</code> to describe the sound and <code>&lt;tied&gt;</code> to indicate a visual tie in notation. The first note gets <code>type="start"</code>, the second gets <code>type="stop"</code>.</p>
+    <p class="examplenotes">MNX-Common uses a single element: <code>&lt;tied&gt;</code>. Only the first note in the tie encodes this; its <code>target</code> attribute points at the <code>id</code> of the end note.</p>
+    <p class="examplenotes">For a series of notes tied together (e.g., the second tie in the above example), both MusicXML and MNX-Common require you to encode each “inner tie” separately.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="toggleties" class="switchdiff" data-example="ties" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="toggleties" class="switchdiff" data-example="ties" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesties" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <pre><div class="nodiff">&lt;score-partwise version="3.1"&gt;
+    &lt;part-list&gt;
+        &lt;score-part id="P1"&gt;
+            &lt;part-name&gt;Music&lt;/part-name&gt;
+        &lt;/score-part&gt;
+    &lt;/part-list&gt;
+    &lt;part id="P1"&gt;
+        &lt;measure number="1"&gt;
+            &lt;attributes&gt;
+                &lt;divisions&gt;256&lt;/divisions&gt;
+                &lt;key&gt;
+                    &lt;fifths&gt;0&lt;/fifths&gt;
+                &lt;/key&gt;
+                &lt;time&gt;
+                    &lt;beats&gt;4&lt;/beats&gt;
+                    &lt;beat-type&gt;4&lt;/beat-type&gt;
+                &lt;/time&gt;
+                &lt;clef&gt;
+                    &lt;sign&gt;G&lt;/sign&gt;
+                    &lt;line&gt;2&lt;/line&gt;
+                &lt;/clef&gt;
+            &lt;/attributes&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;E&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+</div><div class="diff">                &lt;tie type="start"/&gt;
+</div><div class="nodiff">                &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;tied type="start"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;E&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+</div><div class="diff">                &lt;tie type="stop"/&gt;
+</div><div class="nodiff">                &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;tied type="stop"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+</div><div class="diff">                &lt;tie type="start"/&gt;
+</div><div class="nodiff">                &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;tied type="start"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+        &lt;/measure&gt;
+        &lt;measure number="2"&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;512&lt;/duration&gt;
+</div><div class="diff">                &lt;tie type="stop"/&gt;
+                &lt;tie type="start"/&gt;
+</div><div class="nodiff">                &lt;type&gt;half&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;tied type="start"/&gt;
+                    &lt;tied type="stop"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;512&lt;/duration&gt;
+</div><div class="diff">                &lt;tie type="stop"/&gt;
+</div><div class="nodiff">                &lt;type&gt;half&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;tied type="stop"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+        &lt;/measure&gt;
+    &lt;/part&gt;
+&lt;/score-partwise&gt;</div></pre>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <pre><div class="nodiff">&lt;mnx&gt;
+    &lt;score&gt;
+        &lt;mnx-common profile="standard"&gt;
+            &lt;global&gt;
+                &lt;measure&gt;
+                    &lt;directions&gt;
+                        &lt;time signature="4/4"/&gt;
+                    &lt;/directions&gt;
+                &lt;/measure&gt;
+                &lt;measure/&gt;
+            &lt;/global&gt;
+            &lt;part&gt;
+                &lt;part-name&gt;Music&lt;/part-name&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;directions&gt;
+                            &lt;clef sign="G" line="2"/&gt;
+                        &lt;/directions&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="C5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="E5"&gt;
+</div><div class="diff">                                &lt;tied target="note3"/&gt;
+</div><div class="nodiff">                            &lt;/note&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="E5" id="note3"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="C5"&gt;
+</div><div class="diff">                                &lt;tied target="note5"/&gt;
+</div><div class="nodiff">                            &lt;/note&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;event value="/2"&gt;
+                            &lt;note pitch="C5" id="note5"&gt;
+</div><div class="diff">                                &lt;tied target="note6"/&gt;
+</div><div class="nodiff">                            &lt;/note&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/2"&gt;
+                            &lt;note pitch="C5" id="note6"/&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+            &lt;/part&gt;
+        &lt;/mnx-common&gt;
+    &lt;/score&gt;
+&lt;/mnx&gt;</div></pre>
+        </div>
+    </div>
+</section>
+
+<section class="example">
+    <div class="center">
     <h2>Multiple voices</h2>
     <img class="exampleimg" src="images/example04.png">
     <p class="examplenotes">In MusicXML, parsers need to keep track of an internal position; this example uses <code>&lt;backup&gt;</code> to move the internal position back to <code>0</code> to begin the second voice. In MNX-Common, voices are explicitly grouped within <code>&lt;sequence&gt;</code> elements.</p>
