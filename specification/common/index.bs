@@ -2443,11 +2443,68 @@ Examples:
 
 </section>
 
+<h4 id="the-arpeggiate-element">The <dfn element><code>arpeggiate</code></dfn> element</h4>
+<section dfn-for="arpeggiate">
+<em>Needs migration from MusicXML. In this case the liaison target will be constrained to lie within the same event.</em>
+</section>
+
+<h4 id="the-glissando-element">The <dfn element><code>glissando</code></dfn> element</h4>
+<section dfn-for="glissando">
+<em>Needs migration from MusicXML.</em>
+</section>
+
+<h4 id="the-slide-element">The <dfn element><code>slide</code></dfn> element</h4>
+<section dfn-for="slide">
+<em>Needs migration from MusicXML.</em>
+</section>
+
+<h4 id="the-bend-element">The <dfn element><code>bend</code></dfn> element</h4>
+<section dfn-for="bend">
+<em>Needs migration from MusicXML, and probably some simplification and better handling of pre-bends.</em>
+</section>
+
+<h4 id="the-hammer-on-element">The <dfn element><code>hammer-on</code></dfn> element</h4>
+<section dfn-for="hammer-on">
+<em>Needs migration from MusicXML.</em>
+</section>
+
+<h4 id="the-pull-off-element">The <dfn element><code>pull-off</code></dfn> element</h4>
+<section dfn-for="pull-off">
+<em>Needs migration from MusicXML.</em>
+</section>
+
+<h3 id="common-event-liaison-content">Event liaison content</h3>
+
+<dfn>Event liaison content</dfn> comprises elements that describe the liaison or connection
+between a single event and some other event.
+
+<h4 id="common-event-liaison-attributes">Event liaison attributes</h4>
+
+Event liaison elements share a set of common <dfn>event liaison attributes</dfn> in an attribute group.
+
+  <dl class="def">
+    <dt><a>Attributes</a>:</dt>
+    <dd><{event-liaisons/target}> - the element ID of the event at which the liaison ends</dd>
+  </dl>
+
 <h4 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h4>
 <section dfn-for="slur">
 
-The required <code>target</code> attribute specifies the ID of the slur's end note.
-This ID must exist in the document and must identify a <code>note</code>.
+The required <code>target</code> attribute specifies the ID of the slur's end event.
+This ID must exist in the document and must identify an <code>event</code>.
+
+The optional <dfn element-attr dfn-for="slur">start-note</dfn> attribute specifies the
+element ID of the specific note at which this slur starts. This note must be within
+the <code>event</code> that contains this <code>slur</code>. For example, you can use
+<code>start-note</code> to encode which specific note, within a chord, a slur is intended
+to affect, in cases when an engraving has multiple slurs affecting the same <code>event</code>.
+
+The optional <dfn element-attr dfn-for="slur">end-note</dfn> attribute specifies the
+element ID of the specific note at which this slur ends. This note must be within
+the <code>event</code> specified by the slur's <code>target</code> attribute.
+For example, you can use <code>end-note</code> to encode which specific note, within a chord,
+a slur is intended to affect, in cases when an engraving has multiple slurs affecting
+the same <code>event</code>.
 
 The optional <dfn element-attr dfn-for="slur">line-type</dfn> attribute specifies the
 slur's line type:
@@ -2481,38 +2538,6 @@ If <code>side</code> is not provided, client code is free to decide the slur
 direction according to its own algorithms.
 
 </section>
-
-
-<h4 id="the-arpeggiate-element">The <dfn element><code>arpeggiate</code></dfn> element</h4>
-<section dfn-for="arpeggiate">
-<em>Needs migration from MusicXML. In this case the liaison target will be constrained to lie within the same event.</em>
-</section>
-
-<h4 id="the-glissando-element">The <dfn element><code>glissando</code></dfn> element</h4>
-<section dfn-for="glissando">
-<em>Needs migration from MusicXML.</em>
-</section>
-
-<h4 id="the-slide-element">The <dfn element><code>slide</code></dfn> element</h4>
-<section dfn-for="slide">
-<em>Needs migration from MusicXML.</em>
-</section>
-
-<h4 id="the-bend-element">The <dfn element><code>bend</code></dfn> element</h4>
-<section dfn-for="bend">
-<em>Needs migration from MusicXML, and probably some simplification and better handling of pre-bends.</em>
-</section>
-
-<h4 id="the-hammer-on-element">The <dfn element><code>hammer-on</code></dfn> element</h4>
-<section dfn-for="hammer-on">
-<em>Needs migration from MusicXML.</em>
-</section>
-
-<h4 id="the-pull-off-element">The <dfn element><code>pull-off</code></dfn> element</h4>
-<section dfn-for="pull-off">
-<em>Needs migration from MusicXML.</em>
-</section>
-
 
 <h3 id="common-direction-content">Direction content</h3>
 

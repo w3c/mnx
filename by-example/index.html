@@ -1209,7 +1209,7 @@ a {
     <h2>Slurs</h2>
     <img class="exampleimg" src="images/slurs.png">
     <p class="examplenotes">In MusicXML, you put <code>&lt;slur&gt;</code> elements within the first and last notes in the slur. The first has <code>type=start</code> and the last has <code>type=stop</code>. Use the <code>placement</code> attribute to specify whether the slur is above or below the notes.</p>
-    <p class="examplenotes">In MNX-Common, you put a single <code>&lt;slur&gt;</code> element inside the slur’s first note. The element’s <code>target</code> attribute specifies the ID of the last note in the slur. (Every <code>&lt;note&gt;</code> element can have an optional ID.) Use the <code>side</code> attribute to specify whether the slur is above or below.</p>
+    <p class="examplenotes">In MNX-Common, you put a single <code>&lt;slur&gt;</code> element inside the slur’s first <code>&lt;event&gt;</code>. The element’s <code>target</code> attribute specifies the ID of the last event in the slur. (Every <code>&lt;event&gt;</code> element can have an optional ID.) Use the <code>side</code> attribute to specify whether the slur is above or below.</p>
     <p class="showui">Show:
         <label><input type="radio" name="toggleslurs" class="switchdiff" data-example="slurs" value="1" checked> Relevant section</label>
         <label><input type="radio" name="toggleslurs" class="switchdiff" data-example="slurs" value="2"> Full document</label>
@@ -1343,36 +1343,34 @@ a {
                             &lt;clef sign="G" line="2"/&gt;
                         &lt;/directions&gt;
                         &lt;event value="/4"&gt;
-                            &lt;note pitch="C5"&gt;
-</div><div class="diff">                                &lt;slur side="up" target="note4" /&gt;
-</div><div class="nodiff">                            &lt;/note&gt;
-                        &lt;/event&gt;
+                            &lt;note pitch="C5"/&gt;
+</div><div class="diff">                            &lt;slur side="up" target="event4" /&gt;
+</div><div class="nodiff">                        &lt;/event&gt;
                         &lt;event value="/4"&gt;
                             &lt;note pitch="D5"/&gt;
                         &lt;/event&gt;
                         &lt;event value="/4"&gt;
                             &lt;note pitch="E5"/&gt;
                         &lt;/event&gt;
-                        &lt;event value="/4"&gt;
-                            &lt;note id="note4" pitch="C5"/&gt;
+                        &lt;event value="/4" id="event4"&gt;
+                            &lt;note pitch="C5"/&gt;
                         &lt;/event&gt;
                     &lt;/sequence&gt;
                 &lt;/measure&gt;
                 &lt;measure&gt;
                     &lt;sequence&gt;
                         &lt;event value="/4"&gt;
-                            &lt;note pitch="G4"&gt;
-</div><div class="diff">                                &lt;slur side="down" target="note8" /&gt;
-</div><div class="nodiff">                            &lt;/note&gt;
-                        &lt;/event&gt;
+                            &lt;note pitch="G4"/&gt;
+</div><div class="diff">                            &lt;slur side="down" target="event8" /&gt;
+</div><div class="nodiff">                        &lt;/event&gt;
                         &lt;event value="/4"&gt;
                             &lt;note pitch="A4"/&gt;
                         &lt;/event&gt;
                         &lt;event value="/4"&gt;
                             &lt;note pitch="G4"/&gt;
                         &lt;/event&gt;
-                        &lt;event value="/4"&gt;
-                            &lt;note id="note8" pitch="E4"/&gt;
+                        &lt;event value="/4" id="event8"&gt;
+                            &lt;note pitch="E4"/&gt;
                         &lt;/event&gt;
                     &lt;/sequence&gt;
                 &lt;/measure&gt;
@@ -1388,7 +1386,8 @@ a {
     <div class="center">
     <h2>Slurs (for chords)</h2>
     <img class="exampleimg" src="images/slurchords.png">
-    <p class="examplenotes">In both MusicXML and MNX-Common, if the start and/or end points of a slur are chords, then the slur markup goes inside the first note of the chord.</p>
+    <p class="examplenotes">In MusicXML, if the start and/or end points of a slur are chords, then the slur markup goes inside the first note of the chord.</p>
+    <p class="examplenotes">In MNX-Common, the slur is attached to the <code>&lt;event&gt;</code>, not to the <code>&lt;note&gt;</code>.</p>
     <p class="showui">Show:
         <label><input type="radio" name="toggleslurchords" class="switchdiff" data-example="slurchords" value="1" checked> Relevant section</label>
         <label><input type="radio" name="toggleslurchords" class="switchdiff" data-example="slurchords" value="2"> Full document</label>
