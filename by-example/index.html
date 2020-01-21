@@ -2131,7 +2131,7 @@ a {
     <h2>Slurs (incomplete slurs)</h2>
     <img class="exampleimg" src="images/slurincomplete.png">
     <p class="examplenotes">In both MusicXML and MNX-Common, slurs aren’t required to end on specific notes. For “incomplete” slurs like this, the two formats have different approaches.</p>
-    <p class="examplenotes">With MusicXML’s graphical approach, use two <code>&lt;slur:&gt;</code> elements within the same note — one with <code>type="start"</code> and the other with <code>type="start"</code>. Then use the <code>default-x</code> and <code>default-y</code> attributes to position the slur accordingly.</p>
+    <p class="examplenotes">With MusicXML’s graphical approach, use two <code>&lt;slur&gt;</code> elements within the same note — one with <code>type="start"</code> and the other with <code>type="start"</code>. Then use the <code>default-x</code> and <code>default-y</code> attributes to position the slur accordingly.</p>
     <p class="examplenotes">With MNX-Common’s semantic approach, use <code>location="incoming"</code> or <code>location="outgoing"</code> on the note to which the slur is attached.</p>
     <p class="showui">Show:
         <label><input type="radio" name="toggleslurincomplete" class="switchdiff" data-example="slurincomplete" value="1" checked> Relevant section</label>
