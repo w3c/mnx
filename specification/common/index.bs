@@ -2473,6 +2473,96 @@ Examples:
 <em>Needs migration from MusicXML.</em>
 </section>
 
+<h3 id="common-event-liaison-content">Event liaison content</h3>
+
+<dfn>Event liaison content</dfn> comprises elements that describe the liaison or connection
+between a single event and some other event.
+
+<h4 id="common-event-liaison-attributes">Event liaison attributes</h4>
+
+Event liaison elements share a set of common <dfn>event liaison attributes</dfn> in an attribute group.
+
+  <dl class="def">
+    <dt><a>Attributes</a>:</dt>
+    <dd><{event-liaisons/target}> - (optional) the element ID of the event at which the liaison ends</dd>
+  </dl>
+
+<h4 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h4>
+<section dfn-for="slur">
+
+If the <{event-liaisons/target}> attribute is provided, it must specify the ID of the
+slur's end event. This ID must exist in the document and must identify an
+<code>event</code>.
+
+If <{event-liaisons/target}> is not provided, the slur does not connect to a
+particular destination event. In this case, the <dfn element-attr>location</dfn>
+attribute may be used to specify the <a>measure location</a> of the other end
+of the slur.
+
+The value of <{slur/location}> may lie either before or after the slur's event,
+or it may use the special values <{slur/location/incoming}> or <{slur/location/outgoing}>.
+The handling is as follows:
+
+- If the location precedes the start of the current event, this signifies a slur
+    starting at the given location and ending on the current event.
+
+- If the location occurs after the start of the current event, this signifies a slur
+    starting at the current event and ending at the given location.
+
+- A value of <dfn attr-value for="slur/location">incoming</dfn> places the start location
+    at a conventionally short distance before the current event, and ends on the current event.
+
+- A value of <dfn attr-value for="slur/location">outgoing</dfn> starts on the current event,
+    and places the end location at a conventionally short distance after the current event.
+
+If neither <{event-liaisons/target}> nor <{slur/location}> is given, the effect is as if
+<{slur/location/outgoing}> was specified.
+
+The optional <dfn element-attr dfn-for="slur">start-note</dfn> attribute specifies the
+element ID of the specific note at which this slur starts. This note must be within
+the <code>event</code> that contains this <code>slur</code>. For example, you can use
+<code>start-note</code> to encode which specific note, within a chord, a slur is intended
+to affect, in cases when an engraving has multiple slurs affecting the same <code>event</code>.
+
+The optional <dfn element-attr dfn-for="slur">end-note</dfn> attribute specifies the
+element ID of the specific note at which this slur ends. This note must be within
+the <code>event</code> specified by the slur's <code>target</code> attribute.
+For example, you can use <code>end-note</code> to encode which specific note, within a chord,
+a slur is intended to affect, in cases when an engraving has multiple slurs affecting
+the same <code>event</code>.
+
+The optional <dfn element-attr dfn-for="slur">line-type</dfn> attribute specifies the
+slur's line type:
+
+<dl dfn-for="slur/line-type">
+  <dt><dfn attr-value><code>solid</code></dfn></dt>
+  <dd>Solid line</dd>
+  <dt><dfn attr-value><code>dashed</code></dfn></dt>
+  <dd>Dashed line</dd>
+  <dt><dfn attr-value><code>dotted</code></dfn></dt>
+  <dd>Dotted line</dd>
+</dl>
+
+The optional <dfn element-attr dfn-for="slur">side</dfn> attribute specifies the slur's
+side:
+
+<dl dfn-for="slur/side">
+  <dt><dfn attr-value><code>up</code></dfn></dt>
+  <dd>Above the notes</dd>
+  <dt><dfn attr-value><code>down</code></dfn></dt>
+  <dd>Below the notes</dd>
+</dl>
+
+The optional <dfn element-attr dfn-for="slur">side-end</dfn> attribute specifies the
+slur's side at the end of the slur, in cases where it differs from its initial side —
+for example, in cross-staff notation. If a <code>slur</code> element has no
+<code>side-end</code>, then the <code>side-end</code> is interpreted to be the same as
+<code>side</code>. <code>side-end</code> has the same allowed values as <code>side</code>.
+
+If <code>side</code> is not provided, client code is free to decide the slur
+direction according to its own algorithms.
+
+</section>
 
 <h3 id="common-direction-content">Direction content</h3>
 
@@ -2734,10 +2824,6 @@ The <dfn element-attr dfn-for="octave-shift">type</dfn> attribute specifies the 
   <dt><dfn attr-value><code>22</code></dfn></dt>
   <dd>22mb (notes are rendered up three octaves)</dd>
 </dl>
-</section>
-
-<h4 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h4>
-<section dfn-for="slur">
 </section>
 
 <h4 id="the-wedge-element">The <dfn element><code>wedge</code></dfn> element</h4>

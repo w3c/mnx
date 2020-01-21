@@ -152,6 +152,10 @@ a {
         <li><a href="#ties">Ties</a></li>
         <li><a href="#voices">Multiple voices</a></li>
         <li><a href="#octaves">Octave shifts (8va)</a></li>
+        <li><a href="#slurs">Slurs</a></li>
+        <li><a href="#slurchords">Slurs (for chords)</a></li>
+        <li><a href="#slurnotes">Slurs (targeting specific notes)</a></li>
+        <li><a href="#slurincomplete">Slurs (incomplete slurs)</a></li>
     </ul>
 </section>
 
@@ -1614,6 +1618,605 @@ a {
                         &lt;event value="/4"&gt;
                             &lt;note pitch="C6"/&gt;
                         &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+            &lt;/part&gt;
+        &lt;/mnx-common&gt;
+    &lt;/score&gt;
+&lt;/mnx&gt;</div></pre>
+        </div>
+    </div>
+</section>
+
+<section id="slurs" class="example">
+    <div class="center">
+    <h2>Slurs</h2>
+    <img class="exampleimg" src="images/slurs.png">
+    <p class="examplenotes">In MusicXML, you put <code>&lt;slur&gt;</code> elements within the first and last notes in the slur. The first has <code>type=start</code> and the last has <code>type=stop</code>. Use the <code>placement</code> attribute to specify whether the slur is above or below the notes.</p>
+    <p class="examplenotes">In MNX-Common, you put a single <code>&lt;slur&gt;</code> element inside the slur’s first <code>&lt;event&gt;</code>. The element’s <code>target</code> attribute specifies the ID of the last event in the slur. (Every <code>&lt;event&gt;</code> element can have an optional ID.) Use the <code>side</code> attribute to specify whether the slur is above or below.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="toggleslurs" class="switchdiff" data-example="slurs" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="toggleslurs" class="switchdiff" data-example="slurs" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesslurs" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <pre><div class="nodiff">&lt;score-partwise version="3.1"&gt;
+    &lt;part-list&gt;
+        &lt;score-part id="P1"&gt;
+            &lt;part-name&gt;Music&lt;/part-name&gt;
+        &lt;/score-part&gt;
+    &lt;/part-list&gt;
+    &lt;part id="P1"&gt;
+        &lt;measure number="1"&gt;
+            &lt;attributes&gt;
+                &lt;divisions&gt;256&lt;/divisions&gt;
+                &lt;key&gt;
+                    &lt;fifths&gt;0&lt;/fifths&gt;
+                &lt;/key&gt;
+                &lt;time&gt;
+                    &lt;beats&gt;4&lt;/beats&gt;
+                    &lt;beat-type&gt;4&lt;/beat-type&gt;
+                &lt;/time&gt;
+                &lt;clef&gt;
+                    &lt;sign&gt;G&lt;/sign&gt;
+                    &lt;line&gt;2&lt;/line&gt;
+                &lt;/clef&gt;
+            &lt;/attributes&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;slur number="1" placement="above" type="start"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;D&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;E&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;slur number="1" type="stop"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+        &lt;/measure&gt;
+        &lt;measure number="2"&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;G&lt;/step&gt;
+                    &lt;octave&gt;4&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;slur number="1" placement="below" type="start"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;A&lt;/step&gt;
+                    &lt;octave&gt;4&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;G&lt;/step&gt;
+                    &lt;octave&gt;4&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;E&lt;/step&gt;
+                    &lt;octave&gt;4&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;slur number="1" type="stop"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+        &lt;/measure&gt;
+    &lt;/part&gt;
+&lt;/score-partwise&gt;</div></pre>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <pre><div class="nodiff">&lt;mnx&gt;
+    &lt;score&gt;
+        &lt;mnx-common profile="standard"&gt;
+            &lt;global&gt;
+                &lt;measure&gt;
+                    &lt;directions&gt;
+                        &lt;time signature="4/4"/&gt;
+                    &lt;/directions&gt;
+                &lt;/measure&gt;
+                &lt;measure/&gt;
+            &lt;/global&gt;
+            &lt;part&gt;
+                &lt;part-name&gt;Music&lt;/part-name&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;directions&gt;
+                            &lt;clef sign="G" line="2"/&gt;
+                        &lt;/directions&gt;
+                        &lt;event value="/4" id="event1"&gt;
+                            &lt;note pitch="C5"/&gt;
+</div><div class="diff">                            &lt;slur side="up" target="event4" /&gt;
+</div><div class="nodiff">                        &lt;/event&gt;
+                        &lt;event value="/4" id="event2"&gt;
+                            &lt;note pitch="D5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4" id="event3"&gt;
+                            &lt;note pitch="E5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4" id="event4"&gt;
+                            &lt;note pitch="C5"/&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;event value="/4" id="event5"&gt;
+                            &lt;note pitch="G4"/&gt;
+</div><div class="diff">                            &lt;slur side="down" target="event8" /&gt;
+</div><div class="nodiff">                        &lt;/event&gt;
+                        &lt;event value="/4" id="event6"&gt;
+                            &lt;note pitch="A4"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4" id="event7"&gt;
+                            &lt;note pitch="G4"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4" id="event8"&gt;
+                            &lt;note pitch="E4"/&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+            &lt;/part&gt;
+        &lt;/mnx-common&gt;
+    &lt;/score&gt;
+&lt;/mnx&gt;</div></pre>
+        </div>
+    </div>
+</section>
+
+<section id="slurchords" class="example">
+    <div class="center">
+    <h2>Slurs (for chords)</h2>
+    <img class="exampleimg" src="images/slurchords.png">
+    <p class="examplenotes">In MusicXML, if the start and/or end points of a slur are chords, then the slur markup goes inside the first note of the chord.</p>
+    <p class="examplenotes">In MNX-Common, the slur is attached to the <code>&lt;event&gt;</code>, not to the <code>&lt;note&gt;</code>.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="toggleslurchords" class="switchdiff" data-example="slurchords" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="toggleslurchords" class="switchdiff" data-example="slurchords" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesslurchords" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <pre><div class="nodiff">&lt;score-partwise version="3.1"&gt;
+    &lt;part-list&gt;
+        &lt;score-part id="P1"&gt;
+            &lt;part-name&gt;Music&lt;/part-name&gt;
+        &lt;/score-part&gt;
+    &lt;/part-list&gt;
+    &lt;part id="P1"&gt;
+        &lt;measure number="1"&gt;
+            &lt;attributes&gt;
+                &lt;divisions&gt;256&lt;/divisions&gt;
+                &lt;key&gt;
+                    &lt;fifths&gt;0&lt;/fifths&gt;
+                    &lt;mode&gt;major&lt;/mode&gt;
+                &lt;/key&gt;
+                &lt;time&gt;
+                    &lt;beats&gt;4&lt;/beats&gt;
+                    &lt;beat-type&gt;4&lt;/beat-type&gt;
+                &lt;/time&gt;
+                &lt;staves&gt;1&lt;/staves&gt;
+                &lt;clef&gt;
+                    &lt;sign&gt;G&lt;/sign&gt;
+                    &lt;line&gt;2&lt;/line&gt;
+                &lt;/clef&gt;
+            &lt;/attributes&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;slur number="1" placement="above" type="start"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;chord/&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;E&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;D&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;chord/&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;F&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;E&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;chord/&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;G&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;F&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;slur number="1" type="stop"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;chord/&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;A&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+        &lt;/measure&gt;
+    &lt;/part&gt;
+&lt;/score-partwise&gt;
+</div></pre>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <pre><div class="nodiff">&lt;mnx&gt;
+    &lt;score&gt;
+        &lt;mnx-common profile="standard"&gt;
+            &lt;global&gt;
+                &lt;measure&gt;
+                    &lt;directions&gt;
+                        &lt;time signature="4/4"/&gt;
+                    &lt;/directions&gt;
+                &lt;/measure&gt;
+            &lt;/global&gt;
+            &lt;part&gt;
+                &lt;part-name&gt;Music&lt;/part-name&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;directions&gt;
+                            &lt;clef sign="G" line="2"/&gt;
+                        &lt;/directions&gt;
+                        &lt;event value="/4" id="event1"&gt;
+</div><div class="diff">                            &lt;slur side="up" target="event4" /&gt;
+</div><div class="nodiff">                            &lt;note pitch="C5"/&gt;
+                            &lt;note pitch="E5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4" id="event2"&gt;
+                            &lt;note pitch="D5"/&gt;
+                            &lt;note pitch="F5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4" id="event3"&gt;
+                            &lt;note pitch="E5"/&gt;
+                            &lt;note pitch="G5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4" id="event4"&gt;
+                            &lt;note pitch="F5"/&gt;
+                            &lt;note pitch="A5"/&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+            &lt;/part&gt;
+        &lt;/mnx-common&gt;
+    &lt;/score&gt;
+&lt;/mnx&gt;</div></pre>
+        </div>
+    </div>
+</section>
+
+<section id="slurnotes" class="example">
+    <div class="center">
+    <h2>Slurs (targeting specific notes)</h2>
+    <img class="exampleimg" src="images/slurnotes.png">
+    <p class="examplenotes">In MusicXML, slurs are always defined within <code>&lt;note&gt;</code> elements.</p>
+    <p class="examplenotes">In MNX-Common, a slur can optionally specify which specific notes it’s attached to, using the <code>start-note</code> and <code>end-note</code> attributes. The <code>start-note</code> must be within the event that contains the <code>&lt;slur&gt;</code>, and the <code>end-note</code> must be within the <code>target</code> event.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="toggleslurnotes" class="switchdiff" data-example="slurnotes" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="toggleslurnotes" class="switchdiff" data-example="slurnotes" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesslurnotes" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <pre><div class="nodiff">&lt;score-partwise version="3.1"&gt;
+    &lt;part-list&gt;
+        &lt;score-part id="P1"&gt;
+            &lt;part-name&gt;Music&lt;/part-name&gt;
+        &lt;/score-part&gt;
+    &lt;/part-list&gt;
+    &lt;part id="P1"&gt;
+        &lt;measure number="1"&gt;
+            &lt;attributes&gt;
+                &lt;divisions&gt;256&lt;/divisions&gt;
+                &lt;key&gt;
+                    &lt;fifths&gt;0&lt;/fifths&gt;
+                    &lt;mode&gt;major&lt;/mode&gt;
+                &lt;/key&gt;
+                &lt;time&gt;
+                    &lt;beats&gt;4&lt;/beats&gt;
+                    &lt;beat-type&gt;4&lt;/beat-type&gt;
+                &lt;/time&gt;
+                &lt;staves&gt;1&lt;/staves&gt;
+                &lt;clef&gt;
+                    &lt;sign&gt;G&lt;/sign&gt;
+                    &lt;line&gt;2&lt;/line&gt;
+                &lt;/clef&gt;
+            &lt;/attributes&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;512&lt;/duration&gt;
+                &lt;type&gt;half&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;slur number="1" placement="below" type="start"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;chord/&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;E&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;512&lt;/duration&gt;
+                &lt;type&gt;half&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;slur number="2" placement="above" type="start"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;chord/&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;G&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;512&lt;/duration&gt;
+                &lt;type&gt;half&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;slur number="3" placement="above" type="start"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;B&lt;/step&gt;
+                    &lt;octave&gt;4&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;512&lt;/duration&gt;
+                &lt;type&gt;half&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;slur number="1" type="stop"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;chord/&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;D&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;512&lt;/duration&gt;
+                &lt;type&gt;half&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;slur number="2" type="stop"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;chord/&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;F&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;512&lt;/duration&gt;
+                &lt;type&gt;half&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;slur number="3" type="stop"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+        &lt;/measure&gt;
+    &lt;/part&gt;
+&lt;/score-partwise&gt;</div></pre>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <pre><div class="nodiff">&lt;mnx&gt;
+    &lt;score&gt;
+        &lt;mnx-common profile="standard"&gt;
+            &lt;global&gt;
+                &lt;measure&gt;
+                    &lt;directions&gt;
+                        &lt;time signature="4/4"/&gt;
+                    &lt;/directions&gt;
+                &lt;/measure&gt;
+            &lt;/global&gt;
+            &lt;part&gt;
+                &lt;part-name&gt;Music&lt;/part-name&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;directions&gt;
+                            &lt;clef sign="G" line="2"/&gt;
+                        &lt;/directions&gt;
+                        &lt;event value="/2" id="event1"&gt;
+                            &lt;note pitch="C5" id="note1"/&gt;
+                            &lt;note pitch="E5" id="note2"/&gt;
+                            &lt;note pitch="G5" id="note3"/&gt;
+</div><div class="diff">                            &lt;slur side="down" target="event2"
+                                start-note="note1" end-note="note4"/&gt;
+                            &lt;slur side="up" target="event2"
+                                start-note="note2" end-note="note5"/&gt;
+                            &lt;slur side="up" target="event2"
+                                start-note="note3" end-note="note6"/&gt;
+</div><div class="nodiff">                        &lt;/event&gt;
+                        &lt;event value="/2" id="event2"&gt;
+                            &lt;note pitch="B4" id="note4"/&gt;
+                            &lt;note pitch="D5" id="note5"/&gt;
+                            &lt;note pitch="F5" id="note6"/&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+            &lt;/part&gt;
+        &lt;/mnx-common&gt;
+    &lt;/score&gt;
+&lt;/mnx&gt;</div></pre>
+        </div>
+    </div>
+</section>
+
+<section id="slurincomplete" class="example">
+    <div class="center">
+    <h2>Slurs (incomplete slurs)</h2>
+    <img class="exampleimg" src="images/slurincomplete.png">
+    <p class="examplenotes">In both MusicXML and MNX-Common, slurs aren’t required to end on specific notes. For “incomplete” slurs like this, the two formats have different approaches.</p>
+    <p class="examplenotes">With MusicXML’s graphical approach, use two <code>&lt;slur:&gt;</code> elements within the same note — one with <code>type="start"</code> and the other with <code>type="start"</code>. Then use the <code>default-x</code> and <code>default-y</code> attributes to position the slur accordingly.</p>
+    <p class="examplenotes">With MNX-Common’s semantic approach, use <code>location="incoming"</code> or <code>location="outgoing"</code> on the note to which the slur is attached.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="toggleslurincomplete" class="switchdiff" data-example="slurincomplete" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="toggleslurincomplete" class="switchdiff" data-example="slurincomplete" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesslurincomplete" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <pre><div class="nodiff">&lt;score-partwise version="3.1"&gt;
+    &lt;part-list&gt;
+        &lt;score-part id="P1"&gt;
+            &lt;part-name&gt;Music&lt;/part-name&gt;
+        &lt;/score-part&gt;
+    &lt;/part-list&gt;
+    &lt;part id="P1"&gt;
+        &lt;measure number="1"&gt;
+            &lt;attributes&gt;
+                &lt;divisions&gt;256&lt;/divisions&gt;
+                &lt;key&gt;
+                    &lt;fifths&gt;0&lt;/fifths&gt;
+                    &lt;mode&gt;major&lt;/mode&gt;
+                &lt;/key&gt;
+                &lt;time&gt;
+                    &lt;beats&gt;4&lt;/beats&gt;
+                    &lt;beat-type&gt;4&lt;/beat-type&gt;
+                &lt;/time&gt;
+                &lt;staves&gt;1&lt;/staves&gt;
+                &lt;clef&gt;
+                    &lt;sign&gt;G&lt;/sign&gt;
+                    &lt;line&gt;2&lt;/line&gt;
+                &lt;/clef&gt;
+            &lt;/attributes&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;512&lt;/duration&gt;
+                &lt;type&gt;half&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;D&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;512&lt;/duration&gt;
+                &lt;type&gt;half&lt;/type&gt;
+</div><div class="diff">                &lt;notations&gt;
+                    &lt;slur number="1" placement="above"
+                        type="start" default-x="0" default-y="2"/&gt;
+                    &lt;slur number="1"
+                        type="stop" default-x="40" default-y="4"/&gt;
+                &lt;/notations&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+        &lt;/measure&gt;
+    &lt;/part&gt;
+&lt;/score-partwise&gt;</div></pre>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <pre><div class="nodiff">&lt;mnx&gt;
+    &lt;score&gt;
+        &lt;mnx-common profile="standard"&gt;
+            &lt;global&gt;
+                &lt;measure&gt;
+                    &lt;directions&gt;
+                        &lt;time signature="4/4"/&gt;
+                    &lt;/directions&gt;
+                &lt;/measure&gt;
+            &lt;/global&gt;
+            &lt;part&gt;
+                &lt;part-name&gt;Music&lt;/part-name&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;directions&gt;
+                            &lt;clef sign="G" line="2"/&gt;
+                        &lt;/directions&gt;
+                        &lt;event value="/2"&gt;
+                            &lt;note pitch="C5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/2"&gt;
+                            &lt;note pitch="D5"/&gt;
+</div><div class="diff">                            &lt;slur side="up" location="outgoing"/&gt;
+</div><div class="nodiff">                        &lt;/event&gt;
                     &lt;/sequence&gt;
                 &lt;/measure&gt;
             &lt;/part&gt;
