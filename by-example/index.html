@@ -2131,8 +2131,8 @@ a {
     <h2>Slurs (incomplete slurs)</h2>
     <img class="exampleimg" src="images/slurincomplete.png">
     <p class="examplenotes">In both MusicXML and MNX-Common, slurs aren’t required to end on specific notes. For “incomplete” slurs like this, the two formats have different approaches.</p>
-    <p class="examplenotes">With MusicXML’s graphical approach, use two <code>&lt;slur:&gt;</code> elements within the same note — one with <code>type="start"</code> and the other with <code>type="start"</code>. Then use the <code>default-x</code> attribute to position the slur accordingly.</p>
-    <p class="examplenotes">With MNX-Common’s semantic approach, use <code>location="outgoing"</code> or <code>location="outgoing"</code> on the note to which the slur is attached.</p>
+    <p class="examplenotes">With MusicXML’s graphical approach, use two <code>&lt;slur:&gt;</code> elements within the same note — one with <code>type="start"</code> and the other with <code>type="start"</code>. Then use the <code>default-x</code> and <code>default-y</code> attributes to position the slur accordingly.</p>
+    <p class="examplenotes">With MNX-Common’s semantic approach, use <code>location="incoming"</code> or <code>location="outgoing"</code> on the note to which the slur is attached.</p>
     <p class="showui">Show:
         <label><input type="radio" name="toggleslurincomplete" class="switchdiff" data-example="slurincomplete" value="1" checked> Relevant section</label>
         <label><input type="radio" name="toggleslurincomplete" class="switchdiff" data-example="slurincomplete" value="2"> Full document</label>
@@ -2182,9 +2182,9 @@ a {
                 &lt;type&gt;half&lt;/type&gt;
 </div><div class="diff">                &lt;notations&gt;
                     &lt;slur number="1" placement="above"
-                        type="start" default-x="0"/&gt;
+                        type="start" default-x="0" default-y="2"/&gt;
                     &lt;slur number="1"
-                        type="stop" default-x="40"/&gt;
+                        type="stop" default-x="40" default-y="4"/&gt;
                 &lt;/notations&gt;
 </div><div class="nodiff">            &lt;/note&gt;
         &lt;/measure&gt;
