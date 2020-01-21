@@ -148,6 +148,7 @@ a {
         <li><a href="#chord">Three-note chord and half rest</a></li>
         <li><a href="#timesigs">Time signatures</a></li>
         <li><a href="#keysigs">Key signatures</a></li>
+        <li><a href="#accidentals">Accidentals</a></li>
         <li><a href="#ties">Ties</a></li>
         <li><a href="#voices">Multiple voices</a></li>
         <li><a href="#octaves">Octave shifts (8va)</a></li>
@@ -900,6 +901,187 @@ a {
                         &lt;event value="/1"&gt;
                             &lt;note pitch="C5"/&gt;
                         &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+            &lt;/part&gt;
+        &lt;/mnx-common&gt;
+    &lt;/score&gt;
+&lt;/mnx&gt;</div></pre>
+        </div>
+    </div>
+</section>
+
+<section id="accidentals" class="example">
+    <div class="center">
+    <h2>Accidentals</h2>
+    <img class="exampleimg" src="images/example-accidentals.png">
+    <p class="examplenotes">In MusicXML, use <code>&lt;accidental&gt;</code> within a <code>&lt;note&gt;</code> to indicate a rendered accidental. In MNX-Common, use an <code>accidental</code> attribute on <code>&lt;note&gt;</code>.</p>
+    <p class="examplenotes">In both MusicXML and MNX-Common, accidentals are only encoded if they are to be rendered. Notes whose accidental is implied from the key signature (such as the Bb note in bar 2 of this example), or notes repeating a currently active accidental (such as the second Db in bar 2), are not encoded as having an accidental.</p>
+    <p class="examplenotes">Cautionary accidentals, such as the D natural in bar 3 of this example — that is, accidentals that are not technically required to be displayed and serve as a courtesy to the musician — are not treated any differently than “non-cautionary” accidentals.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="toggleaccidentals" class="switchdiff" data-example="accidentals" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="toggleaccidentals" class="switchdiff" data-example="accidentals" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesaccidentals" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <pre><div class="nodiff">&lt;score-partwise version="3.1"&gt;
+    &lt;part-list&gt;
+        &lt;score-part id="P1"&gt;
+            &lt;part-name&gt;Music&lt;/part-name&gt;
+        &lt;/score-part&gt;
+    &lt;/part-list&gt;
+    &lt;part id="P1"&gt;
+        &lt;measure number="1"&gt;
+            &lt;attributes&gt;
+                &lt;divisions&gt;256&lt;/divisions&gt;
+                &lt;key&gt;
+                    &lt;fifths&gt;-2&lt;/fifths&gt;
+                    &lt;mode&gt;major&lt;/mode&gt;
+                &lt;/key&gt;
+                &lt;time&gt;
+                    &lt;beats&gt;4&lt;/beats&gt;
+                    &lt;beat-type&gt;4&lt;/beat-type&gt;
+                &lt;/time&gt;
+                &lt;clef&gt;
+                    &lt;sign&gt;G&lt;/sign&gt;
+                    &lt;line&gt;2&lt;/line&gt;
+                &lt;/clef&gt;
+            &lt;/attributes&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;F&lt;/step&gt;
+                    &lt;octave&gt;4&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;G&lt;/step&gt;
+                    &lt;octave&gt;4&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;G&lt;/step&gt;
+                    &lt;alter&gt;1&lt;/alter&gt;
+                    &lt;octave&gt;4&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="diff">                &lt;accidental&gt;sharp&lt;/accidental&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;A&lt;/step&gt;
+                    &lt;octave&gt;4&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+        &lt;/measure&gt;
+        &lt;measure number="2"&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;B&lt;/step&gt;
+                    &lt;alter&gt;-1&lt;/alter&gt;
+                    &lt;octave&gt;4&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;512&lt;/duration&gt;
+                &lt;type&gt;half&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;D&lt;/step&gt;
+                    &lt;alter&gt;-1&lt;/alter&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="diff">                &lt;accidental&gt;flat&lt;/accidental&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;D&lt;/step&gt;
+                    &lt;alter&gt;-1&lt;/alter&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+        &lt;/measure&gt;
+        &lt;measure number="3"&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;D&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;1024&lt;/duration&gt;
+                &lt;type&gt;whole&lt;/type&gt;
+</div><div class="diff">                &lt;accidental&gt;natural&lt;/accidental&gt;
+</div><div class="nodiff">            &lt;/note&gt;
+        &lt;/measure&gt;
+    &lt;/part&gt;
+&lt;/score-partwise&gt;</div></pre>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <pre><div class="nodiff">&lt;mnx&gt;
+    &lt;score&gt;
+        &lt;mnx-common profile="standard"&gt;
+            &lt;global&gt;
+                &lt;measure&gt;
+                    &lt;directions&gt;
+                        &lt;time signature="4/4"/&gt;
+                        &lt;key fifths="-2"/&gt;
+                    &lt;/directions&gt;
+                &lt;/measure&gt;
+                &lt;measure/&gt;
+                &lt;measure/&gt;
+            &lt;/global&gt;
+            &lt;part&gt;
+                &lt;part-name&gt;Music&lt;/part-name&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;directions&gt;
+                            &lt;clef sign="G" line="2"/&gt;
+                        &lt;/directions&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="F4"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="G4"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+</div><div class="diff">                            &lt;note pitch="G#4" accidental="sharp"/&gt;
+</div><div class="nodiff">                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="A4"/&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;event value="/2"&gt;
+                            &lt;note pitch="Bb4"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+</div><div class="diff">                            &lt;note pitch="Db5" accidental="flat"/&gt;
+</div><div class="nodiff">                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="Db5"/&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;event value="/1"&gt;
+</div><div class="diff">                            &lt;note pitch="D5" accidental="natural"/&gt;
+</div><div class="nodiff">                        &lt;/event&gt;
                     &lt;/sequence&gt;
                 &lt;/measure&gt;
             &lt;/part&gt;
