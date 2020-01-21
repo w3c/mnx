@@ -147,6 +147,7 @@ a {
         <li><a href="#cscale">Two-bar C major scale</a></li>
         <li><a href="#chord">Three-note chord and half rest</a></li>
         <li><a href="#timesigs">Time signatures</a></li>
+        <li><a href="#keysigs">Key signatures</a></li>
         <li><a href="#ties">Ties</a></li>
         <li><a href="#voices">Multiple voices</a></li>
         <li><a href="#octaves">Octave shifts (8va)</a></li>
@@ -684,6 +685,223 @@ a {
                         &lt;/event&gt;
                         &lt;event value="/4"&gt;
                             &lt;note pitch="D5"/&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+            &lt;/part&gt;
+        &lt;/mnx-common&gt;
+    &lt;/score&gt;
+&lt;/mnx&gt;</div></pre>
+        </div>
+    </div>
+</section>
+
+
+<section id="keysigs" class="example">
+    <div class="center">
+    <h2>Key signatures</h2>
+    <img class="exampleimg" src="images/example-keysigs.png">
+    <p class="examplenotes">In MusicXML, each part’s <code>&lt;measure&gt;</code> can contain an <code>&lt;attributes&gt;</code> element with an optional <code>&lt;key&gt;</code>. MNX-Common uses a score-wide <code>&lt;global&gt;</code> element. In both cases, you only specify the key signature when it differs from the previous bar.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="togglekeysig" class="switchdiff" data-example="keysig" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="togglekeysig" class="switchdiff" data-example="keysig" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexampleskeysig" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <pre><div class="nodiff">&lt;score-partwise version="3.1"&gt;
+    &lt;part-list&gt;
+        &lt;score-part id="P1"&gt;
+            &lt;part-name&gt;Music&lt;/part-name&gt;
+        &lt;/score-part&gt;
+    &lt;/part-list&gt;
+    &lt;part id="P1"&gt;
+        &lt;measure number="1"&gt;
+            &lt;attributes&gt;
+                &lt;divisions&gt;256&lt;/divisions&gt;
+</div><div class="diff">                &lt;key&gt;
+                    &lt;fifths&gt;4&lt;/fifths&gt;
+                &lt;/key&gt;
+</div><div class="nodiff">                &lt;time&gt;
+                    &lt;beats&gt;4&lt;/beats&gt;
+                    &lt;beat-type&gt;4&lt;/beat-type&gt;
+                &lt;/time&gt;
+                &lt;staves&gt;1&lt;/staves&gt;
+                &lt;clef&gt;
+                    &lt;sign&gt;G&lt;/sign&gt;
+                    &lt;line&gt;2&lt;/line&gt;
+                &lt;/clef&gt;
+            &lt;/attributes&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;E&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;F&lt;/step&gt;
+                    &lt;alter&gt;1&lt;/alter&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;G&lt;/step&gt;
+                    &lt;alter&gt;1&lt;/alter&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;E&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+        &lt;/measure&gt;
+        &lt;measure number="2"&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;G&lt;/step&gt;
+                    &lt;alter&gt;1&lt;/alter&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;1024&lt;/duration&gt;
+                &lt;type&gt;whole&lt;/type&gt;
+            &lt;/note&gt;
+        &lt;/measure&gt;
+        &lt;measure number="3"&gt;
+            &lt;attributes&gt;
+</div><div class="diff">                &lt;key&gt;
+                    &lt;fifths&gt;-4&lt;/fifths&gt;
+                &lt;/key&gt;
+</div><div class="nodiff">            &lt;/attributes&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;A&lt;/step&gt;
+                    &lt;alter&gt;-1&lt;/alter&gt;
+                    &lt;octave&gt;4&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;B&lt;/step&gt;
+                    &lt;alter&gt;-1&lt;/alter&gt;
+                    &lt;octave&gt;4&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;A&lt;/step&gt;
+                    &lt;alter&gt;-1&lt;/alter&gt;
+                    &lt;octave&gt;4&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;256&lt;/duration&gt;
+                &lt;type&gt;quarter&lt;/type&gt;
+            &lt;/note&gt;
+        &lt;/measure&gt;
+        &lt;measure number="4"&gt;
+            &lt;note&gt;
+                &lt;pitch&gt;
+                    &lt;step&gt;C&lt;/step&gt;
+                    &lt;octave&gt;5&lt;/octave&gt;
+                &lt;/pitch&gt;
+                &lt;duration&gt;1024&lt;/duration&gt;
+                &lt;type&gt;whole&lt;/type&gt;
+            &lt;/note&gt;
+        &lt;/measure&gt;
+    &lt;/part&gt;
+&lt;/score-partwise&gt;</div></pre>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <pre><div class="nodiff">&lt;mnx&gt;
+    &lt;score&gt;
+        &lt;mnx-common profile="standard"&gt;
+            &lt;global&gt;
+                &lt;measure&gt;
+                    &lt;directions&gt;
+                        &lt;time signature="4/4"/&gt;
+</div><div class="diff">                        &lt;key fifths="4"/&gt;
+</div><div class="nodiff">                    &lt;/directions&gt;
+                &lt;/measure&gt;
+                &lt;measure/&gt;
+                &lt;measure&gt;
+                    &lt;directions&gt;
+</div><div class="diff">                        &lt;key fifths="-4"/&gt;
+</div><div class="nodiff">                    &lt;/directions&gt;
+                &lt;/measure&gt;
+                &lt;measure/&gt;
+            &lt;/global&gt;
+            &lt;part&gt;
+                &lt;part-name&gt;Music&lt;/part-name&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;directions&gt;
+                            &lt;clef sign="G" line="2"/&gt;
+                        &lt;/directions&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="E5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="F#5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="G#5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="E5"/&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;event value="/1"&gt;
+                            &lt;note pitch="G#5"/&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="Ab4"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="Bb4"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="C5"/&gt;
+                        &lt;/event&gt;
+                        &lt;event value="/4"&gt;
+                            &lt;note pitch="Ab4"/&gt;
+                        &lt;/event&gt;
+                    &lt;/sequence&gt;
+                &lt;/measure&gt;
+                &lt;measure&gt;
+                    &lt;sequence&gt;
+                        &lt;event value="/1"&gt;
+                            &lt;note pitch="C5"/&gt;
                         &lt;/event&gt;
                     &lt;/sequence&gt;
                 &lt;/measure&gt;
