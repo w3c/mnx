@@ -46,6 +46,7 @@ a {
     max-width: 34rem;
 }
 .intro,
+.toc,
 .center {
     max-width: 34rem;
     padding-left: 1rem;
@@ -58,6 +59,15 @@ a {
 }
 .example {
     margin-top: 60px;
+}
+.toc {
+    margin-top: 40px;
+    border: 1px solid hsla(0, 0%, 0%, 0.15);
+    border-radius: 6px;
+    padding: 15px;
+}
+.toc ul {
+    list-style: none;
 }
 .markupexamples {
     display: flex;
@@ -130,7 +140,20 @@ a {
     </ul>
 </section>
 
-<section class="example">
+<section class="toc">
+    <h2>List of examples</h2>
+    <ul>
+        <li><a href="#helloworld">“Hello world” (a single middle C whole note)</a></li>
+        <li><a href="#cscale">Two-bar C major scale</a></li>
+        <li><a href="#chord">Three-note chord and half rest</a></li>
+        <li><a href="#timesigs">Time signatures</a></li>
+        <li><a href="#ties">Ties</a></li>
+        <li><a href="#voices">Multiple voices</a></li>
+        <li><a href="#octaves">Octave shifts (8va)</a></li>
+    </ul>
+</section>
+
+<section id="helloworld" class="example">
     <div class="center">
     <h2>“Hello world” (a single middle C whole note)</h2>
     <img class="exampleimg" src="images/example01.png">
@@ -204,7 +227,7 @@ a {
     </div>
 </section>
 
-<section class="example">
+<section id="cscale" class="example">
     <div class="center">
     <h2>Two-bar C major scale</h2>
     <img class="exampleimg" src="images/example02.png">
@@ -363,7 +386,7 @@ a {
     </div>
 </section>
 
-<section class="example">
+<section id="chord" class="example">
     <div class="center">
     <h2>Three-note chord and half rest</h2>
     <img class="exampleimg" src="images/example03.png">
@@ -470,7 +493,7 @@ a {
     </div>
 </section>
 
-<section class="example">
+<section id="timesigs" class="example">
     <div class="center">
     <h2>Time signatures</h2>
     <img class="exampleimg" src="images/example05.png">
@@ -672,7 +695,7 @@ a {
     </div>
 </section>
 
-<section class="example">
+<section id="ties" class="example">
     <div class="center">
     <h2>Ties</h2>
     <img class="exampleimg" src="images/example-ties.png">
@@ -843,7 +866,7 @@ a {
     </div>
 </section>
 
-<section class="example">
+<section id="voices" class="example">
     <div class="center">
     <h2>Multiple voices</h2>
     <img class="exampleimg" src="images/example04.png">
@@ -1048,7 +1071,7 @@ a {
     </div>
 </section>
 
-<section class="example">
+<section id="octaves" class="example">
     <div class="center">
     <h2>Octave shifts (8va)</h2>
     <img class="exampleimg" src="images/example-octave.png">
