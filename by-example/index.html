@@ -154,6 +154,9 @@ a {
         <li><a href="#keysigs">Key signatures</a></li>
         <li><a href="#accidentals">Accidentals</a></li>
         <li><a href="#ties">Ties</a></li>
+        <li><a href="#beams">Beams</a></li>
+        <li><a href="#beamhooks">Beams (with hooks)</a></li>
+        <li><a href="#tuplets">Tuplets</a></li>
         <li><a href="#voices">Multiple voices</a></li>
         <li><a href="#octaves">Octave shifts (8va)</a></li>
         <li><a href="#slurs">Slurs</a></li>
@@ -1289,6 +1292,788 @@ a {
                             <note pitch="C5" id="note6"/>
                         </event>
                     </sequence>
+                </measure>
+            </part>
+        </mnx-common>
+    </score>
+</mnx></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="beams" class="example">
+    <div class="center">
+    <h2>Beams</h2>
+    <img class="exampleimg" src="images/example-beams.png">
+    <p class="examplenotes">In MusicXML, you put one or more <code>&lt;beam&gt;</code> elements within a <code>&lt;note&gt;</code> element — a separate element for each beam. The <code>number</code> attribute specifies whether it’s the outer (eighth-note) beam, versus an inner (e.g., 16th note) beam. Parsers need to keep track of currently open beams and look for the values <code>continue</code> or <code>end</code>.</p>
+    <p class="examplenotes">In MNX-Common, you wrap all a beam’s notes/rests within a single <code>&lt;beamed&gt;</code> element.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="togglebeams" class="switchdiff" data-example="beams" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="togglebeams" class="switchdiff" data-example="beams" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesbeams" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Music</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">begin</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>F</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">end</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">begin</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>F</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">end</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+        </measure>
+        <measure number="2">
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">begin</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <rest/>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>64</duration>
+                <type>16th</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+                <beam number="2">begin</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>64</duration>
+                <type>16th</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+                <beam number="2">end</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">end</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">begin</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">end</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+        </measure>
+    </part>
+</score-partwise></script>
+            </div>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><mnx>
+    <score>
+        <mnx-common profile="standard">
+            <global>
+                <measure>
+                    <directions>
+                        <time signature="4/4"/>
+                    </directions>
+                </measure>
+                <measure/>
+            </global>
+            <part>
+                <part-name>Music</part-name>
+                <measure>
+                    <sequence>
+                        <directions>
+                            <clef sign="G" line="2"/>
+                        </directions>
+</script><script type="application/xml" class="markupxml diff">                        <beamed>
+</script><script type="application/xml" class="markupxml nodiff">                            <event value="/8">
+                                <note pitch="C5"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="D5"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="E5"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="F5"/>
+                            </event>
+</script><script type="application/xml" class="markupxml diff">                        </beamed>
+                        <beamed>
+</script><script type="application/xml" class="markupxml nodiff">                            <event value="/8">
+                                <note pitch="D4"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="E4"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="F4"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="G4"/>
+                            </event>
+                        </beamed>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+</script><script type="application/xml" class="markupxml diff">                        <beamed>
+</script><script type="application/xml" class="markupxml nodiff">                            <event value="/8">
+                                <note pitch="G4"/>
+                            </event>
+                            <event value="/8">
+                                <rest/>
+                            </event>
+                            <event value="/16">
+                                <note pitch="D4"/>
+                            </event>
+                            <event value="/16">
+                                <note pitch="E4"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="G4"/>
+                            </event>
+</script><script type="application/xml" class="markupxml diff">                        </beamed>
+                        <beamed>
+</script><script type="application/xml" class="markupxml nodiff">                            <event value="/8">
+                                <note pitch="E4"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="D4"/>
+                            </event>
+</script><script type="application/xml" class="markupxml diff">                        </beamed>
+</script><script type="application/xml" class="markupxml nodiff">                        <event value="/4">
+                            <note pitch=""/>
+                        </event>
+                    </sequence>
+                </measure>
+            </part>
+        </mnx-common>
+    </score>
+</mnx></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="beamhooks" class="example">
+    <div class="center">
+    <h2>Beams (with hooks)</h2>
+    <img class="exampleimg" src="images/example-beamhooks.png">
+    <p class="examplenotes">In MusicXML, you specify beam hooks using the value <code>"forward hook"</code> or <code>"backward hook"</code> within the <code>&lt;beam&gt;</code> element.</p>
+    <p class="examplenotes">In MNX-Common, there’s no way to specify the direction of beam hooks. Beam hooks are expected to be calculated automatically by software.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="togglebeamhooks" class="switchdiff" data-example="beamhooks" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="togglebeamhooks" class="switchdiff" data-example="beamhooks" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesbeamhooks" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Music</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>64</duration>
+                <type>16th</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">begin</beam>
+                <beam number="2">forward hook</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>64</duration>
+                <type>16th</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">end</beam>
+                <beam number="2">backward hook</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>64</duration>
+                <type>16th</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">begin</beam>
+                <beam number="2">forward hook</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>F</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>64</duration>
+                <type>16th</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">end</beam>
+                <beam number="2">backward hook</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>64</duration>
+                <type>16th</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">begin</beam>
+                <beam number="2">forward hook</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>A</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>64</duration>
+                <type>16th</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">end</beam>
+                <beam number="2">backward hook</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>6</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+        </measure>
+    </part>
+</score-partwise></script>
+            </div>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><mnx>
+    <score>
+        <mnx-common profile="standard">
+            <global>
+                <measure>
+                    <directions>
+                        <time signature="4/4"/>
+                    </directions>
+                </measure>
+            </global>
+            <part>
+                <part-name>Music</part-name>
+                <measure>
+                    <sequence>
+                        <directions>
+                            <clef sign="G" line="2"/>
+                        </directions>
+</script><script type="application/xml" class="markupxml diff">                        <beamed>
+</script><script type="application/xml" class="markupxml nodiff">                            <event value="/16">
+                                <note pitch="C5"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="D5"/>
+                            </event>
+                            <event value="/16">
+                                <note pitch="C5"/>
+                            </event>
+</script><script type="application/xml" class="markupxml diff">                        </beamed>
+                        <beamed>
+</script><script type="application/xml" class="markupxml nodiff">                            <event value="/16">
+                                <note pitch="E5"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="F5"/>
+                            </event>
+                            <event value="/16">
+                                <note pitch="E5"/>
+                            </event>
+</script><script type="application/xml" class="markupxml diff">                        </beamed>
+                        <beamed>
+</script><script type="application/xml" class="markupxml nodiff">                            <event value="/16">
+                                <note pitch="G5"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="A5"/>
+                            </event>
+                            <event value="/16">
+                                <note pitch="G5"/>
+                            </event>
+</script><script type="application/xml" class="markupxml diff">                        </beamed>
+</script><script type="application/xml" class="markupxml nodiff">                        <event value="/4">
+                            <note pitch="C6"/>
+                        </event>
+                    </sequence>
+                </measure>
+            </part>
+        </mnx-common>
+    </score>
+</mnx></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tuplets" class="example">
+    <div class="center">
+    <h2>Tuplets</h2>
+    <img class="exampleimg" src="images/example-tuplets.png">
+    <p class="examplenotes">MusicXML uses two separate concepts: a <code>&lt;time-modification&gt;</code> element to encode the tuplet’s ratio and a <code>&lt;tuplet&gt;</code> element to encode the engraved tuplet itself. These go inside <code>&lt;note&gt;</code> elements. Parsers need to keep track of currently open tuplets and look for the value <code>stop</code>.</p>
+    <p class="examplenotes">MNX-Common uses a single <code>&lt;tuplet&gt;</code> element, which contains the notes or rests therein. The <code>inner</code> attribute encodes the rhythmic duration of the tuplet’s elements as if the tuplet were ignored; the <code>outer</code> attribute encodes the rhythmic duration taking the tuplet’s ratio into account.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="toggletuplets" class="switchdiff" data-example="tuplets" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="toggletuplets" class="switchdiff" data-example="tuplets" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplestuplets" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Music</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>170</duration>
+                <type>quarter</type>
+</script><script type="application/xml" class="markupxml diff">                <time-modification>
+                    <actual-notes>3</actual-notes>
+                    <normal-notes>2</normal-notes>
+                </time-modification>
+                <notations>
+                    <tuplet number="1" type="start"/>
+                </notations>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>85</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <time-modification>
+                    <actual-notes>3</actual-notes>
+                    <normal-notes>2</normal-notes>
+                </time-modification>
+                <notations>
+                    <tuplet number="1" type="stop"/>
+                </notations>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>85</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <time-modification>
+                    <actual-notes>3</actual-notes>
+                    <normal-notes>2</normal-notes>
+                </time-modification>
+                <notations>
+                    <tuplet number="1" type="start"/>
+                </notations>
+</script><script type="application/xml" class="markupxml nodiff">                <beam number="1">begin</beam>
+            </note>
+            <note>
+                <pitch>
+                    <step>F</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>85</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <time-modification>
+                    <actual-notes>3</actual-notes>
+                    <normal-notes>2</normal-notes>
+                </time-modification>
+</script><script type="application/xml" class="markupxml nodiff">                <beam number="1">continue</beam>
+            </note>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>85</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <time-modification>
+                    <actual-notes>3</actual-notes>
+                    <normal-notes>2</normal-notes>
+                </time-modification>
+
+                <notations>
+                    <tuplet number="1" type="stop"/>
+                </notations>
+</script><script type="application/xml" class="markupxml nodiff">                <beam number="1">end</beam>
+            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+        </measure>
+        <measure number="2">
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>170</duration>
+                <type>quarter</type>
+</script><script type="application/xml" class="markupxml diff">                <time-modification>
+                    <actual-notes>6</actual-notes>
+                    <normal-notes>4</normal-notes>
+                </time-modification>
+                <notations>
+                    <tuplet number="1" type="start"/>
+                </notations>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>170</duration>
+                <type>quarter</type>
+</script><script type="application/xml" class="markupxml diff">                <time-modification>
+                    <actual-notes>6</actual-notes>
+                    <normal-notes>4</normal-notes>
+                </time-modification>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>170</duration>
+                <type>quarter</type>
+</script><script type="application/xml" class="markupxml diff">                <time-modification>
+                    <actual-notes>6</actual-notes>
+                    <normal-notes>4</normal-notes>
+                </time-modification>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>170</duration>
+                <type>quarter</type>
+</script><script type="application/xml" class="markupxml diff">                <time-modification>
+                    <actual-notes>6</actual-notes>
+                    <normal-notes>4</normal-notes>
+                </time-modification>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>170</duration>
+                <type>quarter</type>
+</script><script type="application/xml" class="markupxml diff">                <time-modification>
+                    <actual-notes>6</actual-notes>
+                    <normal-notes>4</normal-notes>
+                </time-modification>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>170</duration>
+                <type>quarter</type>
+</script><script type="application/xml" class="markupxml diff">                <time-modification>
+                    <actual-notes>6</actual-notes>
+                    <normal-notes>4</normal-notes>
+                </time-modification>
+                <notations>
+                    <tuplet number="1" type="stop"/>
+                </notations>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+        </measure>
+    </part>
+</score-partwise></script>
+            </div>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><mnx>
+    <score>
+        <mnx-common profile="standard">
+            <global>
+                <measure>
+                    <directions>
+                        <time signature="4/4"/>
+                    </directions>
+                </measure>
+                <measure/>
+            </global>
+            <part>
+                <part-name>Music</part-name>
+                <measure>
+                    <sequence>
+                        <directions>
+                            <clef sign="G" line="2"/>
+                        </directions>
+</script><script type="application/xml" class="markupxml diff">                        <tuplet inner="3/8" outer="1/4">
+</script><script type="application/xml" class="markupxml nodiff">                            <event value="/4">
+                                <note pitch="C5"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="G4"/>
+                            </event>
+</script><script type="application/xml" class="markupxml diff">                        </tuplet>
+                        <tuplet inner="3/8" outer="1/4">
+</script><script type="application/xml" class="markupxml nodiff">                            <beamed>
+                                <event value="/8">
+                                    <note pitch="E4"/>
+                                </event>
+                                <event value="/8">
+                                    <note pitch="F4"/>
+                                </event>
+                                <event value="/8">
+                                    <note pitch="G4"/>
+                                </event>
+                            </beamed>
+</script><script type="application/xml" class="markupxml diff">                        </tuplet>
+</script><script type="application/xml" class="markupxml nodiff">                        <event value="/4">
+                            <note pitch="E5"/>
+                        </event>
+                        <event value="/4">
+                            <note pitch="D5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+</script><script type="application/xml" class="markupxml diff">                        <tuplet inner="6/4" outer="1/1">
+</script><script type="application/xml" class="markupxml nodiff">                            <event value="/4">
+                                <note pitch="C5"/>
+                            </event>
+                            <event value="/4">
+                                <note pitch="D5"/>
+                            </event>
+                            <event value="/4">
+                                <note pitch="C5"/>
+                            </event>
+                            <event value="/4">
+                                <note pitch="G4"/>
+                            </event>
+                            <event value="/4">
+                                <note pitch="E5"/>
+                            </event>
+                            <event value="/4">
+                                <note pitch="C5"/>
+                            </event>
+</script><script type="application/xml" class="markupxml diff">                        </tuplet>
+</script><script type="application/xml" class="markupxml nodiff">                    </sequence>
                 </measure>
             </part>
         </mnx-common>
