@@ -153,6 +153,7 @@ a {
         <li><a href="#timesigs">Time signatures</a></li>
         <li><a href="#keysigs">Key signatures</a></li>
         <li><a href="#accidentals">Accidentals</a></li>
+        <li><a href="#dots">Dotted notes (augmentation dots)</a></li>
         <li><a href="#ties">Ties</a></li>
         <li><a href="#beams">Beams</a></li>
         <li><a href="#beamhooks">Beams (with hooks)</a></li>
@@ -1116,6 +1117,147 @@ a {
                         <event value="/1">
 </script><script type="application/xml" class="markupxml diff">                            <note pitch="D5" accidental="natural"/>
 </script><script type="application/xml" class="markupxml nodiff">                        </event>
+                    </sequence>
+                </measure>
+            </part>
+        </mnx-common>
+    </score>
+</mnx></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="dots" class="example">
+    <div class="center">
+    <h2>Dotted notes (augmentation dots)</h2>
+    <img class="exampleimg" src="images/example-dots.png">
+    <p class="examplenotes">In MusicXML, dotted notes get an extra tag, <code>&lt;dot&gt;</code>, within the <code>&lt;note&gt;</code> element. Each note within a chord must have <code>&lt;dot&gt;</code>.</p>
+    <p class="examplenotes">In MNX-Common, dotted notes are represented by a <code>d</code> within the <code>&lt;event&gt;</code> element’s <code>value</code> attribute. This is part of MNX-Common’s note value <a href="https://w3c.github.io/mnx/specification/common/#note-value-syntax">microsyntax</a>.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="toggledots" class="switchdiff" data-example="dots" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="toggledots" class="switchdiff" data-example="dots" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesdots" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Music</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>384</duration>
+</script><script type="application/xml" class="markupxml diff">                <type>quarter</type>
+                <dot/>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <chord/>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>384</duration>
+</script><script type="application/xml" class="markupxml diff">                <type>quarter</type>
+                <dot/>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>F</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>384</duration>
+</script><script type="application/xml" class="markupxml diff">                <type>quarter</type>
+                <dot/>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <chord/>
+                <pitch>
+                    <step>D</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>384</duration>
+</script><script type="application/xml" class="markupxml diff">                <type>quarter</type>
+                <dot/>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>F</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+            </note>
+        </measure>
+    </part>
+</score-partwise></script>
+            </div>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><mnx>
+    <score>
+        <mnx-common profile="standard">
+            <global>
+                <measure>
+                    <directions>
+                        <time signature="4/4"/>
+                    </directions>
+                </measure>
+            </global>
+            <part>
+                <part-name>Music</part-name>
+                <measure>
+                    <sequence>
+                        <directions>
+                            <clef sign="G" line="2"/>
+                        </directions>
+</script><script type="application/xml" class="markupxml diff">                        <event value="/4d">
+</script><script type="application/xml" class="markupxml nodiff">                            <note pitch="G4"/>
+                            <note pitch="C5"/>
+                        </event>
+                        <event value="/8">
+                            <note pitch="E5"/>
+                        </event>
+</script><script type="application/xml" class="markupxml diff">                        <event value="/4d">
+</script><script type="application/xml" class="markupxml nodiff">                            <note pitch="F4"/>
+                            <note pitch="D5"/>
+                        </event>
+                        <event value="/8">
+                            <note pitch="F5"/>
+                        </event>
                     </sequence>
                 </measure>
             </part>
