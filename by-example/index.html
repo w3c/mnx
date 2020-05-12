@@ -40,6 +40,9 @@ h3 {
 a {
     color: #003569;
 }
+code {
+    white-space: nowrap;
+}
 
 /* Styles */
 .examplenotes {
@@ -118,6 +121,9 @@ a {
 .examplenotes {
     margin: 0 0 15px;
 }
+ul.examplenotes  {
+    margin-left: 1rem;
+}
 .showui { margin: 0 0 15px; }
 .onlydiff .nodiff { font-size: 0; }
 .onlydiff .nodiff:after { content: "..."; font-size: 18px; }
@@ -164,6 +170,7 @@ a {
         <li><a href="#slurchords">Slurs (for chords)</a></li>
         <li><a href="#slurnotes">Slurs (targeting specific notes)</a></li>
         <li><a href="#slurincomplete">Slurs (incomplete slurs)</a></li>
+        <li><a href="#parts">Parts</a></li>
     </ul>
 </section>
 
@@ -3199,6 +3206,304 @@ a {
                             <note pitch="D5"/>
 </script><script type="application/xml" class="markupxml diff">                            <slur side="up" location="outgoing"/>
 </script><script type="application/xml" class="markupxml nodiff">                        </event>
+                    </sequence>
+                </measure>
+            </part>
+        </mnx-common>
+    </score>
+</mnx></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="parts" class="example">
+    <div class="center">
+    <h2>Parts</h2>
+    <img class="exampleimg" src="images/example-parts.png">
+    <p class="examplenotes">MusicXML supports two ways of organizing parts:</p>
+    <ul class="examplenotes">
+        <li>If the top-level element is <code>&lt;score-partwise&gt;</code>, then the markup must contain <code>&lt;part&gt;</code> elements that contain <code>&lt;measure&gt;</code> elements.</li>
+        <li>If the top-level element is <code>&lt;score-timewise&gt;</code>, then the markup must contain <code>&lt;measure&gt;</code> elements that contain <code>&lt;part&gt;</code> elements.</li>
+    </ul>
+    <p class="examplenotes">MNX-Common has only one way, similar to MusicXML’s <code>&lt;score-partwise&gt;</code>. Each <code>&lt;part&gt;</code> contains <code>&lt;measure&gt;</code> elements.</p>
+    <p class="examplenotes">In MusicXML, part metadata such as the title lives within a <code>&lt;part-list&gt;</code> element. In MNX-Common, part metadata goes in the individual <code>&lt;part&gt;</code> element.</p>
+    </div>
+    <div id="markupexamples1" class="markupexamples">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml"><score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Melody</part-name>
+        </score-part>
+        <score-part id="P2">
+            <part-name>Harmony</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <staves>1</staves>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+        </measure>
+        <measure number="2">
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+        </measure>
+    </part>
+    <part id="P2">
+        <measure number="1">
+            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <staves>1</staves>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <rest/>
+                <duration>512</duration>
+                <type>half</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+                <beam number="1">begin</beam>
+            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+                <beam number="1">continue</beam>
+            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+                <beam number="1">continue</beam>
+            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+                <beam number="1">end</beam>
+            </note>
+        </measure>
+        <measure number="2">
+            <note>
+                <rest/>
+                <duration>512</duration>
+                <type>half</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+        </measure>
+    </part>
+</score-partwise></script>
+            </div>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml"><mnx>
+    <score>
+        <mnx-common profile="standard">
+            <global>
+                <measure>
+                    <directions>
+                        <time signature="4/4"/>
+                    </directions>
+                </measure>
+                <measure/>
+            </global>
+            <part>
+                <part-name>Melody</part-name>
+                <measure>
+                    <directions>
+                        <clef line="2" sign="G"/>
+                    </directions>
+                    <sequence>
+                        <event value="/4">
+                            <note pitch="C5"/>
+                        </event>
+                        <event value="/4">
+                            <note pitch="D5"/>
+                        </event>
+                        <event value="/4">
+                            <note pitch="E5"/>
+                        </event>
+                        <event value="/4">
+                            <note pitch="G5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/4">
+                            <note pitch="C5"/>
+                        </event>
+                        <event value="/4">
+                            <note pitch="D5"/>
+                        </event>
+                        <event value="/4">
+                            <note pitch="E5"/>
+                        </event>
+                        <event value="/4">
+                            <note pitch="C5"/>
+                        </event>
+                    </sequence>
+                </measure>
+            </part>
+            <part>
+                <part-name>Harmony</part-name>
+                <measure>
+                    <directions>
+                        <clef line="2" sign="G"/>
+                    </directions>
+                    <sequence>
+                        <event value="/2">
+                            <rest/>
+                        </event>
+                        <beamed>
+                            <event value="/8">
+                                <note pitch="C5"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="D5"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="E5"/>
+                            </event>
+                            <event value="/8">
+                                <note pitch="D5"/>
+                            </event>
+                        </beamed>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/2">
+                            <rest/>
+                        </event>
+                        <event value="/4">
+                            <note pitch="G5"/>
+                        </event>
+                        <event value="/4">
+                            <note pitch="E5"/>
+                        </event>
                     </sequence>
                 </measure>
             </part>
