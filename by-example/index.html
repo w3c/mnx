@@ -171,6 +171,13 @@ ul.examplenotes  {
         <li><a href="#slurnotes">Slurs (targeting specific notes)</a></li>
         <li><a href="#slurincomplete">Slurs (incomplete slurs)</a></li>
         <li><a href="#parts">Parts</a></li>
+        <li><a href="#repeats1">Repeats</a></li>
+        <li><a href="#repeats2">Repeats (with implied start repeat)</a></li>
+        <li><a href="#repeats5">Repeats (more than once repeated)</a></li>
+        <li><a href="#repeats3">Repeats (with alternate endings, simple)</a></li>
+        <li><a href="#repeats4">Repeats (with alternate endings, advanced)</a></li>
+        <li><a href="#jumps1">Jumps (Dal Segno)</a></li>
+        <li><a href="#jumps2">Jumps (D.S. al Fine)</a></li>
     </ul>
 </section>
 
@@ -3503,6 +3510,1067 @@ ul.examplenotes  {
                         </event>
                         <event value="/4">
                             <note pitch="E5"/>
+                        </event>
+                    </sequence>
+                </measure>
+            </part>
+        </mnx-common>
+    </score>
+</mnx></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="repeats1" class="example">
+    <div class="center">
+    <h2>Repeats</h2>
+    <img class="exampleimg" src="images/repeats1.png">
+    <p class="examplenotes">MusicXML uses <code>&lt;bar-style&gt;</code> to represent the visual repeat barline and <code>&lt;repeat&gt;</code> to represent the repeated playback.</p>
+    <p class="examplenotes">MNX-Common has a single <code>&lt;repeat&gt;</code> element to represent both concepts. The <code>&lt;repeat&gt;</code> elements go in the <code>&lt;global&gt;</code> section, in the appropriate bar.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="togglerepeats1" class="switchdiff" data-example="repeats1" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="togglerepeats1" class="switchdiff" data-example="repeats1" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesrepeats1" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Music</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+</script><script type="application/xml" class="markupxml diff">            <barline location="left">
+                <bar-style>heavy-light</bar-style>
+                <repeat direction="forward"/>
+            </barline>
+</script><script type="application/xml" class="markupxml nodiff">            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+</script><script type="application/xml" class="markupxml diff">            <barline location="right">
+                <bar-style>light-heavy</bar-style>
+                <repeat direction="backward"/>
+            </barline>
+</script><script type="application/xml" class="markupxml nodiff">        </measure>
+    </part>
+</score-partwise></script>
+            </div>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><mnx>
+    <score>
+        <mnx-common profile="standard">
+            <global>
+                <measure>
+                    <directions>
+                        <time signature="4/4"/>
+</script><script type="application/xml" class="markupxml diff">                        <repeat type="start"/>
+                        <repeat type="end"/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+            </global>
+            <part>
+                <part-name>Music</part-name>
+                <measure>
+                    <directions>
+                        <clef sign="G" line="2"/>
+                    </directions>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="C5"/>
+                        </event>
+                    </sequence>
+                </measure>
+            </part>
+        </mnx-common>
+    </score>
+</mnx></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="repeats2" class="example">
+    <div class="center">
+    <h2>Repeats (with implied start repeat)</h2>
+    <img class="exampleimg" src="images/repeats2.png">
+    <p class="examplenotes">In both MusicXML and MNX-Common, you can simply leave out the start repeat if it’s at the start of the music.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="togglerepeats2" class="switchdiff" data-example="repeats2" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="togglerepeats2" class="switchdiff" data-example="repeats2" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesrepeats2" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Music</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+</script><script type="application/xml" class="markupxml diff">            <barline location="right">
+                <bar-style>light-heavy</bar-style>
+                <repeat direction="backward"/>
+            </barline>
+</script><script type="application/xml" class="markupxml nodiff">        </measure>
+    </part>
+</score-partwise></script>
+            </div>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><mnx>
+    <score>
+        <mnx-common profile="standard">
+            <global>
+                <measure>
+                    <directions>
+                        <time signature="4/4"/>
+</script><script type="application/xml" class="markupxml diff">                        <repeat type="end"/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+            </global>
+            <part>
+                <part-name>Music</part-name>
+                <measure>
+                    <directions>
+                        <clef sign="G" line="2"/>
+                    </directions>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="C5"/>
+                        </event>
+                    </sequence>
+                </measure>
+            </part>
+        </mnx-common>
+    </score>
+</mnx></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="repeats5" class="example">
+    <div class="center">
+    <h2>Repeats (more than once repeated)</h2>
+    <img class="exampleimg" src="images/repeats5.png">
+    <p class="examplenotes"><em>In this example, the measure is to be performed four times (or “repeated three times,” depending on your perspective).</em></p>
+    <p class="examplenotes">Both MusicXML and MNX-Common use an optional <code>times</code> attribute for specifying the number of times the music within a repeat should be performed.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="togglerepeats5" class="switchdiff" data-example="repeats5" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="togglerepeats5" class="switchdiff" data-example="repeats5" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesrepeats5" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Music</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+            <barline location="right">
+                <bar-style>light-heavy</bar-style>
+</script><script type="application/xml" class="markupxml diff">                <repeat direction="backward" times="4"/>
+</script><script type="application/xml" class="markupxml nodiff">            </barline>
+        </measure>
+    </part>
+</score-partwise></script>
+            </div>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff">
+<mnx>
+    <score>
+        <mnx-common profile="standard">
+            <global>
+                <measure>
+                    <directions>
+                        <time signature="4/4"/>
+</script><script type="application/xml" class="markupxml diff">                        <repeat type="end" times="4"/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+            </global>
+            <part>
+                <part-name>Music</part-name>
+                <measure>
+                    <directions>
+                        <clef sign="G" line="2"/>
+                    </directions>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="C5"/>
+                        </event>
+                    </sequence>
+                </measure>
+            </part>
+        </mnx-common>
+    </score>
+</mnx></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="repeats3" class="example">
+    <div class="center">
+    <h2>Repeats (with alternate endings, simple)</h2>
+    <img class="exampleimg" src="images/repeats3.png">
+    <p class="examplenotes">In both MusicXML and MNX-Common, each alternate ending is represented with two <code>&lt;ending&gt;</code> elements: one to start and the other to stop.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="togglerepeats3" class="switchdiff" data-example="repeats3" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="togglerepeats3" class="switchdiff" data-example="repeats3" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesrepeats3" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Music</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+</script><script type="application/xml" class="markupxml diff">            <barline location="left">
+                <bar-style>heavy-light</bar-style>
+                <repeat direction="forward"/>
+            </barline>
+</script><script type="application/xml" class="markupxml nodiff">            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+        </measure>
+        <measure number="2">
+</script><script type="application/xml" class="markupxml diff">            <barline location="left">
+                <ending number="1" type="start"/>
+            </barline>
+</script><script type="application/xml" class="markupxml nodiff">            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+</script><script type="application/xml" class="markupxml diff">            <barline location="right">
+                <bar-style>light-heavy</bar-style>
+                <ending number="1" type="stop"/>
+                <repeat direction="backward"/>
+            </barline>
+</script><script type="application/xml" class="markupxml nodiff">        </measure>
+        <measure number="3">
+</script><script type="application/xml" class="markupxml diff">            <barline location="left">
+                <ending number="2" type="start"/>
+            </barline>
+</script><script type="application/xml" class="markupxml nodiff">            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+</script><script type="application/xml" class="markupxml diff">            <barline location="right">
+                <bar-style>light-heavy</bar-style>
+                <ending number="2" type="stop"/>
+                <repeat direction="backward"/>
+            </barline>
+</script><script type="application/xml" class="markupxml nodiff">        </measure>
+        <measure number="4">
+</script><script type="application/xml" class="markupxml diff">            <barline location="left">
+                <ending number="3" type="start"/>
+            </barline>
+</script><script type="application/xml" class="markupxml nodiff">            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+</script><script type="application/xml" class="markupxml diff">            <barline location="right">
+                <bar-style>light-heavy</bar-style>
+                <ending number="3" type="discontinue"/>
+            </barline>
+</script><script type="application/xml" class="markupxml nodiff">        </measure>
+    </part>
+</score-partwise></script>
+            </div>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><mnx>
+    <score>
+        <mnx-common profile="standard">
+            <global>
+                <measure>
+                    <directions>
+                        <time signature="4/4"/>
+</script><script type="application/xml" class="markupxml diff">                        <repeat type="start"/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+                <measure>
+                    <directions>
+</script><script type="application/xml" class="markupxml diff">                        <repeat type="end"/>
+                        <ending type="start" number="1"/>
+                        <ending type="stop"/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+                <measure>
+                    <directions>
+</script><script type="application/xml" class="markupxml diff">                        <repeat type="end"/>
+                        <ending type="start" number="2"/>
+                        <ending type="stop"/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+                <measure>
+                    <directions>
+</script><script type="application/xml" class="markupxml diff">                        <ending type="start" number="3"/>
+                        <ending type="discontinue"/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+            </global>
+            <part>
+                <part-name>Music</part-name>
+                <measure>
+                    <directions>
+                        <clef sign="G" line="2"/>
+                    </directions>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="C5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="E5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="G4"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="C5"/>
+                        </event>
+                    </sequence>
+                </measure>
+            </part>
+        </mnx-common>
+    </score>
+</mnx></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="repeats4" class="example">
+    <div class="center">
+    <h2>Repeats (with alternate endings, advanced)</h2>
+    <img class="exampleimg" src="images/repeats4.png">
+    <p class="examplenotes">In both MusicXML and MNX-Common, if a bar has multiple endings, the <code>&lt;ending&gt;</code> element’s <code>number</code> attribute is a comma-separated list of the ending numbers (using one-based, not zero-based numbers).</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="togglerepeats4" class="switchdiff" data-example="repeats4" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="togglerepeats4" class="switchdiff" data-example="repeats4" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesrepeats4" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Music</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+            <barline location="left">
+                <bar-style>heavy-light</bar-style>
+                <repeat direction="forward"/>
+            </barline>
+            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>3</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>768</duration>
+                <type>half</type>
+                <dot/>
+            </note>
+        </measure>
+        <measure number="2">
+            <barline location="left">
+</script><script type="application/xml" class="markupxml diff">                <ending number="1,2" type="start"/>
+</script><script type="application/xml" class="markupxml nodiff">            </barline>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>768</duration>
+                <type>half</type>
+                <dot/>
+            </note>
+        </measure>
+        <measure number="3">
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>512</duration>
+                <type>half</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+            <barline location="right">
+                <bar-style>light-heavy</bar-style>
+</script><script type="application/xml" class="markupxml diff">                <ending number="1,2" type="stop"/>
+</script><script type="application/xml" class="markupxml nodiff">                <repeat direction="backward"/>
+            </barline>
+        </measure>
+        <measure number="4">
+            <barline location="left">
+</script><script type="application/xml" class="markupxml diff">                <ending number="3" type="start"/>
+</script><script type="application/xml" class="markupxml nodiff">            </barline>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>768</duration>
+                <type>half</type>
+                <dot/>
+            </note>
+        </measure>
+        <measure number="5">
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>512</duration>
+                <type>half</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>F</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+            <barline location="right">
+</script><script type="application/xml" class="markupxml diff">                <ending number="3" type="discontinue"/>
+</script><script type="application/xml" class="markupxml nodiff">            </barline>
+        </measure>
+        <measure number="6">
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>768</duration>
+                <type>half</type>
+                <dot/>
+            </note>
+        </measure>
+    </part>
+</score-partwise></script>
+            </div>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><mnx>
+    <score>
+        <mnx-common profile="standard">
+            <global>
+                <measure>
+                    <directions>
+                        <time signature="3/4"/>
+                        <repeat type="start"/>
+                    </directions>
+                </measure>
+                <measure>
+                    <directions>
+</script><script type="application/xml" class="markupxml diff">                        <ending type="start" number="1,2"/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+                <measure>
+                    <directions>
+                        <repeat type="end"/>
+</script><script type="application/xml" class="markupxml diff">                        <ending type="stop"/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+                <measure>
+                    <directions>
+</script><script type="application/xml" class="markupxml diff">                        <ending type="start" number="3"/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+                <measure>
+                    <directions>
+</script><script type="application/xml" class="markupxml diff">                        <ending type="discontinue"/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+                <measure/>
+            </global>
+            <part>
+                <part-name>Music</part-name>
+                <measure>
+                    <directions>
+                        <clef sign="G" line="2"/>
+                    </directions>
+                    <sequence>
+                        <event value="/2d">
+                            <note pitch="C5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/2d">
+                            <note pitch="E5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/2">
+                            <note pitch="E5"/>
+                        </event>
+                        <event value="/4">
+                            <note pitch="D5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/2d">
+                            <note pitch="G5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/2">
+                            <note pitch="G5"/>
+                        </event>
+                        <event value="/4">
+                            <note pitch="F5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/2d">
+                            <note pitch="E5"/>
+                        </event>
+                    </sequence>
+                </measure>
+            </part>
+        </mnx-common>
+    </score>
+</mnx></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="jumps1" class="example">
+    <div class="center">
+    <h2>Jumps (Dal Segno)</h2>
+    <img class="exampleimg" src="images/jumps1.png">
+    <p class="examplenotes"><em>In this example, the bars are to be performed in this order: 1, 2, 3, 4, 5, 2, 3, 4, 5.</em></p>
+    <p class="examplenotes">MusicXML uses <code>&lt;segno&gt;</code> to specify the visual segno symbol and <code>&lt;sound&gt;</code> elements with <code>segno</code> or <code>dalsegno</code> attributes to specify the playback instructions.</p>
+    <p class="examplenotes">In MNX-Common, the <code>&lt;jump&gt;</code> element specifies what kind of jump it is, and <code>&lt;segno&gt;</code> specifies the target of the jump. These elements together represent both the visual notation and the playback instructions.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="togglejumps1" class="switchdiff" data-example="jumps1" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="togglejumps1" class="switchdiff" data-example="jumps1" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesjumps1" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Music</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+        </measure>
+        <measure number="2">
+</script><script type="application/xml" class="markupxml diff">            <direction>
+                <direction-type>
+                    <segno/>
+                </direction-type>
+                <sound segno="2"/>
+            </direction>
+</script><script type="application/xml" class="markupxml nodiff">            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+        </measure>
+        <measure number="3">
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+        </measure>
+        <measure number="4">
+            <note>
+                <pitch>
+                    <step>F</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+        </measure>
+        <measure number="5">
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+</script><script type="application/xml" class="markupxml diff">            <direction>
+                <direction-type>
+                    <words>D.S.</words>
+                </direction-type>
+                <sound dalsegno="2"/>
+            </direction>
+</script><script type="application/xml" class="markupxml nodiff">        </measure>
+    </part>
+</score-partwise></script>
+            </div>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><mnx>
+    <score>
+        <mnx-common profile="standard">
+            <global>
+                <measure>
+                    <directions>
+                        <time signature="4/4"/>
+                    </directions>
+                </measure>
+                <measure>
+                    <directions>
+</script><script type="application/xml" class="markupxml diff">                        <segno/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+                <measure/>
+                <measure/>
+                <measure>
+                    <directions>
+</script><script type="application/xml" class="markupxml diff">                        <jump type="segno"/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+            </global>
+            <part>
+                <part-name>Music</part-name>
+                <measure>
+                    <directions>
+                        <clef sign="G" line="2"/>
+                    </directions>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="C5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="E5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="C5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="F5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="C5"/>
+                        </event>
+                    </sequence>
+                </measure>
+            </part>
+        </mnx-common>
+    </score>
+</mnx></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="jumps2" class="example">
+    <div class="center">
+    <h2>Jumps (D.S. al Fine)</h2>
+    <img class="exampleimg" src="images/jumps2.png">
+    <p class="examplenotes"><em>In this example, the bars are to be performed in this order: 1, 2, 3, 4, 5, 2, 3.</em></p>
+    <p class="examplenotes">MusicXML uses <code>&lt;segno&gt;</code> to specify the visual segno symbol and <code>&lt;words&gt;</code> for the textual instructions. (Parsers need to interpret the text to extract semantic meaning.) For the playback instructions, MusicXML uses the <code>&lt;sound&gt;</code> element.</p>
+    <p class="examplenotes">In MNX-Common, the <code>&lt;jump&gt;</code> element specifies what kind of jump it is, and <code>&lt;segno&gt;</code> and <code>&lt;fine&gt;</code> specify jump targets. These elements together represent both the visual notation and the playback instructions.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="togglejumps2" class="switchdiff" data-example="jumps2" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="togglejumps2" class="switchdiff" data-example="jumps2" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesjumps2" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Music</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+        </measure>
+        <measure number="2">
+</script><script type="application/xml" class="markupxml diff">            <direction>
+                <direction-type>
+                    <segno/>
+                </direction-type>
+                <sound segno="m2"/>
+            </direction>
+</script><script type="application/xml" class="markupxml nodiff">            <note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+        </measure>
+        <measure number="3">
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+</script><script type="application/xml" class="markupxml diff">            <direction>
+                <direction-type>
+                    <words>fine</words>
+                </direction-type>
+                <sound fine="yes"/>
+            </direction>
+</script><script type="application/xml" class="markupxml nodiff">        </measure>
+        <measure number="4">
+            <note>
+                <pitch>
+                    <step>F</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+        </measure>
+        <measure number="5">
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>1024</duration>
+                <type>whole</type>
+            </note>
+</script><script type="application/xml" class="markupxml diff">            <direction>
+                <direction-type>
+                    <words>D.S. al Fine</words>
+                </direction-type>
+                <sound dalsegno="m2"/>
+            </direction>
+</script><script type="application/xml" class="markupxml nodiff">        </measure>
+    </part>
+</score-partwise></script>
+            </div>
+        </div>
+        <div class="markupexample">
+            <h3>MNX-Common</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><mnx>
+    <score>
+        <mnx-common profile="standard">
+            <global>
+                <measure>
+                    <directions>
+                        <time signature="4/4"/>
+                    </directions>
+                </measure>
+                <measure>
+                    <directions>
+</script><script type="application/xml" class="markupxml diff">                        <segno/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+                <measure>
+                    <directions>
+</script><script type="application/xml" class="markupxml diff">                        <fine/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+                <measure/>
+                <measure>
+                    <directions>
+</script><script type="application/xml" class="markupxml diff">                        <jump type="dsalfine"/>
+</script><script type="application/xml" class="markupxml nodiff">                    </directions>
+                </measure>
+            </global>
+            <part>
+                <part-name>Music</part-name>
+                <measure>
+                    <directions>
+                        <clef sign="G" line="2"/>
+                    </directions>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="C5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="E5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="C5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="F5"/>
+                        </event>
+                    </sequence>
+                </measure>
+                <measure>
+                    <sequence>
+                        <event value="/1">
+                            <note pitch="C5"/>
                         </event>
                     </sequence>
                 </measure>
