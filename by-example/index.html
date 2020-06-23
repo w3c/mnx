@@ -3801,7 +3801,7 @@ ul.examplenotes  {
     <div class="center">
     <h2>Repeats (with alternate endings, simple)</h2>
     <img class="exampleimg" src="images/repeats3.png">
-    <p class="examplenotes">In both MusicXML and MNX-Common, each alternate ending is represented with two elements: <code>&lt;ending type="start"&gt;</code> and <code>&lt;ending type="stop"&gt;</code>.</p>
+    <p class="examplenotes">In both MusicXML and MNX-Common, each alternate ending is represented with two <code>&lt;ending&gt;</code> elements: one to start and the other to stop.</p>
     <p class="showui">Show:
         <label><input type="radio" name="togglerepeats3" class="switchdiff" data-example="repeats3" value="1" checked> Relevant section</label>
         <label><input type="radio" name="togglerepeats3" class="switchdiff" data-example="repeats3" value="2"> Full document</label>
@@ -3934,7 +3934,7 @@ ul.examplenotes  {
                 <measure>
                     <directions>
 </script><script type="application/xml" class="markupxml diff">                        <ending type="start" number="3"/>
-                        <ending type="stop"/>
+                        <ending type="discontinue"/>
 </script><script type="application/xml" class="markupxml nodiff">                    </directions>
                 </measure>
             </global>
@@ -4149,7 +4149,7 @@ ul.examplenotes  {
                 </measure>
                 <measure>
                     <directions>
-</script><script type="application/xml" class="markupxml diff">                        <ending type="stop"/>
+</script><script type="application/xml" class="markupxml diff">                        <ending type="discontinue"/>
 </script><script type="application/xml" class="markupxml nodiff">                    </directions>
                 </measure>
                 <measure/>
