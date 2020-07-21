@@ -2720,14 +2720,52 @@ consistent with describing musical expression.
 
 <h4 id="the-ending-element">The <dfn element><code>ending</code></dfn> element</h4>
 <section dfn-for="ending">
-  <em>Needs migration from MusicXML. Applies from the start of the containing measure (i.e. does not belong to a &lt;barline&gt;)</em>
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{ending/type}> - (required) <code>start</code>, <code>stop</code> or <code>discontinue</code></dd>
+    <dd><{ending/number}> - (required for <code>type="start"</code>) a comma-separated list of integers representing the ending numbers</dd>
+  </dl>
+
+The <{ending}> element describes an alternate ending, also known as a "volta."
+
+Each ending in a document must include two <{ending}> elements: one with
+<code>type="start"</code> and another with either <code>type="stop"</code>
+or <code>type="discontinue"</code>.
+
+Use <code>type="stop"</code> when the ending concludes with a downward jog,
+as is typical for first endings. Use <code>type="discontinue"</code> when
+there is no downward jog, as is typical for second endings that do not
+conclude a piece.
+
+The <code>number</code> attribute uses one-indexed numbers, not
+zero-indexed numbers. For example, the first ending has <code>number="1"</code>.
+
+This element applies to the containing measure. Thus, <code>type="start"</code>
+means an ending starting from the beginning of this measure, and <code>type="stop"</code>
+means an ending that stops at the end of this measure.
 </section>
 
 <h4 id="the-repeat-element">The <dfn element><code>repeat</code></dfn> element</h4>
 <section dfn-for="repeat">
-  <em>Needs migration from MusicXML. Applies to the containing measure (i.e. does not belong to a &lt;barline&gt;).
-      Thus, "start" means a repeat starting from the beginning of this measure; "end" means a repeat ending at the end
-      of this measure.</em>
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{repeat/type}> - (required) either <code>start</code> or <code>end</code></dd>
+    <dd><{repeat/times}> - (optional) the number of times the music within the repeat should be performed. Default is 2.</dd>
+  </dl>
+
+The <{repeat}> element describes a repeat, traditionally rendered as a repeat barline.
+
+This element applies to the containing measure. Thus, <code>type="start"</code>
+means a repeat starting from the beginning of this measure, and <code>type="end"</code>
+means a repeat ending at the end of this measure.
 </section>
 
 <h4 id="the-coda-element">The <dfn element><code>coda</code></dfn> element</h4>
