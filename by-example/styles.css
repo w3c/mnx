@@ -1,0 +1,125 @@
+
+/* Reset */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+img, ins, kbd, q, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; vertical-align: baseline; background: transparent; }
+table { border-spacing: 0; border-collapse: collapse; }
+caption, th, td { text-align: left; font-weight: normal; }
+blockquote, q { quotes: none; }
+* { margin: 0; }
+
+/* Type */
+html {
+    color: #24292e;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-size: 18px;
+    line-height: 1.6125;
+}
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.25;
+}
+body {
+    margin: 32px 0 0;
+}
+h1 {
+    font-size: 36px;
+    margin: 0 0 20px;
+}
+h2 {
+    margin: 0 0 15px;
+}
+h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+a {
+    color: #003569;
+}
+code {
+    white-space: nowrap;
+}
+
+/* Styles */
+.examplenotes {
+    max-width: 34rem;
+}
+.intro,
+.toc,
+.center {
+    max-width: 34rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.intro p {
+    margin: 0 0 20px;
+}
+.example {
+    margin-top: 60px;
+}
+.toc {
+    margin-top: 40px;
+    border: 1px solid hsla(0, 0%, 0%, 0.15);
+    border-radius: 6px;
+    padding: 15px;
+}
+.toc ul {
+    list-style: none;
+}
+.markupexamples {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    padding: 40px 1rem;
+    background: #F8F5F1;
+}
+.markupexample {
+    flex: calc(50% - (15px + 15px));
+    margin-top: 20px;
+    max-width: 680px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+@media (max-width: 680px) {
+   .markupexample {
+    max-width: 100%;
+   }
+}
+
+.markupcode {
+    border: 1px solid hsla(0, 0%, 0%, 0.15);
+    border-radius: 6px;
+    padding: 15px;
+    background: white;
+    overflow: auto;
+}
+
+.markupxml {
+    display: block;
+    white-space: pre;
+    font: 14px "courier new",courier,fixed-width;
+    color: black;
+}
+
+.exampleimg {
+    margin: 0 0 15px;
+    max-height: 200px;
+    max-width: 500px;
+    padding: 2rem;
+    border-radius: 6px;
+    border: 1px solid hsla(0, 0%, 0%, 0.1);
+    box-sizing: border-box;
+    max-width: 100%;
+}
+.examplenotes {
+    margin: 0 0 15px;
+}
+ul.examplenotes  {
+    margin-left: 1rem;
+}
+.showui { margin: 0 0 15px; }
+.onlydiff .nodiff { font-size: 0; }
+.onlydiff .nodiff:after { content: "..."; font-size: 18px; }
+.markupexamples:not(.onlydiff) .diff { font-weight: bold; color: blue; }
