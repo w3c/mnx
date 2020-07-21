@@ -2770,12 +2770,91 @@ means a repeat ending at the end of this measure.
 
 <h4 id="the-coda-element">The <dfn element><code>coda</code></dfn> element</h4>
 <section dfn-for="coda">
-  <em>Needs migration from MusicXML. May need to distinguish musical form use from textual reference to the symbol.</em>
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None</dd>
+  </dl>
+
+The <{coda}> element describes a coda symbol.
+
+This element applies to the containing measure. The coda symbol is traditionally
+rendered at the start of its measure.
 </section>
 
 <h4 id="the-segno-element">The <dfn element><code>segno</code></dfn> element</h4>
 <section dfn-for="segno">
-  <em>Needs migration from MusicXML. May need to distinguish musical form use from textual reference to the symbol.</em>
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None</dd>
+  </dl>
+
+The <{segno}> element describes a segno symbol.
+
+This element applies to the containing measure. The segno symbol is traditionally
+rendered at the start of its measure.
+</section>
+
+<h4 id="the-fine-element">The <dfn element><code>fine</code></dfn> element</h4>
+<section dfn-for="fine">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None</dd>
+  </dl>
+
+The <{fine}> element describes a fine symbol.
+
+This element applies to the containing measure. The fine symbol is traditionally
+rendered at the end of its measure.
+</section>
+
+<h4 id="the-jump-element">The <dfn element><code>jump</code></dfn> element</h4>
+<section dfn-for="jump">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{jump/type}> - (required) see choices below</dd>
+  </dl>
+
+The <{jump}> element describes a musical jump: a direction to continue
+performance at some other measure.
+
+The <dfn element-attr dfn-for="jump">type</dfn> attribute specifies the type of jump:
+
+<dl dfn-for="jump/type">
+  <dt><dfn attr-value><code>segno</code></dfn></dt>
+  <dd>"Dal segno": Jump to the <{segno}></dd>
+  <dt><dfn attr-value><code>coda</code></dfn></dt>
+  <dd>"To coda": Jump to the <{coda}></dd>
+  <dt><dfn attr-value><code>capo</code></dfn></dt>
+  <dd>"Da capo": Jump to the first measure</dd>
+  <dt><dfn attr-value><code>dcalfine</code></dfn></dt>
+  <dd>"D.C. al fine": Jump to the first measure, then perform until the measure that contains <{fine}> (inclusive)</dd>
+  <dt><dfn attr-value><code>dcalcoda</code></dfn></dt>
+  <dd>"D.C. al coda": Jump to the first measure, then perform until the measure that contains <{jump} type="coda"> (inclusive), then jump to the coda</dd>
+  <dt><dfn attr-value><code>dsalfine</code></dfn></dt>
+  <dd>"D.S. al fine": Jump to the <{segno}>, then perform until the measure that contains <{fine}> (inclusive)</dd>
+  <dt><dfn attr-value><code>dsalcoda</code></dfn></dt>
+  <dd>"D.S. al coda": Jump to the <{segno}>, then perform until the measure that contains <{jump} type="coda"> (inclusive), then jump to the coda</dd>
+</dl>
+
+This element applies to the containing measure and is intended to be
+followed after the measure's music. The direction is traditionally rendered
+at the end of its measure.
 </section>
 
 <h4 id="the-harmony-element">The <dfn element><code>harmony</code></dfn> element</h4>
