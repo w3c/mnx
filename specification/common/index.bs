@@ -11,14 +11,14 @@
 
 <pre class="metadata">
 Status: LD
-Title: MNX-Common Draft Specification
-Shortname: mnx-common-draft
+Title: MNX Draft Specification
+Shortname: mnx-draft
 Level: 1
 Editor: Joe Berkovitz (Risible LLC); Adrian Holovaty (Soundslice)
-Abstract: A draft specification for the MNX-Common music notation document format.
-    MNX-Common is a proposed music notation markup standard. Its aim is to improve
+Abstract: A draft specification for the MNX music notation document format.
+    MNX is a proposed music notation markup standard. Its aim is to improve
     MusicXML in fundamental ways, while retaining many of its key concepts, terms
-    and features. MNX-Common seeks to provide a high degree of interoperability and
+    and features. MNX seeks to provide a high degree of interoperability and
     exchange between different applications working with music notation.
 Markup Shorthands: markdown yes
 Repository: w3c/mnx
@@ -123,7 +123,7 @@ spec:dom; type:dfn; text:attribute
 <h2 id="status">Status of this document</h2>
 
 This document is an early draft and focuses on the main structural features
-that distinguish MNX-Common from MusicXML 3.1. Many elements are omitted, or their details
+that distinguish MNX from MusicXML 3.1. Many elements are omitted, or their details
 are referred to the <a>MusicXML specification</a> as a placeholder.
 
 <h2 id="introduction">Introduction</h2>
@@ -132,7 +132,7 @@ are referred to the <a>MusicXML specification</a> as a placeholder.
 
   <em>This section is non-normative.</em>
 
-  MNX-Common is a proposed music notation markup standard, which seeks to provide a
+  MNX is a proposed music notation markup standard, which seeks to provide a
   high degree of interoperability and exchange between different applications
   working with music notation.
 
@@ -140,7 +140,7 @@ are referred to the <a>MusicXML specification</a> as a placeholder.
   <a>semantic markup</a> as defined in the HTML5 standard, allowing applications
   to present the same information consistently in different contexts.
 
-  Many different sources of inspiration inform the design of MNX-Common, including
+  Many different sources of inspiration inform the design of MNX, including
   MusicXML, the <a>Music Encoding Initiative</a>, the IEEE 1599 specification
   and others.
 
@@ -148,10 +148,10 @@ are referred to the <a>MusicXML specification</a> as a placeholder.
 
   <em>This section is non-normative.</em>
 
-MNX-Common is a lineal descendant of MusicXML, and employs
+MNX is a lineal descendant of MusicXML, and employs
 many of the same concepts. However it sacrifices some features and flexibility
 of MusicXML in favor of tighter interoperability, and simplifies the element
-structure considerably. MNX-Common also moves all non-semantic information into CSS
+structure considerably. MNX also moves all non-semantic information into CSS
 properties.
 
 MEI is a very general and expressive medium for encoding arbitrary musical
@@ -164,20 +164,20 @@ interoperable medium for encoding CWMN (sometimes known as "MEI Go").
 
 IEEE 1599 is a specification that has paid unique attention to the
 relationships between different layers of musical information. Its Logic layer
-is similar in content to MNX-Common.
+is similar in content to MNX.
 
 <h3 id="compatibility">Compatibility with MusicXML</h3>
 
   <em>This section is non-normative.</em>
 
-MNX-Common uses MusicXML as a point of departure in many ways, but it does not
+MNX uses MusicXML as a point of departure in many ways, but it does not
 attempt to be backward-compatible with MusicXML, nor is it a superset of
 MusicXML. However, a large proportion of MusicXML markup is expected to be
 preserved. In these examples, MusicXML constructs are used freely throughout
 as a way to show how proposed new concepts dovetail with existing ones.
 
 Backward compatibility aside, it is a goal to be able to machine-translate
-MusicXML into MNX-Common. This is essential for migration purposes.
+MusicXML into MNX. This is essential for migration purposes.
 
 <h3 id="use-cases">Use cases</h3>
 
@@ -207,7 +207,7 @@ Some general principles regarding the design of this specification follow.
 
 <dl>
   <dt>Make schematic form follow function.</dt>
-  <dd>The schema of MNX-Common tries where possible to let the constraints of an element hierarchy
+  <dd>The schema of MNX tries where possible to let the constraints of an element hierarchy
     serve a useful purpose, by embodying analogous constraints in music notation. For example,
     the <{sequence}> and <{event}> elements force a musical voice in CWMN to follow conventional rules for avoiding temporal overlap.
   </dd>
@@ -215,12 +215,12 @@ Some general principles regarding the design of this specification follow.
   <dt>Preserve ease of reading and writing for simple content.</dt>
   <dd>While complex scores will necessarily be generated and parsed by machines, it's valuable to
     allow humans to easily create and read simple content. Therefore in some cases, encodings
-    are intentionally more compact than strictly necessary. Examples in MNX-Common include microsyntaxes
+    are intentionally more compact than strictly necessary. Examples in MNX include microsyntaxes
     and the use of XML attributes instead of elements for the most frequent properties.
   </dd>
 
   <dt>Be specific about what is valid and what is not.</dt>
-  <dd>MNX-Common attempts to keep things constrained in its semantic layers, while
+  <dd>MNX attempts to keep things constrained in its semantic layers, while
     the literal encoding is wide-open. While this constrains some potential expression towards the
     edges of CWMN, it enhances interoperability at the core.
   </dd>
@@ -233,7 +233,7 @@ Some general principles regarding the design of this specification follow.
   </dd>
 
   <dt>Leverage existing value in the world</dt>
-  <dd>The ecosystem of the Web is broad and valuable. MNX-Common attempts to exploit this by making use of existing
+  <dd>The ecosystem of the Web is broad and valuable. MNX attempts to exploit this by making use of existing
     patterns and tooling. For example, it reuses many CSS concepts.
   </dd>
 </dl>
@@ -260,7 +260,7 @@ Some general principles regarding the design of this specification follow.
     : [[#notational-syntaxes]]
     :: Various syntaxes of music notation that are used by this specification.
     : [[#document-structure]]
-    :: The elements that make up the MNX-Common format.
+    :: The elements that make up the MNX format.
   </div>
 
 <h4 id="how-to-read-this-specification">How to read this specification</h4>
@@ -351,11 +351,11 @@ limited to) Western European music from circa 1600 to the present day.
 
 A <dfn>score profile</dfn> is a set of constraints on the rules in a notational idiom.
 Score profiles are designed to narrow the set of constructs that can be produced or consumed
-in MNX-Common to a practical scope.
+in MNX to a practical scope.
 
 <h3 id="common-syntaxes">Common syntaxes</h3>
 
-There are various places in MNX-Common that accept particular data types, such as
+There are various places in MNX that accept particular data types, such as
 note values, numbers or durations. This section describes the conformance
 criteria for content in those formats, and how to parse them.
 
@@ -488,7 +488,7 @@ XML ID of the referenced element.
 
 <h4 id="style-property-lists">Style property lists</h4>
 
-MNX-Common supports a simple and compact <dfn>style property list</dfn> syntax, allowing
+MNX supports a simple and compact <dfn>style property list</dfn> syntax, allowing
 a map of key-value pairs to be represented in a single string where the keys
 are names of <a>style properties</a>.
 
@@ -520,7 +520,7 @@ Examples include:
 
 <h3 id="content-models">Content models and categories</h3>
 
-  Each element in MNX-Common falls into zero or more <dfn lt="content
+  Each element in MNX falls into zero or more <dfn lt="content
   categories|content category">categories</dfn> that group elements with
   similar characteristics together. Examples of content categories
   include <a>event content</a> and <a>sequence content</a>, among
@@ -699,8 +699,7 @@ A <dfn>performance interpretation</dfn> is the end result of deriving
 a set of <a>performance events</a> from a score. Human performers do this
 by reading music, while MNX consumers will generally do this algorithmically.
 
-In MNX-Generic, a consumer is given the exact performance interpretation as part of
-the document.  In MNX-Common, a consumer will typically employ a set of rules that
+In MNX, a consumer will typically employ a set of rules that
 mimic the actions of a human performer, overriding these with exact
 performance events where these are explicitly supplied within the document.
 
@@ -737,7 +736,7 @@ act as a multiplier on the <a>base note value</a>. These multipliers take the fo
 
 Events and sequences may possess an optional <dfn>orientation</dfn> that
 determines a the placement and rendering of content according to a complex set
-of CWMN conventions. For the purposes of MNX-Common there are two orientations:
+of CWMN conventions. For the purposes of MNX there are two orientations:
 
 <ul>
 <li>An orientation of <dfn value dfn-for="orientation">up</dfn> orients note stems pointing upwards, and places beams, directions
@@ -1069,7 +1068,7 @@ The <{mnx}> element encloses the document as a whole.
     <dt><a>Attributes</a>:</dt>
     <dd>None.</dd>
   </dl>
-The <{head}> element supplies overall descriptive information for an MNX-Common document,
+The <{head}> element supplies overall descriptive information for an MNX document,
 such as document-scoped metadata or <a>stylesheet definitions</a>.
 </section>
 
@@ -1192,7 +1191,7 @@ The <{title}> element assigns a title to its parent element in the context of th
     <dd><{mnx-common/profile}> — profile describing constraints on the contents of this score</dd>
   </dl>
 
-The <{mnx-common}> element describes an MNX-Common score as a whole.
+The <{mnx-common}> element describes an MNX score as a whole.
 
 The <dfn element-attr><code>profile</code></dfn> attribute declares a <a>score
 profile</a> that supplies constraints to which the score is expected to obey.
@@ -1273,7 +1272,7 @@ tempo indications.
 </div>
 
 Advisement: The following features are not supported by the
-<{mnx-common/profile/standard}> MNX-Common profile.
+<{mnx-common/profile/standard}> MNX profile.
 
 The <dfn element-attr>parts</dfn> attribute optionally supplies a list of
 <{part}> element IDs as an <a>unordered set of space-separated tokens</a>.
@@ -1385,7 +1384,7 @@ content. The first measure in a system has an <{measure/index}> of 1.
   </dl>
 
 The <{measure}> element encloses the direction and sequence content that together
-make up the majority of musical content in an MNX-Common score.
+make up the majority of musical content in an MNX score.
 
 The optional attribute <dfn element-attr>index</dfn> defines the one-based
 index of this measure within score order. This is used for cross-
@@ -2039,7 +2038,7 @@ notes and the other end outside the same grouping. This element acts to
 enforce that constraint.
 
 NOTE: In general, the number of beams and the use of forward or backward hooks
-is determined automatically by implementations. There is thus no MNX-Common element
+is determined automatically by implementations. There is thus no MNX element
 that represents an individual beam.  More detailed beam specifications may be
 overridden using style properties, but do not amount to semantic markup.
 
@@ -2278,7 +2277,7 @@ for this note where this differs from the staff index which applies to the conta
 <{event}> as a whole.
 
 The <dfn element-attr>accidental</dfn> attribute supplies an accidental value
-for this note. In the <{mnx-common/profile/standard}> MNX-Common profile, this attribute
+for this note. In the <{mnx-common/profile/standard}> MNX profile, this attribute
 must match the <a>alteration</a> of the <{note/pitch}> attribute. Omission of
 the  attribute indicates that no accidental is to be displayed. The special
 value <dfn attr-value for="note/accidental">auto</dfn> indicates that a
@@ -2290,7 +2289,7 @@ editorial indications. Handle the case of "explicit" accidentals that should
 be preserved even if the chromatic context is changed by edits.)</em>
 
 Advisement: The following features are not supported by the
-<{mnx-common/profile/standard}> MNX-Common profile.
+<{mnx-common/profile/standard}> MNX profile.
 
 The <dfn element-attr>value</dfn> attribute optionally supplies a <a>note
 value</a> for this note, where this differs from the containing <{event}>'s
@@ -2568,7 +2567,7 @@ direction according to its own algorithms.
 
 <dfn>Direction content</dfn> consists of some number of musical
 <dfn>directions</dfn> that modify or accompany the performance of events in
-one or more measures. Directions may be included in an MNX-Common score in two ways:
+one or more measures. Directions may be included in an MNX score in two ways:
 
 - Within a <{directions}> element below a <{measure}>. The direction is considered
     to apply to all sequences.
@@ -2947,7 +2946,7 @@ to all the staves in a given part (if not the whole score).
 
 It is invalid to place more than one <{key}> element within a <{measure}>.
 
-In the <{mnx-common/profile/standard}> MNX-Common profile, <{key}> elements in <{global}> measure content
+In the <{mnx-common/profile/standard}> MNX profile, <{key}> elements in <{global}> measure content
 are required for every key change. <{key}> elements below <{part}>
 are optional; if present they must indicate a value of <{key/fifths}> that is
 either identical to the corresponding value in the global <{key}> or differs from it
@@ -2977,7 +2976,7 @@ The <a>measure location</a> of a <{time}> direction is ignored and is assumed to
 
 It is invalid to place more than one <{time}> element within a <{measure}>.
 
-In the <{mnx-common/profile/standard}> MNX-Common profile, a <{time}> element may only appear
+In the <{mnx-common/profile/standard}> MNX profile, a <{time}> element may only appear
 inside <{global}> measure content, not within a <{part}>.
 
 The required <dfn element-attr>signature</dfn> attribute supplies a <a>time signature</a> that gives the time signature for this measure and for subsequent measures. By default this signature is displayed in normative rendering.
@@ -3047,7 +3046,7 @@ The <{tempo}> element defines a tempo, from the point of its occurrence forward 
 The tempo is rendered as a conventional pairing of a small beat unit notation equated to a
 metronome marking.
 
-In the <{mnx-common/profile/standard}> MNX-Common profile, a <{tempo}> element may only appear
+In the <{mnx-common/profile/standard}> MNX profile, a <{tempo}> element may only appear
 inside <{global}> measure content, not within a <{part}>.
 
 The required <dfn element-attr>value</dfn> attribute supplies a <a>note value</a>
@@ -3200,7 +3199,7 @@ the specific way in which the element is interpreted as a musical performance.
   </dl>
 
 The <{interpret}> element substitutes explicit MNX-Generic <a>performance data</a>
-for the performance of its MNX-Common parent element that a producer would normally
+for the performance of its MNX parent element that a producer would normally
 generate.
 
 Within <{interpret}>, a set of child <{performance-event}> and <{performance-tempo}> elements supply
@@ -3539,7 +3538,7 @@ In this case, two different classes `emphasis` and `alternate` are applied, alon
 
 <h4 id="common-properties">Common style properties</h4>
 
-The following <a>style properties</a> apply to many kinds of object in MNX-Common, and in general
+The following <a>style properties</a> apply to many kinds of object in MNX, and in general
 apply to all descendants of the element within which they are specified.
 
 <h5 id="the-color-property">The <dfn property><code>color</code></dfn> property</h5>
@@ -3918,8 +3917,8 @@ will employ a given stem width:
 <section>
 <h3 id="common-rendering">Rendering</h3>
 
-<em>TBD: section describing normative MNX-Common rendering procedure, leaving room for implementation decisions.
-The intent is to set out the normative constraints that MNX-Common rendering must follow, including at least:
+<em>TBD: section describing normative MNX rendering procedure, leaving room for implementation decisions.
+The intent is to set out the normative constraints that MNX rendering must follow, including at least:
 
 -
 - normative registration
@@ -3931,12 +3930,12 @@ The intent is to set out the normative constraints that MNX-Common rendering mus
 <section>
 <h3 id="common-interpretation">Interpretation</h3>
 
-<em>TBD: section describing normative MNX-Common performance interpretation, leaving room for implementation decisions.</em>
+<em>TBD: section describing normative MNX performance interpretation, leaving room for implementation decisions.</em>
 
 
 </section>
 
-</section> <!-- end MNX-Common section -->
+</section> <!-- end MNX section -->
 
 <!--  -->
 <section>
