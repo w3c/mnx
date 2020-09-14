@@ -347,12 +347,6 @@ produce an audible performance.
 This notational idiom comprises a set of notational rules common to (but not
 limited to) Western European music from circa 1600 to the present day.
 
-<h4 id="score profiles">Score profiles</h4>
-
-A <dfn>score profile</dfn> is a set of constraints on the rules in a notational idiom.
-Score profiles are designed to narrow the set of constructs that can be produced or consumed
-in MNX to a practical scope.
-
 <h3 id="common-syntaxes">Common syntaxes</h3>
 
 There are various places in MNX that accept particular data types, such as
@@ -1188,25 +1182,10 @@ The <{title}> element assigns a title to its parent element in the context of th
     <dd>One or more <{part}> elements - description and <a>measure content</a> of each part in the score.</dd>
     <dd>Zero or more <{score-audio}> elements - recordings of the score and their associated synchronization date.</dd>
     <dt><a>Attributes</a>:</dt>
-    <dd><{mnx-common/profile}> — profile describing constraints on the contents of this score</dd>
+    <dd>None.</dd>
   </dl>
 
 The <{mnx-common}> element describes an MNX score as a whole.
-
-The <dfn element-attr><code>profile</code></dfn> attribute declares a <a>score
-profile</a> that supplies constraints to which the score is expected to obey.
-
-The following values of <{mnx-common/profile}> are supported, along with the
-constraints that they represent:
-
-<dl dfn-for="mnx-common/profile">
-    <dt><dfn attr-value><code>standard</code></dfn></dt>
-    <dd>The <a>measure content</a> in all <{global}> or <{part}> elements consists of an identical number of measures.</dd>
-    <dd>Only a single <{global}> element exists.</dd>
-    <dd>Time signatures and tempo indications only occur in measures within the <{global}> element.</dd>
-    <dd>Key signatures within the <{global}> element only occur in enharmonic/transposed forms that are equivalent within <{part}> elements.</dd>
-    <dd>All notated events in a chord share the same duration</dd>
-</dl>
 
 The following example provides the basic skeleton of a <{mnx-common}> musical body:
 
@@ -1239,7 +1218,7 @@ The following example provides the basic skeleton of a <{mnx-common}> musical bo
     <dt><a>Content Model</a>:</dt>
     <dd><a>Measure content</a>, which must not include any <a>sequence content</a></dd>
     <dt><a>Attributes</a>:</dt>
-    <dd><{global/parts}> - an optional set of IDs of <{part}> elements to which this global content applies
+    <dd>None.
   </dl>
 
 The <{global}> element represents a set of measures, each of which provides
@@ -1247,7 +1226,7 @@ content that is shared by a set of parts within the score. Each <{measure}> elem
 within <{global}> supplies the shared content for all other <{measure}>
 elements which share the same <{measure/index}>.
 
-By default, the content in <{global}> applies to <em>all</em> parts in the score.
+The content in <{global}> applies to <em>all</em> parts in the score.
 
 Typical examples of such content include key signatures, time signatures and
 tempo indications.
@@ -1268,47 +1247,6 @@ tempo indications.
   <measure index="3"/>
   <measure index="4"/>
 </global>
-```
-</div>
-
-Advisement: The following features are not supported by the
-<{mnx-common/profile/standard}> MNX profile.
-
-The <dfn element-attr>parts</dfn> attribute optionally supplies a list of
-<{part}> element IDs as an <a>unordered set of space-separated tokens</a>.
-This restricts the scope of the <{global}> element to the set of parts given, allowing
-subsets of parts in the score to share dissimilar structures (for example, in scores
-having different parts in different meters). The default value of this attribute is
-the list of all part IDs.
-
-No two <{global}> elements may include the same part in their <{global/parts}> list, to prevent
-conflicting definitions.
-
-<div class="example">
-```xml
-<global parts="p1 p2">
-  <measure index="1">
-    <directions>
-      <time signature="6/8"/>
-    </directions>
-  </measure>
-  <measure index="2"/>
-  <measure index="3"/>
-  <measure index="4"/>
-</global>
-<global parts="p3 p4">
-  <measure index="1">
-    <directions>
-      <time signature="4/4"/>
-    </directions>
-  </measure>
-  <measure index="2"/>
-  <measure index="3"/>
-</global>
-<part id="p1">...</part>
-<part id="p2">...</part>
-<part id="p3">...</part>
-<part id="p4">...</part>
 ```
 </div>
 
@@ -2262,8 +2200,7 @@ of a single event, that is performed at a distinct time.
     <dt><a>Attributes</a>:</dt>
     <dd><{note/pitch}> - the musical pitch of this note </dd>
     <dd><{note/staff}> - an optional staff index for this note </dd>
-    <dd><{note/accidental}> - an optional accidental for this note </dd>
-    <dd><{note/value}> - an optional note value for this note </dd>
+    <dd><{note/accidental}> - an optional accidental to render for this note</dd>
   </dl>
 
 The <{note}> element defines a single note within an event, along with other
@@ -2277,24 +2214,13 @@ for this note where this differs from the staff index which applies to the conta
 <{event}> as a whole.
 
 The <dfn element-attr>accidental</dfn> attribute supplies an accidental value
-for this note. In the <{mnx-common/profile/standard}> MNX profile, this attribute
-must match the <a>alteration</a> of the <{note/pitch}> attribute. Omission of
-the  attribute indicates that no accidental is to be displayed. The special
-value <dfn attr-value for="note/accidental">auto</dfn> indicates that a
-consumer application should determine the proper accidental based on musical
-context.
+for this note. This attribute must match the <a>alteration</a> of the
+<{note/pitch}> attribute. Omission of the attribute indicates that no accidental
+is to be displayed.
 
 <em>(Import values here from MusicXML specification. Add style properties for
 editorial indications. Handle the case of "explicit" accidentals that should
 be preserved even if the chromatic context is changed by edits.)</em>
-
-Advisement: The following features are not supported by the
-<{mnx-common/profile/standard}> MNX profile.
-
-The <dfn element-attr>value</dfn> attribute optionally supplies a <a>note
-value</a> for this note, where this differs from the containing <{event}>'s
-note value.  The value of the note must be less than or equal to the value of
-the containing event.
 
 </section>
 
@@ -2946,7 +2872,7 @@ to all the staves in a given part (if not the whole score).
 
 It is invalid to place more than one <{key}> element within a <{measure}>.
 
-In the <{mnx-common/profile/standard}> MNX profile, <{key}> elements in <{global}> measure content
+<{key}> elements in <{global}> measure content
 are required for every key change. <{key}> elements below <{part}>
 are optional; if present they must indicate a value of <{key/fifths}> that is
 either identical to the corresponding value in the global <{key}> or differs from it
@@ -2976,8 +2902,7 @@ The <a>measure location</a> of a <{time}> direction is ignored and is assumed to
 
 It is invalid to place more than one <{time}> element within a <{measure}>.
 
-In the <{mnx-common/profile/standard}> MNX profile, a <{time}> element may only appear
-inside <{global}> measure content, not within a <{part}>.
+A <{time}> element may only appear inside <{global}> measure content, not within a <{part}>.
 
 The required <dfn element-attr>signature</dfn> attribute supplies a <a>time signature</a> that gives the time signature for this measure and for subsequent measures. By default this signature is displayed in normative rendering.
 
@@ -3046,8 +2971,7 @@ The <{tempo}> element defines a tempo, from the point of its occurrence forward 
 The tempo is rendered as a conventional pairing of a small beat unit notation equated to a
 metronome marking.
 
-In the <{mnx-common/profile/standard}> MNX profile, a <{tempo}> element may only appear
-inside <{global}> measure content, not within a <{part}>.
+A <{tempo}> element may only appear inside <{global}> measure content, not within a <{part}>.
 
 The required <dfn element-attr>value</dfn> attribute supplies a <a>note value</a>
 which is asserted to occur with a frequency of <dfn element-attr>bpm</dfn> times per
