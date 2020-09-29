@@ -1589,15 +1589,12 @@ Sequence content also possesses a <dfn>time modification ratio</dfn>. This is
 a rational number scale factor which implicitly applies to all positions and
 durations within the content.
 
-Sequence content also may define some number of <a>beamed groups</a>. If defined,
-these are lists which accumulate events into groups to which beaming applies.
-
 Sequence content also permits interspersed <a>direction content</a> whose
 directions are injected into the sequence either adjacent to events, or
 at explicitly given measure locations.
 
 Within sequence content, nested <a>event content</a>
-is assigned <a>metrical positions</a> and placed in beamed groups according to the
+is assigned <a>metrical positions</a> according to the
 following procedure, called <dfn lt="sequence the content|sequencing the content">sequencing the content</dfn>:
 
 <ol>
@@ -1607,17 +1604,6 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
     <ol>
       <li>Let <var>next</var> be the initial element of <var>content</var>,
       and remove it from the head of <var>content</var>.
-      <li>If <var>next</var> is a <{beamed}> element:
-        <ol>
-          <li>If <var>beamed group</var> has a value of list type, beamed groups have been illegally nested. Throw an error.</li>
-          <li>Set <var>beamed group</var> to an empty list.
-          <li>
-            <a>Sequence the content</a> of <var>next</var>, retaining the value of <var>beamed group</var>.
-          </li>
-          <li>Record <var>beamed group</var> as a group of beamed events within the sequence.</li>
-          <li>Set <var>beamed group</var> to an undefined value.</li>
-        </ol>
-      </li>
       <li>If <var>next</var> is an <{event}> element:
         <ol>
           <li>If <var>next</var> has a <{event/measure}> value of <{event/measure/yes}>,
@@ -1637,8 +1623,6 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
                 Multiply <var>event duration</var> by the
                   <a>time modification ratio</a>, and add the result to <var>sequence cursor</var>.
               </li>
-              <li>
-                If <var>beamed group</var> is a list, append <var>next</var> to <var>beamed group</var>.
             </ol>
         </ol>
       </li>
@@ -1658,8 +1642,7 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
           <li>
             <a>Sequence the content</a> of <var>next</var>, using
             <var>sequence cursor</var> as the <a>starting position</a>,
-            retaining the current value of <var>beamed group</var>, and
-            multiplying the <a>time modification ratio</a> by the <{tuplet}>'s
+            and multiplying the <a>time modification ratio</a> by the <{tuplet}>'s
             <{tuplet/outer}> / <{tuplet/inner}> ratio
             for the processing of the tuplet.
           </li>
@@ -1689,7 +1672,7 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
 <section dfn-for="event">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
-    <dd><{sequence}>, <{tuplet}>, <{beamed}></dd>
+    <dd><{sequence}>, <{tuplet}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
     <dd>Either zero or more <{note}> elements, or one <{rest}> element.</dd>
@@ -1853,7 +1836,7 @@ time modification ratio.
 <section dfn-for="tuplet">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
-    <dd><{sequence}>, <{tuplet}>, <{beamed}></dd>
+    <dd><{sequence}>, <{tuplet}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
     <dd><a>Sequence content</a></dd>
@@ -1953,147 +1936,6 @@ Values include:
 ```
 </div>
 
-</section>
-
-<h4 id="the-beamed-element">The <dfn element><code>beamed</code></dfn> element</h4>
-<section dfn-for="beamed">
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{sequence}>, <{tuplet}>, <{grace}>, <{beamed}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd><a>Metadata content</a></dd>
-    <dd><a>Sequence content</a></dd>
-    <dd><a>Interpretation content</a></dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{beamed/value}> - optional value of a beamed group within a parent</dd>
-    <dd><{beamed/continue}> - optional beam group in following measure which continues this one</dd>
-  </dl>
-
-The <{beamed}> element defines a <dfn>beamed group</dfn> of events that are
-joined by beams to conceptually mark them as belonging to a distinct run. In
-CWMN, beams cannot have one end inside a grouping such as tuplets or grace
-notes and the other end outside the same grouping. This element acts to
-enforce that constraint.
-
-NOTE: In general, the number of beams and the use of forward or backward hooks
-is determined automatically by implementations. There is thus no MNX element
-that represents an individual beam.  More detailed beam specifications may be
-overridden using style properties, but do not amount to semantic markup.
-
-Here is a simple beaming example in a 6/8 time signature. The grouping
-suffices; there is no need to describe individual beams within the beamed
-group, such as the distinct beam that joins the two 16th notes in the second
-group:
-
-<div class="example">
-```xml
-<sequence>
-    <beamed>
-      <event value="/8">...</event>
-      <event value="/8">...</event>
-      <event value="/8">...</event>
-    </beamed>
-    <beamed>
-      <event value="/8">...</event>
-      <event value="/16">...</event>
-      <event value="/16">...</event>
-      <event value="/8">...</event>
-    </beamed>
-</sequence>
-```
-</div>
-
-The <{beamed}> element may also be nested in order to place child beamed groups
-in a parent beamed group. A common scenario occurs when groups of short beamed
-notes are themselves organized at a higher level. The <dfn element-attr>value</dfn>
-attribute optionally gives the <a>base note value</a> to be assigned to the child
-group for beaming purposes.
-
-The following example illustrates two child beamed groups of four 32nd notes
-each, which are in turn placed within a higher-parent beamed group. Each of
-the two subgroups has a note value of one eighth note for beaming purposes,
-and so the subgroups are themselves connected by a single beam to constitute
-the larger group:
-
-<div class="example">
-```xml
-<beamed>
-  <beamed value="/8">
-    <event value="/32">...</event>
-    <event value="/32">...</event>
-    <event value="/32">...</event>
-    <event value="/32">...</event>
-  </beamed>
-  <beamed value="/8">
-    <event value="/32">...</event>
-    <event value="/32">...</event>
-    <event value="/32">...</event>
-    <event value="/32">...</event>
-  </beamed>
-</beamed>
-```
-</div>
-
-Note: The <{beamed/value}> attribute does not affect beaming <em>within</em> a
-beamed group, and so has no consequences unless beamed groups are nested.
-
-Indirect nesting of beam groups also occurs. One example is a set of grace
-notes sharing their own beam, preceding a regular non-grace note within a
-larger beamed group:
-
-<div class="example">
-```xml
-<beamed>
-  <event value="/8">...</event>
-  <event value="/8">...</event>
-  <grace>
-    <beamed>
-      <event value="/8">...</event>
-      <event value="/8">...</event>
-      <event value="/8">...</event>
-      <event value="/8">...</event>
-    </beamed>
-  </grace>
-  <event value="/8">...</event>
-  <event value="/8">...</event>
-</beamed>
-```
-</div>
-
-Beams may continue from one measure to the next. In this case, the <dfn
-element-attr>continue</dfn> attribute gives the <a>element location</a> of
-a <{beamed}> element in the succeeding measure of the same part, which serves
-to identify both the continuing group and the sequence or voice in which it
-resides. This attribute may only be specified if no other events follow this
-beamed group in its measure.
-
-A continuation of a prior beamed group, may itself have a continuation. Thus,
-beamed groups can continue throughout a part without interruption if desired.
-
-The following example illustrates a beam that crosses a measure boundary:
-
-<div class="example">
-```xml
-<measure index="9">
-  <sequence>
-      ...preceding sequence content...
-      <beamed continue="#beamcont1">
-        <event value="/8">...</event>
-        <event value="/8">...</event>
-      </beamed>
-  </sequence>
-</measure>
-<measure index="10">
-  <sequence>
-      <beamed id="beamcont1">
-        <event value="/8">...</event>
-        <event value="/8">...</event>
-      </beamed>
-      ...following sequence content...
-  </sequence>
-</measure>
-```
-</div>
 </section>
 
 <h4 id="the-forward-element">The <dfn element><code>forward</code></dfn> element</h4>
@@ -3141,31 +2983,8 @@ When <{interpret}> occurs within an <{event}> or <{note}> element, all
 <{performance-event}> attributes are defaulted to the values that would be
 generated by an implementation for the first note in the containing element.
 
-As one example, consider this use of <{interpret}> to play a beamed pair of eighth
+As one example, consider this use of <{interpret}> to play a pair of eighth
 notes in a swung triplet rhythm instead:
-
-<div class="example">
-```xml
-<beamed>
-  <event value="/8">
-    <note pitch="C4"/>
-  </event>
-  <event value="/8">
-    <note pitch="D4"/>
-  </event>
-  <interpret>
-    <performance-event start="0" duration="1/6" pitch="C4"/>
-    <performance-event start="1/6" duration="1/12" pitch="D4"/>
-  </interpret>
-</beamed>
-```
-</div>
-
-This scenario does not require the use of a beamed group; without the group,
-the interpretation could be expressed at a per-event level as in the following
-example. Note that the <{performance-event/pitch}> attributes no longer require
-specification, and that the time origin for the second note now relates to its
-default onset time.
 
 <div class="example">
 ```xml
@@ -3188,7 +3007,7 @@ default onset time.
 ```
 </div>
 
-As a final example, this case uses an <{instruction}> element to specify
+As a second example, this case uses an <{instruction}> element to specify
 a tempo via an explicit interpretation:
 
 <div class="example">
