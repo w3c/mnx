@@ -557,15 +557,18 @@ are frequently referenced by this specification.
 
 <h3 id="common-parts-staves">Parts and staves</h3>
 
-A score consists of multiple <dfn>parts</dfn>.  Each <a>part</a> is a grouping
-of related musical material that relates to a single performer or set of
-performers.  It has the same temporal extent as the score overall, but presents
-a slice of content that is relevant to a single instrument or a group of
-related instruments.
+A <dfn>score</dfn> contains one or more printable <dfn>parts</dfn>, each of which has the same number of
+<dfn>measures</dfn> as the score as a whole. One or more parts can be combined to create a part-score. 
+A full-score contains all the available parts.
 
-A part may employ one or more <dfn lt="staff|staves">staves</dfn>. Each <a>staff</a>
-supplies a pair of dimensions, usually one for pitch and one for time, within which
-notes may be placed.  Conventionally, the time dimension is horizontally oriented;
+All scores contain layout information for the parts that they contain (system breaks etc.).
+
+In the simplest case, a <a>part</a> has a single <dfn lt="staff|staves">staff</dfn> containing the
+notation for one instrument or group of instruments (e.g. Flute or Violins I).
+More complex parts can contain multiple <a>staves</a> (e.g. a piano's grand staff).
+
+Each <a>staff</a> supplies a pair of dimensions, usually one for pitch and one for time,
+within which notes may be placed.  Conventionally, the time dimension is horizontally oriented;
 for pitched instruments, the pitch dimension is vertically oriented. All <a>staves</a>
 within a <a>part</a> share the same time dimension.
 
