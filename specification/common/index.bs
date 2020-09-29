@@ -1224,12 +1224,10 @@ The following example provides the basic skeleton of a <{mnx-common}> musical bo
     <dd>None.
   </dl>
 
-The <{global}> element represents a set of measures, each of which provides
-content that is shared by a set of parts within the score. Each <{measure}> element
+The <{global}> element contains a sequence of <a>measures</a>, each of which provides
+content that applies to <em>all</em> the <a>parts</a> in the <a>score</a>. Each <{measure}> element
 within <{global}> supplies the shared content for all other <{measure}>
 elements which share the same <{measure/index}>.
-
-The content in <{global}> applies to <em>all</em> parts in the score.
 
 Typical examples of such content include key signatures, time signatures and
 tempo indications.
