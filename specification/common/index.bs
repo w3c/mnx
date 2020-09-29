@@ -1264,9 +1264,10 @@ tempo indications.
   </dl>
 </section>
 
-The <{part}> element represents a set of measures which describe a single part
-within the score. The sequence of measures must match the measure found in the
-<{global}> element applying to this part.
+
+The <{part}> element contains the sequence of <a>measures</a> for a single <a>part</a> within the <a>score</a>.
+The measures must match the measures found in the <{global}> element.
+
 
 <div class="example">
 ```xml
