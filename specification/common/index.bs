@@ -557,15 +557,18 @@ are frequently referenced by this specification.
 
 <h3 id="common-parts-staves">Parts and staves</h3>
 
-A score consists of multiple <dfn>parts</dfn>.  Each <a>part</a> is a grouping
-of related musical material that relates to a single performer or set of
-performers.  It has the same temporal extent as the score overall, but presents
-a slice of content that is relevant to a single instrument or a group of
-related instruments.
+A <dfn>score</dfn> contains one or more printable <dfn>parts</dfn>, each of which has the same number of
+<dfn>measures</dfn> as the score as a whole. One or more parts can be combined to create a part-score. 
+A full-score contains all the available parts.
 
-A part may employ one or more <dfn lt="staff|staves">staves</dfn>. Each <a>staff</a>
-supplies a pair of dimensions, usually one for pitch and one for time, within which
-notes may be placed.  Conventionally, the time dimension is horizontally oriented;
+All scores contain layout information for the parts that they contain (system breaks etc.).
+
+In the simplest case, a <a>part</a> has a single <dfn lt="staff|staves">staff</dfn> containing the
+notation for one instrument or group of instruments (e.g. Flute or Violins I).
+More complex parts can contain multiple <a>staves</a> (e.g. a piano's grand staff).
+
+Each <a>staff</a> supplies a pair of dimensions, usually one for pitch and one for time,
+within which notes may be placed.  Conventionally, the time dimension is horizontally oriented;
 for pitched instruments, the pitch dimension is vertically oriented. All <a>staves</a>
 within a <a>part</a> share the same time dimension.
 
@@ -577,7 +580,7 @@ mapping between its pitch dimension and some set of performable pitches, with
 additional information supplied by a <dfn>key signature</dfn>. <dfn>Accidental</dfn>
 symbols on <a>notes</a> further modify this mapping on an ad-hoc basis.
 
-Staves in CWMN are identified within a part by a unique <dfn>staff
+Staves are identified within a part by a unique <dfn>staff
 index</dfn>. The topmost staff in a part has a staff index of 1; staves below
 the topmost staff are identified with successively increasing indices.
 
@@ -1221,12 +1224,10 @@ The following example provides the basic skeleton of a <{mnx-common}> musical bo
     <dd>None.
   </dl>
 
-The <{global}> element represents a set of measures, each of which provides
-content that is shared by a set of parts within the score. Each <{measure}> element
+The <{global}> element contains a sequence of <a>measures</a>, each of which provides
+content that applies to <em>all</em> the <a>parts</a> in the <a>score</a>. Each <{measure}> element
 within <{global}> supplies the shared content for all other <{measure}>
 elements which share the same <{measure/index}>.
-
-The content in <{global}> applies to <em>all</em> parts in the score.
 
 Typical examples of such content include key signatures, time signatures and
 tempo indications.
@@ -1263,9 +1264,10 @@ tempo indications.
   </dl>
 </section>
 
-The <{part}> element represents a set of measures which describe a single part
-within the score. The sequence of measures must match the measure found in the
-<{global}> element applying to this part.
+
+The <{part}> element contains the sequence of <a>measures</a> for a single <a>part</a> within the <a>score</a>.
+The measures must match the measures found in the <{global}> element.
+
 
 <div class="example">
 ```xml
