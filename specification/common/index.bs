@@ -114,7 +114,7 @@ url: http://music-encoding.org/#; type: dfn;
 
 url: https://www.w3.org/TR/SVG/linking.html#LinksIntoSVG; type: dfn;
     text: Linking into SVG content
-
+    
 </pre>
 <pre class="link-defaults">
 spec:dom; type:dfn; text:attribute
@@ -1023,34 +1023,6 @@ a <a>SMuFL glyph name</a> from the catalog of glyph names defined in the
 
 <h3 id="root-structure">Root structure and metadata</h3>
 
-<h4 id="the-mnx-element">The <dfn element><code>mnx</code></dfn> element</h4>
-<section dfn-for="mnx">
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd>None: this is the top-level element.</dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd>A single, optional <{head}> element.</dd>
-    <dd>Either a <{collection}> or a <{score}> element.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd>None.</dd>
-  </dl>
-
-The <{mnx}> element encloses the document as a whole.
-
-<div class="example">
-```xml
-<mnx xmlns="http://www.w3.org/mnx">
-    <head>
-      ...head content...
-    </head>
-    <score>
-      ...musical body content...
-    </score>
-</mnx>
-```
-</div>
-</section>
-
 <h4 id="the-head-element">The <dfn element><code>head</code></dfn> element</h4>
 <section dfn-for="head">
   <dl class="def">
@@ -1066,85 +1038,30 @@ The <{head}> element supplies overall descriptive information for an MNX documen
 such as document-scoped metadata or <a>stylesheet definitions</a>.
 </section>
 
-<h4 id="the-collection-element">The <dfn element><code>collection</code></dfn> element</h4>
-<section dfn-for="collection">
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{mnx}>, <{collection}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd>Any combination of <{collection}> and <{score}> elements.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{collection/type}> - The type of the collection</dd>
-  </dl>
-
-The <{collection}> element describes a collection, which is a sequence of
-ordered elements that make up a compound musical document. Each child element
-of the collection may itself be either a collection or a score.
-
-The <dfn element-attr>type</dfn> attribute determines the nature of the collection.
-Valid collection type values include:
-
-<dl dfn-for="collection/type">
-  <dt><dfn attr-value><code>movements</code></dfn></dt>
-  <dd>Each element comprises a movement of a work.</dd>
-  <dt><dfn attr-value><code>sections</code></dfn></dt>
-  <dd>Each element comprises a section of a work, or of a movement.</dd>
-  <dt><dfn attr-value><code>parts</code></dfn></dt>
-  <dd>Each element comprises a description of of the same music, organized for different parts.</dd>
-</dl>
-
-<a>Metadata content</a> or <a>style properties</a> may be included at any level
-of the resulting structure, causing them to apply them only to those parts of
-the document.
-
-The following example shows a hierarchy of collections and scores.
-
-<div class="example">
-```xml
-    <collection type="sections">
-        <score>
-            <title>Section 1 (for Flute and Cello)</title>
-            <mnx-common>...</mnx-common>
-        </score>
-        <collection type="movements">
-            <title>Section 2</title>
-            <score>
-                <title>Section 2, Movement 1 (for Solo Flute)</title>
-                <mnx-common>...</mnx-common>
-            </score>
-            <score>
-                <title>Section 2, Movement 2 (for Solo Cello)</title>
-                <mnx-common>...</mnx-common>
-            </score>
-        </collection>
-        <score>
-            <title>Section 3 (for Flute and Cello)</title>
-            <mnx-common>...</mnx-common>
-        </score>
-    </collection>
-```
-</div>
-
-</section>
-
-<h4 id="the-score-element">The <dfn element><code>score</code></dfn> element</h4>
+<h4 id="the-score-element">The <dfn element=""><code>score</code></dfn> element</h4>
 <section dfn-for="score">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
-    <dd><{mnx}>, <{collection}>.</dd>
+    <dd>TBD: This element's context is currently under discussion.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
-    <dd>Zero or one <{mnx-common}> elements.</dd>
+    <dd><{stylesheet}></dd>
+    <dd>TBD: This element's further content is currently under discussion.</dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{score/src}> - optional relative path to an external source file</dd>
   </dl>
-
 The <{score}> element encloses a self-contained description of the score for
 a portion or the entirety of a musical work.
 
-If the <dfn element-attr>src</dfn> attribute is provided, this specifies a
+If the <dfn element-attr="">src</dfn> attribute is provided, this specifies a
 relative path where the score's musical body lives. Otherwise, the body
 must be provided within the content of the <{score}> element.
+<p class="note">
+Note: Both the context and content of this element are currently under discussion.<br />
+See the proposals for a <em><b>staff-group</b></em> element mentioned in
+<a href="https://www.w3.org/community/music-notation/2020/07/07/co-chair-meeting-minutes-july-7-2020/">
+    The Co-Chair Meeting Minutes: July 7, 2020</a>
+</p>
 </section>
 
 <h4 id="mnx-metadata-content">Metadata content</h4>
@@ -1168,13 +1085,13 @@ bibliographic data and other descriptive information.
 The <{title}> element assigns a title to its parent element in the context of the document as a whole.
 </section>
 
-<h4 id="the-mnx-common-element">The <dfn element><code>mnx-common</code></dfn> element</h4>
+<h4 id="the-mnx-common-element">The <dfn element><code>mnx</code></dfn> element</h4>
 
-<section dfn-for="mnx-common">
+<section dfn-for="mnx">
 
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
-    <dd><{score}>.</dd>
+    <dd>None: this is the top-level element.</dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a>.</dd>
     <dd><{stylesheet}>.</dd>
@@ -1185,13 +1102,13 @@ The <{title}> element assigns a title to its parent element in the context of th
     <dd>None.</dd>
   </dl>
 
-The <{mnx-common}> element describes an MNX score as a whole.
+The <{mnx}> element describes an MNX score as a whole.
 
-The following example provides the basic skeleton of a <{mnx-common}> musical body:
+The following example provides the basic skeleton of a <{mnx}> musical body:
 
 <div class="example">
 ```xml
-<mnx-common>
+<mnx>
   <global>
       ...measure content describing system-wide features...
   </global>
@@ -1204,7 +1121,7 @@ The following example provides the basic skeleton of a <{mnx-common}> musical bo
       ...measure content for part 2...
   </part>
   ...additional parts...
-</mnx-common>
+</mnx>
 ```
 </div>
 </section>
@@ -1214,7 +1131,7 @@ The following example provides the basic skeleton of a <{mnx-common}> musical bo
 <section dfn-for="global">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
-    <dd><{mnx-common}></dd>
+    <dd><{mnx}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Measure content</a>, which must not include any <a>sequence content</a></dd>
     <dt><a>Attributes</a>:</dt>
@@ -1256,7 +1173,7 @@ tempo indications.
 <section dfn-for="part">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
-    <dd><{mnx-common}></dd>
+    <dd><{mnx}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Part description content</a></dd>
     <dd><a>Measure content</a></dd>
@@ -3053,7 +2970,7 @@ audio media representing recordings of the score.
 
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
-    <dd><{mnx-common}></dd>
+    <dd><{mnx}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd>One or more <{score-audio-media}> elements.</dd>
     <dd>Zero or one <{score-audio-mapping}> elements.</dd>
@@ -3176,7 +3093,7 @@ remainder of the recording.
 
 <div class="example">
 ```xml
-<mnx-common>
+<mnx>
   <global id="global1">...</global>
   <part>...</part>
   <part>...</part>
@@ -3189,7 +3106,7 @@ remainder of the recording.
      <score-audio-mapping start="7.53" end="10.53" start="3:0" end="5:1"/>   ...2nd repeat...
      <score-audio-mapping start="10.53" end="11.53" start="7:0" end="7:1"/>  ...2nd and final ending.
   </score-audio>
-</mnx-common>
+</mnx>
 ```
 </div>
 
@@ -3555,14 +3472,14 @@ in a <a>style selector definition</a>. Taken together, these supply a set of
 <dfn>stylesheet definitions</dfn> that control the rendering and
 interpretation of the document.
 
-These definitions may be placed in the <{head}>, the <{mnx-common}>
+These definitions may be placed in the <{head}>, the <{mnx}>
 element, or in a separate linked stylesheet.
 
 <h4 id="the-stylesheet-element">The <dfn element><code>stylesheet</code></dfn> element</h4>
 <section dfn-for="stylesheet">
   <dl class="def">
     <dt><a>Contexts</a>:</dt>
-    <dd><{head}>, <{mnx-common}></dd>
+    <dd><{head}>, <{mnx}></dd>
     <dt><a>Content Model</a>:</dt>
     <dd><a>Stylesheet definitions</a>.</dd>
   </dl>
