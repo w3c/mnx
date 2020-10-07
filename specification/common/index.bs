@@ -1038,32 +1038,6 @@ The <{head}> element supplies overall descriptive information for an MNX documen
 such as document-scoped metadata or <a>stylesheet definitions</a>.
 </section>
 
-<h4 id="the-score-element">The <dfn element=""><code>score</code></dfn> element</h4>
-<section dfn-for="score">
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd>TBD: This element's context is currently under discussion.</dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd><a>Metadata content</a></dd>
-    <dd><{stylesheet}></dd>
-    <dd>TBD: This element's further content is currently under discussion.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{score/src}> - optional relative path to an external source file</dd>
-  </dl>
-The <{score}> element encloses a self-contained description of the score for
-a portion or the entirety of a musical work.
-
-If the <dfn element-attr="">src</dfn> attribute is provided, this specifies a
-relative path where the score's musical body lives. Otherwise, the body
-must be provided within the content of the <{score}> element.
-<p class="note">
-Note: Both the context and content of this element are currently under discussion.<br />
-See the proposals for a <em><b>staff-group</b></em> element mentioned in
-<a href="https://www.w3.org/community/music-notation/2020/07/07/co-chair-meeting-minutes-july-7-2020/">
-    The Co-Chair Meeting Minutes: July 7, 2020</a>
-</p>
-</section>
-
 <h4 id="mnx-metadata-content">Metadata content</h4>
 
 <dfn>Metadata content</dfn> may be included in many elements to supply
