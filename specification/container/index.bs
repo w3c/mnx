@@ -124,9 +124,6 @@ url: https://w3c.github.io/mnx/specification/common/index.html#mnx-metadata-cont
 
 url: https://w3c.github.io/mnx/specification/common/index.html#common-style-properties; type:dfn;
     text: MNX style properties specification
-
-url: https://w3c.github.io/mnx/specification/common/index.html#the-score-element; type:dfn;
-    text: MNX score specification
     
 url: https://w3c.github.io/mnx/specification/common/index.html#the-title-element; type:dfn;
     text: MNX title specification
@@ -255,37 +252,49 @@ The following example shows a hierarchy of collections and scores.
 
 <div class="example">
 ```xml
-    <collection type="sections">
+<collection type="sections">
+    <score>
+        <title>Section 1 (for Flute and Cello)</title>
+        <mnx>...</mnx>
+    </score>
+    <collection type="movements">
+        <title>Section 2</title>
         <score>
-            <title>Section 1 (for Flute and Cello)</title>
+            <title>Section 2, Movement 1 (for Solo Flute)</title>
             <mnx>...</mnx>
         </score>
-        <collection type="movements">
-            <title>Section 2</title>
-            <score>
-                <title>Section 2, Movement 1 (for Solo Flute)</title>
-                <mnx>...</mnx>
-            </score>
-            <score>
-                <title>Section 2, Movement 2 (for Solo Cello)</title>
-                <mnx>...</mnx>
-            </score>
-        </collection>
         <score>
-            <title>Section 3 (for Flute and Cello)</title>
+            <title>Section 2, Movement 2 (for Solo Cello)</title>
             <mnx>...</mnx>
         </score>
     </collection>
+    <score>
+        <title>Section 3 (for Flute and Cello)</title>
+        <mnx>...</mnx>
+    </score>
+</collection>
 ```
 </div>
-
+</collection>    
 </section>
 
 <h4 id="the-score-element">The <dfn element><code>score</code></dfn> element</h4>
 <section dfn-for="score">
-The <{score}> element encloses a self-contained description of a score for
-a portion or the entirety of a musical work.
-See: <a>MNX score specification</a>.
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{mnx-container}>, <{collection}>.</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd><a>Metadata content</a></dd>
+    <dd>Zero or one <{mnx}> or one <{mnx-generic}> element.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{score/src}> - optional relative path to an external source file</dd>
+  </dl>
+
+The <{score}>element encloses a self-contained description of the score for a portion
+or the entirety of a musical work.
+If the <dfn element-attr>src</dfn> attribute is provided, this specifies a
+relative path where the score's musical body lives. Otherwise, the body
+must be provided within the content of the <{score}> element.
 </section>
 
 <h4 id="the-title-element">The <dfn element><code>title</code></dfn> element</h4>
