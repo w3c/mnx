@@ -34,6 +34,7 @@
         <li><a href="#accidentals">Accidentals</a></li>
         <li><a href="#dots">Dotted notes (augmentation dots)</a></li>
         <li><a href="#ties">Ties</a></li>
+        <li><a href="#beams">Beams</a></li>
         <li><a href="#tuplets">Tuplets</a></li>
         <li><a href="#voices">Multiple voices</a></li>
         <li><a href="#octaves">Octave shifts (8va)</a></li>
@@ -1297,6 +1298,281 @@
     </div>
 </section>
 
+<section id="beams" class="example">
+    <div class="center">
+    <h2>Beams</h2>
+    <img class="exampleimg" src="images/example-beams.png">
+    <p class="examplenotes">In MusicXML, you put one or more <code>&lt;beam&gt;</code> elements within a <code>&lt;note&gt;</code> element — a separate element for each beam. The <code>number</code> attribute specifies whether it’s the outer (eighth-note) beam, versus an inner (e.g., 16th note) beam. Parsers need to keep track of currently open beams and look for the values <code>continue</code> or <code>end</code>.</p>
+    <p class="examplenotes">In MNX, each beam is encoded as a <code>&lt;beam&gt;</code> element, containing the IDs of the beam’s events.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="togglebeams" class="switchdiff" data-example="beams" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="togglebeams" class="switchdiff" data-example="beams" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesbeams" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Music</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">begin</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>F</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">end</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">begin</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>F</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">end</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+        </measure>
+        <measure number="2">
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">begin</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <rest/>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>64</duration>
+                <type>16th</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+                <beam number="2">begin</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>64</duration>
+                <type>16th</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+                <beam number="2">end</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">end</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">begin</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">end</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+        </measure>
+    </part>
+</score-partwise></script>
+            </div>
+        </div>
+        <div class="markupexample">
+            <h3>MNX</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><mnx>
+    <global>
+        <measure>
+            <directions>
+                <time signature="4/4"/>
+            </directions>
+        </measure>
+        <measure/>
+    </global>
+    <part>
+        <part-name>Music</part-name>
+        <measure>
+            <directions>
+                <clef line="2" sign="G"/>
+            </directions>
+            <sequence>
+</script><script type="application/xml" class="markupxml diff">                <beams>
+                    <beam events="event1 event2 event3 event4"/>
+                    <beam events="event5 event6 event7 event8"/>
+                </beams>
+</script><script type="application/xml" class="markupxml nodiff">                <event id="event1" value="/8">
+                    <note pitch="C5"/>
+                </event>
+                <event id="event2" value="/8">
+                    <note pitch="D5"/>
+                </event>
+                <event id="event3" value="/8">
+                    <note pitch="E5"/>
+                </event>
+                <event id="event4" value="/8">
+                    <note pitch="F5"/>
+                </event>
+                <event id="event5" value="/8">
+                    <note pitch="D4"/>
+                </event>
+                <event id="event6" value="/8">
+                    <note pitch="E4"/>
+                </event>
+                <event id="event7" value="/8">
+                    <note pitch="F4"/>
+                </event>
+                <event id="event8" value="/8">
+                    <note pitch="G4"/>
+                </event>
+            </sequence>
+        </measure>
+        <measure>
+            <sequence>
+</script><script type="application/xml" class="markupxml diff">                <beams>
+                    <beam events="event9 event10 event11 event12 event13"/>
+                    <beam events="event14 event15"/>
+                </beams>
+</script><script type="application/xml" class="markupxml nodiff">                <event id="event9" value="/8">
+                    <note pitch="G4"/>
+                </event>
+                <event id="event10" value="/8">
+                    <rest/>
+                </event>
+                <event id="event11" value="/16">
+                    <note pitch="D4"/>
+                </event>
+                <event id="event12" value="/16">
+                    <note pitch="E4"/>
+                </event>
+                <event id="event13" value="/8">
+                    <note pitch="G4"/>
+                </event>
+                <event id="event14" value="/8">
+                    <note pitch="E4"/>
+                </event>
+                <event id="event15" value="/8">
+                    <note pitch="D4"/>
+                </event>
+                <event value="/4">
+                    <note pitch="C4"/>
+                </event>
+            </sequence>
+        </measure>
+    </part>
+</mnx></script>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="tuplets" class="example">
     <div class="center">
     <h2>Tuplets</h2>
@@ -1529,9 +1805,12 @@
         <part-name>Music</part-name>
         <measure>
             <directions>
-                <clef sign="G" line="2"/>
+                <clef line="2" sign="G"/>
             </directions>
             <sequence>
+                <beams>
+                    <beam events="event3 event4 event5"/>
+                </beams>
 </script><script type="application/xml" class="markupxml diff">                <tuplet inner="3/8" outer="2/8">
 </script><script type="application/xml" class="markupxml nodiff">                    <event value="/4">
                         <note pitch="C5"/>
@@ -1541,13 +1820,13 @@
                     </event>
 </script><script type="application/xml" class="markupxml diff">                </tuplet>
                 <tuplet inner="3/8" outer="2/8">
-</script><script type="application/xml" class="markupxml nodiff">                    <event value="/8">
+</script><script type="application/xml" class="markupxml nodiff">                    <event id="event3" value="/8">
                         <note pitch="E4"/>
                     </event>
-                    <event value="/8">
+                    <event id="event4" value="/8">
                         <note pitch="F4"/>
                     </event>
-                    <event value="/8">
+                    <event id="event5" value="/8">
                         <note pitch="G4"/>
                     </event>
 </script><script type="application/xml" class="markupxml diff">                </tuplet>
@@ -2804,19 +3083,22 @@
                 <clef line="2" sign="G"/>
             </directions>
             <sequence>
+                <beams>
+                    <beam events="event6 event7 event8 event9"/>
+                </beams>
                 <event value="/2">
                     <rest/>
                 </event>
-                <event value="/8">
+                <event id="event6" value="/8">
                     <note pitch="C5"/>
                 </event>
-                <event value="/8">
+                <event id="event7" value="/8">
                     <note pitch="D5"/>
                 </event>
-                <event value="/8">
+                <event id="event8" value="/8">
                     <note pitch="E5"/>
                 </event>
-                <event value="/8">
+                <event id="event9" value="/8">
                     <note pitch="D5"/>
                 </event>
             </sequence>
