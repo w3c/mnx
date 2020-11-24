@@ -35,6 +35,7 @@
         <li><a href="#dots">Dotted notes (augmentation dots)</a></li>
         <li><a href="#ties">Ties</a></li>
         <li><a href="#beams">Beams</a></li>
+        <li><a href="#beamgrace">Beams (with inner grace notes)</a></li>
         <li><a href="#tuplets">Tuplets</a></li>
         <li><a href="#voices">Multiple voices</a></li>
         <li><a href="#octaves">Octave shifts (8va)</a></li>
@@ -1563,6 +1564,147 @@
                 </event>
                 <event value="/4">
                     <note pitch="C4"/>
+                </event>
+            </sequence>
+        </measure>
+    </part>
+</mnx></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="beamgrace" class="example">
+    <div class="center">
+    <h2>Beams (with inner grace notes)</h2>
+    <img class="exampleimg" src="images/example-beamgrace.png">
+    <p class="examplenotes">In MusicXML, to exclude a grace note from a beam, you exclude <code>&lt;beam&gt;continue&lt;/beam&gt;</code> from the grace note’s <code>&lt;note&gt;</code> element.</p>
+    <p class="examplenotes">In MNX, you exclude the grace note’s event from the <code>&lt;beam&gt;</code> element.</p>
+    <p class="examplenotes">NOTE: This MNX example is incomplete because it doesn’t encode the grace note.</p>
+    <p class="showui">Show:
+        <label><input type="radio" name="togglebeamgrace" class="switchdiff" data-example="beamgrace" value="1" checked> Relevant section</label>
+        <label><input type="radio" name="togglebeamgrace" class="switchdiff" data-example="beamgrace" value="2"> Full document</label>
+    </p>
+    </div>
+    <div id="markupexamplesbeamgrace" class="markupexamples onlydiff">
+        <div class="markupexample">
+            <h3>MusicXML</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Music</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">begin</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <grace/>
+                <pitch>
+                    <step>B</step>
+                    <octave>4</octave>
+                </pitch>
+                <type>eighth</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">continue</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <pitch>
+                    <step>F</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>128</duration>
+                <type>eighth</type>
+</script><script type="application/xml" class="markupxml diff">                <beam number="1">end</beam>
+</script><script type="application/xml" class="markupxml nodiff">            </note>
+            <note>
+                <rest/>
+                <duration>512</duration>
+                <type>half</type>
+            </note>
+        </measure>
+    </part>
+</score-partwise></script>
+            </div>
+        </div>
+        <div class="markupexample">
+            <h3>MNX</h3>
+            <div class="markupcode">
+            <script type="application/xml" class="markupxml nodiff"><mnx>
+    <global>
+        <measure>
+            <directions>
+                <time signature="4/4"/>
+            </directions>
+        </measure>
+    </global>
+    <part>
+        <part-name>Music</part-name>
+        <measure>
+            <directions>
+                <clef line="2" sign="G"/>
+            </directions>
+            <sequence>
+</script><script type="application/xml" class="markupxml diff">                <beams>
+                    <beam events="event1 event3 event4 event5"/>
+                </beams>
+</script><script type="application/xml" class="markupxml nodiff">                <event id="event1" value="/8">
+                    <note pitch="C5"/>
+                </event>
+                <event value="/8">
+                    <note pitch="B4"/>
+                </event>
+                <event id="event3" value="/8">
+                    <note pitch="D5"/>
+                </event>
+                <event id="event4" value="/8">
+                    <note pitch="E5"/>
+                </event>
+                <event id="event5" value="/8">
+                    <note pitch="F5"/>
+                </event>
+                <event value="/2">
+                    <rest/>
                 </event>
             </sequence>
         </measure>
