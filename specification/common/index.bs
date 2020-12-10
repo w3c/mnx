@@ -2207,13 +2207,13 @@ Event liaison elements share a set of common <dfn>event liaison attributes</dfn>
 
 <dl class="def">
     <dt><a>Attributes</a>:</dt>
-    <dd><{<dfn element-attr dfn-for="event-liaisons">target</dfn>}> - (optional) the element ID of the event at which the liaison ends</dd>
+    <dd><{event-liaisons/target}> - (optional) the element ID of the event at which the liaison ends</dd>
 </dl>
 
 <h4 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h4>
 <section dfn-for="slur">
 
-If the <{event-liaisons/target}> attribute is provided, it must specify the ID of the
+If the <dfn element-attr dfn-for="event-liaisons">target</dfn> attribute is provided, it must specify the ID of the
 slur's end event. This ID must exist in the document and must identify an
 <{event}> or <{note}>.
 
