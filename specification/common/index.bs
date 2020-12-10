@@ -1467,65 +1467,14 @@ The context of the <{directions}> element defines a scope for contained directio
 
 </section>
 
-<h4 id="the-beams-element">The <dfn element><code>beams</code></dfn> element</h4>
-<section dfn-for="directions">
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{sequence}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd>One or more <{beam}> elements</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd>None.</dd>
-  </dl>
-
-The <{beams}> element encodes all of the beams within a <{sequence}>.
-
-Beams that are rendered in multiple sequences (i.e., beams that cross barlines)
-are encoded in their first <{sequence}>.
-</section>
-
-<h5 id="the-beam-element">The <dfn element><code>beam</code></dfn> element</h4>
-<section dfn-for="directions">
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{beams}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd>Zero or more <{beam}> elements</dd>
-    <dd>Zero or more <{beam-hook}> elements</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{beam/events}> - the event IDs that comprise this beam</dd>
-  </dl>
-
-The <{beam}> element describes a beam.
-
-It has a single attribute, <{beam/events}>, which is a space-separated
-list of <{event}> IDs for events the comprise the beam — in order by their
-position in the beam.
-
-A <{beam}> can contain nested <{beam}> elements, in the case of secondary
-beams. Each "level" of beam is encoded with a separate <{beam}> element.
-</section>
-
-<h5 id="the-beam-hook-element">The <dfn element><code>beam-hook</code></dfn> element</h4>
-<section dfn-for="directions">
-  <dl class="def">
-    <dt><a>Contexts</a>:</dt>
-    <dd><{beam}></dd>
-    <dt><a>Content Model</a>:</dt>
-    <dd>None.</dd>
-    <dt><a>Attributes</a>:</dt>
-    <dd><{beam-hook/event}> - the event ID</dd>
-    <dd><{beam-hook/direction}> - either "left" or "right"</dd>
-  </dl>
-
-The <{beam-hook}> element describes a beam hook.
-</section>
-
 <h3 id="common-sequence-content">Sequence content</h3>
 
 <dfn>Sequence content</dfn> supplies a series of musical events that are
 both presented and performed in a given order, each at a distinct time. Such
-events express the concepts of chords, notes and rests.
+events express the concepts of chords, notes and rests. In addition to such
+<a>event content</a>, a sequence may also contain a <{beams}> element and/or interspersed
+<a>direction content</a>. Such <{directions}> are injected into the sequence
+either adjacent to events, or at explicitly given measure locations.
 
 Sequence content possesses a <dfn>starting position</dfn>. This is the
 <a>metrical position</a> within a containing measure of the content's first
@@ -1534,10 +1483,6 @@ element.
 Sequence content also possesses a <dfn>time modification ratio</dfn>. This is
 a rational number scale factor which implicitly applies to all positions and
 durations within the content.
-
-Sequence content also permits interspersed <a>direction content</a> whose
-directions are injected into the sequence either adjacent to events, or
-at explicitly given measure locations.
 
 Within sequence content, nested <a>event content</a>
 is assigned <a>metrical positions</a> according to the
@@ -1626,6 +1571,7 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
     <dd><{event/value}> - the notated metrical duration of this event</dd>
+    <dd><{event/id}> - optional string that is the ID of this event</dd>
     <dd><{event/measure}> - optional flag indicating that the event occupies the entire measure.</dd>
     <dd><{event/orient}> - optional <a>orientation</a> of this event </dd>
     <dd><{event/staff}> - optional <a>staff index</a> of this event </dd>
@@ -1637,6 +1583,8 @@ following procedure, called <dfn lt="sequence the content|sequencing the content
 The <{event}> element represents a <a>notated event</a>: a discrete period of
 time within a sequence during which one or more notes are performed, or in
 which a rest occurs.
+
+The event's <dfn element-attr>id</dfn> attribute is used, for example, when defining beams.
 
 All events other than <a>whole-measure events</a> require a <dfn element-attr>
 value</dfn> attribute to provide their duration as a <a>note value</a>.
@@ -1971,6 +1919,65 @@ The following example illustrates a run of two grace notes up to a quarter note.
 
 </section>
 
+<h4 id="the-beams-element">The <dfn element><code>beams</code></dfn> element</h4>
+<section dfn-for="beams">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{sequence}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>One or more <{beam}> elements</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None.</dd>
+  </dl>
+
+The <{beams}> element encodes all of the beams within a <{sequence}>.
+
+Beams that are rendered in multiple sequences (i.e., beams that cross barlines)
+are encoded in their first <{sequence}>.
+</section>
+
+<h5 id="the-beam-element">The <dfn element=""><code>beam</code></dfn> element</h4>
+<section dfn-for="beam">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{beams}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>Zero or more <{beam}> elements</dd>
+    <dd>Zero or more <{beam-hook}> elements</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{beam/events</dfn>}> - two or more event IDs that comprise this beam</dd>
+  </dl>
+  
+The <{beam}> element describes a beam.
+  
+It has a single attribute, <dfn element-attr>events</dfn>, which is a space-separated
+list of two or more <{event}> IDs for events the comprise the beam — in order by their
+position in the beam.
+  
+A <{beam}> can contain nested <{beam}> elements, in the case of secondary beams.
+Each "level" of beam is encoded with a separate <{beam}> element.
+
+</section>
+
+<h5 id="the-beam-hook-element">The <dfn element=""><code>beam-hook</code></dfn> element</h4>
+<section dfn-for="beam-hook">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{beam}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{beam-hook/event}> - an event ID</dd>
+    <dd><{beam-hook/direction}> - either "left" or "right"</dd>
+  </dl>
+
+The <{beam-hook}> element describes a beam hook.
+The <dfn element-attr="">event</dfn> attribute is the ID of the <{event}> to which
+this beam-hook is attached. The <dfn element-attr="">direction</dfn> attribute
+determines the side of the <{event}> to which this beam-hook is attached.
+
+</section>
+
 <h3 id="common-event-content">Event content</h3>
 
 <dfn>Event content</dfn> comprises elements that describe the musical content
@@ -1989,6 +1996,7 @@ of a single event, that is performed at a distinct time.
     <dd><{note/pitch}> - the musical pitch of this note </dd>
     <dd><{note/staff}> - an optional staff index for this note </dd>
     <dd><{note/accidental}> - an optional accidental to render for this note</dd>
+    <dd><{note/id}> - optional string that is the ID of this note</dd>
   </dl>
 
 The <{note}> element defines a single note within an event, along with other
@@ -2006,7 +2014,9 @@ for this note. This attribute must match the <a>alteration</a> of the
 <{note/pitch}> attribute. Omission of the attribute indicates that no accidental
 is to be displayed.
 
-<em>(Import values here from MusicXML specification. Add style properties for
+The note's <dfn element-attr="">id</dfn> attribute is used, for example, when connecting a <{slur}>.
+
+    <em>(Import values here from MusicXML specification. Add style properties for
 editorial indications. Handle the case of "explicit" accidentals that should
 be preserved even if the chromatic context is changed by edits.)</em>
 
@@ -2195,20 +2205,20 @@ between a single event and some other event.
 
 Event liaison elements share a set of common <dfn>event liaison attributes</dfn> in an attribute group.
 
-  <dl class="def">
+<dl class="def">
     <dt><a>Attributes</a>:</dt>
-    <dd><{event-liaisons/target}> - (optional) the element ID of the event at which the liaison ends</dd>
-  </dl>
+    <dd><{<dfn element-attr dfn-for="event-liaisons">target</dfn>}> - (optional) the element ID of the event at which the liaison ends</dd>
+</dl>
 
 <h4 id="the-slur-element">The <dfn element><code>slur</code></dfn> element</h4>
 <section dfn-for="slur">
 
 If the <{event-liaisons/target}> attribute is provided, it must specify the ID of the
 slur's end event. This ID must exist in the document and must identify an
-<code>event</code>.
+<{event}> or <{note}>.
 
 If <{event-liaisons/target}> is not provided, the slur does not connect to a
-particular destination event. In this case, the <dfn element-attr>location</dfn>
+particular destination event or note. In this case, the <dfn element-attr>location</dfn>
 attribute may be used to specify the <a>measure location</a> of the other end
 of the slur.
 
