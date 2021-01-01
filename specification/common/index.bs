@@ -1283,6 +1283,7 @@ with two monophonic half notes:
     <dt><a>Content Model</a>:</dt>
     <dd><a>Metadata content</a></dd>
     <dd>Zero or one <{directions}> elements</dd>
+    <dd>Zero or one <{beams}> elements</dd>
     <dd><a>Sequence content</a></dd>
     <dd><a>Interpretation content</a></dd>
     <dt><a>Attributes</a>:</dt>
@@ -1464,6 +1465,60 @@ The context of the <{directions}> element defines a scope for contained directio
 
 - Directions in a <{sequence}> apply to the sequence in which it occurs.
 
+</section>
+
+<h4 id="the-beams-element">The <dfn element><code>beams</code></dfn> element</h4>
+<section dfn-for="directions">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{sequence}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>One or more <{beam}> elements</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None.</dd>
+  </dl>
+
+The <{beams}> element encodes all of the beams within a <{sequence}>.
+
+Beams that are rendered in multiple sequences (i.e., beams that cross barlines)
+are encoded in their first <{sequence}>.
+</section>
+
+<h5 id="the-beam-element">The <dfn element><code>beam</code></dfn> element</h4>
+<section dfn-for="directions">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{beams}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>Zero or more <{beam}> elements</dd>
+    <dd>Zero or more <{beam-hook}> elements</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{beam/events}> - the event IDs that comprise this beam</dd>
+  </dl>
+
+The <{beam}> element describes a beam.
+
+It has a single attribute, <{beam/events}>, which is a space-separated
+list of <{event}> IDs for events the comprise the beam — in order by their
+position in the beam.
+
+A <{beam}> can contain nested <{beam}> elements, in the case of secondary
+beams. Each "level" of beam is encoded with a separate <{beam}> element.
+</section>
+
+<h5 id="the-beam-hook-element">The <dfn element><code>beam-hook</code></dfn> element</h4>
+<section dfn-for="directions">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd><{beam}></dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None.</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{beam-hook/event}> - the event ID</dd>
+    <dd><{beam-hook/direction}> - either "left" or "right"</dd>
+  </dl>
+
+The <{beam-hook}> element describes a beam hook.
 </section>
 
 <h3 id="common-sequence-content">Sequence content</h3>
