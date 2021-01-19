@@ -92,6 +92,11 @@ class ExampleDocument(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        from spec.utils.datautils import update_example_elements
+        update_example_elements(self)
+
     def get_absolute_url(self):
         return reverse('example_detail', args=(self.slug,))
 
@@ -101,6 +106,15 @@ class ExampleDocumentConcept(models.Model):
 
     class Meta:
         db_table = 'example_concepts'
+
+class ExampleDocumentElement(models.Model):
+    # This is a cache of each element used in each
+    # ExampleDocument. It's updated via ExampleDocument.save().
+    example = models.ForeignKey(ExampleDocument, on_delete=models.CASCADE)
+    element_name = models.CharField(max_length=80)
+
+    class Meta:
+        db_table = 'example_elements'
 
 class ElementConcept(models.Model):
     element = models.ForeignKey(XMLElement, on_delete=models.CASCADE)

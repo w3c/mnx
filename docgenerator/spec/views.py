@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from spec.utils import htmlutils
-from spec.models import XMLElement, XMLAttribute, XMLRelationship, DataType, ExampleDocument, Concept, ExampleDocumentConcept, ElementConcept
+from spec.models import XMLElement, XMLAttribute, XMLRelationship, DataType, ExampleDocument, Concept, ExampleDocumentConcept, ExampleDocumentElement, ElementConcept
 
 ROOT_ELEMENT_SLUG = 'mnx' # TODO: Put this in configuration.
 
@@ -25,6 +25,7 @@ def element_detail(request, slug):
         'children': XMLRelationship.objects.filter(parent=element).select_related('child').order_by('child__name'),
         'parents': XMLRelationship.objects.filter(child=element).select_related('parent').order_by('parent__name'),
         'concepts': ElementConcept.objects.filter(element=element).select_related('concept'),
+        'examples': ExampleDocumentElement.objects.filter(element_name=element.name).select_related('example').order_by('example__name'),
     })
 
 def element_tree(request):

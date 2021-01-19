@@ -1,4 +1,4 @@
-from spec.models import Concept, DataType, ElementConcept, ExampleDocument, ExampleDocumentConcept, XMLAttribute, XMLElement, XMLRelationship
+from spec.models import Concept, DataType, ElementConcept, ExampleDocument, ExampleDocumentConcept, ExampleDocumentElement, XMLAttribute, XMLElement, XMLRelationship
 from django.contrib.auth.models import User
 from django.core import serializers
 import datetime
@@ -14,6 +14,7 @@ MODELS_TO_FREEZE = (
     XMLRelationship,
     ExampleDocument,
     ExampleDocumentConcept,
+    ExampleDocumentElement,
     ElementConcept
 )
 

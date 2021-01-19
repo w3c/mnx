@@ -51,5 +51,15 @@
     {% endfor %}
 </ul>
 {% endif %}
+
+{% if examples %}
+<h2>Examples</h2>
+
+<p>This element is used in the following examples:</p>
+<p>
+    {% for example in examples %}<nobr><a href="{% relative_url_string example.example.get_absolute_url %}">{{ example.example.name }}</a></nobr>{% if not forloop.last %}, {% endif %}{% endfor %}
+</p>
+{% endif %}
+
 {% endblock %}
 
