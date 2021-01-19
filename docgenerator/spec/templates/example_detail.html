@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}MNX example: {{ example.name }}{% endblock %}
+
+{% block content %}
+<p class="breadcrumb"><a href="{% relative_url 'example_list' %}">Examples</a> &gt; {{ example.name }}</p>
+
+<h1>MNX example: {{ example.name }}</h1>
+
+{% if example.image_url %}
+<p width="100%"><img src="{% relative_url_string example.image_url %}" width="100%"></p>
+{% endif %}
+
+{% if example.blurb %}
+<p>{{ example.blurb }}</p>
+{% endif %}
+
+{% if concepts %}
+<p>Concepts: {% for concept in concepts %}<a href="{% relative_url_string concept.concept.get_absolute_url %}">{{ concept.concept.name }}</a>{% endfor %}</p>
+{% endif %}
+
+<div class="xmlmarkup">{{ augmented_doc|safe }}</div>
+{% endblock %}

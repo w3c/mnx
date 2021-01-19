@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Concepts in MNX{% endblock %}
+
+{% block content %}
+<h1>Concepts in MNX</h1>
+
+<ul>
+{% for concept in concepts %}
+<li><a href="{% relative_url_string concept.get_absolute_url %}">{{ concept.name }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

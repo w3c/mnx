@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}MNX example documents{% endblock %}
+
+{% block content %}
+<h1>MNX example documents</h1>
+
+{% for example in examples %}
+<div style="margin-bottom: 40px;">
+    <a href="{% relative_url_string example.get_absolute_url %}">
+    <img src="{% relative_url_string example.image_url %}" width="100%" loading="lazy"><br>
+    {{ example.name }}
+    </a>
+</div>
+{% endfor %}
+{% endblock %}

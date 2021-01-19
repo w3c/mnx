@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}The {{ element.name_with_brackets }} element{% endblock %}
+
+{% block content %}
+<p class="breadcrumb"><a href="{% relative_url 'element_list' %}">Elements</a> &gt; {{ element.name }}</p>
+
+<h1>The {{ element.name_with_brackets }} element</h1>
+
+<ul>
+    <li>Parent element{{ parents|pluralize }}:
+        {% if parents %}
+            {% for relationship in parents %}
+            <a href="{% relative_url_string relationship.parent.get_absolute_url %}">{{ relationship.parent.name_with_brackets }}</a>
+            {% endfor %}
+        {% else %}
+            None
+        {% endif %}
+    </li>
+    <li>Child element{{ children|pluralize }}:
+        {% if children %}
+            {% for relationship in children %}
+            <a href="{% relative_url_string relationship.child.get_absolute_url %}">{{ relationship.child.name_with_brackets }}</a>
+            {% endfor %}
+        {% else %}
+            None
+        {% endif %}
+    </li>
+</ul>
+
+{% if element.description %}
+{{ element.description|safe }}
+{% endif %}
+
+<h2>Attributes</h2>
+
+{% if attributes %}
+    {% for attribute in attributes %}
+    <p>{{ attribute.name }} (<a href="{% relative_url_string attribute.data_type.get_absolute_url %}">{{ attribute.data_type.name }}</a>)</p>
+    {% endfor %}
+{% else %}
+    <p>None.</p>
+{% endif %}
+
+{% if concepts %}
+<h2>Related concepts</h2>
+
+<ul>
+    {% for concept in concepts %}
+    <li><a href="{% relative_url_string concept.concept.get_absolute_url %}">{{ concept.concept.name }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+

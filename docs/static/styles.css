@@ -1,0 +1,79 @@
+
+/* Reset */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+img, ins, kbd, q, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; vertical-align: baseline; background: transparent; }
+table { border-spacing: 0; border-collapse: collapse; }
+caption, th, td { text-align: left; font-weight: normal; }
+blockquote, q { quotes: none; }
+* { margin: 0; }
+
+/* Type */
+html {
+    color: #24292e;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-size: 18px;
+    line-height: 1.6125;
+}
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.25;
+}
+body {
+    margin: 0;
+}
+h1 {
+    font-size: 36px;
+    margin: 0 0 20px;
+}
+h2 {
+    margin: 0 0 15px;
+}
+h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+a:link {
+    color: #003569;
+}
+code {
+    white-space: nowrap;
+}
+
+/* Styles */
+.topnav {
+    background: #ccc;
+    padding: 10px;
+    margin: 0 0 20px;
+}
+li {
+    margin-left: 2em;
+    list-style-type: circle;
+}
+p, ul {
+    margin: 0 0 20px;
+}
+.nestedul {
+    margin-bottom: 0;
+}
+.content {
+    max-width: 34rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.xmlmarkup {
+    white-space: pre;
+    font: 14px "courier new",courier,fixed-width;
+    color: #999;
+}
+.xmlmarkup .tag, .xmlmarkup .attr {
+    color: #000;
+}
+.xmlmarkup a:link {
+    color: #000;
+    text-decoration: none;
+}
+.xmlmarkup a:hover {
+    color: #f00;
+}

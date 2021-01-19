@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}{{ concept.name }}{% endblock %}
+
+{% block content %}
+<p class="breadcrumb"><a href="{% relative_url 'concept_list' %}">Concepts</a> &gt; {{ concept.name }}</p>
+
+<h1>{{ concept.name }}</h1>
+
+{% if concept.description %}
+<p>{{ concept.description }}</p>
+{% endif %}
+
+{% if elements %}
+<h2>Elements</h2>
+
+<ul>
+{% for element in elements %}
+<li><a href="{% relative_url_string element.element.get_absolute_url %}">{{ element.element.name_with_brackets }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if examples %}
+<h2>Examples</h2>
+
+{% for example in examples %}
+<div style="margin-bottom: 40px;">
+    <a href="{% relative_url_string example.example.get_absolute_url %}">
+    <img src="{% relative_url_string example.example.image_url %}" width="100%"><br>
+    {{ example.example.name }}
+    </a>
+</div>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

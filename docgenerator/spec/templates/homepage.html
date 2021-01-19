@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block fulltitle %}MNX music notation format{% endblock %}
+
+{% block content %}
+<h1>MNX music notation format</h1>
+
+<h2>Elements</h2>
+<p>
+{% for element in featured_elements %}
+<a href="{% relative_url_string element.get_absolute_url %}">{{ element.name_with_brackets }}</a> ·
+{% endfor %}
+<a href="{% relative_url 'element_tree' %}">See all…</a>
+</p>
+
+<h2>Examples</h2>
+<p>
+{% for example in featured_examples %}
+<a href="{% relative_url_string example.get_absolute_url %}">{{ example.name }}</a> ·
+{% endfor %}
+<a href="{% relative_url 'example_list' %}">See all…</a>
+</p>
+
+<h2>Concepts</h2>
+<p>
+{% for concept in featured_concepts %}
+<a href="{% relative_url_string concept.get_absolute_url %}">{{ concept.name }}</a> ·
+{% endfor %}
+<a href="{% relative_url 'concept_list' %}">See all…</a>
+</p>
+
+<h2>Data types</h2>
+<p>
+{% for data_type in featured_data_types %}
+<a href="{% relative_url_string data_type.get_absolute_url %}">{{ data_type.name }}</a> ·
+{% endfor %}
+<a href="{% relative_url 'data_type_list' %}">See all…</a>
+</p>
+{% endblock %}

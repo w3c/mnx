@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Elements used in MNX{% endblock %}
+
+{% block content %}
+<h1>Elements used in MNX</h1>
+
+<p><a href="{% relative_url 'element_tree' %}">Tree view</a> | <b>Alphabetical list</b></p>
+
+<ul>
+{% for element in elements %}
+<li><a href="{% relative_url_string element.get_absolute_url %}">{{ element.name_with_brackets }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Data types used in MNX{% endblock %}
+
+{% block content %}
+<h1>Data types used in MNX</h1>
+
+<ul>
+{% for data_type in data_types %}
+<li><a href="{% relative_url_string data_type.get_absolute_url %}">{{ data_type.name }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

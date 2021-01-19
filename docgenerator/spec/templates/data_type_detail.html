@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data_type.name }} data type{% endblock %}
+
+{% block content %}
+<p class="breadcrumb"><a href="{% relative_url 'data_type_list' %}">Data types</a> &gt; {{ data_type.name }}</p>
+
+<h1>{{ data_type.name }} data type</h1>
+
+<p>It’s used in these elements:</p>
+
+{% for attribute in attributes %}
+<p><a href="{% relative_url_string attribute.element.get_absolute_url %}">{{ attribute.element.name_with_brackets }}</a> — "{{ attribute.name }}" attribute</p>
+{% endfor %}
+
+{% endblock %}

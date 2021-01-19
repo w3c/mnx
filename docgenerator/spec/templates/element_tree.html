@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Elements used in MNX (tree view){% endblock %}
+
+{% block content %}
+<h1>Elements used in MNX</h1>
+
+<p><b>Tree view</b> | <a href="{% relative_url 'element_list' %}">Alphabetical list</a></p>
+
+{{ tree_html|safe }}
+{% endblock %}
