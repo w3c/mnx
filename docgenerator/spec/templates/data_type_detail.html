@@ -7,6 +7,10 @@
 
 <h1>{{ data_type.name }} data type</h1>
 
+{% if data_type.description %}
+<p>{{ data_type.description }}</p>
+{% endif %}
+
 {% if options %}
 <h2>Allowed values</h2>
 
