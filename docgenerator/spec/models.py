@@ -16,6 +16,14 @@ class DataType(models.Model):
     def get_absolute_url(self):
         return reverse('data_type_detail', args=(self.slug,))
 
+class DataTypeOption(models.Model):
+    data_type = models.ForeignKey(DataType, on_delete=models.CASCADE)
+    value = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+
+    class Meta:
+        db_table = 'data_type_options'
+
 class Concept(models.Model):
     name = models.CharField(max_length=100)
     slug = models.CharField(max_length=100, unique=True)

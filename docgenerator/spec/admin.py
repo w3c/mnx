@@ -1,5 +1,5 @@
 from django.contrib import admin
-from spec.models import XMLElement, XMLAttribute, XMLRelationship, DataType, ExampleDocument, Concept, ExampleDocumentConcept, ElementConcept
+from spec.models import XMLElement, XMLAttribute, XMLRelationship, DataType, DataTypeOption, ExampleDocument, Concept, ExampleDocumentConcept, ElementConcept
 
 class XMLAttributeInline(admin.TabularInline):
     model = XMLAttribute
@@ -20,7 +20,12 @@ class XMLElementAdmin(admin.ModelAdmin):
     ordering = ['name']
     prepopulated_fields = {'slug': ['name']}
 
+class DataTypeOptionInline(admin.TabularInline):
+    model = DataTypeOption
+    extra = 0
+
 class DataTypeAdmin(admin.ModelAdmin):
+    inlines = [DataTypeOptionInline]
     prepopulated_fields = {'slug': ['name']}
     list_display = ['name', 'is_featured']
 
