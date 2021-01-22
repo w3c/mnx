@@ -15,10 +15,35 @@
 
 <h1>Grace note type data type</h1>
 
-<p>It’s used in these elements:</p>
+
+<h2>Allowed values</h2>
+
+<table>
+
+<tr>
+    <th class="nobr">make-time</th>
+    <td>The run of grace notes delays the onset of the next non-grace event.</td>
+</tr>
+
+<tr>
+    <th class="nobr">steal-following</th>
+    <td>The run of grace notes occupies a time interval starting at the expected onset of the next non-grace event, both delaying its onset and shortening its duration.</td>
+</tr>
+
+<tr>
+    <th class="nobr">steal-previous</th>
+    <td>The run of grace notes occupies a time interval that ends before the expected onset of the next non-grace event, shortening the duration of the preceding non-grace event.</td>
+</tr>
+
+</table>
+
+
+
+<h2>Where is this type used?</h2>
 
 
 <p><a href="../../elements/grace/">&lt;grace&gt;</a> — "type" attribute</p>
+
 
 
 

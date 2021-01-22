@@ -248,6 +248,51 @@
     }
 },
 {
+    "model": "spec.datatypeoption",
+    "pk": 1,
+    "fields": {
+        "data_type": 27,
+        "value": "yes",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 2,
+    "fields": {
+        "data_type": 27,
+        "value": "no",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 3,
+    "fields": {
+        "data_type": 26,
+        "value": "steal-previous",
+        "description": "The run of grace notes occupies a time interval that ends before the expected onset of the next non-grace event, shortening the duration of the preceding non-grace event."
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 4,
+    "fields": {
+        "data_type": 26,
+        "value": "steal-following",
+        "description": "The run of grace notes occupies a time interval starting at the expected onset of the next non-grace event, both delaying its onset and shortening its duration."
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 5,
+    "fields": {
+        "data_type": 26,
+        "value": "make-time",
+        "description": "The run of grace notes delays the onset of the next non-grace event."
+    }
+},
+{
     "model": "spec.concept",
     "pk": 1,
     "fields": {
