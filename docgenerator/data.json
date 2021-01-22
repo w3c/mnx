@@ -248,6 +248,26 @@
     }
 },
 {
+    "model": "spec.datatype",
+    "pk": 28,
+    "fields": {
+        "name": "Yes, no or auto",
+        "slug": "yes-no-or-auto",
+        "description": "",
+        "is_featured": false
+    }
+},
+{
+    "model": "spec.datatype",
+    "pk": 29,
+    "fields": {
+        "name": "Orientation",
+        "slug": "orientation",
+        "description": "This specifies the placement and rendering of content.",
+        "is_featured": false
+    }
+},
+{
     "model": "spec.datatypeoption",
     "pk": 1,
     "fields": {
@@ -290,6 +310,51 @@
         "data_type": 26,
         "value": "make-time",
         "description": "The run of grace notes delays the onset of the next non-grace event."
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 6,
+    "fields": {
+        "data_type": 28,
+        "value": "yes",
+        "description": "Yes."
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 7,
+    "fields": {
+        "data_type": 28,
+        "value": "no",
+        "description": "No."
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 8,
+    "fields": {
+        "data_type": 28,
+        "value": "auto",
+        "description": "Consuming software should decide on its own."
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 9,
+    "fields": {
+        "data_type": 29,
+        "value": "up",
+        "description": "Note stems are pointed upward."
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 10,
+    "fields": {
+        "data_type": 29,
+        "value": "down",
+        "description": "Note stems are pointed downward."
     }
 },
 {
@@ -930,6 +995,50 @@
         "is_required": false,
         "description": "",
         "data_type": 27
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 35,
+    "fields": {
+        "element": 18,
+        "name": "bracket",
+        "is_required": false,
+        "description": "",
+        "data_type": 28
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 36,
+    "fields": {
+        "element": 18,
+        "name": "orient",
+        "is_required": false,
+        "description": "",
+        "data_type": 29
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 37,
+    "fields": {
+        "element": 19,
+        "name": "orient",
+        "is_required": false,
+        "description": "",
+        "data_type": 29
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 38,
+    "fields": {
+        "element": 10,
+        "name": "orient",
+        "is_required": false,
+        "description": "Default orientation of the content in this sequence. If not provided, the orientation is determined automatically according to the implementation’s rendering rules and may be overridden by descendant elements.",
+        "data_type": 29
     }
 },
 {
