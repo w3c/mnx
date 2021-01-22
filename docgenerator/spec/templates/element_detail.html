@@ -35,11 +35,26 @@
 <h2>Attributes</h2>
 
 {% if attributes %}
-    {% for attribute in attributes %}
-    <p>{{ attribute.name }} (<a href="{% relative_url_string attribute.data_type.get_absolute_url %}">{{ attribute.data_type.name }}</a>)</p>
-    {% endfor %}
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+{% for attribute in attributes %}
+<tr>
+    <th class="nobr">{{ attribute.name }}</th>
+    <td><a href="{% relative_url_string attribute.data_type.get_absolute_url %}">{{ attribute.data_type.name }}</a></td>
+    <td>{{ attribute.is_required|yesno|title }}</td>
+    <td>{{ attribute.description }}</td>
+</tr>
+{% endfor %}
+</table>
 {% else %}
-    <p>None.</p>
+<p>None.</p>
 {% endif %}
 
 {% if concepts %}
