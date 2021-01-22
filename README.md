@@ -5,7 +5,8 @@ Welcome to the [Music Notation Community Group](https://www.w3.org/community/mus
 Quick links:
 
 - [MNX by example](https://w3c.github.io/mnx/by-example/)
-- [MNX draft specification](https://w3c.github.io/mnx/specification/common/)
+- [Draft specification](https://w3c.github.io/mnx/specification/common/)
+- [New, work-in-progress documentation](https://w3c.github.io/mnx/docs/) (intended to eventually replace the previous two links)
 
 ## An introduction to MNX
 
