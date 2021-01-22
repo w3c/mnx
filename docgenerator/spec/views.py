@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from spec.utils import htmlutils
-from spec.models import XMLElement, XMLAttribute, XMLRelationship, DataType, ExampleDocument, Concept, ExampleDocumentConcept, ExampleDocumentElement, ElementConcept
+from spec.models import XMLElement, XMLAttribute, XMLRelationship, DataType, DataTypeOption, ExampleDocument, Concept, ExampleDocumentConcept, ExampleDocumentElement, ElementConcept
 
 ROOT_ELEMENT_SLUG = 'mnx' # TODO: Put this in configuration.
 
@@ -44,6 +44,7 @@ def data_type_detail(request, slug):
     return render(request, 'data_type_detail.html', {
         'data_type': data_type,
         'attributes': XMLAttribute.objects.filter(data_type=data_type).select_related('element').order_by('element__name'),
+        'options': DataTypeOption.objects.filter(data_type=data_type).order_by('value'),
     })
 
 def example_list(request):
