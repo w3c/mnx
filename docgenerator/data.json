@@ -228,6 +228,26 @@
     }
 },
 {
+    "model": "spec.datatype",
+    "pk": 26,
+    "fields": {
+        "name": "Grace note type",
+        "slug": "grace-note-type",
+        "description": "",
+        "is_featured": false
+    }
+},
+{
+    "model": "spec.datatype",
+    "pk": 27,
+    "fields": {
+        "name": "Yes or no",
+        "slug": "yes-or-no",
+        "description": "",
+        "is_featured": false
+    }
+},
+{
     "model": "spec.concept",
     "pk": 1,
     "fields": {
@@ -523,6 +543,16 @@
     "fields": {
         "name": "fine",
         "slug": "fine",
+        "description": "",
+        "is_featured": false
+    }
+},
+{
+    "model": "spec.xmlelement",
+    "pk": 29,
+    "fields": {
+        "name": "grace",
+        "slug": "grace",
         "description": "",
         "is_featured": false
     }
@@ -836,6 +866,28 @@
     }
 },
 {
+    "model": "spec.xmlattribute",
+    "pk": 33,
+    "fields": {
+        "element": 29,
+        "name": "type",
+        "is_required": false,
+        "description": "",
+        "data_type": 26
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 34,
+    "fields": {
+        "element": 29,
+        "name": "slash",
+        "is_required": false,
+        "description": "",
+        "data_type": 27
+    }
+},
+{
     "model": "spec.xmlrelationship",
     "pk": 1,
     "fields": {
@@ -1116,6 +1168,36 @@
     }
 },
 {
+    "model": "spec.xmlrelationship",
+    "pk": 32,
+    "fields": {
+        "parent": 29,
+        "child": 11,
+        "min_amount": 1,
+        "max_amount": null
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 34,
+    "fields": {
+        "parent": 18,
+        "child": 29,
+        "min_amount": 0,
+        "max_amount": null
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 35,
+    "fields": {
+        "parent": 10,
+        "child": 29,
+        "min_amount": 0,
+        "max_amount": null
+    }
+},
+{
     "model": "spec.exampledocument",
     "pk": 1,
     "fields": {
@@ -1254,7 +1336,7 @@
         "name": "Beams (with inner grace notes)",
         "slug": "beams-inner-grace-notes",
         "blurb": "",
-        "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef line=\"2\" sign=\"G\"/>\r\n            </directions>\r\n            <sequence>\r\n                <beams>\r\n                    <beam events=\"ev1 ev3 ev4 ev5\"/>\r\n                </beams>\r\n                <event id=\"ev1\" value=\"/8\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/8\">\r\n                    <note pitch=\"B4\"/>\r\n                </event>\r\n                <event id=\"ev3\" value=\"/8\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event id=\"ev4\" value=\"/8\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event id=\"ev5\" value=\"/8\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <rest/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
+        "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef line=\"2\" sign=\"G\"/>\r\n            </directions>\r\n            <sequence>\r\n                <beams>\r\n                    <beam events=\"ev1 ev3 ev4 ev5\"/>\r\n                </beams>\r\n                <event id=\"ev1\" value=\"/8\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <grace>\r\n                    <event value=\"/8\">\r\n                        <note pitch=\"B4\"/>\r\n                    </event>\r\n                </grace>\r\n                <event id=\"ev3\" value=\"/8\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event id=\"ev4\" value=\"/8\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event id=\"ev5\" value=\"/8\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <rest/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/beams-inner-grace-notes.png",
         "is_featured": false
     }
@@ -4377,6 +4459,14 @@
     "fields": {
         "example": 28,
         "element_name": "jump"
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 353,
+    "fields": {
+        "example": 12,
+        "element_name": "grace"
     }
 },
 {
