@@ -39,6 +39,19 @@ class Concept(models.Model):
     def get_absolute_url(self):
         return reverse('concept_detail', args=(self.slug,))
 
+class DocumentFormat(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.CharField(max_length=100, unique=True)
+
+    class Meta:
+        db_table = 'document_formats'
+
+    def __str__(self):
+        return self.name
+
+    def comparison_url(self):
+        return reverse('format_comparison_detail', args=(self.slug,))
+
 class XMLElement(models.Model):
     name = models.CharField(max_length=80)
     slug = models.CharField(max_length=80, unique=True)
@@ -114,6 +127,23 @@ class ExampleDocumentConcept(models.Model):
 
     class Meta:
         db_table = 'example_concepts'
+
+class ExampleDocumentComparison(models.Model):
+    example = models.ForeignKey(ExampleDocument, on_delete=models.CASCADE)
+    doc_format = models.ForeignKey(DocumentFormat, on_delete=models.CASCADE)
+    preamble = models.TextField(blank=True)
+    document = models.TextField()
+
+    class Meta:
+        db_table = 'example_comparisons'
+
+    def get_absolute_url(self):
+        return self.doc_format.comparison_url() + f'#{self.example.slug}'
+
+    def preamble_html(self):
+        if self.preamble:
+            return '\n'.join(f'<p class="examplenotes">{line}</p>' for line in self.preamble.split('\n') if line)
+        return ''
 
 class ExampleDocumentElement(models.Model):
     # This is a cache of each element used in each

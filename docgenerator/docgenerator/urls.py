@@ -13,5 +13,6 @@ urlpatterns = [
     path('examples/<slug:slug>/', views.example_detail, name='example_detail'),
     path('concepts/', views.concept_list, name='concept_list'),
     path('concepts/<slug:slug>/', views.concept_detail, name='concept_detail'),
+    path('comparisons/<slug:slug>/', views.format_comparison_detail, name='format_comparison_detail'),
     path('admin/', admin.site.urls),
 ]

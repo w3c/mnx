@@ -4,13 +4,16 @@
 <head>
 <title>{% block fulltitle %}{% block title %}{% endblock %} | MNX specification{% endblock %}</title>
 <link rel="stylesheet" href="{% relative_url_string '/static/styles.css' %}">
+{% block extrahead %}{% endblock %}
 </head>
 
 <body>
 <div class="topnav"><a href="{% relative_url 'homepage' %}">MNX specification</a></div>
 
+{% block content_full %}
 <div class="content">
 {% block content %}{% endblock %}
 </div>
+{% endblock %}
 </body>
 </html>

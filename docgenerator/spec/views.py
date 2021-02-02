@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from spec.utils import htmlutils
-from spec.models import XMLElement, XMLAttribute, XMLRelationship, DataType, DataTypeOption, ExampleDocument, Concept, ExampleDocumentConcept, ExampleDocumentElement, ElementConcept
+from spec.models import *
 
 ROOT_ELEMENT_SLUG = 'mnx' # TODO: Put this in configuration.
 
@@ -58,6 +58,7 @@ def example_detail(request, slug):
         'example': example,
         'augmented_doc': htmlutils.get_augmented_xml(request.path, example.document),
         'concepts': ExampleDocumentConcept.objects.filter(example=example).order_by('example__name'),
+        'comparisons': ExampleDocumentComparison.objects.filter(example=example).select_related('doc_format'),
     })
 
 def concept_list(request):
@@ -71,4 +72,20 @@ def concept_detail(request, slug):
         'concept': concept,
         'examples': ExampleDocumentConcept.objects.filter(concept=concept).select_related('example').order_by('example__name'),
         'elements': ElementConcept.objects.filter(concept=concept).select_related('element').order_by('element__name'),
+    })
+
+def format_comparison_detail(request, slug):
+    other_format = get_object_or_404(DocumentFormat, slug=slug)
+    comparisons = []
+    # TODO: Ordering.
+    for edc in ExampleDocumentComparison.objects.filter(doc_format=other_format).select_related('example'):
+        comparisons.append({
+            'example': edc.example,
+            'preamble_html': edc.preamble_html(),
+            'document_html': htmlutils.get_augmented_xml(request.path, edc.example.document),
+            'other_document_html': htmlutils.get_prettified_xml(edc.document),
+        })
+    return render(request, 'format_comparison_detail.html', {
+        'other_format': other_format,
+        'comparisons': comparisons,
     })

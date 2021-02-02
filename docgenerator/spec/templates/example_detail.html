@@ -19,5 +19,9 @@
 <p>Concepts: {% for concept in concepts %}<a href="{% relative_url_string concept.concept.get_absolute_url %}">{{ concept.concept.name }}</a>{% endfor %}</p>
 {% endif %}
 
+{% if comparisons %}
+<p>See also: {% for comparison in comparisons %}<a href="{% relative_url_string comparison.get_absolute_url %}">This same example in {{ comparison.doc_format.name }}</a> {% endfor %}</p>
+{% endif %}
+
 <div class="xmlmarkup">{{ augmented_doc|safe }}</div>
 {% endblock %}

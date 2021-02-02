@@ -1,5 +1,5 @@
 from django.contrib import admin
-from spec.models import XMLElement, XMLAttribute, XMLRelationship, DataType, DataTypeOption, ExampleDocument, Concept, ExampleDocumentConcept, ElementConcept
+from spec.models import *
 
 class XMLAttributeInline(admin.TabularInline):
     model = XMLAttribute
@@ -29,12 +29,20 @@ class DataTypeAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['name']}
     list_display = ['name', 'is_featured']
 
+class DocumentFormatAdmin(admin.ModelAdmin):
+    model = DocumentFormat
+    list_display = ['name', 'slug']
+
 class ExampleDocumentConceptInline(admin.TabularInline):
     model = ExampleDocumentConcept
     extra = 0
 
+class ExampleDocumentComparisonInline(admin.TabularInline):
+    model = ExampleDocumentComparison
+    extra = 0
+
 class ExampleDocumentAdmin(admin.ModelAdmin):
-    inlines = [ExampleDocumentConceptInline]
+    inlines = [ExampleDocumentConceptInline, ExampleDocumentComparisonInline]
     list_display = ['name', 'slug', 'image_url', 'is_featured']
     prepopulated_fields = {'slug': ['name']}
 
@@ -44,5 +52,6 @@ class ConceptAdmin(admin.ModelAdmin):
 
 admin.site.register(XMLElement, XMLElementAdmin)
 admin.site.register(DataType, DataTypeAdmin)
+admin.site.register(DocumentFormat, DocumentFormatAdmin)
 admin.site.register(ExampleDocument, ExampleDocumentAdmin)
 admin.site.register(Concept, ConceptAdmin)

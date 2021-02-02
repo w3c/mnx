@@ -91,6 +91,46 @@ def get_augmented_xml(current_url, xml_string):
     xml.sax.parseString(xml_string, handler)
     return '\n'.join(handler.result)
 
+class XMLPrettifier(xml.sax.handler.ContentHandler):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.result = []
+        self.indent_level = 0
+        self.last_tag_opened = None
+
+    def startElement(self, name, attrs):
+        html = [' ' * self.indent_level * INDENT_SIZE]
+        html.append(f'&lt;{name}')
+        if attrs:
+            html.extend(f' {k}="{v}"' for (k, v) in attrs.items())
+        html.append('&gt;')
+        self.result.append(''.join(html))
+        self.indent_level += 1
+        self.last_tag_opened = name
+
+    def characters(self, content):
+        if content and content.strip():
+            self.result.append((' ' * self.indent_level * INDENT_SIZE) + content.strip())
+
+    def endElement(self, name):
+        self.indent_level -= 1
+        result = self.result
+        if name == self.last_tag_opened:
+            previous_line = result[-1].strip()
+            if previous_line.startswith('&lt;'):
+                result[-1] += f'&lt;/{name}&gt;'
+            else:
+                result[-2] += previous_line + f'&lt;/{name}&gt;'
+                del result[-1]
+        else:
+            result.append((' ' * self.indent_level * INDENT_SIZE) + f'&lt;/{name}&gt;')
+
+def get_prettified_xml(xml_string):
+    reader = xml.sax.make_parser()
+    handler = XMLPrettifier()
+    xml.sax.parseString(xml_string, handler)
+    return '\n'.join(handler.result)
+
 def htmlescape(html:str):
     return html.replace('<', '&lt;').replace('>', '&gt;')
 

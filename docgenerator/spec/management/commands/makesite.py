@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.test.client import Client
 from django.urls import reverse
-from spec.models import Concept, DataType, ExampleDocument, XMLElement
+from spec.models import Concept, DataType, DocumentFormat, ExampleDocument, XMLElement
 import os
 import shutil
 
@@ -44,6 +44,9 @@ class SiteGenerator:
         self.generate_view('concept_list')
         for concept in Concept.objects.all():
             self.generate_url(concept.get_absolute_url())
+
+        for doc_format in DocumentFormat.objects.all():
+            self.generate_url(doc_format.comparison_url())
 
     def generate_view(self, view_name, *view_args):
         url = reverse(view_name, args=view_args)
