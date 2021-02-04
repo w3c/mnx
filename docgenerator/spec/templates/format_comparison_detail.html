@@ -64,7 +64,7 @@
 .showui { margin: 0 0 15px; }
 .onlydiff .nodiff { font-size: 0; }
 .onlydiff .nodiff:after { content: "..."; font-size: 18px; }
-.markupexamples:not(.onlydiff) .diff { font-weight: bold; color: blue; }
+.markupexamples:not(.onlydiff) .diff, .markupexamples:not(.onlydiff) .diff * { font-weight: bold; color: blue !important; }
 </style>
 {% endblock %}
 
@@ -75,6 +75,7 @@
     <p>On this page, you’ll find several examples of documents encoded both in MNX and {{ other_format.name }}. The goal is to give you a sense of the differences, especially if you’re already familiar with {{ other_format.name }}.</p>
 </section>
 
+<form id="comparisonform">
 {% for comparison in comparisons %}
 <section class="example" id="{{ comparison.example.slug }}">
     <div class="center">
@@ -83,21 +84,53 @@
         {% if comparison.preamble_html %}
         {{ comparison.preamble_html|safe }}
         {% endif %}
+        {% if comparison.highlight_diffs %}
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle{{ forloop.counter }}" class="switchdiff" data-example="{{ forloop.counter }}" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle{{ forloop.counter }}" class="switchdiff" data-example="{{ forloop.counter }}" value="2"> Full document</label>
+        </p>
+        {% endif %}
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples{% if comparison.highlight_diffs %} onlydiff{% endif %}" id="markupexamples{{ forloop.counter }}">
         <div class="markupexample">
             <h3>{{ other_format.name }}</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">{{ comparison.other_document_html|safe }}</div>
+                {{ comparison.other_document_html|safe }}
             </div>
         </div>
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">{{ comparison.document_html|safe }}</div>
+                {{ comparison.document_html|safe }}
             </div>
         </div>
     </div>
 </section>
 {% endfor %}
+</form>
+{% endblock %}
+
+{% block finalscript %}
+<script>
+function toggleDiff(e) {
+    var onlyDiff = e.target.value === '1',
+        exampleNumber = e.target.dataset.example,
+        exampleEl = document.getElementById('markupexamples' + exampleNumber);
+    if (onlyDiff) {
+        exampleEl.classList.add('onlydiff');
+    }
+    else {
+        exampleEl.classList.remove('onlydiff');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var els = document.querySelectorAll('.switchdiff'),
+        i = els.length;
+    while (i--) {
+        els[i].addEventListener('change', toggleDiff);
+    }
+    document.getElementById('comparisonform').reset();
+});
+</script>
 {% endblock %}

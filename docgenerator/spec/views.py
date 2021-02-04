@@ -56,7 +56,7 @@ def example_detail(request, slug):
     example = get_object_or_404(ExampleDocument, slug=slug)
     return render(request, 'example_detail.html', {
         'example': example,
-        'augmented_doc': htmlutils.get_augmented_xml(request.path, example.document),
+        'augmented_doc': htmlutils.get_augmented_xml(request.path, example.document)[1],
         'concepts': ExampleDocumentConcept.objects.filter(example=example).order_by('example__name'),
         'comparisons': ExampleDocumentComparison.objects.filter(example=example).select_related('doc_format'),
     })
@@ -79,11 +79,13 @@ def format_comparison_detail(request, slug):
     comparisons = []
     # TODO: Ordering.
     for edc in ExampleDocumentComparison.objects.filter(doc_format=other_format).select_related('example'):
+        highlight_diffs, doc_html = htmlutils.get_augmented_xml(request.path, edc.example.document, True)
         comparisons.append({
             'example': edc.example,
             'preamble_html': edc.preamble_html(),
-            'document_html': htmlutils.get_augmented_xml(request.path, edc.example.document),
+            'document_html': doc_html,
             'other_document_html': htmlutils.get_prettified_xml(edc.document),
+            'highlight_diffs': highlight_diffs,
         })
     return render(request, 'format_comparison_detail.html', {
         'other_format': other_format,

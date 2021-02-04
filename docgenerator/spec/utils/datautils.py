@@ -1,13 +1,16 @@
 from spec.models import ExampleDocumentElement
 import xml.sax
 
+ELEMENTS_TO_IGNORE = {'metadiff'}
+
 class ElementCollector(xml.sax.handler.ContentHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.result = set()
 
     def startElement(self, name, attrs):
-        self.result.add(name)
+        if name not in ELEMENTS_TO_IGNORE:
+            self.result.add(name)
 
 def update_example_elements(example):
     """

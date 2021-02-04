@@ -3,12 +3,42 @@ from spec.utils.relative_url import get_relative_url
 import xml.sax
 
 INDENT_SIZE = 3
+DIFF_ELEMENT = 'metadiff'
 
-class XMLAugmenter(xml.sax.handler.ContentHandler):
-    def __init__(self, current_url, *args, **kwargs):
+class DiffElementContentHandler(xml.sax.handler.ContentHandler):
+    def __init__(self, add_diffs, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.current_url = current_url
+        self.add_diffs = add_diffs
         self.result = []
+        self.pending_diff_class = None
+        self.saw_diff = False
+
+    def handle_start_diff_element(self):
+        if self.add_diffs:
+            self.pending_diff_class = 'diff'
+            self.saw_diff = True
+
+    def handle_end_diff_element(self):
+        if self.add_diffs:
+            self.pending_diff_class = 'nodiff'
+
+    def get_pending_diff_markup(self):
+        if self.pending_diff_class:
+            result = f'</div><div class="xmlmarkup {self.pending_diff_class}">'
+            self.pending_diff_class = None
+        else:
+            result = ''
+        return result
+
+    def get_result(self):
+        html = '\n'.join(self.result)
+        extraclass = ' nodiff' if self.saw_diff else ''
+        return f'<div class="xmlmarkup{extraclass}">{html}</div>'
+
+class XMLAugmenter(DiffElementContentHandler):
+    def __init__(self, current_url, add_diffs, *args, **kwargs):
+        super().__init__(add_diffs, *args, **kwargs)
+        self.current_url = current_url
         self.element_stack = []
         self.last_tag_opened = None
         self.last_tag_opened_stack_size = 0
@@ -46,6 +76,9 @@ class XMLAugmenter(xml.sax.handler.ContentHandler):
         return ''.join(result)
 
     def startElement(self, name, attrs):
+        if name == DIFF_ELEMENT:
+            self.handle_start_diff_element()
+            return
         obj = self.get_element_obj(name)
         if obj:
             start_tag = f'<a class="tag" href="{get_relative_url(self.current_url, obj.get_absolute_url())}">'
@@ -58,7 +91,8 @@ class XMLAugmenter(xml.sax.handler.ContentHandler):
         else:
             attr_string = ''
         space = ' ' * len(self.element_stack) * INDENT_SIZE
-        self.result.append(f'{space}&lt;{start_tag}{name}{end_tag}{attr_string}&gt;')
+        diff_html = self.get_pending_diff_markup()
+        self.result.append(f'{diff_html}{space}&lt;{start_tag}{name}{end_tag}{attr_string}&gt;')
         self.last_tag_opened_stack_size = len(self.element_stack)
         self.element_stack.append(obj.id if obj else None)
         self.last_tag_opened = name
@@ -69,6 +103,9 @@ class XMLAugmenter(xml.sax.handler.ContentHandler):
             self.result.append(f'{space}<span class="xmltxt">{content.strip()}</span>')
 
     def endElement(self, name):
+        if name == DIFF_ELEMENT:
+            self.handle_end_diff_element()
+            return
         del self.element_stack[-1]
         if self.last_tag_opened == name and 'class="tag"' in self.result[-1] and len(self.element_stack) == self.last_tag_opened_stack_size:
             # As a nicety, make the element self-closing rather than
@@ -83,24 +120,30 @@ class XMLAugmenter(xml.sax.handler.ContentHandler):
                 start_tag = '<span class="tag">'
                 end_tag = '</span>'
             space = ' ' * len(self.element_stack) * INDENT_SIZE
-            self.result.append(f'{space}&lt;/{start_tag}{name}{end_tag}&gt;')
+            diff_html = self.get_pending_diff_markup()
+            self.result.append(f'{diff_html}{space}&lt;/{start_tag}{name}{end_tag}&gt;')
 
-def get_augmented_xml(current_url, xml_string):
+def get_augmented_xml(current_url, xml_string, add_diffs=False):
     reader = xml.sax.make_parser()
-    handler = XMLAugmenter(current_url)
+    handler = XMLAugmenter(current_url, add_diffs)
     xml.sax.parseString(xml_string, handler)
-    return '\n'.join(handler.result)
+    return (handler.saw_diff, handler.get_result())
 
-class XMLPrettifier(xml.sax.handler.ContentHandler):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.result = []
+class XMLPrettifier(DiffElementContentHandler):
+    def __init__(self, add_diffs, *args, **kwargs):
+        super().__init__(add_diffs, *args, **kwargs)
         self.indent_level = 0
         self.last_tag_opened = None
 
     def startElement(self, name, attrs):
-        html = [' ' * self.indent_level * INDENT_SIZE]
-        html.append(f'&lt;{name}')
+        if name == DIFF_ELEMENT:
+            self.handle_start_diff_element()
+            return
+        html = [
+            self.get_pending_diff_markup(),
+            ' ' * self.indent_level * INDENT_SIZE,
+            f'&lt;{name}'
+        ]
         if attrs:
             html.extend(f' {k}="{v}"' for (k, v) in attrs.items())
         html.append('&gt;')
@@ -113,6 +156,9 @@ class XMLPrettifier(xml.sax.handler.ContentHandler):
             self.result.append((' ' * self.indent_level * INDENT_SIZE) + content.strip())
 
     def endElement(self, name):
+        if name == DIFF_ELEMENT:
+            self.handle_end_diff_element()
+            return
         self.indent_level -= 1
         result = self.result
         if name == self.last_tag_opened:
@@ -123,13 +169,18 @@ class XMLPrettifier(xml.sax.handler.ContentHandler):
                 result[-2] += previous_line + f'&lt;/{name}&gt;'
                 del result[-1]
         else:
-            result.append((' ' * self.indent_level * INDENT_SIZE) + f'&lt;/{name}&gt;')
+            html = [
+                self.get_pending_diff_markup(),
+                ' ' * self.indent_level * INDENT_SIZE,
+                f'&lt;/{name}&gt;'
+            ]
+            result.append(''.join(html))
 
 def get_prettified_xml(xml_string):
     reader = xml.sax.make_parser()
-    handler = XMLPrettifier()
+    handler = XMLPrettifier(add_diffs=True)
     xml.sax.parseString(xml_string, handler)
-    return '\n'.join(handler.result)
+    return handler.get_result()
 
 def htmlescape(html:str):
     return html.replace('<', '&lt;').replace('>', '&gt;')

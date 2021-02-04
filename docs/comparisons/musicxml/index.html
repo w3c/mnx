@@ -66,7 +66,7 @@
 .showui { margin: 0 0 15px; }
 .onlydiff .nodiff { font-size: 0; }
 .onlydiff .nodiff:after { content: "..."; font-size: 18px; }
-.markupexamples:not(.onlydiff) .diff { font-weight: bold; color: blue; }
+.markupexamples:not(.onlydiff) .diff, .markupexamples:not(.onlydiff) .diff * { font-weight: bold; color: blue !important; }
 </style>
 
 </head>
@@ -81,14 +81,16 @@
     <p>On this page, you’ll find several examples of documents encoded both in MNX and MusicXML. The goal is to give you a sense of the differences, especially if you’re already familiar with MusicXML.</p>
 </section>
 
+<form id="comparisonform">
 
 <section class="example" id="hello-world">
     <div class="center">
         <h2>“Hello world”</h2>
         <img class="exampleimg" src="../../static/examples/hello-world.png">
         
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples" id="markupexamples1">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
@@ -164,8 +166,9 @@
         <h2>Two-bar C major scale</h2>
         <img class="exampleimg" src="../../static/examples/two-bar-c-major-scale.png">
         
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples" id="markupexamples2">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
@@ -327,12 +330,18 @@
         
         <p class="examplenotes">In MusicXML, notes within chords contain <code>&lt;chord/&gt;</code> (except for the first note in the chord). MNX uses <code>&lt;event&gt;</code> to group notes within chords.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle3" class="switchdiff" data-example="3" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle3" class="switchdiff" data-example="3" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples3">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -354,7 +363,7 @@
                &lt;line&gt;2&lt;/line&gt;
             &lt;/clef&gt;
          &lt;/attributes&gt;
-         &lt;note&gt;
+</div><div class="xmlmarkup diff">         &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
                &lt;octave&gt;4&lt;/octave&gt;
@@ -385,7 +394,7 @@
             &lt;duration&gt;2&lt;/duration&gt;
             &lt;type&gt;half&lt;/type&gt;
          &lt;/note&gt;
-      &lt;/measure&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/measure&gt;
    &lt;/part&gt;
 &lt;/score-partwise&gt;</div>
             </div>
@@ -393,7 +402,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -410,7 +419,7 @@
             &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attr">sign="<a href="../../data-types/clef-sign/">G</a>"</span> <span class="attr">line="<a href="../../data-types/staff-line/">2</a>"</span>/&gt;
          &lt;/<a class="tag" href="../../elements/directions-part/">directions</a>&gt;
          &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/2</a>"</span>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/2</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C4</a>"</span>/&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">E4</a>"</span>/&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">G4</a>"</span>/&gt;
@@ -418,7 +427,7 @@
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/2</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/rest/">rest</a>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
    &lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
 &lt;/<a class="tag" href="../../elements/mnx/">mnx</a>&gt;</div>
@@ -434,12 +443,18 @@
         
         <p class="examplenotes">In MusicXML, each part’s <code>&lt;measure&gt;</code> can contain an <code>&lt;attributes&gt;</code> element with an optional <code>&lt;time&gt;</code>. MNX uses a score-wide <code>&lt;global&gt;</code> element. MNX also uses a “microsyntax” — e.g., <code>4/4</code> for common time — for brevity. In both cases, you only specify the time signature when it differs from the previous bar.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle4" class="switchdiff" data-example="4" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle4" class="switchdiff" data-example="4" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples4">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -447,7 +462,7 @@
    &lt;/part-list&gt;
    &lt;part id="P1"&gt;
       &lt;measure number="1"&gt;
-         &lt;attributes&gt;
+</div><div class="xmlmarkup diff">         &lt;attributes&gt;
             &lt;divisions&gt;256&lt;/divisions&gt;
             &lt;key&gt;
                &lt;fifths&gt;0&lt;/fifths&gt;
@@ -461,7 +476,7 @@
                &lt;line&gt;2&lt;/line&gt;
             &lt;/clef&gt;
          &lt;/attributes&gt;
-         &lt;note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
                &lt;octave&gt;5&lt;/octave&gt;
@@ -529,13 +544,13 @@
          &lt;/note&gt;
       &lt;/measure&gt;
       &lt;measure number="3"&gt;
-         &lt;attributes&gt;
+</div><div class="xmlmarkup diff">         &lt;attributes&gt;
             &lt;time&gt;
                &lt;beats&gt;2&lt;/beats&gt;
                &lt;beat-type&gt;4&lt;/beat-type&gt;
             &lt;/time&gt;
          &lt;/attributes&gt;
-         &lt;note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;B&lt;/step&gt;
                &lt;octave&gt;4&lt;/octave&gt;
@@ -559,8 +574,8 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
-   &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+</div><div class="xmlmarkup diff">   &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
             &lt;<a class="tag" href="../../elements/time/">time</a> <span class="attr">signature="<a href="../../data-types/time-signature/">4/4</a>"</span>/&gt;
@@ -573,7 +588,7 @@
          &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
    &lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
-   &lt;<a class="tag" href="../../elements/part/">part</a>&gt;
+</div><div class="xmlmarkup nodiff">   &lt;<a class="tag" href="../../elements/part/">part</a>&gt;
       &lt;<a class="tag" href="../../elements/part-name/">part-name</a>&gt;
          <span class="xmltxt">Music</span>
       &lt;/<a class="tag" href="../../elements/part-name/">part-name</a>&gt;
@@ -636,12 +651,18 @@
         
         <p class="examplenotes">In MusicXML, each part’s <code>&lt;measure&gt;</code> can contain an <code>&lt;attributes&gt;</code> element with an optional <code>&lt;key&gt;</code>. MNX uses a score-wide <code>&lt;global&gt;</code> element. In both cases, you only specify the key signature when it differs from the previous bar.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle5" class="switchdiff" data-example="5" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle5" class="switchdiff" data-example="5" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples5">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -651,10 +672,10 @@
       &lt;measure number="1"&gt;
          &lt;attributes&gt;
             &lt;divisions&gt;256&lt;/divisions&gt;
-            &lt;key&gt;
+</div><div class="xmlmarkup diff">            &lt;key&gt;
                &lt;fifths&gt;4&lt;/fifths&gt;
             &lt;/key&gt;
-            &lt;time&gt;
+</div><div class="xmlmarkup nodiff">            &lt;time&gt;
                &lt;beats&gt;4&lt;/beats&gt;
                &lt;beat-type&gt;4&lt;/beat-type&gt;
             &lt;/time&gt;
@@ -711,10 +732,10 @@
       &lt;/measure&gt;
       &lt;measure number="3"&gt;
          &lt;attributes&gt;
-            &lt;key&gt;
+</div><div class="xmlmarkup diff">            &lt;key&gt;
                &lt;fifths&gt;-4&lt;/fifths&gt;
             &lt;/key&gt;
-         &lt;/attributes&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/attributes&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;A&lt;/step&gt;
@@ -768,19 +789,19 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
             &lt;<a class="tag" href="../../elements/time/">time</a> <span class="attr">signature="<a href="../../data-types/time-signature/">4/4</a>"</span>/&gt;
-            &lt;<span class="tag">key</span> <span class="attr">fifths="4"</span>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<span class="tag">key</span> <span class="attr">fifths="4"</span>/&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>/&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
-            &lt;<span class="tag">key</span> <span class="attr">fifths="-4"</span>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<span class="tag">key</span> <span class="attr">fifths="-4"</span>/&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>/&gt;
    &lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
@@ -855,12 +876,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">Cautionary accidentals, such as the D natural in bar 3 of this example — that is, accidentals that are not technically required to be displayed and serve as a courtesy to the musician — are not treated any differently than “non-cautionary” accidentals.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle6" class="switchdiff" data-example="6" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle6" class="switchdiff" data-example="6" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples6">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -907,8 +934,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;256&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;accidental&gt;sharp&lt;/accidental&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;accidental&gt;sharp&lt;/accidental&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;A&lt;/step&gt;
@@ -936,8 +963,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;256&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;accidental&gt;flat&lt;/accidental&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;accidental&gt;flat&lt;/accidental&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;D&lt;/step&gt;
@@ -956,8 +983,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1024&lt;/duration&gt;
             &lt;type&gt;whole&lt;/type&gt;
-            &lt;accidental&gt;natural&lt;/accidental&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;accidental&gt;natural&lt;/accidental&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
       &lt;/measure&gt;
    &lt;/part&gt;
 &lt;/score-partwise&gt;</div>
@@ -966,7 +993,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -993,8 +1020,8 @@
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">G4</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
-               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">G#4</a>"</span> <span class="attr">accidental="<a href="../../data-types/accidental/">sharp</a>"</span>/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+</div><div class="xmlmarkup diff">               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">G#4</a>"</span> <span class="attr">accidental="<a href="../../data-types/accidental/">sharp</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">A4</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
@@ -1006,8 +1033,8 @@
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">Bb4</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
-               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">Db5</a>"</span> <span class="attr">accidental="<a href="../../data-types/accidental/">flat</a>"</span>/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+</div><div class="xmlmarkup diff">               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">Db5</a>"</span> <span class="attr">accidental="<a href="../../data-types/accidental/">flat</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">Db5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
@@ -1016,8 +1043,8 @@
       &lt;<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/1</a>"</span>&gt;
-               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">D5</a>"</span> <span class="attr">accidental="<a href="../../data-types/accidental/">natural</a>"</span>/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+</div><div class="xmlmarkup diff">               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">D5</a>"</span> <span class="attr">accidental="<a href="../../data-types/accidental/">natural</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
          &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
    &lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
@@ -1036,12 +1063,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">In MNX, dotted notes are represented by a <code>d</code> within the <code>&lt;event&gt;</code> element’s <code>value</code> attribute. This is part of MNX’s note value <a href="https://w3c.github.io/mnx/specification/common/#note-value-syntax">microsyntax</a>.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle7" class="switchdiff" data-example="7" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle7" class="switchdiff" data-example="7" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples7">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -1069,9 +1102,9 @@
                &lt;octave&gt;4&lt;/octave&gt;
             &lt;/pitch&gt;
             &lt;duration&gt;384&lt;/duration&gt;
-            &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="xmlmarkup diff">            &lt;type&gt;quarter&lt;/type&gt;
             &lt;dot&gt;&lt;/dot&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;chord&gt;&lt;/chord&gt;
             &lt;pitch&gt;
@@ -1079,9 +1112,9 @@
                &lt;octave&gt;5&lt;/octave&gt;
             &lt;/pitch&gt;
             &lt;duration&gt;384&lt;/duration&gt;
-            &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="xmlmarkup diff">            &lt;type&gt;quarter&lt;/type&gt;
             &lt;dot&gt;&lt;/dot&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -1096,9 +1129,9 @@
                &lt;octave&gt;4&lt;/octave&gt;
             &lt;/pitch&gt;
             &lt;duration&gt;384&lt;/duration&gt;
-            &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="xmlmarkup diff">            &lt;type&gt;quarter&lt;/type&gt;
             &lt;dot&gt;&lt;/dot&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;chord&gt;&lt;/chord&gt;
             &lt;pitch&gt;
@@ -1106,9 +1139,9 @@
                &lt;octave&gt;5&lt;/octave&gt;
             &lt;/pitch&gt;
             &lt;duration&gt;384&lt;/duration&gt;
-            &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="xmlmarkup diff">            &lt;type&gt;quarter&lt;/type&gt;
             &lt;dot&gt;&lt;/dot&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;F&lt;/step&gt;
@@ -1125,7 +1158,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -1142,18 +1175,18 @@
             &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attr">sign="<a href="../../data-types/clef-sign/">G</a>"</span> <span class="attr">line="<a href="../../data-types/staff-line/">2</a>"</span>/&gt;
          &lt;/<a class="tag" href="../../elements/directions-part/">directions</a>&gt;
          &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4d</a>"</span>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4d</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">G4</a>"</span>/&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+</div><div class="xmlmarkup nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">E5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4d</a>"</span>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4d</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">F4</a>"</span>/&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">D5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+</div><div class="xmlmarkup nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">F5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
          &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
@@ -1176,12 +1209,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">For a series of notes tied together (e.g., the second tie in the above example), both MusicXML and MNX require you to encode each “inner tie” separately.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle8" class="switchdiff" data-example="8" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle8" class="switchdiff" data-example="8" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples8">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -1216,37 +1255,34 @@
                &lt;step&gt;E&lt;/step&gt;
                &lt;octave&gt;5&lt;/octave&gt;
             &lt;/pitch&gt;
-            &lt;duration&gt;256&lt;/duration&gt;
-            &lt;tie type="start"&gt;&lt;/tie&gt;
-            &lt;type&gt;quarter&lt;/type&gt;
-            &lt;notations&gt;
+            &lt;duration&gt;256&lt;/duration&gt;</div><div class="xmlmarkup diff">            &lt;tie type="start"&gt;&lt;/tie&gt;
+</div><div class="xmlmarkup nodiff">            &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;tied type="start"&gt;&lt;/tied&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
                &lt;octave&gt;5&lt;/octave&gt;
             &lt;/pitch&gt;
-            &lt;duration&gt;256&lt;/duration&gt;
-            &lt;tie type="stop"&gt;&lt;/tie&gt;
-            &lt;type&gt;quarter&lt;/type&gt;
-            &lt;notations&gt;
+            &lt;duration&gt;256&lt;/duration&gt;</div><div class="xmlmarkup diff">            &lt;tie type="stop"&gt;&lt;/tie&gt;
+</div><div class="xmlmarkup nodiff">            &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;tied type="stop"&gt;&lt;/tied&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
                &lt;octave&gt;5&lt;/octave&gt;
             &lt;/pitch&gt;
-            &lt;duration&gt;256&lt;/duration&gt;
-            &lt;tie type="start"&gt;&lt;/tie&gt;
-            &lt;type&gt;quarter&lt;/type&gt;
-            &lt;notations&gt;
+            &lt;duration&gt;256&lt;/duration&gt;</div><div class="xmlmarkup diff">            &lt;tie type="start"&gt;&lt;/tie&gt;
+</div><div class="xmlmarkup nodiff">            &lt;type&gt;quarter&lt;/type&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;tied type="start"&gt;&lt;/tied&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
       &lt;/measure&gt;
       &lt;measure number="2"&gt;
          &lt;note&gt;
@@ -1254,27 +1290,25 @@
                &lt;step&gt;C&lt;/step&gt;
                &lt;octave&gt;5&lt;/octave&gt;
             &lt;/pitch&gt;
-            &lt;duration&gt;512&lt;/duration&gt;
-            &lt;tie type="stop"&gt;&lt;/tie&gt;
+            &lt;duration&gt;512&lt;/duration&gt;</div><div class="xmlmarkup diff">            &lt;tie type="stop"&gt;&lt;/tie&gt;
             &lt;tie type="start"&gt;&lt;/tie&gt;
-            &lt;type&gt;half&lt;/type&gt;
-            &lt;notations&gt;
+</div><div class="xmlmarkup nodiff">            &lt;type&gt;half&lt;/type&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;tied type="start"&gt;&lt;/tied&gt;
                &lt;tied type="stop"&gt;&lt;/tied&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
                &lt;octave&gt;5&lt;/octave&gt;
             &lt;/pitch&gt;
-            &lt;duration&gt;512&lt;/duration&gt;
-            &lt;tie type="stop"&gt;&lt;/tie&gt;
-            &lt;type&gt;half&lt;/type&gt;
-            &lt;notations&gt;
+            &lt;duration&gt;512&lt;/duration&gt;</div><div class="xmlmarkup diff">            &lt;tie type="stop"&gt;&lt;/tie&gt;
+</div><div class="xmlmarkup nodiff">            &lt;type&gt;half&lt;/type&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;tied type="stop"&gt;&lt;/tied&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
       &lt;/measure&gt;
    &lt;/part&gt;
 &lt;/score-partwise&gt;</div>
@@ -1283,7 +1317,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -1306,16 +1340,16 @@
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">E5</a>"</span>&gt;
-                  &lt;<span class="tag">tied</span> <span class="attr">target="note3"</span>/&gt;
-               &lt;/<a class="tag" href="../../elements/note/">note</a>&gt;
+</div><div class="xmlmarkup diff">                  &lt;<span class="tag">tied</span> <span class="attr">target="note3"</span>/&gt;
+</div><div class="xmlmarkup nodiff">               &lt;/<a class="tag" href="../../elements/note/">note</a>&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">E5</a>"</span> <span class="attr">id="<a href="../../data-types/note-id/">note3</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span>&gt;
-                  &lt;<span class="tag">tied</span> <span class="attr">target="note5"</span>/&gt;
-               &lt;/<a class="tag" href="../../elements/note/">note</a>&gt;
+</div><div class="xmlmarkup diff">                  &lt;<span class="tag">tied</span> <span class="attr">target="note5"</span>/&gt;
+</div><div class="xmlmarkup nodiff">               &lt;/<a class="tag" href="../../elements/note/">note</a>&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
          &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
@@ -1323,8 +1357,8 @@
          &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/2</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span> <span class="attr">id="<a href="../../data-types/note-id/">note5</a>"</span>&gt;
-                  &lt;<span class="tag">tied</span> <span class="attr">target="note6"</span>/&gt;
-               &lt;/<a class="tag" href="../../elements/note/">note</a>&gt;
+</div><div class="xmlmarkup diff">                  &lt;<span class="tag">tied</span> <span class="attr">target="note6"</span>/&gt;
+</div><div class="xmlmarkup nodiff">               &lt;/<a class="tag" href="../../elements/note/">note</a>&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/2</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span> <span class="attr">id="<a href="../../data-types/note-id/">note6</a>"</span>/&gt;
@@ -1347,12 +1381,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">In MNX, each beam is encoded as a <code>&lt;beam&gt;</code> element, containing the IDs of the beam’s events.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle9" class="switchdiff" data-example="9" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle9" class="switchdiff" data-example="9" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples9">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -1382,8 +1422,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;begin&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;begin&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;D&lt;/step&gt;
@@ -1391,8 +1431,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -1400,8 +1440,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;F&lt;/step&gt;
@@ -1409,8 +1449,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;end&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;end&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;D&lt;/step&gt;
@@ -1418,8 +1458,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;begin&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;begin&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -1427,8 +1467,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;F&lt;/step&gt;
@@ -1436,8 +1476,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;G&lt;/step&gt;
@@ -1445,8 +1485,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;end&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;end&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
       &lt;/measure&gt;
       &lt;measure number="2"&gt;
          &lt;note&gt;
@@ -1456,14 +1496,14 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;begin&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;begin&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;rest&gt;&lt;/rest&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;D&lt;/step&gt;
@@ -1471,9 +1511,9 @@
             &lt;/pitch&gt;
             &lt;duration&gt;64&lt;/duration&gt;
             &lt;type&gt;16th&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
             &lt;beam number="2"&gt;begin&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -1481,9 +1521,9 @@
             &lt;/pitch&gt;
             &lt;duration&gt;64&lt;/duration&gt;
             &lt;type&gt;16th&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
             &lt;beam number="2"&gt;end&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;G&lt;/step&gt;
@@ -1491,8 +1531,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;end&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;end&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -1500,8 +1540,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;begin&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;begin&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;D&lt;/step&gt;
@@ -1509,8 +1549,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;end&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;end&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
@@ -1527,7 +1567,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -1545,11 +1585,11 @@
             &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attr">line="<a href="../../data-types/staff-line/">2</a>"</span> <span class="attr">sign="<a href="../../data-types/clef-sign/">G</a>"</span>/&gt;
          &lt;/<a class="tag" href="../../elements/directions-part/">directions</a>&gt;
          &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
                &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../data-types/event-id-list/">ev1 ev2 ev3 ev4</a>"</span>/&gt;
                &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../data-types/event-id-list/">ev5 ev6 ev7 ev8</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/beams/">beams</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../data-types/event-id/">ev1</a>"</span> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+</div><div class="xmlmarkup nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../data-types/event-id/">ev1</a>"</span> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../data-types/event-id/">ev2</a>"</span> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
@@ -1577,13 +1617,13 @@
       &lt;/<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
                &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../data-types/event-id-list/">ev9 ev10 ev11 ev12 ev13</a>"</span>&gt;
                   &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../data-types/event-id-list/">ev11 ev12</a>"</span>/&gt;
                &lt;/<a class="tag" href="../../elements/beam/">beam</a>&gt;
                &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../data-types/event-id-list/">ev14 ev15</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/beams/">beams</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../data-types/event-id/">ev9</a>"</span> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+</div><div class="xmlmarkup nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../data-types/event-id/">ev9</a>"</span> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">G4</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../data-types/event-id/">ev10</a>"</span> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
@@ -1625,12 +1665,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">In MNX, secondary beams are encoded as separate <code>&lt;beam&gt;</code> elements nested within parent <code>&lt;beam&gt;</code> elements.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle10" class="switchdiff" data-example="10" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle10" class="switchdiff" data-example="10" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples10">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -1659,10 +1705,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;begin&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;begin&lt;/beam&gt;
             &lt;beam number="2"&gt;begin&lt;/beam&gt;
             &lt;beam number="3"&gt;begin&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;D&lt;/step&gt;
@@ -1670,10 +1716,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
             &lt;beam number="2"&gt;continue&lt;/beam&gt;
             &lt;beam number="3"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -1681,10 +1727,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
             &lt;beam number="2"&gt;continue&lt;/beam&gt;
             &lt;beam number="3"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;F&lt;/step&gt;
@@ -1692,10 +1738,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
             &lt;beam number="2"&gt;end&lt;/beam&gt;
             &lt;beam number="3"&gt;end&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
@@ -1703,10 +1749,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
             &lt;beam number="2"&gt;begin&lt;/beam&gt;
             &lt;beam number="3"&gt;begin&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;D&lt;/step&gt;
@@ -1714,10 +1760,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
             &lt;beam number="2"&gt;continue&lt;/beam&gt;
             &lt;beam number="3"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -1725,10 +1771,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
             &lt;beam number="2"&gt;continue&lt;/beam&gt;
             &lt;beam number="3"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;F&lt;/step&gt;
@@ -1736,10 +1782,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;end&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;end&lt;/beam&gt;
             &lt;beam number="2"&gt;end&lt;/beam&gt;
             &lt;beam number="3"&gt;end&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
@@ -1747,10 +1793,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;begin&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;begin&lt;/beam&gt;
             &lt;beam number="2"&gt;begin&lt;/beam&gt;
             &lt;beam number="3"&gt;begin&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;D&lt;/step&gt;
@@ -1758,10 +1804,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
             &lt;beam number="2"&gt;continue&lt;/beam&gt;
             &lt;beam number="3"&gt;end&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -1769,10 +1815,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
             &lt;beam number="2"&gt;continue&lt;/beam&gt;
             &lt;beam number="3"&gt;begin&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;F&lt;/step&gt;
@@ -1780,10 +1826,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
             &lt;beam number="2"&gt;end&lt;/beam&gt;
             &lt;beam number="3"&gt;end&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
@@ -1791,10 +1837,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
             &lt;beam number="2"&gt;begin&lt;/beam&gt;
             &lt;beam number="3"&gt;begin&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;D&lt;/step&gt;
@@ -1802,10 +1848,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
             &lt;beam number="2"&gt;continue&lt;/beam&gt;
             &lt;beam number="3"&gt;end&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -1813,10 +1859,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
             &lt;beam number="2"&gt;continue&lt;/beam&gt;
             &lt;beam number="3"&gt;begin&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;F&lt;/step&gt;
@@ -1824,10 +1870,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;32nd&lt;/type&gt;
-            &lt;beam number="1"&gt;end&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;end&lt;/beam&gt;
             &lt;beam number="2"&gt;end&lt;/beam&gt;
             &lt;beam number="3"&gt;end&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;rest&gt;&lt;/rest&gt;
             &lt;duration&gt;16&lt;/duration&gt;
@@ -1844,7 +1890,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -1861,7 +1907,7 @@
             &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attr">line="<a href="../../data-types/staff-line/">2</a>"</span> <span class="attr">sign="<a href="../../data-types/clef-sign/">G</a>"</span>/&gt;
          &lt;/<a class="tag" href="../../elements/directions-part/">directions</a>&gt;
          &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
                &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../data-types/event-id-list/">ev1 ev2 ev3 ev4 ev5 ev6 ev7 ev8</a>"</span>&gt;
                   &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../data-types/event-id-list/">ev1 ev2 ev3 ev4</a>"</span>&gt;
                      &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../data-types/event-id-list/">ev1 ev2 ev3 ev4</a>"</span>/&gt;
@@ -1881,7 +1927,7 @@
                   &lt;/<a class="tag" href="../../elements/beam/">beam</a>&gt;
                &lt;/<a class="tag" href="../../elements/beam/">beam</a>&gt;
             &lt;/<a class="tag" href="../../elements/beams/">beams</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../data-types/event-id/">ev1</a>"</span> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/32</a>"</span>&gt;
+</div><div class="xmlmarkup nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../data-types/event-id/">ev1</a>"</span> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/32</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../data-types/event-id/">ev2</a>"</span> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/32</a>"</span>&gt;
@@ -1950,12 +1996,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">MNX uses the <code>&lt;beam-hook&gt;</code> element, which lives inside a parent <code>&lt;beam&gt;</code>.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle11" class="switchdiff" data-example="11" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle11" class="switchdiff" data-example="11" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples11">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -1984,9 +2036,9 @@
             &lt;/pitch&gt;
             &lt;duration&gt;2&lt;/duration&gt;
             &lt;type&gt;16th&lt;/type&gt;
-            &lt;beam number="1"&gt;begin&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;begin&lt;/beam&gt;
             &lt;beam number="2"&gt;forward hook&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;D&lt;/step&gt;
@@ -1994,8 +2046,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;4&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
@@ -2003,9 +2055,9 @@
             &lt;/pitch&gt;
             &lt;duration&gt;2&lt;/duration&gt;
             &lt;type&gt;16th&lt;/type&gt;
-            &lt;beam number="1"&gt;end&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;end&lt;/beam&gt;
             &lt;beam number="2"&gt;backward hook&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -2013,9 +2065,9 @@
             &lt;/pitch&gt;
             &lt;duration&gt;2&lt;/duration&gt;
             &lt;type&gt;16th&lt;/type&gt;
-            &lt;beam number="1"&gt;begin&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;begin&lt;/beam&gt;
             &lt;beam number="2"&gt;forward hook&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;F&lt;/step&gt;
@@ -2023,8 +2075,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;4&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -2032,9 +2084,9 @@
             &lt;/pitch&gt;
             &lt;duration&gt;2&lt;/duration&gt;
             &lt;type&gt;16th&lt;/type&gt;
-            &lt;beam number="1"&gt;end&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;end&lt;/beam&gt;
             &lt;beam number="2"&gt;backward hook&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;G&lt;/step&gt;
@@ -2042,9 +2094,9 @@
             &lt;/pitch&gt;
             &lt;duration&gt;2&lt;/duration&gt;
             &lt;type&gt;16th&lt;/type&gt;
-            &lt;beam number="1"&gt;begin&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;begin&lt;/beam&gt;
             &lt;beam number="2"&gt;forward hook&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;A&lt;/step&gt;
@@ -2052,8 +2104,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;4&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;G&lt;/step&gt;
@@ -2061,9 +2113,9 @@
             &lt;/pitch&gt;
             &lt;duration&gt;2&lt;/duration&gt;
             &lt;type&gt;16th&lt;/type&gt;
-            &lt;beam number="1"&gt;end&lt;/beam&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;end&lt;/beam&gt;
             &lt;beam number="2"&gt;backward hook&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
@@ -2083,7 +2135,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -2100,7 +2152,7 @@
             &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attr">line="<a href="../../data-types/staff-line/">2</a>"</span> <span class="attr">sign="<a href="../../data-types/clef-sign/">G</a>"</span>/&gt;
          &lt;/<a class="tag" href="../../elements/directions-part/">directions</a>&gt;
          &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
                &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../data-types/event-id-list/">ev1 ev2 ev3</a>"</span>&gt;
                   &lt;<a class="tag" href="../../elements/beam-hook/">beam-hook</a> <span class="attr">direction="<a href="../../data-types/beam-hook-direction/">right</a>"</span> <span class="attr">event="<a href="../../data-types/event-id/">ev1</a>"</span>/&gt;
                   &lt;<a class="tag" href="../../elements/beam-hook/">beam-hook</a> <span class="attr">direction="<a href="../../data-types/beam-hook-direction/">left</a>"</span> <span class="attr">event="<a href="../../data-types/event-id/">ev3</a>"</span>/&gt;
@@ -2114,7 +2166,7 @@
                   &lt;<a class="tag" href="../../elements/beam-hook/">beam-hook</a> <span class="attr">direction="<a href="../../data-types/beam-hook-direction/">left</a>"</span> <span class="attr">event="<a href="../../data-types/event-id/">ev9</a>"</span>/&gt;
                &lt;/<a class="tag" href="../../elements/beam/">beam</a>&gt;
             &lt;/<a class="tag" href="../../elements/beams/">beams</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../data-types/event-id/">ev1</a>"</span> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/16</a>"</span>&gt;
+</div><div class="xmlmarkup nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../data-types/event-id/">ev1</a>"</span> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/16</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../data-types/event-id/">ev2</a>"</span> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
@@ -2162,12 +2214,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">In MNX, you exclude the grace note’s event from the <code>&lt;beam&gt;</code> element.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle12" class="switchdiff" data-example="12" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle12" class="switchdiff" data-example="12" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples12">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -2197,8 +2255,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;begin&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;begin&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;grace&gt;&lt;/grace&gt;
             &lt;pitch&gt;
@@ -2214,8 +2272,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -2223,8 +2281,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;F&lt;/step&gt;
@@ -2232,8 +2290,8 @@
             &lt;/pitch&gt;
             &lt;duration&gt;128&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;beam number="1"&gt;end&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;end&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;rest&gt;&lt;/rest&gt;
             &lt;duration&gt;512&lt;/duration&gt;
@@ -2247,7 +2305,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -2264,10 +2322,10 @@
             &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attr">line="<a href="../../data-types/staff-line/">2</a>"</span> <span class="attr">sign="<a href="../../data-types/clef-sign/">G</a>"</span>/&gt;
          &lt;/<a class="tag" href="../../elements/directions-part/">directions</a>&gt;
          &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
                &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../data-types/event-id-list/">ev1 ev3 ev4 ev5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/beams/">beams</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../data-types/event-id/">ev1</a>"</span> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+</div><div class="xmlmarkup nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../data-types/event-id/">ev1</a>"</span> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/grace/">grace</a>&gt;
@@ -2305,12 +2363,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">In MNX, the <code>&lt;beam&gt;</code> element lives in the <code>&lt;sequence&gt;</code> in which the beam <em>starts</em>. The <code>&lt;beam&gt;</code> is free to reference IDs of events in a subsequent measure.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle13" class="switchdiff" data-example="13" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle13" class="switchdiff" data-example="13" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples13">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -2350,8 +2414,8 @@
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
             &lt;stem&gt;down&lt;/stem&gt;
-            &lt;beam number="1"&gt;begin&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;begin&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;D&lt;/step&gt;
@@ -2360,8 +2424,8 @@
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
             &lt;stem&gt;down&lt;/stem&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
       &lt;/measure&gt;
       &lt;measure number="2"&gt;
          &lt;note&gt;
@@ -2372,8 +2436,8 @@
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
             &lt;stem&gt;down&lt;/stem&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;F&lt;/step&gt;
@@ -2382,8 +2446,8 @@
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
             &lt;stem&gt;down&lt;/stem&gt;
-            &lt;beam number="1"&gt;end&lt;/beam&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup diff">            &lt;beam number="1"&gt;end&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;rest&gt;&lt;/rest&gt;
             &lt;duration&gt;2&lt;/duration&gt;
@@ -2405,7 +2469,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -2423,10 +2487,10 @@
             &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attr">line="<a href="../../data-types/staff-line/">2</a>"</span> <span class="attr">sign="<a href="../../data-types/clef-sign/">G</a>"</span>/&gt;
          &lt;/<a class="tag" href="../../elements/directions-part/">directions</a>&gt;
          &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
                &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../data-types/event-id-list/">ev3 ev4 ev5 ev6</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/beams/">beams</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/2</a>"</span>&gt;
+</div><div class="xmlmarkup nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/2</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/rest/">rest</a>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
@@ -2472,12 +2536,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">MNX uses a single <code>&lt;tuplet&gt;</code> element, which contains the notes or rests therein. The <code>inner</code> attribute encodes the rhythmic duration of the tuplet’s elements as if the tuplet were ignored; the <code>outer</code> attribute encodes the rhythmic duration taking the tuplet’s ratio into account.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle14" class="switchdiff" data-example="14" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle14" class="switchdiff" data-example="14" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples14">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -2507,7 +2577,7 @@
             &lt;/pitch&gt;
             &lt;duration&gt;170&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;time-modification&gt;
+</div><div class="xmlmarkup diff">            &lt;time-modification&gt;
                &lt;actual-notes&gt;3&lt;/actual-notes&gt;
                &lt;normal-notes&gt;2&lt;/normal-notes&gt;
                &lt;normal-type&gt;eighth&lt;/normal-type&gt;
@@ -2515,7 +2585,7 @@
             &lt;notations&gt;
                &lt;tuplet number="1" type="start"&gt;&lt;/tuplet&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;G&lt;/step&gt;
@@ -2523,7 +2593,7 @@
             &lt;/pitch&gt;
             &lt;duration&gt;85&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;time-modification&gt;
+</div><div class="xmlmarkup diff">            &lt;time-modification&gt;
                &lt;actual-notes&gt;3&lt;/actual-notes&gt;
                &lt;normal-notes&gt;2&lt;/normal-notes&gt;
                &lt;normal-type&gt;eighth&lt;/normal-type&gt;
@@ -2531,7 +2601,7 @@
             &lt;notations&gt;
                &lt;tuplet number="1" type="stop"&gt;&lt;/tuplet&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -2539,7 +2609,7 @@
             &lt;/pitch&gt;
             &lt;duration&gt;85&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;time-modification&gt;
+</div><div class="xmlmarkup diff">            &lt;time-modification&gt;
                &lt;actual-notes&gt;3&lt;/actual-notes&gt;
                &lt;normal-notes&gt;2&lt;/normal-notes&gt;
             &lt;/time-modification&gt;
@@ -2547,7 +2617,7 @@
             &lt;notations&gt;
                &lt;tuplet number="1" type="start"&gt;&lt;/tuplet&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;F&lt;/step&gt;
@@ -2555,11 +2625,11 @@
             &lt;/pitch&gt;
             &lt;duration&gt;85&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;time-modification&gt;
+</div><div class="xmlmarkup diff">            &lt;time-modification&gt;
                &lt;actual-notes&gt;3&lt;/actual-notes&gt;
                &lt;normal-notes&gt;2&lt;/normal-notes&gt;
             &lt;/time-modification&gt;
-            &lt;beam number="1"&gt;continue&lt;/beam&gt;
+</div><div class="xmlmarkup nodiff">            &lt;beam number="1"&gt;continue&lt;/beam&gt;
          &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
@@ -2568,7 +2638,7 @@
             &lt;/pitch&gt;
             &lt;duration&gt;85&lt;/duration&gt;
             &lt;type&gt;eighth&lt;/type&gt;
-            &lt;time-modification&gt;
+</div><div class="xmlmarkup diff">            &lt;time-modification&gt;
                &lt;actual-notes&gt;3&lt;/actual-notes&gt;
                &lt;normal-notes&gt;2&lt;/normal-notes&gt;
             &lt;/time-modification&gt;
@@ -2576,7 +2646,7 @@
             &lt;notations&gt;
                &lt;tuplet number="1" type="stop"&gt;&lt;/tuplet&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -2602,14 +2672,14 @@
             &lt;/pitch&gt;
             &lt;duration&gt;170&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;time-modification&gt;
+</div><div class="xmlmarkup diff">            &lt;time-modification&gt;
                &lt;actual-notes&gt;6&lt;/actual-notes&gt;
                &lt;normal-notes&gt;4&lt;/normal-notes&gt;
             &lt;/time-modification&gt;
             &lt;notations&gt;
                &lt;tuplet number="1" type="start"&gt;&lt;/tuplet&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;D&lt;/step&gt;
@@ -2617,11 +2687,11 @@
             &lt;/pitch&gt;
             &lt;duration&gt;170&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;time-modification&gt;
+</div><div class="xmlmarkup diff">            &lt;time-modification&gt;
                &lt;actual-notes&gt;6&lt;/actual-notes&gt;
                &lt;normal-notes&gt;4&lt;/normal-notes&gt;
             &lt;/time-modification&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
@@ -2629,11 +2699,11 @@
             &lt;/pitch&gt;
             &lt;duration&gt;170&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;time-modification&gt;
+</div><div class="xmlmarkup diff">            &lt;time-modification&gt;
                &lt;actual-notes&gt;6&lt;/actual-notes&gt;
                &lt;normal-notes&gt;4&lt;/normal-notes&gt;
             &lt;/time-modification&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;G&lt;/step&gt;
@@ -2641,11 +2711,11 @@
             &lt;/pitch&gt;
             &lt;duration&gt;170&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;time-modification&gt;
+</div><div class="xmlmarkup diff">            &lt;time-modification&gt;
                &lt;actual-notes&gt;6&lt;/actual-notes&gt;
                &lt;normal-notes&gt;4&lt;/normal-notes&gt;
             &lt;/time-modification&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -2653,11 +2723,11 @@
             &lt;/pitch&gt;
             &lt;duration&gt;170&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;time-modification&gt;
+</div><div class="xmlmarkup diff">            &lt;time-modification&gt;
                &lt;actual-notes&gt;6&lt;/actual-notes&gt;
                &lt;normal-notes&gt;4&lt;/normal-notes&gt;
             &lt;/time-modification&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
@@ -2665,14 +2735,14 @@
             &lt;/pitch&gt;
             &lt;duration&gt;170&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;time-modification&gt;
+</div><div class="xmlmarkup diff">            &lt;time-modification&gt;
                &lt;actual-notes&gt;6&lt;/actual-notes&gt;
                &lt;normal-notes&gt;4&lt;/normal-notes&gt;
             &lt;/time-modification&gt;
             &lt;notations&gt;
                &lt;tuplet number="1" type="stop"&gt;&lt;/tuplet&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
       &lt;/measure&gt;
    &lt;/part&gt;
 &lt;/score-partwise&gt;</div>
@@ -2681,7 +2751,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -2702,7 +2772,7 @@
             &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
                &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../data-types/event-id-list/">event3 event4 event5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/beams/">beams</a>&gt;
-            &lt;<a class="tag" href="../../elements/tuplet/">tuplet</a> <span class="attr">inner="<a href="../../data-types/note-value-quantity/">3/8</a>"</span> <span class="attr">outer="<a href="../../data-types/note-value-quantity/">2/8</a>"</span>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/tuplet/">tuplet</a> <span class="attr">inner="<a href="../../data-types/note-value-quantity/">3/8</a>"</span> <span class="attr">outer="<a href="../../data-types/note-value-quantity/">2/8</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
                   &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span>/&gt;
                &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
@@ -2721,7 +2791,7 @@
                   &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">G4</a>"</span>/&gt;
                &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;/<a class="tag" href="../../elements/tuplet/">tuplet</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
+</div><div class="xmlmarkup nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">E5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
@@ -2731,7 +2801,7 @@
       &lt;/<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-            &lt;<a class="tag" href="../../elements/tuplet/">tuplet</a> <span class="attr">inner="<a href="../../data-types/note-value-quantity/">6/4</a>"</span> <span class="attr">outer="<a href="../../data-types/note-value-quantity/">4/4</a>"</span>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/tuplet/">tuplet</a> <span class="attr">inner="<a href="../../data-types/note-value-quantity/">6/4</a>"</span> <span class="attr">outer="<a href="../../data-types/note-value-quantity/">4/4</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
                   &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span>/&gt;
                &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
@@ -2751,7 +2821,7 @@
                   &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span>/&gt;
                &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;/<a class="tag" href="../../elements/tuplet/">tuplet</a>&gt;
-         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
    &lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
 &lt;/<a class="tag" href="../../elements/mnx/">mnx</a>&gt;</div>
@@ -2767,19 +2837,25 @@
         
         <p class="examplenotes">In MusicXML, parsers need to keep track of an internal position; this example uses <code>&lt;backup&gt;</code> to move the internal position back to <code>0</code> to begin the second voice. In MNX, voices are explicitly grouped within <code>&lt;sequence&gt;</code> elements.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle15" class="switchdiff" data-example="15" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle15" class="switchdiff" data-example="15" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples15">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
       &lt;/score-part&gt;
    &lt;/part-list&gt;
    &lt;part id="P1"&gt;
-      &lt;measure number="1"&gt;
+</div><div class="xmlmarkup diff">      &lt;measure number="1"&gt;
          &lt;attributes&gt;
             &lt;divisions&gt;256&lt;/divisions&gt;
             &lt;key&gt;
@@ -2893,14 +2969,14 @@
             &lt;type&gt;half&lt;/type&gt;
          &lt;/note&gt;
       &lt;/measure&gt;
-   &lt;/part&gt;
+</div><div class="xmlmarkup nodiff">   &lt;/part&gt;
 &lt;/score-partwise&gt;</div>
             </div>
         </div>
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -2917,7 +2993,7 @@
          &lt;<a class="tag" href="../../elements/directions-part/">directions</a>&gt;
             &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attr">sign="<a href="../../data-types/clef-sign/">G</a>"</span> <span class="attr">line="<a href="../../data-types/staff-line/">2</a>"</span>/&gt;
          &lt;/<a class="tag" href="../../elements/directions-part/">directions</a>&gt;
-         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+</div><div class="xmlmarkup diff">         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/2</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C4</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
@@ -2939,9 +3015,9 @@
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">B4</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
          &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-      &lt;/<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
-         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+</div><div class="xmlmarkup diff">         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/1</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C4</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
@@ -2957,7 +3033,7 @@
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C6</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
          &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-      &lt;/<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
    &lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
 &lt;/<a class="tag" href="../../elements/mnx/">mnx</a>&gt;</div>
             </div>
@@ -2976,12 +3052,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">In both MusicXML and MNX, pitches for notes within an octave shift are specified taking the octave shift into account (see MNX’s definition of “<a href="/mnx/specification/common/#written-pitches">written pitch</a>”). In this example, the final two pitches are C7 and C6, despite the notes being rendered on the same staff line.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle16" class="switchdiff" data-example="16" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle16" class="switchdiff" data-example="16" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples16">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -3019,12 +3101,12 @@
             &lt;duration&gt;256&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
          &lt;/note&gt;
-         &lt;direction&gt;
+</div><div class="xmlmarkup diff">         &lt;direction&gt;
             &lt;direction-type&gt;
                &lt;octave-shift size="8" type="down"&gt;&lt;/octave-shift&gt;
             &lt;/direction-type&gt;
          &lt;/direction&gt;
-         &lt;note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
                &lt;octave&gt;7&lt;/octave&gt;
@@ -3050,12 +3132,12 @@
             &lt;duration&gt;256&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
          &lt;/note&gt;
-         &lt;direction&gt;
+</div><div class="xmlmarkup diff">         &lt;direction&gt;
             &lt;direction-type&gt;
                &lt;octave-shift size="8" type="stop"&gt;&lt;/octave-shift&gt;
             &lt;/direction-type&gt;
          &lt;/direction&gt;
-         &lt;note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
                &lt;octave&gt;6&lt;/octave&gt;
@@ -3071,7 +3153,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -3095,10 +3177,10 @@
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">E5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-            &lt;<span class="tag">directions</span>&gt;
+</div><div class="xmlmarkup diff">            &lt;<span class="tag">directions</span>&gt;
                &lt;<span class="tag">octave-shift</span> <span class="attr">type="-8"</span> <span class="attr">end="2:1/2"</span>/&gt;
             &lt;/<span class="tag">directions</span>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/2</a>"</span>&gt;
+</div><div class="xmlmarkup nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/2</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C7</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
          &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
@@ -3132,12 +3214,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">In MNX, you put a single <code>&lt;slur&gt;</code> element inside the slur’s first <code>&lt;event&gt;</code>. The element’s <code>target</code> attribute specifies the ID of the last event in the slur. (Every <code>&lt;event&gt;</code> element can have an optional ID.) Use the <code>side</code> attribute to specify whether the slur is above or below.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle17" class="switchdiff" data-example="17" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle17" class="switchdiff" data-example="17" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples17">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -3166,10 +3254,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;256&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;notations&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;slur number="1" placement="above" type="start"&gt;&lt;/slur&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;D&lt;/step&gt;
@@ -3193,10 +3281,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;256&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;notations&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;slur number="1" type="stop"&gt;&lt;/slur&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
       &lt;/measure&gt;
       &lt;measure number="2"&gt;
          &lt;note&gt;
@@ -3206,10 +3294,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;256&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;notations&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;slur number="1" placement="below" type="start"&gt;&lt;/slur&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;A&lt;/step&gt;
@@ -3233,10 +3321,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;256&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;notations&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;slur number="1" type="stop"&gt;&lt;/slur&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
       &lt;/measure&gt;
    &lt;/part&gt;
 &lt;/score-partwise&gt;</div>
@@ -3245,7 +3333,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -3265,8 +3353,8 @@
          &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span> <span class="attr">id="<a href="../../data-types/event-id/">event1</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span>/&gt;
-               &lt;<a class="tag" href="../../elements/slur/">slur</a> <span class="attr">side="<a href="../../data-types/slur-side/">up</a>"</span> <span class="attr">target="<a href="../../data-types/event-id/">event4</a>"</span>/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+</div><div class="xmlmarkup diff">               &lt;<a class="tag" href="../../elements/slur/">slur</a> <span class="attr">side="<a href="../../data-types/slur-side/">up</a>"</span> <span class="attr">target="<a href="../../data-types/event-id/">event4</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span> <span class="attr">id="<a href="../../data-types/event-id/">event2</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">D5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
@@ -3282,8 +3370,8 @@
          &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span> <span class="attr">id="<a href="../../data-types/event-id/">event5</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">G4</a>"</span>/&gt;
-               &lt;<a class="tag" href="../../elements/slur/">slur</a> <span class="attr">side="<a href="../../data-types/slur-side/">down</a>"</span> <span class="attr">target="<a href="../../data-types/event-id/">event8</a>"</span>/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+</div><div class="xmlmarkup diff">               &lt;<a class="tag" href="../../elements/slur/">slur</a> <span class="attr">side="<a href="../../data-types/slur-side/">down</a>"</span> <span class="attr">target="<a href="../../data-types/event-id/">event8</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span> <span class="attr">id="<a href="../../data-types/event-id/">event6</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">A4</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
@@ -3311,12 +3399,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">In MNX, the slur is attached to the <code>&lt;event&gt;</code>, not to the <code>&lt;note&gt;</code>.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle18" class="switchdiff" data-example="18" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle18" class="switchdiff" data-example="18" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples18">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -3347,10 +3441,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;256&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;notations&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;slur number="1" placement="above" type="start"&gt;&lt;/slur&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;chord&gt;&lt;/chord&gt;
             &lt;pitch&gt;
@@ -3401,10 +3495,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;256&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
-            &lt;notations&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;slur number="1" type="stop"&gt;&lt;/slur&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;chord&gt;&lt;/chord&gt;
             &lt;pitch&gt;
@@ -3422,7 +3516,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -3440,8 +3534,8 @@
          &lt;/<a class="tag" href="../../elements/directions-part/">directions</a>&gt;
          &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span> <span class="attr">id="<a href="../../data-types/event-id/">event1</a>"</span>&gt;
-               &lt;<a class="tag" href="../../elements/slur/">slur</a> <span class="attr">side="<a href="../../data-types/slur-side/">up</a>"</span> <span class="attr">target="<a href="../../data-types/event-id/">event4</a>"</span>/&gt;
-               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span>/&gt;
+</div><div class="xmlmarkup diff">               &lt;<a class="tag" href="../../elements/slur/">slur</a> <span class="attr">side="<a href="../../data-types/slur-side/">up</a>"</span> <span class="attr">target="<a href="../../data-types/event-id/">event4</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span>/&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">E5</a>"</span>/&gt;
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/4</a>"</span> <span class="attr">id="<a href="../../data-types/event-id/">event2</a>"</span>&gt;
@@ -3474,12 +3568,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">In MNX, a slur can optionally specify which specific notes it’s attached to, using the <code>start-note</code> and <code>end-note</code> attributes. The <code>start-note</code> must be within the event that contains the <code>&lt;slur&gt;</code>, and the <code>end-note</code> must be within the <code>target</code> event.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle19" class="switchdiff" data-example="19" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle19" class="switchdiff" data-example="19" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples19">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -3510,10 +3610,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;512&lt;/duration&gt;
             &lt;type&gt;half&lt;/type&gt;
-            &lt;notations&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;slur number="1" placement="below" type="start"&gt;&lt;/slur&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;chord&gt;&lt;/chord&gt;
             &lt;pitch&gt;
@@ -3522,10 +3622,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;512&lt;/duration&gt;
             &lt;type&gt;half&lt;/type&gt;
-            &lt;notations&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;slur number="2" placement="above" type="start"&gt;&lt;/slur&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;chord&gt;&lt;/chord&gt;
             &lt;pitch&gt;
@@ -3534,10 +3634,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;512&lt;/duration&gt;
             &lt;type&gt;half&lt;/type&gt;
-            &lt;notations&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;slur number="3" placement="above" type="start"&gt;&lt;/slur&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;B&lt;/step&gt;
@@ -3545,10 +3645,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;512&lt;/duration&gt;
             &lt;type&gt;half&lt;/type&gt;
-            &lt;notations&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;slur number="1" type="stop"&gt;&lt;/slur&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;chord&gt;&lt;/chord&gt;
             &lt;pitch&gt;
@@ -3557,10 +3657,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;512&lt;/duration&gt;
             &lt;type&gt;half&lt;/type&gt;
-            &lt;notations&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;slur number="2" type="stop"&gt;&lt;/slur&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
          &lt;note&gt;
             &lt;chord&gt;&lt;/chord&gt;
             &lt;pitch&gt;
@@ -3569,10 +3669,10 @@
             &lt;/pitch&gt;
             &lt;duration&gt;512&lt;/duration&gt;
             &lt;type&gt;half&lt;/type&gt;
-            &lt;notations&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;slur number="3" type="stop"&gt;&lt;/slur&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
       &lt;/measure&gt;
    &lt;/part&gt;
 &lt;/score-partwise&gt;</div>
@@ -3581,7 +3681,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -3602,10 +3702,10 @@
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span> <span class="attr">id="<a href="../../data-types/note-id/">note1</a>"</span>/&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">E5</a>"</span> <span class="attr">id="<a href="../../data-types/note-id/">note2</a>"</span>/&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">G5</a>"</span> <span class="attr">id="<a href="../../data-types/note-id/">note3</a>"</span>/&gt;
-               &lt;<a class="tag" href="../../elements/slur/">slur</a> <span class="attr">side="<a href="../../data-types/slur-side/">down</a>"</span> <span class="attr">target="<a href="../../data-types/event-id/">event2</a>"</span> <span class="attr">start-note="<a href="../../data-types/note-id/">note1</a>"</span> <span class="attr">end-note="<a href="../../data-types/note-id/">note4</a>"</span>/&gt;
+</div><div class="xmlmarkup diff">               &lt;<a class="tag" href="../../elements/slur/">slur</a> <span class="attr">side="<a href="../../data-types/slur-side/">down</a>"</span> <span class="attr">target="<a href="../../data-types/event-id/">event2</a>"</span> <span class="attr">start-note="<a href="../../data-types/note-id/">note1</a>"</span> <span class="attr">end-note="<a href="../../data-types/note-id/">note4</a>"</span>/&gt;
                &lt;<a class="tag" href="../../elements/slur/">slur</a> <span class="attr">side="<a href="../../data-types/slur-side/">up</a>"</span> <span class="attr">target="<a href="../../data-types/event-id/">event2</a>"</span> <span class="attr">start-note="<a href="../../data-types/note-id/">note2</a>"</span> <span class="attr">end-note="<a href="../../data-types/note-id/">note5</a>"</span>/&gt;
                &lt;<a class="tag" href="../../elements/slur/">slur</a> <span class="attr">side="<a href="../../data-types/slur-side/">up</a>"</span> <span class="attr">target="<a href="../../data-types/event-id/">event2</a>"</span> <span class="attr">start-note="<a href="../../data-types/note-id/">note3</a>"</span> <span class="attr">end-note="<a href="../../data-types/note-id/">note6</a>"</span>/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+</div><div class="xmlmarkup nodiff">            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/2</a>"</span> <span class="attr">id="<a href="../../data-types/event-id/">event2</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">B4</a>"</span> <span class="attr">id="<a href="../../data-types/note-id/">note4</a>"</span>/&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">D5</a>"</span> <span class="attr">id="<a href="../../data-types/note-id/">note5</a>"</span>/&gt;
@@ -3631,12 +3731,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">With MNX’s semantic approach, use <code>location="incoming"</code> or <code>location="outgoing"</code> on the note to which the slur is attached.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle20" class="switchdiff" data-example="20" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle20" class="switchdiff" data-example="20" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples20">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -3675,11 +3781,11 @@
             &lt;/pitch&gt;
             &lt;duration&gt;512&lt;/duration&gt;
             &lt;type&gt;half&lt;/type&gt;
-            &lt;notations&gt;
+</div><div class="xmlmarkup diff">            &lt;notations&gt;
                &lt;slur number="1" placement="above" type="start" default-x="0" default-y="2"&gt;&lt;/slur&gt;
                &lt;slur number="1" type="stop" default-x="40" default-y="4"&gt;&lt;/slur&gt;
             &lt;/notations&gt;
-         &lt;/note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/note&gt;
       &lt;/measure&gt;
    &lt;/part&gt;
 &lt;/score-partwise&gt;</div>
@@ -3688,7 +3794,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -3710,8 +3816,8 @@
             &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
             &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/2</a>"</span>&gt;
                &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">D5</a>"</span>/&gt;
-               &lt;<a class="tag" href="../../elements/slur/">slur</a> <span class="attr">side="<a href="../../data-types/slur-side/">up</a>"</span> <span class="attr">location="<a href="../../data-types/slur-end-location/">outgoing</a>"</span>/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+</div><div class="xmlmarkup diff">               &lt;<a class="tag" href="../../elements/slur/">slur</a> <span class="attr">side="<a href="../../data-types/slur-side/">up</a>"</span> <span class="attr">location="<a href="../../data-types/slur-end-location/">outgoing</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
          &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
    &lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
@@ -3732,8 +3838,9 @@
 <p class="examplenotes">MNX has only one way, similar to MusicXML’s <code>&lt;score-partwise&gt;</code>. Each <code>&lt;part&gt;</code> contains <code>&lt;measure&gt;</code> elements.</p>
 <p class="examplenotes">In MusicXML, part metadata such as the title lives within a <code>&lt;part-list&gt;</code> element. In MNX, part metadata goes in the individual <code>&lt;part&gt;</code> element.</p>
         
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples" id="markupexamples21">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
@@ -4029,12 +4136,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">MNX has a single <code>&lt;repeat&gt;</code> element to represent both concepts. The <code>&lt;repeat&gt;</code> elements go in the <code>&lt;global&gt;</code> section, in the appropriate bar.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle22" class="switchdiff" data-example="22" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle22" class="switchdiff" data-example="22" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples22">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -4042,11 +4155,11 @@
    &lt;/part-list&gt;
    &lt;part id="P1"&gt;
       &lt;measure number="1"&gt;
-         &lt;barline location="left"&gt;
+</div><div class="xmlmarkup diff">         &lt;barline location="left"&gt;
             &lt;bar-style&gt;heavy-light&lt;/bar-style&gt;
             &lt;repeat direction="forward"&gt;&lt;/repeat&gt;
          &lt;/barline&gt;
-         &lt;attributes&gt;
+</div><div class="xmlmarkup nodiff">         &lt;attributes&gt;
             &lt;divisions&gt;256&lt;/divisions&gt;
             &lt;key&gt;
                &lt;fifths&gt;0&lt;/fifths&gt;
@@ -4069,11 +4182,11 @@
             &lt;duration&gt;1024&lt;/duration&gt;
             &lt;type&gt;whole&lt;/type&gt;
          &lt;/note&gt;
-         &lt;barline location="right"&gt;
+</div><div class="xmlmarkup diff">         &lt;barline location="right"&gt;
             &lt;bar-style&gt;light-heavy&lt;/bar-style&gt;
             &lt;repeat direction="backward"&gt;&lt;/repeat&gt;
          &lt;/barline&gt;
-      &lt;/measure&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/measure&gt;
    &lt;/part&gt;
 &lt;/score-partwise&gt;</div>
             </div>
@@ -4081,14 +4194,14 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
             &lt;<a class="tag" href="../../elements/time/">time</a> <span class="attr">signature="<a href="../../data-types/time-signature/">4/4</a>"</span>/&gt;
-            &lt;<a class="tag" href="../../elements/repeat/">repeat</a> <span class="attr">type="<a href="../../data-types/repeat-type/">start</a>"</span>/&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/repeat/">repeat</a> <span class="attr">type="<a href="../../data-types/repeat-type/">start</a>"</span>/&gt;
             &lt;<a class="tag" href="../../elements/repeat/">repeat</a> <span class="attr">type="<a href="../../data-types/repeat-type/">end</a>"</span>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
    &lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
    &lt;<a class="tag" href="../../elements/part/">part</a>&gt;
@@ -4119,12 +4232,18 @@
         
         <p class="examplenotes">In both MusicXML and MNX, you can simply leave out the start repeat if it’s at the start of the music.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle23" class="switchdiff" data-example="23" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle23" class="switchdiff" data-example="23" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples23">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -4155,11 +4274,11 @@
             &lt;duration&gt;1024&lt;/duration&gt;
             &lt;type&gt;whole&lt;/type&gt;
          &lt;/note&gt;
-         &lt;barline location="right"&gt;
+</div><div class="xmlmarkup diff">         &lt;barline location="right"&gt;
             &lt;bar-style&gt;light-heavy&lt;/bar-style&gt;
             &lt;repeat direction="backward"&gt;&lt;/repeat&gt;
          &lt;/barline&gt;
-      &lt;/measure&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/measure&gt;
    &lt;/part&gt;
 &lt;/score-partwise&gt;</div>
             </div>
@@ -4167,13 +4286,13 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
             &lt;<a class="tag" href="../../elements/time/">time</a> <span class="attr">signature="<a href="../../data-types/time-signature/">4/4</a>"</span>/&gt;
-            &lt;<a class="tag" href="../../elements/repeat/">repeat</a> <span class="attr">type="<a href="../../data-types/repeat-type/">end</a>"</span>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/repeat/">repeat</a> <span class="attr">type="<a href="../../data-types/repeat-type/">end</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
    &lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
    &lt;<a class="tag" href="../../elements/part/">part</a>&gt;
@@ -4204,12 +4323,18 @@
         
         <p class="examplenotes">Both MusicXML and MNX use an optional <code>times</code> attribute for specifying the number of times the music within a repeat should be performed.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle24" class="switchdiff" data-example="24" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle24" class="switchdiff" data-example="24" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples24">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -4240,11 +4365,11 @@
             &lt;duration&gt;1024&lt;/duration&gt;
             &lt;type&gt;whole&lt;/type&gt;
          &lt;/note&gt;
-         &lt;barline location="right"&gt;
+</div><div class="xmlmarkup diff">         &lt;barline location="right"&gt;
             &lt;bar-style&gt;light-heavy&lt;/bar-style&gt;
             &lt;repeat direction="backward" times="4"&gt;&lt;/repeat&gt;
          &lt;/barline&gt;
-      &lt;/measure&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/measure&gt;
    &lt;/part&gt;
 &lt;/score-partwise&gt;</div>
             </div>
@@ -4252,13 +4377,13 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
             &lt;<a class="tag" href="../../elements/time/">time</a> <span class="attr">signature="<a href="../../data-types/time-signature/">4/4</a>"</span>/&gt;
-            &lt;<a class="tag" href="../../elements/repeat/">repeat</a> <span class="attr">type="<a href="../../data-types/repeat-type/">end</a>"</span> <span class="attr">times="<a href="../../data-types/repeat-times/">4</a>"</span>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/repeat/">repeat</a> <span class="attr">type="<a href="../../data-types/repeat-type/">end</a>"</span> <span class="attr">times="<a href="../../data-types/repeat-times/">4</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
    &lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
    &lt;<a class="tag" href="../../elements/part/">part</a>&gt;
@@ -4289,12 +4414,18 @@
         
         <p class="examplenotes">In both MusicXML and MNX, each alternate ending is represented with two <code>&lt;ending&gt;</code> elements: one to start and the other to stop.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle25" class="switchdiff" data-example="25" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle25" class="switchdiff" data-example="25" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples25">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -4302,11 +4433,11 @@
    &lt;/part-list&gt;
    &lt;part id="P1"&gt;
       &lt;measure number="1"&gt;
-         &lt;barline location="left"&gt;
+</div><div class="xmlmarkup diff">         &lt;barline location="left"&gt;
             &lt;bar-style&gt;heavy-light&lt;/bar-style&gt;
             &lt;repeat direction="forward"&gt;&lt;/repeat&gt;
          &lt;/barline&gt;
-         &lt;attributes&gt;
+</div><div class="xmlmarkup nodiff">         &lt;attributes&gt;
             &lt;divisions&gt;256&lt;/divisions&gt;
             &lt;key&gt;
                &lt;fifths&gt;0&lt;/fifths&gt;
@@ -4331,10 +4462,10 @@
          &lt;/note&gt;
       &lt;/measure&gt;
       &lt;measure number="2"&gt;
-         &lt;barline location="left"&gt;
+</div><div class="xmlmarkup diff">         &lt;barline location="left"&gt;
             &lt;ending number="1" type="start"&gt;&lt;/ending&gt;
          &lt;/barline&gt;
-         &lt;note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
                &lt;octave&gt;5&lt;/octave&gt;
@@ -4342,17 +4473,17 @@
             &lt;duration&gt;1024&lt;/duration&gt;
             &lt;type&gt;whole&lt;/type&gt;
          &lt;/note&gt;
-         &lt;barline location="right"&gt;
+</div><div class="xmlmarkup diff">         &lt;barline location="right"&gt;
             &lt;bar-style&gt;light-heavy&lt;/bar-style&gt;
             &lt;ending number="1" type="stop"&gt;&lt;/ending&gt;
             &lt;repeat direction="backward"&gt;&lt;/repeat&gt;
          &lt;/barline&gt;
-      &lt;/measure&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/measure&gt;
       &lt;measure number="3"&gt;
-         &lt;barline location="left"&gt;
+</div><div class="xmlmarkup diff">         &lt;barline location="left"&gt;
             &lt;ending number="2" type="start"&gt;&lt;/ending&gt;
          &lt;/barline&gt;
-         &lt;note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;G&lt;/step&gt;
                &lt;octave&gt;4&lt;/octave&gt;
@@ -4360,17 +4491,17 @@
             &lt;duration&gt;1024&lt;/duration&gt;
             &lt;type&gt;whole&lt;/type&gt;
          &lt;/note&gt;
-         &lt;barline location="right"&gt;
+</div><div class="xmlmarkup diff">         &lt;barline location="right"&gt;
             &lt;bar-style&gt;light-heavy&lt;/bar-style&gt;
             &lt;ending number="2" type="stop"&gt;&lt;/ending&gt;
             &lt;repeat direction="backward"&gt;&lt;/repeat&gt;
          &lt;/barline&gt;
-      &lt;/measure&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/measure&gt;
       &lt;measure number="4"&gt;
-         &lt;barline location="left"&gt;
+</div><div class="xmlmarkup diff">         &lt;barline location="left"&gt;
             &lt;ending number="3" type="start"&gt;&lt;/ending&gt;
          &lt;/barline&gt;
-         &lt;note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;C&lt;/step&gt;
                &lt;octave&gt;5&lt;/octave&gt;
@@ -4378,11 +4509,11 @@
             &lt;duration&gt;1024&lt;/duration&gt;
             &lt;type&gt;whole&lt;/type&gt;
          &lt;/note&gt;
-         &lt;barline location="right"&gt;
+</div><div class="xmlmarkup diff">         &lt;barline location="right"&gt;
             &lt;bar-style&gt;light-heavy&lt;/bar-style&gt;
             &lt;ending number="3" type="discontinue"&gt;&lt;/ending&gt;
          &lt;/barline&gt;
-      &lt;/measure&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/measure&gt;
    &lt;/part&gt;
 &lt;/score-partwise&gt;</div>
             </div>
@@ -4390,34 +4521,34 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
             &lt;<a class="tag" href="../../elements/time/">time</a> <span class="attr">signature="<a href="../../data-types/time-signature/">4/4</a>"</span>/&gt;
-            &lt;<a class="tag" href="../../elements/repeat/">repeat</a> <span class="attr">type="<a href="../../data-types/repeat-type/">start</a>"</span>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/repeat/">repeat</a> <span class="attr">type="<a href="../../data-types/repeat-type/">start</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
-         &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">         &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
             &lt;<a class="tag" href="../../elements/repeat/">repeat</a> <span class="attr">type="<a href="../../data-types/repeat-type/">end</a>"</span>/&gt;
             &lt;<a class="tag" href="../../elements/ending/">ending</a> <span class="attr">type="<a href="../../data-types/ending-type/">start</a>"</span> <span class="attr">number="<a href="../../data-types/ending-number/">1</a>"</span>/&gt;
             &lt;<a class="tag" href="../../elements/ending/">ending</a> <span class="attr">type="<a href="../../data-types/ending-type/">stop</a>"</span>/&gt;
          &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
-      &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
-         &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">         &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
             &lt;<a class="tag" href="../../elements/repeat/">repeat</a> <span class="attr">type="<a href="../../data-types/repeat-type/">end</a>"</span>/&gt;
             &lt;<a class="tag" href="../../elements/ending/">ending</a> <span class="attr">type="<a href="../../data-types/ending-type/">start</a>"</span> <span class="attr">number="<a href="../../data-types/ending-number/">2</a>"</span>/&gt;
             &lt;<a class="tag" href="../../elements/ending/">ending</a> <span class="attr">type="<a href="../../data-types/ending-type/">stop</a>"</span>/&gt;
          &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
-      &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
-         &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">         &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
             &lt;<a class="tag" href="../../elements/ending/">ending</a> <span class="attr">type="<a href="../../data-types/ending-type/">start</a>"</span> <span class="attr">number="<a href="../../data-types/ending-number/">3</a>"</span>/&gt;
             &lt;<a class="tag" href="../../elements/ending/">ending</a> <span class="attr">type="<a href="../../data-types/ending-type/">discontinue</a>"</span>/&gt;
          &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
-      &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
    &lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
    &lt;<a class="tag" href="../../elements/part/">part</a>&gt;
       &lt;<a class="tag" href="../../elements/part-name/">part-name</a>&gt;
@@ -4468,12 +4599,18 @@
         
         <p class="examplenotes">In both MusicXML and MNX, if a bar has multiple endings, the <code>&lt;ending&gt;</code> element’s <code>number</code> attribute is a comma-separated list of the ending numbers (using one-based, not zero-based numbers).</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle26" class="switchdiff" data-example="26" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle26" class="switchdiff" data-example="26" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples26">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -4511,9 +4648,8 @@
          &lt;/note&gt;
       &lt;/measure&gt;
       &lt;measure number="2"&gt;
-         &lt;barline location="left"&gt;
-            &lt;ending number="1,2" type="start"&gt;&lt;/ending&gt;
-         &lt;/barline&gt;
+         &lt;barline location="left"&gt;</div><div class="xmlmarkup diff">            &lt;ending number="1,2" type="start"&gt;&lt;/ending&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/barline&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
@@ -4542,15 +4678,12 @@
             &lt;type&gt;quarter&lt;/type&gt;
          &lt;/note&gt;
          &lt;barline location="right"&gt;
-            &lt;bar-style&gt;light-heavy&lt;/bar-style&gt;
-            &lt;ending number="1,2" type="stop"&gt;&lt;/ending&gt;
-            &lt;repeat direction="backward"&gt;&lt;/repeat&gt;
+            &lt;bar-style&gt;light-heavy&lt;/bar-style&gt;</div><div class="xmlmarkup diff">            &lt;ending number="1,2" type="stop"&gt;&lt;/ending&gt;</div><div class="xmlmarkup nodiff">            &lt;repeat direction="backward"&gt;&lt;/repeat&gt;
          &lt;/barline&gt;
       &lt;/measure&gt;
       &lt;measure number="4"&gt;
-         &lt;barline location="left"&gt;
-            &lt;ending number="3" type="start"&gt;&lt;/ending&gt;
-         &lt;/barline&gt;
+         &lt;barline location="left"&gt;</div><div class="xmlmarkup diff">            &lt;ending number="3" type="start"&gt;&lt;/ending&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/barline&gt;
          &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;G&lt;/step&gt;
@@ -4578,9 +4711,8 @@
             &lt;duration&gt;256&lt;/duration&gt;
             &lt;type&gt;quarter&lt;/type&gt;
          &lt;/note&gt;
-         &lt;barline location="right"&gt;
-            &lt;ending number="3" type="discontinue"&gt;&lt;/ending&gt;
-         &lt;/barline&gt;
+         &lt;barline location="right"&gt;</div><div class="xmlmarkup diff">            &lt;ending number="3" type="discontinue"&gt;&lt;/ending&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/barline&gt;
       &lt;/measure&gt;
       &lt;measure number="6"&gt;
          &lt;note&gt;
@@ -4600,7 +4732,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -4610,24 +4742,24 @@
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
-            &lt;<a class="tag" href="../../elements/ending/">ending</a> <span class="attr">type="<a href="../../data-types/ending-type/">start</a>"</span> <span class="attr">number="<a href="../../data-types/ending-number/">1,2</a>"</span>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/ending/">ending</a> <span class="attr">type="<a href="../../data-types/ending-type/">start</a>"</span> <span class="attr">number="<a href="../../data-types/ending-number/">1,2</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
             &lt;<a class="tag" href="../../elements/repeat/">repeat</a> <span class="attr">type="<a href="../../data-types/repeat-type/">end</a>"</span>/&gt;
-            &lt;<a class="tag" href="../../elements/ending/">ending</a> <span class="attr">type="<a href="../../data-types/ending-type/">stop</a>"</span>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/ending/">ending</a> <span class="attr">type="<a href="../../data-types/ending-type/">stop</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
-            &lt;<a class="tag" href="../../elements/ending/">ending</a> <span class="attr">type="<a href="../../data-types/ending-type/">start</a>"</span> <span class="attr">number="<a href="../../data-types/ending-number/">3</a>"</span>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/ending/">ending</a> <span class="attr">type="<a href="../../data-types/ending-type/">start</a>"</span> <span class="attr">number="<a href="../../data-types/ending-number/">3</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
-            &lt;<a class="tag" href="../../elements/ending/">ending</a> <span class="attr">type="<a href="../../data-types/ending-type/">discontinue</a>"</span>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/ending/">ending</a> <span class="attr">type="<a href="../../data-types/ending-type/">discontinue</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>/&gt;
    &lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
@@ -4702,12 +4834,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">In MNX, the <code>&lt;jump&gt;</code> element specifies what kind of jump it is, and <code>&lt;segno&gt;</code> specifies the target of the jump. These elements together represent both the visual notation and the playback instructions.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle27" class="switchdiff" data-example="27" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle27" class="switchdiff" data-example="27" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples27">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -4740,13 +4878,13 @@
          &lt;/note&gt;
       &lt;/measure&gt;
       &lt;measure number="2"&gt;
-         &lt;direction&gt;
+</div><div class="xmlmarkup diff">         &lt;direction&gt;
             &lt;direction-type&gt;
                &lt;segno&gt;&lt;/segno&gt;
             &lt;/direction-type&gt;
             &lt;sound segno="2"&gt;&lt;/sound&gt;
          &lt;/direction&gt;
-         &lt;note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
                &lt;octave&gt;5&lt;/octave&gt;
@@ -4784,13 +4922,13 @@
             &lt;duration&gt;1024&lt;/duration&gt;
             &lt;type&gt;whole&lt;/type&gt;
          &lt;/note&gt;
-         &lt;direction&gt;
+</div><div class="xmlmarkup diff">         &lt;direction&gt;
             &lt;direction-type&gt;
                &lt;words&gt;D.S.&lt;/words&gt;
             &lt;/direction-type&gt;
             &lt;sound dalsegno="2"&gt;&lt;/sound&gt;
          &lt;/direction&gt;
-      &lt;/measure&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/measure&gt;
    &lt;/part&gt;
 &lt;/score-partwise&gt;</div>
             </div>
@@ -4798,7 +4936,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -4807,15 +4945,15 @@
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
-            &lt;<a class="tag" href="../../elements/segno/">segno</a>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/segno/">segno</a>/&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>/&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>/&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
-            &lt;<a class="tag" href="../../elements/jump/">jump</a> <span class="attr">type="<a href="../../data-types/jump-type/">segno</a>"</span>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/jump/">jump</a> <span class="attr">type="<a href="../../data-types/jump-type/">segno</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
    &lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
    &lt;<a class="tag" href="../../elements/part/">part</a>&gt;
@@ -4876,12 +5014,18 @@
 <p class="examplenotes"></p>
 <p class="examplenotes">In MNX, the <code>&lt;jump&gt;</code> element specifies what kind of jump it is, and <code>&lt;segno&gt;</code> and <code>&lt;fine&gt;</code> specify jump targets. These elements together represent both the visual notation and the playback instructions.</p>
         
+        
+        <p class="showui">Show:
+            <label><input type="radio" name="toggle28" class="switchdiff" data-example="28" value="1" checked> Relevant section</label>
+            <label><input type="radio" name="toggle28" class="switchdiff" data-example="28" value="2"> Full document</label>
+        </p>
+        
     </div>
-    <div class="markupexamples">
+    <div class="markupexamples onlydiff" id="markupexamples28">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;score-partwise version="3.1"&gt;
+                <div class="xmlmarkup nodiff">&lt;score-partwise version="3.1"&gt;
    &lt;part-list&gt;
       &lt;score-part id="P1"&gt;
          &lt;part-name&gt;Music&lt;/part-name&gt;
@@ -4914,13 +5058,13 @@
          &lt;/note&gt;
       &lt;/measure&gt;
       &lt;measure number="2"&gt;
-         &lt;direction&gt;
+</div><div class="xmlmarkup diff">         &lt;direction&gt;
             &lt;direction-type&gt;
                &lt;segno&gt;&lt;/segno&gt;
             &lt;/direction-type&gt;
             &lt;sound segno="m2"&gt;&lt;/sound&gt;
          &lt;/direction&gt;
-         &lt;note&gt;
+</div><div class="xmlmarkup nodiff">         &lt;note&gt;
             &lt;pitch&gt;
                &lt;step&gt;E&lt;/step&gt;
                &lt;octave&gt;5&lt;/octave&gt;
@@ -4938,13 +5082,13 @@
             &lt;duration&gt;1024&lt;/duration&gt;
             &lt;type&gt;whole&lt;/type&gt;
          &lt;/note&gt;
-         &lt;direction&gt;
+</div><div class="xmlmarkup diff">         &lt;direction&gt;
             &lt;direction-type&gt;
                &lt;words&gt;fine&lt;/words&gt;
             &lt;/direction-type&gt;
             &lt;sound fine="yes"&gt;&lt;/sound&gt;
          &lt;/direction&gt;
-      &lt;/measure&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/measure&gt;
       &lt;measure number="4"&gt;
          &lt;note&gt;
             &lt;pitch&gt;
@@ -4964,13 +5108,13 @@
             &lt;duration&gt;1024&lt;/duration&gt;
             &lt;type&gt;whole&lt;/type&gt;
          &lt;/note&gt;
-         &lt;direction&gt;
+</div><div class="xmlmarkup diff">         &lt;direction&gt;
             &lt;direction-type&gt;
                &lt;words&gt;D.S. al Fine&lt;/words&gt;
             &lt;/direction-type&gt;
             &lt;sound dalsegno="m2"&gt;&lt;/sound&gt;
          &lt;/direction&gt;
-      &lt;/measure&gt;
+</div><div class="xmlmarkup nodiff">      &lt;/measure&gt;
    &lt;/part&gt;
 &lt;/score-partwise&gt;</div>
             </div>
@@ -4978,7 +5122,7 @@
         <div class="markupexample">
             <h3>MNX</h3>
             <div class="markupcode">
-                <div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+                <div class="xmlmarkup nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
    &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
@@ -4987,19 +5131,19 @@
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
-            &lt;<a class="tag" href="../../elements/segno/">segno</a>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/segno/">segno</a>/&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
-            &lt;<a class="tag" href="../../elements/fine/">fine</a>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/fine/">fine</a>/&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>/&gt;
       &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
          &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
-            &lt;<a class="tag" href="../../elements/jump/">jump</a> <span class="attr">type="<a href="../../data-types/jump-type/">dsalfine</a>"</span>/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+</div><div class="xmlmarkup diff">            &lt;<a class="tag" href="../../elements/jump/">jump</a> <span class="attr">type="<a href="../../data-types/jump-type/">dsalfine</a>"</span>/&gt;
+</div><div class="xmlmarkup nodiff">         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
       &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
    &lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
    &lt;<a class="tag" href="../../elements/part/">part</a>&gt;
@@ -5051,6 +5195,32 @@
     </div>
 </section>
 
+</form>
+
+
+
+<script>
+function toggleDiff(e) {
+    var onlyDiff = e.target.value === '1',
+        exampleNumber = e.target.dataset.example,
+        exampleEl = document.getElementById('markupexamples' + exampleNumber);
+    if (onlyDiff) {
+        exampleEl.classList.add('onlydiff');
+    }
+    else {
+        exampleEl.classList.remove('onlydiff');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var els = document.querySelectorAll('.switchdiff'),
+        i = els.length;
+    while (i--) {
+        els[i].addEventListener('change', toggleDiff);
+    }
+    document.getElementById('comparisonform').reset();
+});
+</script>
 
 </body>
 </html>
