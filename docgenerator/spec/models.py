@@ -133,6 +133,7 @@ class ExampleDocumentComparison(models.Model):
     doc_format = models.ForeignKey(DocumentFormat, on_delete=models.CASCADE)
     preamble = models.TextField(blank=True)
     document = models.TextField()
+    position = models.SmallIntegerField()
 
     class Meta:
         db_table = 'example_comparisons'

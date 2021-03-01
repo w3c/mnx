@@ -77,8 +77,7 @@ def concept_detail(request, slug):
 def format_comparison_detail(request, slug):
     other_format = get_object_or_404(DocumentFormat, slug=slug)
     comparisons = []
-    # TODO: Ordering.
-    for edc in ExampleDocumentComparison.objects.filter(doc_format=other_format).select_related('example'):
+    for edc in ExampleDocumentComparison.objects.filter(doc_format=other_format).select_related('example').order_by('position'):
         highlight_diffs, doc_html = htmlutils.get_augmented_xml(request.path, edc.example.document, True)
         comparisons.append({
             'example': edc.example,
