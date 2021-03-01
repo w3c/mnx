@@ -4,7 +4,7 @@ Welcome to the [Music Notation Community Group](https://www.w3.org/community/mus
 
 Quick links:
 
-- [MNX by example](https://w3c.github.io/mnx/by-example/)
+- [MNX examples](https://w3c.github.io/mnx/docs/comparisons/musicxml/) (our recommended way of learning about MNX, with MusicXML comparisons for each example)
 - [Draft specification](https://w3c.github.io/mnx/specification/common/)
 - [New, work-in-progress documentation](https://w3c.github.io/mnx/docs/) (intended to eventually replace the previous two links)
 
@@ -61,6 +61,6 @@ Finally, we should note there are many music notation systems throughout the wor
 
 The first step in our design was assembling an exhaustive list of roles and use cases for music notation in general. We published this document, [MNX Use Cases](https://w3c.github.io/mnx/use-cases/), in 2017. Not every use case there is meant to be covered by MNX, but this is a solid reference that helps us consider the spectrum of what people do with digital music notation. It also gives us a common language around “roles” such as Composer, Performer or Developer.
 
-Beyond that, we’ve begun designing the MNX format. See [MNX by example](https://w3c.github.io/mnx/by-example/) to get a flavor of MNX. Also see our [early draft specification](https://w3c.github.io/mnx/specification/common/). The [MNX GitHub issue tracker](https://github.com/w3c/mnx/issues) collects open issues we need to work through in designing the format.
+Beyond that, we’ve begun designing the MNX format. See [MNX by example](https://w3c.github.io/mnx/docs/comparisons/musicxml/) to get a flavor of MNX. Also see our [early draft specification](https://w3c.github.io/mnx/specification/common/). The [MNX GitHub issue tracker](https://github.com/w3c/mnx/issues) collects open issues we need to work through in designing the format.
 
 Our plan of action is to start with large questions and progressively nail down the format.
