@@ -268,6 +268,16 @@
     }
 },
 {
+    "model": "spec.datatype",
+    "pk": 30,
+    "fields": {
+        "name": "Staff index",
+        "slug": "staff-index",
+        "description": "The one-based numeric index of a staff within a part. In a single-staff part, this will be \"1\". In a grand staff part (which has two staves), the top staff has staff index \"1\" and the bottom staff has staff index \"2\".\r\n\r\nWithin a part, staff indexes should always increment by 1. For example, it's an error for a two-staff part to use staff indexes \"1\" and \"3\".",
+        "is_featured": false
+    }
+},
+{
     "model": "spec.datatypeoption",
     "pk": 1,
     "fields": {
@@ -345,7 +355,7 @@
     "fields": {
         "data_type": 29,
         "value": "up",
-        "description": "Note stems are pointed upward."
+        "description": "Upward."
     }
 },
 {
@@ -354,7 +364,7 @@
     "fields": {
         "data_type": 29,
         "value": "down",
-        "description": "Note stems are pointed downward."
+        "description": "Downward."
     }
 },
 {
@@ -411,8 +421,9 @@
     "fields": {
         "name": "mnx",
         "slug": "mnx",
-        "description": "",
-        "is_featured": false
+        "description": "This is the top-level element.",
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -422,7 +433,8 @@
         "name": "global",
         "slug": "global",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -432,7 +444,8 @@
         "name": "measure",
         "slug": "measure-global",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -442,7 +455,8 @@
         "name": "directions",
         "slug": "directions-part",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -452,7 +466,8 @@
         "name": "time",
         "slug": "time",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -462,7 +477,8 @@
         "name": "part",
         "slug": "part",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -472,7 +488,8 @@
         "name": "part-name",
         "slug": "part-name",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -482,7 +499,8 @@
         "name": "measure",
         "slug": "measure-part",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -492,7 +510,8 @@
         "name": "clef",
         "slug": "clef",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -502,7 +521,8 @@
         "name": "sequence",
         "slug": "sequence",
         "description": "",
-        "is_featured": true
+        "is_featured": true,
+        "attribute_groups": []
     }
 },
 {
@@ -512,7 +532,8 @@
         "name": "event",
         "slug": "event",
         "description": "",
-        "is_featured": true
+        "is_featured": true,
+        "attribute_groups": []
     }
 },
 {
@@ -522,7 +543,8 @@
         "name": "note",
         "slug": "note",
         "description": "",
-        "is_featured": true
+        "is_featured": true,
+        "attribute_groups": []
     }
 },
 {
@@ -532,7 +554,8 @@
         "name": "rest",
         "slug": "rest",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -542,7 +565,8 @@
         "name": "tied",
         "slug": "tied",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -552,7 +576,8 @@
         "name": "beams",
         "slug": "beams",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -562,7 +587,8 @@
         "name": "beam",
         "slug": "beam",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -572,7 +598,8 @@
         "name": "beam-hook",
         "slug": "beam-hook",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -582,7 +609,8 @@
         "name": "tuplet",
         "slug": "tuplet",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -592,7 +620,11 @@
         "name": "octave-shift",
         "slug": "octave-shift",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": [
+            1,
+            2
+        ]
     }
 },
 {
@@ -602,7 +634,8 @@
         "name": "directions",
         "slug": "directions-global",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -612,7 +645,8 @@
         "name": "slur",
         "slug": "slur",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -622,7 +656,8 @@
         "name": "repeat",
         "slug": "repeat",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -632,7 +667,8 @@
         "name": "ending",
         "slug": "ending",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -642,7 +678,8 @@
         "name": "segno",
         "slug": "segno",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -652,7 +689,8 @@
         "name": "jump",
         "slug": "jump",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -662,7 +700,8 @@
         "name": "fine",
         "slug": "fine",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -672,7 +711,19 @@
         "name": "grace",
         "slug": "grace",
         "description": "",
-        "is_featured": false
+        "is_featured": false,
+        "attribute_groups": []
+    }
+},
+{
+    "model": "spec.xmlelement",
+    "pk": 30,
+    "fields": {
+        "name": "directions",
+        "slug": "directions-sequence",
+        "description": "",
+        "is_featured": false,
+        "attribute_groups": []
     }
 },
 {
@@ -680,6 +731,7 @@
     "pk": 1,
     "fields": {
         "element": 5,
+        "attribute_group": null,
         "name": "signature",
         "is_required": true,
         "description": "",
@@ -691,6 +743,7 @@
     "pk": 2,
     "fields": {
         "element": 9,
+        "attribute_group": null,
         "name": "sign",
         "is_required": true,
         "description": "",
@@ -702,6 +755,7 @@
     "pk": 3,
     "fields": {
         "element": 9,
+        "attribute_group": null,
         "name": "line",
         "is_required": true,
         "description": "",
@@ -713,6 +767,7 @@
     "pk": 4,
     "fields": {
         "element": 11,
+        "attribute_group": null,
         "name": "value",
         "is_required": false,
         "description": "",
@@ -724,6 +779,7 @@
     "pk": 5,
     "fields": {
         "element": 12,
+        "attribute_group": null,
         "name": "pitch",
         "is_required": false,
         "description": "",
@@ -735,6 +791,7 @@
     "pk": 6,
     "fields": {
         "element": 12,
+        "attribute_group": null,
         "name": "accidental",
         "is_required": false,
         "description": "",
@@ -746,6 +803,7 @@
     "pk": 7,
     "fields": {
         "element": 14,
+        "attribute_group": null,
         "name": "target",
         "is_required": true,
         "description": "",
@@ -757,6 +815,7 @@
     "pk": 8,
     "fields": {
         "element": 12,
+        "attribute_group": null,
         "name": "id",
         "is_required": false,
         "description": "",
@@ -768,6 +827,7 @@
     "pk": 9,
     "fields": {
         "element": 11,
+        "attribute_group": null,
         "name": "id",
         "is_required": false,
         "description": "",
@@ -779,6 +839,7 @@
     "pk": 10,
     "fields": {
         "element": 16,
+        "attribute_group": null,
         "name": "events",
         "is_required": false,
         "description": "",
@@ -790,6 +851,7 @@
     "pk": 11,
     "fields": {
         "element": 17,
+        "attribute_group": null,
         "name": "event",
         "is_required": true,
         "description": "",
@@ -801,6 +863,7 @@
     "pk": 12,
     "fields": {
         "element": 17,
+        "attribute_group": null,
         "name": "direction",
         "is_required": false,
         "description": "",
@@ -812,6 +875,7 @@
     "pk": 13,
     "fields": {
         "element": 18,
+        "attribute_group": null,
         "name": "inner",
         "is_required": true,
         "description": "",
@@ -823,6 +887,7 @@
     "pk": 14,
     "fields": {
         "element": 18,
+        "attribute_group": null,
         "name": "outer",
         "is_required": true,
         "description": "",
@@ -834,6 +899,7 @@
     "pk": 15,
     "fields": {
         "element": 19,
+        "attribute_group": null,
         "name": "type",
         "is_required": true,
         "description": "",
@@ -842,20 +908,10 @@
 },
 {
     "model": "spec.xmlattribute",
-    "pk": 16,
-    "fields": {
-        "element": 19,
-        "name": "end",
-        "is_required": true,
-        "description": "",
-        "data_type": 13
-    }
-},
-{
-    "model": "spec.xmlattribute",
     "pk": 17,
     "fields": {
         "element": 21,
+        "attribute_group": null,
         "name": "side",
         "is_required": false,
         "description": "",
@@ -867,6 +923,7 @@
     "pk": 18,
     "fields": {
         "element": 21,
+        "attribute_group": null,
         "name": "target",
         "is_required": false,
         "description": "",
@@ -878,6 +935,7 @@
     "pk": 19,
     "fields": {
         "element": 21,
+        "attribute_group": null,
         "name": "location",
         "is_required": false,
         "description": "",
@@ -889,6 +947,7 @@
     "pk": 20,
     "fields": {
         "element": 21,
+        "attribute_group": null,
         "name": "start-note",
         "is_required": false,
         "description": "",
@@ -900,6 +959,7 @@
     "pk": 21,
     "fields": {
         "element": 21,
+        "attribute_group": null,
         "name": "end-note",
         "is_required": false,
         "description": "",
@@ -911,6 +971,7 @@
     "pk": 22,
     "fields": {
         "element": 21,
+        "attribute_group": null,
         "name": "line-type",
         "is_required": false,
         "description": "",
@@ -922,6 +983,7 @@
     "pk": 23,
     "fields": {
         "element": 21,
+        "attribute_group": null,
         "name": "side-end",
         "is_required": false,
         "description": "",
@@ -933,6 +995,7 @@
     "pk": 24,
     "fields": {
         "element": 22,
+        "attribute_group": null,
         "name": "type",
         "is_required": true,
         "description": "",
@@ -944,6 +1007,7 @@
     "pk": 25,
     "fields": {
         "element": 22,
+        "attribute_group": null,
         "name": "times",
         "is_required": false,
         "description": "",
@@ -955,6 +1019,7 @@
     "pk": 26,
     "fields": {
         "element": 23,
+        "attribute_group": null,
         "name": "type",
         "is_required": true,
         "description": "",
@@ -966,6 +1031,7 @@
     "pk": 27,
     "fields": {
         "element": 23,
+        "attribute_group": null,
         "name": "number",
         "is_required": false,
         "description": "",
@@ -977,6 +1043,7 @@
     "pk": 28,
     "fields": {
         "element": 25,
+        "attribute_group": null,
         "name": "type",
         "is_required": true,
         "description": "",
@@ -988,6 +1055,7 @@
     "pk": 33,
     "fields": {
         "element": 29,
+        "attribute_group": null,
         "name": "type",
         "is_required": false,
         "description": "",
@@ -999,6 +1067,7 @@
     "pk": 34,
     "fields": {
         "element": 29,
+        "attribute_group": null,
         "name": "slash",
         "is_required": false,
         "description": "",
@@ -1010,6 +1079,7 @@
     "pk": 35,
     "fields": {
         "element": 18,
+        "attribute_group": null,
         "name": "bracket",
         "is_required": false,
         "description": "",
@@ -1021,17 +1091,7 @@
     "pk": 36,
     "fields": {
         "element": 18,
-        "name": "orient",
-        "is_required": false,
-        "description": "",
-        "data_type": 29
-    }
-},
-{
-    "model": "spec.xmlattribute",
-    "pk": 37,
-    "fields": {
-        "element": 19,
+        "attribute_group": null,
         "name": "orient",
         "is_required": false,
         "description": "",
@@ -1043,10 +1103,61 @@
     "pk": 38,
     "fields": {
         "element": 10,
+        "attribute_group": null,
         "name": "orient",
         "is_required": false,
         "description": "Default orientation of the content in this sequence. If not provided, the orientation is determined automatically according to the implementation’s rendering rules and may be overridden by descendant elements.",
         "data_type": 29
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 39,
+    "fields": {
+        "element": null,
+        "attribute_group": 1,
+        "name": "staff",
+        "is_required": false,
+        "description": "The staff index to which this direction applies, if such a designation makes sense. If not provided, the value is inherited from any sequence ancestor that specified it. If no ancestor did so, the consuming software should determine the value automatically according to its own logic.",
+        "data_type": 30
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 40,
+    "fields": {
+        "element": null,
+        "attribute_group": 1,
+        "name": "orient",
+        "is_required": false,
+        "description": "A specific orientation for this direction. If not provided, the value is inherited from any sequence ancestor that specified it. If no ancestor did so, the consuming software should determine the value automatically according to its own logic.",
+        "data_type": 29
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 41,
+    "fields": {
+        "element": null,
+        "attribute_group": 2,
+        "name": "end",
+        "is_required": true,
+        "description": "",
+        "data_type": 13
+    }
+},
+{
+    "model": "spec.xmlattributegroup",
+    "pk": 1,
+    "fields": {
+        "name": "Direction"
+    }
+},
+{
+    "model": "spec.xmlattributegroup",
+    "pk": 2,
+    "fields": {
+        "name": "Span"
     }
 },
 {
@@ -1241,16 +1352,6 @@
 },
 {
     "model": "spec.xmlrelationship",
-    "pk": 20,
-    "fields": {
-        "parent": 4,
-        "child": 19,
-        "min_amount": 0,
-        "max_amount": null
-    }
-},
-{
-    "model": "spec.xmlrelationship",
     "pk": 21,
     "fields": {
         "parent": 20,
@@ -1355,6 +1456,26 @@
     "fields": {
         "parent": 10,
         "child": 29,
+        "min_amount": 0,
+        "max_amount": null
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 36,
+    "fields": {
+        "parent": 30,
+        "child": 19,
+        "min_amount": 0,
+        "max_amount": null
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 37,
+    "fields": {
+        "parent": 10,
+        "child": 30,
         "min_amount": 0,
         "max_amount": null
     }
