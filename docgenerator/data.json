@@ -1076,6 +1076,20 @@
     }
 },
 {
+    "model": "spec.xmlelement",
+    "pk": 36,
+    "fields": {
+        "name": "dim",
+        "slug": "dim",
+        "description": "A diminuendo or decreasing dynamic level over the course of a span, notated as text followed by a dashed line.",
+        "is_featured": false,
+        "attribute_groups": [
+            1,
+            2
+        ]
+    }
+},
+{
     "model": "spec.xmlattribute",
     "pk": 1,
     "fields": {
@@ -1532,6 +1546,18 @@
     }
 },
 {
+    "model": "spec.xmlattribute",
+    "pk": 45,
+    "fields": {
+        "element": 36,
+        "attribute_group": null,
+        "name": "text",
+        "is_required": false,
+        "description": "Overrides the text to be displayed in the score for this element.",
+        "data_type": 33
+    }
+},
+{
     "model": "spec.xmlattributegroup",
     "pk": 1,
     "fields": {
@@ -1911,6 +1937,16 @@
     "fields": {
         "parent": 30,
         "child": 35,
+        "min_amount": 0,
+        "max_amount": null
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 44,
+    "fields": {
+        "parent": 30,
+        "child": 36,
         "min_amount": 0,
         "max_amount": null
     }

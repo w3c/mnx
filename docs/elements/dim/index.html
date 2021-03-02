@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The &lt;dim&gt; element | MNX specification</title>
+<link rel="stylesheet" href="../../static/styles.css">
+
+</head>
+
+<body>
+<div class="topnav"><a href="../../">MNX specification</a></div>
+
+
+<div class="content">
+
+<p class="breadcrumb"><a href="../">Elements</a> &gt; dim</p>
+
+<h1>The &lt;dim&gt; element</h1>
+
+<ul>
+    <li>Parent element:
+        
+            
+            <a href="../directions-sequence/">&lt;directions&gt;</a>
+            
+        
+    </li>
+    <li>Child elements:
+        
+            None
+        
+    </li>
+</ul>
+
+
+A diminuendo or decreasing dynamic level over the course of a span, notated as text followed by a dashed line.
+
+
+<h2>Attributes</h2>
+
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+<tr>
+    <th class="nobr">end</th>
+    <td><a href="../../data-types/measure-location/">Measure location</a></td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+<tr>
+    <th class="nobr">orient</th>
+    <td><a href="../../data-types/orientation/">Orientation</a></td>
+    <td>No</td>
+    <td>A specific orientation for this direction. If not provided, the value is inherited from any sequence ancestor that specified it. If no ancestor did so, the consuming software should determine the value automatically according to its own logic.</td>
+</tr>
+
+<tr>
+    <th class="nobr">staff</th>
+    <td><a href="../../data-types/staff-index/">Staff index</a></td>
+    <td>No</td>
+    <td>The staff index to which this direction applies, if such a designation makes sense. If not provided, the value is inherited from any sequence ancestor that specified it. If no ancestor did so, the consuming software should determine the value automatically according to its own logic.</td>
+</tr>
+
+<tr>
+    <th class="nobr">text</th>
+    <td><a href="../../data-types/string/">String</a></td>
+    <td>No</td>
+    <td>Overrides the text to be displayed in the score for this element.</td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+</div>
+
+
+
+</body>
+</html>
