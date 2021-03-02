@@ -660,6 +660,51 @@
     }
 },
 {
+    "model": "spec.datatypeoption",
+    "pk": 39,
+    "fields": {
+        "data_type": 2,
+        "value": "G",
+        "description": "G (treble) clef"
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 40,
+    "fields": {
+        "data_type": 2,
+        "value": "F",
+        "description": "F (bass) clef"
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 41,
+    "fields": {
+        "data_type": 2,
+        "value": "C",
+        "description": "C clef"
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 42,
+    "fields": {
+        "data_type": 2,
+        "value": "percussion",
+        "description": "Percussion clef"
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 43,
+    "fields": {
+        "data_type": 2,
+        "value": "jianpu",
+        "description": "Jianpu clef"
+    }
+},
+{
     "model": "spec.concept",
     "pk": 1,
     "fields": {
@@ -1600,6 +1645,18 @@
         "is_required": false,
         "description": "This overrides the notated time signature for the current measure only, where this value differs from \"signature\". This is of particular use for anacruses and for shortened measures prior to a repeat or jump back to an anacrusis.\r\n\r\nThe \"measure\" attribute must be provided in all cases where the actual content of a measure is of a different length from that indicated by \"signature\". MNX does not require consumer implementations to examine the contents of measures to determine their intended length.",
         "data_type": 1
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 48,
+    "fields": {
+        "element": 9,
+        "attribute_group": null,
+        "name": "octave",
+        "is_required": false,
+        "description": "The number of octaves by which the pitches normally indicated by the given clef sign should be transposed. Default is zero.",
+        "data_type": 34
     }
 },
 {
