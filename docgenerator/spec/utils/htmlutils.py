@@ -62,14 +62,21 @@ class XMLAugmenter(DiffElementContentHandler):
             start_tag = ''
             end_tag = ''
             if element_obj:
+                attr_obj = None
+                qs = XMLAttribute.objects.select_related('data_type')
                 try:
-                    attr_obj = XMLAttribute.objects.filter(
+                    attr_obj = qs.filter(
                         element=element_obj,
                         name=k
-                    ).select_related('data_type')[0]
+                    )[0]
                 except IndexError:
-                    pass
-                else:
+                    try:
+                        attr_obj = qs.filter(
+                            attribute_group__xmlelement=element_obj
+                        )[0]
+                    except IndexError:
+                        pass
+                if attr_obj:
                     start_tag = f'<a href="{get_relative_url(self.current_url, attr_obj.data_type.get_absolute_url())}">'
                     end_tag = '</a>'
             result.append(f' <span class="attr">{k}="{start_tag}{v}{end_tag}"</span>')

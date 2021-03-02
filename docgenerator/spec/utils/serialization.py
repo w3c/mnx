@@ -13,6 +13,7 @@ MODELS_TO_FREEZE = (
     DocumentFormat,
     XMLElement,
     XMLAttribute,
+    XMLAttributeGroup,
     XMLRelationship,
     ExampleDocument,
     ExampleDocumentConcept,

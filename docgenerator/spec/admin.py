@@ -3,7 +3,13 @@ from spec.models import *
 
 class XMLAttributeInline(admin.TabularInline):
     model = XMLAttribute
+    exclude = ('attribute_group',)
     extra = 0
+
+class XMLAttributeGroupAttributeInline(admin.TabularInline):
+    model = XMLAttribute
+    exclude = ('element',)
+    extra = 1
 
 class ChildElementsInline(admin.TabularInline):
     model = XMLRelationship
@@ -19,6 +25,12 @@ class XMLElementAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug', 'is_featured']
     ordering = ['name']
     prepopulated_fields = {'slug': ['name']}
+    filter_horizontal = ['attribute_groups']
+
+class XMLAttributeGroupAdmin(admin.ModelAdmin):
+    inlines = [XMLAttributeGroupAttributeInline]
+    list_display = ['name']
+    ordering = ['name']
 
 class DataTypeOptionInline(admin.TabularInline):
     model = DataTypeOption
@@ -28,6 +40,7 @@ class DataTypeAdmin(admin.ModelAdmin):
     inlines = [DataTypeOptionInline]
     prepopulated_fields = {'slug': ['name']}
     list_display = ['name', 'is_featured']
+    ordering = ['name']
 
 class DocumentFormatAdmin(admin.ModelAdmin):
     model = DocumentFormat
@@ -51,6 +64,7 @@ class ConceptAdmin(admin.ModelAdmin):
     list_display = ['name', 'is_featured']
 
 admin.site.register(XMLElement, XMLElementAdmin)
+admin.site.register(XMLAttributeGroup, XMLAttributeGroupAdmin)
 admin.site.register(DataType, DataTypeAdmin)
 admin.site.register(DocumentFormat, DocumentFormatAdmin)
 admin.site.register(ExampleDocument, ExampleDocumentAdmin)

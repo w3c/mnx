@@ -19,9 +19,13 @@ def element_list(request):
 
 def element_detail(request, slug):
     element = get_object_or_404(XMLElement, slug=slug)
+    attributes = list(element.xmlattribute_set.all())
+    attributes += list(XMLAttribute.objects.filter(attribute_group__xmlelement=element))
+    attributes.sort(key=lambda x: x.name)
+
     return render(request, 'element_detail.html', {
         'element': element,
-        'attributes': element.xmlattribute_set.order_by('name'),
+        'attributes': attributes,
         'children': XMLRelationship.objects.filter(parent=element).select_related('child').order_by('child__name'),
         'parents': XMLRelationship.objects.filter(child=element).select_related('parent').order_by('parent__name'),
         'concepts': ElementConcept.objects.filter(element=element).select_related('concept'),
@@ -41,9 +45,24 @@ def data_type_list(request):
 
 def data_type_detail(request, slug):
     data_type = get_object_or_404(DataType, slug=slug)
+    el_attributes = []
+    qs = XMLAttribute.objects.filter(data_type=data_type)
+    for att in qs.filter(element__isnull=False):
+        el_attributes.append({
+            'element': att.element,
+            'attribute': att,
+        })
+    for att in qs.filter(element__isnull=True):
+        for el in XMLElement.objects.filter(attribute_groups__xmlattribute=att):
+            el_attributes.append({
+                'element': el,
+                'attribute': att,
+            })
+    el_attributes.sort(key=lambda x: x['element'].name)
+
     return render(request, 'data_type_detail.html', {
         'data_type': data_type,
-        'attributes': XMLAttribute.objects.filter(data_type=data_type).select_related('element').order_by('element__name'),
+        'element_attributes': el_attributes,
         'options': DataTypeOption.objects.filter(data_type=data_type).order_by('value'),
     })
 

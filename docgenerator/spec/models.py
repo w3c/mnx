@@ -57,6 +57,7 @@ class XMLElement(models.Model):
     slug = models.CharField(max_length=80, unique=True)
     description = models.TextField(blank=True)
     is_featured = models.BooleanField(default=False)
+    attribute_groups = models.ManyToManyField('XMLAttributeGroup', blank=True)
 
     class Meta:
         db_table = 'xml_elements'
@@ -75,8 +76,20 @@ class XMLElement(models.Model):
     def get_child_elements(self):
         return XMLElement.objects.filter(child_rel__parent=self).order_by('child_rel__child__name')
 
+class XMLAttributeGroup(models.Model):
+    name = models.CharField(max_length=300, unique=True)
+
+    class Meta:
+        db_table = 'xml_attribute_groups'
+        verbose_name = 'XML attribute group'
+        verbose_name_plural = 'XML attribute groups'
+
+    def __str__(self):
+        return self.name
+
 class XMLAttribute(models.Model):
-    element = models.ForeignKey(XMLElement, on_delete=models.CASCADE)
+    element = models.ForeignKey(XMLElement, on_delete=models.CASCADE, null=True)
+    attribute_group = models.ForeignKey(XMLAttributeGroup, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=80)
     is_required = models.BooleanField()
     description = models.TextField(blank=True)

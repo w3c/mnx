@@ -24,11 +24,11 @@
 </table>
 {% endif %}
 
-{% if attributes %}
+{% if element_attributes %}
 <h2>Where is this type used?</h2>
 
-{% for attribute in attributes %}
-<p><a href="{% relative_url_string attribute.element.get_absolute_url %}">{{ attribute.element.name_with_brackets }}</a> — "{{ attribute.name }}" attribute</p>
+{% for el_attribute in element_attributes %}
+<p><a href="{% relative_url_string el_attribute.element.get_absolute_url %}">{{ el_attribute.element.name_with_brackets }}</a> — "{{ el_attribute.attribute.name }}" attribute</p>
 {% endfor %}
 {% endif %}
 
