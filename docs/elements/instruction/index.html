@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The &lt;instruction&gt; element | MNX specification</title>
+<link rel="stylesheet" href="../../static/styles.css">
+
+</head>
+
+<body>
+<div class="topnav"><a href="../../">MNX specification</a></div>
+
+
+<div class="content">
+
+<p class="breadcrumb"><a href="../">Elements</a> &gt; instruction</p>
+
+<h1>The &lt;instruction&gt; element</h1>
+
+<ul>
+    <li>Parent element:
+        
+            
+            <a href="../directions-sequence/">&lt;directions&gt;</a>
+            
+        
+    </li>
+    <li>Child elements:
+        
+            None
+        
+    </li>
+</ul>
+
+
+A run of text that is presented in a visual style consistent with general instructions to the performer.
+
+The content of this element is the text.
+
+
+<h2>Attributes</h2>
+
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+<tr>
+    <th class="nobr">orient</th>
+    <td><a href="../../data-types/orientation/">Orientation</a></td>
+    <td>No</td>
+    <td>A specific orientation for this direction. If not provided, the value is inherited from any sequence ancestor that specified it. If no ancestor did so, the consuming software should determine the value automatically according to its own logic.</td>
+</tr>
+
+<tr>
+    <th class="nobr">staff</th>
+    <td><a href="../../data-types/staff-index/">Staff index</a></td>
+    <td>No</td>
+    <td>The staff index to which this direction applies, if such a designation makes sense. If not provided, the value is inherited from any sequence ancestor that specified it. If no ancestor did so, the consuming software should determine the value automatically according to its own logic.</td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+</div>
+
+
+
+</body>
+</html>

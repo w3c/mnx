@@ -984,6 +984,32 @@
     }
 },
 {
+    "model": "spec.xmlelement",
+    "pk": 32,
+    "fields": {
+        "name": "instruction",
+        "slug": "instruction",
+        "description": "A run of text that is presented in a visual style consistent with general instructions to the performer.\r\n\r\nThe content of this element is the text.",
+        "is_featured": false,
+        "attribute_groups": [
+            1
+        ]
+    }
+},
+{
+    "model": "spec.xmlelement",
+    "pk": 33,
+    "fields": {
+        "name": "expression",
+        "slug": "expression",
+        "description": "A run of text that is presented in a visual style consistent with describing musical expression.\r\n\r\nThe content of this element is the text.",
+        "is_featured": false,
+        "attribute_groups": [
+            1
+        ]
+    }
+},
+{
     "model": "spec.xmlattribute",
     "pk": 1,
     "fields": {
@@ -1755,6 +1781,26 @@
     "fields": {
         "parent": 30,
         "child": 31,
+        "min_amount": 0,
+        "max_amount": null
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 40,
+    "fields": {
+        "parent": 30,
+        "child": 32,
+        "min_amount": 0,
+        "max_amount": null
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 41,
+    "fields": {
+        "parent": 30,
+        "child": 33,
         "min_amount": 0,
         "max_amount": null
     }
