@@ -278,6 +278,16 @@
     }
 },
 {
+    "model": "spec.datatype",
+    "pk": 31,
+    "fields": {
+        "name": "Dynamic type",
+        "slug": "dynamic-type",
+        "description": "",
+        "is_featured": false
+    }
+},
+{
     "model": "spec.datatypeoption",
     "pk": 1,
     "fields": {
@@ -365,6 +375,240 @@
         "data_type": 29,
         "value": "down",
         "description": "Downward."
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 11,
+    "fields": {
+        "data_type": 31,
+        "value": "p",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 12,
+    "fields": {
+        "data_type": 31,
+        "value": "pp",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 13,
+    "fields": {
+        "data_type": 31,
+        "value": "ppp",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 14,
+    "fields": {
+        "data_type": 31,
+        "value": "pppp",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 15,
+    "fields": {
+        "data_type": 31,
+        "value": "ppppp",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 16,
+    "fields": {
+        "data_type": 31,
+        "value": "pppppp",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 17,
+    "fields": {
+        "data_type": 31,
+        "value": "f",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 18,
+    "fields": {
+        "data_type": 31,
+        "value": "ff",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 19,
+    "fields": {
+        "data_type": 31,
+        "value": "fff",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 20,
+    "fields": {
+        "data_type": 31,
+        "value": "ffff",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 21,
+    "fields": {
+        "data_type": 31,
+        "value": "fffff",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 22,
+    "fields": {
+        "data_type": 31,
+        "value": "ffffff",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 23,
+    "fields": {
+        "data_type": 31,
+        "value": "mp",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 24,
+    "fields": {
+        "data_type": 31,
+        "value": "mf",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 25,
+    "fields": {
+        "data_type": 31,
+        "value": "sf",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 26,
+    "fields": {
+        "data_type": 31,
+        "value": "sfp",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 27,
+    "fields": {
+        "data_type": 31,
+        "value": "sfpp",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 28,
+    "fields": {
+        "data_type": 31,
+        "value": "fp",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 29,
+    "fields": {
+        "data_type": 31,
+        "value": "rf",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 30,
+    "fields": {
+        "data_type": 31,
+        "value": "rfz",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 31,
+    "fields": {
+        "data_type": 31,
+        "value": "sfz",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 32,
+    "fields": {
+        "data_type": 31,
+        "value": "sffz",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 33,
+    "fields": {
+        "data_type": 31,
+        "value": "fz",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 34,
+    "fields": {
+        "data_type": 31,
+        "value": "n",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 35,
+    "fields": {
+        "data_type": 31,
+        "value": "pf",
+        "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 36,
+    "fields": {
+        "data_type": 31,
+        "value": "sfzp",
+        "description": ""
     }
 },
 {
@@ -724,6 +968,19 @@
         "description": "",
         "is_featured": false,
         "attribute_groups": []
+    }
+},
+{
+    "model": "spec.xmlelement",
+    "pk": 31,
+    "fields": {
+        "name": "dynamics",
+        "slug": "dynamics",
+        "description": "Describes a textual dynamic direction to the performer.",
+        "is_featured": false,
+        "attribute_groups": [
+            1
+        ]
     }
 },
 {
@@ -1147,6 +1404,18 @@
     }
 },
 {
+    "model": "spec.xmlattribute",
+    "pk": 42,
+    "fields": {
+        "element": 31,
+        "attribute_group": null,
+        "name": "type",
+        "is_required": true,
+        "description": "",
+        "data_type": 31
+    }
+},
+{
     "model": "spec.xmlattributegroup",
     "pk": 1,
     "fields": {
@@ -1476,6 +1745,16 @@
     "fields": {
         "parent": 10,
         "child": 30,
+        "min_amount": 0,
+        "max_amount": null
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 39,
+    "fields": {
+        "parent": 30,
+        "child": 31,
         "min_amount": 0,
         "max_amount": null
     }
