@@ -48,6 +48,15 @@
 </thead>
 
 <tr>
+    <th class="nobr">measure</th>
+    <td><a href="../../data-types/time-signature/">Time signature</a></td>
+    <td>No</td>
+    <td>This overrides the notated time signature for the current measure only, where this value differs from &quot;signature&quot;. This is of particular use for anacruses and for shortened measures prior to a repeat or jump back to an anacrusis.
+
+The &quot;measure&quot; attribute must be provided in all cases where the actual content of a measure is of a different length from that indicated by &quot;signature&quot;. MNX does not require consumer implementations to examine the contents of measures to determine their intended length.</td>
+</tr>
+
+<tr>
     <th class="nobr">signature</th>
     <td><a href="../../data-types/time-signature/">Time signature</a></td>
     <td>Yes</td>

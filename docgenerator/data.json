@@ -1591,6 +1591,18 @@
     }
 },
 {
+    "model": "spec.xmlattribute",
+    "pk": 47,
+    "fields": {
+        "element": 5,
+        "attribute_group": null,
+        "name": "measure",
+        "is_required": false,
+        "description": "This overrides the notated time signature for the current measure only, where this value differs from \"signature\". This is of particular use for anacruses and for shortened measures prior to a repeat or jump back to an anacrusis.\r\n\r\nThe \"measure\" attribute must be provided in all cases where the actual content of a measure is of a different length from that indicated by \"signature\". MNX does not require consumer implementations to examine the contents of measures to determine their intended length.",
+        "data_type": 1
+    }
+},
+{
     "model": "spec.xmlattributegroup",
     "pk": 1,
     "fields": {
