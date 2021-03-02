@@ -288,6 +288,26 @@
     }
 },
 {
+    "model": "spec.datatype",
+    "pk": 32,
+    "fields": {
+        "name": "Wedge type",
+        "slug": "wedge-type",
+        "description": "",
+        "is_featured": false
+    }
+},
+{
+    "model": "spec.datatype",
+    "pk": 33,
+    "fields": {
+        "name": "String",
+        "slug": "string",
+        "description": "Text.",
+        "is_featured": false
+    }
+},
+{
     "model": "spec.datatypeoption",
     "pk": 1,
     "fields": {
@@ -609,6 +629,24 @@
         "data_type": 31,
         "value": "sfzp",
         "description": ""
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 37,
+    "fields": {
+        "data_type": 32,
+        "value": "diminuendo",
+        "description": "A decrease in dynamic level."
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 38,
+    "fields": {
+        "data_type": 32,
+        "value": "crescendo",
+        "description": "An increase in dynamic level."
     }
 },
 {
@@ -1006,6 +1044,34 @@
         "is_featured": false,
         "attribute_groups": [
             1
+        ]
+    }
+},
+{
+    "model": "spec.xmlelement",
+    "pk": 34,
+    "fields": {
+        "name": "wedge",
+        "slug": "wedge",
+        "description": "",
+        "is_featured": false,
+        "attribute_groups": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "spec.xmlelement",
+    "pk": 35,
+    "fields": {
+        "name": "cresc",
+        "slug": "cresc",
+        "description": "A crescendo or increasing dynamic level over the course of a span, notated as text followed by a dashed line.",
+        "is_featured": false,
+        "attribute_groups": [
+            1,
+            2
         ]
     }
 },
@@ -1442,6 +1508,30 @@
     }
 },
 {
+    "model": "spec.xmlattribute",
+    "pk": 43,
+    "fields": {
+        "element": 34,
+        "attribute_group": null,
+        "name": "type",
+        "is_required": true,
+        "description": "",
+        "data_type": 32
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 44,
+    "fields": {
+        "element": 35,
+        "attribute_group": null,
+        "name": "text",
+        "is_required": false,
+        "description": "Overrides the text to be displayed in the score for this element.",
+        "data_type": 33
+    }
+},
+{
     "model": "spec.xmlattributegroup",
     "pk": 1,
     "fields": {
@@ -1801,6 +1891,26 @@
     "fields": {
         "parent": 30,
         "child": 33,
+        "min_amount": 0,
+        "max_amount": null
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 42,
+    "fields": {
+        "parent": 30,
+        "child": 34,
+        "min_amount": 0,
+        "max_amount": null
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 43,
+    "fields": {
+        "parent": 30,
+        "child": 35,
         "min_amount": 0,
         "max_amount": null
     }
