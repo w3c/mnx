@@ -39,7 +39,7 @@ class DataTypeOptionInline(admin.TabularInline):
 class DataTypeAdmin(admin.ModelAdmin):
     inlines = [DataTypeOptionInline]
     prepopulated_fields = {'slug': ['name']}
-    list_display = ['name', 'is_featured']
+    list_display = ['name', 'base_type', 'xsd_name', 'is_featured']
     ordering = ['name']
 
 class DocumentFormatAdmin(admin.ModelAdmin):

@@ -6,6 +6,14 @@ class DataType(models.Model):
     slug = models.CharField(max_length=80, unique=True)
     description = models.TextField(blank=True)
     is_featured = models.BooleanField(default=False)
+    xsd_name = models.CharField(max_length=80, blank=True,
+        verbose_name='XSD name',
+        help_text='Use this field if this data type is a native XSD type such as string.'
+    )
+    base_type = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE, related_name='+')
+    union_types = models.ManyToManyField('self', blank=True, related_name='+',
+        help_text='If this data type is a union of multiple other types, list them here.'
+    )
 
     class Meta:
         db_table = 'data_types'
