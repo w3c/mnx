@@ -9,11 +9,11 @@ class XMLAttributeInline(admin.TabularInline):
 class XMLAttributeGroupAttributeInline(admin.TabularInline):
     model = XMLAttribute
     exclude = ('element',)
-    extra = 1
+    extra = 0
 
 class ChildElementsInline(admin.TabularInline):
     model = XMLRelationship
-    extra = 1
+    extra = 0
     fk_name = 'parent'
 
 class ElementConceptInline(admin.TabularInline):
