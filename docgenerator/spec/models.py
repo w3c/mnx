@@ -119,6 +119,8 @@ class XMLRelationship(models.Model):
 
     class Meta:
         db_table = 'xml_relationships'
+        verbose_name = 'XML relationship'
+        verbose_name_plural = 'XML relationships'
 
 class ExampleDocument(models.Model):
     name = models.CharField(max_length=300)
