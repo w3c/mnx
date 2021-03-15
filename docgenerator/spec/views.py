@@ -14,20 +14,22 @@ def homepage(request):
 
 def element_list(request):
     return render(request, 'element_list.html', {
-        'elements': XMLElement.objects.order_by('name'),
+        'elements': XMLElement.objects.filter(is_abstract_element=False).order_by('name'),
     })
 
 def element_detail(request, slug):
-    element = get_object_or_404(XMLElement, slug=slug)
-    attributes = list(element.xmlattribute_set.all())
-    attributes += list(XMLAttribute.objects.filter(attribute_group__xmlelement=element))
+    element = get_object_or_404(XMLElement, slug=slug, is_abstract_element=False)
+    base_elements = element.get_all_base_elements()
+    attributes = []
+    for el in [element] + base_elements:
+        attributes += list(el.xmlattribute_set.all())
+        attributes += list(XMLAttribute.objects.filter(attribute_group__xmlelement=el))
     attributes.sort(key=lambda x: x.name)
-
     return render(request, 'element_detail.html', {
         'element': element,
         'attributes': attributes,
-        'children': XMLRelationship.objects.filter(parent=element).select_related('child').order_by('child__name'),
-        'parents': XMLRelationship.objects.filter(child=element).select_related('parent').order_by('parent__name'),
+        'children': element.get_child_elements(),
+        'parents': element.get_parent_elements(),
         'concepts': ElementConcept.objects.filter(element=element).select_related('concept'),
         'examples': ExampleDocumentElement.objects.filter(element_name=element.name).select_related('example').order_by('example__name'),
     })

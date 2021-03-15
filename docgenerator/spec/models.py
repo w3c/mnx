@@ -63,6 +63,8 @@ class DocumentFormat(models.Model):
 class XMLElement(models.Model):
     name = models.CharField(max_length=80)
     slug = models.CharField(max_length=80, unique=True)
+    base_element = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
+    is_abstract_element = models.BooleanField(default=False)
     description = models.TextField(blank=True)
     is_featured = models.BooleanField(default=False)
     attribute_groups = models.ManyToManyField('XMLAttributeGroup', blank=True)
@@ -82,7 +84,34 @@ class XMLElement(models.Model):
         return f'<{self.name}>'
 
     def get_child_elements(self):
-        return XMLElement.objects.filter(child_rel__parent=self).order_by('child_rel__child__name')
+        result = []
+        for child in XMLElement.objects.filter(child_rel__parent=self):
+            if child.is_abstract_element:
+                result.extend(child.get_child_elements())
+            else:
+                result.append(child)
+        if self.base_element:
+            result.extend(self.base_element.get_child_elements())
+        return sorted(set(result), key=lambda el: el.name)
+
+    def get_parent_elements(self):
+        result = []
+        for parent in XMLElement.objects.filter(parent_rel__child=self):
+            if parent.is_abstract_element:
+                result.extend(parent.get_parent_elements())
+                for parent_subclass in XMLElement.objects.filter(base_element=parent):
+                    if not parent_subclass.is_abstract_element:
+                        result.append(parent_subclass)
+            else:
+                result.append(parent)
+        return sorted(set(result), key=lambda el: el.name)
+
+    def get_all_base_elements(self):
+        result = []
+        if self.base_element:
+            result.append(self.base_element)
+            result.extend(self.base_element.get_all_base_elements())
+        return result
 
 class XMLAttributeGroup(models.Model):
     name = models.CharField(max_length=300, unique=True)

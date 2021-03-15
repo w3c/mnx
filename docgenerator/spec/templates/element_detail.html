@@ -10,8 +10,8 @@
 <ul>
     <li>Parent element{{ parents|pluralize }}:
         {% if parents %}
-            {% for relationship in parents %}
-            <a href="{% relative_url_string relationship.parent.get_absolute_url %}">{{ relationship.parent.name_with_brackets }}</a>
+            {% for parent in parents %}
+            <a href="{% relative_url_string parent.get_absolute_url %}">{{ parent.name_with_brackets }}</a>
             {% endfor %}
         {% else %}
             None
@@ -19,8 +19,8 @@
     </li>
     <li>Child element{{ children|pluralize }}:
         {% if children %}
-            {% for relationship in children %}
-            <a href="{% relative_url_string relationship.child.get_absolute_url %}">{{ relationship.child.name_with_brackets }}</a>
+            {% for child in children %}
+            <a href="{% relative_url_string child.get_absolute_url %}">{{ child.name_with_brackets }}</a>
             {% endfor %}
         {% else %}
             None

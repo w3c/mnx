@@ -1,4 +1,4 @@
-from spec.models import XMLElement, XMLAttribute, XMLRelationship
+from spec.models import XMLElement, XMLAttribute
 from spec.utils.relative_url import get_relative_url
 import xml.sax
 
@@ -44,14 +44,19 @@ class XMLAugmenter(DiffElementContentHandler):
         self.last_tag_opened_stack_size = 0
 
     def get_element_obj(self, name):
-        qs = XMLElement.objects.filter(name=name)
+        xml_elements = XMLElement.objects.filter(name=name, is_abstract_element=False)
         if self.element_stack:
             if self.element_stack[-1]:
-                qs = qs.filter(child_rel__parent__id=self.element_stack[-1])
+                filtered_elements = []
+                for xml_element in xml_elements:
+                    parents = [x.id for x in xml_element.get_parent_elements()]
+                    if self.element_stack[-1] in parents:
+                        filtered_elements.append(xml_element)
+                xml_elements = filtered_elements
             else: # Previous element ID is None.
-                qs = qs.none()
+                xml_elements = []
         try:
-            obj = qs[0]
+            obj = xml_elements[0]
         except IndexError:
             obj = None
         return obj

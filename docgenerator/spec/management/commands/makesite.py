@@ -26,7 +26,7 @@ class SiteGenerator:
 
         self.generate_view('element_list')
         self.generate_view('element_tree')
-        for element in XMLElement.objects.all():
+        for element in XMLElement.objects.filter(is_abstract_element=False):
             self.generate_url(element.get_absolute_url())
 
         self.generate_view('data_type_list')
