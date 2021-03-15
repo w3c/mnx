@@ -66,6 +66,7 @@ class XMLElement(models.Model):
     base_element = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
     is_abstract_element = models.BooleanField(default=False)
     description = models.TextField(blank=True)
+    content_data_type = models.ForeignKey(DataType, null=True, blank=True, on_delete=models.SET_NULL)
     is_featured = models.BooleanField(default=False)
     attribute_groups = models.ManyToManyField('XMLAttributeGroup', blank=True)
 
@@ -82,6 +83,13 @@ class XMLElement(models.Model):
 
     def name_with_brackets(self):
         return f'<{self.name}>'
+
+    def get_content_data_type(self):
+        if self.content_data_type:
+            return self.content_data_type
+        if self.base_element:
+            return self.base_element.get_content_data_type()
+        return None
 
     def get_child_elements(self):
         result = []

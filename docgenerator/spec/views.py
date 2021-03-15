@@ -27,6 +27,7 @@ def element_detail(request, slug):
     attributes.sort(key=lambda x: x.name)
     return render(request, 'element_detail.html', {
         'element': element,
+        'content_data_type': element.get_content_data_type(),
         'attributes': attributes,
         'children': element.get_child_elements(),
         'parents': element.get_parent_elements(),
@@ -64,6 +65,7 @@ def data_type_detail(request, slug):
 
     return render(request, 'data_type_detail.html', {
         'data_type': data_type,
+        'elements': XMLElement.objects.filter(is_abstract_element=False, content_data_type=data_type).order_by('name'),
         'element_attributes': el_attributes,
         'options': DataTypeOption.objects.filter(data_type=data_type).order_by('value'),
     })

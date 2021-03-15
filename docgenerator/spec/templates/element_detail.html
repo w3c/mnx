@@ -8,6 +8,9 @@
 <h1>The {{ element.name_with_brackets }} element</h1>
 
 <ul>
+    {% if content_data_type %}
+    <li>Content: <a href="{% relative_url_string content_data_type.get_absolute_url %}">{{ content_data_type.name }}</a></li>
+    {% endif %}
     <li>Parent element{{ parents|pluralize }}:
         {% if parents %}
             {% for parent in parents %}
