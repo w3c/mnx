@@ -111,11 +111,25 @@ class XMLAugmenter(DiffElementContentHandler):
             self.handle_end_diff_element()
             return
         del self.element_stack[-1]
-        if self.last_tag_opened == name and 'class="tag"' in self.result[-1] and len(self.element_stack) == self.last_tag_opened_stack_size:
+        is_immediately_closing = self.last_tag_opened == name and len(self.element_stack) == self.last_tag_opened_stack_size
+        if is_immediately_closing and 'class="tag"' in self.result[-1]:
             # As a nicety, make the element self-closing rather than
             # outputting a separate closing element.
             self.result[-1] = self.result[-1].replace('&gt;', '/&gt;')
         else:
+            html = ''
+            if is_immediately_closing and 'class="xmltxt"' in self.result[-1]:
+                # If the element is immediately closing and contained text,
+                # put the text on the same line as the element.
+                # For example:
+                #     <part-name>Music</part>
+                # Instead of:
+                #     <part-name>
+                #         Music
+                #     </part-name>
+                element_contents = self.result.pop().strip()
+                html = self.result.pop() + element_contents
+
             obj = self.get_element_obj(name)
             if obj:
                 start_tag = f'<a class="tag" href="{get_relative_url(self.current_url, obj.get_absolute_url())}">'
@@ -123,9 +137,12 @@ class XMLAugmenter(DiffElementContentHandler):
             else:
                 start_tag = '<span class="tag">'
                 end_tag = '</span>'
-            space = ' ' * len(self.element_stack) * INDENT_SIZE
+            if not html:
+                space = ' ' * len(self.element_stack) * INDENT_SIZE
+            else:
+                space = ''
             diff_html = self.get_pending_diff_markup()
-            self.result.append(f'{diff_html}{space}&lt;/{start_tag}{name}{end_tag}&gt;')
+            self.result.append(f'{html}{diff_html}{space}&lt;/{start_tag}{name}{end_tag}&gt;')
 
 def get_augmented_xml(current_url, xml_string, add_diffs=False):
     reader = xml.sax.make_parser()
