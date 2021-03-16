@@ -19,16 +19,10 @@ def element_list(request):
 
 def element_detail(request, slug):
     element = get_object_or_404(XMLElement, slug=slug, is_abstract_element=False)
-    base_elements = element.get_all_base_elements()
-    attributes = []
-    for el in [element] + base_elements:
-        attributes += list(el.xmlattribute_set.all())
-        attributes += list(XMLAttribute.objects.filter(attribute_group__xmlelement=el))
-    attributes.sort(key=lambda x: x.name)
     return render(request, 'element_detail.html', {
         'element': element,
         'content_data_type': element.get_content_data_type(),
-        'attributes': attributes,
+        'attributes': element.get_attributes(),
         'children': element.get_child_elements(),
         'parents': element.get_parent_elements(),
         'concepts': ElementConcept.objects.filter(element=element).select_related('concept'),

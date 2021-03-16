@@ -84,6 +84,14 @@ class XMLElement(models.Model):
     def name_with_brackets(self):
         return f'<{self.name}>'
 
+    def get_attributes(self):
+        result = []
+        for el in [self] + self.get_all_base_elements():
+            result += list(el.xmlattribute_set.all())
+            result += list(XMLAttribute.objects.filter(attribute_group__xmlelement=el))
+        result.sort(key=lambda x: x.name)
+        return result
+
     def get_content_data_type(self):
         if self.content_data_type:
             return self.content_data_type

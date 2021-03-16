@@ -1,4 +1,4 @@
-from spec.models import XMLElement, XMLAttribute
+from spec.models import XMLElement
 from spec.utils.relative_url import get_relative_url
 import xml.sax
 
@@ -63,24 +63,16 @@ class XMLAugmenter(DiffElementContentHandler):
 
     def get_attribute_markup(self, element_obj, attrs):
         result = []
+        if element_obj:
+            attribute_objs = element_obj.get_attributes()
         for k, v in attrs.items():
             start_tag = ''
             end_tag = ''
             if element_obj:
-                attr_obj = None
-                qs = XMLAttribute.objects.select_related('data_type')
                 try:
-                    attr_obj = qs.filter(
-                        element=element_obj,
-                        name=k
-                    )[0]
+                    attr_obj = [a for a in attribute_objs if a.name == k][0]
                 except IndexError:
-                    try:
-                        attr_obj = qs.filter(
-                            attribute_group__xmlelement=element_obj
-                        )[0]
-                    except IndexError:
-                        pass
+                    attr_obj = None
                 if attr_obj:
                     start_tag = f'<a href="{get_relative_url(self.current_url, attr_obj.data_type.get_absolute_url())}">'
                     end_tag = '</a>'
