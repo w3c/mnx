@@ -12,8 +12,8 @@ MODELS_TO_FREEZE = (
     Concept,
     DocumentFormat,
     XMLElement,
-    XMLAttribute,
     XMLAttributeGroup,
+    XMLAttribute,
     XMLRelationship,
     ExampleDocument,
     ExampleDocumentConcept,
@@ -54,6 +54,14 @@ def thaw(infile:str):
         ModelClass.objects.all().delete()
 
     # Import fresh data.
+    could_not_import = []
     with open(infile, 'r') as fp:
         for obj in serializers.deserialize('json', fp.read()):
-            obj.save()
+            try:
+                obj.save()
+            except Exception:
+                # This can happen if there's a circular reference
+                # to an object that hasn't yet been created.
+                could_not_import.append(obj)
+    for obj in could_not_import:
+        obj.save()
