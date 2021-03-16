@@ -14,6 +14,8 @@ class DataType(models.Model):
     union_types = models.ManyToManyField('self', blank=True, related_name='+',
         help_text='If this data type is a union of multiple other types, list them here.'
     )
+    min_value = models.CharField(max_length=10, blank=True)
+    max_value = models.CharField(max_length=10, blank=True)
 
     class Meta:
         db_table = 'data_types'

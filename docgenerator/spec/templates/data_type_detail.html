@@ -11,6 +11,18 @@
 <p>{{ data_type.description }}</p>
 {% endif %}
 
+{% if data_type.base_type %}
+<p>Base type: <a href="{% relative_url_string data_type.base_type.get_absolute_url %}">{{ data_type.base_type.name }}</a></p>
+{% endif %}
+
+{% if data_type.min_value %}
+<p>Minimum allowed value: {{ data_type.min_value }}</p>
+{% endif %}
+
+{% if data_type.max_value %}
+<p>Maximum allowed value: {{ data_type.max_value }}</p>
+{% endif %}
+
 {% if options %}
 <h2>Allowed values</h2>
 
