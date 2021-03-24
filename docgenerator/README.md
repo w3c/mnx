@@ -38,7 +38,7 @@ source ~/mnxdocs/bin/activate
 pip install -r requirements.txt
 ```
 
-4. Initialize a local database:
+5. Initialize a local database:
 
 ```
 python manage.py migrate
@@ -47,7 +47,7 @@ python manage.py migrate
 This creates a SQLite file called `db.sqlite3` in the current
 directory.
 
-5. Import the MNX spec data into your local database:
+6. Import the MNX spec data into your local database:
 
 ```
 python manage.py loaddb data.json
