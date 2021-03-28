@@ -24,6 +24,7 @@ class XMLElementAdmin(admin.ModelAdmin):
     inlines = [XMLAttributeInline, ChildElementsInline, ElementConceptInline]
     list_display = ['name', 'slug', 'is_featured']
     ordering = ['name']
+    search_fields = ['name', 'slug']
     prepopulated_fields = {'slug': ['name']}
     filter_horizontal = ['attribute_groups']
 
