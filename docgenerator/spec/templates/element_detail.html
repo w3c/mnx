@@ -33,6 +33,8 @@
 
 {% if element.description %}
 {{ element.description|safe }}
+{% elif element.base_element and element.base_element.description %}
+{{ element.base_element.description|safe }}
 {% endif %}
 
 <h2>Attributes</h2>
