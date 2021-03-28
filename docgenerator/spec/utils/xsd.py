@@ -99,6 +99,10 @@ class XSDParser:
                 content_data_type=None,
                 is_featured=False,
             )
+        else:
+            if not xml_element.description:
+                xml_element.description = self.parse_annotation_documentation(el)
+                xml_element.save(update_fields=['description'])
         self.parse_element_children(el, xml_element)
 
         extension_el = el.find(f'{{{XSD_NS}}}simpleContent/{{{XSD_NS}}}extension')
