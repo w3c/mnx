@@ -17,7 +17,9 @@ class SiteOptions(models.Model):
 class DataType(models.Model):
     name = models.CharField(max_length=80)
     slug = models.CharField(max_length=80, unique=True)
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True,
+        help_text='HTML tags are allowed here.'
+    )
     is_featured = models.BooleanField(default=False)
     xsd_name = models.CharField(max_length=80, blank=True,
         verbose_name='XSD name',
@@ -42,7 +44,9 @@ class DataType(models.Model):
 class DataTypeOption(models.Model):
     data_type = models.ForeignKey(DataType, on_delete=models.CASCADE)
     value = models.CharField(max_length=100)
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True,
+        help_text='HTML tags are allowed here.'
+    )
 
     class Meta:
         db_table = 'data_type_options'
@@ -50,7 +54,9 @@ class DataTypeOption(models.Model):
 class Concept(models.Model):
     name = models.CharField(max_length=100)
     slug = models.CharField(max_length=100, unique=True)
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True,
+        help_text='HTML tags are allowed here.'
+    )
     is_featured = models.BooleanField(default=False)
 
     class Meta:
@@ -92,7 +98,9 @@ class XMLElement(models.Model):
     is_root = models.BooleanField(default=False,
         help_text='Check this only for the root element(s) in the schema.'
     )
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True,
+        help_text='HTML tags are allowed here.'
+    )
     content_data_type = models.ForeignKey(DataType, null=True, blank=True, on_delete=models.SET_NULL)
     is_featured = models.BooleanField(default=False)
     children_type = models.SmallIntegerField(
@@ -177,7 +185,9 @@ class XMLAttribute(models.Model):
     attribute_group = models.ForeignKey(XMLAttributeGroup, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=80)
     is_required = models.BooleanField()
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True,
+        help_text='HTML tags are allowed here.'
+    )
     data_type = models.ForeignKey(DataType, on_delete=models.PROTECT)
 
     class Meta:

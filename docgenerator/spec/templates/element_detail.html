@@ -54,7 +54,7 @@
     <th class="nobr">{{ attribute.name }}</th>
     <td><a href="{% relative_url_string attribute.data_type.get_absolute_url %}">{{ attribute.data_type.name }}</a></td>
     <td>{{ attribute.is_required|yesno|title }}</td>
-    <td>{{ attribute.description }}</td>
+    <td>{{ attribute.description|safe|linebreaksbr }}</td>
 </tr>
 {% endfor %}
 </table>

@@ -8,7 +8,7 @@
 <h1>{{ concept.name }}</h1>
 
 {% if concept.description %}
-<p>{{ concept.description }}</p>
+<p>{{ concept.description|safe|linebreaksbr }}</p>
 {% endif %}
 
 {% if elements %}
