@@ -136,8 +136,12 @@ class XSDParser:
                 xml_element.attribute_groups.add(
                     self.get_or_create_attribute_group(sub_el.attrib['ref'])
                 )
-            elif tag_name == f'{{{XSD_NS}}}choice':
+            elif tag_name in (f'{{{XSD_NS}}}choice', f'{{{XSD_NS}}}sequence'):
                 child_name = self.get_available_element_name()
+                if tag_name == f'{{{XSD_NS}}}choice':
+                    children_type = XMLElement.CHILDREN_TYPE_CHOICE
+                else:
+                    children_type = XMLElement.CHILDREN_TYPE_SEQUENCE
                 child_xml_element = XMLElement.objects.create(
                     name=child_name,
                     slug=child_name,
@@ -146,8 +150,9 @@ class XSDParser:
                     description='',
                     content_data_type=None,
                     is_featured=False,
+                    children_type=children_type,
                 )
-                self.parse_choice(sub_el, child_xml_element)
+                self.parse_element_children(sub_el, child_xml_element)
                 XMLRelationship.objects.create(
                     parent=xml_element,
                     child=child_xml_element,
@@ -174,16 +179,6 @@ class XSDParser:
                     min_amount=None, # TODO
                     max_amount=None, # TODO
                 )
-            elif tag_name == f'{{{XSD_NS}}}sequence':
-                self.parse_sequence(sub_el, xml_element)
-
-    def parse_sequence(self, el, xml_element):
-        "Parses <xs:sequence>"
-        self.parse_element_children(el, xml_element)
-
-    def parse_choice(self, el, xml_element):
-        "Parses <xs:choice>"
-        self.parse_element_children(el, xml_element)
 
     def parse_group(self, el):
         "Parses <xs:group>"
