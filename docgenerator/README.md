@@ -166,3 +166,80 @@ on the core changes, as opposed to generated "spam." The MNX
 maintainers can generate the HTML updates themselves for now.
 (We might change this policy in the future, once we get a feel
 for how this system works over time.)
+
+## Using this system for MusicXML
+
+Our goal is to make this system general enough so that it
+handles MNX and MusicXML. Here's how you can get the system
+working with MusicXML.
+
+(These instructions assume you're starting from scratch.)
+
+1. Install Python 3.7 or higher.
+
+2. (Optional but recommended) Create a Python virtual environment.
+Here's how to create one called `musicxmldocs` in your home directory:
+
+```
+python3 -m venv ~/musicxmldocs
+```
+
+3. Activate the virtual environment:
+
+```
+source ~/musicxmldocs/bin/activate
+```
+
+4. Install the required Python modules:
+
+```
+pip install -r requirements.txt
+```
+
+5. Initialize a local database:
+
+```
+python manage.py migrate
+```
+
+This creates a SQLite file called `db.sqlite3` in the current
+directory.
+
+6. Create a superuser, for purposes of accessing the admin:
+
+```
+python manage.py createsuperuser
+```
+
+(The username and password don't matter.)
+
+7. Get a copy of the MusicXML schema (the file `musicxml.xsd`):
+
+```
+curl https://raw.githubusercontent.com/w3c/musicxml/gh-pages/schema/musicxml.xsd > musicxml.xsd
+```
+
+8. Import the MusicXML schema into your local database:
+
+```
+python manage.py import_xsd musicxml.xsd
+```
+
+9. Do some light bookkeeping via the Django admin:
+
+    * Go to http://127.0.0.1:8000/admin/ in your web browser, then
+      enter the username and password you created.
+
+    * Next to "Site options," click "Add."
+
+    * For the site name, enter something like "MusicXML documentation".
+      For the XML format name, enter "MusicXML". Then save.
+
+    * Navigate back to the admin index page and click "XML elements."
+      Use the search to find "score-partwise", then click that element to
+      edit it. Check the box next to "Is root," then save.
+
+    * Do the same for "score-timewise".
+
+10. Browse the site by going to http://127.0.0.1:8000/ in
+your web browser.
