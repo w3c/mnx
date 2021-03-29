@@ -157,8 +157,8 @@ class XSDParser:
                 XMLRelationship.objects.create(
                     parent=xml_element,
                     child=child_xml_element,
-                    min_amount=None, # TODO
-                    max_amount=None, # TODO
+                    min_amount=self.parse_minmax_occurs(sub_el, True),
+                    max_amount=self.parse_minmax_occurs(sub_el, False),
                     child_order=child_order,
                 )
                 child_order += 1
@@ -169,8 +169,8 @@ class XSDParser:
                 XMLRelationship.objects.create(
                     parent=xml_element,
                     child=child_xml_element,
-                    min_amount=None, # TODO
-                    max_amount=None, # TODO
+                    min_amount=self.parse_minmax_occurs(sub_el, True),
+                    max_amount=self.parse_minmax_occurs(sub_el, False),
                     child_order=child_order,
                 )
                 child_order += 1
@@ -179,11 +179,21 @@ class XSDParser:
                 XMLRelationship.objects.create(
                     parent=xml_element,
                     child=group_xml_element,
-                    min_amount=None, # TODO
-                    max_amount=None, # TODO
+                    min_amount=self.parse_minmax_occurs(sub_el, True),
+                    max_amount=self.parse_minmax_occurs(sub_el, False),
                     child_order=child_order,
                 )
                 child_order += 1
+
+    def parse_minmax_occurs(self, el, is_min):
+        att_name = 'minOccurs' if is_min else 'maxOccurs'
+        val = el.attrib.get(att_name, None)
+        if val is not None:
+            if val == 'unbounded':
+                val = None
+            elif val.isdigit():
+                val = int(val)
+        return val
 
     def parse_group(self, el):
         "Parses <xs:group>"
