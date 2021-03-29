@@ -4,6 +4,10 @@ from spec.models import *
 XSD_NS = 'http://www.w3.org/2001/XMLSchema'
 XSD_NS_PREFIX = 'xs:'
 
+# Complex type 'name's for which we don't import the <description>.
+# Technically this couples this importer to the MusicXML XSD.
+IGNORED_ELEMENT_DESCRIPTIONS = {'empty'}
+
 class XSDParseError(Exception):
     pass
 
@@ -81,9 +85,10 @@ class XSDParser:
         Gets the string within <xs:annotation><xs:documentation>,
         or empty string if that doesn't exist.
         """
-        doc_el = el.find(f'{{{XSD_NS}}}annotation/{{{XSD_NS}}}documentation')
-        if doc_el is not None:
-            return doc_el.text
+        if el.attrib.get('name', '') not in IGNORED_ELEMENT_DESCRIPTIONS:
+            doc_el = el.find(f'{{{XSD_NS}}}annotation/{{{XSD_NS}}}documentation')
+            if doc_el is not None:
+                return doc_el.text
         return ''
 
     def parse_complex_type(self, el, xml_element=None):
