@@ -193,6 +193,7 @@ class XMLRelationship(models.Model):
     child = models.ForeignKey(XMLElement, on_delete=models.CASCADE, related_name='child_rel')
     min_amount = models.IntegerField(null=True, blank=True)
     max_amount = models.IntegerField(null=True, blank=True)
+    child_order = models.SmallIntegerField(default=0)
 
     class Meta:
         db_table = 'xml_relationships'
