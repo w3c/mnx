@@ -118,7 +118,8 @@ class XSDParser:
             self.parse_element_children(extension_el, xml_element)
 
     def parse_element_children(self, el, xml_element):
-       for child_order, sub_el in enumerate(el):
+        child_order = 0
+        for sub_el in el:
             tag_name = sub_el.tag
             if tag_name == f'{{{XSD_NS}}}attribute':
                 if 'name' not in sub_el.attrib:
@@ -158,8 +159,9 @@ class XSDParser:
                     child=child_xml_element,
                     min_amount=None, # TODO
                     max_amount=None, # TODO
-                    # TODO: child_order
+                    child_order=child_order,
                 )
+                child_order += 1
             elif tag_name == f'{{{XSD_NS}}}complexType':
                 self.parse_complex_type(sub_el, xml_element)
             elif tag_name == f'{{{XSD_NS}}}element':
@@ -169,8 +171,9 @@ class XSDParser:
                     child=child_xml_element,
                     min_amount=None, # TODO
                     max_amount=None, # TODO
-                    # TODO: child_order
+                    child_order=child_order,
                 )
+                child_order += 1
             elif tag_name == f'{{{XSD_NS}}}group':
                 group_xml_element = self.get_or_create_group(sub_el.attrib['ref'])
                 XMLRelationship.objects.create(
@@ -178,7 +181,9 @@ class XSDParser:
                     child=group_xml_element,
                     min_amount=None, # TODO
                     max_amount=None, # TODO
+                    child_order=child_order,
                 )
+                child_order += 1
 
     def parse_group(self, el):
         "Parses <xs:group>"
