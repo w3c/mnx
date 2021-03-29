@@ -67,6 +67,9 @@ class XMLElement(models.Model):
     slug = models.CharField(max_length=80, unique=True)
     base_element = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
     is_abstract_element = models.BooleanField(default=False)
+    is_root = models.BooleanField(default=False,
+        help_text='Check this only for the root element(s) in the schema.'
+    )
     description = models.TextField(blank=True)
     content_data_type = models.ForeignKey(DataType, null=True, blank=True, on_delete=models.SET_NULL)
     is_featured = models.BooleanField(default=False)

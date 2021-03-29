@@ -2,8 +2,6 @@ from django.shortcuts import get_object_or_404, render
 from spec.utils import htmlutils
 from spec.models import *
 
-ROOT_ELEMENT_SLUG = 'mnx' # TODO: Put this in configuration.
-
 def homepage(request):
     return render(request, 'homepage.html', {
         'featured_concepts': Concept.objects.filter(is_featured=True).order_by('name'),
@@ -30,7 +28,11 @@ def element_detail(request, slug):
     })
 
 def element_tree(request):
-    root_element = get_object_or_404(XMLElement, slug=ROOT_ELEMENT_SLUG)
+    try:
+        # TODO: Support multiple possible roots, as in MusicXML.
+        root_element = XMLElement.objects.filter(is_root=True)[0]
+    except IndexError:
+        raise http.Http404()
     return render(request, 'element_tree.html', {
         'tree_html': htmlutils.get_element_tree_html(request.path, root_element),
     })
