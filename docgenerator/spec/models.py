@@ -76,6 +76,15 @@ class DocumentFormat(models.Model):
         return reverse('format_comparison_detail', args=(self.slug,))
 
 class XMLElement(models.Model):
+    CHILDREN_TYPE_UNORDERED = 1
+    CHILDREN_TYPE_SEQUENCE = 2
+    CHILDREN_TYPE_CHOICE = 3
+    CHILDREN_TYPES = (
+        (CHILDREN_TYPE_UNORDERED, 'Unordered'),
+        (CHILDREN_TYPE_SEQUENCE, 'Sequence'),
+        (CHILDREN_TYPE_CHOICE, 'Choice'),
+    )
+
     name = models.CharField(max_length=80)
     slug = models.CharField(max_length=80, unique=True)
     base_element = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
@@ -86,6 +95,11 @@ class XMLElement(models.Model):
     description = models.TextField(blank=True)
     content_data_type = models.ForeignKey(DataType, null=True, blank=True, on_delete=models.SET_NULL)
     is_featured = models.BooleanField(default=False)
+    children_type = models.SmallIntegerField(
+        default=CHILDREN_TYPE_UNORDERED,
+        choices=CHILDREN_TYPES,
+        help_text='This specifies the requirement for child elements.'
+    )
     attribute_groups = models.ManyToManyField('XMLAttributeGroup', blank=True)
 
     class Meta:

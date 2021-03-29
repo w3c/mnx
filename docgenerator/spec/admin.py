@@ -29,6 +29,7 @@ class XMLElementAdmin(admin.ModelAdmin):
     ordering = ['name']
     search_fields = ['name', 'slug']
     prepopulated_fields = {'slug': ['name']}
+    radio_fields = {'children_type': admin.HORIZONTAL}
     filter_horizontal = ['attribute_groups']
 
 class XMLAttributeGroupAdmin(admin.ModelAdmin):
