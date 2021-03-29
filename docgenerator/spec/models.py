@@ -1,6 +1,19 @@
 from django.db import models
 from django.urls import reverse
 
+class SiteOptions(models.Model):
+    # Singleton model that's used to store general metadata
+    # about the documentation website.
+    site_name = models.CharField(max_length=100)
+    xml_format_name = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = 'site_options'
+        verbose_name_plural = 'site options'
+
+    def __str__(self):
+        return self.site_name
+
 class DataType(models.Model):
     name = models.CharField(max_length=80)
     slug = models.CharField(max_length=80, unique=True)

@@ -39,6 +39,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'spec.context_processors.site_options',
             ],
             'builtins': ['spec.tags'],
         },

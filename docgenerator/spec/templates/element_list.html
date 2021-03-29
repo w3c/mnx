@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Elements used in MNX{% endblock %}
+{% block title %}Elements used in {{ SITE_OPTIONS.xml_format_name }}{% endblock %}
 
 {% block content %}
-<h1>Elements used in MNX</h1>
+<h1>Elements used in {{ SITE_OPTIONS.xml_format_name }}</h1>
 
 <p><a href="{% relative_url 'element_tree' %}">Tree view</a> | <b>Alphabetical list</b></p>
 

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}MNX example: {{ example.name }}{% endblock %}
+{% block title %}{{ SITE_OPTIONS.xml_format_name }} example: {{ example.name }}{% endblock %}
 
 {% block content %}
 <p class="breadcrumb"><a href="{% relative_url 'example_list' %}">Examples</a> &gt; {{ example.name }}</p>
 
-<h1>MNX example: {{ example.name }}</h1>
+<h1>{{ SITE_OPTIONS.xml_format_name }} example: {{ example.name }}</h1>
 
 {% if example.image_url %}
 <p width="100%"><img src="{% relative_url_string example.image_url %}" width="100%"></p>

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Data types used in MNX{% endblock %}
+{% block title %}Data types used in {{ SITE_OPTIONS.xml_format_name }}{% endblock %}
 
 {% block content %}
-<h1>Data types used in MNX</h1>
+<h1>Data types used in {{ SITE_OPTIONS.xml_format_name }}</h1>
 
 <ul>
 {% for data_type in data_types %}

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Concepts in MNX{% endblock %}
+{% block title %}Concepts in {{ SITE_OPTIONS.xml_format_name }}{% endblock %}
 
 {% block content %}
-<h1>Concepts in MNX</h1>
+<h1>Concepts in {{ SITE_OPTIONS.xml_format_name }}</h1>
 
 <ul>
 {% for concept in concepts %}

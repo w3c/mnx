@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Comparing MNX and {{ other_format.name }}{% endblock %}
+{% block title %}Comparing {{ SITE_OPTIONS.xml_format_name }} and {{ other_format.name }}{% endblock %}
 
 {% block extrahead %}
 <style>
@@ -70,9 +70,9 @@
 
 {% block content_full %}
 <section class="intro">
-    <h1>Comparing MNX and {{ other_format.name }}</h1>
+    <h1>Comparing {{ SITE_OPTIONS.xml_format_name }} and {{ other_format.name }}</h1>
 
-    <p>On this page, you’ll find several examples of documents encoded both in MNX and {{ other_format.name }}. The goal is to give you a sense of the differences, especially if you’re already familiar with {{ other_format.name }}.</p>
+    <p>On this page, you’ll find several examples of documents encoded both in {{ SITE_OPTIONS.xml_format_name }} and {{ other_format.name }}. The goal is to give you a sense of the differences, especially if you’re already familiar with {{ other_format.name }}.</p>
 </section>
 
 <form id="comparisonform">
@@ -99,7 +99,7 @@
             </div>
         </div>
         <div class="markupexample">
-            <h3>MNX</h3>
+            <h3>{{ SITE_OPTIONS.xml_format_name }}</h3>
             <div class="markupcode">
                 {{ comparison.document_html|safe }}
             </div>

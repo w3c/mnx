@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}MNX example documents{% endblock %}
+{% block title %}{{ SITE_OPTIONS.xml_format_name }} example documents{% endblock %}
 
 {% block content %}
-<h1>MNX example documents</h1>
+<h1>{{ SITE_OPTIONS.xml_format_name }} example documents</h1>
 
 {% for example in examples %}
 <div style="margin-bottom: 40px;">
