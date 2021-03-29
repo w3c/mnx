@@ -33,7 +33,7 @@ def element_tree(request):
         # TODO: Support multiple possible roots, as in MusicXML.
         root_element = XMLElement.objects.filter(is_root=True)[0]
     except IndexError:
-        raise http.Http404()
+        raise http.Http404("You'll need to mark at least one XML element as is_root=True via the admin.")
     return render(request, 'element_tree.html', {
         'tree_html': htmlutils.get_element_tree_html(request.path, root_element),
     })
