@@ -190,7 +190,9 @@ class ExampleDocument(models.Model):
     slug = models.CharField(max_length=100, unique=True)
     blurb = models.TextField(blank=True)
     document = models.TextField()
-    image_url = models.CharField(max_length=300, blank=True)
+    image_url = models.CharField(max_length=300, blank=True,
+        help_text='Path to the image within the docgenerator/media directory, e.g., "/static/examples/test.jpg".'
+    )
     is_featured = models.BooleanField(default=False)
 
     class Meta:
