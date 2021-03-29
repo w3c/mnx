@@ -32,9 +32,9 @@
 </ul>
 
 {% if element.description %}
-{{ element.description|safe }}
+{{ element.description|safe|linebreaksbr }}
 {% elif element.base_element and element.base_element.description %}
-{{ element.base_element.description|safe }}
+{{ element.base_element.description|safe|linebreaksbr }}
 {% endif %}
 
 <h2>Attributes</h2>

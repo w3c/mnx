@@ -8,7 +8,7 @@
 <h1>{{ data_type.name }} data type</h1>
 
 {% if data_type.description %}
-<p>{{ data_type.description }}</p>
+<p>{{ data_type.description|safe|linebreaksbr }}</p>
 {% endif %}
 
 {% if data_type.base_type %}
@@ -30,7 +30,7 @@
 {% for option in options %}
 <tr>
     <th class="nobr">{{ option.value }}</th>
-    <td>{{ option.description }}</td>
+    <td>{{ option.description|safe|linebreaksbr }}</td>
 </tr>
 {% endfor %}
 </table>
