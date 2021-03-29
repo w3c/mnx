@@ -295,7 +295,7 @@ class XSDParser:
                 defaults={
                     'name': xsd_name,
                     'slug': f'xsd-{xsd_name}',
-                    'description': 'This type is defined by the XML Schema standard.',
+                    'description': f'See <a href="https://www.w3.org/TR/xmlschema-2/#{xsd_name}">definition in the W3C XML Schema standard</a>.',
                     'is_featured': False,
                     'base_type': None,
                     'min_value': '',
