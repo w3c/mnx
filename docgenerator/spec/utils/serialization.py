@@ -8,6 +8,7 @@ JSON_INDENT = 4
 MODELS_TO_FREEZE = (
     User,
     XMLSchema,
+    SiteOptions,
     DataType,
     DataTypeOption,
     Concept,
