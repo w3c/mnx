@@ -27,6 +27,10 @@
 <p>Maximum allowed value: {{ data_type.max_value }}</p>
 {% endif %}
 
+{% if data_type.regex %}
+<p>Regex pattern: <b>{{ data_type.regex }}</b></p>
+{% endif %}
+
 {% if options %}
 <h2>Allowed values</h2>
 

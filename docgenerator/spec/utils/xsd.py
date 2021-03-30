@@ -240,8 +240,11 @@ class XSDParser:
             elif tag_name == f'{{{XSD_NS}}}maxInclusive':
                 data_type.max_value = sub_el.attrib['value']
                 data_type.save(update_fields=['max_value'])
+            elif tag_name == f'{{{XSD_NS}}}pattern':
+                data_type.regex = sub_el.attrib['value']
+                data_type.save(update_fields=['regex'])
             else:
-                # TODO: pattern, minLength
+                # TODO: minLength
                 print('Unhandled <restriction> subelement:', tag_name)
 
     def parse_simple_type(self, el):
@@ -274,6 +277,7 @@ class XSDParser:
             base_type=base_type,
             min_value='',
             max_value='',
+            regex='',
         )
         if union_types:
             data_type.union_types.add(*union_types)
@@ -314,6 +318,7 @@ class XSDParser:
                     'base_type': None,
                     'min_value': '',
                     'max_value': '',
+                    'regex': '',
                 }
             )
         else:

@@ -31,6 +31,7 @@ class DataType(models.Model):
     )
     min_value = models.CharField(max_length=10, blank=True)
     max_value = models.CharField(max_length=10, blank=True)
+    regex = models.CharField(max_length=200, blank=True)
 
     class Meta:
         db_table = 'data_types'
