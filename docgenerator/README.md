@@ -213,33 +213,45 @@ python manage.py createsuperuser
 
 (The username and password don't matter.)
 
-7. Get a copy of the MusicXML schema (the file `musicxml.xsd`):
+7. Do some light bookkeeping via the Django admin:
+
+    * Go to http://127.0.0.1:8000/admin/ in your web browser, then
+      enter the username and password you created.
+
+    * Next to "XML schemas," click "Change."
+
+    * Click "MNX" in the list.
+
+    * Change the name to "MusicXML" and slug to "musicxml". Then save.
+
+    * Go to the admin homepage and click "Add" next to "Site options."
+
+    * For the site name, enter something like "MusicXML documentation".
+      For the XML format name, enter "MusicXML". Then save.
+
+8. Get a copy of the MusicXML schema (the file `musicxml.xsd`):
 
 ```
 curl https://raw.githubusercontent.com/w3c/musicxml/gh-pages/schema/musicxml.xsd > musicxml.xsd
 ```
 
-8. Import the MusicXML schema into your local database:
+9. Import the MusicXML schema into your local database:
 
 ```
-python manage.py import_xsd musicxml.xsd
+python manage.py import_xsd musicxml musicxml.xsd
 ```
 
-9. Do some light bookkeeping via the Django admin:
+The first argument, `musicxml`, must be the same as the slug you
+created for the XML schema via the admin. The second argument is
+the path to your XSD file.
 
-    * Go to http://127.0.0.1:8000/admin/ in your web browser, then
-      enter the username and password you created.
+10. Go back to the admin website and do the following:
 
-    * Next to "Site options," click "Add."
-
-    * For the site name, enter something like "MusicXML documentation".
-      For the XML format name, enter "MusicXML". Then save.
-
-    * Navigate back to the admin index page and click "XML elements."
-      Use the search to find "score-partwise", then click that element to
-      edit it. Check the box next to "Is root," then save.
+    * On the admin index page, click "XML elements." Use the search
+      to find "score-partwise", then click that element to edit it.
+      Check the box next to "Is root," then save.
 
     * Do the same for "score-timewise".
 
-10. Browse the site by going to http://127.0.0.1:8000/ in
+11. Browse the site by going to http://127.0.0.1:8000/ in
 your web browser.

@@ -18,6 +18,14 @@
     }
 },
 {
+    "model": "spec.xmlschema",
+    "pk": 1,
+    "fields": {
+        "name": "MNX",
+        "slug": "mnx"
+    }
+},
+{
     "model": "spec.datatype",
     "pk": 1,
     "fields": {
@@ -998,6 +1006,7 @@
     "fields": {
         "name": "mnx",
         "slug": "mnx",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": true,
@@ -1014,6 +1023,7 @@
     "fields": {
         "name": "global",
         "slug": "global",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1030,6 +1040,7 @@
     "fields": {
         "name": "measure",
         "slug": "measure-global",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1046,6 +1057,7 @@
     "fields": {
         "name": "directions",
         "slug": "directions-part",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1062,6 +1074,7 @@
     "fields": {
         "name": "time",
         "slug": "time",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1078,6 +1091,7 @@
     "fields": {
         "name": "part",
         "slug": "part",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1094,6 +1108,7 @@
     "fields": {
         "name": "part-name",
         "slug": "part-name",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1110,6 +1125,7 @@
     "fields": {
         "name": "measure",
         "slug": "measure-part",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1126,6 +1142,7 @@
     "fields": {
         "name": "clef",
         "slug": "clef",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1142,6 +1159,7 @@
     "fields": {
         "name": "sequence",
         "slug": "sequence",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1158,6 +1176,7 @@
     "fields": {
         "name": "event",
         "slug": "event",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1174,6 +1193,7 @@
     "fields": {
         "name": "note",
         "slug": "note",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1190,6 +1210,7 @@
     "fields": {
         "name": "rest",
         "slug": "rest",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1206,6 +1227,7 @@
     "fields": {
         "name": "tied",
         "slug": "tied",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1222,6 +1244,7 @@
     "fields": {
         "name": "beams",
         "slug": "beams",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1238,6 +1261,7 @@
     "fields": {
         "name": "beam",
         "slug": "beam",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1254,6 +1278,7 @@
     "fields": {
         "name": "beam-hook",
         "slug": "beam-hook",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1270,6 +1295,7 @@
     "fields": {
         "name": "tuplet",
         "slug": "tuplet",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1286,6 +1312,7 @@
     "fields": {
         "name": "octave-shift",
         "slug": "octave-shift",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1305,6 +1332,7 @@
     "fields": {
         "name": "directions",
         "slug": "directions-global",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1321,6 +1349,7 @@
     "fields": {
         "name": "slur",
         "slug": "slur",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1337,6 +1366,7 @@
     "fields": {
         "name": "repeat",
         "slug": "repeat",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1353,6 +1383,7 @@
     "fields": {
         "name": "ending",
         "slug": "ending",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1369,6 +1400,7 @@
     "fields": {
         "name": "segno",
         "slug": "segno",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1385,6 +1417,7 @@
     "fields": {
         "name": "jump",
         "slug": "jump",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1401,6 +1434,7 @@
     "fields": {
         "name": "fine",
         "slug": "fine",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1417,6 +1451,7 @@
     "fields": {
         "name": "grace",
         "slug": "grace",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1433,6 +1468,7 @@
     "fields": {
         "name": "directions",
         "slug": "directions-sequence",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1449,6 +1485,7 @@
     "fields": {
         "name": "dynamics",
         "slug": "dynamics",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1467,6 +1504,7 @@
     "fields": {
         "name": "instruction",
         "slug": "instruction",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1485,6 +1523,7 @@
     "fields": {
         "name": "expression",
         "slug": "expression",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1503,6 +1542,7 @@
     "fields": {
         "name": "wedge",
         "slug": "wedge",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1522,6 +1562,7 @@
     "fields": {
         "name": "cresc",
         "slug": "cresc",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1541,6 +1582,7 @@
     "fields": {
         "name": "dim",
         "slug": "dim",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -1560,6 +1602,7 @@
     "fields": {
         "name": "key",
         "slug": "key",
+        "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
@@ -2523,6 +2566,7 @@
     "fields": {
         "name": "“Hello world”",
         "slug": "hello-world",
+        "schema": 1,
         "blurb": "This basic MNX document contains a single middle C whole note, on a treble clef stave, in 4/4 time.",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure barline=\"regular\">\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C4\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/hello-world.png",
@@ -2535,6 +2579,7 @@
     "fields": {
         "name": "Two-bar C major scale",
         "slug": "two-bar-c-major-scale",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"D4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"F4\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure barline=\"regular\">\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"A4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"B4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/two-bar-c-major-scale.png",
@@ -2547,6 +2592,7 @@
     "fields": {
         "name": "Three-note chord and half rest",
         "slug": "three-note-chord-and-half-rest",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure barline=\"regular\">\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence><metadiff>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"C4\"/>\r\n                    <note pitch=\"E4\"/>\r\n                    <note pitch=\"G4\"/>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <rest/>\r\n                </event>\r\n            </metadiff></sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/three-note-chord-and-half-rest.png",
@@ -2559,6 +2605,7 @@
     "fields": {
         "name": "Time signatures",
         "slug": "time-signatures",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <metadiff><global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"2/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global></metadiff>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"B4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/time-signatures.png",
@@ -2571,6 +2618,7 @@
     "fields": {
         "name": "Key signatures",
         "slug": "key-signatures",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n                <metadiff><key fifths=\"4\"/></metadiff>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n        <measure>\r\n            <directions>\r\n                <metadiff><key fifths=\"-4\"/></metadiff>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"F#5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G#5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"G#5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"Ab4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"Bb4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"Ab4\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/key-signatures.png",
@@ -2583,6 +2631,7 @@
     "fields": {
         "name": "Accidentals",
         "slug": "accidentals",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n                <key fifths=\"-2\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n        <measure/>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"F4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <metadiff><note pitch=\"G#4\" accidental=\"sharp\"/></metadiff>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"A4\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"Bb4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <metadiff><note pitch=\"Db5\" accidental=\"flat\"/></metadiff>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"Db5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <metadiff><note pitch=\"D5\" accidental=\"natural\"/></metadiff>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/accidentals.png",
@@ -2595,6 +2644,7 @@
     "fields": {
         "name": "Dotted notes (augmentation dots)",
         "slug": "dotted-notes",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <metadiff><event value=\"/4d\">\r\n                    <note pitch=\"G4\"/>\r\n                    <note pitch=\"C5\"/>\r\n                </event></metadiff>\r\n                <event value=\"/8\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <metadiff><event value=\"/4d\">\r\n                    <note pitch=\"F4\"/>\r\n                    <note pitch=\"D5\"/>\r\n                </event></metadiff>\r\n                <event value=\"/8\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/dotted-notes.png",
@@ -2607,6 +2657,7 @@
     "fields": {
         "name": "Ties",
         "slug": "ties",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\">\r\n                        <metadiff><tied target=\"note3\"/></metadiff>\r\n                    </note>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\" id=\"note3\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\">\r\n                        <metadiff><tied target=\"note5\"/></metadiff>\r\n                    </note>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"C5\" id=\"note5\">\r\n                        <metadiff><tied target=\"note6\"/></metadiff>\r\n                    </note>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"C5\" id=\"note6\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/ties.png",
@@ -2619,6 +2670,7 @@
     "fields": {
         "name": "Beams",
         "slug": "beams",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef line=\"2\" sign=\"G\"/>\r\n            </directions>\r\n            <sequence>\r\n                <metadiff><beams>\r\n                    <beam events=\"ev1 ev2 ev3 ev4\"/>\r\n                    <beam events=\"ev5 ev6 ev7 ev8\"/>\r\n                </beams></metadiff>\r\n                <event id=\"ev1\" value=\"/8\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event id=\"ev2\" value=\"/8\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event id=\"ev3\" value=\"/8\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event id=\"ev4\" value=\"/8\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n                <event id=\"ev5\" value=\"/8\">\r\n                    <note pitch=\"D4\"/>\r\n                </event>\r\n                <event id=\"ev6\" value=\"/8\">\r\n                    <note pitch=\"E4\"/>\r\n                </event>\r\n                <event id=\"ev7\" value=\"/8\">\r\n                    <note pitch=\"F4\"/>\r\n                </event>\r\n                <event id=\"ev8\" value=\"/8\">\r\n                    <note pitch=\"G4\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <metadiff><beams>\r\n                    <beam events=\"ev9 ev10 ev11 ev12 ev13\">\r\n                        <beam events=\"ev11 ev12\"/>\r\n                    </beam>\r\n                    <beam events=\"ev14 ev15\"/>\r\n                </beams></metadiff>\r\n                <event id=\"ev9\" value=\"/8\">\r\n                    <note pitch=\"G4\"/>\r\n                </event>\r\n                <event id=\"ev10\" value=\"/8\">\r\n                    <rest/>\r\n                </event>\r\n                <event id=\"ev11\" value=\"/16\">\r\n                    <note pitch=\"D4\"/>\r\n                </event>\r\n                <event id=\"ev12\" value=\"/16\">\r\n                    <note pitch=\"E4\"/>\r\n                </event>\r\n                <event id=\"ev13\" value=\"/8\">\r\n                    <note pitch=\"G4\"/>\r\n                </event>\r\n                <event id=\"ev14\" value=\"/8\">\r\n                    <note pitch=\"E4\"/>\r\n                </event>\r\n                <event id=\"ev15\" value=\"/8\">\r\n                    <note pitch=\"D4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C4\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/beams.png",
@@ -2631,6 +2683,7 @@
     "fields": {
         "name": "Beams (secondary beam breaks)",
         "slug": "beams-secondary-beam-breaks",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef line=\"2\" sign=\"G\"/>\r\n            </directions>\r\n            <sequence>\r\n                <metadiff><beams>\r\n                    <beam events=\"ev1 ev2 ev3 ev4 ev5 ev6 ev7 ev8\">\r\n                        <beam events=\"ev1 ev2 ev3 ev4\">\r\n                            <beam events=\"ev1 ev2 ev3 ev4\"/>\r\n                        </beam>\r\n                        <beam events=\"ev5 ev6 ev7 ev8\">\r\n                            <beam events=\"ev5 ev6 ev7 ev8\"/>\r\n                        </beam>\r\n                    </beam>\r\n                    <beam events=\"ev9 ev10 ev11 ev12 ev13 ev14 ev15 ev16\">\r\n                        <beam events=\"ev9 ev10 ev11 ev12\">\r\n                            <beam events=\"ev9 ev10\"/>\r\n                            <beam events=\"ev11 ev12\"/>\r\n                        </beam>\r\n                        <beam events=\"ev13 ev14 ev15 ev16\">\r\n                            <beam events=\"ev13 ev14\"/>\r\n                            <beam events=\"ev15 ev16\"/>\r\n                        </beam>\r\n                    </beam>\r\n                </beams></metadiff>\r\n                <event id=\"ev1\" value=\"/32\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event id=\"ev2\" value=\"/32\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event id=\"ev3\" value=\"/32\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event id=\"ev4\" value=\"/32\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n                <event id=\"ev5\" value=\"/32\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event id=\"ev6\" value=\"/32\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event id=\"ev7\" value=\"/32\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event id=\"ev8\" value=\"/32\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n                <event id=\"ev9\" value=\"/32\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event id=\"ev10\" value=\"/32\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event id=\"ev11\" value=\"/32\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event id=\"ev12\" value=\"/32\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n                <event id=\"ev13\" value=\"/32\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event id=\"ev14\" value=\"/32\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event id=\"ev15\" value=\"/32\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event id=\"ev16\" value=\"/32\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <rest/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/beams-secondary-beam-breaks.png",
@@ -2643,6 +2696,7 @@
     "fields": {
         "name": "Beams (hooks)",
         "slug": "beam-hooks",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef line=\"2\" sign=\"G\"/>\r\n            </directions>\r\n            <sequence>\r\n                <metadiff><beams>\r\n                    <beam events=\"ev1 ev2 ev3\">\r\n                        <beam-hook direction=\"right\" event=\"ev1\"/>\r\n                        <beam-hook direction=\"left\" event=\"ev3\"/>\r\n                    </beam>\r\n                    <beam events=\"ev4 ev5 ev6\">\r\n                        <beam-hook direction=\"right\" event=\"ev4\"/>\r\n                        <beam-hook direction=\"left\" event=\"ev6\"/>\r\n                    </beam>\r\n                    <beam events=\"ev7 ev8 ev9\">\r\n                        <beam-hook direction=\"right\" event=\"ev7\"/>\r\n                        <beam-hook direction=\"left\" event=\"ev9\"/>\r\n                    </beam>\r\n                </beams></metadiff>\r\n                <event id=\"ev1\" value=\"/16\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event id=\"ev2\" value=\"/8\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event id=\"ev3\" value=\"/16\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event id=\"ev4\" value=\"/16\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event id=\"ev5\" value=\"/8\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n                <event id=\"ev6\" value=\"/16\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event id=\"ev7\" value=\"/16\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n                <event id=\"ev8\" value=\"/8\">\r\n                    <note pitch=\"A5\"/>\r\n                </event>\r\n                <event id=\"ev9\" value=\"/16\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C6\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/beam-hooks.png",
@@ -2655,6 +2709,7 @@
     "fields": {
         "name": "Beams (with inner grace notes)",
         "slug": "beams-inner-grace-notes",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef line=\"2\" sign=\"G\"/>\r\n            </directions>\r\n            <sequence>\r\n                <metadiff><beams>\r\n                    <beam events=\"ev1 ev3 ev4 ev5\"/>\r\n                </beams></metadiff>\r\n                <event id=\"ev1\" value=\"/8\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <grace>\r\n                    <event value=\"/8\">\r\n                        <note pitch=\"B4\"/>\r\n                    </event>\r\n                </grace>\r\n                <event id=\"ev3\" value=\"/8\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event id=\"ev4\" value=\"/8\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event id=\"ev5\" value=\"/8\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <rest/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/beams-inner-grace-notes.png",
@@ -2667,6 +2722,7 @@
     "fields": {
         "name": "Beams (across barlines)",
         "slug": "beams-across-barlines",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef line=\"2\" sign=\"G\"/>\r\n            </directions>\r\n            <sequence>\r\n                <metadiff><beams>\r\n                    <beam events=\"ev3 ev4 ev5 ev6\"/>\r\n                </beams></metadiff>\r\n                <event value=\"/2\">\r\n                    <rest/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <rest/>\r\n                </event>\r\n                <event id=\"ev3\" value=\"/8\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event id=\"ev4\" value=\"/8\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event id=\"ev5\" value=\"/8\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event id=\"ev6\" value=\"/8\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <rest/>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <rest/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/beams-across-barlines.png",
@@ -2679,6 +2735,7 @@
     "fields": {
         "name": "Tuplets",
         "slug": "tuplets",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef line=\"2\" sign=\"G\"/>\r\n            </directions>\r\n            <sequence>\r\n                <beams>\r\n                    <beam events=\"event3 event4 event5\"/>\r\n                </beams>\r\n                <metadiff><tuplet inner=\"3/8\" outer=\"2/8\">\r\n                    <event value=\"/4\">\r\n                        <note pitch=\"C5\"/>\r\n                    </event>\r\n                    <event value=\"/8\">\r\n                        <note pitch=\"G4\"/>\r\n                    </event>\r\n                </tuplet>\r\n                <tuplet inner=\"3/8\" outer=\"2/8\">\r\n                    <event id=\"event3\" value=\"/8\">\r\n                        <note pitch=\"E4\"/>\r\n                    </event>\r\n                    <event id=\"event4\" value=\"/8\">\r\n                        <note pitch=\"F4\"/>\r\n                    </event>\r\n                    <event id=\"event5\" value=\"/8\">\r\n                        <note pitch=\"G4\"/>\r\n                    </event>\r\n                </tuplet></metadiff>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <metadiff><tuplet inner=\"6/4\" outer=\"4/4\">\r\n                    <event value=\"/4\">\r\n                        <note pitch=\"C5\"/>\r\n                    </event>\r\n                    <event value=\"/4\">\r\n                        <note pitch=\"D5\"/>\r\n                    </event>\r\n                    <event value=\"/4\">\r\n                        <note pitch=\"C5\"/>\r\n                    </event>\r\n                    <event value=\"/4\">\r\n                        <note pitch=\"G4\"/>\r\n                    </event>\r\n                    <event value=\"/4\">\r\n                        <note pitch=\"E5\"/>\r\n                    </event>\r\n                    <event value=\"/4\">\r\n                        <note pitch=\"C5\"/>\r\n                    </event>\r\n                </tuplet></metadiff>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/tuplets.png",
@@ -2691,6 +2748,7 @@
     "fields": {
         "name": "Multiple voices",
         "slug": "multiple-voices",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <metadiff><sequence>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"C4\"/>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"G3\"/>\r\n                </event>\r\n            </sequence>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"B4\"/>\r\n                </event>\r\n            </sequence></metadiff>\r\n        </measure>\r\n        <measure>\r\n            <metadiff><sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C4\"/>\r\n                </event>\r\n            </sequence>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"C6\"/>\r\n                </event>\r\n            </sequence></metadiff>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/multiple-voices.png",
@@ -2703,6 +2761,7 @@
     "fields": {
         "name": "Octave shifts (8va)",
         "slug": "octave-shifts-8va",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <metadiff><directions>\r\n                    <octave-shift type=\"-8\" end=\"2:1/2\" />\r\n                </directions></metadiff>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"C7\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"E7\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C7\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C6\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/octave-shifts-8va.png",
@@ -2715,6 +2774,7 @@
     "fields": {
         "name": "Slurs",
         "slug": "slurs",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/4\" id=\"event1\">\r\n                    <note pitch=\"C5\"/>\r\n                    <metadiff><slur side=\"up\" target=\"event4\" /></metadiff>\r\n                </event>\r\n                <event value=\"/4\" id=\"event2\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event value=\"/4\" id=\"event3\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\" id=\"event4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/4\" id=\"event5\">\r\n                    <note pitch=\"G4\"/>\r\n                    <metadiff><slur side=\"down\" target=\"event8\" /></metadiff>\r\n                </event>\r\n                <event value=\"/4\" id=\"event6\">\r\n                    <note pitch=\"A4\"/>\r\n                </event>\r\n                <event value=\"/4\" id=\"event7\">\r\n                    <note pitch=\"G4\"/>\r\n                </event>\r\n                <event value=\"/4\" id=\"event8\">\r\n                    <note pitch=\"E4\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/slurs.png",
@@ -2727,6 +2787,7 @@
     "fields": {
         "name": "Slurs (for chords)",
         "slug": "slurs-chords",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/4\" id=\"event1\">\r\n                    <metadiff><slur side=\"up\" target=\"event4\" /></metadiff>\r\n                    <note pitch=\"C5\"/>\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\" id=\"event2\">\r\n                    <note pitch=\"D5\"/>\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n                <event value=\"/4\" id=\"event3\">\r\n                    <note pitch=\"E5\"/>\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n                <event value=\"/4\" id=\"event4\">\r\n                    <note pitch=\"F5\"/>\r\n                    <note pitch=\"A5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/slurs-chords.png",
@@ -2739,6 +2800,7 @@
     "fields": {
         "name": "Slurs (targeting specific notes)",
         "slug": "slurs-targeting-specific-notes",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/2\" id=\"event1\">\r\n                    <note pitch=\"C5\" id=\"note1\"/>\r\n                    <note pitch=\"E5\" id=\"note2\"/>\r\n                    <note pitch=\"G5\" id=\"note3\"/>\r\n                    <metadiff><slur side=\"down\" target=\"event2\"\r\n                        start-note=\"note1\" end-note=\"note4\"/>\r\n                    <slur side=\"up\" target=\"event2\"\r\n                        start-note=\"note2\" end-note=\"note5\"/>\r\n                    <slur side=\"up\" target=\"event2\"\r\n                        start-note=\"note3\" end-note=\"note6\"/></metadiff>\r\n                </event>\r\n                <event value=\"/2\" id=\"event2\">\r\n                    <note pitch=\"B4\" id=\"note4\"/>\r\n                    <note pitch=\"D5\" id=\"note5\"/>\r\n                    <note pitch=\"F5\" id=\"note6\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/slurs-targeting-specific-notes.png",
@@ -2751,6 +2813,7 @@
     "fields": {
         "name": "Slurs (incomplete slurs)",
         "slug": "slurs-incomplete-slurs",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"D5\"/>\r\n                    <metadiff><slur side=\"up\" location=\"outgoing\"/></metadiff>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/slurs-incomplete-slurs.png",
@@ -2763,6 +2826,7 @@
     "fields": {
         "name": "Parts",
         "slug": "parts",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n    </global>\r\n    <part>\r\n        <part-name>Melody</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef line=\"2\" sign=\"G\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n    <part>\r\n        <part-name>Harmony</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef line=\"2\" sign=\"G\"/>\r\n            </directions>\r\n            <sequence>\r\n                <beams>\r\n                    <beam events=\"event6 event7 event8 event9\"/>\r\n                </beams>\r\n                <event value=\"/2\">\r\n                    <rest/>\r\n                </event>\r\n                <event id=\"event6\" value=\"/8\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event id=\"event7\" value=\"/8\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n                <event id=\"event8\" value=\"/8\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event id=\"event9\" value=\"/8\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/2\">\r\n                    <rest/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/parts.png",
@@ -2775,6 +2839,7 @@
     "fields": {
         "name": "Repeats",
         "slug": "repeats",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n                <metadiff><repeat type=\"start\"/>\r\n                <repeat type=\"end\"/></metadiff>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/repeats.png",
@@ -2787,6 +2852,7 @@
     "fields": {
         "name": "Repeats (with implied start repeat)",
         "slug": "repeats-implied-start-repeat",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n                <metadiff><repeat type=\"end\"/></metadiff>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/repeats-implied-start-repeat.png",
@@ -2799,6 +2865,7 @@
     "fields": {
         "name": "Repeats (more than once repeated)",
         "slug": "repeats-more-once-repeated",
+        "schema": 1,
         "blurb": "In this example, the measure is to be performed four times (or “repeated three times,” depending on your perspective).",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n                <metadiff><repeat type=\"end\" times=\"4\"/></metadiff>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/repeats-more-once-repeated.png",
@@ -2811,6 +2878,7 @@
     "fields": {
         "name": "Repeats (with alternate endings, simple)",
         "slug": "repeats-alternate-endings-simple",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n                <metadiff><repeat type=\"start\"/></metadiff>\r\n            </directions>\r\n        </measure>\r\n        <measure>\r\n            <metadiff><directions>\r\n                <repeat type=\"end\"/>\r\n                <ending type=\"start\" number=\"1\"/>\r\n                <ending type=\"stop\"/>\r\n            </directions></metadiff>\r\n        </measure>\r\n        <measure>\r\n            <metadiff><directions>\r\n                <repeat type=\"end\"/>\r\n                <ending type=\"start\" number=\"2\"/>\r\n                <ending type=\"stop\"/>\r\n            </directions></metadiff>\r\n        </measure>\r\n        <measure>\r\n            <metadiff><directions>\r\n                <ending type=\"start\" number=\"3\"/>\r\n                <ending type=\"discontinue\"/>\r\n            </directions></metadiff>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"G4\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/repeats-alternate-endings-simple.png",
@@ -2823,6 +2891,7 @@
     "fields": {
         "name": "Repeats (with alternate endings, advanced)",
         "slug": "repeats-alternate-endings-advanced",
+        "schema": 1,
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"3/4\"/>\r\n                <repeat type=\"start\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure>\r\n            <directions>\r\n                <metadiff><ending type=\"start\" number=\"1,2\"/></metadiff>\r\n            </directions>\r\n        </measure>\r\n        <measure>\r\n            <directions>\r\n                <repeat type=\"end\"/>\r\n                <metadiff><ending type=\"stop\"/></metadiff>\r\n            </directions>\r\n        </measure>\r\n        <measure>\r\n            <directions>\r\n                <metadiff><ending type=\"start\" number=\"3\"/></metadiff>\r\n            </directions>\r\n        </measure>\r\n        <measure>\r\n            <directions>\r\n                <metadiff><ending type=\"discontinue\"/></metadiff>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/2d\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/2d\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/2d\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/2d\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/repeats-alternate-endings-advanced.png",
@@ -2835,6 +2904,7 @@
     "fields": {
         "name": "Jumps (Dal Segno)",
         "slug": "jumps-dal-segno",
+        "schema": 1,
         "blurb": "In this example, the bars are to be performed in this order: 1, 2, 3, 4, 5, 2, 3, 4, 5.",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure>\r\n            <directions>\r\n                <metadiff><segno/></metadiff>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n        <measure/>\r\n        <measure>\r\n            <directions>\r\n                <metadiff><jump type=\"segno\"/></metadiff>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/jumps-dal-segno.png",
@@ -2847,6 +2917,7 @@
     "fields": {
         "name": "Jumps (D.S. al Fine)",
         "slug": "jumps-ds-al-fine",
+        "schema": 1,
         "blurb": "In this example, the bars are to be performed in this order: 1, 2, 3, 4, 5, 2, 3.",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure>\r\n            <directions>\r\n                <metadiff><segno/></metadiff>\r\n            </directions>\r\n        </measure>\r\n        <measure>\r\n            <directions>\r\n                <metadiff><fine/></metadiff>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n        <measure>\r\n            <directions>\r\n                <metadiff><jump type=\"dsalfine\"/></metadiff>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/jumps-ds-al-fine.png",

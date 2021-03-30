@@ -81,6 +81,18 @@ class DocumentFormat(models.Model):
     def comparison_url(self):
         return reverse('format_comparison_detail', args=(self.slug,))
 
+class XMLSchema(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.CharField(max_length=100, unique=True)
+
+    class Meta:
+        db_table = 'xml_schemas'
+        verbose_name = 'XML schema'
+        verbose_name_plural = 'XML schemas'
+
+    def __str__(self):
+        return self.name
+
 class XMLElement(models.Model):
     CHILDREN_TYPE_UNORDERED = 1
     CHILDREN_TYPE_SEQUENCE = 2
@@ -92,7 +104,8 @@ class XMLElement(models.Model):
     )
 
     name = models.CharField(max_length=80)
-    slug = models.CharField(max_length=80, unique=True)
+    slug = models.CharField(max_length=80)
+    schema = models.ForeignKey(XMLSchema, on_delete=models.CASCADE)
     base_element = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
     is_abstract_element = models.BooleanField(default=False)
     is_root = models.BooleanField(default=False,
@@ -114,6 +127,9 @@ class XMLElement(models.Model):
         db_table = 'xml_elements'
         verbose_name = 'XML element'
         verbose_name_plural = 'XML elements'
+        unique_together = (
+            ('schema', 'slug'),
+        )
 
     def __str__(self):
         return self.slug
@@ -212,7 +228,8 @@ class XMLRelationship(models.Model):
 
 class ExampleDocument(models.Model):
     name = models.CharField(max_length=300)
-    slug = models.CharField(max_length=100, unique=True)
+    slug = models.CharField(max_length=100)
+    schema = models.ForeignKey(XMLSchema, on_delete=models.CASCADE)
     blurb = models.TextField(blank=True)
     document = models.TextField()
     image_url = models.CharField(max_length=300, blank=True,
@@ -222,6 +239,9 @@ class ExampleDocument(models.Model):
 
     class Meta:
         db_table = 'example_documents'
+        unique_together = (
+            ('schema', 'slug'),
+        )
 
     def __str__(self):
         return self.name

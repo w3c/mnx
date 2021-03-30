@@ -4,6 +4,10 @@ from spec.models import *
 class SiteOptionsAdmin(admin.ModelAdmin):
     model = SiteOptions
 
+class XMLSchemaAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+    prepopulated_fields = {'slug': ['name']}
+
 class XMLAttributeInline(admin.TabularInline):
     model = XMLAttribute
     exclude = ('attribute_group',)
@@ -69,6 +73,7 @@ class ConceptAdmin(admin.ModelAdmin):
     list_display = ['name', 'is_featured']
 
 admin.site.register(SiteOptions, SiteOptionsAdmin)
+admin.site.register(XMLSchema, XMLSchemaAdmin)
 admin.site.register(XMLElement, XMLElementAdmin)
 admin.site.register(XMLAttributeGroup, XMLAttributeGroupAdmin)
 admin.site.register(DataType, DataTypeAdmin)

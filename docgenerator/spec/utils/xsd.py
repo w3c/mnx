@@ -17,7 +17,12 @@ group_xpath = etree.XPath('x:group[@name=$name]', namespaces={'x': XSD_NS})
 attribute_group_xpath = etree.XPath('x:attributeGroup[@name=$name]', namespaces={'x': XSD_NS})
 
 class XSDParser:
-    def __init__(self, filedata:bytes):
+    def __init__(self, schema_slug:str, filedata:bytes):
+        try:
+            self.schema = XMLSchema.objects.filter(slug=schema_slug)[0]
+        except IndexError:
+            raise ValueError(f'XML schema with slug "{schema_slug}" not found. Make sure to create it in your DB.')
+        self.element_qs = XMLElement.objects.filter(schema=self.schema)
         self.xml = etree.XML(
             filedata,
             etree.XMLParser(resolve_entities=False) # resolve_entities prevents XXE attacks.
@@ -25,11 +30,11 @@ class XSDParser:
         self.next_anonymous_id = 1
 
     def get_available_element_slug(self, name):
-        if not XMLElement.objects.filter(slug=name).exists():
+        if not self.element_qs.filter(slug=name).exists():
             return name
         for i in range(2, 10):
             slug = f'{name}-{i}'
-            if not XMLElement.objects.filter(slug=slug).exists():
+            if not self.element_qs.filter(slug=slug).exists():
                 return slug
         raise AssertionError # Shouldn't get here.
 
@@ -60,7 +65,7 @@ class XSDParser:
         xml_element = None
         if content_data_type or base_element:
             try:
-                xml_element = XMLElement.objects.filter(
+                xml_element = self.element_qs.filter(
                     name=element_name,
                     content_data_type=content_data_type,
                     base_element=base_element,
@@ -71,6 +76,7 @@ class XSDParser:
             xml_element = XMLElement.objects.create(
                 name=element_name,
                 slug=self.get_available_element_slug(element_name),
+                schema=self.schema,
                 base_element=base_element,
                 is_abstract_element=False,
                 description=self.parse_annotation_documentation(el),
@@ -98,6 +104,7 @@ class XSDParser:
             xml_element = XMLElement.objects.create(
                 name=element_name,
                 slug=self.get_available_element_slug(f'complex-{element_name}'),
+                schema=self.schema,
                 base_element=None,
                 is_abstract_element=True,
                 description=self.parse_annotation_documentation(el),
@@ -151,6 +158,7 @@ class XSDParser:
                 child_xml_element = XMLElement.objects.create(
                     name=child_name,
                     slug=child_name,
+                    schema=self.schema,
                     base_element=None,
                     is_abstract_element=True,
                     description='',
@@ -206,6 +214,7 @@ class XSDParser:
         xml_element = XMLElement.objects.create(
             name=group_name,
             slug=self.get_available_element_slug(f'group-{group_name}'),
+            schema=self.schema,
             base_element=None,
             is_abstract_element=True,
             description=self.parse_annotation_documentation(el),
@@ -319,11 +328,12 @@ class XSDParser:
     def get_or_create_complex_type(self, name):
         slug = f'complex-{name}'
         try:
-            ct = XMLElement.objects.filter(slug=slug)[0]
+            ct = self.element_qs.filter(slug=slug)[0]
         except IndexError:
             ct = XMLElement.objects.create(
                 name=name,
                 slug=slug,
+                schema=self.schema,
                 base_element=None,
                 is_abstract_element=True,
                 description='',
@@ -338,7 +348,7 @@ class XSDParser:
 
     def get_or_create_group(self, name):
         try:
-            group = XMLElement.objects.filter(slug=f'group-{name}')[0]
+            group = self.element_qs.filter(slug=f'group-{name}')[0]
         except IndexError:
             group = self.parse_group(
                 group_xpath(self.xml, name=name)[0]
@@ -354,6 +364,6 @@ class XSDParser:
             )
         return ag
 
-def import_xsd(filedata: bytes):
-    parser = XSDParser(filedata)
+def import_xsd(schema_slug:str, filedata:bytes):
+    parser = XSDParser(schema_slug, filedata)
     parser.parse()
