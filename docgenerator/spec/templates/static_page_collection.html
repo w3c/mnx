@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}{{ collection.title }}{% endblock %}
+
+{% block content %}
+<p class="breadcrumb">
+    <a href="{% relative_url 'homepage' %}">{{ SITE_OPTIONS.site_name }}</a> &gt;
+    {{ collection.title }}
+</p>
+
+<h1>{{ collection.title }}</h1>
+
+<ul>
+    {% for static_page in static_pages %}
+    <li><a href="{% relative_url_string static_page.url %}">{{ static_page.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

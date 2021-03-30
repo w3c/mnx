@@ -21,7 +21,9 @@ MODELS_TO_FREEZE = (
     ExampleDocumentConcept,
     ExampleDocumentComparison,
     ExampleDocumentElement,
-    ElementConcept
+    ElementConcept,
+    StaticPageCollection,
+    StaticPage
 )
 
 def all_model_objects():

@@ -72,6 +72,12 @@ class ConceptAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['name']}
     list_display = ['name', 'is_featured']
 
+class StaticPageCollectionAdmin(admin.ModelAdmin):
+    list_display = ['title', 'url', 'schema', 'order']
+
+class StaticPageAdmin(admin.ModelAdmin):
+    list_display = ['title', 'url', 'collection', 'order']
+
 admin.site.register(SiteOptions, SiteOptionsAdmin)
 admin.site.register(XMLSchema, XMLSchemaAdmin)
 admin.site.register(XMLElement, XMLElementAdmin)
@@ -80,3 +86,5 @@ admin.site.register(DataType, DataTypeAdmin)
 admin.site.register(DocumentFormat, DocumentFormatAdmin)
 admin.site.register(ExampleDocument, ExampleDocumentAdmin)
 admin.site.register(Concept, ConceptAdmin)
+admin.site.register(StaticPageCollection, StaticPageCollectionAdmin)
+admin.site.register(StaticPage, StaticPageAdmin)

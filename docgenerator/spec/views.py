@@ -135,3 +135,22 @@ def format_comparison_detail(request, slug):
         'other_format': other_format,
         'comparisons': comparisons,
     })
+
+def static_page_or_collection_detail(request):
+    try:
+        spc = StaticPageCollection.objects.filter(url=request.path)[0]
+    except IndexError:
+        pass
+    else:
+        return static_collection_detail(request, spc)
+    sp = get_object_or_404(StaticPage, url=request.path)
+    return render(request, 'static_page.html', {
+        'static_page': sp,
+    })
+
+def static_collection_detail(request, collection):
+    static_pages = StaticPage.objects.filter(collection=collection).order_by('order')
+    return render(request, 'static_page_collection.html', {
+        'collection': collection,
+        'static_pages': static_pages,
+    })

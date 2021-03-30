@@ -306,3 +306,32 @@ class ElementConcept(models.Model):
 
     class Meta:
         db_table = 'element_concepts'
+
+class StaticPageCollection(models.Model):
+    title = models.CharField(max_length=255)
+    url = models.CharField(max_length=150,
+        help_text='Make sure it starts and ends with slashes.'
+    )
+    schema = models.ForeignKey(XMLSchema, null=True, blank=True, on_delete=models.SET_NULL)
+    order = models.SmallIntegerField()
+
+    class Meta:
+        db_table = 'static_page_collections'
+
+    def __str__(self):
+        return self.title
+
+class StaticPage(models.Model):
+    title = models.CharField(max_length=255)
+    url = models.CharField(max_length=150,
+        help_text='Make sure it starts and ends with slashes.'
+    )
+    collection = models.ForeignKey(StaticPageCollection, on_delete=models.CASCADE)
+    order = models.SmallIntegerField() # Order within the collection.
+    content = models.TextField()
+
+    class Meta:
+        db_table = 'static_pages'
+
+    def __str__(self):
+        return self.title

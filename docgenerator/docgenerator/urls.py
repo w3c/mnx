@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from spec import views
 
 urlpatterns = [
@@ -16,4 +16,5 @@ urlpatterns = [
     path('concepts/<slug:slug>/', views.concept_detail, name='concept_detail'),
     path('comparisons/<slug:slug>/', views.format_comparison_detail, name='format_comparison_detail'),
     path('admin/', admin.site.urls),
+    re_path(r'^.*$', views.static_page_or_collection_detail),
 ]
