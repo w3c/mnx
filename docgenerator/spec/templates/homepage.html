@@ -5,21 +5,12 @@
 {% block content %}
 <h1>{{ SITE_OPTIONS.site_name }}</h1>
 
-<h2>Elements</h2>
-<p>
-{% for element in featured_elements %}
-<a href="{% relative_url_string element.get_absolute_url %}">{{ element.name_with_brackets }}</a> ·
+<h2>Reference</h2>
+<ul>
+{% for schema in schemas %}
+    <li><a href="{% relative_url_string schema.reference_url %}">{{ schema.name }} reference</a></li>
 {% endfor %}
-<a href="{% relative_url 'element_tree' %}">See all…</a>
-</p>
-
-<h2>Examples</h2>
-<p>
-{% for example in featured_examples %}
-<a href="{% relative_url_string example.get_absolute_url %}">{{ example.name }}</a> ·
-{% endfor %}
-<a href="{% relative_url 'example_list' %}">See all…</a>
-</p>
+</ul>
 
 <h2>Concepts</h2>
 <p>
@@ -29,14 +20,7 @@
 <a href="{% relative_url 'concept_list' %}">See all…</a>
 </p>
 
-<h2>Data types</h2>
-<p>
-{% for data_type in featured_data_types %}
-<a href="{% relative_url_string data_type.get_absolute_url %}">{{ data_type.name }}</a> ·
-{% endfor %}
-<a href="{% relative_url 'data_type_list' %}">See all…</a>
-</p>
-
 <h2>Assorted docs</h2>
 <p><a href="comparisons/musicxml/">Comparing MNX and MusicXML</a></p>
+
 {% endblock %}

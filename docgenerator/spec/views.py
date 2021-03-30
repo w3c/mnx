@@ -5,19 +5,33 @@ from spec.models import *
 
 def homepage(request):
     return render(request, 'homepage.html', {
+        'schemas': XMLSchema.objects.order_by('name'),
         'featured_concepts': Concept.objects.filter(is_featured=True).order_by('name'),
+    })
+
+def reference_homepage(request, schema_slug):
+    schema = get_object_or_404(XMLSchema, slug=schema_slug)
+    return render(request, 'reference_homepage.html', {
+        'schema': schema,
         'featured_data_types': DataType.objects.filter(is_featured=True).order_by('name'),
-        'featured_examples': ExampleDocument.objects.filter(is_featured=True).order_by('name'),
-        'featured_elements': XMLElement.objects.filter(is_featured=True).order_by('name'),
+        'featured_examples': ExampleDocument.objects.filter(schema=schema, is_featured=True).order_by('name'),
+        'featured_elements': XMLElement.objects.filter(schema=schema, is_featured=True).order_by('name'),
     })
 
-def element_list(request):
+def element_list(request, schema_slug):
+    schema = get_object_or_404(XMLSchema, slug=schema_slug)
     return render(request, 'element_list.html', {
-        'elements': XMLElement.objects.filter(is_abstract_element=False).order_by('name'),
+        'schema': schema,
+        'elements': XMLElement.objects.select_related('schema').filter(schema=schema, is_abstract_element=False).order_by('name'),
     })
 
-def element_detail(request, slug):
-    element = get_object_or_404(XMLElement, slug=slug, is_abstract_element=False)
+def element_detail(request, schema_slug, slug):
+    element = get_object_or_404(
+        XMLElement.objects.select_related('schema'),
+        schema__slug=schema_slug,
+        slug=slug,
+        is_abstract_element=False
+    )
     return render(request, 'element_detail.html', {
         'element': element,
         'content_data_type': element.get_content_data_type(),
@@ -28,13 +42,18 @@ def element_detail(request, slug):
         'examples': ExampleDocumentElement.objects.filter(element_name=element.name).select_related('example').order_by('example__name'),
     })
 
-def element_tree(request):
+def element_tree(request, schema_slug):
+    schema = get_object_or_404(XMLSchema, slug=schema_slug)
     try:
         # TODO: Support multiple possible roots, as in MusicXML.
-        root_element = XMLElement.objects.filter(is_root=True)[0]
+        root_element = XMLElement.objects.select_related('schema').filter(
+            schema=schema,
+            is_root=True
+        )[0]
     except IndexError:
         raise http.Http404("You'll need to mark at least one XML element as is_root=True via the admin.")
     return render(request, 'element_tree.html', {
+        'schema': schema,
         'tree_html': htmlutils.get_element_tree_html(request.path, root_element),
     })
 
@@ -67,13 +86,19 @@ def data_type_detail(request, slug):
         'options': DataTypeOption.objects.filter(data_type=data_type).order_by('value'),
     })
 
-def example_list(request):
+def example_list(request, schema_slug):
+    schema = get_object_or_404(XMLSchema, slug=schema_slug)
     return render(request, 'example_list.html', {
-        'examples': ExampleDocument.objects.order_by('name'),
+        'schema': schema,
+        'examples': ExampleDocument.objects.filter(schema=schema).order_by('name'),
     })
 
-def example_detail(request, slug):
-    example = get_object_or_404(ExampleDocument, slug=slug)
+def example_detail(request, schema_slug, slug):
+    example = get_object_or_404(
+        ExampleDocument.objects.select_related('schema'),
+        schema__slug=schema_slug,
+        slug=slug
+    )
     return render(request, 'example_detail.html', {
         'example': example,
         'augmented_doc': htmlutils.get_augmented_xml(request.path, example.document)[1],

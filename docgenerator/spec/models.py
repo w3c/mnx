@@ -93,6 +93,18 @@ class XMLSchema(models.Model):
     def __str__(self):
         return self.name
 
+    def reference_url(self):
+        return reverse('reference_homepage', args=(self.slug,))
+
+    def examples_url(self):
+        return reverse('example_list', args=(self.slug,))
+
+    def elements_url(self):
+        return reverse('element_list', args=(self.slug,))
+
+    def element_tree_url(self):
+        return reverse('element_tree', args=(self.slug,))
+
 class XMLElement(models.Model):
     CHILDREN_TYPE_UNORDERED = 1
     CHILDREN_TYPE_SEQUENCE = 2
@@ -135,7 +147,7 @@ class XMLElement(models.Model):
         return self.slug
 
     def get_absolute_url(self):
-        return reverse('element_detail', args=(self.slug,))
+        return reverse('element_detail', args=(self.schema.slug, self.slug,))
 
     def name_with_brackets(self):
         return f'<{self.name}>'
@@ -252,7 +264,7 @@ class ExampleDocument(models.Model):
         update_example_elements(self)
 
     def get_absolute_url(self):
-        return reverse('example_detail', args=(self.slug,))
+        return reverse('example_detail', args=(self.schema.slug, self.slug,))
 
 class ExampleDocumentConcept(models.Model):
     example = models.ForeignKey(ExampleDocument, on_delete=models.CASCADE)

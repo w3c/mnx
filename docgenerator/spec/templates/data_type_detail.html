@@ -3,7 +3,11 @@
 {% block title %}{{ data_type.name }} data type{% endblock %}
 
 {% block content %}
-<p class="breadcrumb"><a href="{% relative_url 'data_type_list' %}">Data types</a> &gt; {{ data_type.name }}</p>
+<p class="breadcrumb">
+    <a href="{% relative_url 'homepage' %}">{{ SITE_OPTIONS.site_name }}</a> &gt;
+    <a href="{% relative_url 'data_type_list' %}">Data types</a> &gt;
+    {{ data_type.name }}
+</p>
 
 <h1>{{ data_type.name }} data type</h1>
 

@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>MNX example: Beams | MNX specification</title>
+<link rel="stylesheet" href="../../../static/styles.css">
+
+</head>
+
+<body>
+<div class="topnav"><a href="../../../">MNX specification</a></div>
+
+
+<div class="content">
+
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">Reference</a> &gt;
+    <a href="../">Examples</a> &gt;
+    Beams
+</p>
+
+<h1>Beams</h1>
+
+
+<p width="100%"><img src="../../../static/examples/beams.png" width="100%"></p>
+
+
+
+
+
+<p>Concepts: <a href="../../../concepts/beams/">Beams</a></p>
+
+
+
+<p>See also: <a href="../../../comparisons/musicxml/#beams">This same example in MusicXML</a> </p>
+
+
+<div class="xmlmarkup">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+   &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
+      &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
+         &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+            &lt;<a class="tag" href="../../elements/time/">time</a> <span class="attr">signature="<a href="../../../data-types/time-signature/">4/4</a>"</span>/&gt;
+         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+      &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
+      &lt;<a class="tag" href="../../elements/measure-global/">measure</a>/&gt;
+   &lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a>&gt;
+      &lt;<a class="tag" href="../../elements/part-name/">part-name</a>&gt;<span class="xmltxt">Music</span>&lt;/<a class="tag" href="../../elements/part-name/">part-name</a>&gt;
+      &lt;<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
+         &lt;<a class="tag" href="../../elements/directions-part/">directions</a>&gt;
+            &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attr">line="<a href="../../../data-types/staff-line/">2</a>"</span> <span class="attr">sign="<a href="../../../data-types/clef-sign/">G</a>"</span>/&gt;
+         &lt;/<a class="tag" href="../../elements/directions-part/">directions</a>&gt;
+         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
+               &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../../data-types/event-id-list/">ev1 ev2 ev3 ev4</a>"</span>/&gt;
+               &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../../data-types/event-id-list/">ev5 ev6 ev7 ev8</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/beams/">beams</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev1</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">C5</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev2</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">D5</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev3</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">E5</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev4</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">F5</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev5</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">D4</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev6</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">E4</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev7</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">F4</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev8</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">G4</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+      &lt;/<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
+      &lt;<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
+         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
+               &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../../data-types/event-id-list/">ev9 ev10 ev11 ev12 ev13</a>"</span>&gt;
+                  &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../../data-types/event-id-list/">ev11 ev12</a>"</span>/&gt;
+               &lt;/<a class="tag" href="../../elements/beam/">beam</a>&gt;
+               &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attr">events="<a href="../../../data-types/event-id-list/">ev14 ev15</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/beams/">beams</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev9</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">G4</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev10</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/rest/">rest</a>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev11</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/16</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">D4</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev12</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/16</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">E4</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev13</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">G4</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev14</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">E4</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">id="<a href="../../../data-types/event-id/">ev15</a>"</span> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">D4</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../../data-types/rhythmic-duration/">/4</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../../data-types/chromatic-pitch/">C4</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+      &lt;/<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
+   &lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+&lt;/<a class="tag" href="../../elements/mnx/">mnx</a>&gt;</div>
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}Elements used in {{ SITE_OPTIONS.xml_format_name }}{% endblock %}
+{% block title %}Elements used in {{ schema.name }}{% endblock %}
 
 {% block content %}
-<h1>Elements used in {{ SITE_OPTIONS.xml_format_name }}</h1>
+<p class="breadcrumb">
+    <a href="{% relative_url 'homepage' %}">{{ SITE_OPTIONS.site_name }}</a> &gt;
+    <a href="{% relative_url_string schema.reference_url %}">Reference</a> &gt;
+    Elements
+</p>
 
-<p><a href="{% relative_url 'element_tree' %}">Tree view</a> | <b>Alphabetical list</b></p>
+<h1>Elements used in {{ schema.name }}</h1>
+
+<p><a href="{% relative_url_string schema.element_tree_url %}">Tree view</a> | <b>Alphabetical list</b></p>
 
 <ul>
 {% for element in elements %}

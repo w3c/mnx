@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}{{ SITE_OPTIONS.xml_format_name }} example documents{% endblock %}
+{% block title %}{{ schema.name }} example documents{% endblock %}
 
 {% block content %}
-<h1>{{ SITE_OPTIONS.xml_format_name }} example documents</h1>
+<p class="breadcrumb">
+    <a href="{% relative_url 'homepage' %}">{{ SITE_OPTIONS.site_name }}</a> &gt;
+    <a href="{% relative_url_string schema.reference_url %}">Reference</a> &gt;
+    Examples
+</p>
+
+<h1>{{ schema.name }} example documents</h1>
 
 {% for example in examples %}
 <div style="margin-bottom: 40px;">

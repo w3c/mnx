@@ -3,7 +3,12 @@
 {% block title %}The {{ element.name_with_brackets }} element{% endblock %}
 
 {% block content %}
-<p class="breadcrumb"><a href="{% relative_url 'element_list' %}">Elements</a> &gt; {{ element.name }}</p>
+<p class="breadcrumb">
+    <a href="{% relative_url 'homepage' %}">{{ SITE_OPTIONS.site_name }}</a> &gt;
+    <a href="{% relative_url_string element.schema.reference_url %}">Reference</a> &gt;
+    <a href="{% relative_url_string element.schema.elements_url %}">Elements</a> &gt;
+    {{ element.name }}
+</p>
 
 <h1>The {{ element.name_with_brackets }} element</h1>
 
