@@ -57,13 +57,19 @@ def element_tree(request, schema_slug):
         'tree_html': htmlutils.get_element_tree_html(request.path, root_element),
     })
 
-def data_type_list(request):
+def data_type_list(request, schema_slug):
+    schema = get_object_or_404(XMLSchema, slug=schema_slug)
     return render(request, 'data_type_list.html', {
-        'data_types': DataType.objects.order_by('name'),
+        'schema': schema,
+        'data_types': DataType.objects.filter(schema=schema).order_by('name'),
     })
 
-def data_type_detail(request, slug):
-    data_type = get_object_or_404(DataType, slug=slug)
+def data_type_detail(request, schema_slug, slug):
+    data_type = get_object_or_404(
+        DataType.objects.select_related('schema'),
+        schema__slug=schema_slug,
+        slug=slug
+    )
     el_attributes = []
     qs = XMLAttribute.objects.filter(data_type=data_type)
     for att in qs.filter(element__isnull=False):

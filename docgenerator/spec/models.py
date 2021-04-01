@@ -14,9 +14,37 @@ class SiteOptions(models.Model):
     def __str__(self):
         return self.site_name
 
+class XMLSchema(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.CharField(max_length=100, unique=True)
+
+    class Meta:
+        db_table = 'xml_schemas'
+        verbose_name = 'XML schema'
+        verbose_name_plural = 'XML schemas'
+
+    def __str__(self):
+        return self.name
+
+    def reference_url(self):
+        return reverse('reference_homepage', args=(self.slug,))
+
+    def data_types_url(self):
+        return reverse('data_type_list', args=(self.slug,))
+
+    def examples_url(self):
+        return reverse('example_list', args=(self.slug,))
+
+    def elements_url(self):
+        return reverse('element_list', args=(self.slug,))
+
+    def element_tree_url(self):
+        return reverse('element_tree', args=(self.slug,))
+
 class DataType(models.Model):
     name = models.CharField(max_length=80)
     slug = models.CharField(max_length=80, unique=True)
+    schema = models.ForeignKey(XMLSchema, on_delete=models.CASCADE)
     description = models.TextField(blank=True,
         help_text='HTML tags are allowed here.'
     )
@@ -43,7 +71,7 @@ class DataType(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('data_type_detail', args=(self.slug,))
+        return reverse('data_type_detail', args=(self.schema.slug, self.slug,))
 
 class DataTypeOption(models.Model):
     data_type = models.ForeignKey(DataType, on_delete=models.CASCADE)
@@ -84,30 +112,6 @@ class DocumentFormat(models.Model):
 
     def comparison_url(self):
         return reverse('format_comparison_detail', args=(self.slug,))
-
-class XMLSchema(models.Model):
-    name = models.CharField(max_length=100)
-    slug = models.CharField(max_length=100, unique=True)
-
-    class Meta:
-        db_table = 'xml_schemas'
-        verbose_name = 'XML schema'
-        verbose_name_plural = 'XML schemas'
-
-    def __str__(self):
-        return self.name
-
-    def reference_url(self):
-        return reverse('reference_homepage', args=(self.slug,))
-
-    def examples_url(self):
-        return reverse('example_list', args=(self.slug,))
-
-    def elements_url(self):
-        return reverse('element_list', args=(self.slug,))
-
-    def element_tree_url(self):
-        return reverse('element_tree', args=(self.slug,))
 
 class XMLElement(models.Model):
     CHILDREN_TYPE_UNORDERED = 1

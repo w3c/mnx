@@ -24,10 +24,6 @@ class SiteGenerator:
         self.copy_media_files()
         self.generate_view('homepage')
 
-        self.generate_view('data_type_list')
-        for data_type in DataType.objects.all():
-            self.generate_url(data_type.get_absolute_url())
-
         self.generate_view('concept_list')
         for concept in Concept.objects.all():
             self.generate_url(concept.get_absolute_url())
@@ -36,6 +32,10 @@ class SiteGenerator:
             self.generate_url(doc_format.comparison_url())
 
         for schema in XMLSchema.objects.all():
+            self.generate_url(schema.data_types_url())
+            for data_type in DataType.objects.filter(schema=schema):
+                self.generate_url(data_type.get_absolute_url())
+
             self.generate_url(schema.elements_url())
             self.generate_url(schema.element_tree_url())
             for element in XMLElement.objects.filter(schema=schema, is_abstract_element=False):

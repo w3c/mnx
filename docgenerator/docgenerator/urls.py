@@ -4,9 +4,9 @@ from spec import views
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
-    path('data-types/', views.data_type_list, name='data_type_list'),
-    path('data-types/<slug:slug>/', views.data_type_detail, name='data_type_detail'),
     path('<slug:schema_slug>-reference/', views.reference_homepage, name='reference_homepage'),
+    path('<slug:schema_slug>-reference/data-types/', views.data_type_list, name='data_type_list'),
+    path('<slug:schema_slug>-reference/data-types/<slug:slug>/', views.data_type_detail, name='data_type_detail'),
     path('<slug:schema_slug>-reference/elements/', views.element_list, name='element_list'),
     path('<slug:schema_slug>-reference/elements/<slug:slug>/', views.element_detail, name='element_detail'),
     path('<slug:schema_slug>-reference/element-tree/', views.element_tree, name='element_tree'),

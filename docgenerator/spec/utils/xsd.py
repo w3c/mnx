@@ -23,6 +23,7 @@ class XSDParser:
         except IndexError:
             raise ValueError(f'XML schema with slug "{schema_slug}" not found. Make sure to create it in your DB.')
         self.element_qs = XMLElement.objects.filter(schema=self.schema)
+        self.data_type_qs = DataType.objects.filter(schema=self.schema)
         self.xml = etree.XML(
             filedata,
             etree.XMLParser(resolve_entities=False) # resolve_entities prevents XXE attacks.
@@ -273,6 +274,7 @@ class XSDParser:
         data_type = DataType.objects.create(
             name=type_name,
             slug=type_name,
+            schema=self.schema,
             description=description,
             is_featured=False,
             xsd_name='',
@@ -313,6 +315,7 @@ class XSDParser:
             xsd_name = name[len(XSD_NS_PREFIX):]
             data_type, was_created = DataType.objects.get_or_create(
                 xsd_name=xsd_name,
+                schema=self.schema,
                 defaults={
                     'name': xsd_name,
                     'slug': f'xsd-{xsd_name}',
@@ -327,7 +330,7 @@ class XSDParser:
             )
         else:
             try:
-                data_type = DataType.objects.filter(slug=name)[0]
+                data_type = self.data_type_qs.filter(slug=name)[0]
             except IndexError:
                 data_type = self.parse_simple_type(
                     simple_type_xpath(self.xml, name=name)[0]

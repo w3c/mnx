@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}Data types used in {{ SITE_OPTIONS.xml_format_name }}{% endblock %}
+{% block title %}Data types used in {{ schema.name }}{% endblock %}
 
 {% block content %}
 <p class="breadcrumb">
     <a href="{% relative_url 'homepage' %}">{{ SITE_OPTIONS.site_name }}</a> &gt;
+    <a href="{% relative_url_string schema.reference_url %}">Reference</a> &gt;
     Data types
 </p>
 
-<h1>Data types used in {{ SITE_OPTIONS.xml_format_name }}</h1>
+<h1>Data types used in {{ schema.name }}</h1>
 
 <ul>
 {% for data_type in data_types %}

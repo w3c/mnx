@@ -39,6 +39,7 @@
     "fields": {
         "name": "Time signature",
         "slug": "time-signature",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -56,6 +57,7 @@
     "fields": {
         "name": "Clef sign",
         "slug": "clef-sign",
+        "schema": 1,
         "description": "",
         "is_featured": true,
         "xsd_name": "",
@@ -73,6 +75,7 @@
     "fields": {
         "name": "Staff line",
         "slug": "staff-line",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -90,6 +93,7 @@
     "fields": {
         "name": "Rhythmic duration",
         "slug": "rhythmic-duration",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -107,6 +111,7 @@
     "fields": {
         "name": "Chromatic pitch",
         "slug": "chromatic-pitch",
+        "schema": 1,
         "description": "",
         "is_featured": true,
         "xsd_name": "",
@@ -124,6 +129,7 @@
     "fields": {
         "name": "Accidental",
         "slug": "accidental",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -141,6 +147,7 @@
     "fields": {
         "name": "Note ID",
         "slug": "note-id",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -158,6 +165,7 @@
     "fields": {
         "name": "Event ID",
         "slug": "event-id",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -175,6 +183,7 @@
     "fields": {
         "name": "Event ID list",
         "slug": "event-id-list",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -192,6 +201,7 @@
     "fields": {
         "name": "Beam hook direction",
         "slug": "beam-hook-direction",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -209,6 +219,7 @@
     "fields": {
         "name": "Note value quantity",
         "slug": "note-value-quantity",
+        "schema": 1,
         "description": "",
         "is_featured": true,
         "xsd_name": "",
@@ -226,6 +237,7 @@
     "fields": {
         "name": "Octave shift type",
         "slug": "octave-shift-type",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -243,6 +255,7 @@
     "fields": {
         "name": "Measure location",
         "slug": "measure-location",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -260,6 +273,7 @@
     "fields": {
         "name": "Slur side",
         "slug": "slur-side",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -277,6 +291,7 @@
     "fields": {
         "name": "Slur end location",
         "slug": "slur-end-location",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -294,6 +309,7 @@
     "fields": {
         "name": "Line type",
         "slug": "line-type",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -311,6 +327,7 @@
     "fields": {
         "name": "Repeat type",
         "slug": "repeat-type",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -328,6 +345,7 @@
     "fields": {
         "name": "Repeat times",
         "slug": "repeat-times",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -345,6 +363,7 @@
     "fields": {
         "name": "Ending type",
         "slug": "ending-type",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -362,6 +381,7 @@
     "fields": {
         "name": "Ending number",
         "slug": "ending-number",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -379,6 +399,7 @@
     "fields": {
         "name": "Jump type",
         "slug": "jump-type",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -396,6 +417,7 @@
     "fields": {
         "name": "Grace note type",
         "slug": "grace-note-type",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -413,6 +435,7 @@
     "fields": {
         "name": "Yes or no",
         "slug": "yes-or-no",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -430,6 +453,7 @@
     "fields": {
         "name": "Yes, no or auto",
         "slug": "yes-no-or-auto",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -447,6 +471,7 @@
     "fields": {
         "name": "Orientation",
         "slug": "orientation",
+        "schema": 1,
         "description": "This specifies the placement and rendering of content.",
         "is_featured": false,
         "xsd_name": "",
@@ -464,6 +489,7 @@
     "fields": {
         "name": "Staff index",
         "slug": "staff-index",
+        "schema": 1,
         "description": "The one-based numeric index of a staff within a part. In a single-staff part, this will be \"1\". In a grand staff part (which has two staves), the top staff has staff index \"1\" and the bottom staff has staff index \"2\".\r\n\r\nWithin a part, staff indexes should always increment by 1. For example, it's an error for a two-staff part to use staff indexes \"1\" and \"3\".",
         "is_featured": false,
         "xsd_name": "",
@@ -481,6 +507,7 @@
     "fields": {
         "name": "Dynamic type",
         "slug": "dynamic-type",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -498,6 +525,7 @@
     "fields": {
         "name": "Wedge type",
         "slug": "wedge-type",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "",
@@ -515,6 +543,7 @@
     "fields": {
         "name": "String",
         "slug": "string",
+        "schema": 1,
         "description": "",
         "is_featured": false,
         "xsd_name": "string",
@@ -532,6 +561,7 @@
     "fields": {
         "name": "Integer (signed)",
         "slug": "integer-signed",
+        "schema": 1,
         "description": "As defined at https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#signed-integers",
         "is_featured": false,
         "xsd_name": "",

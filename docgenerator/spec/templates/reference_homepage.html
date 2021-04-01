@@ -31,6 +31,6 @@
 {% for data_type in featured_data_types %}
 <a href="{% relative_url_string data_type.get_absolute_url %}">{{ data_type.name }}</a> ·
 {% endfor %}
-<a href="{% relative_url 'data_type_list' %}">See all…</a>
+<a href="{% relative_url_string schema.data_types_url %}">See all…</a>
 </p>
 {% endblock %}
