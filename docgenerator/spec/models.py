@@ -335,7 +335,7 @@ class StaticPage(models.Model):
         help_text='Make sure it starts and ends with slashes.'
     )
     collection = models.ForeignKey(StaticPageCollection, on_delete=models.CASCADE)
-    order = models.SmallIntegerField() # Order within the collection.
+    order = models.SmallIntegerField(help_text='This is the order of the page within the collection. Ordering is ascending.')
     content = models.TextField()
 
     class Meta:
