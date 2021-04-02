@@ -251,13 +251,5 @@ The first argument, `musicxml`, must be the same as the slug you
 created for the XML schema via the admin. The second argument is
 the path to your XSD file.
 
-11. Go back to the admin website and do the following:
-
-    * On the admin index page, click "XML elements." Use the search
-      to find "score-partwise", then click that element to edit it.
-      Check the box next to "Is root," then save.
-
-    * Do the same for "score-timewise".
-
-12. Browse the site by going to http://127.0.0.1:8000/ in
+11. Browse the site by going to http://127.0.0.1:8000/ in
 your web browser.
