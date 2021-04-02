@@ -21,6 +21,25 @@
 </p>
 
 <h2>Assorted docs</h2>
+
 <p><a href="comparisons/musicxml/">Comparing MNX and MusicXML</a></p>
+
+{% if static_pages %}
+<h2>Static pages</h2>
+
+{% regroup static_pages by collection as static_collections %}
+<ul>
+    {% for collection in static_collections %}
+    <li>
+        <b>{{ collection.grouper.title }}</b>
+        <ul>
+            {% for static_page in collection.list %}
+            <li><a href="{% relative_url_string static_page.url %}">{{ static_page.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 {% endblock %}

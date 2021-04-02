@@ -7,6 +7,7 @@ def homepage(request):
     return render(request, 'homepage.html', {
         'schemas': XMLSchema.objects.order_by('name'),
         'featured_concepts': Concept.objects.filter(is_featured=True).order_by('name'),
+        'static_pages': StaticPage.objects.select_related('collection').order_by('collection__order', 'order'),
     })
 
 def reference_homepage(request, schema_slug):
