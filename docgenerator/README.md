@@ -213,7 +213,13 @@ python manage.py createsuperuser
 
 (The username and password don't matter.)
 
-7. Do some light bookkeeping via the Django admin:
+7. Run the Django web server:
+
+```
+python manage.py runserver
+```
+
+8. Do some light bookkeeping via the Django admin:
 
     * Go to http://127.0.0.1:8000/admin/ in your web browser, then
       enter the username and password you created.
@@ -229,13 +235,13 @@ python manage.py createsuperuser
     * For the site name, enter something like "MusicXML documentation".
       For the XML format name, enter "MusicXML". Then save.
 
-8. Get a copy of the MusicXML schema (the file `musicxml.xsd`):
+9. Get a copy of the MusicXML schema (the file `musicxml.xsd`):
 
 ```
 curl https://raw.githubusercontent.com/w3c/musicxml/gh-pages/schema/musicxml.xsd > musicxml.xsd
 ```
 
-9. Import the MusicXML schema into your local database:
+10. Import the MusicXML schema into your local database:
 
 ```
 python manage.py import_xsd musicxml musicxml.xsd
@@ -245,7 +251,7 @@ The first argument, `musicxml`, must be the same as the slug you
 created for the XML schema via the admin. The second argument is
 the path to your XSD file.
 
-10. Go back to the admin website and do the following:
+11. Go back to the admin website and do the following:
 
     * On the admin index page, click "XML elements." Use the search
       to find "score-partwise", then click that element to edit it.
@@ -253,5 +259,5 @@ the path to your XSD file.
 
     * Do the same for "score-timewise".
 
-11. Browse the site by going to http://127.0.0.1:8000/ in
+12. Browse the site by going to http://127.0.0.1:8000/ in
 your web browser.
