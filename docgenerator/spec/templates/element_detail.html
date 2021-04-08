@@ -12,34 +12,30 @@
 
 <h1>The {{ element.name_with_brackets }} element</h1>
 
-<ul>
-    {% if content_data_type %}
-    <li>Content: <a href="{% relative_url_string content_data_type.get_absolute_url %}">{{ content_data_type.name }}</a></li>
+<p>Parent element{{ parents|pluralize }}:
+    {% if parents %}
+        {% for parent in parents %}
+        <a href="{% relative_url_string parent.get_absolute_url %}">{{ parent.name_with_brackets }}</a>
+        {% endfor %}
+    {% else %}
+        None
     {% endif %}
-    <li>Parent element{{ parents|pluralize }}:
-        {% if parents %}
-            {% for parent in parents %}
-            <a href="{% relative_url_string parent.get_absolute_url %}">{{ parent.name_with_brackets }}</a>
-            {% endfor %}
-        {% else %}
-            None
-        {% endif %}
-    </li>
-    <li>Child element{{ children|pluralize }}:
-        {% if children %}
-            {% for child in children %}
-            <a href="{% relative_url_string child.get_absolute_url %}">{{ child.name_with_brackets }}</a>
-            {% endfor %}
-        {% else %}
-            None
-        {% endif %}
-    </li>
-</ul>
+</p>
 
 {% if element.description %}
 {{ element.description|safe|linebreaksbr }}
 {% elif element.base_element and element.base_element.description %}
 {{ element.base_element.description|safe|linebreaksbr }}
+{% endif %}
+
+<h2>Content</h2>
+
+{% if content_data_type %}
+    <p><a href="{% relative_url_string content_data_type.get_absolute_url %}">{{ content_data_type.name }}</a></p>
+{% elif child_relationships %}
+    {% include "includes/element_child_relationships.html" with element=element %}
+{% else %}
+    <p>Always empty.</p>
 {% endif %}
 
 <h2>Attributes</h2>

@@ -175,6 +175,12 @@ class XMLElement(models.Model):
             return self.base_element.get_content_data_type()
         return None
 
+    def get_child_relationships(self):
+        if self.base_element:
+            return self.base_element.get_child_relationships()
+        else:
+            return list(XMLRelationship.objects.filter(parent=self).order_by('child_order'))
+
     def get_child_elements(self):
         result = []
         for child in XMLElement.objects.filter(child_rel__parent=self):
@@ -204,6 +210,13 @@ class XMLElement(models.Model):
             result.append(self.base_element)
             result.extend(self.base_element.get_all_base_elements())
         return result
+
+    def get_children_type_text(self):
+        return {
+            XMLElement.CHILDREN_TYPE_UNORDERED: 'In any order',
+            XMLElement.CHILDREN_TYPE_SEQUENCE: 'In this order',
+            XMLElement.CHILDREN_TYPE_CHOICE: 'One of the following',
+        }[self.children_type]
 
 class XMLAttributeGroup(models.Model):
     name = models.CharField(max_length=300, unique=True)

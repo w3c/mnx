@@ -37,7 +37,7 @@ def element_detail(request, schema_slug, slug):
         'element': element,
         'content_data_type': element.get_content_data_type(),
         'attributes': element.get_attributes(),
-        'children': element.get_child_elements(),
+        'child_relationships': element.get_child_relationships(),
         'parents': element.get_parent_elements(),
         'concepts': ElementConcept.objects.filter(element=element).select_related('concept'),
         'examples': ExampleDocumentElement.objects.filter(element_name=element.name).select_related('example').order_by('example__name'),

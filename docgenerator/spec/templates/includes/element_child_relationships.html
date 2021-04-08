@@ -1,0 +1,27 @@
+{# variables: element #}
+
+{% with element.get_child_relationships as child_relationships %}
+{% if child_relationships|length == 1 %}
+    {% with child_relationships.0 as relationship %}
+    {% if relationship.child.is_abstract_element %}
+        {% include "includes/element_child_relationships.html" with element=relationship.child %}
+    {% else %}
+        <a href="{% relative_url_string relationship.child.get_absolute_url %}">{{ relationship.child.name_with_brackets }}</a>
+    {% endif %}
+    {% endwith %}
+{% else %}
+    {{ element.get_children_type_text }}
+    <ul>
+        {% for relationship in child_relationships %}
+        <li>
+            {% if relationship.child.is_abstract_element %}
+                {% include "includes/element_child_relationships.html" with element=relationship.child %}
+            {% else %}
+                <a href="{% relative_url_string relationship.child.get_absolute_url %}">{{ relationship.child.name_with_brackets }}</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endwith %}
