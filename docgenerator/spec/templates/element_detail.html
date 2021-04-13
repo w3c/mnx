@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}The {{ element.name_with_brackets }} element{% endblock %}
+{% block title %}The {{ element.name_with_brackets }} element{{ element.optional_disambiguation }}{% endblock %}
 
 {% block content %}
 <p class="breadcrumb">
     <a href="{% relative_url 'homepage' %}">{{ SITE_OPTIONS.site_name }}</a> &gt;
     <a href="{% relative_url_string element.schema.reference_url %}">Reference</a> &gt;
     <a href="{% relative_url_string element.schema.elements_url %}">Elements</a> &gt;
-    {{ element.name }}
+    {{ element.name }}{{ element.optional_disambiguation }}
 </p>
 
-<h1>The {{ element.name_with_brackets }} element</h1>
+<h1>The {{ element.name_with_brackets }} element{{ element.optional_disambiguation }}</h1>
 
 <p>Parent element{{ parents|pluralize }}:
     {% if parents %}

@@ -125,6 +125,9 @@ class XMLElement(models.Model):
 
     name = models.CharField(max_length=80)
     slug = models.CharField(max_length=80)
+    disambiguation = models.CharField(max_length=80, blank=True,
+        help_text='This is displayed next to the element name in parentheses in order to disambiguate it. E.g., "timewise" for <part>'
+    )
     schema = models.ForeignKey(XMLSchema, on_delete=models.CASCADE)
     base_element = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
     is_abstract_element = models.BooleanField(default=False)
@@ -159,6 +162,11 @@ class XMLElement(models.Model):
 
     def name_with_brackets(self):
         return f'<{self.name}>'
+
+    def optional_disambiguation(self):
+        if self.disambiguation:
+            return f' ({self.disambiguation})'
+        return ''
 
     def get_attributes(self):
         result = []
