@@ -296,7 +296,8 @@ class XSDParser:
     def parse_attribute_group(self, el):
         "Parses <xs:attributeGroup>"
         ag = XMLAttributeGroup.objects.create(
-            name=el.attrib['name']
+            name=el.attrib['name'],
+            description=self.parse_annotation_documentation(el),
         )
         for att_el in el.xpath('x:attribute', namespaces={'x': XSD_NS}):
             if 'name' not in att_el.attrib:

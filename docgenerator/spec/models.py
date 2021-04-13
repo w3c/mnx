@@ -228,6 +228,9 @@ class XMLElement(models.Model):
 
 class XMLAttributeGroup(models.Model):
     name = models.CharField(max_length=300, unique=True)
+    description = models.TextField(blank=True,
+        help_text='This is not displayed publicly.'
+    )
 
     class Meta:
         db_table = 'xml_attribute_groups'
