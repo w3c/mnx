@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
 <title>The &lt;sequence&gt; element | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../static/styles.css">
 
 </head>
@@ -22,31 +23,60 @@
 
 <h1>The &lt;sequence&gt; element</h1>
 
-<ul>
+<p>Parent element:
     
-    <li>Parent element:
         
-            
-            <a href="../measure-part/">&lt;measure&gt;</a>
-            
+        <a href="../measure-part/">&lt;measure&gt;</a>
         
-    </li>
-    <li>Child elements:
+    
+</p>
+
+
+
+<h2>Content</h2>
+
+
+    
+
+
+
+    In any order
+    <ul>
         
+        <li>
             
-            <a href="../beams/">&lt;beams&gt;</a>
+                <a href="../event/">&lt;event&gt;</a> (One or more times)
             
-            <a href="../directions-sequence/">&lt;directions&gt;</a>
-            
-            <a href="../event/">&lt;event&gt;</a>
-            
-            <a href="../grace/">&lt;grace&gt;</a>
-            
-            <a href="../tuplet/">&lt;tuplet&gt;</a>
-            
+        </li>
         
-    </li>
-</ul>
+        <li>
+            
+                <a href="../beams/">&lt;beams&gt;</a> (Optional)
+            
+        </li>
+        
+        <li>
+            
+                <a href="../tuplet/">&lt;tuplet&gt;</a> (Zero or more times)
+            
+        </li>
+        
+        <li>
+            
+                <a href="../grace/">&lt;grace&gt;</a> (Zero or more times)
+            
+        </li>
+        
+        <li>
+            
+                <a href="../directions-sequence/">&lt;directions&gt;</a> (Zero or more times)
+            
+        </li>
+        
+    </ul>
+
+
+
 
 
 

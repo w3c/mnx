@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The &lt;directions&gt; element | MNX specification</title>
+<title>The &lt;directions&gt; element (sequence) | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../static/styles.css">
 
 </head>
@@ -17,40 +18,77 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">Reference</a> &gt;
     <a href="../">Elements</a> &gt;
-    directions
+    directions (sequence)
 </p>
 
-<h1>The &lt;directions&gt; element</h1>
+<h1>The &lt;directions&gt; element (sequence)</h1>
 
-<ul>
+<p>Parent element:
     
-    <li>Parent element:
         
-            
-            <a href="../sequence/">&lt;sequence&gt;</a>
-            
+        <a href="../sequence/">&lt;sequence&gt;</a>
         
-    </li>
-    <li>Child elements:
+    
+</p>
+
+
+
+<h2>Content</h2>
+
+
+    
+
+
+
+    In any order
+    <ul>
         
+        <li>
             
-            <a href="../cresc/">&lt;cresc&gt;</a>
+                <a href="../octave-shift/">&lt;octave-shift&gt;</a> (Zero or more times)
             
-            <a href="../dim/">&lt;dim&gt;</a>
-            
-            <a href="../dynamics/">&lt;dynamics&gt;</a>
-            
-            <a href="../expression/">&lt;expression&gt;</a>
-            
-            <a href="../instruction/">&lt;instruction&gt;</a>
-            
-            <a href="../octave-shift/">&lt;octave-shift&gt;</a>
-            
-            <a href="../wedge/">&lt;wedge&gt;</a>
-            
+        </li>
         
-    </li>
-</ul>
+        <li>
+            
+                <a href="../dynamics/">&lt;dynamics&gt;</a> (Zero or more times)
+            
+        </li>
+        
+        <li>
+            
+                <a href="../instruction/">&lt;instruction&gt;</a> (Zero or more times)
+            
+        </li>
+        
+        <li>
+            
+                <a href="../expression/">&lt;expression&gt;</a> (Zero or more times)
+            
+        </li>
+        
+        <li>
+            
+                <a href="../wedge/">&lt;wedge&gt;</a> (Zero or more times)
+            
+        </li>
+        
+        <li>
+            
+                <a href="../cresc/">&lt;cresc&gt;</a> (Zero or more times)
+            
+        </li>
+        
+        <li>
+            
+                <a href="../dim/">&lt;dim&gt;</a> (Zero or more times)
+            
+        </li>
+        
+    </ul>
+
+
+
 
 
 
