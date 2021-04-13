@@ -299,18 +299,24 @@ class XSDParser:
             name=el.attrib['name'],
             description=self.parse_annotation_documentation(el),
         )
-        for att_el in el.xpath('x:attribute', namespaces={'x': XSD_NS}):
-            if 'name' not in att_el.attrib:
-                print(f'Skipping <attributeGroup {ag.name}> attribute due to missing "name"')
-                continue # TODO: Handle <xs:attribute ref="xml:lang"/>.
-            XMLAttribute.objects.create(
-                element=None,
-                attribute_group=ag,
-                name=att_el.attrib['name'],
-                is_required=att_el.attrib.get('use') == 'required',
-                description='',
-                data_type=self.get_or_create_data_type(att_el.attrib['type']),
-            )
+        for sub_el in el:
+            tag_name = sub_el.tag
+            if tag_name == f'{{{XSD_NS}}}attribute':
+                if 'name' not in sub_el.attrib:
+                    print(f'Skipping <attributeGroup {ag.name}> attribute due to missing "name"')
+                    continue # TODO: Handle <xs:attribute ref="xml:lang"/>.
+                XMLAttribute.objects.create(
+                    element=None,
+                    attribute_group=ag,
+                    name=sub_el.attrib['name'],
+                    is_required=sub_el.attrib.get('use') == 'required',
+                    description='',
+                    data_type=self.get_or_create_data_type(sub_el.attrib['type']),
+                )
+            elif tag_name == f'{{{XSD_NS}}}attributeGroup':
+                ag.child_groups.add(
+                    self.get_or_create_attribute_group(sub_el.attrib['ref'])
+                )
         return ag
 
     def get_or_create_data_type(self, name):

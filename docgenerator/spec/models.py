@@ -172,7 +172,8 @@ class XMLElement(models.Model):
         result = []
         for el in [self] + self.get_all_base_elements():
             result += list(el.xmlattribute_set.all())
-            result += list(XMLAttribute.objects.filter(attribute_group__xmlelement=el))
+            for att_group in el.attribute_groups.all():
+                result.extend(att_group.get_attributes())
         result.sort(key=lambda x: x.name)
         return result
 
@@ -231,6 +232,7 @@ class XMLAttributeGroup(models.Model):
     description = models.TextField(blank=True,
         help_text='This is not displayed publicly.'
     )
+    child_groups = models.ManyToManyField('XMLAttributeGroup', blank=True)
 
     class Meta:
         db_table = 'xml_attribute_groups'
@@ -239,6 +241,12 @@ class XMLAttributeGroup(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_attributes(self):
+        result = list(XMLAttribute.objects.filter(attribute_group=self))
+        for child_group in self.child_groups.all():
+            result.extend(child_group.get_attributes())
+        return result
 
 class XMLAttribute(models.Model):
     element = models.ForeignKey(XMLElement, on_delete=models.CASCADE, null=True)

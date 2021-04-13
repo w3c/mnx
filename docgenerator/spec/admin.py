@@ -40,6 +40,7 @@ class XMLAttributeGroupAdmin(admin.ModelAdmin):
     inlines = [XMLAttributeGroupAttributeInline]
     list_display = ['name']
     ordering = ['name']
+    filter_horizontal = ['child_groups']
 
 class DataTypeOptionInline(admin.TabularInline):
     model = DataTypeOption
