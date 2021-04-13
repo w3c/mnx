@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.test.client import Client
 from django.urls import reverse
-from spec.models import Concept, DataType, DocumentFormat, ExampleDocument, XMLElement, XMLSchema
+from spec.models import *
 import os
 import shutil
 
@@ -32,6 +32,7 @@ class SiteGenerator:
             self.generate_url(doc_format.comparison_url())
 
         for schema in XMLSchema.objects.all():
+            self.generate_url(schema.reference_url())
             self.generate_url(schema.data_types_url())
             for data_type in DataType.objects.filter(schema=schema):
                 self.generate_url(data_type.get_absolute_url())
@@ -44,6 +45,12 @@ class SiteGenerator:
             self.generate_url(schema.examples_url())
             for example in ExampleDocument.objects.filter(schema=schema):
                 self.generate_url(example.get_absolute_url())
+
+        for spc in StaticPageCollection.objects.all():
+            self.generate_url(spc.url)
+
+        for static_page in StaticPage.objects.all():
+            self.generate_url(static_page.url)
 
     def generate_view(self, view_name, *view_args):
         url = reverse(view_name, args=view_args)
