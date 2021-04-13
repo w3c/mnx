@@ -259,6 +259,19 @@ class XMLRelationship(models.Model):
         verbose_name = 'XML relationship'
         verbose_name_plural = 'XML relationships'
 
+    def pretty_amount(self):
+        min_amount = self.min_amount
+        max_amount = self.max_amount
+        if min_amount == 1 and max_amount == 1:
+            return 'Required'
+        if min_amount == 0 and max_amount == 1:
+            return 'Optional'
+        if min_amount == 0 and max_amount is None:
+            return 'Zero or more times'
+        if min_amount == 1 and max_amount is None:
+            return 'One or more times'
+        return f'{min_amount} to {max_amount} times'
+
 class ExampleDocument(models.Model):
     name = models.CharField(max_length=300)
     slug = models.CharField(max_length=100)
