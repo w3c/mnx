@@ -111,7 +111,7 @@ filename.)
 
 ### Generating a static HTML version of the docs
 
-To generate a static version of the docs -- as opposed
+To export a static version of the docs -- as opposed
 to the dynamic one you can browse via the local web
 server -- do the following:
 
@@ -120,11 +120,26 @@ python manage.py makesite ../docs/
 ```
 
 This will create static HTML files for each page of the
-docs, linking them appropriately. It also includes the
-media files, such as CSS and example images.
+docs, using relative links appropriately. It also includes
+the media files, such as CSS and example images.
 
-(The `../docs/` in this command lets you specify the
-output location of the static site.)
+The `../docs/` in this command lets you specify the
+output location of the static site. For example, this
+command will generate them at `/Users/mnx/Desktop`:
+
+```
+python manage.py makesite /Users/mnx/Desktop
+```
+
+To view the static site, find the top-level `index.html`
+file in the directory you specified in the `makesite`
+command, and open that `index.html` file in your web
+browser. Note that this is entirely separate from the
+local Django-powered web server and you don't need to be
+running the Django server in order to view these docs.
+In fact you don't need any other parts of this code or
+repository; the docs are completely self-contained and
+can be safely put on a web server somewhere.
 
 ## Updating your local database with the latest changes
 
