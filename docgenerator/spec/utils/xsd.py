@@ -204,12 +204,11 @@ class XSDParser:
 
     def parse_minmax_occurs(self, el, is_min):
         att_name = 'minOccurs' if is_min else 'maxOccurs'
-        val = el.attrib.get(att_name, None)
-        if val is not None:
-            if val == 'unbounded':
-                val = None
-            elif val.isdigit():
-                val = int(val)
+        val = el.attrib.get(att_name, '1')
+        if val == 'unbounded':
+            val = None
+        elif val.isdigit():
+            val = int(val)
         return val
 
     def parse_group(self, el):
