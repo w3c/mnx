@@ -131,15 +131,21 @@ command will generate them at `/Users/mnx/Desktop`:
 python manage.py makesite /Users/mnx/Desktop
 ```
 
-To view the static site, find the top-level `index.html`
-file in the directory you specified in the `makesite`
-command, and open that `index.html` file in your web
-browser. Note that this is entirely separate from the
-local Django-powered web server and you don't need to be
-running the Django server in order to view these docs.
-In fact you don't need any other parts of this code or
-repository; the docs are completely self-contained and
-can be safely put on a web server somewhere.
+The easiest way to view the static site is to find the
+top-level `index.html` file in the directory you
+specified in the `makesite` command, and open that
+`index.html` file in your web browser.
+
+A nicer way (avoiding the problem of web browsers
+displaying directory indexes) is to use Python's built-in
+web server, via this command:
+
+```
+python -m http.server --directory /path/to/docs/
+```
+
+This will make the docs available at `http://127.0.0.1:8000/`
+on your local machine.
 
 ## Updating your local database with the latest changes
 
