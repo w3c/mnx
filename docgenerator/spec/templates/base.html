@@ -9,11 +9,26 @@
 </head>
 
 <body>
-<div class="topnav"><a href="{% relative_url 'homepage' %}">{{ SITE_OPTIONS.site_name }}</a></div>
+<div class="topnav"><a href="{% relative_url 'homepage' %}">
+    <span class="logo-text">{{ SITE_OPTIONS.site_name }}</span>
+    <img alt="W3C" src="https://www.w3.org/Icons/w3c_home" height="21px" >
+</a></div>
 
 {% block content_full %}
 <div class="content">
-{% block content %}{% endblock %}
+    <nav class="sidenav">
+        <ul>
+            <li><a href="#">Nav 1</a></li>
+            <li><a href="#">Nav 2</a></li>
+            <li><a href="#">Nav 3</a></li>
+            <li><a href="#">Nav 4</a></li>
+            <li><a href="#">Nav 5</a></li>
+            <li><a href="#">Nav 6</a></li>
+        </ul>
+    </nav>
+    <main>
+    {% block content %}{% endblock %}
+    </main>
 </div>
 {% endblock %}
 

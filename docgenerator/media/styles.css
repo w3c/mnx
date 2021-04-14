@@ -12,7 +12,7 @@ blockquote, q { quotes: none; }
 html {
     color: #24292e;
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
-    font-size: 18px;
+    font-size: inherit;
     line-height: 1.6125;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -33,18 +33,14 @@ h3 {
     font-size: 18px;
 }
 a:link {
-    color: #003569;
+    color: #0366d6;
+    text-decoration: none;
 }
 code {
     white-space: nowrap;
 }
 
 /* Styles */
-.topnav {
-    background: #ccc;
-    padding: 10px;
-    margin: 0 0 20px;
-}
 li {
     margin-left: 2em;
     list-style-type: circle;
@@ -54,13 +50,6 @@ p, ul, table {
 }
 .nestedul {
     margin-bottom: 0;
-}
-.content {
-    max-width: 34rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-left: auto;
-    margin-right: auto;
 }
 .xmlmarkup {
     display: block;
@@ -95,4 +84,80 @@ th {
 thead th {
     font-size: 14px;
     padding: 5px 5px 5px 0;
+}
+
+/* Custom styles */
+
+html,
+body {
+    height: 100%;
+}
+
+.content {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+main {
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 800px;
+    flex-grow: 999;
+    flex-basis: 0;
+}
+
+/* Topnav */
+.topnav {
+    padding: 14px 10px;
+    box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.075);
+    color: inherit;
+}
+.topnav a {
+    line-height: 1;
+    font-weight: 600;
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo-text {
+    margin-right: 8px;
+}
+
+/* Sidenav */
+.sidenav {
+    z-index: -1;
+    flex-grow: 1;
+    max-width: 200px;
+    flex-basis: 20%;
+    padding: 30px 20px 20px;
+    background-color: #F8F5F5;
+    border-right: 1px solid hsl(0, 0%, 92%);
+}
+.sidenav li {
+    list-style: none;
+    margin-left: 0;
+    margin-bottom: 6px;
+}
+.sidenav li a {
+    text-decoration: none;
+    color: inherit;
+}
+.sidenav li a:hover {
+    text-decoration: underline;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    color: hsl(0, 0%, 34%, 0.7);
+    margin-bottom: 10px;
+}
+.breadcrumb a {
+    color: hsla(0, 0%, 34%);
+    text-decoration: none;
+}
+.breadcrumb a:hover {
+    text-decoration: underline;
 }
