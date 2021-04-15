@@ -42,8 +42,7 @@ code {
 
 /* Styles */
 li {
-    margin-left: 2em;
-    list-style-type: circle;
+    margin-left: 1.75em;
 }
 p, ul, table {
     margin: 0 0 20px;
@@ -103,15 +102,19 @@ main {
     margin-right: auto;
     margin-left: auto;
     max-width: 800px;
+    padding-right: 40px;
+    padding-left: 40px;
     flex-grow: 999;
     flex-basis: 0;
 }
 
 /* Topnav */
 .topnav {
-    padding: 14px 10px;
+    padding: 14px 20px;
     box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.075);
     color: inherit;
+    display: flex;
+    justify-content: space-between;
 }
 .topnav a {
     line-height: 1;
@@ -121,9 +124,6 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.logo-text {
-    margin-right: 8px;
 }
 
 /* Sidenav */
@@ -160,4 +160,27 @@ main {
 }
 .breadcrumb a:hover {
     text-decoration: underline;
+}
+
+/* Utils */
+.xmlmarkup {
+    border: 1px solid hsla(0, 0%, 0%, 0.15);
+    border-radius: 6px;
+    padding: 15px;
+    background: white;
+    overflow: auto;
+}
+
+.toggle {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 0;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: inherit;
+    opacity: 0.8;
 }
