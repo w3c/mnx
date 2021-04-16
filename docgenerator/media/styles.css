@@ -149,6 +149,15 @@ main {
     text-decoration: underline;
 }
 
+.sidenav {
+    position: absolute;
+    transform: translateX(-100%);
+}
+.has-sidenav .sidenav {
+    position: static;
+    transform: translateX(0%);
+}
+
 /* Breadcrumb */
 .breadcrumb {
     color: hsl(0, 0%, 34%, 0.7);
@@ -185,13 +194,38 @@ main {
     opacity: 0.8;
 }
 
-.w3c-logo-homepage {
-    width: 62px;
-}
 .w3c-logo {
-    display: flex;
+    display: inline-flex;
     background: #1a5e9a;
     padding: 0.75em;
     border-radius: 0.4em;
     float: right;
+}
+.w3c-logo-homepage svg {
+    width: 62px;
+}
+
+@media (max-width: 800px) {
+    .w3c-logo {
+        float: none;
+        margin-bottom: 10px;
+        padding: 0.5em;
+    }
+    .w3c-logo-homepage svg {
+        width: 34px;
+        height: 22px;
+    }
+
+/*    .content {
+        height: auto;
+        flex-wrap: nowrap;
+        flex-direction: column-reverse;
+    }*/
+
+    .has-sidenav .sidenav {
+        width: 50%;
+        z-index: 1;
+        position: static;
+        transform: translateX(0%);
+    }
 }
