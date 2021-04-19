@@ -38,6 +38,10 @@ a:link {
 }
 code {
     white-space: nowrap;
+    display: none;
+}
+img {
+    max-width: 100%;
 }
 
 /* Styles */
@@ -99,6 +103,7 @@ body {
     display: flex;
 }
 main {
+    box-sizing: border-box;
     margin-top: 30px;
     margin-right: auto;
     margin-left: auto;
@@ -115,9 +120,9 @@ main {
     border-bottom: 1px solid hsl(0, 0%, 92%);
     color: inherit;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
-.topnav a {
+.logo {
     line-height: 1;
     font-weight: 600;
     color: inherit;
@@ -196,6 +201,9 @@ main {
     padding: 0;
     color: inherit;
     opacity: 0.8;
+
+    position: absolute;
+    left: 20px;
 }
 
 .w3c-logo {
@@ -218,6 +226,10 @@ main {
     .w3c-logo-homepage svg {
         width: 34px;
         height: 22px;
+    }
+
+    main {
+        max-width: 100%;
     }
 
     .has-sidenav .sidenav {
