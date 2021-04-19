@@ -87,13 +87,11 @@ thead th {
 
 /* Custom styles */
 
-html,
 body {
-    height: 100%;
+    position: relative; /* For .sidenav */
 }
 
 .content {
-    height: 100%;
     display: flex;
     flex-wrap: wrap;
 }
@@ -111,7 +109,7 @@ main {
 /* Topnav */
 .topnav {
     padding: 14px 20px;
-    box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.075);
+    border-bottom: 1px solid hsl(0, 0%, 92%);
     color: inherit;
     display: flex;
     justify-content: space-between;
@@ -128,7 +126,6 @@ main {
 
 /* Sidenav */
 .sidenav {
-    z-index: -1;
     flex-grow: 1;
     max-width: 200px;
     flex-basis: 20%;
@@ -220,16 +217,11 @@ main {
         height: 22px;
     }
 
-/*    .content {
-        height: auto;
-        flex-wrap: nowrap;
-        flex-direction: column-reverse;
-    }*/
-
     .has-sidenav .sidenav {
         width: 50%;
         z-index: 1;
-        position: static;
+        position: absolute;
         transform: translateX(0%);
+        height: 100%;
     }
 }
