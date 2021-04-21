@@ -185,6 +185,15 @@ class XMLElement(models.Model):
             return self.base_element.get_content_data_type()
         return None
 
+    def get_nonabstract_elements(self):
+        result = []
+        if self.is_abstract_element:
+            for el in XMLElement.objects.filter(base_element=self):
+                result.extend(el.get_nonabstract_elements())
+        else:
+            result.append(self)
+        return result
+
     def get_child_relationships(self):
         if self.base_element:
             return self.base_element.get_child_relationships()
