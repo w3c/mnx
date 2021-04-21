@@ -2,6 +2,12 @@
 
 {% block title %}{{ example.schema.name }} example: {{ example.name }}{% endblock %}
 
+{% block extrahead %}
+<style>
+.diff * { font-weight: bold; color: blue !important; }
+</style>
+{% endblock %}
+
 {% block content %}
 <p class="breadcrumb">
     <a href="{% relative_url 'homepage' %}">{{ SITE_OPTIONS.site_name }}</a> &gt;

@@ -144,7 +144,7 @@ class XMLAugmenter(DiffElementContentHandler):
             diff_html = self.get_pending_diff_markup()
             self.result.append(f'{html}{diff_html}{space}&lt;/{start_tag}{name}{end_tag}&gt;')
 
-def get_augmented_xml(current_url, xml_string, add_diffs=False):
+def get_augmented_xml(current_url, xml_string, add_diffs=True):
     reader = xml.sax.make_parser()
     handler = XMLAugmenter(current_url, add_diffs)
     xml.sax.parseString(xml_string, handler)
