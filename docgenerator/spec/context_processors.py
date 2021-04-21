@@ -1,8 +1,11 @@
-from spec.models import SiteOptions
+from spec.models import SiteOptions, XMLSchema
 
-def site_options(request):
+def docs_global_variables(request):
     try:
         so = SiteOptions.objects.all()[0]
     except IndexError:
         so = None
-    return {'SITE_OPTIONS': so}
+    return {
+        'SITE_OPTIONS': so,
+        'ALL_SCHEMAS': XMLSchema.objects.order_by('name'),
+    }

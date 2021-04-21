@@ -21,36 +21,22 @@
     <a class="logo" href="{% relative_url 'homepage' %}">
         <span class="logo-text">{{ SITE_OPTIONS.site_name }}</span>
     </a>
-</a></div>
+</div>
 
 {% block content_full %}
 <div class="content">
     <nav class="sidenav">
         <ul>
-            <li><a href="#">Nav 1</a></li>
-            <li><a href="#">Nav 2</a></li>
-            <li><a href="#">Nav 3</a></li>
-            <li><a href="#">Nav 4</a></li>
-            <li><a href="#">Nav 5</a></li>
-            <li><a href="#">Nav 6</a></li>
-            <li><a href="#">Nav 1</a></li>
-            <li><a href="#">Nav 2</a></li>
-            <li><a href="#">Nav 3</a></li>
-            <li><a href="#">Nav 4</a></li>
-            <li><a href="#">Nav 5</a></li>
-            <li><a href="#">Nav 6</a></li>
-            <li><a href="#">Nav 1</a></li>
-            <li><a href="#">Nav 2</a></li>
-            <li><a href="#">Nav 3</a></li>
-            <li><a href="#">Nav 4</a></li>
-            <li><a href="#">Nav 5</a></li>
-            <li><a href="#">Nav 6</a></li>
-            <li><a href="#">Nav 1</a></li>
-            <li><a href="#">Nav 2</a></li>
-            <li><a href="#">Nav 3</a></li>
-            <li><a href="#">Nav 4</a></li>
-            <li><a href="#">Nav 5</a></li>
-            <li><a href="#">Nav 6</a></li>
+            {% for schema in ALL_SCHEMAS %}
+            <li>
+                <a href="{% relative_url_string schema.reference_url %}">{{ schema.name }} reference</a>
+                <ul>
+                    <li><a href="{% relative_url_string schema.element_tree_url %}">Elements</a></li>
+                    <li><a href="{% relative_url_string schema.examples_url %}">Examples</a></li>
+                    <li><a href="{% relative_url_string schema.data_types_url %}">Data types</a></li>
+                </ul>
+            </li>
+            {% endfor %}
         </ul>
     </nav>
     <main>
