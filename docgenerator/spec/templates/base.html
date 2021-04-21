@@ -26,7 +26,7 @@
 {% block content_full %}
 <div class="content">
     <nav class="sidenav">
-        {{ SITE_OPTIONS.sidebar_html|safe }}
+        {% make_urls_relative SITE_OPTIONS.sidebar_html %}
     </nav>
     <main>
     {% block content %}{% endblock %}
