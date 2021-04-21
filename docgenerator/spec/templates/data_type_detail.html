@@ -5,7 +5,7 @@
 {% block content %}
 <p class="breadcrumb">
     <a href="{% relative_url 'homepage' %}">{{ SITE_OPTIONS.site_name }}</a> &gt;
-    <a href="{% relative_url_string data_type.schema.reference_url %}">Reference</a> &gt;
+    <a href="{% relative_url_string data_type.schema.reference_url %}">{{ data_type.schema.name }} reference</a> &gt;
     <a href="{% relative_url_string data_type.schema.data_types_url %}">Data types</a> &gt;
     {{ data_type.name }}
 </p>
