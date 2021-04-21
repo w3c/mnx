@@ -6,6 +6,9 @@ class SiteOptions(models.Model):
     # about the documentation website.
     site_name = models.CharField(max_length=100)
     xml_format_name = models.CharField(max_length=100)
+    sidebar_html = models.TextField(blank=True,
+        help_text='Raw HTML to put into the left sidebar of each page.'
+    )
 
     class Meta:
         db_table = 'site_options'

@@ -1,4 +1,4 @@
-from spec.models import SiteOptions, XMLSchema
+from spec.models import SiteOptions
 
 def docs_global_variables(request):
     try:
@@ -7,5 +7,4 @@ def docs_global_variables(request):
         so = None
     return {
         'SITE_OPTIONS': so,
-        'ALL_SCHEMAS': XMLSchema.objects.order_by('name'),
     }

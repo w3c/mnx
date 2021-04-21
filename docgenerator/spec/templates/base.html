@@ -26,18 +26,7 @@
 {% block content_full %}
 <div class="content">
     <nav class="sidenav">
-        <ul>
-            {% for schema in ALL_SCHEMAS %}
-            <li>
-                <a href="{% relative_url_string schema.reference_url %}">{{ schema.name }} reference</a>
-                <ul>
-                    <li><a href="{% relative_url_string schema.element_tree_url %}">Elements</a></li>
-                    <li><a href="{% relative_url_string schema.examples_url %}">Examples</a></li>
-                    <li><a href="{% relative_url_string schema.data_types_url %}">Data types</a></li>
-                </ul>
-            </li>
-            {% endfor %}
-        </ul>
+        {{ SITE_OPTIONS.sidebar_html|safe }}
     </nav>
     <main>
     {% block content %}{% endblock %}
