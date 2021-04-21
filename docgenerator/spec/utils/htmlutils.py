@@ -6,25 +6,26 @@ INDENT_SIZE = 3
 DIFF_ELEMENT = 'metadiff'
 
 class DiffElementContentHandler(xml.sax.handler.ContentHandler):
-    def __init__(self, add_diffs, *args, **kwargs):
+    def __init__(self, diffs_use_divs, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.add_diffs = add_diffs
+        self.diffs_use_divs = diffs_use_divs
         self.result = []
         self.pending_diff_class = None
         self.saw_diff = False
 
     def handle_start_diff_element(self):
-        if self.add_diffs:
-            self.pending_diff_class = 'diff'
-            self.saw_diff = True
+        self.pending_diff_class = 'diff'
+        self.saw_diff = True
 
     def handle_end_diff_element(self):
-        if self.add_diffs:
-            self.pending_diff_class = 'nodiff'
+        self.pending_diff_class = 'nodiff'
 
     def get_pending_diff_markup(self):
         if self.pending_diff_class:
-            result = f'</div><div class="xmlmarkup {self.pending_diff_class}">'
+            if self.diffs_use_divs:
+                result = f'</div><div class="xmlmarkup {self.pending_diff_class}">'
+            else:
+                result = f'</span><span class="{self.pending_diff_class}">'
             self.pending_diff_class = None
         else:
             result = ''
@@ -33,11 +34,14 @@ class DiffElementContentHandler(xml.sax.handler.ContentHandler):
     def get_result(self):
         html = '\n'.join(self.result)
         extraclass = ' nodiff' if self.saw_diff else ''
-        return f'<div class="xmlmarkup{extraclass}">{html}</div>'
+        if self.diffs_use_divs:
+            return f'<div class="xmlmarkup{extraclass}">{html}</div>'
+        else:
+            return f'<div class="xmlmarkup"><span class="{extraclass}">{html}</span></div>'
 
 class XMLAugmenter(DiffElementContentHandler):
-    def __init__(self, current_url, add_diffs, *args, **kwargs):
-        super().__init__(add_diffs, *args, **kwargs)
+    def __init__(self, current_url, diffs_use_divs, *args, **kwargs):
+        super().__init__(diffs_use_divs, *args, **kwargs)
         self.current_url = current_url
         self.element_stack = []
         self.last_tag_opened = None
@@ -144,15 +148,15 @@ class XMLAugmenter(DiffElementContentHandler):
             diff_html = self.get_pending_diff_markup()
             self.result.append(f'{html}{diff_html}{space}&lt;/{start_tag}{name}{end_tag}&gt;')
 
-def get_augmented_xml(current_url, xml_string, add_diffs=True):
+def get_augmented_xml(current_url, xml_string, diffs_use_divs=True):
     reader = xml.sax.make_parser()
-    handler = XMLAugmenter(current_url, add_diffs)
+    handler = XMLAugmenter(current_url, diffs_use_divs)
     xml.sax.parseString(xml_string, handler)
     return (handler.saw_diff, handler.get_result())
 
 class XMLPrettifier(DiffElementContentHandler):
-    def __init__(self, add_diffs, *args, **kwargs):
-        super().__init__(add_diffs, *args, **kwargs)
+    def __init__(self, diffs_use_divs, *args, **kwargs):
+        super().__init__(diffs_use_divs, *args, **kwargs)
         self.indent_level = 0
         self.last_tag_opened = None
 
@@ -199,7 +203,7 @@ class XMLPrettifier(DiffElementContentHandler):
 
 def get_prettified_xml(xml_string):
     reader = xml.sax.make_parser()
-    handler = XMLPrettifier(add_diffs=True)
+    handler = XMLPrettifier(diffs_use_divs=True)
     xml.sax.parseString(xml_string, handler)
     return handler.get_result()
 
