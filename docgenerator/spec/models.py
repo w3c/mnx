@@ -79,6 +79,7 @@ class DataTypeOption(models.Model):
     description = models.TextField(blank=True,
         help_text='HTML tags are allowed here.'
     )
+    order = models.SmallIntegerField(default=0)
 
     class Meta:
         db_table = 'data_type_options'
