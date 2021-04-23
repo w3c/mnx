@@ -20,12 +20,16 @@ def get_relative_url(from_path, to_path):
     './'
     >>> get_relative_url('/elements/', '/elements/')
     './'
+    >>> get_relative_url('/foo/', '')
+    '/foo/'
     """
     # For simplicity, this code assumes both from_path
     # and to_path start with a slash (which is always
     # the case in this project).
     if from_path == to_path:
         return './'
+    if not to_path:
+        return from_path
     from_bits = from_path.split('/')[1:-1] # Assumed to end with slash.
     to_bits = to_path.split('/')[1:]
     if to_bits[-1] == '':
