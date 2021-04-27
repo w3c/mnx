@@ -1,4 +1,5 @@
 from django import http
+from django.db.models.functions import Lower
 from django.shortcuts import get_object_or_404, render
 from spec.utils import htmlutils
 from spec.models import *
@@ -62,7 +63,7 @@ def data_type_list(request, schema_slug):
     schema = get_object_or_404(XMLSchema, slug=schema_slug)
     return render(request, 'data_type_list.html', {
         'schema': schema,
-        'data_types': DataType.objects.filter(schema=schema).order_by('name'),
+        'data_types': DataType.objects.filter(schema=schema).order_by(Lower('name')),
     })
 
 def data_type_detail(request, schema_slug, slug):
