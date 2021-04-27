@@ -132,7 +132,7 @@ class XMLElement(models.Model):
     disambiguation = models.CharField(max_length=80, blank=True,
         help_text='This is displayed next to the element name in parentheses in order to disambiguate it. E.g., "timewise" for part elements.'
     )
-    schema = models.ForeignKey(XMLSchema, on_delete=models.CASCADE)
+    schema = models.ForeignKey(XMLSchema, on_delete=models.CASCADE, default=1)
     base_element = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
     is_abstract_element = models.BooleanField(default=False)
     is_root = models.BooleanField(default=False,
