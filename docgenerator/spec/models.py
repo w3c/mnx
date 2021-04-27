@@ -130,7 +130,7 @@ class XMLElement(models.Model):
     name = models.CharField(max_length=80)
     slug = models.CharField(max_length=80)
     disambiguation = models.CharField(max_length=80, blank=True,
-        help_text='This is displayed next to the element name in parentheses in order to disambiguate it. E.g., "timewise" for <part>'
+        help_text='This is displayed next to the element name in parentheses in order to disambiguate it. E.g., "timewise" for part elements.'
     )
     schema = models.ForeignKey(XMLSchema, on_delete=models.CASCADE)
     base_element = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
