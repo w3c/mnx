@@ -6,18 +6,18 @@
     {% if relationship.child.is_abstract_element %}
         {% include "includes/element_child_relationships.html" with element=relationship.child %}
     {% else %}
-        <a href="{% relative_url_string relationship.child.get_absolute_url %}">{{ relationship.child.name_with_brackets }}</a> ({{ relationship.pretty_amount }})
+        <a href="{% relative_url_string relationship.child.get_absolute_url %}">{{ relationship.child.name_with_brackets }}</a> {{ relationship.pretty_amount }}
     {% endif %}
     {% endwith %}
 {% else %}
-    {{ element.get_children_type_text }}
+    {{ element.get_actual_parent_of_children.get_children_type_text }}
     <ul>
         {% for relationship in child_relationships %}
         <li>
             {% if relationship.child.is_abstract_element %}
                 {% include "includes/element_child_relationships.html" with element=relationship.child %}
             {% else %}
-                <a href="{% relative_url_string relationship.child.get_absolute_url %}">{{ relationship.child.name_with_brackets }}</a> ({{ relationship.pretty_amount }})
+                <a href="{% relative_url_string relationship.child.get_absolute_url %}">{{ relationship.child.name_with_brackets }}</a> {{ relationship.pretty_amount }}
             {% endif %}
         </li>
         {% endfor %}

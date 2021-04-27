@@ -233,7 +233,30 @@ class XMLElement(models.Model):
             result.extend(self.base_element.get_all_base_elements())
         return result
 
+    def get_actual_parent_of_children(self):
+        for child_el in self.get_child_elements():
+            for child_parent in XMLElement.objects.filter(parent_rel__child=child_el):
+                return child_parent
+        return self
+
     def get_children_type_text(self):
+        if self.children_type == XMLElement.CHILDREN_TYPE_CHOICE:
+            for relationship in XMLRelationship.objects.filter(child=self):
+                min_amount = relationship.min_amount
+                max_amount = relationship.max_amount
+                if min_amount == 0 and max_amount is None:
+                    return 'Zero or more of the following'
+                elif min_amount == 1 and max_amount is None:
+                    return 'One or more of the following'
+                elif min_amount == 1 and max_amount == 1:
+                    return 'Exactly one of the following'
+                elif min_amount == 0 and max_amount == 1:
+                    return 'Zero or one of the following'
+        elif self.children_type == XMLElement.CHILDREN_TYPE_SEQUENCE:
+            for relationship in XMLRelationship.objects.filter(child=self):
+                min_amount = relationship.min_amount
+                if min_amount == 0:
+                    return 'In this order (Optional)'
         return {
             XMLElement.CHILDREN_TYPE_UNORDERED: 'In any order',
             XMLElement.CHILDREN_TYPE_SEQUENCE: 'In this order',
@@ -292,17 +315,19 @@ class XMLRelationship(models.Model):
         verbose_name_plural = 'XML relationships'
 
     def pretty_amount(self):
+        if self.parent.children_type == XMLElement.CHILDREN_TYPE_CHOICE:
+            return ''
         min_amount = self.min_amount
         max_amount = self.max_amount
         if min_amount == 1 and max_amount == 1:
-            return 'Required'
+            return '(Required)'
         if min_amount == 0 and max_amount == 1:
-            return 'Optional'
+            return '(Optional)'
         if min_amount == 0 and max_amount is None:
-            return 'Zero or more times'
+            return '(Zero or more times)'
         if min_amount == 1 and max_amount is None:
-            return 'One or more times'
-        return f'{min_amount} to {max_amount} times'
+            return '(One or more times)'
+        return f'({min_amount} to {max_amount} times)'
 
 class ExampleDocument(models.Model):
     name = models.CharField(max_length=300)
