@@ -209,6 +209,18 @@ main {
     left: 20px;
 }
 
+@font-face {
+    font-family: 'smufl';
+    src: url('fonts/BravuraText.woff2') format('woff2'),
+         url('fonts/BravuraText.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.smufl {
+    font: 75px smufl,sans-serif;
+}
+
 .w3c-logo {
     display: inline-flex;
     background: #1a5e9a;
