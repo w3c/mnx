@@ -178,7 +178,7 @@ class XMLElement(models.Model):
             result += list(el.xmlattribute_set.all())
             for att_group in el.attribute_groups.all():
                 result.extend(att_group.get_attributes())
-        result.sort(key=lambda x: x.name)
+        result.sort(key=lambda x: (not(x.is_required), x.name))
         return result
 
     def get_content_data_type(self):
