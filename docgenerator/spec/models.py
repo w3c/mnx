@@ -329,7 +329,7 @@ class XMLRelationship(models.Model):
 class ExampleDocument(models.Model):
     name = models.CharField(max_length=300)
     slug = models.CharField(max_length=100)
-    schema = models.ForeignKey(XMLSchema, on_delete=models.CASCADE)
+    schema = models.ForeignKey(XMLSchema, on_delete=models.CASCADE, default=1)
     blurb = models.TextField(blank=True)
     document = models.TextField()
     image_url = models.CharField(max_length=300, blank=True,
