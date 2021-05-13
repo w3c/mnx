@@ -308,6 +308,9 @@ class XMLRelationship(models.Model):
         verbose_name = 'XML relationship'
         verbose_name_plural = 'XML relationships'
 
+    def __repr__(self):
+        return f'<XMLRelationship parent="{self.parent.name}" child="{self.child.name}">'
+
     def pretty_amount(self):
         if self.parent.children_type == XMLElement.CHILDREN_TYPE_CHOICE:
             return ''
