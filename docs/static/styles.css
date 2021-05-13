@@ -83,6 +83,7 @@ th, td {
 }
 th {
     font-weight: bold;
+    vertical-align: top;
 }
 thead th {
     font-size: 14px;
@@ -146,7 +147,7 @@ main {
     margin-left: 0;
     margin-bottom: 6px;
 }
-.sidenav li li {
+.sidenav li li, .sidenav ul ul li {
     margin-left: 20px;
 }
 .sidenav li a {
@@ -218,7 +219,7 @@ main {
 }
 
 .smufl {
-    font: 75px smufl,sans-serif;
+    font: 40px smufl,sans-serif;
 }
 
 .w3c-logo {
