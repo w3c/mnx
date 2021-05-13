@@ -15,7 +15,7 @@
 <div style="margin-bottom: 40px;">
     <a href="{% relative_url_string example.get_absolute_url %}">
     {% if example.image_url %}
-        <img src="{% relative_url_string example.image_url %}" loading="lazy"><br>
+        <img src="{% relative_url_string example.image_url %}" loading="lazy"/><br>
     {% endif %}
     {{ example.name }}
     </a>
