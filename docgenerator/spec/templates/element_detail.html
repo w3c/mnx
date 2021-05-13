@@ -23,9 +23,9 @@
 </p>
 
 {% if element.description %}
-{{ element.description|safe|linebreaksbr }}
+    {{ element.description|safe|linebreaks }}
 {% elif element.base_element and element.base_element.description %}
-{{ element.base_element.description|safe|linebreaksbr }}
+    {{ element.base_element.description|safe|linebreaks }}
 {% endif %}
 
 <h2>Content</h2>
