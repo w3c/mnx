@@ -1,6 +1,7 @@
 {# variables: element #}
 
 {% with element.get_child_relationships as child_relationships %}
+
 {% if child_relationships|length == 1 %}
     {% with child_relationships.0 as relationship %}
     {% if relationship.child.is_abstract_element %}
@@ -10,7 +11,7 @@
     {% endif %}
     {% endwith %}
 {% else %}
-    {{ element.get_actual_parent_of_children.get_children_type_text }}
+    {{ element.get_children_type_text }}
     <ul>
         {% for relationship in child_relationships %}
         <li>

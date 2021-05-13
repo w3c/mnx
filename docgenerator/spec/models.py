@@ -233,12 +233,6 @@ class XMLElement(models.Model):
             result.extend(self.base_element.get_all_base_elements())
         return result
 
-    def get_actual_parent_of_children(self):
-        for child_el in self.get_child_elements():
-            for child_parent in XMLElement.objects.filter(parent_rel__child=child_el):
-                return child_parent
-        return self
-
     def get_children_type_text(self):
         if self.children_type == XMLElement.CHILDREN_TYPE_CHOICE:
             for relationship in XMLRelationship.objects.filter(child=self):
