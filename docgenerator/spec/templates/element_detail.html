@@ -15,7 +15,7 @@
 <p>Parent element{{ parents|pluralize }}:
     {% if parents %}
         {% for parent in parents %}
-        <a href="{% relative_url_string parent.get_absolute_url %}">{{ parent.name_with_brackets }}{{ parent.optional_disambiguation }}</a>
+        <a href="{% relative_url_string parent.get_absolute_url %}">{{ parent.name_with_brackets }}{{ parent.optional_disambiguation }}</a>{% if not forloop.last %}, {% endif %}
         {% endfor %}
     {% else %}
         None
