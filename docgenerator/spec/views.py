@@ -93,7 +93,7 @@ def data_type_detail(request, schema_slug, slug):
         'data_type': data_type,
         'elements': XMLElement.objects.filter(is_abstract_element=False, content_data_type=data_type).order_by('name'),
         'element_attributes': el_attributes,
-        'options': DataTypeOption.objects.filter(data_type=data_type).order_by('order', 'value'),
+        'options': DataTypeOption.objects.filter(data_type=data_type).order_by('order', Lower('value')),
     })
 
 def example_list(request, schema_slug):
