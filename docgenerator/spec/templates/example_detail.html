@@ -19,7 +19,7 @@
 <h1>{{ example.name }}</h1>
 
 {% if example.image_url %}
-<p width="100%"><img src="{% relative_url_string example.image_url %}" width="100%"></p>
+<p><img src="{% relative_url_string example.image_url %}"></p>
 {% endif %}
 
 {% if example.blurb %}
