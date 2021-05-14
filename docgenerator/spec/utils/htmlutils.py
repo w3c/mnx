@@ -46,6 +46,8 @@ class XMLAugmenter(DiffElementContentHandler):
         self.element_stack = []
         self.last_tag_opened = None
         self.last_tag_opened_stack_size = 0
+        self.current_characters = []
+        self.preserve_whitespace = False
 
     def get_element_obj(self, name):
         xml_elements = XMLElement.objects.filter(name=name, is_abstract_element=False)
@@ -98,19 +100,27 @@ class XMLAugmenter(DiffElementContentHandler):
             attr_string = self.get_attribute_markup(obj, attrs)
         else:
             attr_string = ''
+        self.preserve_whitespace = attrs.get('xml:space', '') == 'preserve'
         space = ' ' * len(self.element_stack) * INDENT_SIZE
         diff_html = self.get_pending_diff_markup()
         self.result.append(f'{diff_html}{space}&lt;{start_tag}{name}{end_tag}{attr_string}&gt;')
         self.last_tag_opened_stack_size = len(self.element_stack)
         self.element_stack.append(obj.id if obj else None)
         self.last_tag_opened = name
+        self.current_characters = []
 
     def characters(self, content):
-        if content and content.strip():
-            space = ' ' * len(self.element_stack) * INDENT_SIZE
-            self.result.append(f'{space}<span class="xmltxt">{content.strip()}</span>')
+        if not self.preserve_whitespace:
+            content = content.strip()
+        if content:
+            self.current_characters.append(content)
 
     def endElement(self, name):
+        if self.current_characters:
+            space = ' ' * len(self.element_stack) * INDENT_SIZE
+            content = ''.join(self.current_characters)
+            self.result.append(f'{space}<span class="xmltxt">{content}</span>')
+            self.current_characters = []
         if name == DIFF_ELEMENT:
             self.handle_end_diff_element()
             return
