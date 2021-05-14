@@ -89,9 +89,14 @@ def data_type_detail(request, schema_slug, slug):
                 })
     el_attributes.sort(key=lambda x: x['element'].name)
 
+    elements = []
+    for el in XMLElement.objects.filter(content_data_type=data_type):
+        for abs_el in el.get_nonabstract_elements():
+            elements.append(abs_el)
+
     return render(request, 'data_type_detail.html', {
         'data_type': data_type,
-        'elements': XMLElement.objects.filter(is_abstract_element=False, content_data_type=data_type).order_by('name'),
+        'elements': list(sorted(elements, key=lambda el: el.name)),
         'element_attributes': el_attributes,
         'options': DataTypeOption.objects.filter(data_type=data_type).order_by('order', Lower('value')),
     })
