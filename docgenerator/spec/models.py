@@ -388,6 +388,7 @@ class ExampleDocumentElement(models.Model):
     # This is a cache of each element used in each
     # ExampleDocument. It's updated via ExampleDocument.save().
     example = models.ForeignKey(ExampleDocument, on_delete=models.CASCADE)
+    element = models.ForeignKey(XMLElement, null=True, on_delete=models.CASCADE)
     element_name = models.CharField(max_length=80)
 
     class Meta:

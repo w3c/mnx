@@ -41,7 +41,7 @@ def element_detail(request, schema_slug, slug):
         'child_relationships': element.get_child_relationships(),
         'parents': element.get_parent_elements(),
         'concepts': ElementConcept.objects.filter(element=element).select_related('concept'),
-        'examples': ExampleDocumentElement.objects.filter(element_name=element.name).select_related('example').order_by('example__name'),
+        'examples': ExampleDocumentElement.objects.filter(element=element).select_related('example').order_by('example__name'),
     })
 
 def element_tree(request, schema_slug):
