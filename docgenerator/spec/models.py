@@ -249,7 +249,12 @@ class XMLElement(models.Model):
         elif self.children_type == XMLElement.CHILDREN_TYPE_SEQUENCE:
             for relationship in XMLRelationship.objects.filter(child=self):
                 min_amount = relationship.min_amount
-                if min_amount == 0:
+                max_amount = relationship.max_amount
+                if min_amount == 0 and max_amount is None:
+                    return 'In this order (Zero or more times)'
+                elif min_amount == 1 and max_amount is None:
+                    return 'In this order (One or more times)'
+                elif min_amount == 0 and max_amount == 1:
                     return 'In this order (Optional)'
         return {
             XMLElement.CHILDREN_TYPE_UNORDERED: 'In any order',
