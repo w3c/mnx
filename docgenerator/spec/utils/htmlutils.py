@@ -116,6 +116,7 @@ class XMLAugmenter(DiffElementContentHandler):
             self.current_characters.append(content)
 
     def endElement(self, name):
+        self.preserve_whitespace = False
         if self.current_characters:
             space = ' ' * len(self.element_stack) * INDENT_SIZE
             content = ''.join(self.current_characters)
