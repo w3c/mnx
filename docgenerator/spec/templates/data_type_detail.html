@@ -37,7 +37,7 @@
 {% endif %}
 
 {% if options %}
-<h2>Allowed values</h2>
+<h2 id="allowed">Allowed values</h2>
 
 <table>
 {% for option in options %}
@@ -50,7 +50,7 @@
 {% endif %}
 
 {% if elements or element_attributes %}
-<h2>Where is this type used?</h2>
+<h2 id="where">Where is this type used?</h2>
 
 {% for element in elements %}
 <p><a href="{% relative_url_string element.get_absolute_url %}">{{ element.name_with_brackets }}</a></p>
