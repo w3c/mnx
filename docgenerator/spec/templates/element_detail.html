@@ -28,7 +28,7 @@
     {{ element.base_element.description|safe|linebreaks }}
 {% endif %}
 
-<h2>Content</h2>
+<h2 id="content">Content</h2>
 
 {% if content_data_type %}
     <p><a href="{% relative_url_string content_data_type.get_absolute_url %}">{{ content_data_type.name }}</a></p>
@@ -38,7 +38,7 @@
     <p>Always empty.</p>
 {% endif %}
 
-<h2>Attributes</h2>
+<h2 id="attributes">Attributes</h2>
 
 {% if attributes %}
 <table>
@@ -64,7 +64,7 @@
 {% endif %}
 
 {% if concepts %}
-<h2>Related concepts</h2>
+<h2 id="concepts">Related concepts</h2>
 
 <ul>
     {% for concept in concepts %}
@@ -74,7 +74,7 @@
 {% endif %}
 
 {% if examples %}
-<h2>Examples</h2>
+<h2 id="examples">Examples</h2>
 
 <p>This element is used in the following examples:</p>
 <p>
