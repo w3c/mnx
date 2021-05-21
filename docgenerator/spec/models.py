@@ -317,11 +317,11 @@ class XMLRelationship(models.Model):
         return f'<XMLRelationship parent="{self.parent.name}" child="{self.child.name}">'
 
     def pretty_amount(self):
-        if self.parent.children_type == XMLElement.CHILDREN_TYPE_CHOICE:
-            return ''
         min_amount = self.min_amount
         max_amount = self.max_amount
         if min_amount == 1 and max_amount == 1:
+            if self.parent.children_type == XMLElement.CHILDREN_TYPE_CHOICE:
+                return ''
             return '(Required)'
         if min_amount == 0 and max_amount == 1:
             return '(Optional)'
