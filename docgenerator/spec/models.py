@@ -283,6 +283,18 @@ class XMLAttributeGroup(models.Model):
             result.extend(child_group.get_attributes())
         return result
 
+    def get_elements(self):
+        """
+        Returns a list of XMLElements that use this attribute group,
+        accounting for nested attribute groups.
+        """
+        result = []
+        for element in XMLElement.objects.filter(attribute_groups=self):
+            result.extend(element.get_nonabstract_elements())
+        for att_group in XMLAttributeGroup.objects.filter(child_groups=self):
+            result.extend(att_group.get_elements())
+        return result
+
 class XMLAttribute(models.Model):
     element = models.ForeignKey(XMLElement, on_delete=models.CASCADE, null=True)
     attribute_group = models.ForeignKey(XMLAttributeGroup, on_delete=models.SET_NULL, null=True)
@@ -300,6 +312,18 @@ class XMLAttribute(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_elements(self):
+        """
+        Returns a list of XMLElements that use this attribute,
+        accounting for attribute groups.
+        """
+        result = []
+        if self.element:
+            result.append(self.element)
+        if self.attribute_group:
+            result.extend(self.attribute_group.get_elements())
+        return result
 
 class XMLRelationship(models.Model):
     parent = models.ForeignKey(XMLElement, on_delete=models.CASCADE, related_name='parent_rel')

@@ -73,20 +73,11 @@ def data_type_detail(request, schema_slug, slug):
         slug=slug
     )
     el_attributes = []
-    qs = XMLAttribute.objects.filter(data_type=data_type)
-    for att in qs.filter(element__isnull=False):
-        for element in att.element.get_nonabstract_elements():
-            el_attributes.append({
-                'element': element,
-                'attribute': att,
-            })
-    for att in qs.filter(element__isnull=True):
-        for att_el in XMLElement.objects.filter(attribute_groups__xmlattribute=att):
-            for element in att_el.get_nonabstract_elements():
-                el_attributes.append({
-                    'element': element,
-                    'attribute': att,
-                })
+    for att in XMLAttribute.objects.filter(data_type=data_type):
+        el_attributes.extend([{
+            'element': el,
+            'attribute': att,
+        } for el in att.get_elements()])
     el_attributes.sort(key=lambda x: x['element'].name)
 
     elements = []
