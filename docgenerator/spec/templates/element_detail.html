@@ -33,7 +33,12 @@
 {% if content_data_type %}
     <p><a href="{% relative_url_string content_data_type.get_absolute_url %}">{{ content_data_type.name }}</a></p>
 {% elif child_relationships %}
+    {# This is a hacky way of inserting the <p> only in appropriate cases. #}
+    {% if child_relationships|length == 1 and not child_relationships.0.is_abstract_element %}
+    <p>{% include "includes/element_child_relationships.html" with element=element %}</p>
+    {% else %}
     {% include "includes/element_child_relationships.html" with element=element %}
+    {% endif %}
 {% else %}
     <p>Always empty.</p>
 {% endif %}
