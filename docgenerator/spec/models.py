@@ -320,7 +320,7 @@ class XMLAttribute(models.Model):
         """
         result = []
         if self.element:
-            result.append(self.element)
+            result.extend(self.element.get_nonabstract_elements())
         if self.attribute_group:
             result.extend(self.attribute_group.get_elements())
         return result
