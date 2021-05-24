@@ -67,6 +67,7 @@ class ExampleDocumentComparisonInline(admin.TabularInline):
 class ExampleDocumentAdmin(admin.ModelAdmin):
     inlines = [ExampleDocumentConceptInline, ExampleDocumentComparisonInline]
     list_display = ['name', 'slug', 'image_url', 'is_featured']
+    search_fields = ['name', 'slug']
     prepopulated_fields = {'slug': ['name']}
 
 class ConceptAdmin(admin.ModelAdmin):
