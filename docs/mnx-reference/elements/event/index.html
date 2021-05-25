@@ -53,9 +53,9 @@
 <p>Parent elements:
     
         
-        <a href="../grace/">&lt;grace&gt;</a>
+        <a href="../grace/">&lt;grace&gt;</a>, 
         
-        <a href="../sequence/">&lt;sequence&gt;</a>
+        <a href="../sequence/">&lt;sequence&gt;</a>, 
         
         <a href="../tuplet/">&lt;tuplet&gt;</a>
         
@@ -64,10 +64,13 @@
 
 
 
-<h2>Content</h2>
+<h2 id="content">Content</h2>
 
 
     
+    
+    
+
 
 
 
@@ -97,9 +100,10 @@
 
 
 
+    
 
 
-<h2>Attributes</h2>
+<h2 id="attributes">Attributes</h2>
 
 
 <table>
@@ -113,10 +117,24 @@
 </thead>
 
 <tr>
+    <th class="nobr">color</th>
+    <td><a href="../../data-types/simple-color/">Simple color</a></td>
+    <td>No</td>
+    <td>The color to be used when rendering notational objects in this event.</td>
+</tr>
+
+<tr>
     <th class="nobr">id</th>
     <td><a href="../../data-types/event-id/">Event ID</a></td>
     <td>No</td>
     <td></td>
+</tr>
+
+<tr>
+    <th class="nobr">stem-direction</th>
+    <td><a href="../../data-types/stem-direction/">Stem direction</a></td>
+    <td>No</td>
+    <td>Whether the stem of the note(s) in this event is up or down. If not provided, this is left to consuming software to decide automatically.</td>
 </tr>
 
 <tr>
@@ -132,7 +150,7 @@
 
 
 
-<h2>Examples</h2>
+<h2 id="examples">Examples</h2>
 
 <p>This element is used in the following examples:</p>
 <p>

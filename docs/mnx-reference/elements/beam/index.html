@@ -53,7 +53,7 @@
 <p>Parent elements:
     
         
-        <a href="./">&lt;beam&gt;</a>
+        <a href="./">&lt;beam&gt;</a>, 
         
         <a href="../beams/">&lt;beams&gt;</a>
         
@@ -61,11 +61,18 @@
 </p>
 
 
+    <p>The &lt;beam&gt; element describes a single beam.</p>
 
-<h2>Content</h2>
+<p>A &lt;beam&gt; can contain nested &lt;beam&gt; elements, in the case of secondary beams. Each "level" of beam is encoded with a separate &lt;beam&gt; element.</p>
+
+
+<h2 id="content">Content</h2>
 
 
     
+    
+    
+
 
 
 
@@ -89,9 +96,10 @@
 
 
 
+    
 
 
-<h2>Attributes</h2>
+<h2 id="attributes">Attributes</h2>
 
 
 <table>
@@ -107,15 +115,15 @@
 <tr>
     <th class="nobr">events</th>
     <td><a href="../../data-types/event-id-list/">Event ID list</a></td>
-    <td>No</td>
-    <td></td>
+    <td>Yes</td>
+    <td>A space-separated list of event IDs for events that comprise this beam — in order by their position in the beam.</td>
 </tr>
 
 </table>
 
 
 
-<h2>Related concepts</h2>
+<h2 id="concepts">Related concepts</h2>
 
 <ul>
     
@@ -125,7 +133,7 @@
 
 
 
-<h2>Examples</h2>
+<h2 id="examples">Examples</h2>
 
 <p>This element is used in the following examples:</p>
 <p>

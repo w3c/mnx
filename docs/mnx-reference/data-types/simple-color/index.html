@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Wedge type data type | MNX specification</title>
+<title>Simple color data type | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -45,11 +45,13 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Data types</a> &gt;
-    Wedge type
+    Simple color
 </p>
 
-<h1>Wedge type data type</h1>
+<h1>Simple color data type</h1>
 
+
+<p>A simple color is a seven-character string representing the red, green and blue components of a color, <a href="https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#colours">as defined in the HTML standard</a>. This is commonly known as a hexcode or hex value.<br><br>Examples: <code>#000000</code> (black), <code>#ff0000</code> (red).</p>
 
 
 
@@ -61,25 +63,11 @@
 
 
 
+<p>Regex pattern: <b>#[a-f0-9]{6}</b></p>
 
 
 
 
-<h2 id="allowed">Allowed values</h2>
-
-<table>
-
-<tr>
-    <th class="nobr">crescendo</th>
-    <td>An increase in dynamic level.</td>
-</tr>
-
-<tr>
-    <th class="nobr">diminuendo</th>
-    <td>A decrease in dynamic level.</td>
-</tr>
-
-</table>
 
 
 
@@ -88,7 +76,13 @@
 
 
 
-<p><a href="../../elements/wedge/">&lt;wedge&gt;</a> — "type" attribute</p>
+<p><a href="../../elements/event/">&lt;event&gt;</a> — "color" attribute</p>
+
+<p><a href="../../elements/note/">&lt;note&gt;</a> — "color" attribute</p>
+
+<p><a href="../../elements/part/">&lt;part&gt;</a> — "color" attribute</p>
+
+<p><a href="../../elements/rest/">&lt;rest&gt;</a> — "color" attribute</p>
 
 
 

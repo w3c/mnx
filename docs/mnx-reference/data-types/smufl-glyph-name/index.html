@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Wedge type data type | MNX specification</title>
+<title>SMuFL glyph name data type | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -45,11 +45,13 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Data types</a> &gt;
-    Wedge type
+    SMuFL glyph name
 </p>
 
-<h1>Wedge type data type</h1>
+<h1>SMuFL glyph name data type</h1>
 
+
+<p>A string representing a glyph name in the <a href="https://w3c.github.io/smufl/latest/">SMuFL music-font-encoding specification</a>.<br><br>In MNX, this is generally used to override default engraving behavior.<br><br>Example SMuFL glyph name: <code>noteheadXOrnateEllipse</code></p>
 
 
 
@@ -65,22 +67,6 @@
 
 
 
-<h2 id="allowed">Allowed values</h2>
-
-<table>
-
-<tr>
-    <th class="nobr">crescendo</th>
-    <td>An increase in dynamic level.</td>
-</tr>
-
-<tr>
-    <th class="nobr">diminuendo</th>
-    <td>A decrease in dynamic level.</td>
-</tr>
-
-</table>
-
 
 
 <h2 id="where">Where is this type used?</h2>
@@ -88,7 +74,11 @@
 
 
 
-<p><a href="../../elements/wedge/">&lt;wedge&gt;</a> — "type" attribute</p>
+<p><a href="../../elements/clef/">&lt;clef&gt;</a> — "glyph" attribute</p>
+
+<p><a href="../../elements/dynamics/">&lt;dynamics&gt;</a> — "glyph" attribute</p>
+
+<p><a href="../../elements/segno/">&lt;segno&gt;</a> — "glyph" attribute</p>
 
 
 
