@@ -575,6 +575,60 @@
     }
 },
 {
+    "model": "spec.datatype",
+    "pk": 35,
+    "fields": {
+        "name": "Simple color",
+        "slug": "simple-color",
+        "schema": 1,
+        "description": "A simple color is a seven-character string representing the red, green and blue components of a color, <a href=\"https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#colours\">as defined in the HTML standard</a>. This is commonly known as a hexcode or hex value.\r\n\r\nExamples: <code>#000000</code> (black), <code>#ff0000</code> (red).",
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": 33,
+        "min_value": "",
+        "max_value": "",
+        "regex": "#[a-f0-9]{6}",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
+    "model": "spec.datatype",
+    "pk": 36,
+    "fields": {
+        "name": "SMuFL glyph name",
+        "slug": "smufl-glyph-name",
+        "schema": 1,
+        "description": "A string representing a glyph name in the <a href=\"https://w3c.github.io/smufl/latest/\">SMuFL music-font-encoding specification</a>.\r\n\r\nIn MNX, this is generally used to override default engraving behavior.\r\n\r\nExample SMuFL glyph name: <code>noteheadXOrnateEllipse</code>",
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": 33,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
+    "model": "spec.datatype",
+    "pk": 37,
+    "fields": {
+        "name": "Stem direction",
+        "slug": "stem-direction",
+        "schema": 1,
+        "description": "Describes whether the stem is pointed up or down.",
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": 33,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
     "model": "spec.datatypeoption",
     "pk": 1,
     "fields": {
@@ -1105,6 +1159,26 @@
     }
 },
 {
+    "model": "spec.datatypeoption",
+    "pk": 54,
+    "fields": {
+        "data_type": 37,
+        "value": "up",
+        "description": "<span class=\"smufl\">&#xE1D5;</span>",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 55,
+    "fields": {
+        "data_type": 37,
+        "value": "down",
+        "description": "<span class=\"smufl\">&#xE1D6;</span>",
+        "order": 1
+    }
+},
+{
     "model": "spec.concept",
     "pk": 1,
     "fields": {
@@ -1235,7 +1309,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "The <time> element defines a time signature applicable to this and following measures, until changed.\r\n\r\nIt is invalid to place more than one <time> element within the same measure.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -1415,7 +1489,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "The <beams> element encodes all beams within a <sequence>.\r\n\r\nBeams that are rendered in multiple sequences (i.e., beams that cross barlines) are encoded in the first sequence in which they appear.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -1433,7 +1507,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "The &lt;beam&gt; element describes a single beam.\r\n\r\nA &lt;beam&gt; can contain nested &lt;beam&gt; elements, in the case of secondary beams. Each \"level\" of beam is encoded with a separate &lt;beam&gt; element.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -1801,6 +1875,24 @@
     }
 },
 {
+    "model": "spec.xmlelement",
+    "pk": 38,
+    "fields": {
+        "name": "part-abbreviation",
+        "slug": "part-abbreviation",
+        "disambiguation": "",
+        "schema": 1,
+        "base_element": null,
+        "is_abstract_element": false,
+        "is_root": false,
+        "description": "The part's name in abbreviated form. For example, \"Vln\" for violin.",
+        "content_data_type": 33,
+        "is_featured": false,
+        "children_type": 1,
+        "attribute_groups": []
+    }
+},
+{
     "model": "spec.xmlattributegroup",
     "pk": 1,
     "fields": {
@@ -1933,8 +2025,8 @@
         "element": 16,
         "attribute_group": null,
         "name": "events",
-        "is_required": false,
-        "description": "",
+        "is_required": true,
+        "description": "A space-separated list of event IDs for events that comprise this beam — in order by their position in the beam.",
         "data_type": 9
     }
 },
@@ -2323,6 +2415,102 @@
     }
 },
 {
+    "model": "spec.xmlattribute",
+    "pk": 49,
+    "fields": {
+        "element": 6,
+        "attribute_group": null,
+        "name": "color",
+        "is_required": false,
+        "description": "The color to be used when rendering notational objects in this part.",
+        "data_type": 35
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 50,
+    "fields": {
+        "element": 11,
+        "attribute_group": null,
+        "name": "color",
+        "is_required": false,
+        "description": "The color to be used when rendering notational objects in this event.",
+        "data_type": 35
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 51,
+    "fields": {
+        "element": 12,
+        "attribute_group": null,
+        "name": "color",
+        "is_required": false,
+        "description": "The color to be used when rendering this note.",
+        "data_type": 35
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 52,
+    "fields": {
+        "element": 13,
+        "attribute_group": null,
+        "name": "color",
+        "is_required": false,
+        "description": "The color to be used when rendering this rest.",
+        "data_type": 35
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 53,
+    "fields": {
+        "element": 31,
+        "attribute_group": null,
+        "name": "glyph",
+        "is_required": false,
+        "description": "A specific SMuFL glyph name to be used when rendering this dynamic.",
+        "data_type": 36
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 54,
+    "fields": {
+        "element": 24,
+        "attribute_group": null,
+        "name": "glyph",
+        "is_required": false,
+        "description": "A specific SMuFL glyph name to be used when rendering this symbol.",
+        "data_type": 36
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 55,
+    "fields": {
+        "element": 9,
+        "attribute_group": null,
+        "name": "glyph",
+        "is_required": false,
+        "description": "A specific SMuFL glyph name to be used when rendering this clef, e.g. <code>gClefArrowUp</code>. See <a href=\"https://w3c.github.io/smufl/latest/tables/clefs.html\">SMuFL clef glyphs</a>.",
+        "data_type": 36
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 56,
+    "fields": {
+        "element": 11,
+        "attribute_group": null,
+        "name": "stem-direction",
+        "is_required": false,
+        "description": "Whether the stem of the note(s) in this event is up or down. If not provided, this is left to consuming software to decide automatically.",
+        "data_type": 37
+    }
+},
+{
     "model": "spec.xmlrelationship",
     "pk": 1,
     "fields": {
@@ -2429,7 +2617,7 @@
         "child": 8,
         "min_amount": 1,
         "max_amount": null,
-        "child_order": 0
+        "child_order": 2
     }
 },
 {
@@ -2749,6 +2937,17 @@
         "min_amount": 0,
         "max_amount": 1,
         "child_order": 0
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 47,
+    "fields": {
+        "parent": 6,
+        "child": 38,
+        "min_amount": 0,
+        "max_amount": 1,
+        "child_order": 1
     }
 },
 {
