@@ -41,7 +41,7 @@ def element_detail(request, schema_slug, slug):
         'child_relationships': element.get_child_relationships(),
         'parents': element.get_parent_elements(),
         'concepts': ElementConcept.objects.filter(element=element).select_related('concept'),
-        'examples': ExampleDocumentElement.objects.filter(element=element).select_related('example').order_by('example__name'),
+        'examples': ExampleDocumentElement.objects.filter(element=element).select_related('example').order_by(Lower('example__name')),
     })
 
 def element_tree(request, schema_slug):
@@ -96,7 +96,7 @@ def example_list(request, schema_slug):
     schema = get_object_or_404(XMLSchema, slug=schema_slug)
     return render(request, 'example_list.html', {
         'schema': schema,
-        'examples': ExampleDocument.objects.filter(schema=schema).order_by('name'),
+        'examples': ExampleDocument.objects.filter(schema=schema).order_by(Lower('name')),
     })
 
 def example_detail(request, schema_slug, slug):
