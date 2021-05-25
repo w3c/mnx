@@ -4,13 +4,14 @@ import xml.sax
 ELEMENTS_TO_IGNORE = {'metadiff'}
 
 class ElementCollector(xml.sax.handler.ContentHandler):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, schema, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.schema = schema
         self.result = set()
         self.element_stack = []
 
     def get_element_obj(self, name):
-        xml_elements = XMLElement.objects.filter(name=name, is_abstract_element=False)
+        xml_elements = XMLElement.objects.filter(schema=self.schema, name=name, is_abstract_element=False)
         if self.element_stack:
             if self.element_stack[-1]:
                 filtered_elements = []
@@ -49,7 +50,7 @@ def update_example_elements(example):
     deleted).
     """
     reader = xml.sax.make_parser()
-    handler = ElementCollector()
+    handler = ElementCollector(example.schema)
     xml.sax.parseString(example.document, handler)
 
     # At this point, handler.result is a set of all

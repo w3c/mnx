@@ -40,8 +40,9 @@ class DiffElementContentHandler(xml.sax.handler.ContentHandler):
             return f'<div class="xmlmarkup"><span class="{extraclass}">{html}</span></div>'
 
 class XMLAugmenter(DiffElementContentHandler):
-    def __init__(self, current_url, diffs_use_divs, *args, **kwargs):
+    def __init__(self, schema, current_url, diffs_use_divs, *args, **kwargs):
         super().__init__(diffs_use_divs, *args, **kwargs)
+        self.schema = schema
         self.current_url = current_url
         self.element_stack = []
         self.last_tag_opened = None
@@ -50,7 +51,7 @@ class XMLAugmenter(DiffElementContentHandler):
         self.preserve_whitespace = False
 
     def get_element_obj(self, name):
-        xml_elements = XMLElement.objects.filter(name=name, is_abstract_element=False)
+        xml_elements = XMLElement.objects.filter(schema=self.schema, name=name, is_abstract_element=False)
         if self.element_stack:
             if self.element_stack[-1]:
                 filtered_elements = []
@@ -159,9 +160,9 @@ class XMLAugmenter(DiffElementContentHandler):
             diff_html = self.get_pending_diff_markup()
             self.result.append(f'{html}{diff_html}{space}&lt;/{start_tag}{name}{end_tag}&gt;')
 
-def get_augmented_xml(current_url, xml_string, diffs_use_divs=True):
+def get_augmented_xml(current_url, schema, xml_string, diffs_use_divs=True):
     reader = xml.sax.make_parser()
-    handler = XMLAugmenter(current_url, diffs_use_divs)
+    handler = XMLAugmenter(schema, current_url, diffs_use_divs)
     xml.sax.parseString(xml_string, handler)
     return (handler.saw_diff, handler.get_result())
 
