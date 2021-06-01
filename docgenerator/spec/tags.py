@@ -19,9 +19,15 @@ def make_urls_relative_callback(path, match):
     return get_relative_url(path, match.group(0))
 
 def make_urls_relative(context, html):
+    path = context['request'].path
     html = re.sub(
         r'(?<=href=")[^"]+',
-        lambda match: make_urls_relative_callback(context['request'].path, match),
+        lambda match: make_urls_relative_callback(path, match),
+        html
+    )
+    html = re.sub(
+        r'(?<=src=")[^"]+',
+        lambda match: make_urls_relative_callback(path, match),
         html
     )
     return mark_safe(html)
