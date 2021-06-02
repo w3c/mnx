@@ -18,19 +18,19 @@
 <a href="{% relative_url_string schema.element_tree_url %}">See all…</a>
 </p>
 
-<h2>Examples</h2>
-<p>
-{% for example in featured_examples %}
-<a href="{% relative_url_string example.get_absolute_url %}">{{ example.name }}</a> ·
-{% endfor %}
-<a href="{% relative_url_string schema.examples_url %}">See all…</a>
-</p>
-
 <h2>Data types</h2>
 <p>
 {% for data_type in featured_data_types %}
 <a href="{% relative_url_string data_type.get_absolute_url %}">{{ data_type.name }}</a> ·
 {% endfor %}
 <a href="{% relative_url_string schema.data_types_url %}">See all…</a>
+</p>
+
+<h2>Examples</h2>
+<p>
+{% for example in featured_examples %}
+<a href="{% relative_url_string example.get_absolute_url %}">{{ example.name }}</a> ·
+{% endfor %}
+<a href="{% relative_url_string schema.examples_url %}">See all…</a>
 </p>
 {% endblock %}
