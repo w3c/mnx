@@ -59,11 +59,29 @@
 </p>
 
 
+    <p>The &lt;note&gt; element defines a single note within an &lt;event&gt;, along with other information pertaining to the note itself rather than to its containing &lt;event&gt;.</p>
+
 
 <h2 id="content">Content</h2>
 
 
-    <p>Always empty.</p>
+    
+    
+    <p>
+
+
+
+
+    
+    
+        <a href="../tied/">&lt;tied&gt;</a> (Optional)
+    
+    
+
+
+
+</p>
+    
 
 
 <h2 id="attributes">Attributes</h2>
@@ -83,7 +101,7 @@
     <th class="nobr">accidental</th>
     <td><a href="../../data-types/accidental/">Accidental</a></td>
     <td>No</td>
-    <td></td>
+    <td>The accidental to be rendered for this note. This must match the alteration of the "pitch" attribute. Omission of this attribute indicates that no accidental is to be displayed.</td>
 </tr>
 
 <tr>
@@ -104,7 +122,14 @@
     <th class="nobr">pitch</th>
     <td><a href="../../data-types/chromatic-pitch/">Chromatic pitch</a></td>
     <td>No</td>
-    <td></td>
+    <td>The note's pitch.</td>
+</tr>
+
+<tr>
+    <th class="nobr">staff</th>
+    <td><a href="../../data-types/staff-index/">Staff index</a></td>
+    <td>No</td>
+    <td>A specific staff index for this note. If not provided, the value is inherited from any ancestor element that specified it. If no ancestor did so, the value is determined automatically according to the implementation’s rendering rules.<br><br>The primary purpose of this attribute is to override a default staff assignment at the &lt;sequence&gt; or &lt;event&gt; level — as in cross-staff keyboard notation.</td>
 </tr>
 
 </table>

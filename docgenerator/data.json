@@ -77,13 +77,13 @@
         "name": "Staff line",
         "slug": "staff-line",
         "schema": 1,
-        "description": "",
+        "description": "A specific line of the staff, as represented by a number. The bottom line on the staff is 1, and higher staff lines increase upward in value.",
         "is_featured": false,
         "xsd_name": "",
         "base_type": null,
         "min_value": "",
         "max_value": "",
-        "regex": "",
+        "regex": "\\d",
         "min_length": null,
         "union_types": []
     }
@@ -290,10 +290,10 @@
     "model": "spec.datatype",
     "pk": 15,
     "fields": {
-        "name": "Slur end location",
-        "slug": "slur-end-location",
+        "name": "Slur/tie end location",
+        "slug": "slur-tie-end-location",
         "schema": 1,
-        "description": "",
+        "description": "This is a <a href=\"/mnx-reference/data-types/measure-location/\">measure location</a> representing the \"other\" end of a slur or tie, with two special values \"incoming\" or \"outgoing\".",
         "is_featured": false,
         "xsd_name": "",
         "base_type": null,
@@ -621,6 +621,78 @@
         "is_featured": false,
         "xsd_name": "",
         "base_type": 33,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
+    "model": "spec.datatype",
+    "pk": 38,
+    "fields": {
+        "name": "Measure number",
+        "slug": "measure-number",
+        "schema": 1,
+        "description": "An integer representing a measure number, where the first measure in a score is generally 1.",
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": null,
+        "min_value": "",
+        "max_value": "",
+        "regex": "\\d+",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
+    "model": "spec.datatype",
+    "pk": 39,
+    "fields": {
+        "name": "Barline",
+        "slug": "barline",
+        "schema": 1,
+        "description": "",
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": null,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
+    "model": "spec.datatype",
+    "pk": 40,
+    "fields": {
+        "name": "Voice ID",
+        "slug": "voice-id",
+        "schema": 1,
+        "description": "A string used to identify a voice within an MNX document.\r\n\r\nThis is an opaque identifier that does not supply information from producers to consumers.",
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": 33,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
+    "model": "spec.datatype",
+    "pk": 41,
+    "fields": {
+        "name": "Tuplet display setting",
+        "slug": "tuplet-display-setting",
+        "schema": 1,
+        "description": "Controls the display of a tuplet's note value units.",
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": null,
         "min_value": "",
         "max_value": "",
         "regex": "",
@@ -1179,6 +1251,166 @@
     }
 },
 {
+    "model": "spec.datatypeoption",
+    "pk": 56,
+    "fields": {
+        "data_type": 39,
+        "value": "regular",
+        "description": "",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 57,
+    "fields": {
+        "data_type": 39,
+        "value": "dotted",
+        "description": "",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 58,
+    "fields": {
+        "data_type": 39,
+        "value": "dashed",
+        "description": "",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 59,
+    "fields": {
+        "data_type": 39,
+        "value": "heavy",
+        "description": "",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 60,
+    "fields": {
+        "data_type": 39,
+        "value": "light-light",
+        "description": "",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 61,
+    "fields": {
+        "data_type": 39,
+        "value": "light-heavy",
+        "description": "",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 62,
+    "fields": {
+        "data_type": 39,
+        "value": "heavy-light",
+        "description": "",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 63,
+    "fields": {
+        "data_type": 39,
+        "value": "heavy-heavy",
+        "description": "",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 64,
+    "fields": {
+        "data_type": 39,
+        "value": "tick",
+        "description": "",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 65,
+    "fields": {
+        "data_type": 39,
+        "value": "short",
+        "description": "",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 66,
+    "fields": {
+        "data_type": 39,
+        "value": "none",
+        "description": "",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 67,
+    "fields": {
+        "data_type": 15,
+        "value": "incoming",
+        "description": "",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 68,
+    "fields": {
+        "data_type": 15,
+        "value": "outgoing",
+        "description": "",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 69,
+    "fields": {
+        "data_type": 41,
+        "value": "none",
+        "description": "",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 70,
+    "fields": {
+        "data_type": 41,
+        "value": "inner",
+        "description": "",
+        "order": 1
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 71,
+    "fields": {
+        "data_type": 41,
+        "value": "both",
+        "description": "",
+        "order": 2
+    }
+},
+{
     "model": "spec.concept",
     "pk": 1,
     "fields": {
@@ -1255,7 +1487,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "The &lt;global&gt; element represents a set of measures, each of which provides content that is shared by a set of parts within the score. Examples of such content are key signatures and time signatures.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -1327,7 +1559,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "The &lt;part&gt; element represents a set of measures which describe a single part within the score. The sequence of measures must match the measure found in the &lt;global&gt; element applying to this part.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -1363,7 +1595,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "The &lt;measure&gt; element encloses the directions and sequences that together make up the majority of musical content in an MNX score.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -1399,7 +1631,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "The &lt;sequence&gt; element organizes a set of musical events within a measure into a strict temporal sequence, accompanied by relevant directions.\r\n\r\nThe content within each sequence supplies the music for a single polyphonic voice within its containing measure, including notes, chords, rests, tuplets and grace notes.",
         "content_data_type": null,
         "is_featured": true,
         "children_type": 1,
@@ -1417,7 +1649,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "The &lt;event&gt; element represents a discrete period of time during which one or more notes are performed, or in which a rest occurs.",
         "content_data_type": null,
         "is_featured": true,
         "children_type": 1,
@@ -1435,7 +1667,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "The &lt;note&gt; element defines a single note within an &lt;event&gt;, along with other information pertaining to the note itself rather than to its containing &lt;event&gt;.",
         "content_data_type": null,
         "is_featured": true,
         "children_type": 1,
@@ -1453,7 +1685,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "The &lt;rest&gt; element defines a rest within an &lt;event&gt;, along with other information pertaining to the rest rather than to its containing event.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -1471,7 +1703,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "The &lt;tied&gt; element is used to indicate that a note is tied to a subsequent &lt;note&gt; element.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -1561,13 +1793,12 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "An octave shift, traditionally notated with a marking such as \"8va\", tells a musician that the affected note(s) are being rendered a number of octaves up or down from their normal appearance on the staff, for sake of readability.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
         "attribute_groups": [
-            1,
-            2
+            1
         ]
     }
 },
@@ -1708,7 +1939,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "The &lt;grace&gt; element represents a run of events that are performed in a subordinate relationship to the surrounding non-grace events.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -1764,7 +1995,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "A run of text that is presented in a visual style consistent with general instructions to the performer.\r\n\r\nThe content of this element is the text.",
+        "description": "A run of text that is presented in a visual style consistent with general instructions to the performer.\r\n\r\nThe content of this element is the text to be displayed.",
         "content_data_type": 33,
         "is_featured": false,
         "children_type": 1,
@@ -1784,7 +2015,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "A run of text that is presented in a visual style consistent with describing musical expression.\r\n\r\nThe content of this element is the text.",
+        "description": "A run of text that is presented in a visual style consistent with describing musical expression.\r\n\r\nThe content of this element is the text to be displayed.",
         "content_data_type": 33,
         "is_featured": false,
         "children_type": 1,
@@ -1804,7 +2035,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "A wedge, also known as a crescendo or diminuendo.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -1867,7 +2098,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "A key signature applicable to this and all following measures, until changed.\r\n\r\n<key> elements in <global> are required for every key change. <key> elements below <part> are optional; if present, their \"fifths\" value must either be identical to the corresponding value in the global key or different by a multiple of 12.",
+        "description": "A key signature applicable to this and all following measures, until changed.\r\n\r\n&lt;key&gt; elements in &lt;global&gt; are required for every key change. &lt;key&gt; elements below &lt;part&gt; are optional; if present, their \"fifths\" value must either be identical to the corresponding value in the global key or different by a multiple of 12.\r\n\r\nIt is invalid to place more than one &lt;key&gt; element within a single &lt;measure&gt;",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -1887,6 +2118,42 @@
         "is_root": false,
         "description": "The part's name in abbreviated form. For example, \"Vln\" for violin.",
         "content_data_type": 33,
+        "is_featured": false,
+        "children_type": 1,
+        "attribute_groups": []
+    }
+},
+{
+    "model": "spec.xmlelement",
+    "pk": 39,
+    "fields": {
+        "name": "head",
+        "slug": "head",
+        "disambiguation": "",
+        "schema": 1,
+        "base_element": null,
+        "is_abstract_element": false,
+        "is_root": false,
+        "description": "This element provides overall descriptive information for an MNX document, such as document-scoped metadata.",
+        "content_data_type": null,
+        "is_featured": false,
+        "children_type": 1,
+        "attribute_groups": []
+    }
+},
+{
+    "model": "spec.xmlelement",
+    "pk": 40,
+    "fields": {
+        "name": "forward",
+        "slug": "forward",
+        "disambiguation": "",
+        "schema": 1,
+        "base_element": null,
+        "is_abstract_element": false,
+        "is_root": false,
+        "description": "The &lt;forward&gt; element represents a discrete period of time within a sequence in which no sequence content occurs. It embodies the idea of blank space within a measure.",
+        "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
         "attribute_groups": []
@@ -1930,7 +2197,7 @@
         "attribute_group": null,
         "name": "sign",
         "is_required": true,
-        "description": "",
+        "description": "The clef sign.",
         "data_type": 2
     }
 },
@@ -1942,7 +2209,7 @@
         "attribute_group": null,
         "name": "line",
         "is_required": true,
-        "description": "",
+        "description": "The staff line associated with the clef sign.",
         "data_type": 3
     }
 },
@@ -1954,7 +2221,7 @@
         "attribute_group": null,
         "name": "value",
         "is_required": false,
-        "description": "",
+        "description": "The duration of this event. This is required unless this event has measure=\"yes\".",
         "data_type": 4
     }
 },
@@ -1966,7 +2233,7 @@
         "attribute_group": null,
         "name": "pitch",
         "is_required": false,
-        "description": "",
+        "description": "The note's pitch.",
         "data_type": 5
     }
 },
@@ -1978,7 +2245,7 @@
         "attribute_group": null,
         "name": "accidental",
         "is_required": false,
-        "description": "",
+        "description": "The accidental to be rendered for this note. This must match the alteration of the \"pitch\" attribute. Omission of this attribute indicates that no accidental is to be displayed.",
         "data_type": 6
     }
 },
@@ -1989,8 +2256,8 @@
         "element": 14,
         "attribute_group": null,
         "name": "target",
-        "is_required": true,
-        "description": "",
+        "is_required": false,
+        "description": "The ID of a &lt;note&gt; that lies in the same part, and whose containing &lt;event&gt; begins directly after the end of the of this note’s &lt;event&gt;. The step, alteration and octave values for the target note must be identical to this one.\r\n\r\nIf target is not provided, the tie does not connect to a particular destination note. In this case, the \"location\" attribute may be used to specify the location of the other end of the tie.",
         "data_type": 7
     }
 },
@@ -2062,7 +2329,7 @@
         "attribute_group": null,
         "name": "inner",
         "is_required": true,
-        "description": "",
+        "description": "The duration of the enclosed content, as notated.\r\n\r\nFor example, a quarter-note triplet would have inner=\"3/4\". Its inner duration is three quarter notes (3 * 1/4 = 3/4).",
         "data_type": 11
     }
 },
@@ -2074,7 +2341,7 @@
         "attribute_group": null,
         "name": "outer",
         "is_required": true,
-        "description": "",
+        "description": "The duration of this tuplet with respect to its containing element. This is how much time the tuplet occupies in the &lt;measure&gt; (or parent &lt;tuplet&gt;, in case of nested tuplets) in which it is placed.\r\n\r\nFor example, a quarter-note triplet would have outer=\"1/2\".",
         "data_type": 11
     }
 },
@@ -2086,7 +2353,7 @@
         "attribute_group": null,
         "name": "type",
         "is_required": true,
-        "description": "",
+        "description": "The type of octave shift.",
         "data_type": 12
     }
 },
@@ -2098,7 +2365,7 @@
         "attribute_group": null,
         "name": "side",
         "is_required": false,
-        "description": "",
+        "description": "The slur's side. If not provided, the consuming software should determine the value automatically according to its own logic.",
         "data_type": 14
     }
 },
@@ -2110,7 +2377,7 @@
         "attribute_group": null,
         "name": "target",
         "is_required": false,
-        "description": "",
+        "description": "If provided, this specifies the ID of the slur’s end &lt;event&gt; — that is, the last event over which this slur is rendered. This ID must exist in the document and must identify an event.\r\n\r\nIf not provided, the slur does not connect to a particular destination &gt;event&gt;. In this case, the \"location\" attribute may be used to specify the location of the other end of the slur.",
         "data_type": 8
     }
 },
@@ -2122,7 +2389,7 @@
         "attribute_group": null,
         "name": "location",
         "is_required": false,
-        "description": "",
+        "description": "The value of location may lie either before or after the slur’s event, or it may use the special values \"incoming\" or \"outgoing\". The handling is as follows:\r\n\r\n* If the location precedes the start of the current event, this signifies a slur starting at the given location and ending on the current event.\r\n\r\n* If the location occurs after the start of the current event, this signifies a slur starting at the current event and ending at the given location.\r\n\r\n* A value of \"incoming\" places the start location at a conventionally short distance before the current event, and ends on the current event.\r\n\r\n* A value of \"outgoing\" starts on the current event, and places the end location at a conventionally short distance after the current event.\r\n\r\nIf neither target nor location is given, the effect is as if location=\"outgoing\" was specified.",
         "data_type": 15
     }
 },
@@ -2134,7 +2401,7 @@
         "attribute_group": null,
         "name": "start-note",
         "is_required": false,
-        "description": "",
+        "description": "The ID of the specific note at which this slur starts. This note must be within the &lt;event&gt; that contains this &gt;slur&gt;.\r\n\r\nFor example, you can use start-note to encode which specific note, within a chord, a slur is intended to start on — in cases when an engraving has multiple slurs starting on the same &gt;event&gt;.",
         "data_type": 7
     }
 },
@@ -2146,7 +2413,7 @@
         "attribute_group": null,
         "name": "end-note",
         "is_required": false,
-        "description": "",
+        "description": "The ID of the specific note at which this slur ends. This note must be within the &lt;event&gt; specified by this slur's \"target\" attribute.\r\n\r\nFor example, you can use end-note to encode which specific note, within a chord, a slur is intended to end on — in cases when an engraving has multiple slurs end on the same &gt;event&gt;.",
         "data_type": 7
     }
 },
@@ -2158,7 +2425,7 @@
         "attribute_group": null,
         "name": "line-type",
         "is_required": false,
-        "description": "",
+        "description": "The slur's line type. If not provided, the consuming software should determine the value automatically according to its own logic.",
         "data_type": 16
     }
 },
@@ -2170,7 +2437,7 @@
         "attribute_group": null,
         "name": "side-end",
         "is_required": false,
-        "description": "",
+        "description": "The slur’s side at the end of the slur, in cases where it differs from its initial side — for example, in cross-staff notation. If not provided, it's interpreted to have the same value as \"side\".",
         "data_type": 14
     }
 },
@@ -2242,7 +2509,7 @@
         "attribute_group": null,
         "name": "type",
         "is_required": false,
-        "description": "",
+        "description": "The kind of grace notes included in this element. The default value is \"steal-previous\".",
         "data_type": 26
     }
 },
@@ -2254,20 +2521,8 @@
         "attribute_group": null,
         "name": "slash",
         "is_required": false,
-        "description": "",
+        "description": "Whether grace notes are notated with a slash.\r\n\r\nThe default value of \"yes\" specifies a slash, indicating that the grace notes are displayed with a diagonal stroke and are to be performed quickly and not in their notated rhythm. Otherwise, they are performed with the notated note values according to the performance characteristics given by \"type\".",
         "data_type": 27
-    }
-},
-{
-    "model": "spec.xmlattribute",
-    "pk": 35,
-    "fields": {
-        "element": 18,
-        "attribute_group": null,
-        "name": "bracket",
-        "is_required": false,
-        "description": "",
-        "data_type": 28
     }
 },
 {
@@ -2278,7 +2533,7 @@
         "attribute_group": null,
         "name": "orient",
         "is_required": false,
-        "description": "",
+        "description": "A specific orientation for this tuplet. If not provided, the orientation is inherited from any ancestor element that specified it. If no ancestor did so, the orientation is determined automatically according to the implementation’s rendering rules.",
         "data_type": 29
     }
 },
@@ -2290,7 +2545,7 @@
         "attribute_group": null,
         "name": "orient",
         "is_required": false,
-        "description": "Default orientation of the content in this sequence. If not provided, the orientation is determined automatically according to the implementation’s rendering rules and may be overridden by descendant elements.",
+        "description": "The default orientation of the content in this sequence. If not provided, the orientation is determined automatically according to the implementation’s rendering rules and may be overridden by descendant elements.",
         "data_type": 29
     }
 },
@@ -2350,7 +2605,7 @@
         "attribute_group": null,
         "name": "type",
         "is_required": true,
-        "description": "",
+        "description": "The type of wedge.",
         "data_type": 32
     }
 },
@@ -2511,6 +2766,222 @@
     }
 },
 {
+    "model": "spec.xmlattribute",
+    "pk": 57,
+    "fields": {
+        "element": 8,
+        "attribute_group": null,
+        "name": "index",
+        "is_required": false,
+        "description": "The one-based index of this measure within the score. The default value is 1 for the first &lt;measure&gt; in the &lt;part&gt;. For all other measures, the default value is the value of the previous &lt;measure&gt; plus 1.\r\n\r\nThis is used within the MNX document in cases when content needs to refer to a specific measure.",
+        "data_type": 38
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 58,
+    "fields": {
+        "element": 8,
+        "attribute_group": null,
+        "name": "number",
+        "is_required": false,
+        "description": "A visual label for the measure. If omitted, its value is the same as <code>index</code>.",
+        "data_type": 38
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 59,
+    "fields": {
+        "element": 8,
+        "attribute_group": null,
+        "name": "barline",
+        "is_required": false,
+        "description": "The barline drawn at the end of this measure. If not provided, the barline should be interpreted as follows:\r\n\r\n* If the measure is the last in the document, use \"light-heavy\".\r\n* Otherwise, use \"regular\".",
+        "data_type": 39
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 60,
+    "fields": {
+        "element": 10,
+        "attribute_group": null,
+        "name": "staff",
+        "is_required": false,
+        "description": "The default staff index of the content in this sequence. If not provided, the orientation is determined automatically according to the implementation’s rendering rules and may be overridden by descendant elements.",
+        "data_type": 30
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 61,
+    "fields": {
+        "element": 10,
+        "attribute_group": null,
+        "name": "voice",
+        "is_required": false,
+        "description": "A string that identifies the voice to which this sequence belongs. All &lt;sequence&gt; elements in a given &lt;part&gt; having the same value of \"voice\" belong to the same voice. Within a given &lt;measure&gt; element, no two &lt;sequence&gt; elements may share the same value for voice. The value of voice is an opaque identifier that does not supply information from producers to consumers.",
+        "data_type": 40
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 62,
+    "fields": {
+        "element": 11,
+        "attribute_group": null,
+        "name": "measure",
+        "is_required": false,
+        "description": "Whether this event is a whole-measure event — meaning its duration lasts the entire measure. This is used, for example, for rests that last an entire measure.\r\n\r\nIf this value is set to \"yes\", then this event may not specify \"value\" and this event must either be empty or contain exactly one &lt;rest&gt;.",
+        "data_type": 27
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 63,
+    "fields": {
+        "element": 11,
+        "attribute_group": null,
+        "name": "orient",
+        "is_required": false,
+        "description": "A specific orientation for this event. If not provided, the orientation is inherited from any ancestor element that specified it. If no ancestor did so, the orientation is determined automatically according to the implementation’s rendering rules.",
+        "data_type": 29
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 64,
+    "fields": {
+        "element": 11,
+        "attribute_group": null,
+        "name": "staff",
+        "is_required": false,
+        "description": "A specific staff index for this event. If not provided, the value is inherited from any ancestor element that specified it. If no ancestor did so, the value is determined automatically according to the implementation’s rendering rules.\r\n\r\nThe primary purpose of this attribute is to override a default staff assignment at the &lt;sequence&gt; level — as in cross-staff keyboard notation.",
+        "data_type": 30
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 65,
+    "fields": {
+        "element": 11,
+        "attribute_group": null,
+        "name": "duration",
+        "is_required": false,
+        "description": "The actual, performed duration of the event, if different from the notated value given by \"value\".\r\n\r\nNote that this is specified as a note value quantity, rather than a rhythmic duration, because the former is less constrained. It may be any desired multiple of a note value.\r\n\r\nThe duration attribute not only alters the performance of the event, but determines the amount of time the event takes up in the measure, affecting the location of subsequent events in the containing sequence. This can change the layout of the measure, as subsequent &lt;event&gt;s will occur earlier or later as a result and be positioned accordingly. It also affects the validation of the measure for metrical correctness.\r\n\r\nThis attribute is unlikely to be frequently encountered, but it's needed to handle cases in which composers use notated values that are not interpreted literally.",
+        "data_type": 11
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 66,
+    "fields": {
+        "element": 40,
+        "attribute_group": null,
+        "name": "duration",
+        "is_required": false,
+        "description": "The metrical duration of this space.",
+        "data_type": 11
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 68,
+    "fields": {
+        "element": 19,
+        "attribute_group": null,
+        "name": "end",
+        "is_required": true,
+        "description": "The measure location of the last note that is affected by this octave shift.",
+        "data_type": 13
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 69,
+    "fields": {
+        "element": 14,
+        "attribute_group": null,
+        "name": "location",
+        "is_required": false,
+        "description": "The value of location may lie either before or after the slur’s event, or it may use the special values \"incoming\" or \"outgoing\". The handling is as follows:\r\n\r\n* If the location precedes the start of the current event, this signifies a tie starting at the given location and ending on the current note.\r\n\r\n* If the location occurs after the start of the current event, this signifies a tie starting at the current note and ending at the given location.\r\n\r\n* A value of \"incoming\" places the start location at a conventionally short distance before the current note, and ends on the current note.\r\n\r\n* A value of \"outgoing\" starts on the current note, and places the end location at a conventionally short distance after the current note.\r\n\r\nIf neither target nor location is given, the effect is as if location=\"outgoing\" was specified.",
+        "data_type": 15
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 70,
+    "fields": {
+        "element": 13,
+        "attribute_group": null,
+        "name": "pitch",
+        "is_required": false,
+        "description": "If provided, this mandates that the rest be placed on the staff line corresponding to the provided chromatic pitch. The accidental component of the pitch is ignored for this purpose.",
+        "data_type": 5
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 71,
+    "fields": {
+        "element": 12,
+        "attribute_group": null,
+        "name": "staff",
+        "is_required": false,
+        "description": "A specific staff index for this note. If not provided, the value is inherited from any ancestor element that specified it. If no ancestor did so, the value is determined automatically according to the implementation’s rendering rules.\r\n\r\nThe primary purpose of this attribute is to override a default staff assignment at the &lt;sequence&gt; or &lt;event&gt; level — as in cross-staff keyboard notation.",
+        "data_type": 30
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 72,
+    "fields": {
+        "element": 18,
+        "attribute_group": null,
+        "name": "staff",
+        "is_required": false,
+        "description": "A specific staff index for this tuplet. If not provided, the value is inherited from any ancestor element that specified it. If no ancestor did so, the value is determined automatically according to the implementation’s rendering rules.\r\n\r\nThe primary purpose of this attribute is to override a default staff assignment at the &lt;sequence&gt; level — as in cross-staff keyboard notation.",
+        "data_type": 30
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 73,
+    "fields": {
+        "element": 18,
+        "attribute_group": null,
+        "name": "show-number",
+        "is_required": false,
+        "description": "Controls the display of the quantity of inner and outer note value units for the tuplet.\r\n\r\n* \"none\" — do not show any tuplet number.\r\n\r\n* \"inner\" (default) — display only the numerator of the tuplet's \"inner\" attribute.\r\n\r\n* \"both\" — display both the numerators of the tuplet's \"inner\" and \"outer\" attributes.",
+        "data_type": 41
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 74,
+    "fields": {
+        "element": 18,
+        "attribute_group": null,
+        "name": "show-value",
+        "is_required": false,
+        "description": "Controls the display of the note value units used inside and outside the tuplet.\r\n\r\n* \"none\" (default) — do not show any tuplet units.\r\n\r\n* \"inner\" — display only the note value unit of the tuplet’s \"inner\" attribute.\r\n\r\n* \"both\" — display both the note value units of the tuplet's \"inner\" and \"outer\" attributes.",
+        "data_type": 41
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 75,
+    "fields": {
+        "element": 18,
+        "attribute_group": null,
+        "name": "bracket",
+        "is_required": false,
+        "description": "Controls the display of a bracket in conjunction with the tuplet. This is disregarded if \"show-number\" has a value of \"none\".\r\n\r\n* \"auto\" (default) — a bracket is shown for the tuplet if and only if the notes are unbeamed.\r\n\r\n* \"yes\" — always display a bracket.\r\n\r\n* \"no\" — never display a bracket.",
+        "data_type": 28
+    }
+},
+{
     "model": "spec.xmlrelationship",
     "pk": 1,
     "fields": {
@@ -2518,7 +2989,7 @@
         "child": 2,
         "min_amount": 1,
         "max_amount": 1,
-        "child_order": 0
+        "child_order": 1
     }
 },
 {
@@ -2551,7 +3022,7 @@
         "child": 6,
         "min_amount": 1,
         "max_amount": null,
-        "child_order": 0
+        "child_order": 2
     }
 },
 {
@@ -2650,7 +3121,7 @@
         "child": 15,
         "min_amount": 0,
         "max_amount": 1,
-        "child_order": 0
+        "child_order": 4
     }
 },
 {
@@ -2683,7 +3154,7 @@
         "child": 18,
         "min_amount": 0,
         "max_amount": null,
-        "child_order": 0
+        "child_order": 1
     }
 },
 {
@@ -2705,7 +3176,7 @@
         "child": 18,
         "min_amount": 0,
         "max_amount": null,
-        "child_order": 0
+        "child_order": 1
     }
 },
 {
@@ -2815,7 +3286,7 @@
         "child": 29,
         "min_amount": 0,
         "max_amount": null,
-        "child_order": 0
+        "child_order": 2
     }
 },
 {
@@ -2826,7 +3297,7 @@
         "child": 29,
         "min_amount": 0,
         "max_amount": null,
-        "child_order": 0
+        "child_order": 2
     }
 },
 {
@@ -2848,7 +3319,7 @@
         "child": 30,
         "min_amount": 0,
         "max_amount": null,
-        "child_order": 0
+        "child_order": 3
     }
 },
 {
@@ -2948,6 +3419,50 @@
         "min_amount": 0,
         "max_amount": 1,
         "child_order": 1
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 48,
+    "fields": {
+        "parent": 1,
+        "child": 39,
+        "min_amount": 0,
+        "max_amount": 1,
+        "child_order": 0
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 49,
+    "fields": {
+        "parent": 18,
+        "child": 40,
+        "min_amount": 0,
+        "max_amount": null,
+        "child_order": 3
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 50,
+    "fields": {
+        "parent": 10,
+        "child": 40,
+        "min_amount": 0,
+        "max_amount": null,
+        "child_order": 5
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 51,
+    "fields": {
+        "parent": 12,
+        "child": 14,
+        "min_amount": 0,
+        "max_amount": 1,
+        "child_order": 0
     }
 },
 {

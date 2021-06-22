@@ -50,12 +50,16 @@
 
 <h1>The &lt;tied&gt; element</h1>
 
-<p>Parent elements:
+<p>Parent element:
     
-        None
+        
+        <a href="../note/">&lt;note&gt;</a>
+        
     
 </p>
 
+
+    <p>The &lt;tied&gt; element is used to indicate that a note is tied to a subsequent &lt;note&gt; element.</p>
 
 
 <h2 id="content">Content</h2>
@@ -78,10 +82,17 @@
 </thead>
 
 <tr>
+    <th class="nobr">location</th>
+    <td><a href="../../data-types/slur-tie-end-location/">Slur/tie end location</a></td>
+    <td>No</td>
+    <td>The value of location may lie either before or after the slur’s event, or it may use the special values "incoming" or "outgoing". The handling is as follows:<br><br>* If the location precedes the start of the current event, this signifies a tie starting at the given location and ending on the current note.<br><br>* If the location occurs after the start of the current event, this signifies a tie starting at the current note and ending at the given location.<br><br>* A value of "incoming" places the start location at a conventionally short distance before the current note, and ends on the current note.<br><br>* A value of "outgoing" starts on the current note, and places the end location at a conventionally short distance after the current note.<br><br>If neither target nor location is given, the effect is as if location="outgoing" was specified.</td>
+</tr>
+
+<tr>
     <th class="nobr">target</th>
     <td><a href="../../data-types/note-id/">Note ID</a></td>
-    <td>Yes</td>
-    <td></td>
+    <td>No</td>
+    <td>The ID of a &lt;note&gt; that lies in the same part, and whose containing &lt;event&gt; begins directly after the end of the of this note’s &lt;event&gt;. The step, alteration and octave values for the target note must be identical to this one.<br><br>If target is not provided, the tie does not connect to a particular destination note. In this case, the "location" attribute may be used to specify the location of the other end of the tie.</td>
 </tr>
 
 </table>

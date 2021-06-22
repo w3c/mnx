@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Staff line data type | MNX specification</title>
+<title>Tuplet display setting data type | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -45,27 +45,46 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Data types</a> &gt;
-    Staff line
+    Tuplet display setting
 </p>
 
-<h1>Staff line data type</h1>
+<h1>Tuplet display setting data type</h1>
 
 
-<p>A specific line of the staff, as represented by a number. The bottom line on the staff is 1, and higher staff lines increase upward in value.</p>
-
-
-
+<p>Controls the display of a tuplet's note value units.</p>
 
 
 
 
 
 
-<p>Regex pattern: <b>\d</b></p>
 
 
 
 
+
+
+
+<h2 id="allowed">Allowed values</h2>
+
+<table>
+
+<tr>
+    <th class="nobr">none</th>
+    <td></td>
+</tr>
+
+<tr>
+    <th class="nobr">inner</th>
+    <td></td>
+</tr>
+
+<tr>
+    <th class="nobr">both</th>
+    <td></td>
+</tr>
+
+</table>
 
 
 
@@ -74,7 +93,9 @@
 
 
 
-<p><a href="../../elements/clef/">&lt;clef&gt;</a> — "line" attribute</p>
+<p><a href="../../elements/tuplet/">&lt;tuplet&gt;</a> — "show-number" attribute</p>
+
+<p><a href="../../elements/tuplet/">&lt;tuplet&gt;</a> — "show-value" attribute</p>
 
 
 

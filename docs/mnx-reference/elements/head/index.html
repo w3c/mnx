@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The &lt;key&gt; element | MNX specification</title>
+<title>The &lt;head&gt; element | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -45,27 +45,21 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Elements</a> &gt;
-    key
+    head
 </p>
 
-<h1>The &lt;key&gt; element</h1>
+<h1>The &lt;head&gt; element</h1>
 
-<p>Parent elements:
+<p>Parent element:
     
         
-        <a href="../directions-global/">&lt;directions&gt; (global)</a>, 
-        
-        <a href="../directions-part/">&lt;directions&gt; (part)</a>
+        <a href="../mnx/">&lt;mnx&gt;</a>
         
     
 </p>
 
 
-    <p>A key signature applicable to this and all following measures, until changed.</p>
-
-<p>&lt;key&gt; elements in &lt;global&gt; are required for every key change. &lt;key&gt; elements below &lt;part&gt; are optional; if present, their "fifths" value must either be identical to the corresponding value in the global key or different by a multiple of 12.</p>
-
-<p>It is invalid to place more than one &lt;key&gt; element within a single &lt;measure&gt;</p>
+    <p>This element provides overall descriptive information for an MNX document, such as document-scoped metadata.</p>
 
 
 <h2 id="content">Content</h2>
@@ -77,35 +71,11 @@
 <h2 id="attributes">Attributes</h2>
 
 
-<table>
-<thead>
-<tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Required?</th>
-    <th>Description</th>
-</tr>
-</thead>
-
-<tr>
-    <th class="nobr">fifths</th>
-    <td><a href="../../data-types/integer-signed/">Integer (signed)</a></td>
-    <td>Yes</td>
-    <td>The number of fifths distance from a signature with no accidentals.</td>
-</tr>
-
-</table>
+<p>None.</p>
 
 
 
 
-
-<h2 id="examples">Examples</h2>
-
-<p>This element is used in the following examples:</p>
-<p>
-    <nobr><a href="../../examples/accidentals/">Accidentals</a></nobr>, <nobr><a href="../../examples/key-signatures/">Key signatures</a></nobr>
-</p>
 
 
 

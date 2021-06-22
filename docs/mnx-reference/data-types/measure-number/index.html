@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Staff line data type | MNX specification</title>
+<title>Measure number data type | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -45,23 +45,23 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Data types</a> &gt;
-    Staff line
+    Measure number
 </p>
 
-<h1>Staff line data type</h1>
+<h1>Measure number data type</h1>
 
 
-<p>A specific line of the staff, as represented by a number. The bottom line on the staff is 1, and higher staff lines increase upward in value.</p>
-
-
-
+<p>An integer representing a measure number, where the first measure in a score is generally 1.</p>
 
 
 
 
 
 
-<p>Regex pattern: <b>\d</b></p>
+
+
+
+<p>Regex pattern: <b>\d+</b></p>
 
 
 
@@ -74,7 +74,9 @@
 
 
 
-<p><a href="../../elements/clef/">&lt;clef&gt;</a> — "line" attribute</p>
+<p><a href="../../elements/measure-part/">&lt;measure&gt;</a> — "index" attribute</p>
+
+<p><a href="../../elements/measure-part/">&lt;measure&gt;</a> — "number" attribute</p>
 
 
 

@@ -59,6 +59,10 @@
 </p>
 
 
+    <p>The &lt;sequence&gt; element organizes a set of musical events within a measure into a strict temporal sequence, accompanied by relevant directions.</p>
+
+<p>The content within each sequence supplies the music for a single polyphonic voice within its containing measure, including notes, chords, rests, tuplets and grace notes.</p>
+
 
 <h2 id="content">Content</h2>
 
@@ -81,12 +85,6 @@
         
         <li>
             
-                <a href="../beams/">&lt;beams&gt;</a> (Optional)
-            
-        </li>
-        
-        <li>
-            
                 <a href="../tuplet/">&lt;tuplet&gt;</a> (Zero or more times)
             
         </li>
@@ -100,6 +98,18 @@
         <li>
             
                 <a href="../directions-sequence/">&lt;directions&gt;</a> (Zero or more times)
+            
+        </li>
+        
+        <li>
+            
+                <a href="../beams/">&lt;beams&gt;</a> (Optional)
+            
+        </li>
+        
+        <li>
+            
+                <a href="../forward/">&lt;forward&gt;</a> (Zero or more times)
             
         </li>
         
@@ -128,7 +138,21 @@
     <th class="nobr">orient</th>
     <td><a href="../../data-types/orientation/">Orientation</a></td>
     <td>No</td>
-    <td>Default orientation of the content in this sequence. If not provided, the orientation is determined automatically according to the implementation’s rendering rules and may be overridden by descendant elements.</td>
+    <td>The default orientation of the content in this sequence. If not provided, the orientation is determined automatically according to the implementation’s rendering rules and may be overridden by descendant elements.</td>
+</tr>
+
+<tr>
+    <th class="nobr">staff</th>
+    <td><a href="../../data-types/staff-index/">Staff index</a></td>
+    <td>No</td>
+    <td>The default staff index of the content in this sequence. If not provided, the orientation is determined automatically according to the implementation’s rendering rules and may be overridden by descendant elements.</td>
+</tr>
+
+<tr>
+    <th class="nobr">voice</th>
+    <td><a href="../../data-types/voice-id/">Voice ID</a></td>
+    <td>No</td>
+    <td>A string that identifies the voice to which this sequence belongs. All &lt;sequence&gt; elements in a given &lt;part&gt; having the same value of "voice" belong to the same voice. Within a given &lt;measure&gt; element, no two &lt;sequence&gt; elements may share the same value for voice. The value of voice is an opaque identifier that does not supply information from producers to consumers.</td>
 </tr>
 
 </table>

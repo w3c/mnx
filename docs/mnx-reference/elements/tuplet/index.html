@@ -93,6 +93,12 @@
             
         </li>
         
+        <li>
+            
+                <a href="../forward/">&lt;forward&gt;</a> (Zero or more times)
+            
+        </li>
+        
     </ul>
 
 
@@ -118,28 +124,49 @@
     <th class="nobr">inner</th>
     <td><a href="../../data-types/note-value-quantity/">Note value quantity</a></td>
     <td>Yes</td>
-    <td></td>
+    <td>The duration of the enclosed content, as notated.<br><br>For example, a quarter-note triplet would have inner="3/4". Its inner duration is three quarter notes (3 * 1/4 = 3/4).</td>
 </tr>
 
 <tr>
     <th class="nobr">outer</th>
     <td><a href="../../data-types/note-value-quantity/">Note value quantity</a></td>
     <td>Yes</td>
-    <td></td>
+    <td>The duration of this tuplet with respect to its containing element. This is how much time the tuplet occupies in the &lt;measure&gt; (or parent &lt;tuplet&gt;, in case of nested tuplets) in which it is placed.<br><br>For example, a quarter-note triplet would have outer="1/2".</td>
 </tr>
 
 <tr>
     <th class="nobr">bracket</th>
     <td><a href="../../data-types/yes-no-or-auto/">Yes, no or auto</a></td>
     <td>No</td>
-    <td></td>
+    <td>Controls the display of a bracket in conjunction with the tuplet. This is disregarded if "show-number" has a value of "none".<br><br>* "auto" (default) — a bracket is shown for the tuplet if and only if the notes are unbeamed.<br><br>* "yes" — always display a bracket.<br><br>* "no" — never display a bracket.</td>
 </tr>
 
 <tr>
     <th class="nobr">orient</th>
     <td><a href="../../data-types/orientation/">Orientation</a></td>
     <td>No</td>
-    <td></td>
+    <td>A specific orientation for this tuplet. If not provided, the orientation is inherited from any ancestor element that specified it. If no ancestor did so, the orientation is determined automatically according to the implementation’s rendering rules.</td>
+</tr>
+
+<tr>
+    <th class="nobr">show-number</th>
+    <td><a href="../../data-types/tuplet-display-setting/">Tuplet display setting</a></td>
+    <td>No</td>
+    <td>Controls the display of the quantity of inner and outer note value units for the tuplet.<br><br>* "none" — do not show any tuplet number.<br><br>* "inner" (default) — display only the numerator of the tuplet's "inner" attribute.<br><br>* "both" — display both the numerators of the tuplet's "inner" and "outer" attributes.</td>
+</tr>
+
+<tr>
+    <th class="nobr">show-value</th>
+    <td><a href="../../data-types/tuplet-display-setting/">Tuplet display setting</a></td>
+    <td>No</td>
+    <td>Controls the display of the note value units used inside and outside the tuplet.<br><br>* "none" (default) — do not show any tuplet units.<br><br>* "inner" — display only the note value unit of the tuplet’s "inner" attribute.<br><br>* "both" — display both the note value units of the tuplet's "inner" and "outer" attributes.</td>
+</tr>
+
+<tr>
+    <th class="nobr">staff</th>
+    <td><a href="../../data-types/staff-index/">Staff index</a></td>
+    <td>No</td>
+    <td>A specific staff index for this tuplet. If not provided, the value is inherited from any ancestor element that specified it. If no ancestor did so, the value is determined automatically according to the implementation’s rendering rules.<br><br>The primary purpose of this attribute is to override a default staff assignment at the &lt;sequence&gt; level — as in cross-staff keyboard notation.</td>
 </tr>
 
 </table>

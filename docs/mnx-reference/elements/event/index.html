@@ -63,6 +63,8 @@
 </p>
 
 
+    <p>The &lt;event&gt; element represents a discrete period of time during which one or more notes are performed, or in which a rest occurs.</p>
+
 
 <h2 id="content">Content</h2>
 
@@ -124,10 +126,38 @@
 </tr>
 
 <tr>
+    <th class="nobr">duration</th>
+    <td><a href="../../data-types/note-value-quantity/">Note value quantity</a></td>
+    <td>No</td>
+    <td>The actual, performed duration of the event, if different from the notated value given by "value".<br><br>Note that this is specified as a note value quantity, rather than a rhythmic duration, because the former is less constrained. It may be any desired multiple of a note value.<br><br>The duration attribute not only alters the performance of the event, but determines the amount of time the event takes up in the measure, affecting the location of subsequent events in the containing sequence. This can change the layout of the measure, as subsequent &lt;event&gt;s will occur earlier or later as a result and be positioned accordingly. It also affects the validation of the measure for metrical correctness.<br><br>This attribute is unlikely to be frequently encountered, but it's needed to handle cases in which composers use notated values that are not interpreted literally.</td>
+</tr>
+
+<tr>
     <th class="nobr">id</th>
     <td><a href="../../data-types/event-id/">Event ID</a></td>
     <td>No</td>
     <td></td>
+</tr>
+
+<tr>
+    <th class="nobr">measure</th>
+    <td><a href="../../data-types/yes-or-no/">Yes or no</a></td>
+    <td>No</td>
+    <td>Whether this event is a whole-measure event — meaning its duration lasts the entire measure. This is used, for example, for rests that last an entire measure.<br><br>If this value is set to "yes", then this event may not specify "value" and this event must either be empty or contain exactly one &lt;rest&gt;.</td>
+</tr>
+
+<tr>
+    <th class="nobr">orient</th>
+    <td><a href="../../data-types/orientation/">Orientation</a></td>
+    <td>No</td>
+    <td>A specific orientation for this event. If not provided, the orientation is inherited from any ancestor element that specified it. If no ancestor did so, the orientation is determined automatically according to the implementation’s rendering rules.</td>
+</tr>
+
+<tr>
+    <th class="nobr">staff</th>
+    <td><a href="../../data-types/staff-index/">Staff index</a></td>
+    <td>No</td>
+    <td>A specific staff index for this event. If not provided, the value is inherited from any ancestor element that specified it. If no ancestor did so, the value is determined automatically according to the implementation’s rendering rules.<br><br>The primary purpose of this attribute is to override a default staff assignment at the &lt;sequence&gt; level — as in cross-staff keyboard notation.</td>
 </tr>
 
 <tr>
@@ -141,7 +171,7 @@
     <th class="nobr">value</th>
     <td><a href="../../data-types/rhythmic-duration/">Rhythmic duration</a></td>
     <td>No</td>
-    <td></td>
+    <td>The duration of this event. This is required unless this event has measure="yes".</td>
 </tr>
 
 </table>

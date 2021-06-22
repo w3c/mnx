@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Staff line data type | MNX specification</title>
+<title>Slur/tie end location data type | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -45,27 +45,41 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Data types</a> &gt;
-    Staff line
+    Slur/tie end location
 </p>
 
-<h1>Staff line data type</h1>
+<h1>Slur/tie end location data type</h1>
 
 
-<p>A specific line of the staff, as represented by a number. The bottom line on the staff is 1, and higher staff lines increase upward in value.</p>
-
-
-
+<p>This is a <a href="/mnx-reference/data-types/measure-location/">measure location</a> representing the "other" end of a slur or tie, with two special values "incoming" or "outgoing".</p>
 
 
 
 
 
 
-<p>Regex pattern: <b>\d</b></p>
 
 
 
 
+
+
+
+<h2 id="allowed">Allowed values</h2>
+
+<table>
+
+<tr>
+    <th class="nobr">incoming</th>
+    <td></td>
+</tr>
+
+<tr>
+    <th class="nobr">outgoing</th>
+    <td></td>
+</tr>
+
+</table>
 
 
 
@@ -74,7 +88,9 @@
 
 
 
-<p><a href="../../elements/clef/">&lt;clef&gt;</a> — "line" attribute</p>
+<p><a href="../../elements/slur/">&lt;slur&gt;</a> — "location" attribute</p>
+
+<p><a href="../../elements/tied/">&lt;tied&gt;</a> — "location" attribute</p>
 
 
 
