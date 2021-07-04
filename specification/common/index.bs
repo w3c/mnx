@@ -2433,24 +2433,141 @@ consistent with describing musical expression.
 
 <h4 id="the-ending-element">The <dfn element><code>ending</code></dfn> element</h4>
 <section dfn-for="ending">
-  <em>Needs migration from MusicXML. Applies from the start of the containing measure (i.e. does not belong to a &lt;barline&gt;)</em>
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{ending/type}> - (required) <code>start</code>, <code>stop</code> or <code>discontinue</code></dd>
+    <dd><{ending/number}> - (required for <code>type="start"</code>) a comma-separated list of integers representing the ending numbers</dd>
+  </dl>
+
+The <{ending}> element describes an alternate ending, also known as a "volta."
+
+Each ending in a document must include two <{ending}> elements: one with
+<code>type="start"</code> and another with either <code>type="stop"</code>
+or <code>type="discontinue"</code>.
+
+Use <code>type="stop"</code> when the ending concludes with a downward jog,
+as is typical for first endings. Use <code>type="discontinue"</code> when
+there is no downward jog, as is typical for second endings that do not
+conclude a piece.
+
+The <code>number</code> attribute uses one-indexed numbers, not
+zero-indexed numbers. For example, the first ending has <code>number="1"</code>.
+
+This element applies to the containing measure. Thus, <code>type="start"</code>
+means an ending starting from the beginning of this measure, and <code>type="stop"</code>
+means an ending that stops at the end of this measure.
 </section>
 
 <h4 id="the-repeat-element">The <dfn element><code>repeat</code></dfn> element</h4>
 <section dfn-for="repeat">
-  <em>Needs migration from MusicXML. Applies to the containing measure (i.e. does not belong to a &lt;barline&gt;).
-      Thus, "start" means a repeat starting from the beginning of this measure; "end" means a repeat ending at the end
-      of this measure.</em>
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{repeat/type}> - (required) either <code>start</code> or <code>end</code></dd>
+    <dd><{repeat/times}> - (optional) the number of times the music within the repeat should be performed. Default is 2.</dd>
+  </dl>
+
+The <{repeat}> element describes a repeat, traditionally rendered as a repeat barline.
+
+This element applies to the containing measure. Thus, <code>type="start"</code>
+means a repeat starting from the beginning of this measure, and <code>type="end"</code>
+means a repeat ending at the end of this measure.
 </section>
 
 <h4 id="the-coda-element">The <dfn element><code>coda</code></dfn> element</h4>
 <section dfn-for="coda">
-  <em>Needs migration from MusicXML. May need to distinguish musical form use from textual reference to the symbol.</em>
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None</dd>
+  </dl>
+
+The <{coda}> element describes a coda symbol.
+
+This element applies to the containing measure. The coda symbol is traditionally
+rendered at the start of its measure.
 </section>
 
 <h4 id="the-segno-element">The <dfn element><code>segno</code></dfn> element</h4>
 <section dfn-for="segno">
-  <em>Needs migration from MusicXML. May need to distinguish musical form use from textual reference to the symbol.</em>
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None</dd>
+  </dl>
+
+The <{segno}> element describes a segno symbol.
+
+This element applies to the containing measure. The segno symbol is traditionally
+rendered at the start of its measure.
+</section>
+
+<h4 id="the-fine-element">The <dfn element><code>fine</code></dfn> element</h4>
+<section dfn-for="fine">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd>None</dd>
+  </dl>
+
+The <{fine}> element describes a fine symbol.
+
+This element applies to the containing measure. The fine symbol is traditionally
+rendered at the end of its measure.
+</section>
+
+<h4 id="the-jump-element">The <dfn element><code>jump</code></dfn> element</h4>
+<section dfn-for="jump">
+  <dl class="def">
+    <dt><a>Contexts</a>:</dt>
+    <dd>Direction content</dd>
+    <dt><a>Content Model</a>:</dt>
+    <dd>None</dd>
+    <dt><a>Attributes</a>:</dt>
+    <dd><{jump/type}> - (required) see choices below</dd>
+  </dl>
+
+The <{jump}> element describes a musical jump: a direction to continue
+performance at some other measure.
+
+The <dfn element-attr dfn-for="jump">type</dfn> attribute specifies the type of jump:
+
+<dl dfn-for="jump/type">
+  <dt><dfn attr-value><code>segno</code></dfn></dt>
+  <dd>"Dal segno": Jump to the <{segno}></dd>
+  <dt><dfn attr-value><code>coda</code></dfn></dt>
+  <dd>"To coda": Jump to the <{coda}></dd>
+  <dt><dfn attr-value><code>capo</code></dfn></dt>
+  <dd>"Da capo": Jump to the first measure</dd>
+  <dt><dfn attr-value><code>dcalfine</code></dfn></dt>
+  <dd>"D.C. al fine": Jump to the first measure, then perform until the measure that contains <{fine}> (inclusive)</dd>
+  <dt><dfn attr-value><code>dcalcoda</code></dfn></dt>
+  <dd>"D.C. al coda": Jump to the first measure, then perform until the measure that contains <{jump} type="coda"> (inclusive), then jump to the coda</dd>
+  <dt><dfn attr-value><code>dsalfine</code></dfn></dt>
+  <dd>"D.S. al fine": Jump to the <{segno}>, then perform until the measure that contains <{fine}> (inclusive)</dd>
+  <dt><dfn attr-value><code>dsalcoda</code></dfn></dt>
+  <dd>"D.S. al coda": Jump to the <{segno}>, then perform until the measure that contains <{jump} type="coda"> (inclusive), then jump to the coda</dd>
+</dl>
+
+This element applies to the containing measure and is intended to be
+followed after the measure's music. The direction is traditionally rendered
+at the end of its measure.
 </section>
 
 <h4 id="the-harmony-element">The <dfn element><code>harmony</code></dfn> element</h4>
