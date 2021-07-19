@@ -701,6 +701,78 @@
     }
 },
 {
+    "model": "spec.datatype",
+    "pk": 42,
+    "fields": {
+        "name": "SMuFL font name",
+        "slug": "smufl-font-name",
+        "schema": 1,
+        "description": "The name of a SMuFL-compliant font.",
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": 33,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
+    "model": "spec.datatype",
+    "pk": 43,
+    "fields": {
+        "name": "Display option",
+        "slug": "display-option",
+        "schema": 1,
+        "description": "",
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": null,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
+    "model": "spec.datatype",
+    "pk": 44,
+    "fields": {
+        "name": "Visibility option",
+        "slug": "visibility-option",
+        "schema": 1,
+        "description": "This controls whether an element's contents (including all of its descendents) are displayed by a consumer.\r\n\r\nIn contrast to \"display: none\", \"visibility: hidden\" does not affect the layout of any other elements in the document. For example, the contents of a hidden &lt;event&gt; will not be shown, but the place where the event would have appeared will still occupy space in the containing measure.",
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": null,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
+    "model": "spec.datatype",
+    "pk": 45,
+    "fields": {
+        "name": "Perform option",
+        "slug": "perform-option",
+        "schema": 1,
+        "description": "This specifies whether an element is performed by consuming software.\r\n\r\nFor example, if consuming software offers synthetic playback, specifying perform=\"none\" for a &lt;note&gt; element means the note will be excluded from playback (but still visually rendered).",
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": null,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
     "model": "spec.datatypeoption",
     "pk": 1,
     "fields": {
@@ -1411,6 +1483,66 @@
     }
 },
 {
+    "model": "spec.datatypeoption",
+    "pk": 72,
+    "fields": {
+        "data_type": 43,
+        "value": "normal",
+        "description": "The default value. The element should be displayed normally.",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 73,
+    "fields": {
+        "data_type": 43,
+        "value": "none",
+        "description": "The element is not processed for display, and layout proceeds as if the element did not exist.\r\n\r\nThis is inspired by \"display: none\" from CSS.",
+        "order": 1
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 74,
+    "fields": {
+        "data_type": 44,
+        "value": "visible",
+        "description": "Default. The element is visible.",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 75,
+    "fields": {
+        "data_type": 44,
+        "value": "hidden",
+        "description": "The element is hidden.",
+        "order": 1
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 76,
+    "fields": {
+        "data_type": 45,
+        "value": "normal",
+        "description": "Default. The element is performed.",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 77,
+    "fields": {
+        "data_type": 45,
+        "value": "none",
+        "description": "The element is omitted from performance.",
+        "order": 1
+    }
+},
+{
     "model": "spec.concept",
     "pk": 1,
     "fields": {
@@ -1469,7 +1601,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": true,
-        "description": "This is the top-level element.",
+        "description": "This is the top-level element of an MNX document.\r\n\r\nIts child &lt;head&gt; element contains document metadata. Its child &lt;global&gt; element contains measure data that's shared by all parts. Its child &lt;part&gt; elements contain the bulk of the musical data — notes, rests, barlines, etc.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -1671,7 +1803,9 @@
         "content_data_type": null,
         "is_featured": true,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            3
+        ]
     }
 },
 {
@@ -1867,7 +2001,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "",
+        "description": "The &lt;ending&gt; element encodes an alternate ending, sometimes known as a \"volta bracket.\"\r\n\r\nEach alternate ending — say, the first ending to a repeated section — is encoded with two &lt;ending&gt; elements, one with type=\"start\" and another with type=\"stop\".",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -2173,6 +2307,15 @@
     "pk": 2,
     "fields": {
         "name": "Span",
+        "description": "",
+        "child_groups": []
+    }
+},
+{
+    "model": "spec.xmlattributegroup",
+    "pk": 3,
+    "fields": {
+        "name": "Display and visibility",
         "description": "",
         "child_groups": []
     }
@@ -2979,6 +3122,78 @@
         "is_required": false,
         "description": "Controls the display of a bracket in conjunction with the tuplet. This is disregarded if \"show-number\" has a value of \"none\".\r\n\r\n* \"auto\" (default) — a bracket is shown for the tuplet if and only if the notes are unbeamed.\r\n\r\n* \"yes\" — always display a bracket.\r\n\r\n* \"no\" — never display a bracket.",
         "data_type": 28
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 76,
+    "fields": {
+        "element": 6,
+        "attribute_group": null,
+        "name": "smufl-font",
+        "is_required": false,
+        "description": "The SMuFL-compliant font to be used to render notational objects in this part. Can be overridden by certain child elements.",
+        "data_type": 42
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 77,
+    "fields": {
+        "element": 12,
+        "attribute_group": null,
+        "name": "smufl-font",
+        "is_required": false,
+        "description": "The SMuFL-compliant font to be used when rendering this note.\r\n\r\nThe primary purpose of this attribute is to override a global font assignment.",
+        "data_type": 42
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 78,
+    "fields": {
+        "element": 11,
+        "attribute_group": null,
+        "name": "smufl-font",
+        "is_required": false,
+        "description": "The SMuFL-compliant font to be used when rendering this event.\r\n\r\nThe primary purpose of this attribute is to override a global font assignment.",
+        "data_type": 42
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 79,
+    "fields": {
+        "element": null,
+        "attribute_group": 3,
+        "name": "display",
+        "is_required": false,
+        "description": "",
+        "data_type": 43
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 80,
+    "fields": {
+        "element": null,
+        "attribute_group": 3,
+        "name": "visibility",
+        "is_required": false,
+        "description": "",
+        "data_type": 44
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 81,
+    "fields": {
+        "element": 12,
+        "attribute_group": null,
+        "name": "perform",
+        "is_required": false,
+        "description": "Controls whether this note is performed by consuming software.",
+        "data_type": 45
     }
 },
 {

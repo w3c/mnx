@@ -57,65 +57,83 @@
 </svg>
 </a>
 
-<h1>MNX specification</h1>
-
-<h2>Version 1.0, draft specification</h2>
-
-<h3>Editor</h3>
+<h1>MNX 1.0 draft specification</h1>
 
 <ul>
-    <li><a href="http://www.holovaty.com/">Adrian Holovaty</a> (<a href="https://www.soundslice.com">Soundslice</a>)</li>
+    <li>Editor: <a href="http://www.holovaty.com/">Adrian Holovaty</a> (<a href="https://www.soundslice.com">Soundslice</a>)</li>
     <li>Original editor: Joe Berkovitz (Risible LLC)</li>
 </ul>
 
-<h3>Participate</h3>
+<p><strong>MNX</strong> is a new, open standard for representing music notation as machine-readable data. The aim is to improve <a href="https://w3c.github.io/musicxml/">MusicXML</a> in fundamental ways while retaining many of its key concepts, terms and features. A primary goal is to provide a high degree of interoperability and exchange between different applications working with music notation.</p>
 
-<ul>
-    <li><a href="https://github.com/w3c/mnx/">GitHub repository</a></li>
-    <li><a href="https://github.com/w3c/mnx/issues">Issue tracker</a></li>
-    <li><a href="https://github.com/w3c/mnx/commits/master">Commit history</a></li>
-</ul>
-
-<p>Copyright &#xA9; 2021 the Contributors to the MNX Specification, published by the <a href="https://www.w3.org/community/music-notation/">Music Notation Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>. A human-readable <a href="https://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available.</p>
+<p>MNX is a work in progress, and it's <strong>not ready for implementation</strong>. But if you work with music notation data in any way, we'd love your input.</p>
 
 <hr style="margin-bottom: 1em;">
 
-<h2>Abstract</h2>
+<h2>A gentle introduction</h2>
 
-<p>MNX is a new, open standard for representing music notation as machine-readable data. Its aim is to improve <a href="https://w3c.github.io/musicxml/">MusicXML</a> in fundamental ways while retaining many of its key concepts, terms and features. A primary goal is to provide a high degree of interoperability and exchange between different applications working with music notation.</p>
+<p>Conceptually, MNX is a way to represent this image...</p>
 
-<h2>Status of this document</h2>
+<p><img src="static/images/middle-c.png"></p>
 
-<p>MNX is a work in progress, and it's <strong>not ready for implementation</strong>. It's being designed in an open process that you're encouraged to join.</p>
+<p>...as something like this:</p>
 
-<p>This specification was published by the <a href="https://www.w3.org/community/music-notation/">W3C Music Notation Community Group</a>. It is not a W3C Standard nor is it on the W3C Standards Track. Please note that under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a> other conditions apply.</p>
+<p><pre>
+staves=1
+keysignature=C major
+clef=treble
+notes=whole note at C4</pre></p>
 
-<p>Comments on this document? Please <a href="https://github.com/w3c/mnx/issues">open an issue on GitHub</a> or send via email to <a href="mailto:public-music-notation-contrib@w3.org">public-music-notation-contrib@w3.org</a> (<a href="mailto:public-music-notation-contrib-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-music-notation-contrib/">archives</a>).</p>
+<p>The former, an image, is intended for humans. A computer can’t understand it without using advanced, error-prone <a href="https://en.wikipedia.org/wiki/Optical_music_recognition">computer vision techniques</a>.</p>
 
-<h2>Reference</h2>
+<p>The latter — which encodes the <em>meaning</em> (aka <em>semantics</em>) of the music, as opposed to a specific collection of pixels — is much easier for a computer to understand. Treating music in this way means it can be shared among different programs, automatically manipulated and much more.</p>
+
+<p>MNX is a standard that describes how to encode music, so that computers can have a shared understanding on how to interpret it. As HTML describes a web page such that any web browser can read it, MNX describes a piece of music such that any notation software can read or write it.</p>
+
+<h3>Motivation</h3>
+
+<p>People have been using computers to encode music for decades; a wide variety of encoding formats has been developed over the years. Why do we need yet another format?</p>
+
+<p>Each music encoding format has its own biases and priorities. The <a href="https://abcnotation.com/">ABC format</a>, for example, aims for simplicity and was originally developed for folk music. <a href="https://www.musicxml.com/">MusicXML</a> is optimized for notation interchange. <a href="https://en.wikipedia.org/wiki/MIDI">MIDI</a> focuses on low-level instrument sequencing, as opposed to higher-level musical concepts. <a href="https://music-encoding.org/">MEI</a>, a general-purpose framework for encoding arbitrary musical documents, pays particular attention to the needs of scholars. Proprietary formats, such as <a href="https://www.finalemusic.com/">Finale</a>’s `.musx` or <a href="https://www.avid.com/sibelius">Sibelius</a>’ `.sib`, are optimized for specific notation programs and not meant to be read by others.</p>
+
+<p>Our goal with MNX is to create a format that does all of the following:</p>
+
 <ul>
-
-    <li><a href="mnx-reference/">MNX reference</a></li>
-
+<li><b>It’s open</b>, meaning: it’s clearly documented, free to use and developed in a vendor-independent, inclusive way.</li>
+<li><b>It supports all of Common Western Musical Notation (CWMN)</b>, meaning: it has a clear answer for how to encode any musical concept found in CWMN.</li>
+<li><b>It prioritizes interchange</b>, meaning: it can be generated unambiguously, it can be parsed unambiguously, it favors one-and-only-one way to express concepts, and multiple programs reading the same MNX file will interpret it the same way.</li>
+<li><b>It’s semantically rich</b>, meaning: it’s biased toward encoding concepts rather than presentation when prudent.</li>
+<li><b>It can be used as a native format</b>, meaning: it’s robust enough for programs to use directly instead of needing to invent their own format.</li>
 </ul>
 
-<h2>Concepts</h2>
-<p>
+<p>The existing format that comes closest to these goals is MusicXML. In fact, MNX’s creation is being led by the <a href="https://www.w3.org/community/music-notation/">W3C Music Notation Community Group</a>, which also oversees the MusicXML standard. So what’s the difference?</p>
 
-<a href="concepts/beams/">Beams</a> ·
+<p>We see MNX as the next generation of MusicXML, enabling new uses that MusicXML didn’t set out to support.</p>
 
-<a href="concepts/repeats/">Repeats</a> ·
+<p>With hundreds of applications supporting it, MusicXML has succeeded in becoming the de facto notation interchange standard. These days, you can be reasonably sure that, if you compose music in a commonly used notation application, you’ll be able to export it and open it in another application with decent fidelity — thanks to MusicXML. This has been a major cultural step forward, considering major notation programs hadn’t always looked kindly on making music exportable into competitors’ products.</p>
 
-<a href="concepts/slurs/">Slurs</a> ·
+<p>As the dream of universal interchange has become a reality, users and developers have come to demand even more. Users want richer interchange (i.e., preserving the details of music more crisply), the advent of “reflowing” web-based renderers has shifted expectations around music engraving, and some developers even use MusicXML as a native format (something it wasn’t designed to do).</p>
 
-<a href="concepts/">See all…</a>
-</p>
+<p>MNX is an effort to take everything we’ve learned from 15 years of MusicXML development — along with its diverse community of developers, musicians and publishers — and build a better future together.</p>
 
-<h2>Assorted docs</h2>
+<p>Finally, we should note there are many music notation systems throughout the world’s cultures, along with historical notation systems. MNX deals specifically with Common Western Musical Notation, as it’s a high priority for the current MusicXML community and it’s where our collective expertise is the strongest — but our long-term plan is to support other systems. We envision adding other formats to the MNX family, though we’re not sure what they’ll be or how they’ll be named.</p>
 
-<p><a href="comparisons/musicxml/">Comparing MNX and MusicXML</a></p>
+<h3>Getting started</h3>
 
+<p>Curious about what we have so far? The best way to dive in is to read <a href="/comparisons/musicxml/">Comparing MNX and MusicXML</a>. Even if you're not familiar with MusicXML, the document has many examples of sheet music with the corresponding MNX code.</p>
 
+<p>Want to contribute to our work? MNX is being designed in an open process that you're encouraged to join. Here's how:</p>
+
+<ul>
+    <li>Our <a href="https://github.com/w3c/mnx/issues">issue tracker</a> serves as a to-do list and is the main place we discuss ideas.</li>
+    <li>Our <a href="https://github.com/w3c/mnx/commits/master">commit history</a> shows you what progress we've made lately.</li>
+    <li>Our <a href="https://github.com/w3c/mnx/">GitHub repository</a> stores this specification, along with the tools we use to create it and other assorted documents.</li>
+    <li>The <a href="https://www.w3.org/community/music-notation/">Music Notation Community Group blog</a> publishes regular status updates.</li>
+</ul>
+
+<hr style="margin-bottom: 1em;">
+
+<p>Copyright &#xA9; 2021 the Contributors to the MNX Specification, published by the <a href="https://www.w3.org/community/music-notation/">Music Notation Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>. A human-readable <a href="https://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available.</p>
 
 
     </main>
