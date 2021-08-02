@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>MNX example: Grace note | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+<style>
+.diff * { font-weight: bold; color: blue !important; }
+</style>
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../../">Reference</a>
+    <ul>
+    <li><a href="../../element-tree/">Elements</a></li>
+    <li><a href="../../data-types/">Data types</a></li>
+    <li><a href="../">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../../concepts/">Concepts in MNX</a></li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Examples</a> &gt;
+    Grace note
+</p>
+
+<h1>Grace note</h1>
+
+
+<p><img src="../../../static/examples/grace-note.png"></p>
+
+
+
+
+
+
+
+
+<div class="xmlmarkup"><span class=" nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+   &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
+      &lt;<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
+         &lt;<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+            &lt;<a class="tag" href="../../elements/time/">time</a> <span class="attr">signature="<a href="../../data-types/time-signature/">4/4</a>"</span>/&gt;
+         &lt;/<a class="tag" href="../../elements/directions-global/">directions</a>&gt;
+      &lt;/<a class="tag" href="../../elements/measure-global/">measure</a>&gt;
+   &lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a>&gt;
+      &lt;<a class="tag" href="../../elements/part-name/">part-name</a>&gt;<span class="xmltxt">Music</span>&lt;/<a class="tag" href="../../elements/part-name/">part-name</a>&gt;
+      &lt;<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
+         &lt;<a class="tag" href="../../elements/directions-part/">directions</a>&gt;
+            &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attr">sign="<a href="../../data-types/clef-sign/">G</a>"</span> <span class="attr">line="<a href="../../data-types/staff-line/">2</a>"</span>/&gt;
+         &lt;/<a class="tag" href="../../elements/directions-part/">directions</a>&gt;
+         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+</span><span class="diff">            &lt;<a class="tag" href="../../elements/grace/">grace</a>&gt;
+               &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/8</a>"</span>&gt;
+                  &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">B4</a>"</span>/&gt;
+               &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;/<a class="tag" href="../../elements/grace/">grace</a>&gt;
+</span><span class="nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attr">value="<a href="../../data-types/rhythmic-duration/">/1</a>"</span>&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attr">pitch="<a href="../../data-types/chromatic-pitch/">C5</a>"</span>/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+      &lt;/<a class="tag" href="../../elements/measure-part/">measure</a>&gt;
+   &lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+&lt;/<a class="tag" href="../../elements/mnx/">mnx</a>&gt;</span></div>
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>

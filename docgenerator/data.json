@@ -2073,7 +2073,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "The &lt;grace&gt; element represents a run of events that are performed in a subordinate relationship to the surrounding non-grace events.",
+        "description": "The &lt;grace&gt; element encodes grace notes. It contains one or more &lt;event&gt; elements.\r\n\r\nEach inner &lt;event&gt; element's \"value\" attribute encodes the visual rhythmic appearance of the grace note — e.g., \"/8\" for an eighth note.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -4041,6 +4041,19 @@
         "blurb": "In this example, the bars are to be performed in this order: 1, 2, 3, 4, 5, 2, 3.",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure>\r\n            <directions>\r\n                <metadiff><segno/></metadiff>\r\n            </directions>\r\n        </measure>\r\n        <measure>\r\n            <directions>\r\n                <metadiff><fine/></metadiff>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n        <measure>\r\n            <directions>\r\n                <metadiff><jump type=\"dsalfine\"/></metadiff>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/jumps-ds-al-fine.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spec.exampledocument",
+    "pk": 29,
+    "fields": {
+        "name": "Grace note",
+        "slug": "grace-note",
+        "schema": 1,
+        "blurb": "",
+        "document": "<mnx>\r\n   <global>\r\n      <measure>\r\n         <directions>\r\n            <time signature=\"4/4\"/>\r\n         </directions>\r\n      </measure>\r\n   </global>\r\n   <part>\r\n      <part-name>Music</part-name>\r\n      <measure>\r\n         <directions>\r\n            <clef sign=\"G\" line=\"2\"/>\r\n         </directions>\r\n         <sequence>\r\n<metadiff>\r\n            <grace>\r\n               <event value=\"/8\">\r\n                  <note pitch=\"B4\"/>\r\n               </event>\r\n            </grace>\r\n</metadiff>\r\n            <event value=\"/1\">\r\n               <note pitch=\"C5\"/>\r\n            </event>\r\n         </sequence>\r\n      </measure>\r\n   </part>\r\n</mnx>",
+        "image_url": "/static/examples/grace-note.png",
         "is_featured": false
     }
 },
@@ -8140,6 +8153,132 @@
     "fields": {
         "example": 28,
         "element": 26,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 761,
+    "fields": {
+        "example": 29,
+        "element": 1,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 762,
+    "fields": {
+        "example": 29,
+        "element": 2,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 763,
+    "fields": {
+        "example": 29,
+        "element": 3,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 764,
+    "fields": {
+        "example": 29,
+        "element": 4,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 765,
+    "fields": {
+        "example": 29,
+        "element": 5,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 766,
+    "fields": {
+        "example": 29,
+        "element": 6,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 767,
+    "fields": {
+        "example": 29,
+        "element": 7,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 768,
+    "fields": {
+        "example": 29,
+        "element": 8,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 769,
+    "fields": {
+        "example": 29,
+        "element": 9,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 770,
+    "fields": {
+        "example": 29,
+        "element": 10,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 771,
+    "fields": {
+        "example": 29,
+        "element": 11,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 772,
+    "fields": {
+        "example": 29,
+        "element": 12,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 773,
+    "fields": {
+        "example": 29,
+        "element": 20,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 774,
+    "fields": {
+        "example": 29,
+        "element": 29,
         "element_name": ""
     }
 },
