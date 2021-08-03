@@ -81,9 +81,9 @@ class XMLAugmenter(DiffElementContentHandler):
                 except IndexError:
                     attr_obj = None
                 if attr_obj:
-                    start_tag = f'<a href="{get_relative_url(self.current_url, attr_obj.data_type.get_absolute_url())}">'
+                    start_tag = f'<a href="{get_relative_url(self.current_url, attr_obj.data_type.get_absolute_url())}" class="attrval">'
                     end_tag = '</a>'
-            result.append(f' <span class="attr">{k}="{start_tag}{v}{end_tag}"</span>')
+            result.append(f' <span class="attrname">{k}</span>="{start_tag}{v}{end_tag}"')
         return ''.join(result)
 
     def startElement(self, name, attrs):
@@ -179,10 +179,10 @@ class XMLPrettifier(DiffElementContentHandler):
         html = [
             self.get_pending_diff_markup(),
             ' ' * self.indent_level * INDENT_SIZE,
-            f'&lt;{name}'
+            f'&lt;<span class="tag">{name}</span>'
         ]
         if attrs:
-            html.extend(f' {k}="{v}"' for (k, v) in attrs.items())
+            html.extend(f' <span class="attrname">{k}</span>="<span class="attrval">{v}</span>"' for (k, v) in attrs.items())
         html.append('&gt;')
         self.result.append(''.join(html))
         self.indent_level += 1
@@ -201,15 +201,15 @@ class XMLPrettifier(DiffElementContentHandler):
         if name == self.last_tag_opened:
             previous_line = result[-1].strip()
             if previous_line.startswith('&lt;'):
-                result[-1] += f'&lt;/{name}&gt;'
+                result[-1] += f'&lt;/<span class="tag">{name}</span>&gt;'
             else:
-                result[-2] += previous_line + f'&lt;/{name}&gt;'
+                result[-2] += previous_line + f'&lt;/<span class="tag">{name}</span>&gt;'
                 del result[-1]
         else:
             html = [
                 self.get_pending_diff_markup(),
                 ' ' * self.indent_level * INDENT_SIZE,
-                f'&lt;/{name}&gt;'
+                f'&lt;<span class="tag">/{name}</span>&gt;'
             ]
             result.append(''.join(html))
 

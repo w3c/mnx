@@ -56,12 +56,18 @@ p, ul, table {
     font: 14px "courier new",courier,fixed-width;
     color: #333;
 }
-.xmlmarkup .tag, .xmlmarkup .attr {
-    color: #000;
-}
 .xmlmarkup a:link {
     color: #000;
     text-decoration: none;
+}
+.xmlmarkup .tag {
+    color: #22863a;
+}
+.xmlmarkup .attrname {
+    color: #6f42c1;
+}
+.xmlmarkup .attrval {
+    color: #032f62;
 }
 .xmlmarkup a:hover {
     color: #f00;
