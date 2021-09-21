@@ -773,6 +773,24 @@
     }
 },
 {
+    "model": "spec.datatype",
+    "pk": 46,
+    "fields": {
+        "name": "Stave count",
+        "slug": "stave-count",
+        "schema": 1,
+        "description": "The number of staves used in a given part. This must be an integer greater than or equal to 1.",
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": null,
+        "min_value": "1",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
     "model": "spec.datatypeoption",
     "pk": 1,
     "fields": {
@@ -3204,6 +3222,18 @@
         "is_required": false,
         "description": "Controls whether this note is performed by consuming software.",
         "data_type": 45
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 82,
+    "fields": {
+        "element": 6,
+        "attribute_group": null,
+        "name": "staves",
+        "is_required": false,
+        "description": "The number of staves that this part uses. For example, use the value 2 for a grand staff (as used in piano music).\r\n\r\nIf not provided, the default is 1.",
+        "data_type": 46
     }
 },
 {
