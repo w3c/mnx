@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The &lt;system-layout&gt; element | MNX specification</title>
+<title>The &lt;group-layout&gt; element | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -45,25 +45,25 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Elements</a> &gt;
-    system-layout
+    group-layout
 </p>
 
-<h1>The &lt;system-layout&gt; element</h1>
+<h1>The &lt;group-layout&gt; element</h1>
 
-<p>Parent element:
+<p>Parent elements:
     
         
-        <a href="../mnx/">&lt;mnx&gt;</a>
+        <a href="./">&lt;group-layout&gt;</a>, 
+        
+        <a href="../system-layout/">&lt;system-layout&gt;</a>
         
     
 </p>
 
 
-    <p>The &lt;system-layout&gt; element defines a visual layout that can be used by &lt;system&gt; elements.</p>
+    <p>The &lt;group-layout&gt; element is a way to group &lt;staff-layout&gt; elements together, for the purposes of giving them a unified name and/or grouping symbol.</p>
 
-<p>For example, a layout might say "Include the vocal part, with the piano part directly below. For the piano part, use a grand-staff brace."</p>
-
-<p>To encode this information, &lt;system-layout&gt; has the child elements &lt;staff-layout&gt; and &lt;group-layout&gt;.</p>
+<p>You can also nest &lt;group-layout&gt; elements within another, to represent more complex groupings of staves, as in large orchestral scores.</p>
 
 
 <h2 id="content">Content</h2>
@@ -94,7 +94,7 @@
         
         <li>
             
-                <a href="../group-layout/">&lt;group-layout&gt;</a> (Zero or more times)
+                <a href="./">&lt;group-layout&gt;</a> (Zero or more times)
             
         </li>
         
@@ -126,10 +126,17 @@
 </thead>
 
 <tr>
-    <th class="nobr">id</th>
-    <td><a href="../../data-types/system-layout-id/">System layout ID</a></td>
-    <td>Yes</td>
-    <td>A unique identifier for this system layout. This is used by the &lt;system&gt; element to specify which layout the system uses.</td>
+    <th class="nobr">label</th>
+    <td><a href="../../data-types/string/">String</a></td>
+    <td>No</td>
+    <td>An optional name for this group of staves. If provided, this should be rendered to the left of the staff group.</td>
+</tr>
+
+<tr>
+    <th class="nobr">symbol</th>
+    <td><a href="../../data-types/grouping-symbol/">Grouping symbol</a></td>
+    <td>No</td>
+    <td>The symbol to use along the left vertical edge of this group of staves. If omitted, the default value is "none".<br><br>Note that the child &lt;staff-layout&gt; or &lt;group-layout&gt; elements might also define their own own "symbol" attributes.</td>
 </tr>
 
 </table>

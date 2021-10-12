@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Grouping symbol data type | MNX specification</title>
+<title>The &lt;staffpart-layout&gt; element | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -31,7 +31,7 @@
 <li><a href="../../">Reference</a>
     <ul>
     <li><a href="../../element-tree/">Elements</a></li>
-    <li><a href="../">Data types</a></li>
+    <li><a href="../../data-types/">Data types</a></li>
     <li><a href="../../examples/">Example documents</a></li>
     </ul>
 </li>
@@ -44,69 +44,69 @@
 <p class="breadcrumb">
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
-    <a href="../">Data types</a> &gt;
-    Grouping symbol
+    <a href="../">Elements</a> &gt;
+    staffpart-layout
 </p>
 
-<h1>Grouping symbol data type</h1>
+<h1>The &lt;staffpart-layout&gt; element</h1>
+
+<p>Parent element:
+    
+        
+        <a href="../staff-layout/">&lt;staff-layout&gt;</a>
+        
+    
+</p>
 
 
-<p>See https://w3c.github.io/musicxml/musicxml-reference/data-types/group-symbol-value/</p>
+    <p>The &lt;staffpart-layout&gt; is the way to specify which &lt;part&gt;s are included in a given &lt;staff-layout&gt;.</p>
 
 
+<h2 id="content">Content</h2>
 
 
+    <p>Always empty.</p>
 
 
+<h2 id="attributes">Attributes</h2>
 
-
-
-
-
-
-
-<h2 id="allowed">Allowed values</h2>
 
 <table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
 
 <tr>
-    <th class="nobr">brace</th>
-    <td></td>
+    <th class="nobr">part</th>
+    <td><a href="../../data-types/part-id/">Part ID</a></td>
+    <td>Yes</td>
+    <td>A reference to the appropriate &lt;part&gt;.</td>
 </tr>
 
 <tr>
-    <th class="nobr">bracket</th>
-    <td></td>
-</tr>
-
-<tr>
-    <th class="nobr">line</th>
-    <td></td>
-</tr>
-
-<tr>
-    <th class="nobr">none</th>
-    <td>No symbol is displayed.</td>
-</tr>
-
-<tr>
-    <th class="nobr">square</th>
-    <td></td>
+    <th class="nobr">staff</th>
+    <td><a href="../../data-types/staff-index/">Staff index</a></td>
+    <td>No</td>
+    <td>Optional staff index within the given &lt;part&gt;. For example, this lets you filter the &lt;part&gt; to only include the notation data with staff=1 (the top staff of a grand staff).</td>
 </tr>
 
 </table>
 
 
 
-<h2 id="where">Where is this type used?</h2>
 
 
+<h2 id="examples">Examples</h2>
 
-
-<p><a href="../../elements/group-layout/">&lt;group-layout&gt;</a> — "symbol" attribute</p>
-
-<p><a href="../../elements/staff-layout/">&lt;staff-layout&gt;</a> — "symbol" attribute</p>
-
+<p>This element is used in the following examples:</p>
+<p>
+    <nobr><a href="../../examples/system-layouts/">System layouts</a></nobr>
+</p>
 
 
 

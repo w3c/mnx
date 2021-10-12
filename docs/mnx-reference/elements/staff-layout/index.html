@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The &lt;system-layout&gt; element | MNX specification</title>
+<title>The &lt;staff-layout&gt; element | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -45,25 +45,27 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Elements</a> &gt;
-    system-layout
+    staff-layout
 </p>
 
-<h1>The &lt;system-layout&gt; element</h1>
+<h1>The &lt;staff-layout&gt; element</h1>
 
-<p>Parent element:
+<p>Parent elements:
     
         
-        <a href="../mnx/">&lt;mnx&gt;</a>
+        <a href="../group-layout/">&lt;group-layout&gt;</a>, 
+        
+        <a href="../system-layout/">&lt;system-layout&gt;</a>
         
     
 </p>
 
 
-    <p>The &lt;system-layout&gt; element defines a visual layout that can be used by &lt;system&gt; elements.</p>
+    <p>The &lt;staff-layout&gt; element describes the visual display of a single staff within a &lt;system-layout&gt;.</p>
 
-<p>For example, a layout might say "Include the vocal part, with the piano part directly below. For the piano part, use a grand-staff brace."</p>
+<p>Generally this corresponds to a single &lt;part&gt;, but MNX supports encoding multiple parts in the same staff — as might be used, for example, when combining soprano and alto vocal parts into a single stave.</p>
 
-<p>To encode this information, &lt;system-layout&gt; has the child elements &lt;staff-layout&gt; and &lt;group-layout&gt;.</p>
+<p>You must have at least one child &lt;staffpart-layout&gt; element, to specify which part(s) are displayed within this staff layout.</p>
 
 
 <h2 id="content">Content</h2>
@@ -78,31 +80,7 @@
 
     
     
-        
-
-
-
-
-    In any order
-    <ul>
-        
-        <li>
-            
-                <a href="../staff-layout/">&lt;staff-layout&gt;</a> (Zero or more times)
-            
-        </li>
-        
-        <li>
-            
-                <a href="../group-layout/">&lt;group-layout&gt;</a> (Zero or more times)
-            
-        </li>
-        
-    </ul>
-
-
-
-
+        <a href="../staffpart-layout/">&lt;staffpart-layout&gt;</a> (One or more times)
     
     
 
@@ -126,10 +104,24 @@
 </thead>
 
 <tr>
-    <th class="nobr">id</th>
-    <td><a href="../../data-types/system-layout-id/">System layout ID</a></td>
-    <td>Yes</td>
-    <td>A unique identifier for this system layout. This is used by the &lt;system&gt; element to specify which layout the system uses.</td>
+    <th class="nobr">label</th>
+    <td><a href="../../data-types/string/">String</a></td>
+    <td>No</td>
+    <td>An optional name for this staff. If provided, this should be rendered to the left of the staff.<br><br>Generally we recommend using "labelref" instead of "label", to avoid duplication of data within an MNX document.</td>
+</tr>
+
+<tr>
+    <th class="nobr">labelref</th>
+    <td><a href="../../data-types/staff-label-type/">Staff label type</a></td>
+    <td>No</td>
+    <td>If provided, this specifies that the corresponding part's name (or short-name) should be rendered to the left of the staff.<br><br>By using this instead of the "label" attribute, you can avoid needing to duplicate a part's name in an MNX document.</td>
+</tr>
+
+<tr>
+    <th class="nobr">symbol</th>
+    <td><a href="../../data-types/grouping-symbol/">Grouping symbol</a></td>
+    <td>No</td>
+    <td>The symbol to use along the left vertical edge of this staff. If omitted, the default value is "none".<br><br>Note that the parent &lt;staff-group&gt; might also define its own "symbol" attribute.</td>
 </tr>
 
 </table>

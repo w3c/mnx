@@ -810,24 +810,6 @@
 },
 {
     "model": "spec.datatype",
-    "pk": 48,
-    "fields": {
-        "name": "Part ID list",
-        "slug": "part-id-list",
-        "schema": 1,
-        "description": "",
-        "is_featured": false,
-        "xsd_name": "",
-        "base_type": null,
-        "min_value": "",
-        "max_value": "",
-        "regex": "",
-        "min_length": null,
-        "union_types": []
-    }
-},
-{
-    "model": "spec.datatype",
     "pk": 49,
     "fields": {
         "name": "Grouping symbol",
@@ -2546,7 +2528,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "The &lt;system-layout&gt; element defines a visual layout that can be used by &lt;system&gt; elements.\r\n\r\nFor example, a layout might say \"Include the vocal part, with the piano part directly below. For the piano part, use a grand-staff brace.\"\r\n\r\nTo encode this information, &lt;system-layout&gt; has the child elements &lt;staff&gt; and &lt;staff-group&gt;.",
+        "description": "The &lt;system-layout&gt; element defines a visual layout that can be used by &lt;system&gt; elements.\r\n\r\nFor example, a layout might say \"Include the vocal part, with the piano part directly below. For the piano part, use a grand-staff brace.\"\r\n\r\nTo encode this information, &lt;system-layout&gt; has the child elements &lt;staff-layout&gt; and &lt;group-layout&gt;.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -2557,14 +2539,14 @@
     "model": "spec.xmlelement",
     "pk": 45,
     "fields": {
-        "name": "staff",
-        "slug": "staff",
+        "name": "staff-layout",
+        "slug": "staff-layout",
         "disambiguation": "",
         "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "The &lt;staff&gt; element describes the visual display of a single staff within a &lt;system&gt;.\r\n\r\nGenerally this corresponds to a single &lt;part&gt;, but MNX supports encoding multiple parts in the same staff — as might be used, for example, when combining soprano and alto vocal parts into a single stave.",
+        "description": "The &lt;staff-layout&gt; element describes the visual display of a single staff within a &lt;system-layout&gt;.\r\n\r\nGenerally this corresponds to a single &lt;part&gt;, but MNX supports encoding multiple parts in the same staff — as might be used, for example, when combining soprano and alto vocal parts into a single stave.\r\n\r\nYou must have at least one child &lt;staffpart-layout&gt; element, to specify which part(s) are displayed within this staff layout.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -2575,14 +2557,14 @@
     "model": "spec.xmlelement",
     "pk": 46,
     "fields": {
-        "name": "staff-group",
-        "slug": "staff-group",
+        "name": "group-layout",
+        "slug": "group-layout",
         "disambiguation": "",
         "schema": 1,
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "The &lt;staff-group&gt; element is a way to group &lt;staff&gt; elements together, for the purposes of giving them a unified name and/or grouping symbol.\r\n\r\nYou can also nest &lt;staff-group&gt; elements within another, to represent more complex groupings of staves, as in large orchestral scores.",
+        "description": "The &lt;group-layout&gt; element is a way to group &lt;staff-layout&gt; elements together, for the purposes of giving them a unified name and/or grouping symbol.\r\n\r\nYou can also nest &lt;group-layout&gt; elements within another, to represent more complex groupings of staves, as in large orchestral scores.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -2601,6 +2583,24 @@
         "is_abstract_element": true,
         "is_root": false,
         "description": "",
+        "content_data_type": null,
+        "is_featured": false,
+        "children_type": 1,
+        "attribute_groups": []
+    }
+},
+{
+    "model": "spec.xmlelement",
+    "pk": 48,
+    "fields": {
+        "name": "staffpart-layout",
+        "slug": "staffpart-layout",
+        "disambiguation": "",
+        "schema": 1,
+        "base_element": null,
+        "is_abstract_element": false,
+        "is_root": false,
+        "description": "The &lt;staffpart-layout&gt; is the way to specify which &lt;part&gt;s are included in a given &lt;staff-layout&gt;.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -3560,18 +3560,6 @@
 },
 {
     "model": "spec.xmlattribute",
-    "pk": 86,
-    "fields": {
-        "element": 45,
-        "attribute_group": null,
-        "name": "parts",
-        "is_required": true,
-        "description": "A space-separated list of part IDs to be rendered in this staff.\r\n\r\nExamples: \"part1\", \"part1 part2\", \"soprano alto\".",
-        "data_type": 48
-    }
-},
-{
-    "model": "spec.xmlattribute",
     "pk": 87,
     "fields": {
         "element": 45,
@@ -3614,7 +3602,7 @@
         "attribute_group": null,
         "name": "symbol",
         "is_required": false,
-        "description": "The symbol to use along the left vertical edge of this group of staves. If omitted, the default value is \"none\".\r\n\r\nNote that the child &lt;staff&gt; or &lt;staff-group&gt; elements might also define their own own \"symbol\" attributes.",
+        "description": "The symbol to use along the left vertical edge of this group of staves. If omitted, the default value is \"none\".\r\n\r\nNote that the child &lt;staff-layout&gt; or &lt;group-layout&gt; elements might also define their own own \"symbol\" attributes.",
         "data_type": 49
     }
 },
@@ -3700,6 +3688,30 @@
         "is_required": false,
         "description": "An optional abbreviated name for this part. Notation software might use this in instrument-selection UI, and/or it might be rendered to the left of this part's staves (see the &lt;staff&gt; element).\r\n\r\nFor example, the system in a piece of music might use the name \"Guitar\", while subsequent systems might use the abbreviated \"Gtr.\" instead.",
         "data_type": 33
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 98,
+    "fields": {
+        "element": 48,
+        "attribute_group": null,
+        "name": "part",
+        "is_required": true,
+        "description": "A reference to the appropriate &lt;part&gt;.",
+        "data_type": 51
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 99,
+    "fields": {
+        "element": 48,
+        "attribute_group": null,
+        "name": "staff",
+        "is_required": false,
+        "description": "Optional staff index within the given &lt;part&gt;. For example, this lets you filter the &lt;part&gt; to only include the notation data with staff=1 (the top staff of a grand staff).",
+        "data_type": 30
     }
 },
 {
@@ -4275,6 +4287,17 @@
     }
 },
 {
+    "model": "spec.xmlrelationship",
+    "pk": 64,
+    "fields": {
+        "parent": 45,
+        "child": 48,
+        "min_amount": 1,
+        "max_amount": null,
+        "child_order": 0
+    }
+},
+{
     "model": "spec.exampledocument",
     "pk": 1,
     "fields": {
@@ -4659,7 +4682,7 @@
         "slug": "system-layouts",
         "schema": 1,
         "blurb": "",
-        "document": "<mnx>\r\n    <global></global>\r\n\r\n    <part id=\"fl1\" name=\"Flute 1\" short-name=\"1\"></part>\r\n    <part id=\"fl2\" name=\"Flute 2\" short-name=\"2\"></part>\r\n    <part id=\"fl3\" name=\"Flute 3\" short-name=\"3\"></part>\r\n    <part id=\"ob1\" name=\"Oboe 1\" short-name=\"1\"></part>\r\n    <part id=\"ob2\" name=\"Oboe 2\" short-name=\"2\"></part>\r\n    <part id=\"piano\" name=\"Piano\" staves=\"2\"></part>\r\n\r\n    <system-layout id=\"fullscorelayout1\">\r\n        <staff-group symbol=\"bracket\">\r\n            <staff-group symbol=\"brace\" label=\"Flutes\">\r\n                <staff parts=\"fl1 fl2\" labelref=\"short-name\" />\r\n                <staff parts=\"fl3\" labelref=\"short-name\" />\r\n            </staff-group>\r\n            <staff parts=\"ob1 ob2\" label=\"Oboes\" labelref=\"short-name\" />\r\n        </staff-group>\r\n        <staff symbol=\"brace\" parts=\"piano\" labelref=\"full\" />\r\n    </system-layout>\r\n\r\n    <system-layout id=\"fullscorelayout2\">\r\n        <staff-group symbol=\"bracket\">\r\n            <staff-group symbol=\"brace\" label=\"Fl.\">\r\n                <staff parts=\"fl1\" labelref=\"short-name\" />\r\n                <staff parts=\"fl2\" labelref=\"short-name\" />\r\n                <staff parts=\"fl3\" labelref=\"short-name\" />\r\n            </staff-group>\r\n            <staff parts=\"ob1 ob2\" name=\"Ob.\" labelref=\"short-name\" />\r\n        </staff-group>\r\n        <staff symbol=\"brace\" parts=\"piano\" labelref=\"name\" />\r\n    </system-layout>\r\n\r\n    <score name=\"Full score\">\r\n        <page>\r\n            <system measure=\"1\" layout=\"fullscorelayout1\" />\r\n            <system measure=\"4\" layout=\"fullscorelayout2\" />\r\n        </page>\r\n    </score>\r\n</mnx>",
+        "document": "<mnx>\r\n    <global>...</global>\r\n\r\n    <part id=\"fl1\" name=\"Flute 1\" short-name=\"1\">...</part>\r\n    <part id=\"fl2\" name=\"Flute 2\" short-name=\"2\">...</part>\r\n    <part id=\"fl3\" name=\"Flute 3\" short-name=\"3\">...</part>\r\n    <part id=\"ob1\" name=\"Oboe 1\" short-name=\"1\">...</part>\r\n    <part id=\"ob2\" name=\"Oboe 2\" short-name=\"2\">...</part>\r\n    <part id=\"piano\" name=\"Piano\" staves=\"2\">...</part>\r\n\r\n    <system-layout id=\"fullscorelayout1\">\r\n        <group-layout symbol=\"bracket\">\r\n            <group-layout symbol=\"brace\" label=\"Flutes\">\r\n                <staff-layout labelref=\"short-name\">\r\n                    <staffpart-layout part=\"fl1\" />\r\n                    <staffpart-layout part=\"fl2\" />\r\n                </staff-layout>\r\n                <staff-layout labelref=\"short-name\">\r\n                    <staffpart-layout part=\"fl3\" />\r\n                </staff-layout>\r\n            </group-layout>\r\n            <staff-layout label=\"Oboes\" labelref=\"short-name\">\r\n                <staffpart-layout part=\"ob1\" />\r\n                <staffpart-layout part=\"ob2\" />\r\n            </staff-layout>\r\n        </group-layout>\r\n        <group-layout symbol=\"brace\" label=\"Piano\">\r\n            <staff-layout>\r\n                <staffpart-layout part=\"piano\" staff=\"1\" />\r\n            </staff-layout>\r\n            <staff-layout>\r\n                <staffpart-layout part=\"piano\" staff=\"2\" />\r\n            </staff-layout>\r\n        </group-layout>\r\n    </system-layout>\r\n    <system-layout id=\"fullscorelayout2\">\r\n        <group-layout symbol=\"bracket\">\r\n            <group-layout symbol=\"brace\" label=\"Fl.\">\r\n                <staff-layout labelref=\"short-name\">\r\n                    <staffpart-layout part=\"fl1\" />\r\n                </staff-layout>\r\n                <staff-layout labelref=\"short-name\">\r\n                    <staffpart-layout part=\"fl2\" />\r\n                </staff-layout>\r\n                <staff-layout labelref=\"short-name\">\r\n                    <staffpart-layout part=\"fl3\" />\r\n                </staff-layout>\r\n            </group-layout>\r\n            <staff-layout name=\"Ob.\" labelref=\"short-name\">\r\n                 <staffpart-layout part=\"ob1\" />\r\n                 <staffpart-layout part=\"ob2\" />\r\n            </staff-layout>\r\n        </group-layout>\r\n        <group-layout symbol=\"brace\" label=\"Piano\">\r\n            <staff-layout>\r\n                <staffpart-layout part=\"piano\" staff=\"1\" />\r\n            </staff-layout>\r\n            <staff-layout>\r\n                <staffpart-layout part=\"piano\" staff=\"2\" />\r\n            </staff-layout>\r\n        </group-layout>\r\n    </system-layout>\r\n\r\n    <score name=\"Full score\">\r\n        <page>\r\n            <system measure=\"1\" layout=\"fullscorelayout1\" />\r\n            <system measure=\"4\" layout=\"fullscorelayout2\" />\r\n        </page>\r\n    </score>\r\n</mnx>",
         "image_url": "/static/examples/system-layouts.png",
         "is_featured": false
     }
@@ -8970,7 +8993,7 @@
 },
 {
     "model": "spec.exampledocumentelement",
-    "pk": 782,
+    "pk": 785,
     "fields": {
         "example": 30,
         "element": 45,
@@ -8979,10 +9002,19 @@
 },
 {
     "model": "spec.exampledocumentelement",
-    "pk": 783,
+    "pk": 786,
     "fields": {
         "example": 30,
         "element": 46,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 787,
+    "fields": {
+        "example": 30,
+        "element": 48,
         "element_name": ""
     }
 },
