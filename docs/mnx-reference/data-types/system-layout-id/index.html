@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Measure number data type | MNX specification</title>
+<title>System layout ID data type | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -45,25 +45,25 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Data types</a> &gt;
-    Measure number
+    System layout ID
 </p>
 
-<h1>Measure number data type</h1>
+<h1>System layout ID data type</h1>
 
 
-<p>An integer representing a measure number, where the first measure in a score is generally 1.</p>
-
-
-
+<p>A string used to identify a system layout in the MNX document. This must contain no spaces, and it is case-sensitive.<br><br>Examples: "fullscorelayout", "flutepartlayout".</p>
 
 
 
 
 
 
-<p>Regex pattern: <b>\d+</b></p>
 
 
+
+
+
+<p>Minimum length: <b>1</b></p>
 
 
 
@@ -74,11 +74,13 @@
 
 
 
-<p><a href="../../elements/measure-part/">&lt;measure&gt;</a> — "index" attribute</p>
+<p><a href="../../elements/page/">&lt;page&gt;</a> — "layout" attribute</p>
 
-<p><a href="../../elements/measure-part/">&lt;measure&gt;</a> — "number" attribute</p>
+<p><a href="../../elements/score/">&lt;score&gt;</a> — "layout" attribute</p>
 
-<p><a href="../../elements/system/">&lt;system&gt;</a> — "measure" attribute</p>
+<p><a href="../../elements/system/">&lt;system&gt;</a> — "layout" attribute</p>
+
+<p><a href="../../elements/system-layout/">&lt;system-layout&gt;</a> — "id" attribute</p>
 
 
 
