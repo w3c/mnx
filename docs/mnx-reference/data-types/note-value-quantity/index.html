@@ -51,6 +51,39 @@
 <h1>Note value quantity data type</h1>
 
 
+<p>A note value quantity is an integer multiple of a <a href="../note-value/">note value</a>. Some examples:</p>
+
+<table>
+<tr><th>Note value quantity</th><th>Encoding</th></tr>
+<tr><td>A single eighth note</td><td><code>/8</code></td></tr>
+<tr><td>Six eighth notes</td><td><code>6/8</code></td></tr>
+<tr><td>Six dotted eighth notes</td><td><code>6/8d</code></td></tr>
+<tr><td>Five whole notes</td><td><code>5/1</code></td></tr>
+</table>
+
+<h2>Syntax definition</h2>
+
+<p>A note value quantity consists of the following, in order:</p>
+
+<ol>
+<li>Zero or more ASCII digits encoding the multiplier.</li>
+<li>A <a href="../note-value/">note value</a>.</li>
+</ol>
+
+<h2>Algorithm for parsing</h2>
+
+<p>To parse a note value quantity, use the following procedure:</p>
+
+<ol>
+<li>Let <i>input</i> be the string being parsed.</li>
+<li>Let <i>position</i> be a pointer into <i>input</i>, initially pointing at the start of the string.</li>
+<li>Let <i>multiplier</i> be <code>1</code>.</li>
+<li><a href="../../../infrastructure/parsing-microsyntaxes/#collecting-a-sequence">Collect a sequence of characters</a> that are ASCII digits only, and let <i>unparsed number</i> be the result.</li>
+<li>If <i>unparsed number</i> is not empty, assign <i>unparsed number</i> to <i>multiplier</i> using the <a href="https://www.w3.org/TR/html5/infrastructure.html#signed-integers">rules for parsing integers</a>.</li>
+<li>Let <i>note value</i> be the result of parsing the remainder of the string beginning at <i>position</i> according to the <a href="../note-value/">algorithm for parsing a note value</a>.</li>
+<li>Return <i>multiplier</i> and <i>note value</i>.</li>
+</ol>
+
 
 
 

@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Parsing microsyntaxes | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../">Home</a></li>
+<li><a href="../../mnx-reference/">Reference</a>
+    <ul>
+    <li><a href="../../mnx-reference/element-tree/">Elements</a></li>
+    <li><a href="../../mnx-reference/data-types/">Data types</a></li>
+    <li><a href="../../mnx-reference/examples/">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../concepts/">Concepts in MNX</a></li>
+<li><a href="../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../">MNX specification</a> &gt;
+    <a href="../">Infrastructure</a> &gt;
+    Parsing microsyntaxes
+</p>
+
+<h1>Parsing microsyntaxes</h1>
+
+<p>Various parts of MNX use microsyntaxes, which require you to parse their contents. This parsing is <em>separate</em> from XML parsing.</p>
+
+<p>In this section, we provide some general information on how to parse MNX's microsyntaxes. Each microsyntax is described in detail on its appropriate <a href="../../mnx-reference/data-types/">data type page</a>, but there are some common global terms and procedures shared among microsyntaxes; these commonalities are documented here.</p>
+
+<h2 id="collecting-a-sequence">Collecting a sequence of characters</h2>
+
+<p>This spec uses the phrase "collect a sequence of characters" in some of its algorithm definitions. This is effectively a subroutine, and it means the following algorithm must be run:</p>
+
+<ol>
+<li>Let <i>characters</i> be the set of characters that can be collected.</li>
+<li>Let <i>input</i> and <i>position</i> be the same variables as those of the same name in the algorithm that invoked these steps.</li>
+<li>Let <i>result</i> be the empty string.</li>
+<li>While <i>position</i> doesn’t point past the end of <i>input</i> and the character at <i>position</i> is one of the <i>characters</i>, append that character to the end of <i>result</i> and advance <i>position</i> to the next character in <i>input</i>.</li>
+<li>Return <i>result</i>.</li>
+</ol>
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../static/global.js"></script>
+
+</body>
+</html>
