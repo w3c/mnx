@@ -53,6 +53,18 @@
 
 <p>In this section, we provide some general information on how to parse MNX's microsyntaxes. Each microsyntax is described in detail on its appropriate <a href="../../mnx-reference/data-types/">data type page</a>, but there are some common global terms and procedures shared among microsyntaxes; these commonalities are documented here.</p>
 
+<h2 id="space-chars">Space characters</h2>
+
+<p>The space characters, for the purposes of this specification, are:</p>
+
+<ul>
+<li>U+0020 SPACE</li>
+<li>U+0009 CHARACTER TABULATION (tab)</li>
+<li>U+000A LINE FEED (LF)</li>
+<li>U+000C FORM FEED (FF)</li>
+<li>U+000D CARRIAGE RETURN (CR)</li>
+</ul>
+
 <h2 id="collecting-a-sequence">Collecting a sequence of characters</h2>
 
 <p>This spec uses the phrase "collect a sequence of characters" in some of its algorithm definitions. This is effectively a subroutine, and it means the following algorithm must be run:</p>
@@ -64,6 +76,28 @@
 <li>While <i>position</i> doesn’t point past the end of <i>input</i> and the character at <i>position</i> is one of the <i>characters</i>, append that character to the end of <i>result</i> and advance <i>position</i> to the next character in <i>input</i>.</li>
 <li>Return <i>result</i>.</li>
 </ol>
+
+<h2 id="strictly-splitting">Strictly splitting a string</h2>
+
+<p>This spec uses the phrase "strictly splitting a string" in some of its algorithm definitions. This is effectively a subroutine, and it means the following algorithm must be run:</p>
+
+<ol>
+<li>Let <i>input</i> be the string being parsed.</li>
+<li>Let <i>position</i> be a pointer into <i>input</i>, initially pointing at the start of the string.</li>
+<li>Let <i>tokens</i> be an ordered list of tokens, initially empty.</li>
+<li>While <i>position</i> is not past the end of <i>input</i>:
+    <ol>
+    <li><a href="#collecting-a-sequence">Collect a sequence of characters</a> that are not the <i>delimiter</i> character.</li>
+    <li>Append the string collected in the previous step to <i>tokens</i>.</li>
+    <li>Advance <i>position</i> to the next character in <i>input</i>.</li>
+    </ol>
+</li>
+<li>Return <i>tokens</i>.</li>
+</ol>
+
+<h2 id="stripping-leading-trailing-whitespace">Stripping leading and trailing whitespace</h2>
+
+<p>Stripping leading and trailing whitespace from a string means removing all <a href="#space-chars">space characters</a> that are at the start or end of the string.</p>
 
     </main>
 </div>

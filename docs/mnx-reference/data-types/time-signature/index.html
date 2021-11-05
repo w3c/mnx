@@ -51,6 +51,55 @@
 <h1>Time signature data type</h1>
 
 
+<p>A time signature in MNX is defined as a sum of ordered, undotted <a href="../note-value-quantity/">note value quantities</a> that define the meter of a measure. Some examples:</p>
+
+<table>
+<tr><th>Time signature</th><th>Encoding</th></tr>
+<tr><td>Four-four time</td><td><code>4/4</code></td></tr>
+<tr><td>Three quarters time</td><td><code>3/4</code></td></tr>
+<tr><td>A compound time signature of 2/8, 3/8 and 2/8, with 2+3+2 over the shared denominator 8.</td><td><code>2+3+2/8</code></td></tr>
+<tr><td>A compound time signature of 2/8, 3/4 and 2/8 as separate fractions (note that the spaces are ignored).</td><td><code>2/8 + 3/4 + 2/8</code></td></tr>
+</table>
+
+<h2>Algorithm for parsing</h2>
+
+<p>To parse a time signature, use the following procedure:</p>
+
+<ol>
+<li>Let <i>input</i> be the string being parsed.</li>
+<li>Let <i>tokens</i> be the result of <a href="../../../infrastructure/parsing-microsyntaxes/#strictly-splitting">strictly splitting the string</a> input using U+002B PLUS as a delimiter.</li>
+<li>If <i>tokens</i> is empty, return an error.</li>
+<li>Let <i>shared denominator</i> be true.</li>
+<li>Let <i>fractions</i> be an empty list.</li>
+<li>While <i>tokens</i> is not empty,
+    <ol>
+    <li>Remove the first element of <i>tokens</i> and assign it to <i>t</i> after <a href="../../../infrastructure/parsing-microsyntaxes/#stripping-leading-trailing-whitespace">stripping leading and trailing whitespace</a>.</li>
+    <li>If <i>t</i> contains the characters U+002F SLASH or U+002A ASTERISK,<
+        <ol>
+        <li>Let <i>nv</i> be the result of parsing <i>t</i> as a <a href="../note-value-quantity/">note value quantity</a>.</li>
+        <li>If <i>nv</i> has a <i>number of dots</i> greater than zero, return an error.</li>
+        <li>If <i>shared denominator</i> is <code>true</code>,
+            <ol>
+            <li>Replace the denominator in each element of <i>fractions</i> with the denominator of <i>nv</i>.</li>
+            <li>If more elements remain in <i>tokens</i>, set <i>shared denominator</i> to <code>false</code>.</li>
+            <li>Append <i>nv</i> to <i>fractions</i>.</li>
+            </ol>
+        </li>
+        <li>Else,
+            <ol>
+            <li>If <i>tokens</i> is empty, return an error.</li>
+            <li>If <i>shared denominator</i> is false, return an error.</li>
+            <li>Let <i>numerator</i> be the result of parsing <i>t</i> as a <a href="https://www.w3.org/TR/html5/infrastructure.html#signed-integers">valid integer</a>.</li>
+            <li>Append the fraction composed of <i>numerator</i> and the denominator <code>1</code> to <i>fractions</i>.</li>
+            </ol>
+        </li>
+        </ol>
+    </li>
+    </ol>
+</li>
+<li>Return <i>fractions</i> and <i>shared denominator</i> as the result.</li>
+</ol>
+
 
 
 
