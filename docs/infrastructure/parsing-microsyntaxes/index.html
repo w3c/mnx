@@ -53,9 +53,13 @@
 
 <p>In this section, we provide some general information on how to parse MNX's microsyntaxes. Each microsyntax is described in detail on its appropriate <a href="../../mnx-reference/data-types/">data type page</a>, but there are some common global terms and procedures shared among microsyntaxes; these commonalities are documented here.</p>
 
+<h2 id="ascii-digits">ASCII digits</h2>
+
+<p>The ASCII digits are the characters in the range U+0030 DIGIT ZERO (0) to U+0039 DIGIT NINE (9).</p>
+
 <h2 id="space-chars">Space characters</h2>
 
-<p>The space characters, for the purposes of this specification, are:</p>
+<p>The space characters are:</p>
 
 <ul>
 <li>U+0020 SPACE</li>
@@ -64,6 +68,10 @@
 <li>U+000C FORM FEED (FF)</li>
 <li>U+000D CARRIAGE RETURN (CR)</li>
 </ul>
+
+<h2 id="uppercase-ascii-letters">Uppercase ASCII letters</h2>
+
+<p>The uppercase ASCII letters are the characters in the range U+0041 LATIN CAPITAL LETTER A to U+005A LATIN CAPITAL LETTER Z.</p>
 
 <h2 id="collecting-a-sequence">Collecting a sequence of characters</h2>
 
@@ -98,6 +106,32 @@
 <h2 id="stripping-leading-trailing-whitespace">Stripping leading and trailing whitespace</h2>
 
 <p>Stripping leading and trailing whitespace from a string means removing all <a href="#space-chars">space characters</a> that are at the start or end of the string.</p>
+
+<h2 id="rational-numbers">Rational numbers</h2>
+
+<p>A string is a rational number if it is either an integer, or a pair of integers separated by a U+002F SLASH whose second element is nonzero.</p>
+
+<p>The rules for parsing rational numbers are given in the following algorithm. When invoked, the steps must be followed in the order given, aborting at the first step that returns a value. This algorithm will return a pair of integers, one for the numerator and one for the denominator which must be nonzero, or an error.</p>
+
+<ol>
+<li>Let <i>input</i> be the string being parsed.</li>
+<li>Let <i>position</i> be a pointer into <i>input</i>, initially pointing at the start of the string.</li>
+<li>Let <i>fraction</i> be an initially empty list of integers.</li>
+<li><a href="#collecting-a-sequence">Collect a sequence of characters</a> that are <a href="#space-chars">space characters</a>. These are skipped.</li>
+<li>While <i>position</i> is not past the end of <i>input</i>, and <i>fraction</i> contains fewer than two elements:
+    <ol>
+    <li><a href="#collecting-a-sequence">Collect a sequence of characters</a> that are not <a href="#space-chars">space characters</a>, <a href="#ascii-digits">ASCII digits</a>, U+002D HYPHEN-MINUS or U+002F SLASH characters. This skips past leading garbage.</li>
+    <li><a href="#collecting-a-sequence">Collect a sequence of characters</a> that are not <a href="#space-chars">space characters</a> or U+002F SLASH, and let <i>unparsed number</i> be the result.</li>
+    <li>Let <i>number</i> be the result of parsing <i>unparsed number</i> using the <a href="https://www.w3.org/TR/html5/infrastructure.html#signed-integers">rules for parsing signed integers</a>.</li>
+    <li>If <i>number</i> is an error, set <i>number</i> to zero.</li>
+    <li>Append <i>number</i> to <i>fraction</i>.</li>
+    <li><a href="#collecting-a-sequence">Collect a sequence of characters</a> that are <a href="#space-chars">space characters</a> or U+002F SLASH.</li>
+    </ol>
+</li>
+<li>If <i>fraction</i> has no elements, return zero.</li>
+<li>If <i>fraction</i> has only one element, append <code>1</code> to <i>fraction</i>.</li>
+<li>Return the first element of <i>fraction</i> as the numerator and the second element of <i>fraction</i> as the denominator.</li>
+</ol>
 
     </main>
 </div>
