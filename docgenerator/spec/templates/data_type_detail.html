@@ -13,7 +13,7 @@
 <h1>{{ data_type.name }} data type</h1>
 
 {% if data_type.description %}
-<p>{{ data_type.description|safe|linebreaksbr }}</p>
+{{ data_type.description_html|safe }}
 {% endif %}
 
 {% if data_type.base_type %}

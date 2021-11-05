@@ -1,6 +1,13 @@
 from django.db import models
 from django.urls import reverse
 
+FORMAT_TEXT = 1
+FORMAT_HTML = 2
+FORMAT_CHOICES = (
+    (FORMAT_TEXT, 'Plain text'),
+    (FORMAT_HTML, 'Raw HTML'),
+)
+
 class SiteOptions(models.Model):
     # Singleton model that's used to store general metadata
     # about the documentation website.
@@ -48,9 +55,8 @@ class DataType(models.Model):
     name = models.CharField(max_length=80)
     slug = models.CharField(max_length=80, unique=True)
     schema = models.ForeignKey(XMLSchema, on_delete=models.CASCADE)
-    description = models.TextField(blank=True,
-        help_text='HTML tags are allowed here.'
-    )
+    description = models.TextField(blank=True)
+    description_format = models.SmallIntegerField(default=FORMAT_TEXT, choices=FORMAT_CHOICES)
     is_featured = models.BooleanField(default=False)
     xsd_name = models.CharField(max_length=80, blank=True,
         verbose_name='XSD name',
@@ -75,6 +81,14 @@ class DataType(models.Model):
 
     def get_absolute_url(self):
         return reverse('data_type_detail', args=(self.schema.slug, self.slug,))
+
+    def description_html(self):
+        if self.description_format == FORMAT_TEXT:
+            from django.utils.safestring import mark_safe
+            from django.template.defaultfilters import linebreaksbr
+            return '<p>' + linebreaksbr(mark_safe(self.description)) + '</p>'
+        elif self.description_format == FORMAT_HTML:
+            return self.description
 
 class DataTypeOption(models.Model):
     data_type = models.ForeignKey(DataType, on_delete=models.CASCADE)
