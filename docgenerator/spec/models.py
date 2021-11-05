@@ -453,6 +453,9 @@ class StaticPageCollection(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return self.url
+
 class StaticPage(models.Model):
     title = models.CharField(max_length=255)
     url = models.CharField(max_length=150,
@@ -467,3 +470,6 @@ class StaticPage(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return self.url
