@@ -4753,6 +4753,19 @@
     }
 },
 {
+    "model": "spec.exampledocument",
+    "pk": 31,
+    "fields": {
+        "name": "Grace notes (beamed)",
+        "slug": "grace-notes-beamed",
+        "schema": 1,
+        "blurb": "",
+        "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part>\r\n        <part-name>Music</part-name>\r\n        <measure>\r\n            <directions>\r\n                <clef line=\"2\" sign=\"G\"/>\r\n            </directions>\r\n            <sequence>\r\n<metadiff>\r\n                <beams>\r\n                    <beam events=\"grace1 grace2\" />\r\n                    <beam events=\"grace3 grace4 grace5\" />\r\n                    <beam events=\"grace6 grace7 grace8 grace9\" />\r\n                </beams>\r\n</metadiff>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n<metadiff>\r\n                <grace>                \r\n                    <event value=\"/8\" id=\"grace1\">\r\n                        <note pitch=\"B4\"/>\r\n                    </event>\r\n                    <event value=\"/8\" id=\"grace2\">\r\n                        <note pitch=\"C5\"/>\r\n                    </event>\r\n                </grace>\r\n</metadiff>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n<metadiff>\r\n                <grace>                \r\n                    <event value=\"/8\" id=\"grace3\">\r\n                        <note pitch=\"B4\"/>\r\n                    </event>\r\n                    <event value=\"/8\" id=\"grace4\">\r\n                        <note pitch=\"C5\"/>\r\n                    </event>\r\n                    <event value=\"/8\" id=\"grace5\">\r\n                        <note pitch=\"D5\"/>\r\n                    </event>\r\n                </grace>\r\n</metadiff>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n<metadiff>\r\n                <grace>                \r\n                    <event value=\"/8\" id=\"grace6\">\r\n                        <note pitch=\"B4\"/>\r\n                    </event>\r\n                    <event value=\"/8\" id=\"grace7\">\r\n                        <note pitch=\"C5\"/>\r\n                    </event>\r\n                    <event value=\"/8\" id=\"grace8\">\r\n                        <note pitch=\"D5\"/>\r\n                    </event>\r\n                    <event value=\"/8\" id=\"grace9\">\r\n                        <note pitch=\"E5\"/>\r\n                    </event>\r\n                </grace>\r\n</metadiff>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
+        "image_url": "/static/examples/beams-grace-notes.png",
+        "is_featured": false
+    }
+},
+{
     "model": "spec.exampledocumentconcept",
     "pk": 1,
     "fields": {
@@ -4893,6 +4906,14 @@
     "pk": 18,
     "fields": {
         "example": 12,
+        "concept": 5
+    }
+},
+{
+    "model": "spec.exampledocumentconcept",
+    "pk": 19,
+    "fields": {
+        "example": 31,
         "concept": 5
     }
 },
@@ -9080,6 +9101,150 @@
     "fields": {
         "example": 30,
         "element": 48,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 789,
+    "fields": {
+        "example": 31,
+        "element": 1,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 790,
+    "fields": {
+        "example": 31,
+        "element": 2,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 791,
+    "fields": {
+        "example": 31,
+        "element": 3,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 792,
+    "fields": {
+        "example": 31,
+        "element": 4,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 793,
+    "fields": {
+        "example": 31,
+        "element": 5,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 794,
+    "fields": {
+        "example": 31,
+        "element": 6,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 795,
+    "fields": {
+        "example": 31,
+        "element": 7,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 796,
+    "fields": {
+        "example": 31,
+        "element": 8,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 797,
+    "fields": {
+        "example": 31,
+        "element": 9,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 798,
+    "fields": {
+        "example": 31,
+        "element": 10,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 799,
+    "fields": {
+        "example": 31,
+        "element": 11,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 800,
+    "fields": {
+        "example": 31,
+        "element": 12,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 801,
+    "fields": {
+        "example": 31,
+        "element": 15,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 802,
+    "fields": {
+        "example": 31,
+        "element": 16,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 803,
+    "fields": {
+        "example": 31,
+        "element": 20,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 804,
+    "fields": {
+        "example": 31,
+        "element": 29,
         "element_name": ""
     }
 },
