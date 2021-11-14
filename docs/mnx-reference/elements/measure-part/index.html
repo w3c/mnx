@@ -121,14 +121,14 @@
     <th class="nobr">index</th>
     <td><a href="../../data-types/measure-number/">Measure number</a></td>
     <td>No</td>
-    <td>The one-based index of this measure within the score. The default value is 1 for the first &lt;measure&gt; in the &lt;part&gt;. For all other measures, the default value is the value of the previous &lt;measure&gt; plus 1.<br><br>This is used within the MNX document in cases when content needs to refer to a specific measure.</td>
+    <td>The one-based index of this measure within the document's <a href="/infrastructure/notational-concepts/#score-order">score order</a>. The default value is 1 for the first &lt;measure&gt; in the &lt;part&gt;. For all other measures, the default value is the value of the previous &lt;measure&gt; plus 1.<br><br>This is used within the MNX document in cases when content needs to refer to a specific measure.</td>
 </tr>
 
 <tr>
     <th class="nobr">number</th>
     <td><a href="../../data-types/measure-number/">Measure number</a></td>
     <td>No</td>
-    <td>A visual label for the measure. If omitted, its value is the same as <code>index</code>.</td>
+    <td>A visual label for the measure. It is not required to be unique in the document. If omitted, its value is the same as <code>index</code>.</td>
 </tr>
 
 </table>

@@ -3277,7 +3277,7 @@
         "attribute_group": null,
         "name": "index",
         "is_required": false,
-        "description": "The one-based index of this measure within the score. The default value is 1 for the first &lt;measure&gt; in the &lt;part&gt;. For all other measures, the default value is the value of the previous &lt;measure&gt; plus 1.\r\n\r\nThis is used within the MNX document in cases when content needs to refer to a specific measure.",
+        "description": "The one-based index of this measure within the document's <a href=\"/infrastructure/notational-concepts/#score-order\">score order</a>. The default value is 1 for the first &lt;measure&gt; in the &lt;part&gt;. For all other measures, the default value is the value of the previous &lt;measure&gt; plus 1.\r\n\r\nThis is used within the MNX document in cases when content needs to refer to a specific measure.",
         "data_type": 38
     }
 },
@@ -3289,7 +3289,7 @@
         "attribute_group": null,
         "name": "number",
         "is_required": false,
-        "description": "A visual label for the measure. If omitted, its value is the same as <code>index</code>.",
+        "description": "A visual label for the measure. It is not required to be unique in the document. If omitted, its value is the same as <code>index</code>.",
         "data_type": 38
     }
 },
@@ -3769,7 +3769,7 @@
         "attribute_group": null,
         "name": "index",
         "is_required": false,
-        "description": "The one-based index of this measure within the score. The default value is 1 for the first &lt;measure&gt; in &lt;global&gt;. For all other measures, the default value is the value of the previous &lt;measure&gt; plus 1.\r\n\r\nThis is used within the MNX document in cases when content needs to refer to a specific measure.",
+        "description": "The one-based index of this measure within the document's <a href=\"/infrastructure/notational-concepts/#score-order\">score order</a>. The default value is 1 for the first &lt;measure&gt; in &lt;global&gt;. For all other measures, the default value is the value of the previous &lt;measure&gt; plus 1.\r\n\r\nThis is used within the MNX document in cases when content needs to refer to a specific measure.",
         "data_type": 38
     }
 },
@@ -3781,7 +3781,7 @@
         "attribute_group": null,
         "name": "number",
         "is_required": false,
-        "description": "A visual label for the measure. If omitted, its value is the same as <code>index</code>.",
+        "description": "A visual label for the measure. It is not required to be unique in the document. If omitted, its value is the same as <code>index</code>.",
         "data_type": 38
     }
 },
@@ -9103,7 +9103,7 @@
         "url": "/infrastructure/notational-concepts/",
         "collection": 1,
         "order": 2,
-        "content": "<p>This page defines various notational terms used by this specification.</p>\r\n\r\n<h2 id=\"metrical-position\">Metrical position</h2>\r\n\r\n<p>Most notated events possess a well-defined <em>metrical position</em>, giving a time onset expressed as a rational number of whole note durations after the start of its containing measure. This position may be thought of as the event’s \"address\" and plays a determining role in the normative rendering and performance of events.</p>\r\n\r\n<h2 id=\"measure-content\">Measure content</h2>\r\n\r\n<p>Measure content supplies a sequence of &lt;measure&gt; elements, each of which supplies musical content for a time interval within a score.</p>\r\n\r\n<p>The placement of the measures in measure content constitutes their <em>score order</em>, which is the order in which they are logically presented to a reader. This is distinct from their <em>performance order</em>, which is the order in which they are played by a performer.</p>"
+        "content": "<p>This page defines various notational terms used by this specification.</p>\r\n\r\n<h2 id=\"metrical-position\">Metrical position</h2>\r\n\r\n<p>Most notated events possess a well-defined <em>metrical position</em>, giving a time onset expressed as a rational number of whole note durations after the start of its containing measure. This position may be thought of as the event’s \"address\" and plays a determining role in the normative rendering and performance of events.</p>\r\n\r\n<h2 id=\"score-order\">Score order and performance order</h2>\r\n\r\n<p>Score order is the order in which measures are visually presented to a reader. This is distinct from performance order, which is the order in which the measures are played by a performer.</p>\r\n\r\n<p>For example, score order and performance order would be different in the case of a repeat or \"D.S. al Coda\" jump.</p>\r\n\r\n<h2 id=\"measure-content\">Measure content</h2>\r\n\r\n<p>Measure content supplies a sequence of &lt;measure&gt; elements, each of which supplies musical content for a time interval within a score.</p>\r\n\r\n<p>The placement of the measures in measure content constitutes their <em>score order</em>, which is the order in which they are logically presented to a reader. This is distinct from their <em>performance order</em>, which is the order in which they are played by a performer.</p>"
     }
 }
 ]
