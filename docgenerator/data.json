@@ -3762,6 +3762,42 @@
     }
 },
 {
+    "model": "spec.xmlattribute",
+    "pk": 100,
+    "fields": {
+        "element": 3,
+        "attribute_group": null,
+        "name": "index",
+        "is_required": false,
+        "description": "The one-based index of this measure within the score. The default value is 1 for the first &lt;measure&gt; in &lt;global&gt;. For all other measures, the default value is the value of the previous &lt;measure&gt; plus 1.\r\n\r\nThis is used within the MNX document in cases when content needs to refer to a specific measure.",
+        "data_type": 38
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 101,
+    "fields": {
+        "element": 3,
+        "attribute_group": null,
+        "name": "number",
+        "is_required": false,
+        "description": "A visual label for the measure. If omitted, its value is the same as <code>index</code>.",
+        "data_type": 38
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 102,
+    "fields": {
+        "element": 3,
+        "attribute_group": null,
+        "name": "barline",
+        "is_required": false,
+        "description": "The barline drawn at the end of this measure. If not provided, the barline should be interpreted as follows:\r\n\r\n* If the measure is the last in the document, use \"light-heavy\".\r\n* Otherwise, use \"regular\".",
+        "data_type": 39
+    }
+},
+{
     "model": "spec.xmlrelationship",
     "pk": 1,
     "fields": {
