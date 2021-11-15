@@ -65,6 +65,10 @@
 
     <p>The &lt;event&gt; element represents a discrete period of time during which one or more notes are performed, or in which a rest occurs.</p>
 
+<p>All events other than <i>whole-measure events</i> require a <code>value</code> attribute to provide their duration as a <a href="../../data-types/note-value/">note value</a>. This duration is implicitly multiplied by the current <a href="../../../infrastructure/sequence-content/">time modification ratio</a>, as specified by the process of <a href="../../../infrastructure/sequence-content/">sequencing the content</a> of the event’s containing element.</p>
+
+<p>Note: It is legal for an event to have neither notes nor a rest. The result is functionally identical to <a href="../forward/">&lt;forward&gt;</a> but is more constrained since an event must have a valid <a href="../../data-types/note-value/">note value</a>, while a space can have a multiple thereof.</p>
+
 
 <h2 id="content">Content</h2>
 
@@ -129,7 +133,7 @@
     <th class="nobr">duration</th>
     <td><a href="../../data-types/note-value-quantity/">Note value quantity</a></td>
     <td>No</td>
-    <td>The actual, performed duration of the event, if different from the notated value given by "value".<br><br>Note that this is specified as a note value quantity, rather than a rhythmic duration, because the former is less constrained. It may be any desired multiple of a note value.<br><br>The duration attribute not only alters the performance of the event, but determines the amount of time the event takes up in the measure, affecting the location of subsequent events in the containing sequence. This can change the layout of the measure, as subsequent &lt;event&gt;s will occur earlier or later as a result and be positioned accordingly. It also affects the validation of the measure for metrical correctness.<br><br>This attribute is unlikely to be frequently encountered, but it's needed to handle cases in which composers use notated values that are not interpreted literally.</td>
+    <td>The actual, performed duration of the event, if different from the notated value given by "value".<br><br>Note that this is specified as a note value quantity, rather than a rhythmic duration, because the former is less constrained. It may be any desired multiple of a note value.<br><br>The duration attribute not only alters the performance of the event, but determines the amount of time the event takes up in the measure, affecting the location of subsequent events in the containing sequence. This can change the layout of the measure, as subsequent &lt;event&gt;s will occur earlier or later as a result and be positioned accordingly (see <a href="../../../infrastructure/sequence-content/">sequencing the content</a>). It also affects the validation of the measure for metrical correctness.<br><br>This attribute is unlikely to be frequently encountered, but it's needed to handle cases in which composers use notated values that are not interpreted literally.</td>
 </tr>
 
 <tr>
@@ -143,7 +147,7 @@
     <th class="nobr">measure</th>
     <td><a href="../../data-types/yes-or-no/">Yes or no</a></td>
     <td>No</td>
-    <td>Whether this event is a whole-measure event — meaning its duration lasts the entire measure. This is used, for example, for rests that last an entire measure.<br><br>If this value is set to "yes", then this event may not specify "value" and this event must either be empty or contain exactly one &lt;rest&gt;.</td>
+    <td>Whether this event is a <i>whole-measure event</i> — meaning its duration lasts the entire measure. This is used, for example, for rests that last an entire measure.<br><br>If this value is set to "yes", then this event may not specify "value" and this event must either be empty or contain exactly one &lt;rest&gt;.</td>
 </tr>
 
 <tr>

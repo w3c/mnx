@@ -1998,7 +1998,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "The &lt;event&gt; element represents a discrete period of time during which one or more notes are performed, or in which a rest occurs.",
+        "description": "The &lt;event&gt; element represents a discrete period of time during which one or more notes are performed, or in which a rest occurs.\r\n\r\nAll events other than <i>whole-measure events</i> require a <code>value</code> attribute to provide their duration as a <a href=\"../../data-types/note-value/\">note value</a>. This duration is implicitly multiplied by the current <a href=\"../../../infrastructure/sequence-content/\">time modification ratio</a>, as specified by the process of <a href=\"../../../infrastructure/sequence-content/\">sequencing the content</a> of the event’s containing element.\r\n\r\nNote: It is legal for an event to have neither notes nor a rest. The result is functionally identical to <a href=\"../forward/\">&lt;forward&gt;</a> but is more constrained since an event must have a valid <a href=\"../../data-types/note-value/\">note value</a>, while a space can have a multiple thereof.",
         "content_data_type": null,
         "is_featured": true,
         "children_type": 1,
@@ -3337,7 +3337,7 @@
         "attribute_group": null,
         "name": "measure",
         "is_required": false,
-        "description": "Whether this event is a whole-measure event — meaning its duration lasts the entire measure. This is used, for example, for rests that last an entire measure.\r\n\r\nIf this value is set to \"yes\", then this event may not specify \"value\" and this event must either be empty or contain exactly one &lt;rest&gt;.",
+        "description": "Whether this event is a <i>whole-measure event</i> — meaning its duration lasts the entire measure. This is used, for example, for rests that last an entire measure.\r\n\r\nIf this value is set to \"yes\", then this event may not specify \"value\" and this event must either be empty or contain exactly one &lt;rest&gt;.",
         "data_type": 27
     }
 },
@@ -3373,7 +3373,7 @@
         "attribute_group": null,
         "name": "duration",
         "is_required": false,
-        "description": "The actual, performed duration of the event, if different from the notated value given by \"value\".\r\n\r\nNote that this is specified as a note value quantity, rather than a rhythmic duration, because the former is less constrained. It may be any desired multiple of a note value.\r\n\r\nThe duration attribute not only alters the performance of the event, but determines the amount of time the event takes up in the measure, affecting the location of subsequent events in the containing sequence. This can change the layout of the measure, as subsequent &lt;event&gt;s will occur earlier or later as a result and be positioned accordingly. It also affects the validation of the measure for metrical correctness.\r\n\r\nThis attribute is unlikely to be frequently encountered, but it's needed to handle cases in which composers use notated values that are not interpreted literally.",
+        "description": "The actual, performed duration of the event, if different from the notated value given by \"value\".\r\n\r\nNote that this is specified as a note value quantity, rather than a rhythmic duration, because the former is less constrained. It may be any desired multiple of a note value.\r\n\r\nThe duration attribute not only alters the performance of the event, but determines the amount of time the event takes up in the measure, affecting the location of subsequent events in the containing sequence. This can change the layout of the measure, as subsequent &lt;event&gt;s will occur earlier or later as a result and be positioned accordingly (see <a href=\"../../../infrastructure/sequence-content/\">sequencing the content</a>). It also affects the validation of the measure for metrical correctness.\r\n\r\nThis attribute is unlikely to be frequently encountered, but it's needed to handle cases in which composers use notated values that are not interpreted literally.",
         "data_type": 11
     }
 },
