@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Direction content | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../">Home</a></li>
+<li><a href="../../mnx-reference/">Reference</a>
+    <ul>
+    <li><a href="../../mnx-reference/element-tree/">Elements</a></li>
+    <li><a href="../../mnx-reference/data-types/">Data types</a></li>
+    <li><a href="../../mnx-reference/examples/">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../concepts/">Concepts in MNX</a></li>
+<li><a href="../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../">MNX specification</a> &gt;
+    <a href="../">Infrastructure</a> &gt;
+    Direction content
+</p>
+
+<h1>Direction content</h1>
+
+<p><b>Direction content</b> consists of some number of musical directions that modify or accompany the performance of events in one or more measures. Directions may be included in an MNX document in two ways:</p>
+
+<ol>
+<li>Within a &lt;directions&gt; element below a &lt;measure&gt; (either <a href="../../mnx-reference/elements/directions-part/">within &lt;part&gt;</a> or <a href="../../mnx-reference/elements/directions-global/">within &lt;global&gt;</a>). The direction is considered to apply to all sequences.</li>
+<li>Within a <a href="../../mnx-reference/elements/directions-sequence/">&lt;directions&gt; element below a &lt;sequence&gt;</a>. The direction applies only to the content within this sequence.</li>
+</ol>
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../static/global.js"></script>
+
+</body>
+</html>
