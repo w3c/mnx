@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Sequence content | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../">Home</a></li>
+<li><a href="../../mnx-reference/">Reference</a>
+    <ul>
+    <li><a href="../../mnx-reference/element-tree/">Elements</a></li>
+    <li><a href="../../mnx-reference/data-types/">Data types</a></li>
+    <li><a href="../../mnx-reference/examples/">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../concepts/">Concepts in MNX</a></li>
+<li><a href="../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../">MNX specification</a> &gt;
+    <a href="../">Infrastructure</a> &gt;
+    Sequence content
+</p>
+
+<h1>Sequence content</h1>
+
+<p>MNX uses the term <em>sequence content</em> to mean a series of musical events that are both presented and performed in a given order, each at a distinct time. For example, these musical events include notes, rests and directions.</p>
+
+<p>Sequence content has three attributes:</p>
+
+<ol>
+<li>The content itself, which is encoded via the <a href="../../mnx-reference/elements/sequence/">&lt;sequence&gt; element</a>.</li>
+<li>A starting position, which is the <a href="../notational-concepts/#metrical-position">metrical position</a> of the content's first element within the containing measure.</li>
+<li>A time modification ratio, which is a rational number scale factor that implicitly applies to all positions and durations within the content.</li>
+</ol>
+
+<p>Sequence content permits interspersed direction content whose directions are injected into the sequence either adjacent to events, or at explicitly given measure locations.</p>
+
+<h2>Sequencing the content</h2>
+
+<p>Within sequence content, each event is assigned a metrical position according to the following procedure, called <em>sequencing the content</em>:</p>
+
+<ol>
+<li>Let <i>sequence cursor</i> be the starting position of the sequence content.</li>
+<li>Let <i>content</i> be the list of XML elements comprising the sequence content.</li>
+<li>While <i>content</i> is not empty:
+    <ol>
+    <li>Let <i>next</i> be the initial element of <i>content</i>, and remove it from the head of <i>content</i>.</li>
+    <li>If <i>next</i> is an <a href="../../mnx-reference/elements/event/">&lt;event&gt;</a> element:
+        <ol>
+        <li>If <i>next</i> has a <i>measure</i> value of <i>yes</i>,
+            <ol>
+            <li>If <i>sequence cursor</i> is greater than zero, throw a processing error.</li>
+            <li>Set <i>sequence cursor</i> to the end of the measure as defined by its time signature.</li>
+            </ol>
+        </li>
+        <li>Else,
+            <ol>
+            <li>Set the metrical position of <i>next</i> to <i>sequence cursor</i>.</li>
+            <li>If <i>next</i> has a <i>duration</i> attribute, assign it to <i>event duration</i>.</li>
+            <li>Else, set <i>event duration</i> to <i>next</i>’s <i>value</i> attribute.</li>
+            <li>Multiply <i>event duration</i> by the <i>time modification ratio</i>, and add the result to <i>sequence cursor</i>.</li>
+            </ol>
+        </li>
+        </ol>
+    </li>
+    <li>If <i>next</i> is an <a href="../../mnx-reference/elements/forward/">&lt;forward&gt;</a> element:
+        <ol>
+        <li>Set the metrical position of <i>next</i> to <i>sequence cursor</i>.</li>
+        <li>Add the duration of <i>next</i>, multiplied by the <i>time modification ratio</i>, to <i>sequence cursor</i>.</li>
+        </ol>
+    </li>
+    <li>Else, if <i>next</i> is an <a href="../../mnx-reference/elements/tuplet/">&lt;tuplet&gt;</a> element:
+        <ol>
+        <li>Sequence the content of <i>next</i>, using <i>sequence cursor</i> as the starting position, and multiplying the <i>time modification ratio</i> by the tuplet's outer / inner ratio for the processing of the tuplet.</li>
+        <li>Add the total duration of <i>next</i> as given by outer, multiplied by the <i>time modification ratio</i>, to <i>sequence cursor</i>.</li>
+        </ol>
+    </li>
+    <li>Else, if <i>next</i> is an <a href="../../mnx-reference/elements/tuplet/">&lt;grace&gt;</a> element:
+        <ol>
+        <li>Process the contents of <i>next</i>, assigning them a non-metrical ordering relative to preceding or following elements as appropriate. </li>
+        </ol>
+    </li>
+    <li>If <i>sequence cursor</i> exceeds the specified duration for the enclosing element (time signature for a &lt;measure&gt;, inner attribute for a &lt;tuplet&gt;), throw a processing error.</li>
+    </ol>
+</li>
+</ol>
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../static/global.js"></script>
+
+</body>
+</html>
