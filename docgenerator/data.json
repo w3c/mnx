@@ -2149,7 +2149,8 @@
         "is_featured": false,
         "children_type": 1,
         "attribute_groups": [
-            1
+            1,
+            2
         ]
     }
 },
@@ -2326,7 +2327,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "Describes a textual dynamic direction to the performer.",
+        "description": "<p>Describes a textual dynamic direction to the performer.</p>\r\n\r\n<p>The <a href=\"../../../infrastructure/notational-concepts/#metrical-position\">metrical position</a> of this dynamic direction is determined by <a href=\"../../../infrastructure/sequence-content/\">sequencing the content</a>.</p>",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -2346,7 +2347,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "A run of text that is presented in a visual style consistent with general instructions to the performer.\r\n\r\nThe content of this element is the text to be displayed.",
+        "description": "A run of text that is presented in a visual style consistent with general instructions to the performer.\r\n\r\nThe content of this element is the text to be displayed.\r\n\r\nThe <a href=\"../../../infrastructure/notational-concepts/#metrical-position\">metrical position</a> of this text is determined by <a href=\"../../../infrastructure/sequence-content/\">sequencing the content</a>.",
         "content_data_type": 33,
         "is_featured": false,
         "children_type": 1,
@@ -2366,7 +2367,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "A run of text that is presented in a visual style consistent with describing musical expression.\r\n\r\nThe content of this element is the text to be displayed.",
+        "description": "A run of text that is presented in a visual style consistent with describing musical expression.\r\n\r\nThe content of this element is the text to be displayed.\r\n\r\nThe <a href=\"../../../infrastructure/notational-concepts/#metrical-position\">metrical position</a> of this text is determined by <a href=\"../../../infrastructure/sequence-content/\">sequencing the content</a>.",
         "content_data_type": 33,
         "is_featured": false,
         "children_type": 1,
@@ -3085,7 +3086,7 @@
         "attribute_group": 2,
         "name": "end",
         "is_required": true,
-        "description": "",
+        "description": "The measure location of the last event that is affected by this direction.\r\n\r\nThis measure location must lie within the same run of <a href=\"../../../infrastructure/notational-concepts/#measure-content\">measure content</a> as this direction's start position.",
         "data_type": 13
     }
 },
@@ -3387,18 +3388,6 @@
         "is_required": true,
         "description": "The metrical duration of this space.\r\n\r\nNote that, in contrast to the <a href=\"../event/\">&lt;event&gt;</a> value attribute, this duration attribute is not constrained to a single note value, but may be a multiple of one.",
         "data_type": 11
-    }
-},
-{
-    "model": "spec.xmlattribute",
-    "pk": 68,
-    "fields": {
-        "element": 19,
-        "attribute_group": null,
-        "name": "end",
-        "is_required": true,
-        "description": "The measure location of the last event that is affected by this octave shift.",
-        "data_type": 13
     }
 },
 {
