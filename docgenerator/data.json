@@ -928,6 +928,25 @@
     }
 },
 {
+    "model": "spec.datatype",
+    "pk": 53,
+    "fields": {
+        "name": "Floating point number",
+        "slug": "floating-point-number",
+        "schema": 1,
+        "description": "<p>A valid floating point number, <a href=\"https://www.w3.org/TR/html5/infrastructure.html#floating-point-numbers\">as described here</a>.</p>",
+        "description_format": 2,
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": null,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
     "model": "spec.datatypeoption",
     "pk": 1,
     "fields": {
@@ -2656,6 +2675,24 @@
     }
 },
 {
+    "model": "spec.xmlelement",
+    "pk": 49,
+    "fields": {
+        "name": "tempo",
+        "slug": "tempo",
+        "disambiguation": "",
+        "schema": 1,
+        "base_element": null,
+        "is_abstract_element": false,
+        "is_root": false,
+        "description": "The &lt;tempo&gt; element defines a tempo, from the point of its occurrence forward until changed. The tempo is rendered as a conventional pairing of a small beat unit notation equated to a metronome marking.",
+        "content_data_type": null,
+        "is_featured": false,
+        "children_type": 1,
+        "attribute_groups": []
+    }
+},
+{
     "model": "spec.xmlattributegroup",
     "pk": 1,
     "fields": {
@@ -3787,6 +3824,30 @@
     }
 },
 {
+    "model": "spec.xmlattribute",
+    "pk": 103,
+    "fields": {
+        "element": 49,
+        "attribute_group": null,
+        "name": "value",
+        "is_required": true,
+        "description": "A note value which is asserted to occur with a frequency of <code>bpm</code> times per minute.",
+        "data_type": 4
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 104,
+    "fields": {
+        "element": 49,
+        "attribute_group": null,
+        "name": "bpm",
+        "is_required": true,
+        "description": "The number of times per minute the given <code>value</code> should occur.",
+        "data_type": 53
+    }
+},
+{
     "model": "spec.xmlrelationship",
     "pk": 1,
     "fields": {
@@ -4359,6 +4420,17 @@
     }
 },
 {
+    "model": "spec.xmlrelationship",
+    "pk": 66,
+    "fields": {
+        "parent": 20,
+        "child": 49,
+        "min_amount": 0,
+        "max_amount": null,
+        "child_order": 0
+    }
+},
+{
     "model": "spec.exampledocument",
     "pk": 1,
     "fields": {
@@ -4758,6 +4830,19 @@
         "blurb": "",
         "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part name=\"Music\">\r\n        <measure>\r\n            <directions>\r\n                <clef line=\"2\" sign=\"G\"/>\r\n            </directions>\r\n            <sequence>\r\n<metadiff>\r\n                <beams>\r\n                    <beam events=\"grace1 grace2\" />\r\n                    <beam events=\"grace3 grace4 grace5\" />\r\n                    <beam events=\"grace6 grace7 grace8 grace9\" />\r\n                </beams>\r\n</metadiff>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n<metadiff>\r\n                <grace>                \r\n                    <event value=\"/8\" id=\"grace1\">\r\n                        <note pitch=\"B4\"/>\r\n                    </event>\r\n                    <event value=\"/8\" id=\"grace2\">\r\n                        <note pitch=\"C5\"/>\r\n                    </event>\r\n                </grace>\r\n</metadiff>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"D5\"/>\r\n                </event>\r\n<metadiff>\r\n                <grace>                \r\n                    <event value=\"/8\" id=\"grace3\">\r\n                        <note pitch=\"B4\"/>\r\n                    </event>\r\n                    <event value=\"/8\" id=\"grace4\">\r\n                        <note pitch=\"C5\"/>\r\n                    </event>\r\n                    <event value=\"/8\" id=\"grace5\">\r\n                        <note pitch=\"D5\"/>\r\n                    </event>\r\n                </grace>\r\n</metadiff>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n<metadiff>\r\n                <grace>                \r\n                    <event value=\"/8\" id=\"grace6\">\r\n                        <note pitch=\"B4\"/>\r\n                    </event>\r\n                    <event value=\"/8\" id=\"grace7\">\r\n                        <note pitch=\"C5\"/>\r\n                    </event>\r\n                    <event value=\"/8\" id=\"grace8\">\r\n                        <note pitch=\"D5\"/>\r\n                    </event>\r\n                    <event value=\"/8\" id=\"grace9\">\r\n                        <note pitch=\"E5\"/>\r\n                    </event>\r\n                </grace>\r\n</metadiff>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"F5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/beams-grace-notes.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spec.exampledocument",
+    "pk": 32,
+    "fields": {
+        "name": "Tempo markings",
+        "slug": "tempo-markings",
+        "schema": 1,
+        "blurb": "",
+        "document": "<mnx>\r\n   <global>\r\n      <measure>\r\n         <directions>\r\n            <time signature=\"4/4\"/>\r\n            <metadiff><tempo value=\"/4\" bpm=\"200\" /></metadiff>\r\n         </directions>\r\n      </measure>\r\n      <measure/>\r\n   </global>\r\n   <part name=\"Music\">\r\n      <measure>\r\n         <directions>\r\n            <clef sign=\"G\" line=\"2\"/>\r\n         </directions>\r\n         <sequence>\r\n            <event value=\"/4\">\r\n               <note pitch=\"C5\"/>\r\n            </event>\r\n            <event value=\"/4\">\r\n               <note pitch=\"E5\"/>\r\n            </event>\r\n            <event value=\"/4\">\r\n               <note pitch=\"G4\"/>\r\n            </event>\r\n            <event value=\"/4\">\r\n               <note pitch=\"E5\"/>\r\n            </event>\r\n         </sequence>\r\n      </measure>\r\n      <measure>\r\n         <sequence>\r\n            <event value=\"/4\">\r\n               <note pitch=\"C5\"/>\r\n            </event>\r\n            <event value=\"/4\">\r\n               <note pitch=\"E5\"/>\r\n            </event>\r\n            <event value=\"/4\">\r\n               <note pitch=\"G5\"/>\r\n            </event>\r\n            <event value=\"/4\">\r\n               <note pitch=\"C6\"/>\r\n            </event>\r\n         </sequence>\r\n      </measure>\r\n   </part>\r\n</mnx>",
+        "image_url": "/static/examples/tempo-marking.png",
         "is_featured": false
     }
 },
@@ -8980,6 +9065,123 @@
     "fields": {
         "example": 8,
         "element": 14,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 806,
+    "fields": {
+        "example": 32,
+        "element": 1,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 807,
+    "fields": {
+        "example": 32,
+        "element": 2,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 808,
+    "fields": {
+        "example": 32,
+        "element": 3,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 809,
+    "fields": {
+        "example": 32,
+        "element": 4,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 810,
+    "fields": {
+        "example": 32,
+        "element": 5,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 811,
+    "fields": {
+        "example": 32,
+        "element": 6,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 812,
+    "fields": {
+        "example": 32,
+        "element": 8,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 813,
+    "fields": {
+        "example": 32,
+        "element": 9,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 814,
+    "fields": {
+        "example": 32,
+        "element": 10,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 815,
+    "fields": {
+        "example": 32,
+        "element": 11,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 816,
+    "fields": {
+        "example": 32,
+        "element": 12,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 818,
+    "fields": {
+        "example": 32,
+        "element": 20,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 820,
+    "fields": {
+        "example": 32,
+        "element": 49,
         "element_name": ""
     }
 },
