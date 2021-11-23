@@ -3309,42 +3309,6 @@
 },
 {
     "model": "spec.xmlattribute",
-    "pk": 57,
-    "fields": {
-        "element": 8,
-        "attribute_group": null,
-        "name": "index",
-        "is_required": false,
-        "description": "The one-based index of this measure within the document's <a href=\"/infrastructure/notational-concepts/#score-order\">score order</a>. The default value is 1 for the first &lt;measure&gt; in the &lt;part&gt;. For all other measures, the default value is the value of the previous &lt;measure&gt; plus 1.\r\n\r\nThis is used within the MNX document in cases when content needs to refer to a specific measure.",
-        "data_type": 38
-    }
-},
-{
-    "model": "spec.xmlattribute",
-    "pk": 58,
-    "fields": {
-        "element": 8,
-        "attribute_group": null,
-        "name": "number",
-        "is_required": false,
-        "description": "A visual label for the measure. It is not required to be unique in the document. If omitted, its value is the same as <code>index</code>.",
-        "data_type": 38
-    }
-},
-{
-    "model": "spec.xmlattribute",
-    "pk": 59,
-    "fields": {
-        "element": 8,
-        "attribute_group": null,
-        "name": "barline",
-        "is_required": false,
-        "description": "The barline drawn at the end of this measure. If not provided, the barline should be interpreted as follows:\r\n\r\n* If the measure is the last in the document, use \"light-heavy\".\r\n* Otherwise, use \"regular\".",
-        "data_type": 39
-    }
-},
-{
-    "model": "spec.xmlattribute",
     "pk": 60,
     "fields": {
         "element": 10,
@@ -4497,7 +4461,7 @@
         "slug": "hello-world",
         "schema": 1,
         "blurb": "This basic MNX document contains a single middle C whole note, on a treble clef stave, in 4/4 time.",
-        "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part name=\"Music\">\r\n        <measure barline=\"regular\">\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C4\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
+        "document": "<mnx>\r\n    <global>\r\n        <measure barline=\"regular\">\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part name=\"Music\">\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/1\">\r\n                    <note pitch=\"C4\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/hello-world.png",
         "is_featured": true
     }
@@ -4510,7 +4474,7 @@
         "slug": "two-bar-c-major-scale",
         "schema": 1,
         "blurb": "",
-        "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure/>\r\n    </global>\r\n    <part name=\"Music\">\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"D4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"F4\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure barline=\"regular\">\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"A4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"B4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
+        "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n        <measure  barline=\"regular\" />\r\n    </global>\r\n    <part name=\"Music\">\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"D4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"F4\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"A4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"B4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/two-bar-c-major-scale.png",
         "is_featured": false
     }
@@ -4523,7 +4487,7 @@
         "slug": "three-note-chord-and-half-rest",
         "schema": 1,
         "blurb": "",
-        "document": "<mnx>\r\n    <global>\r\n        <measure>\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part name=\"Music\">\r\n        <measure barline=\"regular\">\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence><metadiff>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"C4\"/>\r\n                    <note pitch=\"E4\"/>\r\n                    <note pitch=\"G4\"/>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <rest/>\r\n                </event>\r\n            </metadiff></sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
+        "document": "<mnx>\r\n    <global>\r\n        <measure barline=\"regular\">\r\n            <directions>\r\n                <time signature=\"4/4\"/>\r\n            </directions>\r\n        </measure>\r\n    </global>\r\n    <part name=\"Music\">\r\n        <measure>\r\n            <directions>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions>\r\n            <sequence><metadiff>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"C4\"/>\r\n                    <note pitch=\"E4\"/>\r\n                    <note pitch=\"G4\"/>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <rest/>\r\n                </event>\r\n            </metadiff></sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/three-note-chord-and-half-rest.png",
         "is_featured": false
     }
