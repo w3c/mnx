@@ -1,7 +1,7 @@
 <!doctype html><html lang="en">
  <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  <title>MNX Draft Specification</title>
+  <title>MNX Draft Specification (archived version)</title>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 <style data-fill-with="stylesheet">/******************************************************************************
  *                   Style sheet for the W3C specifications                   *
@@ -2067,7 +2067,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <div data-fill-with="warning">
     <details class="annoying-warning" open>
      <summary>This draft is no longer updated</summary>
-     <p>This document has been superceded by <a href="https://w3c.github.io/mnx/docs/">a newer version</a>. Some parts of this document still need to be migrated into the new version, but otherwise this document should be considered frozen.</p>
+     <p>Please use the <a href="https://w3c.github.io/mnx/docs/">newer specification</a>. See <a href="#status">section 1</a> for a list of elements and concepts in this document that have not been migrated to the newer spec.</p>
     </details>
    </div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
@@ -2347,9 +2347,21 @@ Parts of this work may be from another specification document.  If so, those par
   </nav>
   <main>
    <h2 class="heading settled" data-level="1" id="status"><span class="secno">1. </span><span class="content">Status of this document</span><a class="self-link" href="#status"></a></h2>
-   <p>This document is an early draft and focuses on the main structural features
-that distinguish MNX from MusicXML 3.1. Many elements are omitted, or their details
+   <p>This document was an early draft and focused on the main structural features
+that distinguish MNX from MusicXML 3.1. Many elements were omitted, or their details
 are referred to the <a data-link-type="dfn" href="https://w3c.github.io/musicxml/#">MusicXML specification</a> as a placeholder.</p>
+   <p>This document is no longer updated and serves as a historical reference to provide context for the evolution of the ideas and implementation of MNX. Please refer to the <a href="https://w3c.github.io/mnx/docs/">new specification</a> instead of this document.</p>
+   <p>The new specification contains everything relevant from this older specification, with these exceptions:</p>
+   <ul>
+    <li><code><a data-link-type="element" href="#elementdef-title">title</a></code>: Needs to be developed further, to account for different types of titles, including hierarchy, and richer metadata
+    <li><code><a data-link-type="element" href="#elementdef-dirgroup">dirgroup</a></code>: Needs to be developed further
+    <li><code><a data-link-type="element" href="#elementdef-staves">staves</a></code>: Has been supplanted by the newer concept of "layouts"
+    <li><code><a data-link-type="element" href="#elementdef-interpret">interpret</a></code>: No longer relevant, as MNX-Generic is not being actively developed
+    <li><a href="#score-synchronization">Synchronization content</a>: Needs more fleshing out; possibly use an existing format
+    <li><a href="#common-style-properties">Style properties</a>: Has been supplanted by newer approaches to styles
+    <li><a href="#common-stylesheet-definitions">Stylesheet definitions</a>: Has been supplanted by newer approaches to styles
+   </ul>
+
    <h2 class="heading settled" data-level="2" id="introduction"><span class="secno">2. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
    <h3 class="heading settled" data-level="2.1" id="background"><span class="secno">2.1. </span><span class="content">Background</span><a class="self-link" href="#background"></a></h3>
    <p><em>This section is non-normative.</em></p>
