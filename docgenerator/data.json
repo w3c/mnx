@@ -3848,6 +3848,54 @@
     }
 },
 {
+    "model": "spec.xmlattribute",
+    "pk": 105,
+    "fields": {
+        "element": 49,
+        "attribute_group": null,
+        "name": "location",
+        "is_required": false,
+        "description": "The measure location of this tempo marking. If not provided, the default value is zero.",
+        "data_type": 13
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 106,
+    "fields": {
+        "element": 26,
+        "attribute_group": null,
+        "name": "location",
+        "is_required": true,
+        "description": "The measure location of this direction.",
+        "data_type": 13
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 107,
+    "fields": {
+        "element": 25,
+        "attribute_group": null,
+        "name": "location",
+        "is_required": false,
+        "description": "The measure location of this direction.",
+        "data_type": 13
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 108,
+    "fields": {
+        "element": 24,
+        "attribute_group": null,
+        "name": "location",
+        "is_required": true,
+        "description": "The measure location of this direction.",
+        "data_type": 13
+    }
+},
+{
     "model": "spec.xmlrelationship",
     "pk": 1,
     "fields": {
@@ -4425,6 +4473,17 @@
     "fields": {
         "parent": 20,
         "child": 49,
+        "min_amount": 0,
+        "max_amount": null,
+        "child_order": 0
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 67,
+    "fields": {
+        "parent": 30,
+        "child": 9,
         "min_amount": 0,
         "max_amount": null,
         "child_order": 0
