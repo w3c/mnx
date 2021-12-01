@@ -2541,7 +2541,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "The &lt;score&gt; element represents a particular rendering of the music, with a defined subset of which parts are included, how they're visually arranged, where system breaks happen and where page breaks happen.\r\n\r\nAn MNX document can contain multiple &lt;score&gt; elements. For example, you can use this to define a \"full score\" vs. individual parts, within a single MNX file.\r\n\r\nMNX documents are not required to contain a &lt;score&gt; element. If &lt;score&gt; isn't provided, the default rendering behavior is to include all parts — in the same order in which the &lt;part&gt; elements appear in the document — with line breaks and page breaks determined automatically by the consuming software.",
+        "description": "The &lt;score&gt; element represents a particular rendering of the music, with a defined subset of which parts are included, how they're visually arranged, where system breaks happen and where page breaks happen.\r\n\r\nAn MNX document can contain multiple &lt;score&gt; elements. For example, you can use this to define a \"full score\" vs. individual parts, within a single MNX file.\r\n\r\nMNX documents are not required to contain a &lt;score&gt; element. If &lt;score&gt; isn't provided, the default rendering behavior is to include all parts — in the same order in which the &lt;part&gt; elements appear in the document — with line breaks and page breaks determined automatically by the consuming software.\r\n\r\nA &lt;score&gt; element also is not required to contain any &lt;page&gt; elements. If &lt;page&gt; elements aren't provided, page breaks are to be determined automatically by the consuming software.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -2595,7 +2595,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "The &lt;system-layout&gt; element defines a visual layout that can be used by &lt;system&gt; elements.\r\n\r\nFor example, a layout might say \"Include the vocal part, with the piano part directly below. For the piano part, use a grand-staff brace.\"\r\n\r\nTo encode this information, &lt;system-layout&gt; has the child elements &lt;staff-layout&gt; and &lt;group-layout&gt;.",
+        "description": "The &lt;system-layout&gt; element defines a visual layout that can be used by &lt;system&gt; or &lt;score&gt; elements.\r\n\r\nFor example, a layout might say \"Include the vocal part, with the piano part directly below. For the piano part, use a grand-staff brace.\"\r\n\r\nTo encode this information, &lt;system-layout&gt; has the child elements &lt;staff-layout&gt; and &lt;group-layout&gt;.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -3591,7 +3591,7 @@
         "attribute_group": null,
         "name": "id",
         "is_required": true,
-        "description": "A unique identifier for this system layout. This is used by the &lt;system&gt; element to specify which layout the system uses.",
+        "description": "A unique identifier for this system layout. This is used by the &lt;system&gt; (or &lt;score&gt;) element to specify which layout the system (or score) uses.",
         "data_type": 47
     }
 },
@@ -4349,7 +4349,7 @@
     "fields": {
         "parent": 41,
         "child": 42,
-        "min_amount": 1,
+        "min_amount": 0,
         "max_amount": null,
         "child_order": 0
     }
