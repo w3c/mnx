@@ -2693,6 +2693,24 @@
     }
 },
 {
+    "model": "spec.xmlelement",
+    "pk": 50,
+    "fields": {
+        "name": "layouts",
+        "slug": "layouts",
+        "disambiguation": "",
+        "schema": 1,
+        "base_element": null,
+        "is_abstract_element": false,
+        "is_root": false,
+        "description": "The &lt;layouts&gt; element is a container for &lt;system-layout&gt; elements.",
+        "content_data_type": null,
+        "is_featured": false,
+        "children_type": 1,
+        "attribute_groups": []
+    }
+},
+{
     "model": "spec.xmlattributegroup",
     "pk": 1,
     "fields": {
@@ -4370,9 +4388,9 @@
     "pk": 56,
     "fields": {
         "parent": 1,
-        "child": 44,
+        "child": 50,
         "min_amount": 0,
-        "max_amount": null,
+        "max_amount": 1,
         "child_order": 3
     }
 },
@@ -4448,6 +4466,17 @@
     "fields": {
         "parent": 30,
         "child": 9,
+        "min_amount": 0,
+        "max_amount": null,
+        "child_order": 0
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 68,
+    "fields": {
+        "parent": 50,
+        "child": 44,
         "min_amount": 0,
         "max_amount": null,
         "child_order": 0
@@ -4838,7 +4867,7 @@
         "slug": "system-layouts",
         "schema": 1,
         "blurb": "",
-        "document": "<mnx>\r\n    <global>...</global>\r\n\r\n    <part id=\"fl1\" name=\"Flute 1\" short-name=\"1\">...</part>\r\n    <part id=\"fl2\" name=\"Flute 2\" short-name=\"2\">...</part>\r\n    <part id=\"fl3\" name=\"Flute 3\" short-name=\"3\">...</part>\r\n    <part id=\"ob1\" name=\"Oboe 1\" short-name=\"1\">...</part>\r\n    <part id=\"ob2\" name=\"Oboe 2\" short-name=\"2\">...</part>\r\n    <part id=\"piano\" name=\"Piano\" staves=\"2\">...</part>\r\n\r\n    <system-layout id=\"layout1\">\r\n        <group-layout symbol=\"bracket\">\r\n            <group-layout symbol=\"brace\" label=\"Flutes\">\r\n                <staff-layout labelref=\"short-name\">\r\n                    <part-layout part=\"fl1\" />\r\n                    <part-layout part=\"fl2\" />\r\n                </staff-layout>\r\n                <staff-layout labelref=\"short-name\">\r\n                    <part-layout part=\"fl3\" />\r\n                </staff-layout>\r\n            </group-layout>\r\n            <staff-layout label=\"Oboes\" labelref=\"short-name\">\r\n                <part-layout part=\"ob1\" />\r\n                <part-layout part=\"ob2\" />\r\n            </staff-layout>\r\n        </group-layout>\r\n        <group-layout symbol=\"brace\" label=\"Piano\">\r\n            <staff-layout>\r\n                <part-layout part=\"piano\" staff=\"1\" />\r\n            </staff-layout>\r\n            <staff-layout>\r\n                <part-layout part=\"piano\" staff=\"2\" />\r\n            </staff-layout>\r\n        </group-layout>\r\n    </system-layout>\r\n    <system-layout id=\"layout2\">\r\n        <group-layout symbol=\"bracket\">\r\n            <group-layout symbol=\"brace\" label=\"Fl.\">\r\n                <staff-layout labelref=\"short-name\">\r\n                    <part-layout part=\"fl1\" />\r\n                </staff-layout>\r\n                <staff-layout labelref=\"short-name\">\r\n                    <part-layout part=\"fl2\" />\r\n                </staff-layout>\r\n                <staff-layout labelref=\"short-name\">\r\n                    <part-layout part=\"fl3\" />\r\n                </staff-layout>\r\n            </group-layout>\r\n            <staff-layout name=\"Ob.\" labelref=\"short-name\">\r\n                 <part-layout part=\"ob1\" />\r\n                 <part-layout part=\"ob2\" />\r\n            </staff-layout>\r\n        </group-layout>\r\n        <group-layout symbol=\"brace\" label=\"Piano\">\r\n            <staff-layout>\r\n                <part-layout part=\"piano\" staff=\"1\" />\r\n            </staff-layout>\r\n            <staff-layout>\r\n                <part-layout part=\"piano\" staff=\"2\" />\r\n            </staff-layout>\r\n        </group-layout>\r\n    </system-layout>\r\n\r\n    <score name=\"Full score\">\r\n        <page>\r\n            <system measure=\"1\" layout=\"layout1\" />\r\n            <system measure=\"4\" layout=\"layout2\" />\r\n        </page>\r\n    </score>\r\n</mnx>",
+        "document": "<mnx>\r\n    <global>...</global>\r\n\r\n    <part id=\"fl1\" name=\"Flute 1\" short-name=\"1\">...</part>\r\n    <part id=\"fl2\" name=\"Flute 2\" short-name=\"2\">...</part>\r\n    <part id=\"fl3\" name=\"Flute 3\" short-name=\"3\">...</part>\r\n    <part id=\"ob1\" name=\"Oboe 1\" short-name=\"1\">...</part>\r\n    <part id=\"ob2\" name=\"Oboe 2\" short-name=\"2\">...</part>\r\n    <part id=\"piano\" name=\"Piano\" staves=\"2\">...</part>\r\n\r\n    <layouts>\r\n        <system-layout id=\"layout1\">\r\n            <group-layout symbol=\"bracket\">\r\n                <group-layout symbol=\"brace\" label=\"Flutes\">\r\n                    <staff-layout labelref=\"short-name\">\r\n                        <part-layout part=\"fl1\" />\r\n                        <part-layout part=\"fl2\" />\r\n                    </staff-layout>\r\n                    <staff-layout labelref=\"short-name\">\r\n                        <part-layout part=\"fl3\" />\r\n                    </staff-layout>\r\n                </group-layout>\r\n                <staff-layout label=\"Oboes\" labelref=\"short-name\">\r\n                    <part-layout part=\"ob1\" />\r\n                    <part-layout part=\"ob2\" />\r\n                </staff-layout>\r\n            </group-layout>\r\n            <group-layout symbol=\"brace\" label=\"Piano\">\r\n                <staff-layout>\r\n                    <part-layout part=\"piano\" staff=\"1\" />\r\n                </staff-layout>\r\n                <staff-layout>\r\n                    <part-layout part=\"piano\" staff=\"2\" />\r\n                </staff-layout>\r\n            </group-layout>\r\n        </system-layout>\r\n        <system-layout id=\"layout2\">\r\n            <group-layout symbol=\"bracket\">\r\n                <group-layout symbol=\"brace\" label=\"Fl.\">\r\n                    <staff-layout labelref=\"short-name\">\r\n                        <part-layout part=\"fl1\" />\r\n                    </staff-layout>\r\n                    <staff-layout labelref=\"short-name\">\r\n                        <part-layout part=\"fl2\" />\r\n                    </staff-layout>\r\n                    <staff-layout labelref=\"short-name\">\r\n                        <part-layout part=\"fl3\" />\r\n                    </staff-layout>\r\n                </group-layout>\r\n                <staff-layout name=\"Ob.\" labelref=\"short-name\">\r\n                     <part-layout part=\"ob1\" />\r\n                     <part-layout part=\"ob2\" />\r\n                </staff-layout>\r\n            </group-layout>\r\n            <group-layout symbol=\"brace\" label=\"Piano\">\r\n                <staff-layout>\r\n                    <part-layout part=\"piano\" staff=\"1\" />\r\n                </staff-layout>\r\n                <staff-layout>\r\n                    <part-layout part=\"piano\" staff=\"2\" />\r\n                </staff-layout>\r\n            </group-layout>\r\n        </system-layout>\r\n    </layouts>\r\n\r\n    <score name=\"Full score\">\r\n        <page>\r\n            <system measure=\"1\" layout=\"layout1\" />\r\n            <system measure=\"4\" layout=\"layout2\" />\r\n        </page>\r\n    </score>\r\n</mnx>",
         "image_url": "/static/examples/system-layouts.png",
         "is_featured": false
     }
@@ -9205,6 +9234,15 @@
     "fields": {
         "example": 25,
         "element": 23,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 828,
+    "fields": {
+        "example": 30,
+        "element": 50,
         "element_name": ""
     }
 },
