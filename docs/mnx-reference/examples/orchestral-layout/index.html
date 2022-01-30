@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>MNX example: Orchestral layout | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+<style>
+.diff * { font-weight: bold; color: blue !important; }
+</style>
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../../">Reference</a>
+    <ul>
+    <li><a href="../../element-tree/">Elements</a></li>
+    <li><a href="../../data-types/">Data types</a></li>
+    <li><a href="../">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../../concepts/">Concepts in MNX</a></li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Examples</a> &gt;
+    Orchestral layout
+</p>
+
+<h1>Orchestral layout</h1>
+
+
+<p><img src="../../../static/examples/orchestral-layout.png"></p>
+
+
+
+
+
+
+
+
+<div class="xmlmarkup"><span class="">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+   &lt;<a class="tag" href="../../elements/global/">global</a>&gt;<span class="xmltxt">...</span>&lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">Klar1</a>"&gt;<span class="xmltxt">...</span>&lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">Klar2</a>"&gt;<span class="xmltxt">...</span>&lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">Klar3</a>"&gt;<span class="xmltxt">...</span>&lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">Horn1</a>"&gt;<span class="xmltxt">...</span>&lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">Horn2</a>"&gt;<span class="xmltxt">...</span>&lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">Horn3</a>"&gt;<span class="xmltxt">...</span>&lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">Horn4</a>"&gt;<span class="xmltxt">...</span>&lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">Harfe</a>" <span class="attrname">staves</span>="<a href="../../data-types/stave-count/" class="attrval">2</a>"&gt;<span class="xmltxt">...</span>&lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">Violin1</a>"&gt;<span class="xmltxt">...</span>&lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">Violin2</a>"&gt;<span class="xmltxt">...</span>&lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">Viola</a>"&gt;<span class="xmltxt">...</span>&lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">Cello</a>"&gt;<span class="xmltxt">...</span>&lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">Kontra</a>"&gt;<span class="xmltxt">...</span>&lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/layouts/">layouts</a>&gt;
+      &lt;<a class="tag" href="../../elements/system-layout/">system-layout</a> <span class="attrname">id</span>="<a href="../../data-types/system-layout-id/" class="attrval">starting</a>"&gt;
+         &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">bracket</a>"&gt;
+            &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">Horns in F.</a>" <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">brace</a>"&gt;
+               &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">2.</a>"&gt;
+                  &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">layout</span>="Horn2"/&gt;
+               &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+               &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">4.</a>"&gt;
+                  &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">layout</span>="Horn4"/&gt;
+               &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+         &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+         &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">1. Harfe.</a>" <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">brace</a>"&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">part-staff</span>="1"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Harfe</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">part-staff</span>="2"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Harfe</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+         &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+         &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">bracket</a>"&gt;
+            &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">brace</a>"&gt;
+               &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">1. Violine.</a>"&gt;
+                  &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Violin1</a>"/&gt;
+               &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+               &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">2. Violine.</a>"&gt;
+                  &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Violin2</a>"/&gt;
+               &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">Viola.</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Viola</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">Violincell.</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Cello</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">Kontrabass</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Kontra</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+         &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+      &lt;/<a class="tag" href="../../elements/system-layout/">system-layout</a>&gt;
+      &lt;<a class="tag" href="../../elements/system-layout/">system-layout</a> <span class="attrname">id</span>="<a href="../../data-types/system-layout-id/" class="attrval">secondSystem</a>"&gt;
+         &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">brace</a>"&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">1.2.3. Klar. in A</a>"&gt;
+               &lt;<a class="tag" href="../../elements/voice-layout/">voice-layout</a> <span class="attrname">stem</span>="<a href="../../data-types/voice-stem-direction/" class="attrval">up</a>"&gt;
+                  &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Klar1</a>"/&gt;
+                  &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Klar2</a>"/&gt;
+               &lt;/<a class="tag" href="../../elements/voice-layout/">voice-layout</a>&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Klar3</a>" <span class="attrname">stem</span>="<a href="../../data-types/part-stem-direction/" class="attrval">down</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+         &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+         &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">bracket</a>"&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">2. Hr in F.</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">layout</span>="Horn2"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+         &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+         &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">1. Harfe.</a>" <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">brace</a>"&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">part-staff</span>="1"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Harfe</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">part-staff</span>="2"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Harfe</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+         &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+         &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">bracket</a>"&gt;
+            &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">brace</a>"&gt;
+               &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">1. Vl.</a>"&gt;
+                  &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Violin1</a>"/&gt;
+               &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+               &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">2. Vl.</a>"&gt;
+                  &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Violin2</a>"/&gt;
+               &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+            &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">Vla. (get.)</a>" <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">brace</a>"&gt;
+               &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+                  &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Viola</a>"/&gt;
+               &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+               &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+                  &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Viola</a>" <span class="attrname">part-voice</span>="Pizzicato"/&gt;
+               &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+            &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">Vlc. (get.)</a>" <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">brace</a>"&gt;
+               &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+                  &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Cello</a>"/&gt;
+               &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+               &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+                  &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Cello</a>" <span class="attrname">part-voice</span>="Pizzicato"/&gt;
+               &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">Kontrabass</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">Kontra</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+         &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+      &lt;/<a class="tag" href="../../elements/system-layout/">system-layout</a>&gt;
+   &lt;/<a class="tag" href="../../elements/layouts/">layouts</a>&gt;
+   &lt;<a class="tag" href="../../elements/score/">score</a> <span class="attrname">name</span>="<a href="../../data-types/string/" class="attrval">fullScore</a>"&gt;
+      &lt;<a class="tag" href="../../elements/page/">page</a>&gt;
+         &lt;<a class="tag" href="../../elements/system/">system</a> <span class="attrname">layout</span>="<a href="../../data-types/system-layout-id/" class="attrval">starting</a>" <span class="attrname">measure</span>="<a href="../../data-types/measure-number/" class="attrval">1</a>"/&gt;
+         &lt;<a class="tag" href="../../elements/system/">system</a> <span class="attrname">layout</span>="<a href="../../data-types/system-layout-id/" class="attrval">secondSystem</a>" <span class="attrname">measure</span>="<a href="../../data-types/measure-number/" class="attrval">7</a>"/&gt;
+      &lt;/<a class="tag" href="../../elements/page/">page</a>&gt;
+   &lt;/<a class="tag" href="../../elements/score/">score</a>&gt;
+&lt;/<a class="tag" href="../../elements/mnx/">mnx</a>&gt;</span></div>
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>String data type | MNX specification</title>
+<title>The &lt;system-layout-change&gt; element | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -31,7 +31,7 @@
 <li><a href="../../">Reference</a>
     <ul>
     <li><a href="../../element-tree/">Elements</a></li>
-    <li><a href="../">Data types</a></li>
+    <li><a href="../../data-types/">Data types</a></li>
     <li><a href="../../examples/">Example documents</a></li>
     </ul>
 </li>
@@ -44,54 +44,69 @@
 <p class="breadcrumb">
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
-    <a href="../">Data types</a> &gt;
-    String
+    <a href="../">Elements</a> &gt;
+    system-layout-change
 </p>
 
-<h1>String data type</h1>
+<h1>The &lt;system-layout-change&gt; element</h1>
+
+<p>Parent element:
+    
+        
+        <a href="../system/">&lt;system&gt;</a>
+        
+    
+</p>
+
+
+    <p>The &lt;system-layout-change&gt; element lets you indicate a change in &lt;system-layout&gt; in the middle of a system — usually, but not necessarily, due to changes in stemming.</p>
+
+
+<h2 id="content">Content</h2>
+
+
+    <p>Always empty.</p>
+
+
+<h2 id="attributes">Attributes</h2>
+
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+<tr>
+    <th class="nobr">layout</th>
+    <td><a href="../../data-types/system-layout-id/">System layout ID</a></td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+<tr>
+    <th class="nobr">location</th>
+    <td><a href="../../data-types/measure-location/">Measure location</a></td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+</table>
 
 
 
 
 
+<h2 id="examples">Examples</h2>
 
-
-
-
-
-
-
-
-
-
-
-<h2 id="where">Where is this type used?</h2>
-
-
-<p><a href="../../elements/expression/">&lt;expression&gt;</a></p>
-
-<p><a href="../../elements/instruction/">&lt;instruction&gt;</a></p>
-
-<p><a href="../../elements/part-abbreviation/">&lt;part-abbreviation&gt;</a></p>
-
-
-
-<p><a href="../../elements/cresc/">&lt;cresc&gt;</a> — "text" attribute</p>
-
-<p><a href="../../elements/dim/">&lt;dim&gt;</a> — "text" attribute</p>
-
-<p><a href="../../elements/group-layout/">&lt;group-layout&gt;</a> — "label" attribute</p>
-
-<p><a href="../../elements/part/">&lt;part&gt;</a> — "name" attribute</p>
-
-<p><a href="../../elements/part/">&lt;part&gt;</a> — "short-name" attribute</p>
-
-<p><a href="../../elements/score/">&lt;score&gt;</a> — "name" attribute</p>
-
-<p><a href="../../elements/staff-layout/">&lt;staff-layout&gt;</a> — "label" attribute</p>
-
-<p><a href="../../elements/voice-layout/">&lt;voice-layout&gt;</a> — "label" attribute</p>
-
+<p>This element is used in the following examples:</p>
+<p>
+    <nobr><a href="../../examples/multiple-layouts/">Multiple layouts</a></nobr>, <nobr><a href="../../examples/organ-layout/">Organ layout</a></nobr>
+</p>
 
 
 

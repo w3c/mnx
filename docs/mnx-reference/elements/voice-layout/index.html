@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The &lt;voice-layout&gt; element | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../../">Reference</a>
+    <ul>
+    <li><a href="../../element-tree/">Elements</a></li>
+    <li><a href="../../data-types/">Data types</a></li>
+    <li><a href="../../examples/">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../../concepts/">Concepts in MNX</a></li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Elements</a> &gt;
+    voice-layout
+</p>
+
+<h1>The &lt;voice-layout&gt; element</h1>
+
+<p>Parent element:
+    
+        
+        <a href="../staff-layout/">&lt;staff-layout&gt;</a>
+        
+    
+</p>
+
+
+    <p>The &lt;voice-layout&gt; element lets you combine multiple &lt;part&gt;s into a single voice of a &lt;staff-layout&gt;. This is useful for complex orchestral scores, where individual parts are sometimes placed on multiple staves but sometimes placed on a single staff.</p>
+
+
+<h2 id="content">Content</h2>
+
+
+    
+    
+    <p>
+
+
+
+
+    
+    
+        <a href="../part-layout/">&lt;part-layout&gt;</a> (One or more times)
+    
+    
+
+
+
+</p>
+    
+
+
+<h2 id="attributes">Attributes</h2>
+
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+<tr>
+    <th class="nobr">label</th>
+    <td><a href="../../data-types/string/">String</a></td>
+    <td>No</td>
+    <td>An optional name for this voice. If provided, this should be rendered to the left of the staff, vertically positioned such that it aligns with the voice position (either above center or below center).<br><br>Generally we recommend using "labelref" instead of "label", to avoid duplication of data within an MNX document.</td>
+</tr>
+
+<tr>
+    <th class="nobr">labelref</th>
+    <td><a href="../../data-types/staff-label-type/">Staff label type</a></td>
+    <td>No</td>
+    <td>If provided, this specifies that the corresponding part's name (or short-name) should be rendered to the left of the staff.<br><br>By using this instead of the "label" attribute, you can avoid needing to duplicate a part's name in an MNX document.<br><br>If this &lt;voice-layout&gt; contains multiple &lt;part-layout&gt; elements, the first &lt;part-layout&gt; child should be used.</td>
+</tr>
+
+<tr>
+    <th class="nobr">stem</th>
+    <td><a href="../../data-types/voice-stem-direction/">Voice stem direction</a></td>
+    <td>No</td>
+    <td>The stem direction to use for all notes within this &lt;voice-layout&gt;. Default is "part", which means to use stem directions as defined in the first child &lt;part-layout&gt;.<br><br>If this value is "up", "down" or "float", then stem directions in the underlying &lt;part&gt; are ignored within this &lt;voice-layout&gt;.</td>
+</tr>
+
+</table>
+
+
+
+
+
+<h2 id="examples">Examples</h2>
+
+<p>This element is used in the following examples:</p>
+<p>
+    <nobr><a href="../../examples/orchestral-layout/">Orchestral layout</a></nobr>, <nobr><a href="../../examples/system-layouts/">System layouts</a></nobr>
+</p>
+
+
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>

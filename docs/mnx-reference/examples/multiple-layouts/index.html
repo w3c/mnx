@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>MNX example: Multiple layouts | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+<style>
+.diff * { font-weight: bold; color: blue !important; }
+</style>
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../../">Reference</a>
+    <ul>
+    <li><a href="../../element-tree/">Elements</a></li>
+    <li><a href="../../data-types/">Data types</a></li>
+    <li><a href="../">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../../concepts/">Concepts in MNX</a></li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Examples</a> &gt;
+    Multiple layouts
+</p>
+
+<h1>Multiple layouts</h1>
+
+
+<p><img src="../../../static/examples/multiple-layouts.png"></p>
+
+
+
+<p>In this image, you see three different representations of the same underlying SATB music — one with four separate staves, one with two staves (using multiple voices) and one with two staves (using notes combined into chords).
+
+This can be encoded entirely within a single MNX document. The underlying music (the notes, barlines, etc.) is encoded only once, within the &lt;global&gt; and &lt;part&gt; elements. But there are three separate &lt;score&gt; elements — one for each visual representation of the music.
+
+A &lt;score&gt; references a particular &lt;layout&gt;. The &lt;layout&gt; element is where the style information is contained: which parts, in which order.</p>
+
+
+
+
+
+
+<div class="xmlmarkup"><span class="">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
+   &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
+      &lt;<a class="tag" href="../../elements/measure-global/">measure-global</a>&gt;
+         &lt;<a class="tag" href="../../elements/directions-global/">directions-global</a>&gt;
+            &lt;<a class="tag" href="../../elements/time/">time</a> <span class="attrname">signature</span>="<a href="../../data-types/time-signature/" class="attrval">4/4</a>"/&gt;
+         &lt;/<a class="tag" href="../../elements/directions-global/">directions-global</a>&gt;
+      &lt;/<a class="tag" href="../../elements/measure-global/">measure-global</a>&gt;
+      &lt;<a class="tag" href="../../elements/measure-global/">measure-global</a>/&gt;
+   &lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">soprano</a>" <span class="attrname">name</span>="<a href="../../data-types/string/" class="attrval">Soprano</a>" <span class="attrname">short-name</span>="<a href="../../data-types/string/" class="attrval">S</a>"&gt;
+      &lt;<a class="tag" href="../../elements/measure/">measure</a>&gt;
+         &lt;<a class="tag" href="../../elements/directions-part/">directions-part</a>&gt;
+            &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attrname">line</span>="<a href="../../data-types/staff-line/" class="attrval">2</a>" <span class="attrname">sign</span>="<a href="../../data-types/clef-sign/" class="attrval">G</a>"/&gt;
+         &lt;/<a class="tag" href="../../elements/directions-part/">directions-part</a>&gt;
+         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">C5</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">C5</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">G5</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">G5</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+      &lt;/<a class="tag" href="../../elements/measure/">measure</a>&gt;
+      &lt;<a class="tag" href="../../elements/measure/">measure</a>&gt;
+         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">A5</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">A5</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/2</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">G5</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+      &lt;/<a class="tag" href="../../elements/measure/">measure</a>&gt;
+   &lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">alto</a>" <span class="attrname">name</span>="<a href="../../data-types/string/" class="attrval">Alto</a>" <span class="attrname">short-name</span>="<a href="../../data-types/string/" class="attrval">A</a>"&gt;
+      &lt;<a class="tag" href="../../elements/measure/">measure</a>&gt;
+         &lt;<a class="tag" href="../../elements/directions-part/">directions-part</a>&gt;
+            &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attrname">line</span>="<a href="../../data-types/staff-line/" class="attrval">2</a>" <span class="attrname">sign</span>="<a href="../../data-types/clef-sign/" class="attrval">G</a>"/&gt;
+         &lt;/<a class="tag" href="../../elements/directions-part/">directions-part</a>&gt;
+         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">G4</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">G4</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">E4</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">E4</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+      &lt;/<a class="tag" href="../../elements/measure/">measure</a>&gt;
+      &lt;<a class="tag" href="../../elements/measure/">measure</a>&gt;
+         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">C4</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">C4</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/2</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">D4</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+      &lt;/<a class="tag" href="../../elements/measure/">measure</a>&gt;
+   &lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">tenor</a>" <span class="attrname">name</span>="<a href="../../data-types/string/" class="attrval">Tenor</a>" <span class="attrname">short-name</span>="<a href="../../data-types/string/" class="attrval">T</a>"&gt;
+      &lt;<a class="tag" href="../../elements/measure/">measure</a>&gt;
+         &lt;<a class="tag" href="../../elements/directions-part/">directions-part</a>&gt;
+            &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attrname">line</span>="<a href="../../data-types/staff-line/" class="attrval">2</a>" <span class="attrname">octave</span>="<a href="../../data-types/integer-signed/" class="attrval">-1</a>" <span class="attrname">sign</span>="<a href="../../data-types/clef-sign/" class="attrval">G</a>"/&gt;
+         &lt;/<a class="tag" href="../../elements/directions-part/">directions-part</a>&gt;
+         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">E4</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">E4</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">C4</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">B3</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+      &lt;/<a class="tag" href="../../elements/measure/">measure</a>&gt;
+      &lt;<a class="tag" href="../../elements/measure/">measure</a>&gt;
+         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">A3</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">A3</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">C4</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">B3</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+      &lt;/<a class="tag" href="../../elements/measure/">measure</a>&gt;
+   &lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">id</span>="<a href="../../data-types/part-id/" class="attrval">bass</a>" <span class="attrname">name</span>="<a href="../../data-types/string/" class="attrval">Bass</a>" <span class="attrname">short-name</span>="<a href="../../data-types/string/" class="attrval">B</a>"&gt;
+      &lt;<a class="tag" href="../../elements/measure/">measure</a>&gt;
+         &lt;<a class="tag" href="../../elements/directions-part/">directions-part</a>&gt;
+            &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attrname">line</span>="<a href="../../data-types/staff-line/" class="attrval">4</a>" <span class="attrname">sign</span>="<a href="../../data-types/clef-sign/" class="attrval">F</a>"/&gt;
+         &lt;/<a class="tag" href="../../elements/directions-part/">directions-part</a>&gt;
+         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">C4</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">B3</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">A3</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">G3</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+      &lt;/<a class="tag" href="../../elements/measure/">measure</a>&gt;
+      &lt;<a class="tag" href="../../elements/measure/">measure</a>&gt;
+         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">F3</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">E3</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/2</a>"&gt;
+               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">G3</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
+         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
+      &lt;/<a class="tag" href="../../elements/measure/">measure</a>&gt;
+   &lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
+   &lt;<a class="tag" href="../../elements/layouts/">layouts</a>&gt;
+      &lt;<a class="tag" href="../../elements/system-layout/">system-layout</a> <span class="attrname">id</span>="<a href="../../data-types/system-layout-id/" class="attrval">Choral4Staff</a>"&gt;
+         &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">bracket</a>"&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">labelref</span>="<a href="../../data-types/staff-label-type/" class="attrval">name</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">soprano</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">labelref</span>="<a href="../../data-types/staff-label-type/" class="attrval">name</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">alto</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">labelref</span>="<a href="../../data-types/staff-label-type/" class="attrval">name</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">tenor</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">labelref</span>="<a href="../../data-types/staff-label-type/" class="attrval">name</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">bass</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+         &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+      &lt;/<a class="tag" href="../../elements/system-layout/">system-layout</a>&gt;
+      &lt;<a class="tag" href="../../elements/system-layout/">system-layout</a> <span class="attrname">id</span>="<a href="../../data-types/system-layout-id/" class="attrval">Choral2StaffStemSplit</a>"&gt;
+         &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">bracket</a>"&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">Women</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">soprano</a>" <span class="attrname">stem</span>="<a href="../../data-types/part-stem-direction/" class="attrval">up</a>"/&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">alto</a>" <span class="attrname">stem</span>="<a href="../../data-types/part-stem-direction/" class="attrval">down</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">Men</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">tenor</a>" <span class="attrname">stem</span>="<a href="../../data-types/part-stem-direction/" class="attrval">up</a>"/&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">bass</a>" <span class="attrname">stem</span>="<a href="../../data-types/part-stem-direction/" class="attrval">down</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+         &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+      &lt;/<a class="tag" href="../../elements/system-layout/">system-layout</a>&gt;
+      &lt;<a class="tag" href="../../elements/system-layout/">system-layout</a> <span class="attrname">id</span>="<a href="../../data-types/system-layout-id/" class="attrval">Choral2StaffChorded</a>"&gt;
+         &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">bracket</a>"&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">Women</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">soprano</a>"/&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">alto</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">Men</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">tenor</a>"/&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">bass</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+         &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+      &lt;/<a class="tag" href="../../elements/system-layout/">system-layout</a>&gt;
+      &lt;<a class="tag" href="../../elements/system-layout/">system-layout</a> <span class="attrname">id</span>="<a href="../../data-types/system-layout-id/" class="attrval">Choral2StaffMenSplit</a>"&gt;
+         &lt;<a class="tag" href="../../elements/group-layout/">group-layout</a> <span class="attrname">symbol</span>="<a href="../../data-types/grouping-symbol/" class="attrval">bracket</a>"&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">Women</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">soprano</a>"/&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">alto</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+            &lt;<a class="tag" href="../../elements/staff-layout/">staff-layout</a> <span class="attrname">label</span>="<a href="../../data-types/string/" class="attrval">Men</a>"&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">tenor</a>" <span class="attrname">stem</span>="<a href="../../data-types/part-stem-direction/" class="attrval">up</a>"/&gt;
+               &lt;<a class="tag" href="../../elements/part-layout/">part-layout</a> <span class="attrname">part</span>="<a href="../../data-types/part-id/" class="attrval">bass</a>" <span class="attrname">stem</span>="<a href="../../data-types/part-stem-direction/" class="attrval">down</a>"/&gt;
+            &lt;/<a class="tag" href="../../elements/staff-layout/">staff-layout</a>&gt;
+         &lt;/<a class="tag" href="../../elements/group-layout/">group-layout</a>&gt;
+      &lt;/<a class="tag" href="../../elements/system-layout/">system-layout</a>&gt;
+   &lt;/<a class="tag" href="../../elements/layouts/">layouts</a>&gt;
+   &lt;<a class="tag" href="../../elements/score/">score</a> <span class="attrname">name</span>="<a href="../../data-types/string/" class="attrval">FourStaff</a>"&gt;
+      &lt;<a class="tag" href="../../elements/page/">page</a>&gt;
+         &lt;<a class="tag" href="../../elements/system/">system</a> <span class="attrname">layout</span>="<a href="../../data-types/system-layout-id/" class="attrval">Choral4Staff</a>" <span class="attrname">measure</span>="<a href="../../data-types/measure-number/" class="attrval">1</a>"/&gt;
+      &lt;/<a class="tag" href="../../elements/page/">page</a>&gt;
+   &lt;/<a class="tag" href="../../elements/score/">score</a>&gt;
+   &lt;<a class="tag" href="../../elements/score/">score</a> <span class="attrname">name</span>="<a href="../../data-types/string/" class="attrval">TwoStaffSplit</a>"&gt;
+      &lt;<a class="tag" href="../../elements/page/">page</a>&gt;
+         &lt;<a class="tag" href="../../elements/system/">system</a> <span class="attrname">layout</span>="<a href="../../data-types/system-layout-id/" class="attrval">Choral2StaffStemSplit</a>" <span class="attrname">measure</span>="<a href="../../data-types/measure-number/" class="attrval">1</a>"/&gt;
+      &lt;/<a class="tag" href="../../elements/page/">page</a>&gt;
+   &lt;/<a class="tag" href="../../elements/score/">score</a>&gt;
+   &lt;<a class="tag" href="../../elements/score/">score</a> <span class="attrname">name</span>="<a href="../../data-types/string/" class="attrval">TwoStaffChord</a>"&gt;
+      &lt;<a class="tag" href="../../elements/page/">page</a>&gt;
+         &lt;<a class="tag" href="../../elements/system/">system</a> <span class="attrname">layout</span>="<a href="../../data-types/system-layout-id/" class="attrval">Choral2StaffChorded</a>" <span class="attrname">measure</span>="<a href="../../data-types/measure-number/" class="attrval">1</a>"&gt;
+            &lt;<a class="tag" href="../../elements/system-layout-change/">system-layout-change</a> <span class="attrname">layout</span>="<a href="../../data-types/system-layout-id/" class="attrval">Choral2StaffMenSplit</a>" <span class="attrname">location</span>="<a href="../../data-types/measure-location/" class="attrval">2</a>"/&gt;
+         &lt;/<a class="tag" href="../../elements/system/">system</a>&gt;
+      &lt;/<a class="tag" href="../../elements/page/">page</a>&gt;
+   &lt;/<a class="tag" href="../../elements/score/">score</a>&gt;
+&lt;/<a class="tag" href="../../elements/mnx/">mnx</a>&gt;</span></div>
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>
