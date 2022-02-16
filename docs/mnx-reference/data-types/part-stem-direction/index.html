@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>String data type | MNX specification</title>
+<title>Part stem direction data type | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -45,10 +45,10 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Data types</a> &gt;
-    String
+    Part stem direction
 </p>
 
-<h1>String data type</h1>
+<h1>Part stem direction data type</h1>
 
 
 
@@ -62,35 +62,36 @@
 
 
 
+
+<h2 id="allowed">Allowed values</h2>
+
+<table>
+
+<tr>
+    <th class="nobr">up</th>
+    <td>Set all stem directions to up.</td>
+</tr>
+
+<tr>
+    <th class="nobr">down</th>
+    <td>Set all stem directions to down.</td>
+</tr>
+
+<tr>
+    <th class="nobr">float</th>
+    <td>Determine stem directions algorithmically according to notehead staff position.</td>
+</tr>
+
+</table>
 
 
 
 <h2 id="where">Where is this type used?</h2>
 
 
-<p><a href="../../elements/expression/">&lt;expression&gt;</a></p>
-
-<p><a href="../../elements/instruction/">&lt;instruction&gt;</a></p>
-
-<p><a href="../../elements/part-abbreviation/">&lt;part-abbreviation&gt;</a></p>
 
 
-
-<p><a href="../../elements/cresc/">&lt;cresc&gt;</a> — "text" attribute</p>
-
-<p><a href="../../elements/dim/">&lt;dim&gt;</a> — "text" attribute</p>
-
-<p><a href="../../elements/group-layout/">&lt;group-layout&gt;</a> — "label" attribute</p>
-
-<p><a href="../../elements/part/">&lt;part&gt;</a> — "name" attribute</p>
-
-<p><a href="../../elements/part/">&lt;part&gt;</a> — "short-name" attribute</p>
-
-<p><a href="../../elements/score/">&lt;score&gt;</a> — "name" attribute</p>
-
-<p><a href="../../elements/staff-layout/">&lt;staff-layout&gt;</a> — "label" attribute</p>
-
-<p><a href="../../elements/voice-layout/">&lt;voice-layout&gt;</a> — "label" attribute</p>
+<p><a href="../../elements/part-layout/">&lt;part-layout&gt;</a> — "stem" attribute</p>
 
 
 

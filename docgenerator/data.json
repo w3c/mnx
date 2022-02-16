@@ -947,6 +947,44 @@
     }
 },
 {
+    "model": "spec.datatype",
+    "pk": 54,
+    "fields": {
+        "name": "Voice stem direction",
+        "slug": "voice-stem-direction",
+        "schema": 1,
+        "description": "",
+        "description_format": 1,
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": null,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
+    "model": "spec.datatype",
+    "pk": 55,
+    "fields": {
+        "name": "Part stem direction",
+        "slug": "part-stem-direction",
+        "schema": 1,
+        "description": "",
+        "description_format": 1,
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": null,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
     "model": "spec.datatypeoption",
     "pk": 1,
     "fields": {
@@ -1787,6 +1825,76 @@
     }
 },
 {
+    "model": "spec.datatypeoption",
+    "pk": 85,
+    "fields": {
+        "data_type": 54,
+        "value": "part",
+        "description": "Use stem directions as defined by the first &lt;part-layout&gt; within this &lt;voice-layout&gt;.",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 86,
+    "fields": {
+        "data_type": 54,
+        "value": "up",
+        "description": "Set all stem directions to up.",
+        "order": 1
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 87,
+    "fields": {
+        "data_type": 54,
+        "value": "down",
+        "description": "Set all stem directions to down.",
+        "order": 2
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 88,
+    "fields": {
+        "data_type": 54,
+        "value": "float",
+        "description": "Determine stem directions algorithmically according to notehead staff position.",
+        "order": 3
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 89,
+    "fields": {
+        "data_type": 55,
+        "value": "up",
+        "description": "Set all stem directions to up.",
+        "order": 0
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 90,
+    "fields": {
+        "data_type": 55,
+        "value": "down",
+        "description": "Set all stem directions to down.",
+        "order": 1
+    }
+},
+{
+    "model": "spec.datatypeoption",
+    "pk": 91,
+    "fields": {
+        "data_type": 55,
+        "value": "float",
+        "description": "Determine stem directions algorithmically according to notehead staff position.",
+        "order": 2
+    }
+},
+{
     "model": "spec.concept",
     "pk": 1,
     "fields": {
@@ -2613,7 +2721,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "The &lt;staff-layout&gt; element describes the visual display of a single staff within a &lt;system-layout&gt;.\r\n\r\nGenerally this corresponds to a single &lt;part&gt;, but MNX supports encoding multiple parts in the same staff — as might be used, for example, when combining soprano and alto vocal parts into a single stave.\r\n\r\nYou must have at least one child &lt;part-layout&gt; element, to specify which part(s) are displayed within this staff layout.",
+        "description": "The &lt;staff-layout&gt; element describes the visual display of a single staff within a &lt;system-layout&gt;.\r\n\r\nGenerally this corresponds to a single &lt;part&gt;, but MNX supports encoding multiple parts in the same staff — as might be used, for example, when combining soprano and alto vocal parts into a single stave.\r\n\r\nYou must have at least one child &lt;part-layout&gt; or &lt;voice-layout&gt; element, to specify which part(s) are displayed within this staff layout.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -2667,7 +2775,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "The &lt;part-layout&gt; element is the way to specify which &lt;part&gt;s are included in a given &lt;staff-layout&gt;.",
+        "description": "The &lt;part-layout&gt; element is the way to specify which &lt;part&gt;s are included in a given &lt;staff-layout&gt; or &lt;voice-layout&gt;.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -2704,6 +2812,42 @@
         "is_abstract_element": false,
         "is_root": false,
         "description": "The &lt;layouts&gt; element is a container for &lt;system-layout&gt; elements.",
+        "content_data_type": null,
+        "is_featured": false,
+        "children_type": 1,
+        "attribute_groups": []
+    }
+},
+{
+    "model": "spec.xmlelement",
+    "pk": 51,
+    "fields": {
+        "name": "voice-layout",
+        "slug": "voice-layout",
+        "disambiguation": "",
+        "schema": 1,
+        "base_element": null,
+        "is_abstract_element": false,
+        "is_root": false,
+        "description": "The &lt;voice-layout&gt; element lets you combine multiple &lt;part&gt;s into a single voice of a &lt;staff-layout&gt;. This is useful for complex orchestral scores, where individual parts are sometimes placed on multiple staves but sometimes placed on a single staff.",
+        "content_data_type": null,
+        "is_featured": false,
+        "children_type": 1,
+        "attribute_groups": []
+    }
+},
+{
+    "model": "spec.xmlelement",
+    "pk": 52,
+    "fields": {
+        "name": "system-layout-change",
+        "slug": "system-layout-change",
+        "disambiguation": "",
+        "schema": 1,
+        "base_element": null,
+        "is_abstract_element": false,
+        "is_root": false,
+        "description": "The &lt;system-layout-change&gt; element lets you indicate a change in &lt;system-layout&gt; in the middle of a system — usually, but not necessarily, due to changes in stemming.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -3763,7 +3907,7 @@
     "fields": {
         "element": 48,
         "attribute_group": null,
-        "name": "staff",
+        "name": "part-staff",
         "is_required": false,
         "description": "Optional staff index within the given &lt;part&gt;. For example, this lets you filter the &lt;part&gt; to only include the notation data with staff=1 (the top staff of a grand staff).",
         "data_type": 30
@@ -3875,6 +4019,90 @@
         "is_required": true,
         "description": "The measure location of this direction.",
         "data_type": 13
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 109,
+    "fields": {
+        "element": 51,
+        "attribute_group": null,
+        "name": "stem",
+        "is_required": false,
+        "description": "The stem direction to use for all notes within this &lt;voice-layout&gt;. Default is \"part\", which means to use stem directions as defined in the first child &lt;part-layout&gt;.\r\n\r\nIf this value is \"up\", \"down\" or \"float\", then stem directions in the underlying &lt;part&gt; are ignored within this &lt;voice-layout&gt;.",
+        "data_type": 54
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 110,
+    "fields": {
+        "element": 51,
+        "attribute_group": null,
+        "name": "label",
+        "is_required": false,
+        "description": "An optional name for this voice. If provided, this should be rendered to the left of the staff, vertically positioned such that it aligns with the voice position (either above center or below center).\r\n\r\nGenerally we recommend using \"labelref\" instead of \"label\", to avoid duplication of data within an MNX document.",
+        "data_type": 33
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 111,
+    "fields": {
+        "element": 51,
+        "attribute_group": null,
+        "name": "labelref",
+        "is_required": false,
+        "description": "If provided, this specifies that the corresponding part's name (or short-name) should be rendered to the left of the staff.\r\n\r\nBy using this instead of the \"label\" attribute, you can avoid needing to duplicate a part's name in an MNX document.\r\n\r\nIf this &lt;voice-layout&gt; contains multiple &lt;part-layout&gt; elements, the first &lt;part-layout&gt; child should be used.",
+        "data_type": 50
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 112,
+    "fields": {
+        "element": 48,
+        "attribute_group": null,
+        "name": "stem",
+        "is_required": false,
+        "description": "The stem direction to use for all notes within the associated &lt;part&gt;. Default is \"float\", meaning the stem directions should be determined algorithmically.",
+        "data_type": 55
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 113,
+    "fields": {
+        "element": 48,
+        "attribute_group": null,
+        "name": "part-voice",
+        "is_required": false,
+        "description": "Optional voice ID within the given &lt;part&gt;. This allows you to filter the associated &lt;part&gt;'s &lt;sequence&gt; data by voice.\r\n\r\nIf this is not provided, the &lt;part-layout&gt; will use all the notation data from the &lt;part&gt; (i.e., applying no filter).",
+        "data_type": 40
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 114,
+    "fields": {
+        "element": 52,
+        "attribute_group": null,
+        "name": "location",
+        "is_required": true,
+        "description": "",
+        "data_type": 13
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 115,
+    "fields": {
+        "element": 52,
+        "attribute_group": null,
+        "name": "layout",
+        "is_required": true,
+        "description": "",
+        "data_type": 47
     }
 },
 {
@@ -4444,7 +4672,7 @@
     "fields": {
         "parent": 45,
         "child": 48,
-        "min_amount": 1,
+        "min_amount": 0,
         "max_amount": null,
         "child_order": 0
     }
@@ -4477,6 +4705,39 @@
     "fields": {
         "parent": 50,
         "child": 44,
+        "min_amount": 0,
+        "max_amount": null,
+        "child_order": 0
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 69,
+    "fields": {
+        "parent": 45,
+        "child": 51,
+        "min_amount": 0,
+        "max_amount": null,
+        "child_order": 0
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 70,
+    "fields": {
+        "parent": 51,
+        "child": 48,
+        "min_amount": 1,
+        "max_amount": null,
+        "child_order": 0
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 71,
+    "fields": {
+        "parent": 43,
+        "child": 52,
         "min_amount": 0,
         "max_amount": null,
         "child_order": 0
@@ -4867,7 +5128,7 @@
         "slug": "system-layouts",
         "schema": 1,
         "blurb": "",
-        "document": "<mnx>\r\n    <global>...</global>\r\n\r\n    <part id=\"fl1\" name=\"Flute 1\" short-name=\"1\">...</part>\r\n    <part id=\"fl2\" name=\"Flute 2\" short-name=\"2\">...</part>\r\n    <part id=\"fl3\" name=\"Flute 3\" short-name=\"3\">...</part>\r\n    <part id=\"ob1\" name=\"Oboe 1\" short-name=\"1\">...</part>\r\n    <part id=\"ob2\" name=\"Oboe 2\" short-name=\"2\">...</part>\r\n    <part id=\"piano\" name=\"Piano\" staves=\"2\">...</part>\r\n\r\n    <layouts>\r\n        <system-layout id=\"layout1\">\r\n            <group-layout symbol=\"bracket\">\r\n                <group-layout symbol=\"brace\" label=\"Flutes\">\r\n                    <staff-layout labelref=\"short-name\">\r\n                        <part-layout part=\"fl1\" />\r\n                        <part-layout part=\"fl2\" />\r\n                    </staff-layout>\r\n                    <staff-layout labelref=\"short-name\">\r\n                        <part-layout part=\"fl3\" />\r\n                    </staff-layout>\r\n                </group-layout>\r\n                <staff-layout label=\"Oboes\" labelref=\"short-name\">\r\n                    <part-layout part=\"ob1\" />\r\n                    <part-layout part=\"ob2\" />\r\n                </staff-layout>\r\n            </group-layout>\r\n            <group-layout symbol=\"brace\" label=\"Piano\">\r\n                <staff-layout>\r\n                    <part-layout part=\"piano\" staff=\"1\" />\r\n                </staff-layout>\r\n                <staff-layout>\r\n                    <part-layout part=\"piano\" staff=\"2\" />\r\n                </staff-layout>\r\n            </group-layout>\r\n        </system-layout>\r\n        <system-layout id=\"layout2\">\r\n            <group-layout symbol=\"bracket\">\r\n                <group-layout symbol=\"brace\" label=\"Fl.\">\r\n                    <staff-layout labelref=\"short-name\">\r\n                        <part-layout part=\"fl1\" />\r\n                    </staff-layout>\r\n                    <staff-layout labelref=\"short-name\">\r\n                        <part-layout part=\"fl2\" />\r\n                    </staff-layout>\r\n                    <staff-layout labelref=\"short-name\">\r\n                        <part-layout part=\"fl3\" />\r\n                    </staff-layout>\r\n                </group-layout>\r\n                <staff-layout name=\"Ob.\" labelref=\"short-name\">\r\n                     <part-layout part=\"ob1\" />\r\n                     <part-layout part=\"ob2\" />\r\n                </staff-layout>\r\n            </group-layout>\r\n            <group-layout symbol=\"brace\" label=\"Piano\">\r\n                <staff-layout>\r\n                    <part-layout part=\"piano\" staff=\"1\" />\r\n                </staff-layout>\r\n                <staff-layout>\r\n                    <part-layout part=\"piano\" staff=\"2\" />\r\n                </staff-layout>\r\n            </group-layout>\r\n        </system-layout>\r\n    </layouts>\r\n\r\n    <score name=\"Full score\">\r\n        <page>\r\n            <system measure=\"1\" layout=\"layout1\" />\r\n            <system measure=\"4\" layout=\"layout2\" />\r\n        </page>\r\n    </score>\r\n</mnx>",
+        "document": "<mnx>\r\n    <global>...</global>\r\n    <part id=\"fl1\" name=\"Flute 1\" short-name=\"1\">...</part>\r\n    <part id=\"fl2\" name=\"Flute 2\" short-name=\"2\">...</part>\r\n    <part id=\"fl3\" name=\"Flute 3\" short-name=\"3\">...</part>\r\n    <part id=\"ob1\" name=\"Oboe 1\" short-name=\"1\">...</part>\r\n    <part id=\"ob2\" name=\"Oboe 2\" short-name=\"2\">...</part>\r\n    <part id=\"piano\" name=\"Piano\" staves=\"2\">...</part>\r\n\r\n    <layouts>\r\n        <system-layout id=\"layout1\">\r\n            <group-layout symbol=\"bracket\">\r\n                <group-layout symbol=\"brace\" label=\"Flutes\">\r\n                    <staff-layout>\r\n                        <voice-layout stem=\"up\" labelref=\"short-name\">\r\n                            <part-layout part=\"fl1\" />\r\n                        </voice-layout>\r\n                        <voice-layout stem=\"down\" labelref=\"short-name\">\r\n                            <part-layout part=\"fl2\" />\r\n                        </voice-layout>\r\n                    </staff-layout>\r\n                    <staff-layout labelref=\"short-name\">\r\n                        <part-layout part=\"fl3\" />\r\n                    </staff-layout>\r\n                </group-layout>\r\n                <staff-layout label=\"Oboes\">\r\n                    <voice-layout stem=\"up\" labelref=\"short-name\">\r\n                        <part-layout part=\"ob1\" />\r\n                    </voice-layout>\r\n                    <voice-layout stem=\"down\" labelref=\"short-name\">\r\n                        <part-layout part=\"ob2\" />\r\n                    </voice-layout>\r\n                </staff-layout>\r\n            </group-layout>\r\n            <group-layout symbol=\"brace\" label=\"Piano\">\r\n                <staff-layout>\r\n                    <part-layout part=\"piano\" part-staff=\"1\" />\r\n                </staff-layout>\r\n                <staff-layout>\r\n                    <part-layout part=\"piano\" part-staff=\"2\" />\r\n                </staff-layout>\r\n            </group-layout>\r\n        </system-layout>\r\n        <system-layout id=\"layout2\">\r\n            <group-layout symbol=\"bracket\">\r\n                <group-layout symbol=\"brace\" label=\"Fl.\">\r\n                    <staff-layout labelref=\"short-name\">\r\n                        <part-layout part=\"fl1\" />\r\n                    </staff-layout>\r\n                    <staff-layout labelref=\"short-name\">\r\n                        <part-layout part=\"fl2\" />\r\n                    </staff-layout>\r\n                    <staff-layout labelref=\"short-name\">\r\n                        <part-layout part=\"fl3\" />\r\n                    </staff-layout>\r\n                </group-layout>\r\n                <staff-layout name=\"Ob.\">\r\n                    <voice-layout stem=\"up\" labelref=\"short-name\">\r\n                        <part-layout part=\"ob1\" />\r\n                    </voice-layout>\r\n                    <voice-layout stem=\"down\" labelref=\"short-name\">\r\n                        <part-layout part=\"ob2\" />\r\n                    </voice-layout>\r\n                </staff-layout>\r\n            </group-layout>\r\n            <group-layout symbol=\"brace\" label=\"Piano\">\r\n                <staff-layout>\r\n                    <part-layout part=\"piano\" part-staff=\"1\" />\r\n                </staff-layout>\r\n                <staff-layout>\r\n                    <part-layout part=\"piano\" part-staff=\"2\" />\r\n                </staff-layout>\r\n            </group-layout>\r\n        </system-layout>\r\n    </layouts>\r\n\r\n    <score name=\"Full score\">\r\n        <page>\r\n            <system measure=\"1\" layout=\"layout1\" />\r\n            <system measure=\"4\" layout=\"layout2\" />\r\n        </page>\r\n    </score>\r\n</mnx>",
         "image_url": "/static/examples/system-layouts.png",
         "is_featured": false
     }
@@ -4895,6 +5156,45 @@
         "blurb": "",
         "document": "<mnx>\r\n   <global>\r\n      <measure-global>\r\n         <directions-global>\r\n            <time signature=\"4/4\"/>\r\n            <metadiff><tempo value=\"/4\" bpm=\"200\" /></metadiff>\r\n         </directions-global>\r\n      </measure-global>\r\n      <measure-global/>\r\n   </global>\r\n   <part name=\"Music\">\r\n      <measure>\r\n         <directions-part>\r\n            <clef sign=\"G\" line=\"2\"/>\r\n         </directions-part>\r\n         <sequence>\r\n            <event value=\"/4\">\r\n               <note pitch=\"C5\"/>\r\n            </event>\r\n            <event value=\"/4\">\r\n               <note pitch=\"E5\"/>\r\n            </event>\r\n            <event value=\"/4\">\r\n               <note pitch=\"G4\"/>\r\n            </event>\r\n            <event value=\"/4\">\r\n               <note pitch=\"E5\"/>\r\n            </event>\r\n         </sequence>\r\n      </measure>\r\n      <measure>\r\n         <sequence>\r\n            <event value=\"/4\">\r\n               <note pitch=\"C5\"/>\r\n            </event>\r\n            <event value=\"/4\">\r\n               <note pitch=\"E5\"/>\r\n            </event>\r\n            <event value=\"/4\">\r\n               <note pitch=\"G5\"/>\r\n            </event>\r\n            <event value=\"/4\">\r\n               <note pitch=\"C6\"/>\r\n            </event>\r\n         </sequence>\r\n      </measure>\r\n   </part>\r\n</mnx>",
         "image_url": "/static/examples/tempo-marking.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spec.exampledocument",
+    "pk": 33,
+    "fields": {
+        "name": "Multiple layouts",
+        "slug": "multiple-layouts",
+        "schema": 1,
+        "blurb": "In this image, you see three different representations of the same underlying SATB music — one with four separate staves, one with two staves (using multiple voices) and one with two staves (using notes combined into chords).\r\n\r\nThis can be encoded entirely within a single MNX document. The underlying music (the notes, barlines, etc.) is encoded only once, within the <global> and <part> elements. But there are three separate <score> elements — one for each visual representation of the music.\r\n\r\nA <score> references a particular <layout>. The <layout> element is where the style information is contained: which parts, in which order.",
+        "document": "<mnx>\r\n    <global>\r\n        <measure-global>\r\n            <directions-global>\r\n                <time signature=\"4/4\"/>\r\n            </directions-global>\r\n        </measure-global>\r\n        <measure-global/>\r\n    </global>\r\n    <part id=\"soprano\" name=\"Soprano\" short-name=\"S\">\r\n        <measure>\r\n            <directions-part>\r\n                <clef line=\"2\" sign=\"G\"/>\r\n            </directions-part>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"A5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"A5\"/>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n    <part id=\"alto\" name=\"Alto\" short-name=\"A\">\r\n        <measure>\r\n            <directions-part>\r\n                <clef line=\"2\" sign=\"G\"/>\r\n            </directions-part>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E4\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C4\"/>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"D4\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n    <part id=\"tenor\" name=\"Tenor\" short-name=\"T\">\r\n        <measure>\r\n            <directions-part>\r\n                <clef line=\"2\" octave=\"-1\" sign=\"G\"/>\r\n            </directions-part>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"B3\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"A3\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"A3\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"B3\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n    <part id=\"bass\" name=\"Bass\" short-name=\"B\">\r\n        <measure>\r\n            <directions-part>\r\n                <clef line=\"4\" sign=\"F\"/>\r\n            </directions-part>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C4\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"B3\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"A3\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G3\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n        <measure>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"F3\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E3\"/>\r\n                </event>\r\n                <event value=\"/2\">\r\n                    <note pitch=\"G3\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n    <layouts>\r\n        <system-layout id=\"Choral4Staff\">\r\n            <group-layout symbol=\"bracket\">\r\n                <staff-layout labelref=\"name\">\r\n                    <part-layout part=\"soprano\"/>\r\n                </staff-layout>\r\n                <staff-layout labelref=\"name\">\r\n                    <part-layout part=\"alto\"/>\r\n                </staff-layout>\r\n                <staff-layout labelref=\"name\">\r\n                    <part-layout part=\"tenor\"/>\r\n                </staff-layout>\r\n                <staff-layout labelref=\"name\">\r\n                    <part-layout part=\"bass\"/>\r\n                </staff-layout>\r\n            </group-layout>\r\n        </system-layout>\r\n        <system-layout id=\"Choral2StaffStemSplit\">\r\n            <group-layout symbol=\"bracket\">\r\n                <staff-layout label=\"SA\">\r\n                    <part-layout part=\"soprano\" stem=\"up\"/>\r\n                    <part-layout part=\"alto\" stem=\"down\"/>\r\n                </staff-layout>\r\n                <staff-layout label=\"TB\">\r\n                    <part-layout part=\"tenor\" stem=\"up\"/>\r\n                    <part-layout part=\"bass\" stem=\"down\"/>\r\n                </staff-layout>\r\n            </group-layout>\r\n        </system-layout>\r\n        <system-layout id=\"Choral2StaffChorded\">\r\n            <group-layout symbol=\"bracket\">\r\n                <staff-layout label=\"SA\">\r\n                    <part-layout part=\"soprano\"/>\r\n                    <part-layout part=\"alto\"/>\r\n                </staff-layout>\r\n                <staff-layout label=\"TB\">\r\n                    <part-layout part=\"tenor\"/>\r\n                    <part-layout part=\"bass\"/>\r\n                </staff-layout>\r\n            </group-layout>\r\n        </system-layout>\r\n        <system-layout id=\"Choral2StaffMenSplit\">\r\n            <group-layout symbol=\"bracket\">\r\n                <staff-layout label=\"SA\">\r\n                    <part-layout part=\"soprano\"/>\r\n                    <part-layout part=\"alto\"/>\r\n                </staff-layout>\r\n                <staff-layout label=\"TB\">\r\n                    <part-layout part=\"tenor\" stem=\"up\"/>\r\n                    <part-layout part=\"bass\" stem=\"down\"/>\r\n                </staff-layout>\r\n            </group-layout>\r\n        </system-layout>\r\n    </layouts>\r\n    <score name=\"FourStaff\">\r\n        <page>\r\n            <system layout=\"Choral4Staff\" measure=\"1\"/>\r\n        </page>\r\n    </score>\r\n    <score name=\"TwoStaffSplit\">\r\n        <page>\r\n            <system layout=\"Choral2StaffStemSplit\" measure=\"1\"/>\r\n        </page>\r\n    </score>\r\n    <score name=\"TwoStaffChord\">\r\n        <page>\r\n            <system layout=\"Choral2StaffChorded\" measure=\"1\">\r\n                <system-layout-change layout=\"Choral2StaffMenSplit\" location=\"2\"/>\r\n            </system>\r\n        </page>\r\n    </score>\r\n</mnx>",
+        "image_url": "/static/examples/multiple-layouts.png",
+        "is_featured": true
+    }
+},
+{
+    "model": "spec.exampledocument",
+    "pk": 34,
+    "fields": {
+        "name": "Orchestral layout",
+        "slug": "orchestral-layout",
+        "schema": 1,
+        "blurb": "",
+        "document": "<mnx>\r\n     <global>...</global>\r\n     <part id=\"Klar1\">...</part>\r\n     <part id=\"Klar2\">...</part>\r\n     <part id=\"Klar3\">...</part>\r\n     <part id=\"Horn1\">...</part>\r\n     <part id=\"Horn2\">...</part>\r\n     <part id=\"Horn3\">...</part>\r\n     <part id=\"Horn4\">...</part>\r\n     <part id=\"Harfe\" staves=\"2\">...</part>\r\n     <part id=\"Violin1\">...</part>\r\n     <part id=\"Violin2\">...</part>\r\n     <part id=\"Viola\">...</part>\r\n     <part id=\"Cello\">...</part>\r\n     <part id=\"Kontra\">...</part>\r\n     <!-- ... -->\r\n     <layouts>\r\n          <system-layout id=\"starting\">\r\n               <group-layout symbol=\"bracket\">\r\n                    <group-layout label=\"Horns in F.\" symbol=\"brace\">\r\n                         <staff-layout label=\"2.\">\r\n                              <part-layout part=\"Horn2\"/>\r\n                         </staff-layout>\r\n                         <staff-layout label=\"4.\">\r\n                              <part-layout part=\"Horn4\"/>\r\n                         </staff-layout>\r\n                    </group-layout>\r\n               </group-layout>\r\n               <group-layout label=\"1. Harfe.\" symbol=\"brace\">\r\n                    <staff-layout>\r\n                         <part-layout part=\"Harfe\" part-staff=\"1\"/>\r\n                    </staff-layout>\r\n                    <staff-layout>\r\n                         <part-layout part=\"Harfe\" part-staff=\"2\"/>\r\n                    </staff-layout>\r\n               </group-layout>\r\n               <group-layout symbol=\"bracket\">\r\n                    <group-layout symbol=\"brace\">\r\n                         <staff-layout label=\"1. Violine.\">\r\n                              <part-layout part=\"Violin1\"/>\r\n                         </staff-layout>\r\n                         <staff-layout label=\"2. Violine.\">\r\n                              <part-layout part=\"Violin2\"/>\r\n                         </staff-layout>\r\n                    </group-layout>\r\n                    <staff-layout label=\"Viola.\">\r\n                         <part-layout part=\"Viola\"/>\r\n                    </staff-layout>\r\n                    <staff-layout label=\"Violincell.\">\r\n                         <part-layout part=\"Cello\"/>\r\n                    </staff-layout>\r\n                    <staff-layout label=\"Kontrabass\">\r\n                         <part-layout part=\"Kontra\"/>\r\n                    </staff-layout>\r\n               </group-layout>\r\n          </system-layout>\r\n          <system-layout id=\"secondSystem\">\r\n               <group-layout symbol=\"brace\">\r\n                    <staff-layout label=\"1.2.3. Klar. in A\">\r\n                         <voice-layout stem=\"up\">\r\n                              <part-layout part=\"Klar1\"/>\r\n                              <part-layout part=\"Klar2\"/>\r\n                         </voice-layout>\r\n                         <part-layout part=\"Klar3\" stem=\"down\"/>\r\n                    </staff-layout>\r\n               </group-layout>\r\n               <group-layout symbol=\"bracket\">\r\n                    <staff-layout label=\"2. Hr in F.\">\r\n                         <part-layout part=\"Horn2\"/>\r\n                    </staff-layout>\r\n               </group-layout>\r\n               <group-layout label=\"1. Harfe.\" symbol=\"brace\">\r\n                    <staff-layout>\r\n                         <part-layout part=\"Harfe\" part-staff=\"1\"/>\r\n                    </staff-layout>\r\n                    <staff-layout>\r\n                         <part-layout part=\"Harfe\" part-staff=\"2\"/>\r\n                    </staff-layout>\r\n               </group-layout>\r\n               <group-layout symbol=\"bracket\">\r\n                    <group-layout symbol=\"brace\">\r\n                         <staff-layout label=\"1. Vl.\">\r\n                              <part-layout part=\"Violin1\"/>\r\n                         </staff-layout>\r\n                         <staff-layout label=\"2. Vl.\">\r\n                              <part-layout part=\"Violin2\"/>\r\n                         </staff-layout>\r\n                    </group-layout>\r\n                    <group-layout label=\"Vla. (get.)\" symbol=\"brace\">\r\n                         <staff-layout>\r\n                              <part-layout part=\"Viola\"/>\r\n                         </staff-layout>\r\n                         <staff-layout>\r\n                              <part-layout part=\"Viola\" part-voice=\"Pizzicato\"/>\r\n                         </staff-layout>\r\n                    </group-layout>\r\n                    <group-layout label=\"Vlc. (get.)\" symbol=\"brace\">\r\n                         <staff-layout>\r\n                              <part-layout part=\"Cello\"/>\r\n                         </staff-layout>\r\n                         <staff-layout>\r\n                              <part-layout part=\"Cello\" part-voice=\"Pizzicato\"/>\r\n                         </staff-layout>\r\n                    </group-layout>\r\n                    <staff-layout label=\"Kontrabass\">\r\n                         <part-layout part=\"Kontra\"/>\r\n                    </staff-layout>\r\n               </group-layout>\r\n          </system-layout>\r\n          <!-- ... -->\r\n     </layouts>\r\n     <score name=\"fullScore\">\r\n          <page>\r\n               <system layout=\"starting\" measure=\"1\"/>\r\n               <system layout=\"secondSystem\" measure=\"7\"/>\r\n          </page>\r\n          <!-- ... -->\r\n     </score>\r\n</mnx>",
+        "image_url": "/static/examples/orchestral-layout.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spec.exampledocument",
+    "pk": 35,
+    "fields": {
+        "name": "Organ layout",
+        "slug": "organ-layout",
+        "schema": 1,
+        "blurb": "",
+        "document": "<mnx>\r\n     <global>\r\n          <measure-global>\r\n               <directions-global>\r\n                    <key fifths=\"-3\"/>\r\n                    <time signature=\"3/4\"/>\r\n               </directions-global>\r\n          </measure-global>\r\n          <!--... -->\r\n     </global>\r\n     <part id=\"organ\" staves=\"3\">\r\n          <measure>\r\n               <sequence staff=\"1\" voice=\"Main\">\r\n                    <directions>\r\n                         <clef line=\"2\" sign=\"G\"/>\r\n                    </directions>\r\n                    <beams>\r\n                         <beam events=\"main1 main2 main3\"/>\r\n                    </beams>\r\n                    <event value=\"/4\">\r\n                         <rest/>\r\n                    </event>\r\n                    <event value=\"/8\">\r\n                         <rest/>\r\n                    </event>\r\n                    <event id=\"main1\" value=\"/8\">\r\n                         <note pitch=\"G4\"/>\r\n                    </event>\r\n                    <event id=\"main2\" value=\"/8\">\r\n                         <note accidental=\"sharp\" pitch=\"F#4\"/>\r\n                    </event>\r\n                    <event id=\"main3\" value=\"/8\">\r\n                         <note accidental=\"natural\" pitch=\"A4\"/>\r\n                    </event>\r\n               </sequence>\r\n               <sequence staff=\"1\" voice=\"Oberwerk\">\r\n                    <directions>\r\n                         <clef line=\"2\" sign=\"G\"/>\r\n                    </directions>\r\n                    <beams>\r\n                         <beam events=\"ober1 ober2 ober3\"/>\r\n                    </beams>\r\n                    <event value=\"/4\">\r\n                         <rest/>\r\n                    </event>\r\n                    <event value=\"/8\">\r\n                         <rest/>\r\n                    </event>\r\n                    <event id=\"ober1\" value=\"/8\">\r\n                         <note pitch=\"Bb3\"/>\r\n                    </event>\r\n                    <event id=\"ober2\" value=\"/8\">\r\n                         <note accidental=\"natural\" pitch=\"A3\"/>\r\n                    </event>\r\n                    <event id=\"ober3\" value=\"/8\">\r\n                         <note pitch=\"C4\"/>\r\n                    </event>\r\n               </sequence>\r\n               <sequence staff=\"2\" voice=\"Hauptwerk\">\r\n                    <directions>\r\n                         <clef line=\"4\" sign=\"F\"/>\r\n                    </directions>\r\n                    <event value=\"/2d\">\r\n                         <rest/>\r\n                    </event>\r\n               </sequence>\r\n               <sequence staff=\"3\" voice=\"Pedal\">\r\n                    <directions>\r\n                         <clef line=\"4\" sign=\"F\"/>\r\n                    </directions>\r\n                    <event value=\"/2d\">\r\n                         <note pitch=\"Eb3\">\r\n                              <tied targetID=\"pedNote2\"/>\r\n                         </note>\r\n                    </event>\r\n               </sequence>\r\n          </measure>\r\n          <!-- ... -->\r\n     </part>\r\n     <layouts>\r\n          <system-layout id=\"organ3Stave\">\r\n               <group-layout symbol=\"brace\">\r\n                    <staff-layout>\r\n                         <part-layout part=\"organ\" part-staff=\"1\"/>\r\n                    </staff-layout>\r\n                    <staff-layout>\r\n                         <part-layout part=\"organ\" part-staff=\"2\"/>\r\n                    </staff-layout>\r\n               </group-layout>\r\n               <staff-layout>\r\n                    <part-layout part=\"organ\" part-staff=\"3\"/>\r\n               </staff-layout>\r\n          </system-layout>\r\n          <system-layout id=\"organ3StaveSplitOber\">\r\n               <group-layout symbol=\"brace\">\r\n                    <staff-layout>\r\n                         <part-layout part=\"organ\" part-voice=\"Main\" stem=\"up\"/>\r\n                         <part-layout part=\"organ\" part-voice=\"Oberwerk\" stem=\"down\"/>\r\n                    </staff-layout>\r\n                    <staff-layout>\r\n                         <part-layout part=\"organ\" part-voice=\"Hauptwerk\"/>\r\n                    </staff-layout>\r\n               </group-layout>\r\n               <staff-layout>\r\n                    <part-layout part=\"organ\" part-staff=\"3\"/>\r\n               </staff-layout>\r\n          </system-layout>\r\n     </layouts>\r\n     <score name=\"defaultScore\">\r\n          <page>\r\n               <system layout=\"organ3Stave\" measure=\"1\">\r\n                    <system-layout-change layout=\"organ3StaveSplitOber\" location=\"1:3/8\"/>\r\n               </system>\r\n               <system layout=\"organ3StaveSplitOber\" measure=\"6\"/>\r\n               <!-- ... -->\r\n          </page>\r\n          <!-- ... -->\r\n     </score>\r\n</mnx>",
+        "image_url": "/static/examples/organ-layout.png",
         "is_featured": false
     }
 },
@@ -9243,6 +9543,546 @@
     "fields": {
         "example": 30,
         "element": 50,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 829,
+    "fields": {
+        "example": 33,
+        "element": 1,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 830,
+    "fields": {
+        "example": 33,
+        "element": 2,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 831,
+    "fields": {
+        "example": 33,
+        "element": 3,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 832,
+    "fields": {
+        "example": 33,
+        "element": 4,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 833,
+    "fields": {
+        "example": 33,
+        "element": 5,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 834,
+    "fields": {
+        "example": 33,
+        "element": 6,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 835,
+    "fields": {
+        "example": 33,
+        "element": 8,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 836,
+    "fields": {
+        "example": 33,
+        "element": 9,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 837,
+    "fields": {
+        "example": 33,
+        "element": 10,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 838,
+    "fields": {
+        "example": 33,
+        "element": 11,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 839,
+    "fields": {
+        "example": 33,
+        "element": 12,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 840,
+    "fields": {
+        "example": 33,
+        "element": 20,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 841,
+    "fields": {
+        "example": 33,
+        "element": 41,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 842,
+    "fields": {
+        "example": 33,
+        "element": 42,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 843,
+    "fields": {
+        "example": 33,
+        "element": 43,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 844,
+    "fields": {
+        "example": 33,
+        "element": 44,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 845,
+    "fields": {
+        "example": 33,
+        "element": 45,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 846,
+    "fields": {
+        "example": 33,
+        "element": 46,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 847,
+    "fields": {
+        "example": 33,
+        "element": 48,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 848,
+    "fields": {
+        "example": 33,
+        "element": 50,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 849,
+    "fields": {
+        "example": 34,
+        "element": 1,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 850,
+    "fields": {
+        "example": 34,
+        "element": 2,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 851,
+    "fields": {
+        "example": 34,
+        "element": 6,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 852,
+    "fields": {
+        "example": 34,
+        "element": 41,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 853,
+    "fields": {
+        "example": 34,
+        "element": 42,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 854,
+    "fields": {
+        "example": 34,
+        "element": 43,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 855,
+    "fields": {
+        "example": 34,
+        "element": 44,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 856,
+    "fields": {
+        "example": 34,
+        "element": 45,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 857,
+    "fields": {
+        "example": 34,
+        "element": 46,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 858,
+    "fields": {
+        "example": 34,
+        "element": 48,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 859,
+    "fields": {
+        "example": 34,
+        "element": 50,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 860,
+    "fields": {
+        "example": 35,
+        "element": 1,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 861,
+    "fields": {
+        "example": 35,
+        "element": 2,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 862,
+    "fields": {
+        "example": 35,
+        "element": 3,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 863,
+    "fields": {
+        "example": 35,
+        "element": 5,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 864,
+    "fields": {
+        "example": 35,
+        "element": 6,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 865,
+    "fields": {
+        "example": 35,
+        "element": 8,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 866,
+    "fields": {
+        "example": 35,
+        "element": 9,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 867,
+    "fields": {
+        "example": 35,
+        "element": 10,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 868,
+    "fields": {
+        "example": 35,
+        "element": 11,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 869,
+    "fields": {
+        "example": 35,
+        "element": 12,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 870,
+    "fields": {
+        "example": 35,
+        "element": 13,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 871,
+    "fields": {
+        "example": 35,
+        "element": 14,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 872,
+    "fields": {
+        "example": 35,
+        "element": 15,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 873,
+    "fields": {
+        "example": 35,
+        "element": 16,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 874,
+    "fields": {
+        "example": 35,
+        "element": 20,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 875,
+    "fields": {
+        "example": 35,
+        "element": 30,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 876,
+    "fields": {
+        "example": 35,
+        "element": 37,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 877,
+    "fields": {
+        "example": 35,
+        "element": 41,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 878,
+    "fields": {
+        "example": 35,
+        "element": 42,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 879,
+    "fields": {
+        "example": 35,
+        "element": 43,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 880,
+    "fields": {
+        "example": 35,
+        "element": 44,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 881,
+    "fields": {
+        "example": 35,
+        "element": 45,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 882,
+    "fields": {
+        "example": 35,
+        "element": 46,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 883,
+    "fields": {
+        "example": 35,
+        "element": 48,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 884,
+    "fields": {
+        "example": 35,
+        "element": 50,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 885,
+    "fields": {
+        "example": 34,
+        "element": 51,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 886,
+    "fields": {
+        "example": 33,
+        "element": 52,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 887,
+    "fields": {
+        "example": 35,
+        "element": 52,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 888,
+    "fields": {
+        "example": 30,
+        "element": 51,
         "element_name": ""
     }
 },
