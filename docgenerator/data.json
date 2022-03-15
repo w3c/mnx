@@ -985,6 +985,44 @@
     }
 },
 {
+    "model": "spec.datatype",
+    "pk": 56,
+    "fields": {
+        "name": "Style class",
+        "slug": "style-class",
+        "schema": 1,
+        "description": "A style class is a string, defined by a &lt;style&gt;, that styleable MNX elements can use to declare they should be styled.",
+        "description_format": 1,
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": 33,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
+    "model": "spec.datatype",
+    "pk": 57,
+    "fields": {
+        "name": "MNX element name",
+        "slug": "mnx-element-name",
+        "schema": 1,
+        "description": "A valid MNX XML element name, e.g. \"event\" or \"note\".",
+        "description_format": 1,
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": null,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
     "model": "spec.datatypeoption",
     "pk": 1,
     "fields": {
@@ -2057,7 +2095,9 @@
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            4
+        ]
     }
 },
 {
@@ -2075,7 +2115,9 @@
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            4
+        ]
     }
 },
 {
@@ -2093,7 +2135,9 @@
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            4
+        ]
     }
 },
 {
@@ -2111,7 +2155,9 @@
         "content_data_type": null,
         "is_featured": true,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            4
+        ]
     }
 },
 {
@@ -2129,7 +2175,9 @@
         "content_data_type": null,
         "is_featured": true,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            4
+        ]
     }
 },
 {
@@ -2148,7 +2196,8 @@
         "is_featured": true,
         "children_type": 1,
         "attribute_groups": [
-            3
+            3,
+            4
         ]
     }
 },
@@ -2167,7 +2216,9 @@
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            4
+        ]
     }
 },
 {
@@ -2257,7 +2308,9 @@
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            4
+        ]
     }
 },
 {
@@ -2277,7 +2330,8 @@
         "children_type": 1,
         "attribute_groups": [
             1,
-            2
+            2,
+            4
         ]
     }
 },
@@ -2314,7 +2368,9 @@
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            4
+        ]
     }
 },
 {
@@ -2350,7 +2406,9 @@
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            4
+        ]
     }
 },
 {
@@ -2368,7 +2426,9 @@
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            4
+        ]
     }
 },
 {
@@ -2386,7 +2446,9 @@
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            4
+        ]
     }
 },
 {
@@ -2404,7 +2466,9 @@
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            4
+        ]
     }
 },
 {
@@ -2422,7 +2486,9 @@
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            4
+        ]
     }
 },
 {
@@ -2459,7 +2525,8 @@
         "is_featured": false,
         "children_type": 1,
         "attribute_groups": [
-            1
+            1,
+            4
         ]
     }
 },
@@ -2479,7 +2546,8 @@
         "is_featured": false,
         "children_type": 1,
         "attribute_groups": [
-            1
+            1,
+            4
         ]
     }
 },
@@ -2499,7 +2567,8 @@
         "is_featured": false,
         "children_type": 1,
         "attribute_groups": [
-            1
+            1,
+            4
         ]
     }
 },
@@ -2520,7 +2589,8 @@
         "children_type": 1,
         "attribute_groups": [
             1,
-            2
+            2,
+            4
         ]
     }
 },
@@ -2541,7 +2611,8 @@
         "children_type": 1,
         "attribute_groups": [
             1,
-            2
+            2,
+            4
         ]
     }
 },
@@ -2562,7 +2633,8 @@
         "children_type": 1,
         "attribute_groups": [
             1,
-            2
+            2,
+            4
         ]
     }
 },
@@ -2581,7 +2653,9 @@
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
-        "attribute_groups": []
+        "attribute_groups": [
+            4
+        ]
     }
 },
 {
@@ -2855,6 +2929,24 @@
     }
 },
 {
+    "model": "spec.xmlelement",
+    "pk": 53,
+    "fields": {
+        "name": "style",
+        "slug": "style",
+        "disambiguation": "",
+        "schema": 1,
+        "base_element": null,
+        "is_abstract_element": false,
+        "is_root": false,
+        "description": "The &lt;style&gt; element is a way to define visual styling within an MNX document. There are two types of &lt;style&gt; elements:\r\n\r\n* &lt;style class=\"...\"&gt; defines a style class that can be referenced from another MNX element.\r\n* &lt;style element=\"...\"&gt; targets all elements of a given name.\r\n\r\nThis example defines a style class \"emphasized\", which means to use the color red:\r\n\r\n&lt;style class=\"emphasized\" color=\"#ff0000\"&gt;\r\n\r\nA &lt;note&gt; element can then use the \"style\" attribute to use this style:\r\n\r\n&lt;note style=\"emphasized\" ...&gt;\r\n\r\nThis example says \"all &lt;note&gt; elements must be blue\":\r\n\r\n&lt;style element=\"note\" color=\"#0000ff\"&gt;\r\n\r\nAt the moment, the only available style property is \"color\".",
+        "content_data_type": null,
+        "is_featured": false,
+        "children_type": 1,
+        "attribute_groups": []
+    }
+},
+{
     "model": "spec.xmlattributegroup",
     "pk": 1,
     "fields": {
@@ -2877,6 +2969,15 @@
     "pk": 3,
     "fields": {
         "name": "Display and visibility",
+        "description": "",
+        "child_groups": []
+    }
+},
+{
+    "model": "spec.xmlattributegroup",
+    "pk": 4,
+    "fields": {
+        "name": "Styleable",
         "description": "",
         "child_groups": []
     }
@@ -3371,54 +3472,6 @@
         "is_required": false,
         "description": "The number of octaves by which the pitches normally indicated by the given clef sign should be transposed. Default is zero.",
         "data_type": 34
-    }
-},
-{
-    "model": "spec.xmlattribute",
-    "pk": 49,
-    "fields": {
-        "element": 6,
-        "attribute_group": null,
-        "name": "color",
-        "is_required": false,
-        "description": "The color to be used when rendering notational objects in this part.",
-        "data_type": 35
-    }
-},
-{
-    "model": "spec.xmlattribute",
-    "pk": 50,
-    "fields": {
-        "element": 11,
-        "attribute_group": null,
-        "name": "color",
-        "is_required": false,
-        "description": "The color to be used when rendering notational objects in this event.",
-        "data_type": 35
-    }
-},
-{
-    "model": "spec.xmlattribute",
-    "pk": 51,
-    "fields": {
-        "element": 12,
-        "attribute_group": null,
-        "name": "color",
-        "is_required": false,
-        "description": "The color to be used when rendering this note.",
-        "data_type": 35
-    }
-},
-{
-    "model": "spec.xmlattribute",
-    "pk": 52,
-    "fields": {
-        "element": 13,
-        "attribute_group": null,
-        "name": "color",
-        "is_required": false,
-        "description": "The color to be used when rendering this rest.",
-        "data_type": 35
     }
 },
 {
@@ -4106,6 +4159,66 @@
     }
 },
 {
+    "model": "spec.xmlattribute",
+    "pk": 116,
+    "fields": {
+        "element": null,
+        "attribute_group": 4,
+        "name": "style",
+        "is_required": false,
+        "description": "An optional style to use for this element and all child elements.",
+        "data_type": 56
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 117,
+    "fields": {
+        "element": null,
+        "attribute_group": 4,
+        "name": "color",
+        "is_required": false,
+        "description": "An optional color to be used when rendering this element and all child elements.",
+        "data_type": 35
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 118,
+    "fields": {
+        "element": 53,
+        "attribute_group": null,
+        "name": "class",
+        "is_required": false,
+        "description": "The name for this &lt;style&gt; rule. This name can then be used in any styleable MNX element, via the \"style\" attribute.\r\n\r\nThis is required if \"element\" is not provided.",
+        "data_type": 56
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 119,
+    "fields": {
+        "element": 53,
+        "attribute_group": null,
+        "name": "element",
+        "is_required": false,
+        "description": "The MNX element that this style rule applies to.\r\n\r\nThis is required if \"class\" is not provided.",
+        "data_type": 57
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 120,
+    "fields": {
+        "element": 53,
+        "attribute_group": null,
+        "name": "color",
+        "is_required": false,
+        "description": "The color to apply to any elements targeted by this style.",
+        "data_type": 35
+    }
+},
+{
     "model": "spec.xmlrelationship",
     "pk": 1,
     "fields": {
@@ -4744,6 +4857,61 @@
     }
 },
 {
+    "model": "spec.xmlrelationship",
+    "pk": 72,
+    "fields": {
+        "parent": 44,
+        "child": 53,
+        "min_amount": 0,
+        "max_amount": null,
+        "child_order": 0
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 73,
+    "fields": {
+        "parent": 52,
+        "child": 53,
+        "min_amount": 0,
+        "max_amount": null,
+        "child_order": 0
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 74,
+    "fields": {
+        "parent": 41,
+        "child": 53,
+        "min_amount": 0,
+        "max_amount": null,
+        "child_order": 1
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 75,
+    "fields": {
+        "parent": 42,
+        "child": 53,
+        "min_amount": 0,
+        "max_amount": null,
+        "child_order": 1
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 76,
+    "fields": {
+        "parent": 2,
+        "child": 53,
+        "min_amount": 0,
+        "max_amount": null,
+        "child_order": 1
+    }
+},
+{
     "model": "spec.exampledocument",
     "pk": 1,
     "fields": {
@@ -5195,6 +5363,32 @@
         "blurb": "",
         "document": "<mnx>\r\n     <global>\r\n          <measure-global>\r\n               <directions-global>\r\n                    <key fifths=\"-3\"/>\r\n                    <time signature=\"3/4\"/>\r\n               </directions-global>\r\n          </measure-global>\r\n          <!--... -->\r\n     </global>\r\n     <part id=\"organ\" staves=\"3\">\r\n          <measure>\r\n               <sequence staff=\"1\" voice=\"Main\">\r\n                    <directions>\r\n                         <clef line=\"2\" sign=\"G\"/>\r\n                    </directions>\r\n                    <beams>\r\n                         <beam events=\"main1 main2 main3\"/>\r\n                    </beams>\r\n                    <event value=\"/4\">\r\n                         <rest/>\r\n                    </event>\r\n                    <event value=\"/8\">\r\n                         <rest/>\r\n                    </event>\r\n                    <event id=\"main1\" value=\"/8\">\r\n                         <note pitch=\"G4\"/>\r\n                    </event>\r\n                    <event id=\"main2\" value=\"/8\">\r\n                         <note accidental=\"sharp\" pitch=\"F#4\"/>\r\n                    </event>\r\n                    <event id=\"main3\" value=\"/8\">\r\n                         <note accidental=\"natural\" pitch=\"A4\"/>\r\n                    </event>\r\n               </sequence>\r\n               <sequence staff=\"1\" voice=\"Oberwerk\">\r\n                    <directions>\r\n                         <clef line=\"2\" sign=\"G\"/>\r\n                    </directions>\r\n                    <beams>\r\n                         <beam events=\"ober1 ober2 ober3\"/>\r\n                    </beams>\r\n                    <event value=\"/4\">\r\n                         <rest/>\r\n                    </event>\r\n                    <event value=\"/8\">\r\n                         <rest/>\r\n                    </event>\r\n                    <event id=\"ober1\" value=\"/8\">\r\n                         <note pitch=\"Bb3\"/>\r\n                    </event>\r\n                    <event id=\"ober2\" value=\"/8\">\r\n                         <note accidental=\"natural\" pitch=\"A3\"/>\r\n                    </event>\r\n                    <event id=\"ober3\" value=\"/8\">\r\n                         <note pitch=\"C4\"/>\r\n                    </event>\r\n               </sequence>\r\n               <sequence staff=\"2\" voice=\"Hauptwerk\">\r\n                    <directions>\r\n                         <clef line=\"4\" sign=\"F\"/>\r\n                    </directions>\r\n                    <event value=\"/2d\">\r\n                         <rest/>\r\n                    </event>\r\n               </sequence>\r\n               <sequence staff=\"3\" voice=\"Pedal\">\r\n                    <directions>\r\n                         <clef line=\"4\" sign=\"F\"/>\r\n                    </directions>\r\n                    <event value=\"/2d\">\r\n                         <note pitch=\"Eb3\">\r\n                              <tied targetID=\"pedNote2\"/>\r\n                         </note>\r\n                    </event>\r\n               </sequence>\r\n          </measure>\r\n          <!-- ... -->\r\n     </part>\r\n     <layouts>\r\n          <system-layout id=\"organ3Stave\">\r\n               <group-layout symbol=\"brace\">\r\n                    <staff-layout>\r\n                         <part-layout part=\"organ\" part-staff=\"1\"/>\r\n                    </staff-layout>\r\n                    <staff-layout>\r\n                         <part-layout part=\"organ\" part-staff=\"2\"/>\r\n                    </staff-layout>\r\n               </group-layout>\r\n               <staff-layout>\r\n                    <part-layout part=\"organ\" part-staff=\"3\"/>\r\n               </staff-layout>\r\n          </system-layout>\r\n          <system-layout id=\"organ3StaveSplitOber\">\r\n               <group-layout symbol=\"brace\">\r\n                    <staff-layout>\r\n                         <part-layout part=\"organ\" part-voice=\"Main\" stem=\"up\"/>\r\n                         <part-layout part=\"organ\" part-voice=\"Oberwerk\" stem=\"down\"/>\r\n                    </staff-layout>\r\n                    <staff-layout>\r\n                         <part-layout part=\"organ\" part-voice=\"Hauptwerk\"/>\r\n                    </staff-layout>\r\n               </group-layout>\r\n               <staff-layout>\r\n                    <part-layout part=\"organ\" part-staff=\"3\"/>\r\n               </staff-layout>\r\n          </system-layout>\r\n     </layouts>\r\n     <score name=\"defaultScore\">\r\n          <page>\r\n               <system layout=\"organ3Stave\" measure=\"1\">\r\n                    <system-layout-change layout=\"organ3StaveSplitOber\" location=\"1:3/8\"/>\r\n               </system>\r\n               <system layout=\"organ3StaveSplitOber\" measure=\"6\"/>\r\n               <!-- ... -->\r\n          </page>\r\n          <!-- ... -->\r\n     </score>\r\n</mnx>",
         "image_url": "/static/examples/organ-layout.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spec.exampledocument",
+    "pk": 36,
+    "fields": {
+        "name": "Styling via a class (basic)",
+        "slug": "style-class-basic",
+        "schema": 1,
+        "blurb": "This document defines a style class called \"emphasized\". Any element with style=\"emphasized\" will be colored blue.",
+        "document": "<mnx>\r\n    <global>\r\n        <measure-global>\r\n            <directions-global>\r\n                <time signature=\"4/4\"/>\r\n            </directions-global>\r\n        </measure-global>\r\n<metadiff>\r\n        <style class=\"emphasized\" color=\"#0080FF\"/>\r\n</metadiff>\r\n    </global>\r\n    <part name=\"Music\">\r\n        <measure>\r\n            <directions-part>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions-part>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\" style=\"emphasized\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C6\" style=\"emphasized\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
+        "image_url": "/static/examples/style_class_simple.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spec.exampledocument",
+    "pk": 37,
+    "fields": {
+        "name": "Styling elements (basic)",
+        "slug": "style-element-basic",
+        "schema": 1,
+        "blurb": "This document contains a <style> element that effectively says \"color every <note> element blue.\" Because the <style> element lives within <global>, the rule applies to the entire document.",
+        "document": "<mnx>\r\n    <global>\r\n        <measure-global>\r\n            <directions-global>\r\n                <time signature=\"4/4\"/>\r\n            </directions-global>\r\n        </measure-global>\r\n<metadiff>\r\n        <style element=\"note\" color=\"#0080FF\"/>\r\n</metadiff>\r\n    </global>\r\n    <part name=\"Music\">\r\n        <measure>\r\n            <directions-part>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions-part>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C6\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
+        "image_url": "/static/examples/style_element_simple.png",
         "is_featured": false
     }
 },
@@ -10083,6 +10277,240 @@
     "fields": {
         "example": 30,
         "element": 51,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 889,
+    "fields": {
+        "example": 36,
+        "element": 1,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 890,
+    "fields": {
+        "example": 36,
+        "element": 2,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 891,
+    "fields": {
+        "example": 36,
+        "element": 3,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 892,
+    "fields": {
+        "example": 36,
+        "element": 4,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 893,
+    "fields": {
+        "example": 36,
+        "element": 5,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 894,
+    "fields": {
+        "example": 36,
+        "element": 6,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 895,
+    "fields": {
+        "example": 36,
+        "element": 8,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 896,
+    "fields": {
+        "example": 36,
+        "element": 9,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 897,
+    "fields": {
+        "example": 36,
+        "element": 10,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 898,
+    "fields": {
+        "example": 36,
+        "element": 11,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 899,
+    "fields": {
+        "example": 36,
+        "element": 12,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 900,
+    "fields": {
+        "example": 36,
+        "element": 20,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 901,
+    "fields": {
+        "example": 36,
+        "element": 53,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 902,
+    "fields": {
+        "example": 37,
+        "element": 1,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 903,
+    "fields": {
+        "example": 37,
+        "element": 2,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 904,
+    "fields": {
+        "example": 37,
+        "element": 3,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 905,
+    "fields": {
+        "example": 37,
+        "element": 4,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 906,
+    "fields": {
+        "example": 37,
+        "element": 5,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 907,
+    "fields": {
+        "example": 37,
+        "element": 6,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 908,
+    "fields": {
+        "example": 37,
+        "element": 8,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 909,
+    "fields": {
+        "example": 37,
+        "element": 9,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 910,
+    "fields": {
+        "example": 37,
+        "element": 10,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 911,
+    "fields": {
+        "example": 37,
+        "element": 11,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 912,
+    "fields": {
+        "example": 37,
+        "element": 12,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 913,
+    "fields": {
+        "example": 37,
+        "element": 20,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 914,
+    "fields": {
+        "example": 37,
+        "element": 53,
         "element_name": ""
     }
 },
