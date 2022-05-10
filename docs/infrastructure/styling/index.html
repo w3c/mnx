@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Styling an MNX document | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../">Home</a></li>
+<li><a href="../../mnx-reference/">Reference</a>
+    <ul>
+    <li><a href="../../mnx-reference/element-tree/">Elements</a></li>
+    <li><a href="../../mnx-reference/data-types/">Data types</a></li>
+    <li><a href="../../mnx-reference/examples/">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../concepts/">Concepts in MNX</a></li>
+<li><a href="../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../">MNX specification</a> &gt;
+    <a href="../">Infrastructure</a> &gt;
+    Styling an MNX document
+</p>
+
+<h1>Styling an MNX document</h1>
+
+<p>MNX uses a lightweight but powerful syntax for setting visual styles on notational elements. This syntax is a subset of <a href="https://www.w3.org/Style/CSS/">CSS</a> (Cascading Style Sheets).</p>
+
+<p>This styling system is primarily intended to control visual aspects of a score, as opposed to structural aspects. For structural aspects — such as line breaks, page breaks and stave order — please see <a href="../../mnx-reference/elements/system-layout/">&lt;system-layout&gt;</a>.</p>
+
+<h2>Overview</h2>
+
+<p>There are two ways to style an MNX element: using <b>inline styles</b> and using <b>style rules</b>.</p>
+
+<p>Using <b>inline styles</b> is as simple as including the appropriate style properties directly in the appropriate MNX element. For example, here we have a <code>&lt;note&gt;</code> element with an inline <code>color</code> attribute, meaning the note should use a specific color:</p>
+
+<p><code>&lt;note pitch="C5" color="#0080FF" /&gt;</code></p>
+
+<p>Inline styles <em>cascade</em> — that is, they apply recursively to any child element as well. For example, this <code>&lt;sequence&gt;</code> element has  a <code>color</code> attribute, so the inner <code>&lt;note&gt;</code> elements will "inherit" that color:</p>
+
+<p><pre><code>&lt;sequence color="#0080FF"&gt;
+   &lt;event value="/4"&gt;
+      &lt;note pitch="C5"/&gt;
+   &lt;/event&gt;
+   &lt;event value="/4"&gt;
+      &lt;note pitch="E5"/&gt;
+   &lt;/event&gt;
+   &lt;event value="/4"&gt;
+      &lt;note pitch="G5"/&gt;
+   &lt;/event&gt;
+   &lt;event value="/4"&gt;
+      &lt;note pitch="C6"/&gt;
+   &lt;/event&gt;
+&lt;/sequence&gt;</code></pre></p>
+
+<p>The downside of inline styles is that the style information is scattered throughout your document, rather than living in a single place. For example, if you decide to change the color of all the notes from blue to red, you'll have to change every single inline style.</p>
+
+<p><b>Style rules</b> give you a way to centralize your style decisions, adding an elegant level of indirection. Instead of "hard-coding" your styles directly inline, you use a separate element called <code>&lt;style&gt;</code> that defines rules to apply to your document.</p>
+
+<p>The <code>&lt;style&gt;</code> element defines two things — a style property and a selector (the types of MNX elements to which the style is applied). There are two types of selectors, <em>element selectors</em> and <em>class selectors</em>.</p>
+
+<p>An element selector lets you target style rules to specific elements by name. For example, here we define a style that says "all <code>&lt;note&gt;</code> elements should be colored blue:"</p>
+
+<p><code>&lt;style selector="note" color="#0000ff"&gt;</code></p>
+
+<p>A class selector lets you create styles that can then be referred-to from elements. Here we define a style that says "all elements with the style class <code>"emphasized"</code> should be colored blue:</p>
+
+<p><code>&lt;style selector=".emphasized" color="#0000ff"&gt;</code></p>
+
+<p>Note the dot at the start of <code>".emphasized"</code>. This means <code>emphasized</code> is a style class as opposed to an MNX element name.</p>
+
+<p>Once you've defined this <code>emphasized</code> style, you can assign it to MNX elements by using the <code>class</code> attribute, like so:</p>
+
+<p><code>&lt;note pitch="C5" class="emphasized" /&gt;</code>
+
+<h2>Location of &lt;style&gt;</h2>
+
+<p>An MNX document can have <code>&lt;style&gt;</code> elements in a few different places, including <code>&lt;global&gt;</code>, <code>&lt;page&gt;</code> and <code>&lt;score&gt;</code>. <a href="../../mnx-reference/elements/style/">See here for more</a>.</p>
+
+<p>The styles defined within a <code>&lt;style&gt;</code> element will only apply to the relevant section of the document, depending on where the <code>&lt;style&gt;</code> element lives. See "Algorithm for calculating an element's applied styles" below.</p>
+
+<h2>Style properties</h2>
+
+<p>Here is the full list of style properties MNX currently supports. These can be used in <code>&lt;style&gt;</code> elements, and they can be used inline in any styleable MNX element (see below).</p>
+
+<ul>
+<li>color</li>
+</ul>
+
+<p>(Yes, this list is very short at the moment!)</p>
+
+<h2>Styleable MNX elements</h2>
+
+<p>Many MNX elements are styleable — meaning they accept style properties as XML attributes. For a full list, <a href="../../mnx-reference/data-types/simple-color/">see here</a>.</p>
+
+<h2>Algorithm for calculating an element's applied styles</h2>
+
+<p>To determine which style properties apply to a given target element, use the following algorithm:</p>
+
+<p>1. Gather all of the styles that apply <em>directly</em> to the target element. In order from highest priority to lowest priority, these are:</p>
+
+<ul>
+<li>Inline styles in the element itself (e.g., XML attributes such as <code>color</code>).</li>
+<li>Applicable class selectors defined in <code>&lt;style&gt;</code> elements in the applicable <code>&lt;page&gt;</code>.</li>
+<li>Applicable class selectors defined in <code>&lt;style&gt;</code> elements in the applicable <code>&lt;score&gt;</code>.</li>
+<li>Applicable class selectors defined in <code>&lt;style&gt;</code> elements in the applicable <code>&lt;system-layout&gt;</code> or <code>&lt;system-layout-change&gt;</code>.</li>
+<li>Applicable class selectors defined in <code>&lt;style&gt;</code> elements in <code>&lt;global&gt;</code>.</li>
+<li>Applicable element selectors defined in <code>&lt;style&gt;</code> elements in the applicable <code>&lt;page&gt;</code>.</li>
+<li>Applicable element selectors defined in <code>&lt;style&gt;</code> elements in the applicable <code>&lt;score&gt;</code>.</li>
+<li>Applicable element selectors defined in <code>&lt;style&gt;</code> elements in the applicable <code>&lt;system-layout&gt;</code> or <code>&lt;system-layout-change&gt;</code>.</li>
+<li>Applicable element selectors defined in <code>&lt;style&gt;</code> elements in <code>&lt;global&gt;</code>.</li>
+</ul>
+
+<p>2. For each of these categories, sort the results within the category such that later declarations in the document take priority over earlier ones. For scores and layouts, this has the effect that more specific elements override their ancestors. It also means that when multiple class names or specific values are provided in a target element, later ones override earlier ones.</p>
+
+<p>3. Traverse these results, saving the highest-priority result for each style property. This results in a <em>computed value</em> for each style property.</p>
+
+<p>4. If no computed value is found for a given style property for this element, determine the default value by ascending the element's <em>property inheritance chain</em>. This chain is defined as follows:</p>
+
+<ul>
+<li>If the target element is within <code>&lt;part&gt;</code>:
+   <ul>
+      <li>All ancestors of the target up to and including <code>&lt;part&gt;</code>.</li>
+      <li>The <code>&lt;measure-global&gt;</code> element with the same measure index as the target, and this <code>&lt;measure-global&gt;</code> element's ancestors up to and including <code>&lt;global&gt;</code>.</li>
+      <li>The most specific layout element that applies to the target element, and its ancestors up to and including <code>&lt;layouts&gt;</code>.</li>
+      <li>The most specific score element that applies to the target element, and its ancestors up to and including <code>&lt;score&gt;</code>.</li>
+   </ul>
+</li>
+<li>If the target element is within <code>&lt;global&gt;</code>:
+   <ul>
+      <li>All ancestors of the target up to and including <code>&lt;global&gt;</code>.</li>
+      <li>The most specific layout element that applies to the target element, and its ancestors up to and including <code>&lt;layouts&gt;</code>.</li>
+      <li>The most specific score element that applies to the target element, and its ancestors up to and including <code>&lt;score&gt;</code>.</li>
+   </ul>
+</li>
+<li>If the target element is a layout element:
+   <ul>
+      <li>All ancestors of the target up to and including <code>&lt;layouts&gt;</code>.</li>
+      <li>The most specific element within a <code>&lt;score&gt;</code> that applies to the target element, and its ancestors up to and including <code>&lt;score&gt;</code>.</li>
+   </ul>
+</li>
+<li>If the target element is a score element:
+   <ul>
+      <li>All ancestors of the target up to and including <code>&lt;score&gt;</code>.</li>
+   </ul>
+</li>
+</ul>
+
+<p>For each ancestor consulted during this search, examine its computed value. If one is found, the search terminates and that value is used as the target element's default value.</p>
+
+<p>If no computed value is found on an ancestor and the search completes at <code>&lt;global&gt;</code>, then the property assumes an initial value determined by the host application, or by the property's initial value as given in the MNX specification.</p>
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../static/global.js"></script>
+
+</body>
+</html>
