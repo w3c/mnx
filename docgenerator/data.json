@@ -1023,6 +1023,25 @@
     }
 },
 {
+    "model": "spec.datatype",
+    "pk": 58,
+    "fields": {
+        "name": "CSS selector",
+        "slug": "css-selector",
+        "schema": 1,
+        "description": "<p>A CSS-style selector that is used by the <code>&lt;style&gt;</code> element to define which element(s) are targeted.</p>\r\n\r\n<p>MNX does not support the full complexity of CSS. For now, only two types of selectors are supported:</p>\r\n\r\n<ul>\r\n<li><b>Element selectors</b> allow selecting any MNX element of the given name.</li>\r\n<li><b>Class selectors</b> allow selecting any MNX element that contains the given class.</li>\r\n</ul>\r\n\r\n<p>An element selector is simply the element name without any additional syntax:</p>\r\n\r\n<p><code>&lt;style selector=\"note\" ...&gt;</code></p>\r\n\r\n<p>A class selector is the class name with a dot in front of it:</p>\r\n\r\n<p><code>&lt;style selector=\".bolded\" ...&gt;</code></p>",
+        "description_format": 2,
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": null,
+        "min_value": "",
+        "max_value": "",
+        "regex": "",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
     "model": "spec.datatypeoption",
     "pk": 1,
     "fields": {
@@ -2939,7 +2958,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "The &lt;style&gt; element is a way to define visual styling within an MNX document. There are two types of &lt;style&gt; elements:\r\n\r\n* &lt;style class=\"...\"&gt; defines a style class that can be referenced from another MNX element.\r\n* &lt;style element=\"...\"&gt; targets all elements of a given name.\r\n\r\nThis example defines a style class \"emphasized\", which means to use the color red:\r\n\r\n&lt;style class=\"emphasized\" color=\"#ff0000\"&gt;\r\n\r\nA &lt;note&gt; element can then use the \"style\" attribute to use this style:\r\n\r\n&lt;note style=\"emphasized\" ...&gt;\r\n\r\nThis example says \"all &lt;note&gt; elements must be blue\":\r\n\r\n&lt;style element=\"note\" color=\"#0000ff\"&gt;\r\n\r\nAt the moment, the only available style property is \"color\".",
+        "description": "The &lt;style&gt; element is a way to define visual styling within an MNX document. Its required <code>selector</code> attribute specifies which MNX element(s) the style applies to.\r\n\r\nThis example defines a style class \"emphasized\", which means to use the color red:\r\n\r\n<code>&lt;style selector=\".emphasized\" color=\"#ff0000\"&gt;</code>\r\n\r\nA &lt;note&gt; element can then use the \"style\" attribute to use this style:\r\n\r\n<code>&lt;note style=\"emphasized\" ...&gt;</code>\r\n\r\nThis example says \"all &lt;note&gt; elements must be blue\":\r\n\r\n<code>&lt;style selector=\"note\" color=\"#0000ff\"&gt;</code>\r\n\r\nAt the moment, the only available style property is \"color\".",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -4188,22 +4207,10 @@
     "fields": {
         "element": 53,
         "attribute_group": null,
-        "name": "class",
-        "is_required": false,
-        "description": "The name for this &lt;style&gt; rule. This name can then be used in any styleable MNX element, via the \"style\" attribute.\r\n\r\nThis is required if \"element\" is not provided.",
-        "data_type": 56
-    }
-},
-{
-    "model": "spec.xmlattribute",
-    "pk": 119,
-    "fields": {
-        "element": 53,
-        "attribute_group": null,
-        "name": "element",
-        "is_required": false,
-        "description": "The MNX element that this style rule applies to.\r\n\r\nThis is required if \"class\" is not provided.",
-        "data_type": 57
+        "name": "selector",
+        "is_required": true,
+        "description": "A CSS-style selector that specifies which MNX element(s) this style applies to.\r\n\r\nCurrently MNX supports two types of selectors, element selectors and style selectors.",
+        "data_type": 58
     }
 },
 {

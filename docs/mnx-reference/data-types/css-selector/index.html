@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>MNX element name data type | MNX specification</title>
+<title>CSS selector data type | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -45,13 +45,28 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Data types</a> &gt;
-    MNX element name
+    CSS selector
 </p>
 
-<h1>MNX element name data type</h1>
+<h1>CSS selector data type</h1>
 
 
-<p>A valid MNX XML element name, e.g. "event" or "note".</p>
+<p>A CSS-style selector that is used by the <code>&lt;style&gt;</code> element to define which element(s) are targeted.</p>
+
+<p>MNX does not support the full complexity of CSS. For now, only two types of selectors are supported:</p>
+
+<ul>
+<li><b>Element selectors</b> allow selecting any MNX element of the given name.</li>
+<li><b>Class selectors</b> allow selecting any MNX element that contains the given class.</li>
+</ul>
+
+<p>An element selector is simply the element name without any additional syntax:</p>
+
+<p><code>&lt;style selector="note" ...&gt;</code></p>
+
+<p>A class selector is the class name with a dot in front of it:</p>
+
+<p><code>&lt;style selector=".bolded" ...&gt;</code></p>
 
 
 
@@ -65,6 +80,14 @@
 
 
 
+
+
+<h2 id="where">Where is this type used?</h2>
+
+
+
+
+<p><a href="../../elements/style/">&lt;style&gt;</a> — "selector" attribute</p>
 
 
 

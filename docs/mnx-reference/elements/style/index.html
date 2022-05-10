@@ -67,21 +67,19 @@
 </p>
 
 
-    <p>The &lt;style&gt; element is a way to define visual styling within an MNX document. There are two types of &lt;style&gt; elements:</p>
-
-<p>* &lt;style class="..."&gt; defines a style class that can be referenced from another MNX element.<br>* &lt;style element="..."&gt; targets all elements of a given name.</p>
+    <p>The &lt;style&gt; element is a way to define visual styling within an MNX document. Its required <code>selector</code> attribute specifies which MNX element(s) the style applies to.</p>
 
 <p>This example defines a style class "emphasized", which means to use the color red:</p>
 
-<p>&lt;style class="emphasized" color="#ff0000"&gt;</p>
+<p><code>&lt;style selector=".emphasized" color="#ff0000"&gt;</code></p>
 
 <p>A &lt;note&gt; element can then use the "style" attribute to use this style:</p>
 
-<p>&lt;note style="emphasized" ...&gt;</p>
+<p><code>&lt;note style="emphasized" ...&gt;</code></p>
 
 <p>This example says "all &lt;note&gt; elements must be blue":</p>
 
-<p>&lt;style element="note" color="#0000ff"&gt;</p>
+<p><code>&lt;style selector="note" color="#0000ff"&gt;</code></p>
 
 <p>At the moment, the only available style property is "color".</p>
 
@@ -106,10 +104,10 @@
 </thead>
 
 <tr>
-    <th class="nobr">class</th>
-    <td><a href="../../data-types/style-class/">Style class</a></td>
-    <td>No</td>
-    <td>The name for this &lt;style&gt; rule. This name can then be used in any styleable MNX element, via the "style" attribute.<br><br>This is required if "element" is not provided.</td>
+    <th class="nobr">selector</th>
+    <td><a href="../../data-types/css-selector/">CSS selector</a></td>
+    <td>Yes</td>
+    <td>A CSS-style selector that specifies which MNX element(s) this style applies to.<br><br>Currently MNX supports two types of selectors, element selectors and style selectors.</td>
 </tr>
 
 <tr>
@@ -117,13 +115,6 @@
     <td><a href="../../data-types/simple-color/">Simple color</a></td>
     <td>No</td>
     <td>The color to apply to any elements targeted by this style.</td>
-</tr>
-
-<tr>
-    <th class="nobr">element</th>
-    <td><a href="../../data-types/mnx-element-name/">MNX element name</a></td>
-    <td>No</td>
-    <td>The MNX element that this style rule applies to.<br><br>This is required if "class" is not provided.</td>
 </tr>
 
 </table>
