@@ -2939,7 +2939,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "The &lt;style&gt; element is a way to define visual styling within an MNX document. Its required <code>selector</code> attribute specifies which MNX element(s) the style applies to.\r\n\r\nThis example defines a style class \"emphasized\", which means to use the color red:\r\n\r\n<code>&lt;style selector=\".emphasized\" color=\"#ff0000\"&gt;</code>\r\n\r\nA &lt;note&gt; element can then use the \"style\" attribute to use this style:\r\n\r\n<code>&lt;note style=\"emphasized\" ...&gt;</code>\r\n\r\nThis example says \"all &lt;note&gt; elements must be blue\":\r\n\r\n<code>&lt;style selector=\"note\" color=\"#0000ff\"&gt;</code>\r\n\r\nAt the moment, the only available style property is \"color\".",
+        "description": "The &lt;style&gt; element is a way to define visual styling within an MNX document. Its required <code>selector</code> attribute specifies which MNX element(s) the style applies to.\r\n\r\nThis example defines a style class \"emphasized\", which means to use the color red:\r\n\r\n<code>&lt;style selector=\".emphasized\" color=\"#ff0000\"&gt;</code>\r\n\r\nA &lt;note&gt; element can then use the \"class\" attribute to use this style class:\r\n\r\n<code>&lt;note class=\"emphasized\" ...&gt;</code>\r\n\r\nThis example says \"all &lt;note&gt; elements must be blue\":\r\n\r\n<code>&lt;style selector=\"note\" color=\"#0000ff\"&gt;</code>\r\n\r\nAt the moment, the only available style property is \"color\".",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
@@ -4164,9 +4164,9 @@
     "fields": {
         "element": null,
         "attribute_group": 4,
-        "name": "style",
+        "name": "class",
         "is_required": false,
-        "description": "An optional style to use for this element and all child elements.",
+        "description": "An optional style class to use for this element and all child elements.",
         "data_type": 56
     }
 },
@@ -5361,8 +5361,8 @@
         "name": "Styling via a class (basic)",
         "slug": "style-class-basic",
         "schema": 1,
-        "blurb": "This document defines a style class called \"emphasized\". Any element with style=\"emphasized\" will be colored blue.",
-        "document": "<mnx>\r\n    <global>\r\n        <measure-global>\r\n            <directions-global>\r\n                <time signature=\"4/4\"/>\r\n            </directions-global>\r\n        </measure-global>\r\n<metadiff>\r\n        <style class=\"emphasized\" color=\"#0080FF\"/>\r\n</metadiff>\r\n    </global>\r\n    <part name=\"Music\">\r\n        <measure>\r\n            <directions-part>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions-part>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\" style=\"emphasized\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C6\" style=\"emphasized\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
+        "blurb": "This document defines a style class called \"emphasized\". Any element with class=\"emphasized\" will be colored blue.",
+        "document": "<mnx>\r\n    <global>\r\n        <measure-global>\r\n            <directions-global>\r\n                <time signature=\"4/4\"/>\r\n            </directions-global>\r\n        </measure-global>\r\n<metadiff>\r\n        <style selector=\".emphasized\" color=\"#0080FF\"/>\r\n</metadiff>\r\n    </global>\r\n    <part name=\"Music\">\r\n        <measure>\r\n            <directions-part>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions-part>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\" class=\"emphasized\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C6\" class=\"emphasized\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/style_class_simple.png",
         "is_featured": false
     }
@@ -5375,7 +5375,7 @@
         "slug": "style-element-basic",
         "schema": 1,
         "blurb": "This document contains a <style> element that effectively says \"color every <note> element blue.\" Because the <style> element lives within <global>, the rule applies to the entire document.",
-        "document": "<mnx>\r\n    <global>\r\n        <measure-global>\r\n            <directions-global>\r\n                <time signature=\"4/4\"/>\r\n            </directions-global>\r\n        </measure-global>\r\n<metadiff>\r\n        <style element=\"note\" color=\"#0080FF\"/>\r\n</metadiff>\r\n    </global>\r\n    <part name=\"Music\">\r\n        <measure>\r\n            <directions-part>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions-part>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C6\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
+        "document": "<mnx>\r\n    <global>\r\n        <measure-global>\r\n            <directions-global>\r\n                <time signature=\"4/4\"/>\r\n            </directions-global>\r\n        </measure-global>\r\n<metadiff>\r\n        <style selector=\"note\" color=\"#0080FF\"/>\r\n</metadiff>\r\n    </global>\r\n    <part name=\"Music\">\r\n        <measure>\r\n            <directions-part>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions-part>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C6\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/style_element_simple.png",
         "is_featured": false
     }
