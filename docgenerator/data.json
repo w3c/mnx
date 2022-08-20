@@ -1023,6 +1023,25 @@
     }
 },
 {
+    "model": "spec.datatype",
+    "pk": 59,
+    "fields": {
+        "name": "Measure count",
+        "slug": "measure-count",
+        "schema": 1,
+        "description": "The number of measures used in a given multimeasure rest. This must be an integer greater than or equal to 1.",
+        "description_format": 1,
+        "is_featured": false,
+        "xsd_name": "",
+        "base_type": null,
+        "min_value": "1",
+        "max_value": "",
+        "regex": "\\d+",
+        "min_length": null,
+        "union_types": []
+    }
+},
+{
     "model": "spec.datatypeoption",
     "pk": 1,
     "fields": {
@@ -2947,6 +2966,42 @@
     }
 },
 {
+    "model": "spec.xmlelement",
+    "pk": 54,
+    "fields": {
+        "name": "multimeasure-rests",
+        "slug": "multimeasure-rests",
+        "disambiguation": "",
+        "schema": 1,
+        "base_element": null,
+        "is_abstract_element": false,
+        "is_root": false,
+        "description": "Defines all of the multimeasure rests within a particular &lt;score&gt;.",
+        "content_data_type": null,
+        "is_featured": false,
+        "children_type": 1,
+        "attribute_groups": []
+    }
+},
+{
+    "model": "spec.xmlelement",
+    "pk": 55,
+    "fields": {
+        "name": "multimeasure-rest",
+        "slug": "multimeasure-rest",
+        "disambiguation": "",
+        "schema": 1,
+        "base_element": null,
+        "is_abstract_element": false,
+        "is_root": false,
+        "description": "Encodes a single multimeasure rest. The required attributes \"start\" and \"duration\" specify the multimeasure rest's location and length, respectively.\r\n\r\nWhen rendering MNX into graphical notation, applications are expected to use the value of \"duration\" as the number above the rest. If the optional \"label\" attribute is provided, that must be used instead.",
+        "content_data_type": null,
+        "is_featured": false,
+        "children_type": 1,
+        "attribute_groups": []
+    }
+},
+{
     "model": "spec.xmlattributegroup",
     "pk": 1,
     "fields": {
@@ -4207,6 +4262,42 @@
     }
 },
 {
+    "model": "spec.xmlattribute",
+    "pk": 121,
+    "fields": {
+        "element": 55,
+        "attribute_group": null,
+        "name": "start",
+        "is_required": true,
+        "description": "The measure number in which this multimeasure rest begins.",
+        "data_type": 38
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 122,
+    "fields": {
+        "element": 55,
+        "attribute_group": null,
+        "name": "duration",
+        "is_required": true,
+        "description": "The number of measures that this multimeasure rest spans. Generally this corresponds to the number graphically rendered in the score.",
+        "data_type": 59
+    }
+},
+{
+    "model": "spec.xmlattribute",
+    "pk": 123,
+    "fields": {
+        "element": 55,
+        "attribute_group": null,
+        "name": "label",
+        "is_required": false,
+        "description": "The label to use when rendering this multimeasure rest. This attribute is provided as a way to override the default rendering.",
+        "data_type": 33
+    }
+},
+{
     "model": "spec.xmlrelationship",
     "pk": 1,
     "fields": {
@@ -4900,6 +4991,28 @@
     }
 },
 {
+    "model": "spec.xmlrelationship",
+    "pk": 77,
+    "fields": {
+        "parent": 41,
+        "child": 54,
+        "min_amount": 0,
+        "max_amount": 1,
+        "child_order": 2
+    }
+},
+{
+    "model": "spec.xmlrelationship",
+    "pk": 78,
+    "fields": {
+        "parent": 54,
+        "child": 55,
+        "min_amount": 0,
+        "max_amount": null,
+        "child_order": 0
+    }
+},
+{
     "model": "spec.exampledocument",
     "pk": 1,
     "fields": {
@@ -5377,6 +5490,19 @@
         "blurb": "This document contains a <style> element that effectively says \"color every <note> element blue.\" Because the <style> element lives within <global>, the rule applies to the entire document.",
         "document": "<mnx>\r\n    <global>\r\n        <measure-global>\r\n            <directions-global>\r\n                <time signature=\"4/4\"/>\r\n            </directions-global>\r\n        </measure-global>\r\n<metadiff>\r\n        <style selector=\"note\" color=\"#0080FF\"/>\r\n</metadiff>\r\n    </global>\r\n    <part name=\"Music\">\r\n        <measure>\r\n            <directions-part>\r\n                <clef sign=\"G\" line=\"2\"/>\r\n            </directions-part>\r\n            <sequence>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"E5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"G5\"/>\r\n                </event>\r\n                <event value=\"/4\">\r\n                    <note pitch=\"C6\"/>\r\n                </event>\r\n            </sequence>\r\n        </measure>\r\n    </part>\r\n</mnx>",
         "image_url": "/static/examples/style_element_simple.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spec.exampledocument",
+    "pk": 38,
+    "fields": {
+        "name": "Multimeasure rests",
+        "slug": "multimeasure-rests",
+        "schema": 1,
+        "blurb": "This example document contains three views of the same underlying music: a \"full score\" plus two parts as intended for individual musicians. In MNX, these are represented by three separate <score> elements.\r\n\r\nMultimeasure rests are tied to a particular <score>. They live within the <multimeasure-rests> element, and each rest defines its starting measure number and how long the rest lasts.",
+        "document": "<mnx>\r\n  <global>\r\n    <measure-global>\r\n      <directions-global>\r\n        <time signature=\"4/4\"/>\r\n      </directions-global>\r\n    </measure-global>\r\n    <measure-global/>\r\n    <measure-global/>\r\n    <measure-global/>\r\n    <measure-global/>\r\n    <measure-global/>\r\n    <measure-global/>\r\n  </global>\r\n  <part id=\"PartA\">\r\n    <measure>\r\n      <directions-part>\r\n        <clef sign=\"G\" line=\"2\"/>\r\n      </directions-part>\r\n      <sequence>\r\n        <event value=\"/4\">\r\n          <note pitch=\"C5\"/>\r\n        </event>\r\n        <event value=\"/4\">\r\n          <note pitch=\"E5\"/>\r\n        </event>\r\n        <event value=\"/2\">\r\n          <note pitch=\"G5\"/>\r\n        </event>\r\n      </sequence>\r\n    </measure>\r\n    <measure>\r\n      <sequence>\r\n        <event value=\"/4\">\r\n          <note pitch=\"C5\"/>\r\n        </event>\r\n        <event value=\"/4\">\r\n          <note pitch=\"E5\"/>\r\n        </event>\r\n        <event value=\"/2\">\r\n          <note pitch=\"G5\"/>\r\n        </event>\r\n      </sequence>\r\n    </measure>\r\n    <measure>\r\n      <sequence>\r\n        <event value=\"/1\">\r\n          <rest/>\r\n        </event>\r\n      </sequence>\r\n    </measure>\r\n    <measure>\r\n      <sequence>\r\n        <event value=\"/1\">\r\n          <rest/>\r\n        </event>\r\n      </sequence>\r\n    </measure>\r\n    <measure>\r\n      <sequence>\r\n        <event value=\"/4\">\r\n          <note pitch=\"C5\"/>\r\n        </event>\r\n        <event value=\"/4\">\r\n          <note pitch=\"E5\"/>\r\n        </event>\r\n        <event value=\"/2\">\r\n          <note pitch=\"G5\"/>\r\n        </event>\r\n      </sequence>\r\n    </measure>\r\n    <measure>\r\n      <sequence>\r\n        <event value=\"/4\">\r\n          <note pitch=\"C5\"/>\r\n        </event>\r\n        <event value=\"/4\">\r\n          <note pitch=\"E5\"/>\r\n        </event>\r\n        <event value=\"/2\">\r\n          <note pitch=\"G5\"/>\r\n        </event>\r\n      </sequence>\r\n    </measure>\r\n    <measure>\r\n      <sequence>\r\n        <event value=\"/1\">\r\n          <note pitch=\"E5\"/>\r\n        </event>\r\n      </sequence>\r\n    </measure>\r\n  </part>\r\n  <part id=\"PartB\">\r\n    <measure>\r\n      <directions-part>\r\n        <clef sign=\"G\" line=\"2\"/>\r\n      </directions-part>\r\n      <sequence>\r\n        <event value=\"/1\">\r\n          <rest/>\r\n        </event>\r\n      </sequence>\r\n    </measure>\r\n    <measure>\r\n      <sequence>\r\n        <event value=\"/1\">\r\n          <rest/>\r\n        </event>\r\n      </sequence>\r\n    </measure>\r\n    <measure>\r\n      <sequence>\r\n        <event value=\"/4\">\r\n          <note pitch=\"E5\"/>\r\n        </event>\r\n        <event value=\"/4\">\r\n          <note pitch=\"D5\"/>\r\n        </event>\r\n        <event value=\"/2\">\r\n          <note pitch=\"C5\"/>\r\n        </event>\r\n      </sequence>\r\n    </measure>\r\n    <measure>\r\n      <sequence>\r\n        <event value=\"/4\">\r\n          <note pitch=\"E5\"/>\r\n        </event>\r\n        <event value=\"/4\">\r\n          <note pitch=\"D5\"/>\r\n        </event>\r\n        <event value=\"/2\">\r\n          <note pitch=\"C5\"/>\r\n        </event>\r\n      </sequence>\r\n    </measure>\r\n    <measure>\r\n      <sequence>\r\n        <event value=\"/1\">\r\n          <rest/>\r\n        </event>\r\n      </sequence>\r\n    </measure>\r\n    <measure>\r\n      <sequence>\r\n        <event value=\"/1\">\r\n          <rest/>\r\n        </event>\r\n      </sequence>\r\n    </measure>\r\n    <measure>\r\n      <sequence>\r\n        <event value=\"/1\">\r\n          <note pitch=\"C5\"/>\r\n        </event>\r\n      </sequence>\r\n    </measure>\r\n  </part>\r\n  <layouts>\r\n    <system-layout id=\"PartAAlone\">\r\n      <staff-layout>\r\n       <part-layout part=\"PartA\"/>\r\n      </staff-layout>\r\n    </system-layout>\r\n    <system-layout id=\"PartBAlone\">\r\n      <staff-layout>\r\n        <part-layout part=\"PartB\"/>\r\n      </staff-layout>\r\n    </system-layout>\r\n  </layouts>\r\n  <score name=\"Full score\">\r\n    <page>\r\n      <system measure=\"1\"></system>\r\n      <system measure=\"5\"></system>\r\n    </page>\r\n  </score>\r\n  <score name=\"Part A\" layout=\"PartAAlone\">\r\n    <metadiff>\r\n    <multimeasure-rests>\r\n      <multimeasure-rest start=\"3\" duration=\"2\" />\r\n    </multimeasure-rests>\r\n    </metadiff>\r\n  </score>\r\n  <score name=\"Part B\" layout=\"PartBAlone\">\r\n    <metadiff>\r\n    <multimeasure-rests>\r\n      <multimeasure-rest start=\"1\" duration=\"2\" />\r\n      <multimeasure-rest start=\"5\" duration=\"2\" />\r\n    </multimeasure-rests>\r\n    </metadiff>\r\n  </score>\r\n</mnx>",
+        "image_url": "/static/examples/multimeasure-rests.png",
         "is_featured": false
     }
 },
@@ -10499,6 +10625,204 @@
     "fields": {
         "example": 37,
         "element": 53,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 915,
+    "fields": {
+        "example": 38,
+        "element": 1,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 916,
+    "fields": {
+        "example": 38,
+        "element": 2,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 917,
+    "fields": {
+        "example": 38,
+        "element": 3,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 918,
+    "fields": {
+        "example": 38,
+        "element": 4,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 919,
+    "fields": {
+        "example": 38,
+        "element": 5,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 920,
+    "fields": {
+        "example": 38,
+        "element": 6,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 921,
+    "fields": {
+        "example": 38,
+        "element": 8,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 922,
+    "fields": {
+        "example": 38,
+        "element": 9,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 923,
+    "fields": {
+        "example": 38,
+        "element": 10,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 924,
+    "fields": {
+        "example": 38,
+        "element": 11,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 925,
+    "fields": {
+        "example": 38,
+        "element": 12,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 926,
+    "fields": {
+        "example": 38,
+        "element": 13,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 927,
+    "fields": {
+        "example": 38,
+        "element": 20,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 928,
+    "fields": {
+        "example": 38,
+        "element": 41,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 929,
+    "fields": {
+        "example": 38,
+        "element": 42,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 930,
+    "fields": {
+        "example": 38,
+        "element": 43,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 931,
+    "fields": {
+        "example": 38,
+        "element": 44,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 932,
+    "fields": {
+        "example": 38,
+        "element": 45,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 933,
+    "fields": {
+        "example": 38,
+        "element": 48,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 934,
+    "fields": {
+        "example": 38,
+        "element": 50,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 935,
+    "fields": {
+        "example": 38,
+        "element": 54,
+        "element_name": ""
+    }
+},
+{
+    "model": "spec.exampledocumentelement",
+    "pk": 936,
+    "fields": {
+        "example": 38,
+        "element": 55,
         "element_name": ""
     }
 },

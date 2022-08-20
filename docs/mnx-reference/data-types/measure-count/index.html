@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The &lt;layouts&gt; element | MNX specification</title>
+<title>Measure count data type | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -31,7 +31,7 @@
 <li><a href="../../">Reference</a>
     <ul>
     <li><a href="../../element-tree/">Elements</a></li>
-    <li><a href="../../data-types/">Data types</a></li>
+    <li><a href="../">Data types</a></li>
     <li><a href="../../examples/">Example documents</a></li>
     </ul>
 </li>
@@ -44,61 +44,40 @@
 <p class="breadcrumb">
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
-    <a href="../">Elements</a> &gt;
-    layouts
+    <a href="../">Data types</a> &gt;
+    Measure count
 </p>
 
-<h1>The &lt;layouts&gt; element</h1>
-
-<p>Parent element:
-    
-        
-        <a href="../mnx/">&lt;mnx&gt;</a>
-        
-    
-</p>
+<h1>Measure count data type</h1>
 
 
-    <p>The &lt;layouts&gt; element is a container for &lt;system-layout&gt; elements.</p>
-
-
-<h2 id="content">Content</h2>
-
-
-    
-    
-    <p>
-
-
-
-
-    
-    
-        <a href="../system-layout/">&lt;system-layout&gt;</a> (Zero or more times)
-    
-    
-
-
-
-</p>
-    
-
-
-<h2 id="attributes">Attributes</h2>
-
-
-<p>None.</p>
+<p>The number of measures used in a given multimeasure rest. This must be an integer greater than or equal to 1.</p>
 
 
 
 
 
-<h2 id="examples">Examples</h2>
+<p>Minimum allowed value: 1</p>
 
-<p>This element is used in the following examples:</p>
-<p>
-    <nobr><a href="../../examples/multimeasure-rests/">Multimeasure rests</a></nobr>, <nobr><a href="../../examples/multiple-layouts/">Multiple layouts</a></nobr>, <nobr><a href="../../examples/orchestral-layout/">Orchestral layout</a></nobr>, <nobr><a href="../../examples/organ-layout/">Organ layout</a></nobr>, <nobr><a href="../../examples/system-layouts/">System layouts</a></nobr>
-</p>
+
+
+
+
+<p>Regex pattern: <b>\d+</b></p>
+
+
+
+
+
+
+
+<h2 id="where">Where is this type used?</h2>
+
+
+
+
+<p><a href="../../elements/multimeasure-rest/">&lt;multimeasure-rest&gt;</a> — "duration" attribute</p>
+
 
 
 
