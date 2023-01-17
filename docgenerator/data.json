@@ -1517,7 +1517,7 @@
     "fields": {
         "data_type": 12,
         "value": "-8",
-        "description": "8va (notes are rendered down one octave)",
+        "description": "8va (notes are rendered down one octave from sounding pitch)",
         "order": 0
     }
 },
@@ -1527,7 +1527,7 @@
     "fields": {
         "data_type": 12,
         "value": "8",
-        "description": "8vb (notes are rendered up one octave)",
+        "description": "8vb (notes are rendered up one octave from sounding pitch)",
         "order": 1
     }
 },
@@ -1537,7 +1537,7 @@
     "fields": {
         "data_type": 12,
         "value": "-15",
-        "description": "15ma (notes are rendered down two octaves)",
+        "description": "15ma (notes are rendered down two octaves from sounding pitch)",
         "order": 2
     }
 },
@@ -1547,7 +1547,7 @@
     "fields": {
         "data_type": 12,
         "value": "15",
-        "description": "15mb (notes are rendered up two octaves)",
+        "description": "15mb (notes are rendered up two octaves from sounding pitch)",
         "order": 3
     }
 },
@@ -1557,7 +1557,7 @@
     "fields": {
         "data_type": 12,
         "value": "-22",
-        "description": "22ma (notes are rendered down three octaves)",
+        "description": "22ma (notes are rendered down three octaves from sounding pitch)",
         "order": 4
     }
 },
@@ -1567,7 +1567,7 @@
     "fields": {
         "data_type": 12,
         "value": "22",
-        "description": "22mb (notes are rendered up three octaves)",
+        "description": "22mb (notes are rendered up three octaves from sounding pitch)",
         "order": 5
     }
 },
@@ -2343,7 +2343,7 @@
         "base_element": null,
         "is_abstract_element": false,
         "is_root": false,
-        "description": "An octave shift, traditionally notated with a marking such as \"8va\", tells a musician that the affected note(s) are being rendered a number of octaves up or down from their normal appearance on the staff, for sake of readability.",
+        "description": "An octave shift, traditionally notated with a marking such as \"8va\", tells a musician that the affected note(s) are being rendered a number of octaves up or down from their normal appearance on the staff, for sake of readability.\r\n\r\nNote: the \"pitch\" attribute of any affected &lt;note&gt; should be encoded as the sounded pitch. In other words, the absence of an octave shift does not affect a note's \"pitch\" attribute.",
         "content_data_type": null,
         "is_featured": false,
         "children_type": 1,
