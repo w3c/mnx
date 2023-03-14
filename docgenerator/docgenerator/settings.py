@@ -77,3 +77,4 @@ USE_L10N = True
 USE_TZ = True
 STATIC_URL = f'/static/'
 STATICFILES_DIRS = [BASE_DIR / 'media']
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
