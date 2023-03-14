@@ -27,6 +27,7 @@ class SiteOptions(models.Model):
 class XMLSchema(models.Model):
     name = models.CharField(max_length=100)
     slug = models.CharField(max_length=100, unique=True)
+    is_json = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'xml_schemas'
@@ -50,6 +51,9 @@ class XMLSchema(models.Model):
 
     def element_tree_url(self):
         return reverse('element_tree', args=(self.slug,))
+
+    def json_objects_url(self):
+        return reverse('json_object_list', args=(self.slug,))
 
 class DataType(models.Model):
     name = models.CharField(max_length=80)
@@ -369,6 +373,114 @@ class XMLRelationship(models.Model):
             return '(One or more times)'
         return f'({min_amount} to {max_amount} times)'
 
+class JSONObject(models.Model):
+    OBJECT_TYPE_DICT = 1
+    OBJECT_TYPE_ARRAY = 2
+    OBJECT_TYPE_STRING = 3
+    OBJECT_TYPE_NUMBER = 4
+    OBJECT_TYPE_BOOLEAN = 5
+    OBJECT_TYPE_LITERAL_STRING = 6
+    OBJECT_TYPE_CHOICES = (
+        (OBJECT_TYPE_DICT, 'Dictionary'),
+        (OBJECT_TYPE_ARRAY, 'Array'),
+        (OBJECT_TYPE_STRING, 'String'),
+        (OBJECT_TYPE_NUMBER, 'Number'),
+        (OBJECT_TYPE_BOOLEAN, 'Boolean'),
+        (OBJECT_TYPE_LITERAL_STRING, 'Literal string'),
+    )
+    ROOT_OBJECT_NAME = '__root__'
+
+    name = models.CharField(max_length=80)
+    slug = models.CharField(max_length=80)
+    schema = models.ForeignKey(XMLSchema, on_delete=models.CASCADE, default=1)
+    object_type = models.SmallIntegerField(choices=OBJECT_TYPE_CHOICES)
+
+    class Meta:
+        db_table = 'json_objects'
+        verbose_name = 'JSON object'
+        verbose_name_plural = 'JSON objects'
+        unique_together = (
+            ('schema', 'slug'),
+        )
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('json_object_detail', args=(self.schema.slug, self.slug))
+
+    def is_array(self):
+        return self.object_type == JSONObject.OBJECT_TYPE_ARRAY
+
+    def get_child_relationships(self):
+        return list(JSONObjectRelationship.objects.filter(parent=self).order_by('child_key'))
+
+    def pretty_object_type(self):
+        return {
+            JSONObject.OBJECT_TYPE_DICT: 'Dictionary',
+            JSONObject.OBJECT_TYPE_ARRAY: 'Array',
+            JSONObject.OBJECT_TYPE_STRING: 'String',
+            JSONObject.OBJECT_TYPE_NUMBER: 'Number',
+            JSONObject.OBJECT_TYPE_BOOLEAN: 'Boolean',
+            JSONObject.OBJECT_TYPE_LITERAL_STRING: 'Literal string',
+        }[self.object_type]
+
+    def matches_json(self, json_data):
+        """
+        Given a JSON object, returns True if the object appears to be
+        described by this JSONObject definition.
+
+        This only searches one level deep.
+        """
+        object_type = self.object_type
+        if object_type == JSONObject.OBJECT_TYPE_DICT:
+            child_rels = {r.child_key: r for r in self.get_child_relationships()}
+            for k in json_data.keys():
+                if k not in child_rels:
+                    return False
+            return True
+        elif object_type == JSONObject.OBJECT_TYPE_ARRAY:
+            return isinstance(json_data, list)
+        elif object_type in {JSONObject.OBJECT_TYPE_STRING, JSONObject.OBJECT_TYPE_LITERAL_STRING}:
+            return isinstance(json_data, str)
+        elif object_type == JSONObject.OBJECT_TYPE_NUMBER:
+            return isinstance(json_data, (int, float))
+        else:
+            raise NotImplementedError()
+
+    @staticmethod
+    def get_jsonobject_for_data(json_data, object_def_list):
+        """
+        Given JSON data and a list of potential JSONObjects that describe it,
+        returns the JSONObject that describes it.
+        """
+        if len(object_def_list) == 1:
+            return object_def_list[0] # Common case.
+        for object_def in object_def_list:
+            if object_def.matches_json(json_data):
+                return object_def
+
+        # By now, one of the given object_def_list should have matched.
+        # If not, raise an exception to bring attention to the wonky data.
+        raise ValueError()
+
+class JSONObjectRelationship(models.Model):
+    parent = models.ForeignKey(JSONObject, on_delete=models.CASCADE, related_name='parent_rel')
+    child_key = models.CharField(max_length=80)
+    child = models.ForeignKey(JSONObject, on_delete=models.CASCADE, related_name='child_rel')
+    is_required = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'json_object_relationships'
+        verbose_name = 'JSON object relationship'
+        verbose_name_plural = 'JSON object relationships'
+        unique_together = (
+            ('parent', 'child_key'),
+        )
+
+    def __repr__(self):
+        return f'<JSONObjectRelationship parent="{self.parent.name}" child="{self.child.name}">'
+
 class ExampleDocument(models.Model):
     name = models.CharField(max_length=300)
     slug = models.CharField(max_length=100)
@@ -431,6 +543,15 @@ class ExampleDocumentElement(models.Model):
 
     class Meta:
         db_table = 'example_elements'
+
+class ExampleDocumentObject(models.Model):
+    # This is a cache of each JSONObject used in each
+    # ExampleDocument. It's updated via ExampleDocument.save().
+    example = models.ForeignKey(ExampleDocument, on_delete=models.CASCADE)
+    json_object = models.ForeignKey(JSONObject, null=True, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'example_objects'
 
 class ElementConcept(models.Model):
     element = models.ForeignKey(XMLElement, on_delete=models.CASCADE)

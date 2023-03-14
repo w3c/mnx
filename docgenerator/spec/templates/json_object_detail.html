@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}The {{ object.name }} object{% endblock %}
+
+{% block content %}
+<p class="breadcrumb">
+    <a href="{% relative_url 'homepage' %}">{{ SITE_OPTIONS.site_name }}</a> &gt;
+    <a href="{% relative_url_string object.schema.reference_url %}">{{ object.schema.name }} reference</a> &gt;
+    <a href="{% relative_url_string object.schema.json_objects_url %}">Objects</a> &gt;
+    {{ object.name }}
+</p>
+
+<h1>The {{ object.name }} object</h1>
+
+<p><b>Type:</b> {{ object.pretty_object_type }}</p>
+
+{% if child_relationships %}
+<h2>Keys:</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+{% for rel in child_relationships %}
+<tr>
+    <td>"{{ rel.child_key }}"</td>
+    <td>
+        {% if rel.child.is_array %}
+            An array of
+            {% for childrel in rel.child.get_child_relationships %}
+            <a href="{% relative_url_string childrel.child.get_absolute_url %}">{{ childrel.child.name }} objects</a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        {% else %}
+        <a href="{% relative_url_string rel.child.get_absolute_url %}">{{ rel.child.name }} object</a>
+        {% endif %}
+    </td>
+    <td>{{ rel.is_required|yesno|title }}</td>
+    <td></td>
+</tr>
+{% endfor %}
+
+</table>
+{% endif %}
+
+{% if examples %}
+<h2 id="examples">Examples</h2>
+
+<p>This element is used in the following examples:</p>
+<p>
+    {% for example in examples %}<nobr><a href="{% relative_url_string example.example.get_absolute_url %}">{{ example.example.name }}</a></nobr>{% if not forloop.last %}, {% endif %}{% endfor %}
+</p>
+{% endif %}
+
+{% endblock %}
+

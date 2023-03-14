@@ -23,6 +23,11 @@ class ChildElementsInline(admin.TabularInline):
     extra = 0
     fk_name = 'parent'
 
+class JSONChildElementsInline(admin.TabularInline):
+    model = JSONObjectRelationship
+    extra = 0
+    fk_name = 'parent'
+
 class ElementConceptInline(admin.TabularInline):
     model = ElementConcept
     extra = 0
@@ -51,6 +56,12 @@ class DataTypeAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['name']}
     list_display = ['name', 'base_type', 'xsd_name', 'is_featured']
     ordering = ['name']
+
+class JSONObjectAdmin(admin.ModelAdmin):
+    inlines = [JSONChildElementsInline]
+    list_display = ['name', 'slug', 'pretty_object_type']
+    ordering = ['name']
+    search_fields = ['name', 'slug']
 
 class DocumentFormatAdmin(admin.ModelAdmin):
     model = DocumentFormat
@@ -85,6 +96,7 @@ admin.site.register(XMLSchema, XMLSchemaAdmin)
 admin.site.register(XMLElement, XMLElementAdmin)
 admin.site.register(XMLAttributeGroup, XMLAttributeGroupAdmin)
 admin.site.register(DataType, DataTypeAdmin)
+admin.site.register(JSONObject, JSONObjectAdmin)
 admin.site.register(DocumentFormat, DocumentFormatAdmin)
 admin.site.register(ExampleDocument, ExampleDocumentAdmin)
 admin.site.register(Concept, ConceptAdmin)

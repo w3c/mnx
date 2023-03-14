@@ -17,10 +17,13 @@ MODELS_TO_FREEZE = (
     XMLAttributeGroup,
     XMLAttribute,
     XMLRelationship,
+    JSONObject,
+    JSONObjectRelationship,
     ExampleDocument,
     ExampleDocumentConcept,
     ExampleDocumentComparison,
     ExampleDocumentElement,
+    ExampleDocumentObject,
     ElementConcept,
     StaticPageCollection,
     StaticPage

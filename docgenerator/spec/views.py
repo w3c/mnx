@@ -1,4 +1,5 @@
 from django import http
+from django.db.models import Q
 from django.db.models.functions import Lower
 from django.shortcuts import get_object_or_404, render
 from spec.utils import htmlutils
@@ -59,6 +60,32 @@ def element_tree(request, schema_slug):
         'tree_html': htmlutils.get_element_tree_html(request.path, root_element),
     })
 
+def json_object_list(request, schema_slug):
+    schema = get_object_or_404(XMLSchema, slug=schema_slug)
+    objects = JSONObject.objects.select_related('schema').filter(
+        schema=schema,
+    ).exclude(
+        Q(object_type=JSONObject.OBJECT_TYPE_ARRAY) | Q(object_type=JSONObject.OBJECT_TYPE_LITERAL_STRING)
+    ).order_by('name')
+    return render(request, 'json_object_list.html', {
+        'schema': schema,
+        'objects': objects,
+    })
+
+def json_object_detail(request, schema_slug, slug):
+    json_object = get_object_or_404(
+        JSONObject.objects.select_related('schema'),
+        schema__slug=schema_slug,
+        slug=slug
+    )
+    if json_object.object_type in {JSONObject.OBJECT_TYPE_ARRAY, JSONObject.OBJECT_TYPE_LITERAL_STRING}:
+        raise http.Http404()
+    return render(request, 'json_object_detail.html', {
+        'object': json_object,
+        'child_relationships': json_object.get_child_relationships(),
+        'examples': ExampleDocumentObject.objects.filter(json_object=json_object).select_related('example').order_by(Lower('example__name')),
+    })
+
 def data_type_list(request, schema_slug):
     schema = get_object_or_404(XMLSchema, slug=schema_slug)
     return render(request, 'data_type_list.html', {
@@ -107,7 +134,7 @@ def example_detail(request, schema_slug, slug):
     )
     return render(request, 'example_detail.html', {
         'example': example,
-        'augmented_doc': htmlutils.get_augmented_xml(request.path, example.schema, example.document, diffs_use_divs=False)[1],
+        'augmented_doc': htmlutils.get_augmented_example(request.path, example.schema, example.document, diffs_use_divs=False)[1],
         'concepts': ExampleDocumentConcept.objects.filter(example=example).order_by('example__name'),
         'comparisons': ExampleDocumentComparison.objects.filter(example=example).select_related('doc_format'),
     })
@@ -130,7 +157,7 @@ def format_comparison_detail(request, slug):
     main_schema = XMLSchema.objects.get(id=1)
     comparisons = []
     for edc in ExampleDocumentComparison.objects.filter(doc_format=other_format).select_related('example').order_by('position'):
-        highlight_diffs, doc_html = htmlutils.get_augmented_xml(request.path, main_schema, edc.example.document, True)
+        highlight_diffs, doc_html = htmlutils.get_augmented_example(request.path, main_schema, edc.example.document, True)
         comparisons.append({
             'example': edc.example,
             'preamble_html': edc.preamble_html(),

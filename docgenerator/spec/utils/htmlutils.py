@@ -1,6 +1,7 @@
-from spec.models import XMLElement
+from spec.models import XMLElement, JSONObject
 from spec.utils.relative_url import get_relative_url
 import xml.sax
+import json
 
 INDENT_SIZE = 3
 DIFF_ELEMENT = 'metadiff'
@@ -160,7 +161,80 @@ class XMLAugmenter(DiffElementContentHandler):
             diff_html = self.get_pending_diff_markup()
             self.result.append(f'{html}{diff_html}{space}&lt;/{start_tag}{name}{end_tag}&gt;')
 
-def get_augmented_xml(current_url, schema, xml_string, diffs_use_divs=True):
+def get_augmented_example(current_url, schema, raw_document, diffs_use_divs=True):
+    if schema.is_json:
+        return get_augmented_example_json(current_url, schema, raw_document, diffs_use_divs)
+    else:
+        return get_augmented_example_xml(current_url, schema, raw_document, diffs_use_divs)
+
+def get_augmented_example_json(current_url, schema, raw_document, diffs_use_divs=True):
+    saw_diff = False # TODO: Implement this.
+    result = get_augmented_example_json_inner(
+        current_url,
+        json.loads(raw_document),
+        JSONObject.objects.get(schema=schema, name=JSONObject.ROOT_OBJECT_NAME),
+        indent_level=0
+    )
+    output_html = []
+    collapse_next = False
+    for indent_level, text, collapse in result:
+        if collapse_next and output_html:
+            output_html[-1] += ' ' + text
+        else:
+            output_html.append((' ' * INDENT_SIZE * indent_level) + str(text))
+        collapse_next = collapse
+    return (saw_diff, '<div class="xmlmarkup">' + '\n'.join(output_html) + '</div>')
+
+def get_augmented_example_json_inner(current_url, json_data, object_def=None, indent_level=0, add_comma=False):
+    result = []
+    if object_def is None:
+        result.append([
+            indent_level,
+            f'<span class="tag">{json.dumps(json_data)}</span>',
+            False
+        ])
+    elif isinstance(json_data, dict):
+        child_rels = {r.child_key: r for r in object_def.get_child_relationships()}
+        result.append([indent_level, '{', False])
+        keys = list(sorted(json_data.keys()))
+        for i, key in enumerate(keys):
+            result.append([
+                indent_level + 1,
+                f'<a class="tag" href="{get_relative_url(current_url, object_def.get_absolute_url())}">"{key}"</a>:',
+                True
+            ])
+            result.extend(get_augmented_example_json_inner(
+                current_url,
+                json_data[key],
+                child_rels[key].child if key in child_rels else None,
+                indent_level + 1,
+                add_comma=i != len(keys) - 1
+            ))
+        result.append([indent_level, '}', False])
+    elif isinstance(json_data, list):
+        child_object_defs = [c.child for c in object_def.get_child_relationships()]
+        result.append([indent_level, '[', False])
+        for i, child_obj in enumerate(json_data):
+            child_object_def = JSONObject.get_jsonobject_for_data(child_obj, child_object_defs)
+            result.extend(get_augmented_example_json_inner(
+                current_url,
+                child_obj,
+                child_object_def,
+                indent_level + 1,
+                add_comma=i != len(json_data) - 1
+            ))
+        result.append([indent_level, ']', False])
+    else:
+        result.append([
+            indent_level,
+            f'<a class="tag" href="{get_relative_url(current_url, object_def.get_absolute_url())}">{json.dumps(json_data)}</a>',
+            False
+        ])
+    if add_comma:
+        result[-1][1] += ','
+    return result
+
+def get_augmented_example_xml(current_url, schema, xml_string, diffs_use_divs=True):
     reader = xml.sax.make_parser()
     handler = XMLAugmenter(schema, current_url, diffs_use_divs)
     xml.sax.parseString(xml_string, handler)
