@@ -185,6 +185,17 @@ def get_augmented_example_json(current_url, schema, raw_document, diffs_use_divs
         collapse_next = collapse
     return (saw_diff, '<div class="xmlmarkup">' + '\n'.join(output_html) + '</div>')
 
+def json_key_sorter(x):
+    """
+    A sorting function (suitable for passing as the 'key' argument
+    to sorted()) that always puts the values "id" and "type" first,
+    in that order.
+
+    We use this because it helps make the docs clearer if these keys
+    are listed first within a given object.
+    """
+    return (x != 'id', x != 'type', x)
+
 def get_augmented_example_json_inner(current_url, json_data, object_def=None, indent_level=0, add_comma=False):
     result = []
     if object_def is None:
@@ -196,7 +207,7 @@ def get_augmented_example_json_inner(current_url, json_data, object_def=None, in
     elif isinstance(json_data, dict):
         child_rels = {r.child_key: r for r in object_def.get_child_relationships()}
         result.append([indent_level, '{', False])
-        keys = list(sorted(json_data.keys()))
+        keys = list(sorted(json_data.keys(), key=json_key_sorter))
         for i, key in enumerate(keys):
             result.append([
                 indent_level + 1,
