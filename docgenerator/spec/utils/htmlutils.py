@@ -240,11 +240,10 @@ def get_augmented_example_json_inner(current_url, json_data, object_def=None, in
             ))
         result.append([indent_level, ']', False])
     else:
-        result.append([
-            indent_level,
-            f'<a class="tag" href="{get_relative_url(current_url, object_def.get_absolute_url())}">{json.dumps(json_data)}</a>',
-            False
-        ])
+        value = json.dumps(json_data)
+        if object_def.has_docs_page():
+            value = f'<a class="tag" href="{get_relative_url(current_url, object_def.get_absolute_url())}">{value}</a>'
+        result.append([indent_level, value, False])
     if add_comma:
         result[-1][1] += ','
     return result
