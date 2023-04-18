@@ -34,6 +34,8 @@ class SiteGenerator:
         for schema in XMLSchema.objects.all():
             self.generate_url(schema.reference_url())
             self.generate_url(schema.data_types_url())
+            if schema.is_json:
+                self.generate_url(schema.json_objects_url())
             for data_type in DataType.objects.filter(schema=schema):
                 self.generate_url(data_type.get_absolute_url())
 
@@ -45,6 +47,10 @@ class SiteGenerator:
             self.generate_url(schema.examples_url())
             for example in ExampleDocument.objects.filter(schema=schema):
                 self.generate_url(example.get_absolute_url())
+
+        for obj in JSONObject.objects.all():
+            if obj.has_docs_page():
+                self.generate_url(obj.get_absolute_url())
 
         for spc in StaticPageCollection.objects.all():
             self.generate_url(spc.url)
