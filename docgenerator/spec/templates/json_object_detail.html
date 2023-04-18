@@ -14,6 +14,10 @@
 
 <p><b>Type:</b> {{ object.pretty_object_type }}</p>
 
+{% if object.description %}
+{{ object.description|safe }}
+{% endif %}
+
 {% if child_relationships %}
 <h2>Keys:</h2>
 
@@ -29,7 +33,7 @@
 
 {% for rel in child_relationships %}
 <tr>
-    <td>"{{ rel.child_key }}"</td>
+    <td><b>"{{ rel.child_key }}"</b></td>
     <td>
         {% if rel.child.is_array %}
             An array of
@@ -53,7 +57,7 @@
 {% if examples %}
 <h2 id="examples">Examples</h2>
 
-<p>This element is used in the following examples:</p>
+<p>This object is used in the following examples:</p>
 <p>
     {% for example in examples %}<nobr><a href="{% relative_url_string example.example.get_absolute_url %}">{{ example.example.name }}</a></nobr>{% if not forloop.last %}, {% endif %}{% endfor %}
 </p>
