@@ -78,7 +78,7 @@ def json_object_detail(request, schema_slug, slug):
         schema__slug=schema_slug,
         slug=slug
     )
-    if json_object.object_type in {JSONObject.OBJECT_TYPE_ARRAY, JSONObject.OBJECT_TYPE_LITERAL_STRING}:
+    if not json_object.has_docs_page():
         raise http.Http404()
     return render(request, 'json_object_detail.html', {
         'object': json_object,

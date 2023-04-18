@@ -413,6 +413,9 @@ class JSONObject(models.Model):
     def get_absolute_url(self):
         return reverse('json_object_detail', args=(self.schema.slug, self.slug))
 
+    def has_docs_page(self):
+        return self.object_type not in {JSONObject.OBJECT_TYPE_ARRAY, JSONObject.OBJECT_TYPE_LITERAL_STRING}
+
     def is_array(self):
         return self.object_type == JSONObject.OBJECT_TYPE_ARRAY
 
