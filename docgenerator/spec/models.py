@@ -416,6 +416,9 @@ class JSONObject(models.Model):
     def is_array(self):
         return self.object_type == JSONObject.OBJECT_TYPE_ARRAY
 
+    def is_literal_string(self):
+        return self.object_type == JSONObject.OBJECT_TYPE_LITERAL_STRING
+
     def get_child_relationships(self):
         return list(JSONObjectRelationship.objects.filter(parent=self).order_by('child_key'))
 

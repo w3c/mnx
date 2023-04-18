@@ -36,6 +36,8 @@
             {% for childrel in rel.child.get_child_relationships %}
             <a href="{% relative_url_string childrel.child.get_absolute_url %}">{{ childrel.child.name }} objects</a>{% if not forloop.last %}, {% endif %}
             {% endfor %}
+        {% elif rel.child.is_literal_string %}
+            The string <code>"{{ rel.child.description }}"</code>
         {% else %}
         <a href="{% relative_url_string rel.child.get_absolute_url %}">{{ rel.child.name }} object</a>
         {% endif %}
