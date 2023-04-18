@@ -204,6 +204,10 @@ def get_augmented_example_json_inner(current_url, json_data, object_def=None, in
             f'<span class="tag">{json.dumps(json_data)}</span>',
             False
         ])
+    elif isinstance(json_data, (dict, list)) and not json_data:
+        # Special case: For empty dicts or empty lists, use "{}" and "[]"
+        # rather than splitting the opening/closing symbols over two lines.
+        result.append([indent_level, json.dumps(json_data), False])
     elif isinstance(json_data, dict):
         child_rels = {r.child_key: r for r in object_def.get_child_relationships()}
         result.append([indent_level, '{', False])
