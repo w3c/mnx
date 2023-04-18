@@ -476,6 +476,7 @@ class JSONObjectRelationship(models.Model):
     child_key = models.CharField(max_length=80)
     child = models.ForeignKey(JSONObject, on_delete=models.CASCADE, related_name='child_rel')
     is_required = models.BooleanField(default=False)
+    description = models.TextField(blank=True)
 
     class Meta:
         db_table = 'json_object_relationships'
