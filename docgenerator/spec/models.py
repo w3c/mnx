@@ -395,6 +395,10 @@ class JSONObject(models.Model):
     schema = models.ForeignKey(XMLSchema, on_delete=models.CASCADE, default=1)
     object_type = models.SmallIntegerField(choices=OBJECT_TYPE_CHOICES)
 
+    # For OBJECT_TYPE_LITERAL_STRING, this contains the string.
+    # For other object_types, this is a prose description displayed in the docs.
+    description = models.TextField(blank=True)
+
     class Meta:
         db_table = 'json_objects'
         verbose_name = 'JSON object'
