@@ -47,7 +47,7 @@
         {% endif %}
     </td>
     <td>{{ rel.is_required|yesno|title }}</td>
-    <td>{{ rel.description }}</td>
+    <td>{{ rel.description|safe }}</td>
 </tr>
 {% endfor %}
 
