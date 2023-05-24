@@ -11,7 +11,9 @@
 
 <h1>Objects used in {{ schema.name }}</h1>
 
+{% comment %}
 <p><a href="{% relative_url_string schema.element_tree_url %}">Tree view</a> | <b>Alphabetical list</b></p>
+{% endcomment %}
 
 <ul>
 {% for object in objects %}
