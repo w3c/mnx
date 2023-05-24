@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The tuplet object | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../">Reference</a>
+    <ul>
+    <li><a href="../">Objects</a></li>
+    <li><a href="../../examples/">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Objects</a> &gt;
+    tuplet
+</p>
+
+<h1>The tuplet object</h1>
+
+<p><b>Type:</b> Dictionary</p>
+
+
+<p>The tuplet object organizes a set of musical events that form a distinct and contiguous run within a <a href="../../../infrastructure/sequence-content/">sequence</a>, and which are subject to a common <a href="../../../infrastructure/sequence-content/">time modification ratio</a> expressed as the quotient of two rational numbers. A tuplet behaves much like a sequence with respect to its contents.</p>
+
+<p>The contents of the tuplet are placed into a temporal sequence by performing the procedure <a href="../../../infrastructure/sequence-content/">sequencing the content</a> with a starting position determined by the parent context, and a time modification ratio equal to the tuplet’s outer value divided by its inner value. Following this procedure, the value of the <i>sequence cursor</i> MUST equal the value of inner, or the contents are considered to be in error.</p>
+
+
+
+<h2>Keys:</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>"bracket"</b></nobr></td>
+    <td>
+        
+        <a href="../yes-no-auto/">yes, no or auto object</a>
+        
+    </td>
+    <td>No</td>
+    <td>Controls the display of a bracket in conjunction with the tuplet. This is disregarded if "show-number" has a value of "none".<br><br>* "auto" (default) — a bracket is shown for the tuplet if and only if the notes are unbeamed.<br><br>* "yes" — always display a bracket.<br><br>* "no" — never display a bracket.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"content"</b></nobr></td>
+    <td>
+        
+            An array of
+            
+            <a href="../event/">event objects</a>
+            
+        
+    </td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+<tr>
+    <td><nobr><b>"inner"</b></nobr></td>
+    <td>
+        
+        <a href="../note-value-quantity/">note value quantity object</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The duration of the enclosed content, as notated.<br><br>For example, a quarter-note triplet would have inner="3/4". Its inner duration is three quarter notes (3 * 1/4 = 3/4).</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"orient"</b></nobr></td>
+    <td>
+        
+        <a href="../orientation/">orientation object</a>
+        
+    </td>
+    <td>No</td>
+    <td>A specific orientation for this tuplet. If not provided, the orientation is inherited from any ancestor element that specified it. If no ancestor did so, the orientation is determined automatically according to the implementation’s rendering rules.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"outer"</b></nobr></td>
+    <td>
+        
+        <a href="../note-value-quantity/">note value quantity object</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The duration of this tuplet with respect to its containing element. This is how much time the tuplet occupies in the measure (or parent tuplet, in case of nested tuplets) in which it is placed.<br><br>For example, a quarter-note triplet would have outer="1/2".</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"show-number"</b></nobr></td>
+    <td>
+        
+        <a href="../tuplet-display-setting/">tuplet display setting object</a>
+        
+    </td>
+    <td>No</td>
+    <td>Controls the display of the quantity of inner and outer note value units for the tuplet.<br><br>* "none" — do not show any tuplet number.<br><br>* "inner" (default) — display only the numerator of the tuplet's "inner" attribute.<br><br>* "both" — display both the numerators of the tuplet's "inner" and "outer" attributes.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"show-value"</b></nobr></td>
+    <td>
+        
+        <a href="../tuplet-display-setting/">tuplet display setting object</a>
+        
+    </td>
+    <td>No</td>
+    <td>Controls the display of the note value units used inside and outside the tuplet.<br><br>* "none" (default) — do not show any tuplet units.<br><br>* "inner" — display only the note value unit of the tuplet’s "inner" attribute.<br><br>* "both" — display both the note value units of the tuplet's "inner" and "outer" attributes.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"staff"</b></nobr></td>
+    <td>
+        
+        <a href="../staff-number/">staff number object</a>
+        
+    </td>
+    <td>No</td>
+    <td>A specific staff index for this tuplet. If not provided, the value is inherited from any ancestor element that specified it. If no ancestor did so, the value is determined automatically according to the implementation’s rendering rules.<br><br>The primary purpose of this attribute is to override a default staff assignment at the sequence level — as in cross-staff keyboard notation.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"type"</b></nobr></td>
+    <td>
+        
+            The string <code>"tuplet"</code>
+        
+    </td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+
+</table>
+
+
+
+<h2 id="examples">Examples</h2>
+
+<p>This object is used in the following examples:</p>
+<p>
+    <nobr><a href="../../examples/tuplets/">Tuplets</a></nobr>
+</p>
+
+
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>

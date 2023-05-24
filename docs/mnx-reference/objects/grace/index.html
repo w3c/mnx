@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The grace object | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../">Reference</a>
+    <ul>
+    <li><a href="../">Objects</a></li>
+    <li><a href="../../examples/">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Objects</a> &gt;
+    grace
+</p>
+
+<h1>The grace object</h1>
+
+<p><b>Type:</b> Dictionary</p>
+
+
+<p>A grace object encodes grace notes. Its "content" contains the note data.</p>
+
+<p>Within "content", each inner event's "value" encodes the visual rhythmic appearance of the grace note — e.g., "/8" for an eighth note.</p>
+
+<p>Any <a href="../../../infrastructure/direction-content/">direction content</a> that lacks a <code>location</code> attribute and lives within a grace object is considered to be in alignment with the following event, even though grace notes in the same run technically share the same <a href="../../data-types/measure-location/">measure location</a>.
+
+
+
+<h2>Keys:</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>"class"</b></nobr></td>
+    <td>
+        
+        <a href="../style-class/">style class object</a>
+        
+    </td>
+    <td>No</td>
+    <td>An optional style class to use for this object and all child objects.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"color"</b></nobr></td>
+    <td>
+        
+        <a href="../color/">color object</a>
+        
+    </td>
+    <td>No</td>
+    <td>An optional color to be used when rendering this object and all child objects.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"content"</b></nobr></td>
+    <td>
+        
+            An array of
+            
+            <a href="../event/">event objects</a>
+            
+        
+    </td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+<tr>
+    <td><nobr><b>"grace-type"</b></nobr></td>
+    <td>
+        
+        <a href="../grace-type/">grace type object</a>
+        
+    </td>
+    <td>No</td>
+    <td>The kind of grace notes to use. The default value is "steal-previous".</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"slash"</b></nobr></td>
+    <td>
+        
+        <a href="../boolean/">boolean object</a>
+        
+    </td>
+    <td>No</td>
+    <td>Whether grace notes are notated with a slash.<br><br>The default value (true) specifies a slash, indicating that the grace notes are displayed with a diagonal stroke and are to be performed quickly and not in their notated rhythm. Otherwise, they are performed with the notated note values according to the performance characteristics given by "grace-type".</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"type"</b></nobr></td>
+    <td>
+        
+            The string <code>"grace"</code>
+        
+    </td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+
+</table>
+
+
+
+<h2 id="examples">Examples</h2>
+
+<p>This object is used in the following examples:</p>
+<p>
+    <nobr><a href="../../examples/beams-inner-grace-notes/">Beams (with inner grace notes)</a></nobr>, <nobr><a href="../../examples/grace-note/">Grace note</a></nobr>, <nobr><a href="../../examples/grace-notes-beamed/">Grace notes (beamed)</a></nobr>
+</p>
+
+
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>

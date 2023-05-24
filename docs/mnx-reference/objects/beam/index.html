@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The beam object | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../">Reference</a>
+    <ul>
+    <li><a href="../">Objects</a></li>
+    <li><a href="../../examples/">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Objects</a> &gt;
+    beam
+</p>
+
+<h1>The beam object</h1>
+
+<p><b>Type:</b> Dictionary</p>
+
+
+<p>Describes a single beam.</p>
+
+<p>For music that uses secondary beams (i.e., sixteenth notes or smaller), the secondary beams are encoded explicitly, within <code>"inner"</code>.</p>
+
+
+
+<h2>Keys:</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>"events"</b></nobr></td>
+    <td>
+        
+            An array of
+            
+            <a href="../id/">id objects</a>
+            
+        
+    </td>
+    <td>Yes</td>
+    <td>IDs of the events that comprise this beam — in order by their position in the beam.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"hooks"</b></nobr></td>
+    <td>
+        
+            An array of
+            
+            <a href="../beam-hook/">beam hook objects</a>
+            
+        
+    </td>
+    <td>No</td>
+    <td></td>
+</tr>
+
+<tr>
+    <td><nobr><b>"inner"</b></nobr></td>
+    <td>
+        
+            An array of
+            
+            <a href="./">beam objects</a>
+            
+        
+    </td>
+    <td>No</td>
+    <td>Secondary beams within this beam.</td>
+</tr>
+
+
+</table>
+
+
+
+<h2 id="examples">Examples</h2>
+
+<p>This object is used in the following examples:</p>
+<p>
+    <nobr><a href="../../examples/beams/">Beams</a></nobr>, <nobr><a href="../../examples/beams-across-barlines/">Beams (across barlines)</a></nobr>, <nobr><a href="../../examples/beam-hooks/">Beams (hooks)</a></nobr>, <nobr><a href="../../examples/beams-secondary-beam-breaks/">Beams (secondary beam breaks)</a></nobr>, <nobr><a href="../../examples/beams-inner-grace-notes/">Beams (with inner grace notes)</a></nobr>, <nobr><a href="../../examples/grace-notes-beamed/">Grace notes (beamed)</a></nobr>, <nobr><a href="../../examples/parts/">Parts</a></nobr>, <nobr><a href="../../examples/tuplets/">Tuplets</a></nobr>
+</p>
+
+
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>

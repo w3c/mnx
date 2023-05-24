@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The stave object | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../">Reference</a>
+    <ul>
+    <li><a href="../">Objects</a></li>
+    <li><a href="../../examples/">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Objects</a> &gt;
+    stave
+</p>
+
+<h1>The stave object</h1>
+
+<p><b>Type:</b> Dictionary</p>
+
+
+<p>The stave object describes the visual display of a single staff within a layout.</p>
+
+<p>Generally this corresponds to a single part (from the top-level "parts" array), but MNX supports encoding multiple parts in the same staff — as might be used, for example, when combining soprano and alto vocal parts into a single stave.</p>
+
+
+
+<h2>Keys:</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>"label"</b></nobr></td>
+    <td>
+        
+        <a href="../stave-label/">stave label object</a>
+        
+    </td>
+    <td>No</td>
+    <td>An optional name for this staff. If provided, this should be rendered to the left of the staff.<br><br>Generally we recommend using "labelref" instead of "label", to avoid duplication of data within an MNX document.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"labelref"</b></nobr></td>
+    <td>
+        
+        <a href="../stave-labelref/">stave labelref object</a>
+        
+    </td>
+    <td>No</td>
+    <td>If provided, this specifies that the corresponding part's name (or short-name) should be rendered to the left of the staff.<br><br>By using this instead of the "label" attribute, you can avoid needing to duplicate a part's name in an MNX document.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"sources"</b></nobr></td>
+    <td>
+        
+            An array of
+            
+            <a href="../stave-source/">stave source objects</a>
+            
+        
+    </td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+<tr>
+    <td><nobr><b>"symbol"</b></nobr></td>
+    <td>
+        
+        <a href="../stave-symbol/">stave symbol object</a>
+        
+    </td>
+    <td>No</td>
+    <td>The symbol to use along the left vertical edge of this staff. If omitted, the default value is "none".<br><br>Note that parent objects might also define their own "symbol" attributes.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"type"</b></nobr></td>
+    <td>
+        
+            The string <code>"staff"</code>
+        
+    </td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+
+</table>
+
+
+
+<h2 id="examples">Examples</h2>
+
+<p>This object is used in the following examples:</p>
+<p>
+    <nobr><a href="../../examples/multimeasure-rests/">Multimeasure rests</a></nobr>, <nobr><a href="../../examples/organ-layout/">Organ layout</a></nobr>
+</p>
+
+
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>

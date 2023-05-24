@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The multimeasure rest object | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../">Reference</a>
+    <ul>
+    <li><a href="../">Objects</a></li>
+    <li><a href="../../examples/">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Objects</a> &gt;
+    multimeasure rest
+</p>
+
+<h1>The multimeasure rest object</h1>
+
+<p><b>Type:</b> Dictionary</p>
+
+
+<p>Encodes a single multimeasure rest. The required attributes "start" and "duration" specify the multimeasure rest's location and length, respectively.</p>
+
+<p>When rendering MNX into graphical notation, applications are expected to use the value of "duration" as the number above the rest. If the optional "label" attribute is provided, that must be used instead.</p>
+
+
+
+<h2>Keys:</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>"duration"</b></nobr></td>
+    <td>
+        
+        <a href="../measure-count/">measure count object</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The number of measures that this multimeasure rest spans. Generally this corresponds to the number graphically rendered in the score.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"label"</b></nobr></td>
+    <td>
+        
+        <a href="../string/">string object</a>
+        
+    </td>
+    <td>No</td>
+    <td>The label to use when rendering this multimeasure rest. This attribute is provided as a way to override the default rendering.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"start"</b></nobr></td>
+    <td>
+        
+        <a href="../measure-number/">measure number object</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The measure number in which this multimeasure rest begins.</td>
+</tr>
+
+
+</table>
+
+
+
+<h2 id="examples">Examples</h2>
+
+<p>This object is used in the following examples:</p>
+<p>
+    <nobr><a href="../../examples/multimeasure-rests/">Multimeasure rests</a></nobr>
+</p>
+
+
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>

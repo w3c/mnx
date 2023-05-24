@@ -32,14 +32,12 @@
     <nav class="sidenav">
         <ul>
 <li><a href="../../../">Home</a></li>
-<li><a href="../../">Reference</a>
+<li><a href="../../objects/">Reference</a>
     <ul>
-    <li><a href="../../element-tree/">Elements</a></li>
-    <li><a href="../../data-types/">Data types</a></li>
+    <li><a href="../../objects/">Objects</a></li>
     <li><a href="../">Example documents</a></li>
     </ul>
 </li>
-<li><a href="../../../concepts/">Concepts in MNX</a></li>
 <li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
 </ul>
     </nav>
@@ -61,79 +59,192 @@
 
 
 
-<p>Concepts: <a href="../../../concepts/grace-notes/">Grace notes</a></p>
 
 
 
-
-<div class="xmlmarkup"><span class=" nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
-   &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
-      &lt;<a class="tag" href="../../elements/measure-global/">measure-global</a>&gt;
-         &lt;<a class="tag" href="../../elements/directions-global/">directions-global</a>&gt;
-            &lt;<a class="tag" href="../../elements/time/">time</a> <span class="attrname">signature</span>="<a href="../../data-types/time-signature/" class="attrval">4/4</a>"/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions-global</a>&gt;
-      &lt;/<a class="tag" href="../../elements/measure-global/">measure-global</a>&gt;
-   &lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
-   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">name</span>="<a href="../../data-types/string/" class="attrval">Music</a>"&gt;
-      &lt;<a class="tag" href="../../elements/measure/">measure</a>&gt;
-         &lt;<a class="tag" href="../../elements/directions-part/">directions-part</a>&gt;
-            &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attrname">line</span>="<a href="../../data-types/staff-line/" class="attrval">2</a>" <span class="attrname">sign</span>="<a href="../../data-types/clef-sign/" class="attrval">G</a>"/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-part/">directions-part</a>&gt;
-         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-</span><span class="diff">            &lt;<a class="tag" href="../../elements/beams/">beams</a>&gt;
-               &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attrname">events</span>="<a href="../../data-types/event-id-list/" class="attrval">grace1 grace2</a>"/&gt;
-               &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attrname">events</span>="<a href="../../data-types/event-id-list/" class="attrval">grace3 grace4 grace5</a>"/&gt;
-               &lt;<a class="tag" href="../../elements/beam/">beam</a> <span class="attrname">events</span>="<a href="../../data-types/event-id-list/" class="attrval">grace6 grace7 grace8 grace9</a>"/&gt;
-            &lt;/<a class="tag" href="../../elements/beams/">beams</a>&gt;
-</span><span class="nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
-               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">C5</a>"/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-</span><span class="diff">            &lt;<a class="tag" href="../../elements/grace/">grace</a>&gt;
-               &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/8</a>" <span class="attrname">id</span>="<a href="../../data-types/event-id/" class="attrval">grace1</a>"&gt;
-                  &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">B4</a>"/&gt;
-               &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-               &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/8</a>" <span class="attrname">id</span>="<a href="../../data-types/event-id/" class="attrval">grace2</a>"&gt;
-                  &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">C5</a>"/&gt;
-               &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-            &lt;/<a class="tag" href="../../elements/grace/">grace</a>&gt;
-</span><span class="nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
-               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">D5</a>"/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-</span><span class="diff">            &lt;<a class="tag" href="../../elements/grace/">grace</a>&gt;
-               &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/8</a>" <span class="attrname">id</span>="<a href="../../data-types/event-id/" class="attrval">grace3</a>"&gt;
-                  &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">B4</a>"/&gt;
-               &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-               &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/8</a>" <span class="attrname">id</span>="<a href="../../data-types/event-id/" class="attrval">grace4</a>"&gt;
-                  &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">C5</a>"/&gt;
-               &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-               &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/8</a>" <span class="attrname">id</span>="<a href="../../data-types/event-id/" class="attrval">grace5</a>"&gt;
-                  &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">D5</a>"/&gt;
-               &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-            &lt;/<a class="tag" href="../../elements/grace/">grace</a>&gt;
-</span><span class="nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
-               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">E5</a>"/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-</span><span class="diff">            &lt;<a class="tag" href="../../elements/grace/">grace</a>&gt;
-               &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/8</a>" <span class="attrname">id</span>="<a href="../../data-types/event-id/" class="attrval">grace6</a>"&gt;
-                  &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">B4</a>"/&gt;
-               &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-               &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/8</a>" <span class="attrname">id</span>="<a href="../../data-types/event-id/" class="attrval">grace7</a>"&gt;
-                  &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">C5</a>"/&gt;
-               &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-               &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/8</a>" <span class="attrname">id</span>="<a href="../../data-types/event-id/" class="attrval">grace8</a>"&gt;
-                  &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">D5</a>"/&gt;
-               &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-               &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/8</a>" <span class="attrname">id</span>="<a href="../../data-types/event-id/" class="attrval">grace9</a>"&gt;
-                  &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">E5</a>"/&gt;
-               &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-            &lt;/<a class="tag" href="../../elements/grace/">grace</a>&gt;
-</span><span class="nodiff">            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
-               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">F5</a>"/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-      &lt;/<a class="tag" href="../../elements/measure/">measure</a>&gt;
-   &lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
-&lt;/<a class="tag" href="../../elements/mnx/">mnx</a>&gt;</span></div>
+<div class="xmlmarkup">{
+   <a class="tag" href="../../objects/root/">"global"</a>: {
+      <a class="tag" href="../../objects/global/">"measures"</a>: [
+         {
+            <a class="tag" href="../../objects/measure-global/">"time"</a>: {
+               <a class="tag" href="../../objects/time/">"signature"</a>: <a class="tag" href="../../objects/signature/">"4/4"</a>
+            }
+         }
+      ]
+   },
+   <a class="tag" href="../../objects/root/">"parts"</a>: [
+      {
+         <a class="tag" href="../../objects/part/">"measures"</a>: [
+            {
+               <a class="tag" href="../../objects/part-measure/">"beams"</a>: [
+                  {
+                     <a class="tag" href="../../objects/beam/">"events"</a>: [
+                        <a class="tag" href="../../objects/id/">"grace1"</a>,
+                        <a class="tag" href="../../objects/id/">"grace2"</a>
+                     ]
+                  },
+                  {
+                     <a class="tag" href="../../objects/beam/">"events"</a>: [
+                        <a class="tag" href="../../objects/id/">"grace3"</a>,
+                        <a class="tag" href="../../objects/id/">"grace4"</a>,
+                        <a class="tag" href="../../objects/id/">"grace5"</a>
+                     ]
+                  },
+                  {
+                     <a class="tag" href="../../objects/beam/">"events"</a>: [
+                        <a class="tag" href="../../objects/id/">"grace6"</a>,
+                        <a class="tag" href="../../objects/id/">"grace7"</a>,
+                        <a class="tag" href="../../objects/id/">"grace8"</a>,
+                        <a class="tag" href="../../objects/id/">"grace9"</a>
+                     ]
+                  }
+               ],
+               <a class="tag" href="../../objects/part-measure/">"content"</a>: [
+                  {
+                     <a class="tag" href="../../objects/clef/">"type"</a>: "clef",
+                     <a class="tag" href="../../objects/clef/">"line"</a>: <a class="tag" href="../../objects/clef-line/">2</a>,
+                     <a class="tag" href="../../objects/clef/">"sign"</a>: <a class="tag" href="../../objects/clef-sign/">"G"</a>
+                  },
+                  {
+                     <a class="tag" href="../../objects/sequence/">"type"</a>: "sequence",
+                     <a class="tag" href="../../objects/sequence/">"content"</a>: [
+                        {
+                           <a class="tag" href="../../objects/event/">"type"</a>: "event",
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"C5"</a>
+                              }
+                           ],
+                           <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/4"</a>
+                        },
+                        {
+                           <a class="tag" href="../../objects/grace/">"type"</a>: "grace",
+                           <a class="tag" href="../../objects/grace/">"content"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"grace1"</a>,
+                                 <a class="tag" href="../../objects/event/">"notes"</a>: [
+                                    {
+                                       <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"B4"</a>
+                                    }
+                                 ],
+                                 <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/8"</a>
+                              },
+                              {
+                                 <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"grace2"</a>,
+                                 <a class="tag" href="../../objects/event/">"notes"</a>: [
+                                    {
+                                       <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"C5"</a>
+                                    }
+                                 ],
+                                 <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/8"</a>
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"D5"</a>
+                              }
+                           ],
+                           <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/4"</a>
+                        },
+                        {
+                           <a class="tag" href="../../objects/grace/">"type"</a>: "grace",
+                           <a class="tag" href="../../objects/grace/">"content"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"grace3"</a>,
+                                 <a class="tag" href="../../objects/event/">"notes"</a>: [
+                                    {
+                                       <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"B4"</a>
+                                    }
+                                 ],
+                                 <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/8"</a>
+                              },
+                              {
+                                 <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"grace4"</a>,
+                                 <a class="tag" href="../../objects/event/">"notes"</a>: [
+                                    {
+                                       <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"C5"</a>
+                                    }
+                                 ],
+                                 <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/8"</a>
+                              },
+                              {
+                                 <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"grace5"</a>,
+                                 <a class="tag" href="../../objects/event/">"notes"</a>: [
+                                    {
+                                       <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"D5"</a>
+                                    }
+                                 ],
+                                 <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/8"</a>
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"E5"</a>
+                              }
+                           ],
+                           <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/4"</a>
+                        },
+                        {
+                           <a class="tag" href="../../objects/grace/">"type"</a>: "grace",
+                           <a class="tag" href="../../objects/grace/">"content"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"grace6"</a>,
+                                 <a class="tag" href="../../objects/event/">"notes"</a>: [
+                                    {
+                                       <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"B4"</a>
+                                    }
+                                 ],
+                                 <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/8"</a>
+                              },
+                              {
+                                 <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"grace7"</a>,
+                                 <a class="tag" href="../../objects/event/">"notes"</a>: [
+                                    {
+                                       <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"C5"</a>
+                                    }
+                                 ],
+                                 <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/8"</a>
+                              },
+                              {
+                                 <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"grace8"</a>,
+                                 <a class="tag" href="../../objects/event/">"notes"</a>: [
+                                    {
+                                       <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"D5"</a>
+                                    }
+                                 ],
+                                 <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/8"</a>
+                              },
+                              {
+                                 <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"grace9"</a>,
+                                 <a class="tag" href="../../objects/event/">"notes"</a>: [
+                                    {
+                                       <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"E5"</a>
+                                    }
+                                 ],
+                                 <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/8"</a>
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"F5"</a>
+                              }
+                           ],
+                           <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/4"</a>
+                        }
+                     ]
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}</div>
 
     </main>
 </div>

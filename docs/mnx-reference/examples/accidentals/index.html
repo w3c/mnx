@@ -32,14 +32,12 @@
     <nav class="sidenav">
         <ul>
 <li><a href="../../../">Home</a></li>
-<li><a href="../../">Reference</a>
+<li><a href="../../objects/">Reference</a>
     <ul>
-    <li><a href="../../element-tree/">Elements</a></li>
-    <li><a href="../../data-types/">Data types</a></li>
+    <li><a href="../../objects/">Objects</a></li>
     <li><a href="../">Example documents</a></li>
     </ul>
 </li>
-<li><a href="../../../concepts/">Concepts in MNX</a></li>
 <li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
 </ul>
     </nav>
@@ -66,59 +64,135 @@
 <p>See also: <a href="../../../comparisons/musicxml/#accidentals">This same example in MusicXML</a> </p>
 
 
-<div class="xmlmarkup"><span class=" nodiff">&lt;<a class="tag" href="../../elements/mnx/">mnx</a>&gt;
-   &lt;<a class="tag" href="../../elements/global/">global</a>&gt;
-      &lt;<a class="tag" href="../../elements/measure-global/">measure-global</a>&gt;
-         &lt;<a class="tag" href="../../elements/directions-global/">directions-global</a>&gt;
-            &lt;<a class="tag" href="../../elements/time/">time</a> <span class="attrname">signature</span>="<a href="../../data-types/time-signature/" class="attrval">4/4</a>"/&gt;
-            &lt;<a class="tag" href="../../elements/key/">key</a> <span class="attrname">fifths</span>="<a href="../../data-types/integer-signed/" class="attrval">-2</a>"/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-global/">directions-global</a>&gt;
-      &lt;/<a class="tag" href="../../elements/measure-global/">measure-global</a>&gt;
-      &lt;<a class="tag" href="../../elements/measure-global/">measure-global</a>/&gt;
-      &lt;<a class="tag" href="../../elements/measure-global/">measure-global</a>/&gt;
-   &lt;/<a class="tag" href="../../elements/global/">global</a>&gt;
-   &lt;<a class="tag" href="../../elements/part/">part</a> <span class="attrname">name</span>="<a href="../../data-types/string/" class="attrval">Music</a>"&gt;
-      &lt;<a class="tag" href="../../elements/measure/">measure</a>&gt;
-         &lt;<a class="tag" href="../../elements/directions-part/">directions-part</a>&gt;
-            &lt;<a class="tag" href="../../elements/clef/">clef</a> <span class="attrname">sign</span>="<a href="../../data-types/clef-sign/" class="attrval">G</a>" <span class="attrname">line</span>="<a href="../../data-types/staff-line/" class="attrval">2</a>"/&gt;
-         &lt;/<a class="tag" href="../../elements/directions-part/">directions-part</a>&gt;
-         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
-               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">F4</a>"/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
-               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">G4</a>"/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
-</span><span class="diff">               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">G#4</a>" <span class="attrname">accidental</span>="<a href="../../data-types/accidental/" class="attrval">sharp</a>"/&gt;
-</span><span class="nodiff">            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
-               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">A4</a>"/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-      &lt;/<a class="tag" href="../../elements/measure/">measure</a>&gt;
-      &lt;<a class="tag" href="../../elements/measure/">measure</a>&gt;
-         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/2</a>"&gt;
-               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">Bb4</a>"/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
-</span><span class="diff">               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">Db5</a>" <span class="attrname">accidental</span>="<a href="../../data-types/accidental/" class="attrval">flat</a>"/&gt;
-</span><span class="nodiff">            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/4</a>"&gt;
-               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">Db5</a>"/&gt;
-            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-      &lt;/<a class="tag" href="../../elements/measure/">measure</a>&gt;
-      &lt;<a class="tag" href="../../elements/measure/">measure</a>&gt;
-         &lt;<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-            &lt;<a class="tag" href="../../elements/event/">event</a> <span class="attrname">value</span>="<a href="../../data-types/note-value/" class="attrval">/1</a>"&gt;
-</span><span class="diff">               &lt;<a class="tag" href="../../elements/note/">note</a> <span class="attrname">pitch</span>="<a href="../../data-types/chromatic-pitch/" class="attrval">D5</a>" <span class="attrname">accidental</span>="<a href="../../data-types/accidental/" class="attrval">natural</a>"/&gt;
-</span><span class="nodiff">            &lt;/<a class="tag" href="../../elements/event/">event</a>&gt;
-         &lt;/<a class="tag" href="../../elements/sequence/">sequence</a>&gt;
-      &lt;/<a class="tag" href="../../elements/measure/">measure</a>&gt;
-   &lt;/<a class="tag" href="../../elements/part/">part</a>&gt;
-&lt;/<a class="tag" href="../../elements/mnx/">mnx</a>&gt;</span></div>
+<div class="xmlmarkup">{
+   <a class="tag" href="../../objects/root/">"global"</a>: {
+      <a class="tag" href="../../objects/global/">"measures"</a>: [
+         {
+            <a class="tag" href="../../objects/measure-global/">"key"</a>: {
+               <a class="tag" href="../../objects/key/">"fifths"</a>: <a class="tag" href="../../objects/fifths/">-2</a>
+            },
+            <a class="tag" href="../../objects/measure-global/">"time"</a>: {
+               <a class="tag" href="../../objects/time/">"signature"</a>: <a class="tag" href="../../objects/signature/">"4/4"</a>
+            }
+         },
+         {},
+         {}
+      ]
+   },
+   <a class="tag" href="../../objects/root/">"parts"</a>: [
+      {
+         <a class="tag" href="../../objects/part/">"measures"</a>: [
+            {
+               <a class="tag" href="../../objects/part-measure/">"content"</a>: [
+                  {
+                     <a class="tag" href="../../objects/clef/">"type"</a>: "clef",
+                     <a class="tag" href="../../objects/clef/">"line"</a>: <a class="tag" href="../../objects/clef-line/">2</a>,
+                     <a class="tag" href="../../objects/clef/">"sign"</a>: <a class="tag" href="../../objects/clef-sign/">"G"</a>
+                  },
+                  {
+                     <a class="tag" href="../../objects/sequence/">"type"</a>: "sequence",
+                     <a class="tag" href="../../objects/sequence/">"content"</a>: [
+                        {
+                           <a class="tag" href="../../objects/event/">"type"</a>: "event",
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"F4"</a>
+                              }
+                           ],
+                           <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/4"</a>
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"type"</a>: "event",
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"G4"</a>
+                              }
+                           ],
+                           <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/4"</a>
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"type"</a>: "event",
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"accidental"</a>: <a class="tag" href="../../objects/accidental/">"sharp"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"G#4"</a>
+                              }
+                           ],
+                           <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/4"</a>
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"type"</a>: "event",
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"A4"</a>
+                              }
+                           ],
+                           <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/4"</a>
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               <a class="tag" href="../../objects/part-measure/">"content"</a>: [
+                  {
+                     <a class="tag" href="../../objects/sequence/">"type"</a>: "sequence",
+                     <a class="tag" href="../../objects/sequence/">"content"</a>: [
+                        {
+                           <a class="tag" href="../../objects/event/">"type"</a>: "event",
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"Bb4"</a>
+                              }
+                           ],
+                           <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/2"</a>
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"type"</a>: "event",
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"accidental"</a>: <a class="tag" href="../../objects/accidental/">"flat"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"Db5"</a>
+                              }
+                           ],
+                           <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/4"</a>
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"type"</a>: "event",
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"Db5"</a>
+                              }
+                           ],
+                           <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/4"</a>
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               <a class="tag" href="../../objects/part-measure/">"content"</a>: [
+                  {
+                     <a class="tag" href="../../objects/sequence/">"type"</a>: "sequence",
+                     <a class="tag" href="../../objects/sequence/">"content"</a>: [
+                        {
+                           <a class="tag" href="../../objects/event/">"type"</a>: "event",
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"accidental"</a>: <a class="tag" href="../../objects/accidental/">"natural"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: <a class="tag" href="../../objects/pitch/">"D5"</a>
+                              }
+                           ],
+                           <a class="tag" href="../../objects/event/">"value"</a>: <a class="tag" href="../../objects/note-value/">"/1"</a>
+                        }
+                     ]
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}</div>
 
     </main>
 </div>

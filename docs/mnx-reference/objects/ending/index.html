@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The ending object | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../">Reference</a>
+    <ul>
+    <li><a href="../">Objects</a></li>
+    <li><a href="../../examples/">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Objects</a> &gt;
+    ending
+</p>
+
+<h1>The ending object</h1>
+
+<p><b>Type:</b> Dictionary</p>
+
+
+The ending object encodes an alternate ending, sometimes known as a "volta bracket."
+
+
+
+<h2>Keys:</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>"class"</b></nobr></td>
+    <td>
+        
+        <a href="../style-class/">style class object</a>
+        
+    </td>
+    <td>No</td>
+    <td>An optional style class to use for this ending.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"color"</b></nobr></td>
+    <td>
+        
+        <a href="../color/">color object</a>
+        
+    </td>
+    <td>No</td>
+    <td>An optional color to use when rendering this ending.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"duration"</b></nobr></td>
+    <td>
+        
+        <a href="../ending-duration/">ending duration object</a>
+        
+    </td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+<tr>
+    <td><nobr><b>"numbers"</b></nobr></td>
+    <td>
+        
+            An array of
+            
+            <a href="../ending-number/">ending number objects</a>
+            
+        
+    </td>
+    <td>No</td>
+    <td></td>
+</tr>
+
+<tr>
+    <td><nobr><b>"open"</b></nobr></td>
+    <td>
+        
+        <a href="../ending-open/">ending open object</a>
+        
+    </td>
+    <td>No</td>
+    <td></td>
+</tr>
+
+
+</table>
+
+
+
+<h2 id="examples">Examples</h2>
+
+<p>This object is used in the following examples:</p>
+<p>
+    <nobr><a href="../../examples/repeats-alternate-endings-advanced/">Repeats (with alternate endings, advanced)</a></nobr>, <nobr><a href="../../examples/repeats-alternate-endings-simple/">Repeats (with alternate endings, simple)</a></nobr>
+</p>
+
+
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>

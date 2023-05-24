@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The system object | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../">Reference</a>
+    <ul>
+    <li><a href="../">Objects</a></li>
+    <li><a href="../../examples/">Example documents</a></li>
+    </ul>
+</li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Objects</a> &gt;
+    system
+</p>
+
+<h1>The system object</h1>
+
+<p><b>Type:</b> Dictionary</p>
+
+
+<p>The system object describes a system of notation — that is, a collection of staves that represent one or more measures across one or more parts.</p>
+
+<p>This element is used in context of a "page". Each system specifies its starting measure number and can optionally specify a layout.</p>
+
+
+
+<h2>Keys:</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>"layout"</b></nobr></td>
+    <td>
+        
+        <a href="../id/">id object</a>
+        
+    </td>
+    <td>No</td>
+    <td>An optional layout to use for this system. If provided, this should be the ID of a system-layout object in the same MNX document.<br><br>This overrides any layout specified by the parent "page" or "score" objects.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"layout-changes"</b></nobr></td>
+    <td>
+        
+            An array of
+            
+            <a href="../layout-change/">layout change objects</a>
+            
+        
+    </td>
+    <td>No</td>
+    <td></td>
+</tr>
+
+<tr>
+    <td><nobr><b>"measure"</b></nobr></td>
+    <td>
+        
+        <a href="../measure-number/">measure number object</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>Specifies the starting measure in this system. This corresponds to the "index" value of the measure object.</td>
+</tr>
+
+
+</table>
+
+
+
+<h2 id="examples">Examples</h2>
+
+<p>This object is used in the following examples:</p>
+<p>
+    <nobr><a href="../../examples/multiple-layouts/">Multiple layouts</a></nobr>, <nobr><a href="../../examples/organ-layout/">Organ layout</a></nobr>, <nobr><a href="../../examples/system-layouts/">System layouts</a></nobr>
+</p>
+
+
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>
