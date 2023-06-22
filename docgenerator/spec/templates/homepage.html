@@ -26,11 +26,21 @@
     <li>Original editor: Joe Berkovitz (Risible LLC)</li>
 </ul>
 
-<p><strong>MNX</strong> is a new, open standard for representing music notation as machine-readable data. The aim is to improve <a href="https://w3c.github.io/musicxml/">MusicXML</a> in fundamental ways while retaining many of its key concepts, terms and features. A primary goal is to provide a high degree of interoperability and exchange between different applications working with music notation.</p>
+<p><strong>MNX</strong> is a new, open standard for representing music notation for interchange and internal use in software applications.  It builds on the ideas and success of <a href="https://w3c.github.io/musicxml/">MusicXML</a> (and is maintained by the same people) but aims to avoid the design choices of MusicXML that prevent software from using it as a native format or to present the same underlying musical semantics in different forms (such as reflowing score or part layouts). And MNX represents everything in JSON, the easy-to-use, dominant standard for information exchange among Internet applications.</p>
 
-<p>MNX is a work in progress, and it's <strong>not ready for implementation</strong>. But if you work with music notation data in any way, we'd love your input.</p>
+<p>MNX is still a work in progress without a stable standard for implementation. But these pages will show you what we’ve developed so far. We encourage you to give feedback via <a href="https://github.com/w3c/mnx/discussions">our GitHub discussions forum</a>.</p>
 
-<hr style="margin-bottom: 1em;">
+<h2>Why another music notation format?</h2>
+
+<p>If this is your first introduction to the concept of representing music with a computer, we encourage you to read the <a href="https://www.w3.org/2021/06/musicxml40/tutorial/introduction/">MusicXML tutorial</a>, which lays out the motivations and key ideas of music representation in the most widely used symbolic notation format, and one that you can use today. MNX is different from MusicXML (or abc, MEI, MIDI, or any number of other good formats), but the same basic ideas and problems arise in all music representations, so knowing about one of them before reading about MNX is a good place to start.</p>
+
+<p>You might ask: if there are already dozens, if not hundreds, of music representation formats, why create another one?</p>
+
+<p>Most, if not all, existing notation formats were designed first to store music in a way that it could be exchanged with others — other people or other software programs. And they were designed to represent the look of music on a page, once it’s printed.</p>
+
+<p>MNX will do that, of course, but it differs in that it’s first and foremost designed to store and exchange <em>semantic</em> elements of music — the notes, rhythms, pitches, parts — and to allow multiple layouts to emerge or be defined dynamically. Beautiful scores on paper are always important, but these days music notation is displayed and consumed in many other ways. A piece might be viewed in a continuous scroll, or a musician might view her part on a tablet of different dimensions than the computer it was engraved on. A blind or visually-impaired user might require different magnifications or Braille. A modern format needs to make these types of workflows not just possible, but easy.</p>
+
+<p>MNX is also designed to be easy for software to read, write and pass through. It uses JSON, the most widely used format for data exchange on the web, which maps easily to object models not just in JavaScript but every modern programming language. Its objects map closely to how concepts tend to be implemented in applications. And our philosophy is to provide clear, unambiguous ways to encode musical concepts — “one and only one way to do things,” hence helping notation applications avoid bugs and making interchange more reliable.</p>
 
 <h2>A gentle introduction</h2>
 
