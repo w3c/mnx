@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The __root__ object | MNX specification</title>
+<title>The version number object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -43,95 +43,15 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    __root__
+    version number
 </p>
 
-<h1>The __root__ object</h1>
+<h1>The version number object</h1>
 
-<p><b>Type:</b> Dictionary</p>
-
-
+<p><b>Type:</b> Number</p>
 
 
-<h2>Keys:</h2>
 
-<table>
-<thead>
-<tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Required?</th>
-    <th>Description</th>
-</tr>
-</thead>
-
-
-<tr>
-    <td><nobr><b>"global"</b></nobr></td>
-    <td>
-        
-        <a href="../global/">global data object</a>
-        
-    </td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td><nobr><b>"layouts"</b></nobr></td>
-    <td>
-        
-            An array of
-            
-            <a href="../system-layout/">system layout objects</a>
-            
-        
-    </td>
-    <td>No</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td><nobr><b>"mnx"</b></nobr></td>
-    <td>
-        
-        <a href="../mnx/">MNX metadata object</a>
-        
-    </td>
-    <td>Yes</td>
-    <td>This required object serves two purposes:<br><br>1. It provides a way for consuming applications to quickly test whether a document is intended to be parsed as MNX. Consuming applications should check the top-level object for the presence of an "mnx" key.<br><br>2. It provides metadata about the specific MNX implementation used (namely, the version number).</td>
-</tr>
-
-<tr>
-    <td><nobr><b>"parts"</b></nobr></td>
-    <td>
-        
-            An array of
-            
-            <a href="../part/">part objects</a>
-            
-        
-    </td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td><nobr><b>"scores"</b></nobr></td>
-    <td>
-        
-            An array of
-            
-            <a href="../score/">score objects</a>
-            
-        
-    </td>
-    <td>No</td>
-    <td></td>
-</tr>
-
-
-</table>
 
 
 
