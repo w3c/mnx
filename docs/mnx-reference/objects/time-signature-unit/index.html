@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The time signature object | MNX specification</title>
+<title>The time signature unit object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -43,57 +43,17 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    time signature
+    time signature unit
 </p>
 
-<h1>The time signature object</h1>
+<h1>The time signature unit object</h1>
 
-<p><b>Type:</b> Dictionary</p>
-
-
-<p>This object defines a time signature, applicable to this and all following <a href="../../../infrastructure/notational-concepts/#measure-content">measure content</a>, until changed. This is a <a href="../../../infrastructure/notational-concepts/#staff-directions">staff direction</a>.</p>
-
-<p>It is invalid to place more than one time signature within the same measure.</p>
+<p><b>Type:</b> Number</p>
 
 
-
-<h2>Keys:</h2>
-
-<table>
-<thead>
-<tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Required?</th>
-    <th>Description</th>
-</tr>
-</thead>
+1, 2, 4, 8, 16
 
 
-<tr>
-    <td><nobr><b>"count"</b></nobr></td>
-    <td>
-        
-        <a href="../positive-integer/">positive integer object</a>
-        
-    </td>
-    <td>Yes</td>
-    <td>The number of beats. Generally this corresponds to the top number of the rendered time signature.</td>
-</tr>
-
-<tr>
-    <td><nobr><b>"unit"</b></nobr></td>
-    <td>
-        
-        <a href="../time-signature-unit/">time signature unit object</a>
-        
-    </td>
-    <td>Yes</td>
-    <td>The unit value. Generally this corresponds to the bottom number of the rendered time signature.</td>
-</tr>
-
-
-</table>
 
 
 
