@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The event object | MNX specification</title>
+<title>The note value base object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -43,162 +43,35 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    event
+    note value base
 </p>
 
-<h1>The event object</h1>
+<h1>The note value base object</h1>
 
-<p><b>Type:</b> Dictionary</p>
-
-
-<p>The event object represents a discrete period of time during which one or more notes are performed, or in which a rest occurs.</p>
-
-<p>All events other than <i>whole-measure events</i> require a <code>value</code> attribute to provide their duration as a <a href="../../data-types/note-value/">note value</a>. This duration is implicitly multiplied by the current <a href="../../../infrastructure/sequence-content/">time modification ratio</a>, as specified by the process of <a href="../../../infrastructure/sequence-content/">sequencing the content</a> of the event’s containing element.</p>
+<p><b>Type:</b> String</p>
 
 
+Valid values are:
 
-<h2>Keys:</h2>
-
-<table>
-<thead>
-<tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Required?</th>
-    <th>Description</th>
-</tr>
-</thead>
-
-
-<tr>
-    <td><nobr><b>"duration"</b></nobr></td>
-    <td>
-        
-        <a href="../note-value/">note value object</a>
-        
-    </td>
-    <td>No</td>
-    <td>The duration of this event. This is required unless this event has measure=true.</td>
-</tr>
-
-<tr>
-    <td><nobr><b>"id"</b></nobr></td>
-    <td>
-        
-        <a href="../id/">id object</a>
-        
-    </td>
-    <td>No</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td><nobr><b>"measure"</b></nobr></td>
-    <td>
-        
-        <a href="../boolean/">boolean object</a>
-        
-    </td>
-    <td>No</td>
-    <td>Whether this event is a <i>whole-measure event</i> — meaning its duration lasts the entire measure. This is used, for example, for rests that last an entire measure.<br><br>If this value is set to true, then this event may not specify "value" and this event must either be empty or contain exactly one rest.</td>
-</tr>
-
-<tr>
-    <td><nobr><b>"notes"</b></nobr></td>
-    <td>
-        
-            An array of
-            
-            <a href="../note/">note objects</a>
-            
-        
-    </td>
-    <td>No</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td><nobr><b>"orient"</b></nobr></td>
-    <td>
-        
-        <a href="../orientation/">orientation object</a>
-        
-    </td>
-    <td>No</td>
-    <td>A specific orientation for this event. If not provided, the orientation is inherited from any ancestor element that specified it. If no ancestor did so, the orientation is determined automatically according to the implementation’s rendering rules.</td>
-</tr>
-
-<tr>
-    <td><nobr><b>"rest"</b></nobr></td>
-    <td>
-        
-        <a href="../rest/">rest object</a>
-        
-    </td>
-    <td>No</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td><nobr><b>"slurs"</b></nobr></td>
-    <td>
-        
-            An array of
-            
-            <a href="../slur/">slur objects</a>
-            
-        
-    </td>
-    <td>No</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td><nobr><b>"smufl-font"</b></nobr></td>
-    <td>
-        
-        <a href="../smufl-font/">smufl font object</a>
-        
-    </td>
-    <td>No</td>
-    <td>The SMuFL-compliant font to be used when rendering this event.<br><br>The primary purpose of this attribute is to override a global font assignment.</td>
-</tr>
-
-<tr>
-    <td><nobr><b>"staff"</b></nobr></td>
-    <td>
-        
-        <a href="../staff-number/">staff number object</a>
-        
-    </td>
-    <td>No</td>
-    <td>A specific staff index for this event. If not provided, the value is inherited from any ancestor element that specified it. If no ancestor did so, the value is determined automatically according to the implementation’s rendering rules.<br><br>The primary purpose of this attribute is to override a default staff assignment at the sequence level — as in cross-staff keyboard notation.</td>
-</tr>
-
-<tr>
-    <td><nobr><b>"stem-direction"</b></nobr></td>
-    <td>
-        
-        <a href="../stem-direction/">stem direction object</a>
-        
-    </td>
-    <td>No</td>
-    <td>Whether the stem of the note(s) in this event is up or down. If not provided, this is left to consuming software to decide automatically.</td>
-</tr>
-
-<tr>
-    <td><nobr><b>"type"</b></nobr></td>
-    <td>
-        
-            The string <code>"event"</code>
-        
-    </td>
-    <td>Yes</td>
-    <td></td>
-</tr>
+duplexMaxima
+maxima
+longa
+breve
+whole
+half
+quarter
+eighth
+16th
+32nd
+64th
+128th
+256th
+512th
+1024th
+2048th
+4096th
 
 
-</table>
 
 
 
