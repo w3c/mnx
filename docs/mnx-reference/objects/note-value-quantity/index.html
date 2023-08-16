@@ -48,10 +48,50 @@
 
 <h1>The note value quantity object</h1>
 
-<p><b>Type:</b> String</p>
+<p><b>Type:</b> Dictionary</p>
+
+
+A note value quantity is an integer multiple of a note value. For example, this can represent the concepts of "two eighth notes" or "six dotted quarter notes."
 
 
 
+<h2>Keys:</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>"duration"</b></nobr></td>
+    <td>
+        
+        <a href="../note-value/">note value object</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The base note value to be multiplied.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"multiple"</b></nobr></td>
+    <td>
+        
+        <a href="../positive-integer/">positive integer object</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The integer multiple.</td>
+</tr>
+
+
+</table>
 
 
 

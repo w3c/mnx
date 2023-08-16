@@ -103,7 +103,7 @@
         
     </td>
     <td>Yes</td>
-    <td>The duration of the enclosed content, as notated.<br><br>For example, a quarter-note triplet would have inner="3/4". Its inner duration is three quarter notes (3 * 1/4 = 3/4).</td>
+    <td>The duration of the enclosed content, as notated.<br><br>For example, a quarter-note triplet would use the value {"multiple": "3", "duration": {"base": "quarter"}}.</td>
 </tr>
 
 <tr>
@@ -125,7 +125,7 @@
         
     </td>
     <td>Yes</td>
-    <td>The duration of this tuplet with respect to its containing element. This is how much time the tuplet occupies in the measure (or parent tuplet, in case of nested tuplets) in which it is placed.<br><br>For example, a quarter-note triplet would have outer="1/2".</td>
+    <td>The duration of this tuplet with respect to its containing element. This is how much time the tuplet occupies in the measure (or parent tuplet, in case of nested tuplets) in which it is placed.<br><br>For example, a quarter-note triplet would use the value {"multiple": "2", "duration": {"base": "quarter"}}.</td>
 </tr>
 
 <tr>
