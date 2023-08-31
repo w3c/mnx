@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The accidental object | MNX specification</title>
+<title>The accidental display object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -43,15 +43,64 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    accidental
+    accidental display
 </p>
 
-<h1>The accidental object</h1>
+<h1>The accidental display object</h1>
 
-<p><b>Type:</b> String</p>
+<p><b>Type:</b> Dictionary</p>
 
 
 
+
+<h2>Keys:</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>"cautionary"</b></nobr></td>
+    <td>
+        
+        <a href="../boolean/">boolean object</a>
+        
+    </td>
+    <td>No</td>
+    <td>Whether the accidental is considered cautionary (traditionally rendered in parentheses). Default is false.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"editorial"</b></nobr></td>
+    <td>
+        
+        <a href="../boolean/">boolean object</a>
+        
+    </td>
+    <td>No</td>
+    <td>Whether the accidental is considered an editorial marking (traditionally rendered in square brackets). Default is false.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"show"</b></nobr></td>
+    <td>
+        
+        <a href="../boolean/">boolean object</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>Whether the accidental is to be displayed.</td>
+</tr>
+
+
+</table>
 
 
 

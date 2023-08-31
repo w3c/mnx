@@ -2390,17 +2390,6 @@
 },
 {
     "model": "spec.jsonobject",
-    "pk": 32,
-    "fields": {
-        "name": "accidental",
-        "slug": "accidental",
-        "schema": 1,
-        "object_type": 3,
-        "description": ""
-    }
-},
-{
-    "model": "spec.jsonobject",
     "pk": 33,
     "fields": {
         "name": "barline",
@@ -3489,6 +3478,17 @@
     }
 },
 {
+    "model": "spec.jsonobject",
+    "pk": 135,
+    "fields": {
+        "name": "accidental display",
+        "slug": "accidental-display",
+        "schema": 1,
+        "object_type": 1,
+        "description": ""
+    }
+},
+{
     "model": "spec.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -3794,17 +3794,6 @@
         "child": 31,
         "is_required": false,
         "description": ""
-    }
-},
-{
-    "model": "spec.jsonobjectrelationship",
-    "pk": 31,
-    "fields": {
-        "parent": 31,
-        "child_key": "accidental",
-        "child": 32,
-        "is_required": false,
-        "description": "The accidental to be rendered for this note. This must match the alteration of the \"pitch\" attribute. Omission of this attribute indicates that no accidental is to be displayed."
     }
 },
 {
@@ -5612,6 +5601,50 @@
     }
 },
 {
+    "model": "spec.jsonobjectrelationship",
+    "pk": 207,
+    "fields": {
+        "parent": 31,
+        "child_key": "accidentalDisplay",
+        "child": 135,
+        "is_required": false,
+        "description": "Information about the displayed accidental for this note. This is required for any note that has a displayed accidental."
+    }
+},
+{
+    "model": "spec.jsonobjectrelationship",
+    "pk": 208,
+    "fields": {
+        "parent": 135,
+        "child_key": "show",
+        "child": 112,
+        "is_required": true,
+        "description": "Whether the accidental is to be displayed."
+    }
+},
+{
+    "model": "spec.jsonobjectrelationship",
+    "pk": 209,
+    "fields": {
+        "parent": 135,
+        "child_key": "editorial",
+        "child": 112,
+        "is_required": false,
+        "description": "Whether the accidental is considered an editorial marking (traditionally rendered in square brackets). Default is false."
+    }
+},
+{
+    "model": "spec.jsonobjectrelationship",
+    "pk": 210,
+    "fields": {
+        "parent": 135,
+        "child_key": "cautionary",
+        "child": 112,
+        "is_required": false,
+        "description": "Whether the accidental is considered cautionary (traditionally rendered in parentheses). Default is false."
+    }
+},
+{
     "model": "spec.exampledocument",
     "pk": 1,
     "fields": {
@@ -5684,7 +5717,7 @@
         "slug": "accidentals",
         "schema": 1,
         "blurb": "",
-        "document": "{\r\n  \"mnx\": {\"version\": 1},\r\n  \"global\": {\r\n    \"measures\": [\r\n      {\r\n        \"key\": {\"fifths\": -2},\r\n        \"time\": {\"count\": 4, \"unit\": 4}\r\n      },\r\n      {},\r\n      {}\r\n    ]\r\n  },\r\n  \"parts\": [\r\n    {\r\n      \"measures\": [\r\n        {\r\n          \"content\": [\r\n            {\"type\": \"clef\", \"sign\": \"G\", \"line\": 2},\r\n            {\r\n              \"type\": \"sequence\",\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"F\", \"octave\": 4}}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"G\", \"octave\": 4}}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"G\", \"octave\": 4, \"alter\": 1}, \"accidental\": \"sharp\"}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"A\", \"octave\": 4}}\r\n                  ]\r\n                }\r\n              ]\r\n            }\r\n          ]\r\n        },\r\n        {\r\n          \"content\": [\r\n            {\r\n              \"type\": \"sequence\",\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"half\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"B\", \"octave\": 4, \"alter\": -1}}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"D\", \"octave\": 5, \"alter\": -1}, \"accidental\": \"flat\"}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"D\", \"octave\": 5, \"alter\": -1}}\r\n                  ]\r\n                }\r\n              ]\r\n            }\r\n          ]\r\n        },\r\n        {\r\n          \"content\": [\r\n            {\r\n              \"type\": \"sequence\",\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"whole\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"D\", \"octave\": 5}, \"accidental\": \"natural\"}\r\n                  ]\r\n                }\r\n              ]\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+        "document": "{\r\n  \"mnx\": {\"version\": 1},\r\n  \"global\": {\r\n    \"measures\": [\r\n      {\r\n        \"key\": {\"fifths\": -2},\r\n        \"time\": {\"count\": 4, \"unit\": 4}\r\n      },\r\n      {},\r\n      {}\r\n    ]\r\n  },\r\n  \"parts\": [\r\n    {\r\n      \"measures\": [\r\n        {\r\n          \"content\": [\r\n            {\"type\": \"clef\", \"sign\": \"G\", \"line\": 2},\r\n            {\r\n              \"type\": \"sequence\",\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"F\", \"octave\": 4}}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"G\", \"octave\": 4}}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"notes\": [\r\n                    {\r\n                      \"pitch\": {\"step\": \"G\", \"octave\": 4, \"alter\": 1},\r\n                      \"accidentalDisplay\": {\"show\": \"true\"}\r\n                    }\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"A\", \"octave\": 4}}\r\n                  ]\r\n                }\r\n              ]\r\n            }\r\n          ]\r\n        },\r\n        {\r\n          \"content\": [\r\n            {\r\n              \"type\": \"sequence\",\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"half\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"B\", \"octave\": 4, \"alter\": -1}}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"notes\": [\r\n                    {\r\n                      \"pitch\": {\"step\": \"D\", \"octave\": 5, \"alter\": -1},\r\n                      \"accidentalDisplay\": {\"show\": \"true\"}\r\n                    }\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"D\", \"octave\": 5, \"alter\": -1}}\r\n                  ]\r\n                }\r\n              ]\r\n            }\r\n          ]\r\n        },\r\n        {\r\n          \"content\": [\r\n            {\r\n              \"type\": \"sequence\",\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"whole\"},\r\n                  \"notes\": [\r\n                    {\r\n                      \"pitch\": {\"step\": \"D\", \"octave\": 5},\r\n                      \"accidentalDisplay\": {\"show\": \"true\"}\r\n                    }\r\n                  ]\r\n                }\r\n              ]\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
         "image_url": "/static/examples/accidentals.png",
         "is_featured": false
     }
@@ -6061,7 +6094,7 @@
         "slug": "organ-layout",
         "schema": 1,
         "blurb": "Note only the music in the first measure is encoded here.",
-        "document": "{\r\n\"mnx\": {\"version\": 1},\r\n  \"global\": {\r\n    \"measures\": [\r\n      {\r\n        \"key\": {\"fifths\": -3},\r\n        \"time\": {\"count\": 3, \"unit\": 4}\r\n      }\r\n    ]\r\n  },\r\n  \"parts\": [\r\n    {\r\n      \"id\": \"organ\",\r\n      \"staves\": 3,\r\n      \"measures\": [\r\n        {\r\n          \"content\": [\r\n            {\"type\": \"clef\", \"sign\": \"G\", \"line\": 2},\r\n            {\r\n              \"type\": \"sequence\",\r\n              \"staff\": 1,\r\n              \"voice\": \"Main\",\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"rest\": {}\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"rest\": {}\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"main1\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"G\", \"octave\": 4}}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"main2\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"F\", \"octave\": 4, \"alter\": 1}, \"accidental\": \"sharp\"}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"main3\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"A\", \"octave\": 4}, \"accidental\": \"natural\"}\r\n                  ]\r\n                }\r\n              ]\r\n            },\r\n            {\r\n              \"type\": \"sequence\",\r\n              \"staff\": 1,\r\n              \"voice\": \"Oberwerk\",\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"rest\": {}\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"rest\": {}\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"ober1\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"B\", \"octave\": 3, \"alter\": -1}}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"ober2\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"A\", \"octave\": 3}, \"accidental\": \"natural\"}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"ober3\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"C\", \"octave\": 4}}\r\n                  ]\r\n                }\r\n              ]\r\n            },\r\n            {\r\n              \"type\": \"sequence\",\r\n              \"staff\": 2,\r\n              \"voice\": \"Hauptwerk\",\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"half\", \"dots\": 1},\r\n                  \"rest\": {}\r\n                }\r\n              ]\r\n            },\r\n            {\r\n              \"type\": \"sequence\",\r\n              \"staff\": 3,\r\n              \"voice\": \"Pedal\",\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"half\", \"dots\": 1},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"E\", \"octave\": 3, \"alter\": -1}, \"tied\": {\"target\": \"pedNote2\"}}\r\n                  ]\r\n                }\r\n              ]\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"layouts\": [\r\n    {\r\n      \"id\": \"organ3Stave\",\r\n      \"content\": [\r\n        {\r\n          \"type\": \"group\",\r\n          \"symbol\": \"brace\",\r\n          \"content\": [\r\n            {\r\n              \"type\": \"staff\",\r\n              \"sources\": [\r\n                {\"part\": \"organ\", \"staff\": 1}\r\n              ]\r\n            },\r\n            {\r\n              \"type\": \"staff\",\r\n              \"sources\": [\r\n                {\"part\": \"organ\", \"staff\": 2}\r\n              ]\r\n            }\r\n          ]\r\n        },\r\n        {\r\n          \"type\": \"staff\",\r\n          \"sources\": [\r\n            {\"part\": \"organ\", \"staff\": 3}\r\n          ]\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"id\": \"organ3StaveSplitOber\",\r\n      \"content\": [\r\n        {\r\n          \"type\": \"group\",\r\n          \"content\": [\r\n            {\r\n              \"type\": \"staff\",\r\n              \"sources\": [\r\n                {\"part\": \"organ\", \"voice\": \"Main\", \"stem\": \"up\"},\r\n                {\"part\": \"organ\", \"voice\": \"Oberwerk\", \"stem\": \"down\"}\r\n              ]\r\n            },\r\n            {\r\n              \"type\": \"staff\",\r\n              \"sources\": [\r\n                {\"part\": \"organ\", \"voice\": \"Hauptwerk\"}\r\n              ]\r\n            }\r\n          ]\r\n        },\r\n        {\r\n          \"type\": \"staff\",\r\n          \"sources\": [\r\n            {\"part\": \"organ\", \"staff\": 3}\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"scores\": [\r\n    {\r\n      \"name\": \"defaultScore\",\r\n      \"pages\": [\r\n        {\r\n          \"systems\": [\r\n            {\"layout\": \"organ3stave\", \"measure\": 1, \"layout-changes\": [{\"layout\": \"organ3StaveSplitOber\", \"location\": \"1:3/8\"}]},\r\n            {\"layout\": \"organ3StaveSplitOber\", \"measure\": 6}\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+        "document": "{\r\n\"mnx\": {\"version\": 1},\r\n  \"global\": {\r\n    \"measures\": [\r\n      {\r\n        \"key\": {\"fifths\": -3},\r\n        \"time\": {\"count\": 3, \"unit\": 4}\r\n      }\r\n    ]\r\n  },\r\n  \"parts\": [\r\n    {\r\n      \"id\": \"organ\",\r\n      \"staves\": 3,\r\n      \"measures\": [\r\n        {\r\n          \"content\": [\r\n            {\"type\": \"clef\", \"sign\": \"G\", \"line\": 2},\r\n            {\r\n              \"type\": \"sequence\",\r\n              \"staff\": 1,\r\n              \"voice\": \"Main\",\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"rest\": {}\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"rest\": {}\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"main1\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"G\", \"octave\": 4}}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"main2\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"notes\": [\r\n                    {\r\n                      \"pitch\": {\"step\": \"F\", \"octave\": 4, \"alter\": 1},\r\n                      \"accidentalDisplay\": {\"show\": true}\r\n                    }\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"main3\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"notes\": [\r\n                    {\r\n                      \"pitch\": {\"step\": \"A\", \"octave\": 4},\r\n                      \"accidentalDisplay\": {\"show\": true}\r\n                    }\r\n                  ]\r\n                }\r\n              ]\r\n            },\r\n            {\r\n              \"type\": \"sequence\",\r\n              \"staff\": 1,\r\n              \"voice\": \"Oberwerk\",\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"quarter\"},\r\n                  \"rest\": {}\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"rest\": {}\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"ober1\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"B\", \"octave\": 3, \"alter\": -1}}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"ober2\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"notes\": [\r\n                    {\r\n                      \"pitch\": {\"step\": \"A\", \"octave\": 3},\r\n                      \"accidentalDisplay\": {\"show\": true}\r\n                    }\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"ober3\",\r\n                  \"duration\": {\"base\": \"eighth\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"C\", \"octave\": 4}}\r\n                  ]\r\n                }\r\n              ]\r\n            },\r\n            {\r\n              \"type\": \"sequence\",\r\n              \"staff\": 2,\r\n              \"voice\": \"Hauptwerk\",\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"half\", \"dots\": 1},\r\n                  \"rest\": {}\r\n                }\r\n              ]\r\n            },\r\n            {\r\n              \"type\": \"sequence\",\r\n              \"staff\": 3,\r\n              \"voice\": \"Pedal\",\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"duration\": {\"base\": \"half\", \"dots\": 1},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"E\", \"octave\": 3, \"alter\": -1}, \"tied\": {\"target\": \"pedNote2\"}}\r\n                  ]\r\n                }\r\n              ]\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"layouts\": [\r\n    {\r\n      \"id\": \"organ3Stave\",\r\n      \"content\": [\r\n        {\r\n          \"type\": \"group\",\r\n          \"symbol\": \"brace\",\r\n          \"content\": [\r\n            {\r\n              \"type\": \"staff\",\r\n              \"sources\": [\r\n                {\"part\": \"organ\", \"staff\": 1}\r\n              ]\r\n            },\r\n            {\r\n              \"type\": \"staff\",\r\n              \"sources\": [\r\n                {\"part\": \"organ\", \"staff\": 2}\r\n              ]\r\n            }\r\n          ]\r\n        },\r\n        {\r\n          \"type\": \"staff\",\r\n          \"sources\": [\r\n            {\"part\": \"organ\", \"staff\": 3}\r\n          ]\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"id\": \"organ3StaveSplitOber\",\r\n      \"content\": [\r\n        {\r\n          \"type\": \"group\",\r\n          \"content\": [\r\n            {\r\n              \"type\": \"staff\",\r\n              \"sources\": [\r\n                {\"part\": \"organ\", \"voice\": \"Main\", \"stem\": \"up\"},\r\n                {\"part\": \"organ\", \"voice\": \"Oberwerk\", \"stem\": \"down\"}\r\n              ]\r\n            },\r\n            {\r\n              \"type\": \"staff\",\r\n              \"sources\": [\r\n                {\"part\": \"organ\", \"voice\": \"Hauptwerk\"}\r\n              ]\r\n            }\r\n          ]\r\n        },\r\n        {\r\n          \"type\": \"staff\",\r\n          \"sources\": [\r\n            {\"part\": \"organ\", \"staff\": 3}\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"scores\": [\r\n    {\r\n      \"name\": \"defaultScore\",\r\n      \"pages\": [\r\n        {\r\n          \"systems\": [\r\n            {\"layout\": \"organ3stave\", \"measure\": 1, \"layout-changes\": [{\"layout\": \"organ3StaveSplitOber\", \"location\": \"1:3/8\"}]},\r\n            {\"layout\": \"organ3StaveSplitOber\", \"measure\": 6}\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
         "image_url": "/static/examples/organ-layout.png",
         "is_featured": false
     }
@@ -6166,7 +6199,7 @@
     "fields": {
         "example": 6,
         "doc_format": 1,
-        "preamble": "In MusicXML, use <code>&lt;accidental&gt;</code> within a <code>&lt;note&gt;</code> to indicate a rendered accidental. In MNX, give the note an <code>\"accidental\"</code> key.\r\n\r\nIn both MusicXML and MNX, accidentals are only encoded if they are to be rendered. Notes whose accidental is implied from the key signature (such as the Bb note in bar 2 of this example), or notes repeating a currently active accidental (such as the second Db in bar 2), are not encoded as having an accidental.\r\n\r\nCautionary accidentals, such as the D natural in bar 3 of this example — that is, accidentals that are not technically required to be displayed and serve as a courtesy to the musician — are not treated any differently than “non-cautionary” accidentals.",
+        "preamble": "In MusicXML, use <code>&lt;accidental&gt;</code> within a <code>&lt;note&gt;</code> to indicate a rendered accidental. In MNX, give the note an <code>\"accidentalDisplay\"</code> key.\r\n\r\nIn both MusicXML and MNX, accidentals are only encoded if they are to be rendered. Notes whose accidental is implied from the key signature (such as the Bb note in bar 2 of this example), or notes repeating a currently active accidental (such as the second Db in bar 2), are not encoded as having an accidental.\r\n\r\nCautionary accidentals, such as the D natural in bar 3 of this example — that is, accidentals that are not technically required to be displayed and serve as a courtesy to the musician — are not treated any differently than “non-cautionary” accidentals.",
         "document": "<score-partwise version=\"3.1\">\r\n    <part-list>\r\n        <score-part id=\"P1\">\r\n            <part-name>Music</part-name>\r\n        </score-part>\r\n    </part-list>\r\n    <part id=\"P1\">\r\n        <measure number=\"1\">\r\n            <attributes>\r\n                <divisions>256</divisions>\r\n                <key>\r\n                    <fifths>-2</fifths>\r\n                    <mode>major</mode>\r\n                </key>\r\n                <time>\r\n                    <beats>4</beats>\r\n                    <beat-type>4</beat-type>\r\n                </time>\r\n                <clef>\r\n                    <sign>G</sign>\r\n                    <line>2</line>\r\n                </clef>\r\n            </attributes>\r\n            <note>\r\n                <pitch>\r\n                    <step>F</step>\r\n                    <octave>4</octave>\r\n                </pitch>\r\n                <duration>256</duration>\r\n                <type>quarter</type>\r\n            </note>\r\n            <note>\r\n                <pitch>\r\n                    <step>G</step>\r\n                    <octave>4</octave>\r\n                </pitch>\r\n                <duration>256</duration>\r\n                <type>quarter</type>\r\n            </note>\r\n            <note>\r\n                <pitch>\r\n                    <step>G</step>\r\n                    <alter>1</alter>\r\n                    <octave>4</octave>\r\n                </pitch>\r\n                <duration>256</duration>\r\n                <type>quarter</type>\r\n                <metadiff><accidental>sharp</accidental></metadiff>\r\n            </note>\r\n            <note>\r\n                <pitch>\r\n                    <step>A</step>\r\n                    <octave>4</octave>\r\n                </pitch>\r\n                <duration>256</duration>\r\n                <type>quarter</type>\r\n            </note>\r\n        </measure>\r\n        <measure number=\"2\">\r\n            <note>\r\n                <pitch>\r\n                    <step>B</step>\r\n                    <alter>-1</alter>\r\n                    <octave>4</octave>\r\n                </pitch>\r\n                <duration>512</duration>\r\n                <type>half</type>\r\n            </note>\r\n            <note>\r\n                <pitch>\r\n                    <step>D</step>\r\n                    <alter>-1</alter>\r\n                    <octave>5</octave>\r\n                </pitch>\r\n                <duration>256</duration>\r\n                <type>quarter</type>\r\n                <metadiff><accidental>flat</accidental></metadiff>\r\n            </note>\r\n            <note>\r\n                <pitch>\r\n                    <step>D</step>\r\n                    <alter>-1</alter>\r\n                    <octave>5</octave>\r\n                </pitch>\r\n                <duration>256</duration>\r\n                <type>quarter</type>\r\n            </note>\r\n        </measure>\r\n        <measure number=\"3\">\r\n            <note>\r\n                <pitch>\r\n                    <step>D</step>\r\n                    <octave>5</octave>\r\n                </pitch>\r\n                <duration>1024</duration>\r\n                <type>whole</type>\r\n                <metadiff><accidental>natural</accidental></metadiff>\r\n            </note>\r\n        </measure>\r\n    </part>\r\n</score-partwise>",
         "position": 5
     }
@@ -7203,14 +7236,6 @@
     "fields": {
         "example": 6,
         "json_object": 31
-    }
-},
-{
-    "model": "spec.exampledocumentobject",
-    "pk": 112,
-    "fields": {
-        "example": 6,
-        "json_object": 32
     }
 },
 {
@@ -12191,14 +12216,6 @@
 },
 {
     "model": "spec.exampledocumentobject",
-    "pk": 799,
-    "fields": {
-        "example": 35,
-        "json_object": 32
-    }
-},
-{
-    "model": "spec.exampledocumentobject",
     "pk": 800,
     "fields": {
         "example": 35,
@@ -15003,6 +15020,38 @@
     "fields": {
         "example": 34,
         "json_object": 105
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1152,
+    "fields": {
+        "example": 6,
+        "json_object": 135
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1153,
+    "fields": {
+        "example": 6,
+        "json_object": 112
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1154,
+    "fields": {
+        "example": 35,
+        "json_object": 135
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1155,
+    "fields": {
+        "example": 35,
+        "json_object": 112
     }
 },
 {
