@@ -188,13 +188,13 @@ def get_augmented_example_json(current_url, schema, raw_document, diffs_use_divs
 def json_key_sorter(x):
     """
     A sorting function (suitable for passing as the 'key' argument
-    to sorted()) that always puts the values "id" and "type" first,
+    to sorted()) that always puts the values "id", "mnx" and "type" first,
     in that order.
 
     We use this because it helps make the docs clearer if these keys
     are listed first within a given object.
     """
-    return (x != 'id', x != 'type', x)
+    return (x != 'id', x != 'mnx', x != 'type', x)
 
 def get_augmented_example_json_inner(current_url, json_data, object_def=None, indent_level=0, add_comma=False):
     result = []
