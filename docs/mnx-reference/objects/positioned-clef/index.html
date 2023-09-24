@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The sequence object | MNX specification</title>
+<title>The positioned clef object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -43,19 +43,19 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    sequence
+    positioned clef
 </p>
 
-<h1>The sequence object</h1>
+<h1>The positioned clef object</h1>
 
 <p><b>Type:</b> Dictionary</p>
 
 
-<p>The sequence object organizes a set of musical events within a measure into a strict temporal <a href="../../../infrastructure/sequence-content/">sequence</a>, accompanied by relevant directions.</p>
+<p>Represents a clef as positioned at a specific location within a measure.</p>
 
-<p>To determine the measure position of each event within a sequence, you <a href="../../../infrastructure/sequence-content/">sequence the content</a>, with a starting position <code>0</code> and time modification ratio <code>1</code>.</p>
+<p>If the position isn't encoded, the position is assumed to be the start of the measure.</p>
 
-<p>The content within each sequence supplies the music for a single polyphonic voice within its containing measure, including notes, chords, rests, tuplets and grace notes.</p>
+<p>Note: This object will eventually include a "position" key, but we haven't yet designed how that will be encoded.</p>
 
 
 
@@ -73,60 +73,14 @@
 
 
 <tr>
-    <td><nobr><b>"content"</b></nobr></td>
+    <td><nobr><b>"clef"</b></nobr></td>
     <td>
         
-            An array of
-            
-            <a href="../event/">event objects</a>, 
-            
-            <a href="../grace/">grace objects</a>, 
-            
-            <a href="../tuplet/">tuplet objects</a>, 
-            
-            <a href="../octave-shift/">octave shift objects</a>, 
-            
-            <a href="../space/">space objects</a>, 
-            
-            <a href="../dynamic/">dynamic objects</a>
-            
+        <a href="../clef/">clef object</a>
         
     </td>
     <td>Yes</td>
     <td></td>
-</tr>
-
-<tr>
-    <td><nobr><b>"orient"</b></nobr></td>
-    <td>
-        
-        <a href="../orientation/">orientation object</a>
-        
-    </td>
-    <td>No</td>
-    <td>The default orientation of the content in this sequence. If not provided, the orientation is determined automatically according to the implementation’s rendering rules and may be overridden by descendant elements.</td>
-</tr>
-
-<tr>
-    <td><nobr><b>"staff"</b></nobr></td>
-    <td>
-        
-        <a href="../staff-number/">staff number object</a>
-        
-    </td>
-    <td>No</td>
-    <td>The default staff index of the content in this sequence. If not provided, the orientation is determined automatically according to the implementation’s rendering rules and may be overridden by descendant elements.</td>
-</tr>
-
-<tr>
-    <td><nobr><b>"voice"</b></nobr></td>
-    <td>
-        
-        <a href="../voice-name/">voice name object</a>
-        
-    </td>
-    <td>No</td>
-    <td>A string that identifies the voice to which this sequence belongs. All sequences in a given part having the same value of "voice" belong to the same voice. Within a given measure, no two sequences may share the same value for voice. The value of voice is an opaque identifier that does not supply information from producers to consumers.</td>
 </tr>
 
 
