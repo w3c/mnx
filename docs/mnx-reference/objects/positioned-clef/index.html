@@ -53,6 +53,10 @@
 
 <p>Represents a clef as positioned at a specific location within a measure.</p>
 
+<p>If the position isn't encoded, the position is assumed to be the start of the measure.</p>
+
+<p>Note: This object will eventually include a "position" key, but we haven't yet designed how that will be encoded.</p>
+
 
 
 <h2>Keys:</h2>
@@ -77,18 +81,6 @@
     </td>
     <td>Yes</td>
     <td></td>
-</tr>
-
-<tr>
-    <td><nobr><b>"position"</b></nobr></td>
-    <td>
-        
-            An array of
-            
-        
-    </td>
-    <td>No</td>
-    <td>The clef's position in the measure. If absent, this value is assumed to be [0, 1], the start of the measure.</td>
 </tr>
 
 

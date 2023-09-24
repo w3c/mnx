@@ -3479,24 +3479,13 @@
 },
 {
     "model": "spec.jsonobject",
-    "pk": 138,
-    "fields": {
-        "name": "rhythmic position",
-        "slug": "rhythmic-position",
-        "schema": 1,
-        "object_type": 2,
-        "description": ""
-    }
-},
-{
-    "model": "spec.jsonobject",
     "pk": 139,
     "fields": {
         "name": "positioned clef",
         "slug": "positioned-clef",
         "schema": 1,
         "object_type": 1,
-        "description": "<p>Represents a clef as positioned at a specific location within a measure.</p>"
+        "description": "<p>Represents a clef as positioned at a specific location within a measure.</p>\r\n\r\n<p>If the position isn't encoded, the position is assumed to be the start of the measure.</p>\r\n\r\n<p>Note: This object will eventually include a \"position\" key, but we haven't yet designed how that will be encoded.</p>"
     }
 },
 {
@@ -5653,17 +5642,6 @@
         "child": 19,
         "is_required": true,
         "description": ""
-    }
-},
-{
-    "model": "spec.jsonobjectrelationship",
-    "pk": 217,
-    "fields": {
-        "parent": 139,
-        "child_key": "position",
-        "child": 138,
-        "is_required": false,
-        "description": "The clef's position in the measure. If absent, this value is assumed to be [0, 1], the start of the measure."
     }
 },
 {
