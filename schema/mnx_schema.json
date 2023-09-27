@@ -151,13 +151,9 @@
         },
         "sign": {
           "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "const": "clef"
         }
       },
-      "required": ["line", "sign", "type"],
+      "required": ["line", "sign"],
       "additionalProperties": false
     },
     "dynamic_object": {
@@ -543,21 +539,20 @@
                   "$ref": "#/$defs/beam_object"
                 }
               },
-              "content": {
+              "clefs": {
                 "type": "array",
                 "items": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/$defs/clef_object"
-                    },
-                    {
-                      "$ref": "#/$defs/sequence_object"
-                    }
-                  ]
+                  "$ref": "#/$defs/positioned_clef_object"
+                }
+              },
+              "sequences": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/sequence_object"
                 }
               }
             },
-            "required": ["content"],
+            "required": ["sequences"],
             "additionalProperties": false
           }
         },
@@ -594,6 +589,14 @@
       },
       "required": ["octave", "step"],
       "additionalProperties": false
+    },
+    "positioned_clef_object": {
+      "type": "object",
+      "properties": {
+        "clef": {
+          "$ref": "#/$defs/clef_object"
+        }
+      }
     },
     "score_object": {
       "type": "object",
@@ -706,15 +709,11 @@
         "staff": {
           "type": "integer"
         },
-        "type": {
-          "type": "string",
-          "const": "sequence"
-        },
         "voice": {
           "type": "string"
         }
       },
-      "required": ["content", "type"],
+      "required": ["content"],
       "additionalProperties": false
     },
     "slur_object": {
