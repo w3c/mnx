@@ -596,7 +596,9 @@
         "clef": {
           "$ref": "#/$defs/clef_object"
         }
-      }
+      },
+      "required": ["clef"],
+      "additionalProperties": false
     },
     "score_object": {
       "type": "object",
