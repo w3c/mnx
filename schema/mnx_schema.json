@@ -310,7 +310,8 @@
           "additionalProperties": false
         },
         "index": {
-          "type": "integer"
+          "type": "integer",
+          "minimum": 1
         },
         "jump": {
           "type": "object",
@@ -595,9 +596,32 @@
       "properties": {
         "clef": {
           "$ref": "#/$defs/clef_object"
+        },
+        "position": {
+          "$ref": "#/$defs/rhythmic_position_object"
         }
       },
       "required": ["clef"],
+      "additionalProperties": false
+    },
+    "rhythmic_position_object": {
+      "type": "object",
+      "properties": {
+        "fraction": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "graceIndex": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": ["fraction"],
       "additionalProperties": false
     },
     "score_object": {
