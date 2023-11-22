@@ -143,17 +143,17 @@
         "glyph": {
           "type": "string"
         },
-        "line": {
+        "octave": {
           "type": "integer"
         },
-        "octave": {
+        "position": {
           "type": "integer"
         },
         "sign": {
           "type": "string"
         }
       },
-      "required": ["line", "sign"],
+      "required": ["position", "sign"],
       "additionalProperties": false
     },
     "dynamic_object": {
