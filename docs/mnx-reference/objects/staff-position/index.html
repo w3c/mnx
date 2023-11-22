@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The clef line object | MNX specification</title>
+<title>The staff position object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -43,13 +43,23 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    clef line
+    staff position
 </p>
 
-<h1>The clef line object</h1>
+<h1>The staff position object</h1>
 
 <p><b>Type:</b> Number</p>
 
+
+<p>Represents a vertical position in a staff, where 0 is the middle of the staff. This number is positive for positions above the middle of the staff, and it's negative for positions below the middle of the staff.</p>
+
+<p>This value is expressed in "half staff spaces." In other words, the staff position values of two consecutive staff lines are always 2 apart. This allows both lines and spaces to be encoded with simple integer values.</p>
+
+<p>For example: in a standard five-line staff, the middle line is position 0. The space directly above the middle line is position 1. The line directly above the middle line is position 2. The space directly below the middle line is position -1. The line directly below the middle line is position -2.</p>
+
+<p>In a single-line staff, position 0 represents the line itself, position 1 represents the space directly above the line, and position -1 represents the space directly below the line.</p>
+
+<p>In a two-line staff, position 0 represents the space between the two lines, position 1 represents the top line, and position -1 represents the bottom line.</p>
 
 
 
