@@ -36,11 +36,12 @@ class SiteGenerator:
             self.generate_url(schema.data_types_url())
             if schema.is_json:
                 self.generate_url(schema.json_objects_url())
+            else:
+                self.generate_url(schema.elements_url())
+                self.generate_url(schema.element_tree_url())
             for data_type in DataType.objects.filter(schema=schema):
                 self.generate_url(data_type.get_absolute_url())
 
-            self.generate_url(schema.elements_url())
-            self.generate_url(schema.element_tree_url())
             for element in XMLElement.objects.filter(schema=schema, is_abstract_element=False):
                 self.generate_url(element.get_absolute_url())
 
