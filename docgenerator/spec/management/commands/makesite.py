@@ -66,9 +66,13 @@ class SiteGenerator:
         html = self.client.get(url).content
         file_dir = os.path.join(self.dirname, url[1:])
         self.log(file_dir)
-        os.makedirs(file_dir, exist_ok=True)
-        with open(os.path.join(file_dir, INDEX_FILE), 'wb') as fp:
-            fp.write(html)
+        if url.endswith('/'):
+            os.makedirs(file_dir, exist_ok=True)
+            with open(os.path.join(file_dir, INDEX_FILE), 'wb') as fp:
+                fp.write(html)
+        else:
+            with open(file_dir, 'wb') as fp:
+                fp.write(html)
 
     def copy_media_files(self):
         self.log('Media files')
