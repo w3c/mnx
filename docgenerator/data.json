@@ -5231,10 +5231,10 @@
     "pk": 174,
     "fields": {
         "parent": 35,
-        "child_key": "pitch",
-        "child": 30,
+        "child_key": "position",
+        "child": 143,
         "is_required": false,
-        "description": "If provided, this mandates that the rest be placed on the staff line corresponding to the provided pitch. The accidental component of the pitch is ignored for this purpose."
+        "description": "If provided, this specifies the vertical position of the rest on the staff. If not provided, the rest should be positioned automatically according to convention.\r\n\r\nThis is the vertical position from which the rest symbol's SMuFL glyph is drawn. For example, a quarter rest is drawn from its vertical midpoint. See the <a href=\"https://w3c.github.io/smufl/latest/tables/rests.html\">SMuFL rests documentation</a> for more."
     }
 },
 {
@@ -6225,6 +6225,19 @@
         "blurb": "Each measure can encode a list of clefs. For an inner-bar clef change, the \"position\" key describes the clef's position in the bar. If \"position\" isn't provided, the clef is interpreted to be the start of the bar.",
         "document": "{\r\n   \"mnx\": {\r\n      \"version\": 1\r\n   },\r\n   \"global\": {\r\n      \"measures\": [\r\n         {\r\n            \"time\": {\r\n               \"count\": 4,\r\n               \"unit\": 4\r\n            }\r\n         }\r\n      ]\r\n   },\r\n   \"parts\": [\r\n      {\r\n         \"measures\": [\r\n            {\r\n               \"clefs\": [\r\n                  {\r\n                     \"clef\": {\r\n                        \"position\": -2,\r\n                        \"sign\": \"G\"\r\n                     }\r\n                  },\r\n                  {\r\n                     \"clef\": {\r\n                        \"position\": 2,\r\n                        \"sign\": \"F\"\r\n                     },\r\n                     \"position\": {\r\n                        \"fraction\": [1, 2]\r\n                     }\r\n                  }\r\n               ],\r\n               \"sequences\": [\r\n                  {\r\n                     \"content\": [\r\n                        {\r\n                           \"type\": \"event\",\r\n                           \"duration\": {\r\n                              \"base\": \"quarter\"\r\n                           },\r\n                           \"notes\": [\r\n                              {\r\n                                 \"pitch\": {\r\n                                    \"octave\": 4,\r\n                                    \"step\": \"C\"\r\n                                 }\r\n                              }\r\n                           ]\r\n                        },\r\n                        {\r\n                           \"type\": \"event\",\r\n                           \"duration\": {\r\n                              \"base\": \"quarter\"\r\n                           },\r\n                           \"notes\": [\r\n                              {\r\n                                 \"pitch\": {\r\n                                    \"octave\": 3,\r\n                                    \"step\": \"G\"\r\n                                 }\r\n                              }\r\n                           ]\r\n                        },\r\n                        {\r\n                           \"type\": \"event\",\r\n                           \"duration\": {\r\n                              \"base\": \"quarter\"\r\n                           },\r\n                           \"notes\": [\r\n                              {\r\n                                 \"pitch\": {\r\n                                    \"octave\": 3,\r\n                                    \"step\": \"E\"\r\n                                 }\r\n                              }\r\n                           ]\r\n                        },\r\n                        {\r\n                           \"type\": \"event\",\r\n                           \"duration\": {\r\n                              \"base\": \"quarter\"\r\n                           },\r\n                           \"notes\": [\r\n                              {\r\n                                 \"pitch\": {\r\n                                    \"octave\": 3,\r\n                                    \"step\": \"C\"\r\n                                 }\r\n                              }\r\n                           ]\r\n                        }\r\n                     ]\r\n                  }\r\n               ]\r\n            }\r\n         ]\r\n      }\r\n   ]\r\n}",
         "image_url": "/static/examples/clef-changes.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spec.exampledocument",
+    "pk": 40,
+    "fields": {
+        "name": "Rest positions",
+        "slug": "rest-positions",
+        "schema": 1,
+        "blurb": "You can optionally encode the vertical position of a rest — a situation that is most often encountered in multivoice music — by using \"position\" within the \"rest\" object. In this example, the rests are positioned slightly above, to make room for the bottom voice; this is staff position 2.",
+        "document": "{\r\n  \"global\": {\r\n    \"measures\": [\r\n      {\r\n        \"time\": {\r\n          \"count\": 4,\r\n          \"unit\": 4\r\n        }\r\n      }\r\n    ]\r\n  },\r\n  \"mnx\": {\r\n    \"version\": 1\r\n  },\r\n  \"parts\": [\r\n    {\r\n      \"measures\": [\r\n        {\r\n          \"clefs\": [\r\n            {\r\n              \"clef\": {\r\n                \"position\": -2,\r\n                \"sign\": \"G\"\r\n              }\r\n            }\r\n          ],\r\n          \"sequences\": [\r\n            {\r\n              \"content\": [\r\n                {\r\n                  \"duration\": {\r\n                    \"base\": \"quarter\"\r\n                  },\r\n                  \"notes\": [\r\n                    {\r\n                      \"pitch\": {\r\n                        \"octave\": 5,\r\n                        \"step\": \"E\"\r\n                      }\r\n                    }\r\n                  ],\r\n                  \"type\": \"event\"\r\n                },\r\n                {\r\n                  \"duration\": {\r\n                    \"base\": \"quarter\"\r\n                  },\r\n                  \"rest\": {\"position\": 2},\r\n                  \"type\": \"event\"\r\n                },\r\n                {\r\n                  \"duration\": {\r\n                    \"base\": \"eighth\"\r\n                  },\r\n                  \"id\": \"ev3\",\r\n                  \"notes\": [\r\n                    {\r\n                      \"pitch\": {\r\n                        \"octave\": 5,\r\n                        \"step\": \"F\"\r\n                      }\r\n                    }\r\n                  ],\r\n                  \"type\": \"event\"\r\n                },\r\n                {\r\n                  \"duration\": {\r\n                    \"base\": \"eighth\"\r\n                  },\r\n                  \"id\": \"ev4\",\r\n                  \"notes\": [\r\n                    {\r\n                      \"pitch\": {\r\n                        \"octave\": 5,\r\n                        \"step\": \"E\"\r\n                      }\r\n                    }\r\n                  ],\r\n                  \"type\": \"event\"\r\n                },\r\n                {\r\n                  \"duration\": {\r\n                    \"base\": \"quarter\"\r\n                  },\r\n                  \"rest\": {\"position\": 2},\r\n                  \"type\": \"event\"\r\n                }\r\n              ]\r\n            },\r\n            {\r\n              \"content\": [\r\n                {\r\n                  \"duration\": {\r\n                    \"base\": \"quarter\"\r\n                  },\r\n                  \"notes\": [\r\n                    {\r\n                      \"pitch\": {\r\n                        \"octave\": 4,\r\n                        \"step\": \"C\"\r\n                      }\r\n                    }\r\n                  ],\r\n                  \"type\": \"event\"\r\n                },\r\n                {\r\n                  \"duration\": {\r\n                    \"base\": \"quarter\"\r\n                  },\r\n                  \"notes\": [\r\n                    {\r\n                      \"pitch\": {\r\n                        \"octave\": 4,\r\n                        \"step\": \"E\"\r\n                      }\r\n                    }\r\n                  ],\r\n                  \"type\": \"event\"\r\n                },\r\n                {\r\n                  \"duration\": {\r\n                    \"base\": \"quarter\"\r\n                  },\r\n                  \"notes\": [\r\n                    {\r\n                      \"pitch\": {\r\n                        \"octave\": 4,\r\n                        \"step\": \"D\"\r\n                      }\r\n                    }\r\n                  ],\r\n                  \"type\": \"event\"\r\n                },\r\n                {\r\n                  \"duration\": {\r\n                    \"base\": \"quarter\"\r\n                  },\r\n                  \"notes\": [\r\n                    {\r\n                      \"pitch\": {\r\n                        \"octave\": 4,\r\n                        \"step\": \"C\"\r\n                      }\r\n                    }\r\n                  ],\r\n                  \"type\": \"event\"\r\n                }\r\n              ]\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+        "image_url": "/static/examples/rest-positions.png",
         "is_featured": false
     }
 },
@@ -15062,6 +15075,206 @@
     "fields": {
         "example": 39,
         "json_object": 143
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1258,
+    "fields": {
+        "example": 40,
+        "json_object": 128
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1259,
+    "fields": {
+        "example": 40,
+        "json_object": 1
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1260,
+    "fields": {
+        "example": 40,
+        "json_object": 129
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1261,
+    "fields": {
+        "example": 40,
+        "json_object": 3
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1262,
+    "fields": {
+        "example": 40,
+        "json_object": 130
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1263,
+    "fields": {
+        "example": 40,
+        "json_object": 131
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1264,
+    "fields": {
+        "example": 40,
+        "json_object": 6
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1265,
+    "fields": {
+        "example": 40,
+        "json_object": 132
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1266,
+    "fields": {
+        "example": 40,
+        "json_object": 133
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1267,
+    "fields": {
+        "example": 40,
+        "json_object": 139
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1268,
+    "fields": {
+        "example": 40,
+        "json_object": 13
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1269,
+    "fields": {
+        "example": 40,
+        "json_object": 14
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1270,
+    "fields": {
+        "example": 40,
+        "json_object": 143
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1271,
+    "fields": {
+        "example": 40,
+        "json_object": 16
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1272,
+    "fields": {
+        "example": 40,
+        "json_object": 19
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1273,
+    "fields": {
+        "example": 40,
+        "json_object": 20
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1274,
+    "fields": {
+        "example": 40,
+        "json_object": 22
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1275,
+    "fields": {
+        "example": 40,
+        "json_object": 26
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1276,
+    "fields": {
+        "example": 40,
+        "json_object": 30
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1277,
+    "fields": {
+        "example": 40,
+        "json_object": 31
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1278,
+    "fields": {
+        "example": 40,
+        "json_object": 35
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1279,
+    "fields": {
+        "example": 40,
+        "json_object": 37
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1280,
+    "fields": {
+        "example": 40,
+        "json_object": 45
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1281,
+    "fields": {
+        "example": 40,
+        "json_object": 126
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1282,
+    "fields": {
+        "example": 40,
+        "json_object": 127
     }
 },
 {
