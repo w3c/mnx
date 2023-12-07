@@ -14,6 +14,7 @@ urlpatterns = [
     path('<slug:schema_slug>-reference/examples/<slug:slug>/', views.example_detail, name='example_detail'),
     path('<slug:schema_slug>-reference/objects/', views.json_object_list, name='json_object_list'),
     path('<slug:schema_slug>-reference/objects/<slug:slug>/', views.json_object_detail, name='json_object_detail'),
+    path('<slug:schema_slug>-schema.json', views.json_schema, name='json_schema'),
     path('concepts/', views.concept_list, name='concept_list'),
     path('concepts/<slug:slug>/', views.concept_detail, name='concept_detail'),
     path('comparisons/<slug:slug>/', views.format_comparison_detail, name='format_comparison_detail'),
