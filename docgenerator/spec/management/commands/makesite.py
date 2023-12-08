@@ -36,11 +36,12 @@ class SiteGenerator:
             self.generate_url(schema.data_types_url())
             if schema.is_json:
                 self.generate_url(schema.json_objects_url())
+            else:
+                self.generate_url(schema.elements_url())
+                self.generate_url(schema.element_tree_url())
             for data_type in DataType.objects.filter(schema=schema):
                 self.generate_url(data_type.get_absolute_url())
 
-            self.generate_url(schema.elements_url())
-            self.generate_url(schema.element_tree_url())
             for element in XMLElement.objects.filter(schema=schema, is_abstract_element=False):
                 self.generate_url(element.get_absolute_url())
 
@@ -66,9 +67,13 @@ class SiteGenerator:
         html = self.client.get(url).content
         file_dir = os.path.join(self.dirname, url[1:])
         self.log(file_dir)
-        os.makedirs(file_dir, exist_ok=True)
-        with open(os.path.join(file_dir, INDEX_FILE), 'wb') as fp:
-            fp.write(html)
+        if url.endswith('/'):
+            os.makedirs(file_dir, exist_ok=True)
+            with open(os.path.join(file_dir, INDEX_FILE), 'wb') as fp:
+                fp.write(html)
+        else:
+            with open(file_dir, 'wb') as fp:
+                fp.write(html)
 
     def copy_media_files(self):
         self.log('Media files')
