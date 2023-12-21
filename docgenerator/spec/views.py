@@ -86,6 +86,13 @@ def json_object_detail(request, schema_slug, slug):
         'examples': ExampleDocumentObject.objects.filter(json_object=json_object).select_related('example').order_by(Lower('example__name')),
     })
 
+def json_schema(request, schema_slug):
+    from spec.utils.jsonschema import make_json_schema
+    import json
+    schema_obj = make_json_schema(schema_slug)
+    schema_str = json.dumps(schema_obj, indent=4, sort_keys=True)
+    return http.HttpResponse(schema_str, content_type='text/plain')
+
 def data_type_list(request, schema_slug):
     schema = get_object_or_404(XMLSchema, slug=schema_slug)
     return render(request, 'data_type_list.html', {
