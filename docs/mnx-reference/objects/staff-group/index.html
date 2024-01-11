@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The stave symbol object | MNX specification</title>
+<title>The staff group object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -44,15 +44,84 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    stave symbol
+    staff group
 </p>
 
-<h1>The stave symbol object</h1>
+<h1>The staff group object</h1>
 
-<p><b>Type:</b> String</p>
+<p><b>Type:</b> Dictionary</p>
+
+
+The staff group object is a way to group staff layouts together, for the purposes of giving them a unified name and/or grouping symbol.
+
+You can also nest staff group objects within another, to represent more complex groupings of staffs, as in large orchestral scores.
 
 
 
+<h2>Keys:</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>"content"</b></nobr></td>
+    <td>
+        
+            An array of
+            
+            <a href="./">staff group objects</a>, 
+            
+            <a href="../staff/">staff objects</a>
+            
+        
+    </td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+<tr>
+    <td><nobr><b>"label"</b></nobr></td>
+    <td>
+        
+        <a href="../staff-label/">staff label object</a>
+        
+    </td>
+    <td>No</td>
+    <td>An optional name for this group of staffs. If provided, this should be rendered to the left of the staff group.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"symbol"</b></nobr></td>
+    <td>
+        
+        <a href="../staff-symbol/">staff symbol object</a>
+        
+    </td>
+    <td>No</td>
+    <td>The symbol to use along the left vertical edge of this group of staffs. If omitted, the default value is "none".<br><br>Note that the child objects might also define their own own "symbol" attributes.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"type"</b></nobr></td>
+    <td>
+        
+            The string <code>"group"</code>
+        
+    </td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+
+</table>
 
 
 

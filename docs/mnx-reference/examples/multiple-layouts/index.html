@@ -58,7 +58,7 @@
 
 
 
-<p>In this image, you see three different representations of the same underlying SATB music — one with four separate staves, one with two staves (using multiple voices) and one with two staves (using notes combined into chords).<br><br>This can be encoded entirely within a single MNX document. The underlying music (the notes, barlines, etc.) is encoded only once, within the &lt;global&gt; and &lt;part&gt; elements. But there are three separate &lt;score&gt; elements — one for each visual representation of the music.<br><br>A &lt;score&gt; references a particular &lt;layout&gt;. The &lt;layout&gt; element is where the style information is contained: which parts, in which order.</p>
+<p>In this image, you see three different representations of the same underlying SATB music — one with four separate staffs, one with two staffs (using multiple voices) and one with two staffs (using notes combined into chords).<br><br>This can be encoded entirely within a single MNX document. The underlying music (the notes, barlines, etc.) is encoded only once, within the &lt;global&gt; and &lt;part&gt; elements. But there are three separate &lt;score&gt; elements — one for each visual representation of the music.<br><br>A &lt;score&gt; references a particular &lt;layout&gt;. The &lt;layout&gt; element is where the style information is contained: which parts, in which order.</p>
 
 
 
@@ -85,46 +85,46 @@
          <a class="tag" href="../../objects/system-layout/">"id"</a>: <a class="tag" href="../../objects/id/">"Choral4Staff"</a>,
          <a class="tag" href="../../objects/system-layout/">"content"</a>: [
             {
-               <a class="tag" href="../../objects/stave-group/">"type"</a>: "group",
-               <a class="tag" href="../../objects/stave-group/">"content"</a>: [
+               <a class="tag" href="../../objects/staff-group/">"type"</a>: "group",
+               <a class="tag" href="../../objects/staff-group/">"content"</a>: [
                   {
-                     <a class="tag" href="../../objects/stave/">"type"</a>: "staff",
-                     <a class="tag" href="../../objects/stave/">"labelref"</a>: <a class="tag" href="../../objects/stave-labelref/">"name"</a>,
-                     <a class="tag" href="../../objects/stave/">"sources"</a>: [
+                     <a class="tag" href="../../objects/staff/">"type"</a>: "staff",
+                     <a class="tag" href="../../objects/staff/">"labelref"</a>: <a class="tag" href="../../objects/staff-labelref/">"name"</a>,
+                     <a class="tag" href="../../objects/staff/">"sources"</a>: [
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"soprano"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"soprano"</a>
                         }
                      ]
                   },
                   {
-                     <a class="tag" href="../../objects/stave/">"type"</a>: "staff",
-                     <a class="tag" href="../../objects/stave/">"labelref"</a>: <a class="tag" href="../../objects/stave-labelref/">"name"</a>,
-                     <a class="tag" href="../../objects/stave/">"sources"</a>: [
+                     <a class="tag" href="../../objects/staff/">"type"</a>: "staff",
+                     <a class="tag" href="../../objects/staff/">"labelref"</a>: <a class="tag" href="../../objects/staff-labelref/">"name"</a>,
+                     <a class="tag" href="../../objects/staff/">"sources"</a>: [
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"alto"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"alto"</a>
                         }
                      ]
                   },
                   {
-                     <a class="tag" href="../../objects/stave/">"type"</a>: "staff",
-                     <a class="tag" href="../../objects/stave/">"labelref"</a>: <a class="tag" href="../../objects/stave-labelref/">"name"</a>,
-                     <a class="tag" href="../../objects/stave/">"sources"</a>: [
+                     <a class="tag" href="../../objects/staff/">"type"</a>: "staff",
+                     <a class="tag" href="../../objects/staff/">"labelref"</a>: <a class="tag" href="../../objects/staff-labelref/">"name"</a>,
+                     <a class="tag" href="../../objects/staff/">"sources"</a>: [
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"tenor"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"tenor"</a>
                         }
                      ]
                   },
                   {
-                     <a class="tag" href="../../objects/stave/">"type"</a>: "staff",
-                     <a class="tag" href="../../objects/stave/">"labelref"</a>: <a class="tag" href="../../objects/stave-labelref/">"name"</a>,
-                     <a class="tag" href="../../objects/stave/">"sources"</a>: [
+                     <a class="tag" href="../../objects/staff/">"type"</a>: "staff",
+                     <a class="tag" href="../../objects/staff/">"labelref"</a>: <a class="tag" href="../../objects/staff-labelref/">"name"</a>,
+                     <a class="tag" href="../../objects/staff/">"sources"</a>: [
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"bass"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"bass"</a>
                         }
                      ]
                   }
                ],
-               <a class="tag" href="../../objects/stave-group/">"symbol"</a>: <a class="tag" href="../../objects/stave-symbol/">"bracket"</a>
+               <a class="tag" href="../../objects/staff-group/">"symbol"</a>: <a class="tag" href="../../objects/staff-symbol/">"bracket"</a>
             }
          ]
       },
@@ -132,38 +132,38 @@
          <a class="tag" href="../../objects/system-layout/">"id"</a>: <a class="tag" href="../../objects/id/">"Choral2StaffStemSplit"</a>,
          <a class="tag" href="../../objects/system-layout/">"content"</a>: [
             {
-               <a class="tag" href="../../objects/stave-group/">"type"</a>: "group",
-               <a class="tag" href="../../objects/stave-group/">"content"</a>: [
+               <a class="tag" href="../../objects/staff-group/">"type"</a>: "group",
+               <a class="tag" href="../../objects/staff-group/">"content"</a>: [
                   {
-                     <a class="tag" href="../../objects/stave/">"type"</a>: "staff",
-                     <a class="tag" href="../../objects/stave/">"label"</a>: <a class="tag" href="../../objects/stave-label/">"SA"</a>,
-                     <a class="tag" href="../../objects/stave/">"sources"</a>: [
+                     <a class="tag" href="../../objects/staff/">"type"</a>: "staff",
+                     <a class="tag" href="../../objects/staff/">"label"</a>: <a class="tag" href="../../objects/staff-label/">"SA"</a>,
+                     <a class="tag" href="../../objects/staff/">"sources"</a>: [
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"soprano"</a>,
-                           <a class="tag" href="../../objects/stave-source/">"stem"</a>: <a class="tag" href="../../objects/stem-direction/">"up"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"soprano"</a>,
+                           <a class="tag" href="../../objects/staff-source/">"stem"</a>: <a class="tag" href="../../objects/stem-direction/">"up"</a>
                         },
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"alto"</a>,
-                           <a class="tag" href="../../objects/stave-source/">"stem"</a>: <a class="tag" href="../../objects/stem-direction/">"down"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"alto"</a>,
+                           <a class="tag" href="../../objects/staff-source/">"stem"</a>: <a class="tag" href="../../objects/stem-direction/">"down"</a>
                         }
                      ]
                   },
                   {
-                     <a class="tag" href="../../objects/stave/">"type"</a>: "staff",
-                     <a class="tag" href="../../objects/stave/">"label"</a>: <a class="tag" href="../../objects/stave-label/">"TB"</a>,
-                     <a class="tag" href="../../objects/stave/">"sources"</a>: [
+                     <a class="tag" href="../../objects/staff/">"type"</a>: "staff",
+                     <a class="tag" href="../../objects/staff/">"label"</a>: <a class="tag" href="../../objects/staff-label/">"TB"</a>,
+                     <a class="tag" href="../../objects/staff/">"sources"</a>: [
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"tenor"</a>,
-                           <a class="tag" href="../../objects/stave-source/">"stem"</a>: <a class="tag" href="../../objects/stem-direction/">"up"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"tenor"</a>,
+                           <a class="tag" href="../../objects/staff-source/">"stem"</a>: <a class="tag" href="../../objects/stem-direction/">"up"</a>
                         },
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"bass"</a>,
-                           <a class="tag" href="../../objects/stave-source/">"stem"</a>: <a class="tag" href="../../objects/stem-direction/">"down"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"bass"</a>,
+                           <a class="tag" href="../../objects/staff-source/">"stem"</a>: <a class="tag" href="../../objects/stem-direction/">"down"</a>
                         }
                      ]
                   }
                ],
-               <a class="tag" href="../../objects/stave-group/">"symbol"</a>: <a class="tag" href="../../objects/stave-symbol/">"bracket"</a>
+               <a class="tag" href="../../objects/staff-group/">"symbol"</a>: <a class="tag" href="../../objects/staff-symbol/">"bracket"</a>
             }
          ]
       },
@@ -171,34 +171,34 @@
          <a class="tag" href="../../objects/system-layout/">"id"</a>: <a class="tag" href="../../objects/id/">"Choral2StaffChorded"</a>,
          <a class="tag" href="../../objects/system-layout/">"content"</a>: [
             {
-               <a class="tag" href="../../objects/stave-group/">"type"</a>: "group",
-               <a class="tag" href="../../objects/stave-group/">"content"</a>: [
+               <a class="tag" href="../../objects/staff-group/">"type"</a>: "group",
+               <a class="tag" href="../../objects/staff-group/">"content"</a>: [
                   {
-                     <a class="tag" href="../../objects/stave/">"type"</a>: "staff",
-                     <a class="tag" href="../../objects/stave/">"label"</a>: <a class="tag" href="../../objects/stave-label/">"SA"</a>,
-                     <a class="tag" href="../../objects/stave/">"sources"</a>: [
+                     <a class="tag" href="../../objects/staff/">"type"</a>: "staff",
+                     <a class="tag" href="../../objects/staff/">"label"</a>: <a class="tag" href="../../objects/staff-label/">"SA"</a>,
+                     <a class="tag" href="../../objects/staff/">"sources"</a>: [
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"soprano"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"soprano"</a>
                         },
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"alto"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"alto"</a>
                         }
                      ]
                   },
                   {
-                     <a class="tag" href="../../objects/stave/">"type"</a>: "staff",
-                     <a class="tag" href="../../objects/stave/">"label"</a>: <a class="tag" href="../../objects/stave-label/">"TB"</a>,
-                     <a class="tag" href="../../objects/stave/">"sources"</a>: [
+                     <a class="tag" href="../../objects/staff/">"type"</a>: "staff",
+                     <a class="tag" href="../../objects/staff/">"label"</a>: <a class="tag" href="../../objects/staff-label/">"TB"</a>,
+                     <a class="tag" href="../../objects/staff/">"sources"</a>: [
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"tenor"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"tenor"</a>
                         },
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"bass"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"bass"</a>
                         }
                      ]
                   }
                ],
-               <a class="tag" href="../../objects/stave-group/">"symbol"</a>: <a class="tag" href="../../objects/stave-symbol/">"bracket"</a>
+               <a class="tag" href="../../objects/staff-group/">"symbol"</a>: <a class="tag" href="../../objects/staff-symbol/">"bracket"</a>
             }
          ]
       },
@@ -206,36 +206,36 @@
          <a class="tag" href="../../objects/system-layout/">"id"</a>: <a class="tag" href="../../objects/id/">"Choral2StaffMenSplit"</a>,
          <a class="tag" href="../../objects/system-layout/">"content"</a>: [
             {
-               <a class="tag" href="../../objects/stave-group/">"type"</a>: "group",
-               <a class="tag" href="../../objects/stave-group/">"content"</a>: [
+               <a class="tag" href="../../objects/staff-group/">"type"</a>: "group",
+               <a class="tag" href="../../objects/staff-group/">"content"</a>: [
                   {
-                     <a class="tag" href="../../objects/stave/">"type"</a>: "staff",
-                     <a class="tag" href="../../objects/stave/">"label"</a>: <a class="tag" href="../../objects/stave-label/">"SA"</a>,
-                     <a class="tag" href="../../objects/stave/">"sources"</a>: [
+                     <a class="tag" href="../../objects/staff/">"type"</a>: "staff",
+                     <a class="tag" href="../../objects/staff/">"label"</a>: <a class="tag" href="../../objects/staff-label/">"SA"</a>,
+                     <a class="tag" href="../../objects/staff/">"sources"</a>: [
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"soprano"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"soprano"</a>
                         },
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"alto"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"alto"</a>
                         }
                      ]
                   },
                   {
-                     <a class="tag" href="../../objects/stave/">"type"</a>: "staff",
-                     <a class="tag" href="../../objects/stave/">"label"</a>: <a class="tag" href="../../objects/stave-label/">"TB"</a>,
-                     <a class="tag" href="../../objects/stave/">"sources"</a>: [
+                     <a class="tag" href="../../objects/staff/">"type"</a>: "staff",
+                     <a class="tag" href="../../objects/staff/">"label"</a>: <a class="tag" href="../../objects/staff-label/">"TB"</a>,
+                     <a class="tag" href="../../objects/staff/">"sources"</a>: [
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"tenor"</a>,
-                           <a class="tag" href="../../objects/stave-source/">"stem"</a>: <a class="tag" href="../../objects/stem-direction/">"up"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"tenor"</a>,
+                           <a class="tag" href="../../objects/staff-source/">"stem"</a>: <a class="tag" href="../../objects/stem-direction/">"up"</a>
                         },
                         {
-                           <a class="tag" href="../../objects/stave-source/">"part"</a>: <a class="tag" href="../../objects/id/">"bass"</a>,
-                           <a class="tag" href="../../objects/stave-source/">"stem"</a>: <a class="tag" href="../../objects/stem-direction/">"down"</a>
+                           <a class="tag" href="../../objects/staff-source/">"part"</a>: <a class="tag" href="../../objects/id/">"bass"</a>,
+                           <a class="tag" href="../../objects/staff-source/">"stem"</a>: <a class="tag" href="../../objects/stem-direction/">"down"</a>
                         }
                      ]
                   }
                ],
-               <a class="tag" href="../../objects/stave-group/">"symbol"</a>: <a class="tag" href="../../objects/stave-symbol/">"bracket"</a>
+               <a class="tag" href="../../objects/staff-group/">"symbol"</a>: <a class="tag" href="../../objects/staff-symbol/">"bracket"</a>
             }
          ]
       }

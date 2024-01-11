@@ -255,19 +255,19 @@
         "smufl-glyph": {
             "type": "string"
         },
+        "staff-label": {
+            "type": "string"
+        },
+        "staff-labelref": {
+            "type": "string"
+        },
         "staff-number": {
             "type": "integer"
         },
         "staff-position": {
             "type": "integer"
         },
-        "stave-label": {
-            "type": "string"
-        },
-        "stave-labelref": {
-            "type": "string"
-        },
-        "stave-symbol": {
+        "staff-symbol": {
             "type": "string"
         },
         "stem-direction": {
@@ -286,10 +286,10 @@
                                 "$ref": "#/$defs/system-layout-content"
                             },
                             "label": {
-                                "$ref": "#/$defs/stave-label"
+                                "$ref": "#/$defs/staff-label"
                             },
                             "symbol": {
-                                "$ref": "#/$defs/stave-symbol"
+                                "$ref": "#/$defs/staff-symbol"
                             },
                             "type": {
                                 "const": "group",
@@ -306,20 +306,20 @@
                         "additionalProperties": false,
                         "properties": {
                             "label": {
-                                "$ref": "#/$defs/stave-label"
+                                "$ref": "#/$defs/staff-label"
                             },
                             "labelref": {
-                                "$ref": "#/$defs/stave-labelref"
+                                "$ref": "#/$defs/staff-labelref"
                             },
                             "sources": {
                                 "items": {
                                     "additionalProperties": false,
                                     "properties": {
                                         "label": {
-                                            "$ref": "#/$defs/stave-label"
+                                            "$ref": "#/$defs/staff-label"
                                         },
                                         "labelref": {
-                                            "$ref": "#/$defs/stave-labelref"
+                                            "$ref": "#/$defs/staff-labelref"
                                         },
                                         "part": {
                                             "$ref": "#/$defs/id"
@@ -342,7 +342,7 @@
                                 "type": "array"
                             },
                             "symbol": {
-                                "$ref": "#/$defs/stave-symbol"
+                                "$ref": "#/$defs/staff-symbol"
                             },
                             "type": {
                                 "const": "staff",

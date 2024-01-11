@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The stave object | MNX specification</title>
+<title>The staff source object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -44,17 +44,15 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    stave
+    staff source
 </p>
 
-<h1>The stave object</h1>
+<h1>The staff source object</h1>
 
 <p><b>Type:</b> Dictionary</p>
 
 
-<p>The stave object describes the visual display of a single staff within a layout.</p>
-
-<p>Generally this corresponds to a single part (from the top-level "parts" array), but MNX supports encoding multiple parts in the same staff — as might be used, for example, when combining soprano and alto vocal parts into a single stave.</p>
+<p>The staff source object is the way to specify which parts are included in a given layout. You can optionally target a specific voice or staff (for multi-voice parts).</p>
 
 
 
@@ -75,58 +73,66 @@
     <td><nobr><b>"label"</b></nobr></td>
     <td>
         
-        <a href="../stave-label/">stave label object</a>
+        <a href="../staff-label/">staff label object</a>
         
     </td>
     <td>No</td>
-    <td>An optional name for this staff. If provided, this should be rendered to the left of the staff.<br><br>Generally we recommend using "labelref" instead of "label", to avoid duplication of data within an MNX document.</td>
+    <td>An optional name for this source's part of the staff. If provided, this should be rendered to the left of the staff, vertically aligned to communicate the label is for this particular source (as opposed to other sources in the same staff).<br><br>This should only be used in cases where a single staff is sourced from more than one staff source and you want to more than one label for that staff. Otherwise, use a label on the staff object instead.</td>
 </tr>
 
 <tr>
     <td><nobr><b>"labelref"</b></nobr></td>
     <td>
         
-        <a href="../stave-labelref/">stave labelref object</a>
+        <a href="../staff-labelref/">staff labelref object</a>
         
     </td>
     <td>No</td>
-    <td>If provided, this specifies that the corresponding part's name (or short-name) should be rendered to the left of the staff.<br><br>By using this instead of the "label" attribute, you can avoid needing to duplicate a part's name in an MNX document.</td>
+    <td>If provided, this specifies that the corresponding part's name (or short-name) should be rendered to the left of the staff. See the documentation for "label".<br><br>By using this instead of the "label" attribute, you can avoid needing to duplicate a part's name in an MNX document.</td>
 </tr>
 
 <tr>
-    <td><nobr><b>"sources"</b></nobr></td>
+    <td><nobr><b>"part"</b></nobr></td>
     <td>
         
-            An array of
-            
-            <a href="../stave-source/">stave source objects</a>
-            
+        <a href="../id/">id object</a>
         
     </td>
     <td>Yes</td>
-    <td></td>
+    <td>A reference to the appropriate part.</td>
 </tr>
 
 <tr>
-    <td><nobr><b>"symbol"</b></nobr></td>
+    <td><nobr><b>"staff"</b></nobr></td>
     <td>
         
-        <a href="../stave-symbol/">stave symbol object</a>
+        <a href="../staff-number/">staff number object</a>
         
     </td>
     <td>No</td>
-    <td>The symbol to use along the left vertical edge of this staff. If omitted, the default value is "none".<br><br>Note that parent objects might also define their own "symbol" attributes.</td>
+    <td>Optional staff within the given part. This allows you to choose which staff to use from a multi-staff part.</td>
 </tr>
 
 <tr>
-    <td><nobr><b>"type"</b></nobr></td>
+    <td><nobr><b>"stem"</b></nobr></td>
     <td>
         
-            The string <code>"staff"</code>
+        <a href="../stem-direction/">stem direction object</a>
         
     </td>
-    <td>Yes</td>
-    <td></td>
+    <td>No</td>
+    <td>The stem direction to use for all notes within the associated part. Default is "float", meaning the stem directions should be determined algorithmically.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"voice"</b></nobr></td>
+    <td>
+        
+        <a href="../voice-name/">voice name object</a>
+        
+    </td>
+    <td>No</td>
+    <td>Optional voice within the given part. This allows you to filter the associated part's sequence data by voice.<br><br>This is useful for complex orchestral scores, where individual parts are sometimes placed on multiple staffs but sometimes placed on a single staff.<br><br>If this is not provided, the layout will use all the notation data from the part (i.e., applying no filter).</td>
 </tr>
 
 
