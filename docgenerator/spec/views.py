@@ -90,7 +90,7 @@ def json_schema(request, schema_slug):
     from spec.utils.jsonschema import make_json_schema
     import json
     schema_obj = make_json_schema(schema_slug)
-    schema_str = json.dumps(schema_obj, indent=4, sort_keys=True)
+    schema_str = json.dumps(schema_obj, indent=2, sort_keys=True)
     return http.HttpResponse(schema_str, content_type='text/plain')
 
 def data_type_list(request, schema_slug):

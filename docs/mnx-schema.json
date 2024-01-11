@@ -1,975 +1,975 @@
 {
-    "$defs": {
-        "beam-list": {
+  "$defs": {
+    "beam-list": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "events": {
             "items": {
-                "additionalProperties": false,
-                "properties": {
-                    "events": {
-                        "items": {
-                            "$ref": "#/$defs/id"
-                        },
-                        "type": "array"
-                    },
-                    "hooks": {
-                        "items": {
-                            "additionalProperties": false,
-                            "properties": {
-                                "direction": {
-                                    "type": "string"
-                                },
-                                "event": {
-                                    "$ref": "#/$defs/id"
-                                }
-                            },
-                            "required": [
-                                "direction",
-                                "event"
-                            ],
-                            "type": "object"
-                        },
-                        "type": "array"
-                    },
-                    "inner": {
-                        "$ref": "#/$defs/beam-list"
-                    }
-                },
-                "required": [
-                    "events"
-                ],
-                "type": "object"
+              "$ref": "#/$defs/id"
             },
             "type": "array"
-        },
-        "color": {
-            "type": "string"
-        },
-        "event": {
-            "additionalProperties": false,
-            "properties": {
-                "duration": {
-                    "$ref": "#/$defs/note-value"
+          },
+          "hooks": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "direction": {
+                  "type": "string"
                 },
-                "id": {
-                    "$ref": "#/$defs/id"
-                },
-                "measure": {
-                    "type": "boolean"
-                },
-                "notes": {
-                    "items": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "accidentalDisplay": {
-                                "additionalProperties": false,
-                                "properties": {
-                                    "cautionary": {
-                                        "type": "boolean"
-                                    },
-                                    "editorial": {
-                                        "type": "boolean"
-                                    },
-                                    "show": {
-                                        "type": "boolean"
-                                    }
-                                },
-                                "required": [
-                                    "show"
-                                ],
-                                "type": "object"
-                            },
-                            "class": {
-                                "$ref": "#/$defs/style-class"
-                            },
-                            "id": {
-                                "$ref": "#/$defs/id"
-                            },
-                            "perform": {
-                                "additionalProperties": false,
-                                "properties": {},
-                                "type": "object"
-                            },
-                            "pitch": {
-                                "additionalProperties": false,
-                                "properties": {
-                                    "alter": {
-                                        "type": "integer"
-                                    },
-                                    "octave": {
-                                        "type": "integer"
-                                    },
-                                    "step": {
-                                        "type": "string"
-                                    }
-                                },
-                                "required": [
-                                    "octave",
-                                    "step"
-                                ],
-                                "type": "object"
-                            },
-                            "smufl-font": {
-                                "$ref": "#/$defs/smufl-font"
-                            },
-                            "staff": {
-                                "$ref": "#/$defs/staff-number"
-                            },
-                            "tied": {
-                                "additionalProperties": false,
-                                "properties": {
-                                    "location": {
-                                        "$ref": "#/$defs/slur-tie-end-location"
-                                    },
-                                    "target": {
-                                        "$ref": "#/$defs/id"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "required": [
-                            "pitch"
-                        ],
-                        "type": "object"
-                    },
-                    "type": "array"
-                },
-                "orient": {
-                    "$ref": "#/$defs/orientation"
-                },
-                "rest": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "position": {
-                            "$ref": "#/$defs/staff-position"
-                        }
-                    },
-                    "type": "object"
-                },
-                "slurs": {
-                    "items": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "end-note": {
-                                "$ref": "#/$defs/id"
-                            },
-                            "line-type": {
-                                "type": "string"
-                            },
-                            "location": {
-                                "$ref": "#/$defs/slur-tie-end-location"
-                            },
-                            "side": {
-                                "$ref": "#/$defs/slur-side"
-                            },
-                            "side-end": {
-                                "$ref": "#/$defs/slur-side"
-                            },
-                            "start-note": {
-                                "$ref": "#/$defs/id"
-                            },
-                            "target": {
-                                "$ref": "#/$defs/id"
-                            }
-                        },
-                        "type": "object"
-                    },
-                    "type": "array"
-                },
-                "smufl-font": {
-                    "$ref": "#/$defs/smufl-font"
-                },
-                "staff": {
-                    "$ref": "#/$defs/staff-number"
-                },
-                "stem-direction": {
-                    "$ref": "#/$defs/stem-direction"
-                },
-                "type": {
-                    "const": "event",
-                    "type": "string"
+                "event": {
+                  "$ref": "#/$defs/id"
                 }
+              },
+              "required": [
+                "direction",
+                "event"
+              ],
+              "type": "object"
             },
-            "required": [
-                "type"
-            ],
-            "type": "object"
+            "type": "array"
+          },
+          "inner": {
+            "$ref": "#/$defs/beam-list"
+          }
+        },
+        "required": [
+          "events"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "color": {
+      "type": "string"
+    },
+    "event": {
+      "additionalProperties": false,
+      "properties": {
+        "duration": {
+          "$ref": "#/$defs/note-value"
         },
         "id": {
-            "type": "string"
+          "$ref": "#/$defs/id"
         },
-        "integer-unsigned": {
-            "type": "integer"
+        "measure": {
+          "type": "boolean"
         },
-        "measure-location": {
-            "type": "string"
-        },
-        "measure-number": {
-            "type": "integer"
-        },
-        "note-value": {
+        "notes": {
+          "items": {
             "additionalProperties": false,
             "properties": {
-                "base": {
+              "accidentalDisplay": {
+                "additionalProperties": false,
+                "properties": {
+                  "cautionary": {
+                    "type": "boolean"
+                  },
+                  "editorial": {
+                    "type": "boolean"
+                  },
+                  "show": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "show"
+                ],
+                "type": "object"
+              },
+              "class": {
+                "$ref": "#/$defs/style-class"
+              },
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "perform": {
+                "additionalProperties": false,
+                "properties": {},
+                "type": "object"
+              },
+              "pitch": {
+                "additionalProperties": false,
+                "properties": {
+                  "alter": {
+                    "type": "integer"
+                  },
+                  "octave": {
+                    "type": "integer"
+                  },
+                  "step": {
                     "type": "string"
+                  }
                 },
-                "dots": {
-                    "$ref": "#/$defs/positive-integer"
-                }
+                "required": [
+                  "octave",
+                  "step"
+                ],
+                "type": "object"
+              },
+              "smufl-font": {
+                "$ref": "#/$defs/smufl-font"
+              },
+              "staff": {
+                "$ref": "#/$defs/staff-number"
+              },
+              "tied": {
+                "additionalProperties": false,
+                "properties": {
+                  "location": {
+                    "$ref": "#/$defs/slur-tie-end-location"
+                  },
+                  "target": {
+                    "$ref": "#/$defs/id"
+                  }
+                },
+                "type": "object"
+              }
             },
             "required": [
-                "base"
+              "pitch"
             ],
             "type": "object"
+          },
+          "type": "array"
         },
-        "note-value-quantity": {
+        "orient": {
+          "$ref": "#/$defs/orientation"
+        },
+        "rest": {
+          "additionalProperties": false,
+          "properties": {
+            "position": {
+              "$ref": "#/$defs/staff-position"
+            }
+          },
+          "type": "object"
+        },
+        "slurs": {
+          "items": {
             "additionalProperties": false,
             "properties": {
-                "duration": {
-                    "$ref": "#/$defs/note-value"
-                },
-                "multiple": {
-                    "$ref": "#/$defs/positive-integer"
-                }
+              "end-note": {
+                "$ref": "#/$defs/id"
+              },
+              "line-type": {
+                "type": "string"
+              },
+              "location": {
+                "$ref": "#/$defs/slur-tie-end-location"
+              },
+              "side": {
+                "$ref": "#/$defs/slur-side"
+              },
+              "side-end": {
+                "$ref": "#/$defs/slur-side"
+              },
+              "start-note": {
+                "$ref": "#/$defs/id"
+              },
+              "target": {
+                "$ref": "#/$defs/id"
+              }
             },
-            "required": [
-                "duration",
-                "multiple"
-            ],
             "type": "object"
-        },
-        "orientation": {
-            "type": "string"
-        },
-        "positive-integer": {
-            "type": "integer"
-        },
-        "slur-side": {
-            "type": "string"
-        },
-        "slur-tie-end-location": {
-            "type": "string"
+          },
+          "type": "array"
         },
         "smufl-font": {
-            "type": "string"
+          "$ref": "#/$defs/smufl-font"
         },
-        "smufl-glyph": {
-            "type": "string"
-        },
-        "staff-label": {
-            "type": "string"
-        },
-        "staff-labelref": {
-            "type": "string"
-        },
-        "staff-number": {
-            "type": "integer"
-        },
-        "staff-position": {
-            "type": "integer"
-        },
-        "staff-symbol": {
-            "type": "string"
+        "staff": {
+          "$ref": "#/$defs/staff-number"
         },
         "stem-direction": {
-            "type": "string"
+          "$ref": "#/$defs/stem-direction"
         },
-        "style-class": {
-            "type": "string"
-        },
-        "system-layout-content": {
-            "items": {
-                "anyOf": [
-                    {
-                        "additionalProperties": false,
-                        "properties": {
-                            "content": {
-                                "$ref": "#/$defs/system-layout-content"
-                            },
-                            "label": {
-                                "$ref": "#/$defs/staff-label"
-                            },
-                            "symbol": {
-                                "$ref": "#/$defs/staff-symbol"
-                            },
-                            "type": {
-                                "const": "group",
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "content",
-                            "type"
-                        ],
-                        "type": "object"
-                    },
-                    {
-                        "additionalProperties": false,
-                        "properties": {
-                            "label": {
-                                "$ref": "#/$defs/staff-label"
-                            },
-                            "labelref": {
-                                "$ref": "#/$defs/staff-labelref"
-                            },
-                            "sources": {
-                                "items": {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                        "label": {
-                                            "$ref": "#/$defs/staff-label"
-                                        },
-                                        "labelref": {
-                                            "$ref": "#/$defs/staff-labelref"
-                                        },
-                                        "part": {
-                                            "$ref": "#/$defs/id"
-                                        },
-                                        "staff": {
-                                            "$ref": "#/$defs/staff-number"
-                                        },
-                                        "stem": {
-                                            "$ref": "#/$defs/stem-direction"
-                                        },
-                                        "voice": {
-                                            "$ref": "#/$defs/voice-name"
-                                        }
-                                    },
-                                    "required": [
-                                        "part"
-                                    ],
-                                    "type": "object"
-                                },
-                                "type": "array"
-                            },
-                            "symbol": {
-                                "$ref": "#/$defs/staff-symbol"
-                            },
-                            "type": {
-                                "const": "staff",
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "sources",
-                            "type"
-                        ],
-                        "type": "object"
-                    }
-                ]
-            },
-            "type": "array"
-        },
-        "tuplet-display-setting": {
-            "type": "string"
-        },
-        "voice-name": {
-            "type": "string"
+        "type": {
+          "const": "event",
+          "type": "string"
         }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
     },
-    "$id": "https://w3c.github.io/mnx/docs/mnx-schema.json",
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "additionalProperties": false,
-    "description": "An encoding of Common Western Music Notation.",
-    "properties": {
-        "global": {
+    "id": {
+      "type": "string"
+    },
+    "integer-unsigned": {
+      "type": "integer"
+    },
+    "measure-location": {
+      "type": "string"
+    },
+    "measure-number": {
+      "type": "integer"
+    },
+    "note-value": {
+      "additionalProperties": false,
+      "properties": {
+        "base": {
+          "type": "string"
+        },
+        "dots": {
+          "$ref": "#/$defs/positive-integer"
+        }
+      },
+      "required": [
+        "base"
+      ],
+      "type": "object"
+    },
+    "note-value-quantity": {
+      "additionalProperties": false,
+      "properties": {
+        "duration": {
+          "$ref": "#/$defs/note-value"
+        },
+        "multiple": {
+          "$ref": "#/$defs/positive-integer"
+        }
+      },
+      "required": [
+        "duration",
+        "multiple"
+      ],
+      "type": "object"
+    },
+    "orientation": {
+      "type": "string"
+    },
+    "positive-integer": {
+      "type": "integer"
+    },
+    "slur-side": {
+      "type": "string"
+    },
+    "slur-tie-end-location": {
+      "type": "string"
+    },
+    "smufl-font": {
+      "type": "string"
+    },
+    "smufl-glyph": {
+      "type": "string"
+    },
+    "staff-label": {
+      "type": "string"
+    },
+    "staff-labelref": {
+      "type": "string"
+    },
+    "staff-number": {
+      "type": "integer"
+    },
+    "staff-position": {
+      "type": "integer"
+    },
+    "staff-symbol": {
+      "type": "string"
+    },
+    "stem-direction": {
+      "type": "string"
+    },
+    "style-class": {
+      "type": "string"
+    },
+    "system-layout-content": {
+      "items": {
+        "anyOf": [
+          {
             "additionalProperties": false,
             "properties": {
-                "measures": {
-                    "items": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "barline": {
-                                "additionalProperties": false,
-                                "properties": {
-                                    "type": {
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            },
-                            "ending": {
-                                "additionalProperties": false,
-                                "properties": {
-                                    "class": {
-                                        "$ref": "#/$defs/style-class"
-                                    },
-                                    "color": {
-                                        "$ref": "#/$defs/color"
-                                    },
-                                    "duration": {
-                                        "type": "integer"
-                                    },
-                                    "numbers": {
-                                        "items": {
-                                            "type": "integer"
-                                        },
-                                        "type": "array"
-                                    },
-                                    "open": {
-                                        "type": "boolean"
-                                    }
-                                },
-                                "required": [
-                                    "duration"
-                                ],
-                                "type": "object"
-                            },
-                            "fine": {
-                                "additionalProperties": false,
-                                "properties": {
-                                    "class": {
-                                        "$ref": "#/$defs/style-class"
-                                    },
-                                    "color": {
-                                        "$ref": "#/$defs/color"
-                                    },
-                                    "location": {
-                                        "$ref": "#/$defs/measure-location"
-                                    }
-                                },
-                                "required": [
-                                    "location"
-                                ],
-                                "type": "object"
-                            },
-                            "index": {
-                                "$ref": "#/$defs/measure-number"
-                            },
-                            "jump": {
-                                "additionalProperties": false,
-                                "properties": {
-                                    "location": {
-                                        "$ref": "#/$defs/measure-location"
-                                    },
-                                    "type": {
-                                        "type": "string"
-                                    }
-                                },
-                                "required": [
-                                    "location",
-                                    "type"
-                                ],
-                                "type": "object"
-                            },
-                            "key": {
-                                "additionalProperties": false,
-                                "properties": {
-                                    "class": {
-                                        "$ref": "#/$defs/style-class"
-                                    },
-                                    "color": {
-                                        "$ref": "#/$defs/color"
-                                    },
-                                    "fifths": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "fifths"
-                                ],
-                                "type": "object"
-                            },
-                            "number": {
-                                "$ref": "#/$defs/measure-number"
-                            },
-                            "repeat-end": {
-                                "additionalProperties": false,
-                                "properties": {
-                                    "times": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "type": "object"
-                            },
-                            "repeat-start": {
-                                "additionalProperties": false,
-                                "properties": {},
-                                "type": "object"
-                            },
-                            "segno": {
-                                "additionalProperties": false,
-                                "properties": {
-                                    "class": {
-                                        "$ref": "#/$defs/style-class"
-                                    },
-                                    "color": {
-                                        "$ref": "#/$defs/color"
-                                    },
-                                    "glyph": {
-                                        "$ref": "#/$defs/smufl-glyph"
-                                    },
-                                    "location": {
-                                        "$ref": "#/$defs/measure-location"
-                                    }
-                                },
-                                "required": [
-                                    "location"
-                                ],
-                                "type": "object"
-                            },
-                            "tempos": {
-                                "items": {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                        "bpm": {
-                                            "type": "integer"
-                                        },
-                                        "location": {
-                                            "$ref": "#/$defs/measure-location"
-                                        },
-                                        "value": {
-                                            "$ref": "#/$defs/note-value"
-                                        }
-                                    },
-                                    "required": [
-                                        "bpm",
-                                        "value"
-                                    ],
-                                    "type": "object"
-                                },
-                                "type": "array"
-                            },
-                            "time": {
-                                "additionalProperties": false,
-                                "properties": {
-                                    "count": {
-                                        "$ref": "#/$defs/positive-integer"
-                                    },
-                                    "unit": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "count",
-                                    "unit"
-                                ],
-                                "type": "object"
-                            }
-                        },
-                        "type": "object"
-                    },
-                    "type": "array"
-                },
-                "styles": {
-                    "items": {
-                        "additionalProperties": false,
-                        "properties": {
-                            "color": {
-                                "$ref": "#/$defs/color"
-                            },
-                            "selector": {
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "selector"
-                        ],
-                        "type": "object"
-                    },
-                    "type": "array"
-                }
+              "content": {
+                "$ref": "#/$defs/system-layout-content"
+              },
+              "label": {
+                "$ref": "#/$defs/staff-label"
+              },
+              "symbol": {
+                "$ref": "#/$defs/staff-symbol"
+              },
+              "type": {
+                "const": "group",
+                "type": "string"
+              }
             },
             "required": [
-                "measures"
+              "content",
+              "type"
             ],
             "type": "object"
-        },
-        "layouts": {
-            "items": {
-                "additionalProperties": false,
-                "properties": {
-                    "content": {
-                        "$ref": "#/$defs/system-layout-content"
-                    },
-                    "id": {
-                        "$ref": "#/$defs/id"
-                    }
-                },
-                "required": [
-                    "content",
-                    "id"
-                ],
-                "type": "object"
-            },
-            "type": "array"
-        },
-        "mnx": {
+          },
+          {
             "additionalProperties": false,
             "properties": {
-                "version": {
+              "label": {
+                "$ref": "#/$defs/staff-label"
+              },
+              "labelref": {
+                "$ref": "#/$defs/staff-labelref"
+              },
+              "sources": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "label": {
+                      "$ref": "#/$defs/staff-label"
+                    },
+                    "labelref": {
+                      "$ref": "#/$defs/staff-labelref"
+                    },
+                    "part": {
+                      "$ref": "#/$defs/id"
+                    },
+                    "staff": {
+                      "$ref": "#/$defs/staff-number"
+                    },
+                    "stem": {
+                      "$ref": "#/$defs/stem-direction"
+                    },
+                    "voice": {
+                      "$ref": "#/$defs/voice-name"
+                    }
+                  },
+                  "required": [
+                    "part"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "symbol": {
+                "$ref": "#/$defs/staff-symbol"
+              },
+              "type": {
+                "const": "staff",
+                "type": "string"
+              }
+            },
+            "required": [
+              "sources",
+              "type"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "tuplet-display-setting": {
+      "type": "string"
+    },
+    "voice-name": {
+      "type": "string"
+    }
+  },
+  "$id": "https://w3c.github.io/mnx/docs/mnx-schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "An encoding of Common Western Music Notation.",
+  "properties": {
+    "global": {
+      "additionalProperties": false,
+      "properties": {
+        "measures": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "barline": {
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ending": {
+                "additionalProperties": false,
+                "properties": {
+                  "class": {
+                    "$ref": "#/$defs/style-class"
+                  },
+                  "color": {
+                    "$ref": "#/$defs/color"
+                  },
+                  "duration": {
                     "type": "integer"
-                }
-            },
-            "required": [
-                "version"
-            ],
-            "type": "object"
-        },
-        "parts": {
-            "items": {
-                "additionalProperties": false,
-                "properties": {
-                    "id": {
-                        "$ref": "#/$defs/id"
+                  },
+                  "numbers": {
+                    "items": {
+                      "type": "integer"
                     },
-                    "measures": {
-                        "items": {
-                            "additionalProperties": false,
-                            "properties": {
-                                "beams": {
-                                    "$ref": "#/$defs/beam-list"
-                                },
-                                "clefs": {
-                                    "items": {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "clef": {
-                                                "additionalProperties": false,
-                                                "properties": {
-                                                    "class": {
-                                                        "$ref": "#/$defs/style-class"
-                                                    },
-                                                    "color": {
-                                                        "type": "string"
-                                                    },
-                                                    "glyph": {
-                                                        "$ref": "#/$defs/smufl-glyph"
-                                                    },
-                                                    "octave": {
-                                                        "type": "integer"
-                                                    },
-                                                    "position": {
-                                                        "$ref": "#/$defs/staff-position"
-                                                    },
-                                                    "sign": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "required": [
-                                                    "position",
-                                                    "sign"
-                                                ],
-                                                "type": "object"
-                                            },
-                                            "position": {
-                                                "additionalProperties": false,
-                                                "properties": {
-                                                    "fraction": {
-                                                        "items": {
-                                                            "$ref": "#/$defs/integer-unsigned"
-                                                        },
-                                                        "type": "array"
-                                                    },
-                                                    "graceIndex": {
-                                                        "$ref": "#/$defs/integer-unsigned"
-                                                    }
-                                                },
-                                                "required": [
-                                                    "fraction"
-                                                ],
-                                                "type": "object"
-                                            }
-                                        },
-                                        "required": [
-                                            "clef"
-                                        ],
-                                        "type": "object"
-                                    },
-                                    "type": "array"
-                                },
-                                "sequences": {
-                                    "items": {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "content": {
-                                                "items": {
-                                                    "anyOf": [
-                                                        {
-                                                            "$ref": "#/$defs/event"
-                                                        },
-                                                        {
-                                                            "additionalProperties": false,
-                                                            "properties": {
-                                                                "class": {
-                                                                    "$ref": "#/$defs/style-class"
-                                                                },
-                                                                "color": {
-                                                                    "$ref": "#/$defs/color"
-                                                                },
-                                                                "content": {
-                                                                    "items": {
-                                                                        "$ref": "#/$defs/event"
-                                                                    },
-                                                                    "type": "array"
-                                                                },
-                                                                "grace-type": {
-                                                                    "type": "string"
-                                                                },
-                                                                "slash": {
-                                                                    "type": "boolean"
-                                                                },
-                                                                "type": {
-                                                                    "const": "grace",
-                                                                    "type": "string"
-                                                                }
-                                                            },
-                                                            "required": [
-                                                                "content",
-                                                                "type"
-                                                            ],
-                                                            "type": "object"
-                                                        },
-                                                        {
-                                                            "additionalProperties": false,
-                                                            "properties": {
-                                                                "bracket": {
-                                                                    "type": "string"
-                                                                },
-                                                                "content": {
-                                                                    "items": {
-                                                                        "$ref": "#/$defs/event"
-                                                                    },
-                                                                    "type": "array"
-                                                                },
-                                                                "inner": {
-                                                                    "$ref": "#/$defs/note-value-quantity"
-                                                                },
-                                                                "orient": {
-                                                                    "$ref": "#/$defs/orientation"
-                                                                },
-                                                                "outer": {
-                                                                    "$ref": "#/$defs/note-value-quantity"
-                                                                },
-                                                                "show-number": {
-                                                                    "$ref": "#/$defs/tuplet-display-setting"
-                                                                },
-                                                                "show-value": {
-                                                                    "$ref": "#/$defs/tuplet-display-setting"
-                                                                },
-                                                                "staff": {
-                                                                    "$ref": "#/$defs/staff-number"
-                                                                },
-                                                                "type": {
-                                                                    "const": "tuplet",
-                                                                    "type": "string"
-                                                                }
-                                                            },
-                                                            "required": [
-                                                                "content",
-                                                                "inner",
-                                                                "outer",
-                                                                "type"
-                                                            ],
-                                                            "type": "object"
-                                                        },
-                                                        {
-                                                            "additionalProperties": false,
-                                                            "properties": {
-                                                                "end": {
-                                                                    "$ref": "#/$defs/measure-location"
-                                                                },
-                                                                "orient": {
-                                                                    "$ref": "#/$defs/orientation"
-                                                                },
-                                                                "staff": {
-                                                                    "$ref": "#/$defs/staff-number"
-                                                                },
-                                                                "type": {
-                                                                    "const": "octave-shift",
-                                                                    "type": "string"
-                                                                },
-                                                                "value": {
-                                                                    "type": "integer"
-                                                                }
-                                                            },
-                                                            "required": [
-                                                                "end",
-                                                                "type",
-                                                                "value"
-                                                            ],
-                                                            "type": "object"
-                                                        },
-                                                        {
-                                                            "additionalProperties": false,
-                                                            "properties": {
-                                                                "duration": {
-                                                                    "$ref": "#/$defs/note-value-quantity"
-                                                                },
-                                                                "type": {
-                                                                    "const": "space",
-                                                                    "type": "string"
-                                                                }
-                                                            },
-                                                            "required": [
-                                                                "duration",
-                                                                "type"
-                                                            ],
-                                                            "type": "object"
-                                                        },
-                                                        {
-                                                            "additionalProperties": false,
-                                                            "properties": {
-                                                                "glyph": {
-                                                                    "$ref": "#/$defs/smufl-glyph"
-                                                                },
-                                                                "type": {
-                                                                    "const": "dynamic",
-                                                                    "type": "string"
-                                                                },
-                                                                "value": {
-                                                                    "type": "string"
-                                                                }
-                                                            },
-                                                            "required": [
-                                                                "type",
-                                                                "value"
-                                                            ],
-                                                            "type": "object"
-                                                        }
-                                                    ]
-                                                },
-                                                "type": "array"
-                                            },
-                                            "orient": {
-                                                "$ref": "#/$defs/orientation"
-                                            },
-                                            "staff": {
-                                                "$ref": "#/$defs/staff-number"
-                                            },
-                                            "voice": {
-                                                "$ref": "#/$defs/voice-name"
-                                            }
-                                        },
-                                        "required": [
-                                            "content"
-                                        ],
-                                        "type": "object"
-                                    },
-                                    "type": "array"
-                                }
-                            },
-                            "required": [
-                                "sequences"
-                            ],
-                            "type": "object"
-                        },
-                        "type": "array"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "short-name": {
-                        "type": "string"
-                    },
-                    "smufl-font": {
-                        "$ref": "#/$defs/smufl-font"
-                    },
-                    "staves": {
-                        "type": "integer"
-                    }
-                },
-                "type": "object"
-            },
-            "type": "array"
-        },
-        "scores": {
-            "items": {
-                "additionalProperties": false,
-                "properties": {
-                    "layout": {
-                        "$ref": "#/$defs/id"
-                    },
-                    "multimeasure-rests": {
-                        "items": {
-                            "additionalProperties": false,
-                            "properties": {
-                                "duration": {
-                                    "type": "integer"
-                                },
-                                "label": {
-                                    "type": "string"
-                                },
-                                "start": {
-                                    "$ref": "#/$defs/measure-number"
-                                }
-                            },
-                            "required": [
-                                "duration",
-                                "start"
-                            ],
-                            "type": "object"
-                        },
-                        "type": "array"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "pages": {
-                        "items": {
-                            "additionalProperties": false,
-                            "properties": {
-                                "layout": {
-                                    "$ref": "#/$defs/id"
-                                },
-                                "systems": {
-                                    "items": {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "layout": {
-                                                "$ref": "#/$defs/id"
-                                            },
-                                            "layout-changes": {
-                                                "items": {
-                                                    "additionalProperties": false,
-                                                    "properties": {
-                                                        "layout": {
-                                                            "$ref": "#/$defs/id"
-                                                        },
-                                                        "location": {
-                                                            "$ref": "#/$defs/measure-location"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "layout",
-                                                        "location"
-                                                    ],
-                                                    "type": "object"
-                                                },
-                                                "type": "array"
-                                            },
-                                            "measure": {
-                                                "$ref": "#/$defs/measure-number"
-                                            }
-                                        },
-                                        "required": [
-                                            "measure"
-                                        ],
-                                        "type": "object"
-                                    },
-                                    "type": "array"
-                                }
-                            },
-                            "required": [
-                                "systems"
-                            ],
-                            "type": "object"
-                        },
-                        "type": "array"
-                    }
+                    "type": "array"
+                  },
+                  "open": {
+                    "type": "boolean"
+                  }
                 },
                 "required": [
-                    "name"
+                  "duration"
                 ],
                 "type": "object"
+              },
+              "fine": {
+                "additionalProperties": false,
+                "properties": {
+                  "class": {
+                    "$ref": "#/$defs/style-class"
+                  },
+                  "color": {
+                    "$ref": "#/$defs/color"
+                  },
+                  "location": {
+                    "$ref": "#/$defs/measure-location"
+                  }
+                },
+                "required": [
+                  "location"
+                ],
+                "type": "object"
+              },
+              "index": {
+                "$ref": "#/$defs/measure-number"
+              },
+              "jump": {
+                "additionalProperties": false,
+                "properties": {
+                  "location": {
+                    "$ref": "#/$defs/measure-location"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "location",
+                  "type"
+                ],
+                "type": "object"
+              },
+              "key": {
+                "additionalProperties": false,
+                "properties": {
+                  "class": {
+                    "$ref": "#/$defs/style-class"
+                  },
+                  "color": {
+                    "$ref": "#/$defs/color"
+                  },
+                  "fifths": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "fifths"
+                ],
+                "type": "object"
+              },
+              "number": {
+                "$ref": "#/$defs/measure-number"
+              },
+              "repeat-end": {
+                "additionalProperties": false,
+                "properties": {
+                  "times": {
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "repeat-start": {
+                "additionalProperties": false,
+                "properties": {},
+                "type": "object"
+              },
+              "segno": {
+                "additionalProperties": false,
+                "properties": {
+                  "class": {
+                    "$ref": "#/$defs/style-class"
+                  },
+                  "color": {
+                    "$ref": "#/$defs/color"
+                  },
+                  "glyph": {
+                    "$ref": "#/$defs/smufl-glyph"
+                  },
+                  "location": {
+                    "$ref": "#/$defs/measure-location"
+                  }
+                },
+                "required": [
+                  "location"
+                ],
+                "type": "object"
+              },
+              "tempos": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "bpm": {
+                      "type": "integer"
+                    },
+                    "location": {
+                      "$ref": "#/$defs/measure-location"
+                    },
+                    "value": {
+                      "$ref": "#/$defs/note-value"
+                    }
+                  },
+                  "required": [
+                    "bpm",
+                    "value"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "time": {
+                "additionalProperties": false,
+                "properties": {
+                  "count": {
+                    "$ref": "#/$defs/positive-integer"
+                  },
+                  "unit": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "count",
+                  "unit"
+                ],
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "styles": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "color": {
+                "$ref": "#/$defs/color"
+              },
+              "selector": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "selector"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "measures"
+      ],
+      "type": "object"
+    },
+    "layouts": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "$ref": "#/$defs/system-layout-content"
+          },
+          "id": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "required": [
+          "content",
+          "id"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "mnx": {
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "version"
+      ],
+      "type": "object"
+    },
+    "parts": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "measures": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "beams": {
+                  "$ref": "#/$defs/beam-list"
+                },
+                "clefs": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "clef": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "class": {
+                            "$ref": "#/$defs/style-class"
+                          },
+                          "color": {
+                            "type": "string"
+                          },
+                          "glyph": {
+                            "$ref": "#/$defs/smufl-glyph"
+                          },
+                          "octave": {
+                            "type": "integer"
+                          },
+                          "position": {
+                            "$ref": "#/$defs/staff-position"
+                          },
+                          "sign": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "position",
+                          "sign"
+                        ],
+                        "type": "object"
+                      },
+                      "position": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "fraction": {
+                            "items": {
+                              "$ref": "#/$defs/integer-unsigned"
+                            },
+                            "type": "array"
+                          },
+                          "graceIndex": {
+                            "$ref": "#/$defs/integer-unsigned"
+                          }
+                        },
+                        "required": [
+                          "fraction"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "clef"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "sequences": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "content": {
+                        "items": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/$defs/event"
+                            },
+                            {
+                              "additionalProperties": false,
+                              "properties": {
+                                "class": {
+                                  "$ref": "#/$defs/style-class"
+                                },
+                                "color": {
+                                  "$ref": "#/$defs/color"
+                                },
+                                "content": {
+                                  "items": {
+                                    "$ref": "#/$defs/event"
+                                  },
+                                  "type": "array"
+                                },
+                                "grace-type": {
+                                  "type": "string"
+                                },
+                                "slash": {
+                                  "type": "boolean"
+                                },
+                                "type": {
+                                  "const": "grace",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "content",
+                                "type"
+                              ],
+                              "type": "object"
+                            },
+                            {
+                              "additionalProperties": false,
+                              "properties": {
+                                "bracket": {
+                                  "type": "string"
+                                },
+                                "content": {
+                                  "items": {
+                                    "$ref": "#/$defs/event"
+                                  },
+                                  "type": "array"
+                                },
+                                "inner": {
+                                  "$ref": "#/$defs/note-value-quantity"
+                                },
+                                "orient": {
+                                  "$ref": "#/$defs/orientation"
+                                },
+                                "outer": {
+                                  "$ref": "#/$defs/note-value-quantity"
+                                },
+                                "show-number": {
+                                  "$ref": "#/$defs/tuplet-display-setting"
+                                },
+                                "show-value": {
+                                  "$ref": "#/$defs/tuplet-display-setting"
+                                },
+                                "staff": {
+                                  "$ref": "#/$defs/staff-number"
+                                },
+                                "type": {
+                                  "const": "tuplet",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "content",
+                                "inner",
+                                "outer",
+                                "type"
+                              ],
+                              "type": "object"
+                            },
+                            {
+                              "additionalProperties": false,
+                              "properties": {
+                                "end": {
+                                  "$ref": "#/$defs/measure-location"
+                                },
+                                "orient": {
+                                  "$ref": "#/$defs/orientation"
+                                },
+                                "staff": {
+                                  "$ref": "#/$defs/staff-number"
+                                },
+                                "type": {
+                                  "const": "octave-shift",
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "integer"
+                                }
+                              },
+                              "required": [
+                                "end",
+                                "type",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            {
+                              "additionalProperties": false,
+                              "properties": {
+                                "duration": {
+                                  "$ref": "#/$defs/note-value-quantity"
+                                },
+                                "type": {
+                                  "const": "space",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "duration",
+                                "type"
+                              ],
+                              "type": "object"
+                            },
+                            {
+                              "additionalProperties": false,
+                              "properties": {
+                                "glyph": {
+                                  "$ref": "#/$defs/smufl-glyph"
+                                },
+                                "type": {
+                                  "const": "dynamic",
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "value"
+                              ],
+                              "type": "object"
+                            }
+                          ]
+                        },
+                        "type": "array"
+                      },
+                      "orient": {
+                        "$ref": "#/$defs/orientation"
+                      },
+                      "staff": {
+                        "$ref": "#/$defs/staff-number"
+                      },
+                      "voice": {
+                        "$ref": "#/$defs/voice-name"
+                      }
+                    },
+                    "required": [
+                      "content"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "sequences"
+              ],
+              "type": "object"
             },
             "type": "array"
-        }
+          },
+          "name": {
+            "type": "string"
+          },
+          "short-name": {
+            "type": "string"
+          },
+          "smufl-font": {
+            "$ref": "#/$defs/smufl-font"
+          },
+          "staves": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
     },
-    "required": [
-        "global",
-        "mnx",
-        "parts"
-    ],
-    "title": "MNX document",
-    "type": "object"
+    "scores": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "layout": {
+            "$ref": "#/$defs/id"
+          },
+          "multimeasure-rests": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "duration": {
+                  "type": "integer"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "start": {
+                  "$ref": "#/$defs/measure-number"
+                }
+              },
+              "required": [
+                "duration",
+                "start"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "name": {
+            "type": "string"
+          },
+          "pages": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "layout": {
+                  "$ref": "#/$defs/id"
+                },
+                "systems": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "layout": {
+                        "$ref": "#/$defs/id"
+                      },
+                      "layout-changes": {
+                        "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "layout": {
+                              "$ref": "#/$defs/id"
+                            },
+                            "location": {
+                              "$ref": "#/$defs/measure-location"
+                            }
+                          },
+                          "required": [
+                            "layout",
+                            "location"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "measure": {
+                        "$ref": "#/$defs/measure-number"
+                      }
+                    },
+                    "required": [
+                      "measure"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "systems"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "global",
+    "mnx",
+    "parts"
+  ],
+  "title": "MNX document",
+  "type": "object"
 }
