@@ -219,7 +219,7 @@
         "rest": {
           "additionalProperties": false,
           "properties": {
-            "position": {
+            "staffPosition": {
               "$ref": "#/$defs/staff-position"
             }
           },
@@ -721,16 +721,16 @@
                           "octave": {
                             "type": "integer"
                           },
-                          "position": {
-                            "$ref": "#/$defs/staff-position"
-                          },
                           "sign": {
                             "type": "string"
+                          },
+                          "staffPosition": {
+                            "$ref": "#/$defs/staff-position"
                           }
                         },
                         "required": [
-                          "position",
-                          "sign"
+                          "sign",
+                          "staffPosition"
                         ],
                         "type": "object"
                       },
