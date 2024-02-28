@@ -52,6 +52,86 @@
         "id": {
           "$ref": "#/$defs/id"
         },
+        "markings": {
+          "additionalProperties": false,
+          "properties": {
+            "accent": {
+              "additionalProperties": false,
+              "properties": {
+                "pointing": {
+                  "$ref": "#/$defs/up-or-down"
+                }
+              },
+              "type": "object"
+            },
+            "breath": {
+              "additionalProperties": false,
+              "properties": {
+                "symbol": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "softAccent": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            },
+            "spiccato": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            },
+            "staccatissimo": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            },
+            "staccato": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            },
+            "stress": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            },
+            "strongAccent": {
+              "additionalProperties": false,
+              "properties": {
+                "pointing": {
+                  "$ref": "#/$defs/up-or-down"
+                }
+              },
+              "type": "object"
+            },
+            "tenuto": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            },
+            "tremolo": {
+              "additionalProperties": false,
+              "properties": {
+                "marks": {
+                  "$ref": "#/$defs/positive-integer"
+                }
+              },
+              "required": [
+                "marks"
+              ],
+              "type": "object"
+            },
+            "unstress": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
         "measure": {
           "type": "boolean"
         },
@@ -360,6 +440,9 @@
       "type": "array"
     },
     "tuplet-display-setting": {
+      "type": "string"
+    },
+    "up-or-down": {
       "type": "string"
     },
     "voice-name": {
