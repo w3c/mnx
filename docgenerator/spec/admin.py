@@ -28,6 +28,11 @@ class JSONChildElementsInline(admin.TabularInline):
     extra = 0
     fk_name = 'parent'
 
+class JSONEnumsInline(admin.TabularInline):
+    model = JSONObjectEnum
+    extra = 0
+    fk_name = 'parent'
+
 class ElementConceptInline(admin.TabularInline):
     model = ElementConcept
     extra = 0
@@ -58,7 +63,7 @@ class DataTypeAdmin(admin.ModelAdmin):
     ordering = ['name']
 
 class JSONObjectAdmin(admin.ModelAdmin):
-    inlines = [JSONChildElementsInline]
+    inlines = [JSONChildElementsInline, JSONEnumsInline]
     list_display = ['name', 'slug', 'pretty_object_type']
     list_filter = ['object_type']
     ordering = ['name']

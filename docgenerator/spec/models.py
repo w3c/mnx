@@ -494,6 +494,22 @@ class JSONObjectRelationship(models.Model):
     def __repr__(self):
         return f'<JSONObjectRelationship parent="{self.parent.name}" child="{self.child.name}">'
 
+class JSONObjectEnum(models.Model):
+    parent = models.ForeignKey(JSONObject, on_delete=models.CASCADE, related_name='+')
+    name = models.CharField(max_length=80)
+    description = models.TextField(blank=True)
+
+    class Meta:
+        db_table = 'json_object_enums'
+        verbose_name = 'JSON object enum value'
+        verbose_name_plural = 'JSON object enum values'
+        unique_together = (
+            ('parent', 'name'),
+        )
+
+    def __str__(self):
+        return self.name
+
 class ExampleDocument(models.Model):
     name = models.CharField(max_length=300)
     slug = models.CharField(max_length=100)

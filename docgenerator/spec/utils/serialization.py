@@ -19,6 +19,7 @@ MODELS_TO_FREEZE = (
     XMLRelationship,
     JSONObject,
     JSONObjectRelationship,
+    JSONObjectEnum,
     ExampleDocument,
     ExampleDocumentConcept,
     ExampleDocumentComparison,

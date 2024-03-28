@@ -54,6 +54,25 @@
 </table>
 {% endif %}
 
+{% if enum_values %}
+<h2>Allowed values:</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Value</th>
+    <th>Description</th>
+</tr>
+</thead>
+{% for enum_value in enum_values %}
+<tr>
+    <td><nobr><b>"{{ enum_value.name }}"</b></nobr></td>
+    <td>{{ enum_value.description|safe|linebreaksbr }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+
 {% if examples %}
 <h2 id="examples">Examples</h2>
 

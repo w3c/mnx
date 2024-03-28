@@ -83,6 +83,7 @@ def json_object_detail(request, schema_slug, slug):
     return render(request, 'json_object_detail.html', {
         'object': json_object,
         'child_relationships': json_object.get_child_relationships(),
+        'enum_values': JSONObjectEnum.objects.filter(parent=json_object).order_by('name'),
         'examples': ExampleDocumentObject.objects.filter(json_object=json_object).select_related('example').order_by(Lower('example__name')),
     })
 
