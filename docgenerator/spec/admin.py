@@ -60,6 +60,7 @@ class DataTypeAdmin(admin.ModelAdmin):
 class JSONObjectAdmin(admin.ModelAdmin):
     inlines = [JSONChildElementsInline]
     list_display = ['name', 'slug', 'pretty_object_type']
+    list_filter = ['object_type']
     ordering = ['name']
     search_fields = ['name', 'slug']
 

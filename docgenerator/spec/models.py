@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.db import models
 from django.urls import reverse
 
@@ -425,6 +426,7 @@ class JSONObject(models.Model):
     def get_child_relationships(self):
         return list(JSONObjectRelationship.objects.filter(parent=self).order_by('child_key'))
 
+    @admin.display(description='Object type', ordering='object_type')
     def pretty_object_type(self):
         return {
             JSONObject.OBJECT_TYPE_DICT: 'Dictionary',
