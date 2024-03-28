@@ -2462,7 +2462,7 @@
         "slug": "beam-hook-direction",
         "schema": 1,
         "object_type": 3,
-        "description": "<p>Allowed values are:</p>\r\n\r\n<ul>\r\n<li><code>\"left\"</code></li>\r\n<li><code>\"right\"</code></li>\r\n</ul>"
+        "description": ""
     }
 },
 {
@@ -3188,7 +3188,7 @@
         "slug": "grace-type",
         "schema": 1,
         "object_type": 3,
-        "description": "<p>Allowed values are:</p>\r\n\r\n<p><b>\"make-time\"</b>: The run of grace notes delays the onset of the next non-grace event.</p>\r\n\r\n<p><b>\"steal-following\"</b>: The run of grace notes occupies a time interval starting at the expected onset of the next non-grace event, both delaying its onset and shortening its duration.</p>\r\n\r\n<p><b>\"steal-previous\"</b>: The run of grace notes occupies a time interval that ends before the expected onset of the next non-grace event, shortening the duration of the preceding non-grace event.</p>"
+        "description": ""
     }
 },
 {
@@ -3386,7 +3386,7 @@
         "slug": "note-value-base",
         "schema": 1,
         "object_type": 3,
-        "description": "Valid values are:\r\n\r\nduplexMaxima\r\nmaxima\r\nlonga\r\nbreve\r\nwhole\r\nhalf\r\nquarter\r\neighth\r\n16th\r\n32nd\r\n64th\r\n128th\r\n256th\r\n512th\r\n1024th\r\n2048th\r\n4096th"
+        "description": ""
     }
 },
 {
@@ -3408,7 +3408,7 @@
         "slug": "step",
         "schema": 1,
         "object_type": 3,
-        "description": "\"A\" through \"G\""
+        "description": ""
     }
 },
 {
@@ -3661,7 +3661,7 @@
         "slug": "up-or-down",
         "schema": 1,
         "object_type": 3,
-        "description": "Either the string \"up\" or \"down\"."
+        "description": ""
     }
 },
 {
@@ -6048,6 +6048,411 @@
         "child_key": "symbol",
         "child": 158,
         "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 1,
+    "fields": {
+        "parent": 111,
+        "name": "make-time",
+        "description": "The run of grace notes delays the onset of the next non-grace event."
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 2,
+    "fields": {
+        "parent": 111,
+        "name": "steal-following",
+        "description": "The run of grace notes occupies a time interval starting at the expected onset of the next non-grace event, both delaying its onset and shortening its duration."
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 3,
+    "fields": {
+        "parent": 111,
+        "name": "steal-previous",
+        "description": "The run of grace notes occupies a time interval that ends before the expected onset of the next non-grace event, shortening the duration of the preceding non-grace event."
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 4,
+    "fields": {
+        "parent": 43,
+        "name": "left",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 5,
+    "fields": {
+        "parent": 43,
+        "name": "right",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 6,
+    "fields": {
+        "parent": 22,
+        "name": "C",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 7,
+    "fields": {
+        "parent": 22,
+        "name": "F",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 8,
+    "fields": {
+        "parent": 22,
+        "name": "G",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 9,
+    "fields": {
+        "parent": 71,
+        "name": "dsalfine",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 10,
+    "fields": {
+        "parent": 71,
+        "name": "segno",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 11,
+    "fields": {
+        "parent": 132,
+        "name": "A",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 12,
+    "fields": {
+        "parent": 132,
+        "name": "B",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 13,
+    "fields": {
+        "parent": 132,
+        "name": "C",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 14,
+    "fields": {
+        "parent": 132,
+        "name": "D",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 15,
+    "fields": {
+        "parent": 132,
+        "name": "E",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 16,
+    "fields": {
+        "parent": 132,
+        "name": "F",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 17,
+    "fields": {
+        "parent": 132,
+        "name": "G",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 18,
+    "fields": {
+        "parent": 130,
+        "name": "duplexMaxima",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 19,
+    "fields": {
+        "parent": 130,
+        "name": "maxima",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 20,
+    "fields": {
+        "parent": 130,
+        "name": "longa",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 21,
+    "fields": {
+        "parent": 130,
+        "name": "breve",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 22,
+    "fields": {
+        "parent": 130,
+        "name": "whole",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 23,
+    "fields": {
+        "parent": 130,
+        "name": "half",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 24,
+    "fields": {
+        "parent": 130,
+        "name": "quarter",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 25,
+    "fields": {
+        "parent": 130,
+        "name": "eighth",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 26,
+    "fields": {
+        "parent": 130,
+        "name": "16th",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 27,
+    "fields": {
+        "parent": 130,
+        "name": "32nd",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 28,
+    "fields": {
+        "parent": 130,
+        "name": "64th",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 29,
+    "fields": {
+        "parent": 130,
+        "name": "128th",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 30,
+    "fields": {
+        "parent": 130,
+        "name": "256th",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 31,
+    "fields": {
+        "parent": 130,
+        "name": "512th",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 32,
+    "fields": {
+        "parent": 130,
+        "name": "1024th",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 33,
+    "fields": {
+        "parent": 130,
+        "name": "2048th",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 34,
+    "fields": {
+        "parent": 130,
+        "name": "4096th",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 35,
+    "fields": {
+        "parent": 59,
+        "name": "up",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 36,
+    "fields": {
+        "parent": 59,
+        "name": "down",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 37,
+    "fields": {
+        "parent": 89,
+        "name": "bracket",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 38,
+    "fields": {
+        "parent": 89,
+        "name": "brace",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 39,
+    "fields": {
+        "parent": 95,
+        "name": "up",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 40,
+    "fields": {
+        "parent": 95,
+        "name": "down",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 41,
+    "fields": {
+        "parent": 157,
+        "name": "up",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 42,
+    "fields": {
+        "parent": 157,
+        "name": "down",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 43,
+    "fields": {
+        "parent": 122,
+        "name": "yes",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 44,
+    "fields": {
+        "parent": 122,
+        "name": "no",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 45,
+    "fields": {
+        "parent": 122,
+        "name": "auto",
         "description": ""
     }
 },

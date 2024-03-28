@@ -15,6 +15,10 @@
               "additionalProperties": false,
               "properties": {
                 "direction": {
+                  "enum": [
+                    "left",
+                    "right"
+                  ],
                   "type": "string"
                 },
                 "event": {
@@ -178,6 +182,15 @@
                     "type": "integer"
                   },
                   "step": {
+                    "enum": [
+                      "A",
+                      "B",
+                      "C",
+                      "D",
+                      "E",
+                      "F",
+                      "G"
+                    ],
                     "type": "string"
                   }
                 },
@@ -290,6 +303,25 @@
       "additionalProperties": false,
       "properties": {
         "base": {
+          "enum": [
+            "duplexMaxima",
+            "maxima",
+            "longa",
+            "breve",
+            "whole",
+            "half",
+            "quarter",
+            "eighth",
+            "16th",
+            "32nd",
+            "64th",
+            "128th",
+            "256th",
+            "512th",
+            "1024th",
+            "2048th",
+            "4096th"
+          ],
           "type": "string"
         },
         "dots": {
@@ -324,6 +356,10 @@
       "type": "integer"
     },
     "slur-side": {
+      "enum": [
+        "up",
+        "down"
+      ],
       "type": "string"
     },
     "slur-tie-end-location": {
@@ -348,9 +384,17 @@
       "type": "integer"
     },
     "staff-symbol": {
+      "enum": [
+        "bracket",
+        "brace"
+      ],
       "type": "string"
     },
     "stem-direction": {
+      "enum": [
+        "up",
+        "down"
+      ],
       "type": "string"
     },
     "style-class": {
@@ -443,6 +487,10 @@
       "type": "string"
     },
     "up-or-down": {
+      "enum": [
+        "up",
+        "down"
+      ],
       "type": "string"
     },
     "voice-name": {
@@ -525,6 +573,10 @@
                     "$ref": "#/$defs/measure-location"
                   },
                   "type": {
+                    "enum": [
+                      "dsalfine",
+                      "segno"
+                    ],
                     "type": "string"
                   }
                 },
@@ -722,6 +774,11 @@
                             "type": "integer"
                           },
                           "sign": {
+                            "enum": [
+                              "C",
+                              "F",
+                              "G"
+                            ],
                             "type": "string"
                           },
                           "staffPosition": {
@@ -786,6 +843,11 @@
                                   "type": "array"
                                 },
                                 "grace-type": {
+                                  "enum": [
+                                    "make-time",
+                                    "steal-following",
+                                    "steal-previous"
+                                  ],
                                   "type": "string"
                                 },
                                 "slash": {
@@ -806,6 +868,11 @@
                               "additionalProperties": false,
                               "properties": {
                                 "bracket": {
+                                  "enum": [
+                                    "yes",
+                                    "no",
+                                    "auto"
+                                  ],
                                   "type": "string"
                                 },
                                 "content": {
