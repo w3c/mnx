@@ -513,9 +513,25 @@
                 "additionalProperties": false,
                 "properties": {
                   "type": {
+                    "enum": [
+                      "regular",
+                      "dotted",
+                      "dashed",
+                      "heavy",
+                      "light-light",
+                      "light-heavy",
+                      "heavy-light",
+                      "heavy-heavy",
+                      "tick",
+                      "short",
+                      "none"
+                    ],
                     "type": "string"
                   }
                 },
+                "required": [
+                  "type"
+                ],
                 "type": "object"
               },
               "ending": {

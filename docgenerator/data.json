@@ -683,25 +683,6 @@
 },
 {
     "model": "spec.datatype",
-    "pk": 39,
-    "fields": {
-        "name": "Barline",
-        "slug": "barline",
-        "schema": 1,
-        "description": "",
-        "description_format": 1,
-        "is_featured": false,
-        "xsd_name": "",
-        "base_type": null,
-        "min_value": "",
-        "max_value": "",
-        "regex": "",
-        "min_length": null,
-        "union_types": []
-    }
-},
-{
-    "model": "spec.datatype",
     "pk": 40,
     "fields": {
         "name": "Voice ID",
@@ -1590,116 +1571,6 @@
         "value": "down",
         "description": "<span class=\"smufl\">&#xE1D6;</span>",
         "order": 1
-    }
-},
-{
-    "model": "spec.datatypeoption",
-    "pk": 56,
-    "fields": {
-        "data_type": 39,
-        "value": "regular",
-        "description": "",
-        "order": 0
-    }
-},
-{
-    "model": "spec.datatypeoption",
-    "pk": 57,
-    "fields": {
-        "data_type": 39,
-        "value": "dotted",
-        "description": "",
-        "order": 0
-    }
-},
-{
-    "model": "spec.datatypeoption",
-    "pk": 58,
-    "fields": {
-        "data_type": 39,
-        "value": "dashed",
-        "description": "",
-        "order": 0
-    }
-},
-{
-    "model": "spec.datatypeoption",
-    "pk": 59,
-    "fields": {
-        "data_type": 39,
-        "value": "heavy",
-        "description": "",
-        "order": 0
-    }
-},
-{
-    "model": "spec.datatypeoption",
-    "pk": 60,
-    "fields": {
-        "data_type": 39,
-        "value": "light-light",
-        "description": "",
-        "order": 0
-    }
-},
-{
-    "model": "spec.datatypeoption",
-    "pk": 61,
-    "fields": {
-        "data_type": 39,
-        "value": "light-heavy",
-        "description": "",
-        "order": 0
-    }
-},
-{
-    "model": "spec.datatypeoption",
-    "pk": 62,
-    "fields": {
-        "data_type": 39,
-        "value": "heavy-light",
-        "description": "",
-        "order": 0
-    }
-},
-{
-    "model": "spec.datatypeoption",
-    "pk": 63,
-    "fields": {
-        "data_type": 39,
-        "value": "heavy-heavy",
-        "description": "",
-        "order": 0
-    }
-},
-{
-    "model": "spec.datatypeoption",
-    "pk": 64,
-    "fields": {
-        "data_type": 39,
-        "value": "tick",
-        "description": "",
-        "order": 0
-    }
-},
-{
-    "model": "spec.datatypeoption",
-    "pk": 65,
-    "fields": {
-        "data_type": 39,
-        "value": "short",
-        "description": "",
-        "order": 0
-    }
-},
-{
-    "model": "spec.datatypeoption",
-    "pk": 66,
-    "fields": {
-        "data_type": 39,
-        "value": "none",
-        "description": "",
-        "order": 0
     }
 },
 {
@@ -3936,7 +3807,7 @@
         "child_key": "barline",
         "child": 33,
         "is_required": false,
-        "description": "The barline drawn at the end of this measure. If not provided, the barline should be interpreted as follows:\r\n\r\n* If the measure is the last in the document, use \"light-heavy\".\r\n* Otherwise, use \"regular\"."
+        "description": "The barline drawn at the end of this measure. If not provided, the barline should be interpreted as follows:\r\n\r\n* If the measure is the last in the document, use {\"type\": \"light-heavy\"}.\r\n* Otherwise, use {\"type\": \"regular\"}."
     }
 },
 {
@@ -3946,7 +3817,7 @@
         "parent": 33,
         "child_key": "type",
         "child": 34,
-        "is_required": false,
+        "is_required": true,
         "description": ""
     }
 },
@@ -6453,6 +6324,105 @@
     "fields": {
         "parent": 122,
         "name": "auto",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 46,
+    "fields": {
+        "parent": 34,
+        "name": "regular",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 47,
+    "fields": {
+        "parent": 34,
+        "name": "dotted",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 48,
+    "fields": {
+        "parent": 34,
+        "name": "dashed",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 49,
+    "fields": {
+        "parent": 34,
+        "name": "heavy",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 50,
+    "fields": {
+        "parent": 34,
+        "name": "light-light",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 51,
+    "fields": {
+        "parent": 34,
+        "name": "light-heavy",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 52,
+    "fields": {
+        "parent": 34,
+        "name": "heavy-light",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 53,
+    "fields": {
+        "parent": 34,
+        "name": "heavy-heavy",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 54,
+    "fields": {
+        "parent": 34,
+        "name": "tick",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 55,
+    "fields": {
+        "parent": 34,
+        "name": "short",
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 56,
+    "fields": {
+        "parent": 34,
+        "name": "none",
         "description": ""
     }
 },
