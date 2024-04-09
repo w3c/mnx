@@ -74,9 +74,13 @@ def get_schema_for_db_object(db_object, use_defs=True):
         }
         return result
     elif object_type == JSONObject.OBJECT_TYPE_NUMBER:
-        return {
+        result = {
             'type': 'integer'
         }
+        enums = JSONObjectEnum.objects.filter(parent=db_object)
+        if enums:
+            result['enum'] = [int(e.name) for e in enums]
+        return result
     elif object_type == JSONObject.OBJECT_TYPE_BOOLEAN:
         return {
             'type': 'boolean'

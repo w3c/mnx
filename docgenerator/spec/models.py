@@ -510,6 +510,12 @@ class JSONObjectEnum(models.Model):
     def __str__(self):
         return self.name
 
+    def pretty_name(self):
+        if self.parent.object_type == JSONObject.OBJECT_TYPE_STRING:
+            return f'"{self.name}"'
+        else:
+            return self.name
+
 class ExampleDocument(models.Model):
     name = models.CharField(max_length=300)
     slug = models.CharField(max_length=100)
