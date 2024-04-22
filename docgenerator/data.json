@@ -5300,7 +5300,7 @@
     "pk": 178,
     "fields": {
         "parent": 49,
-        "child_key": "show-number",
+        "child_key": "showNumber",
         "child": 121,
         "is_required": false,
         "description": "Controls the display of the quantity of inner and outer note value units for the tuplet. If not provided, \"inner\" is assumed."
@@ -5311,7 +5311,7 @@
     "pk": 179,
     "fields": {
         "parent": 49,
-        "child_key": "show-value",
+        "child_key": "showValue",
         "child": 121,
         "is_required": false,
         "description": "Controls the display of the note value units used inside and outside the tuplet. If not provided, \"none\" is assumed."
@@ -5325,7 +5325,7 @@
         "child_key": "bracket",
         "child": 122,
         "is_required": false,
-        "description": "Controls the display of a bracket in conjunction with the tuplet. This is disregarded if \"show-number\" has a value of \"none\".\r\n\r\n* \"auto\" (default) — a bracket is shown for the tuplet if and only if the notes are unbeamed.\r\n\r\n* \"yes\" — always display a bracket.\r\n\r\n* \"no\" — never display a bracket."
+        "description": "Controls the display of a bracket in conjunction with the tuplet. This is disregarded if \"showNumber\" has a value of \"none\".\r\n\r\n* \"auto\" (default) — a bracket is shown for the tuplet if and only if the notes are unbeamed.\r\n\r\n* \"yes\" — always display a bracket.\r\n\r\n* \"no\" — never display a bracket."
     }
 },
 {
