@@ -2281,10 +2281,10 @@
     "pk": 68,
     "fields": {
         "parent": 58,
-        "child_key": "start-note",
+        "child_key": "startNote",
         "child": 37,
         "is_required": false,
-        "description": "The ID of the specific note at which this slur starts. This note must be within the event that contains this slur.\r\n\r\nFor example, you can use start-note to encode which specific note, within a chord, a slur is intended to start on — in cases when music has multiple slurs starting on the same event."
+        "description": "The ID of the specific note at which this slur starts. This note must be within the event that contains this slur.\r\n\r\nFor example, you can use startNote to encode which specific note, within a chord, a slur is intended to start on — in cases when music has multiple slurs starting on the same event."
     }
 },
 {
@@ -2292,10 +2292,10 @@
     "pk": 69,
     "fields": {
         "parent": 58,
-        "child_key": "end-note",
+        "child_key": "endNote",
         "child": 37,
         "is_required": false,
-        "description": "The ID of the specific note at which this slur ends. This note must be within the event specified by this slur's \"target\" attribute.\r\n\r\nFor example, you can use end-note to encode which specific note, within a chord, a slur is intended to end on — in cases when music has multiple slurs end on the same event."
+        "description": "The ID of the specific note at which this slur ends. This note must be within the event specified by this slur's \"target\" attribute.\r\n\r\nFor example, you can use endNote to encode which specific note, within a chord, a slur is intended to end on — in cases when music has multiple slurs end on the same event."
     }
 },
 {
@@ -3293,7 +3293,7 @@
     "pk": 169,
     "fields": {
         "parent": 58,
-        "child_key": "line-type",
+        "child_key": "lineType",
         "child": 120,
         "is_required": false,
         "description": "The slur's line type. If not provided, the consuming software should determine the value automatically according to its own logic."
@@ -3304,7 +3304,7 @@
     "pk": 170,
     "fields": {
         "parent": 58,
-        "child_key": "side-end",
+        "child_key": "sideEnd",
         "child": 59,
         "is_required": false,
         "description": "The slur’s side at the end of the slur, in cases where it differs from its initial side — for example, in cross-staff notation. If not provided, it's interpreted to have the same value as \"side\"."
@@ -4868,7 +4868,7 @@
         "slug": "slurs-targeting-specific-notes",
         "schema": 1,
         "blurb": "",
-        "document": "{\r\n  \"mnx\": {\"version\": 1},\r\n  \"global\": {\r\n    \"measures\": [\r\n      {\r\n        \"time\": {\"count\": 4, \"unit\": 4}\r\n      }\r\n    ]\r\n  },\r\n  \"parts\": [\r\n    {\r\n      \"measures\": [\r\n        {\r\n          \"clefs\": [\r\n            {\"clef\": {\"sign\": \"G\", \"staffPosition\": -2}}\r\n          ],\r\n          \"sequences\": [\r\n            {\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"ev1\",\r\n                  \"duration\": {\"base\": \"half\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"C\", \"octave\": 5}, \"id\": \"note1\"},\r\n                    {\"pitch\": {\"step\": \"E\", \"octave\": 5}, \"id\": \"note2\"},\r\n                    {\"pitch\": {\"step\": \"G\", \"octave\": 5}, \"id\": \"note3\"}\r\n                  ],\r\n                  \"slurs\": [\r\n                    {\"side\": \"down\", \"target\": \"ev2\", \"start-note\": \"note1\", \"end-note\": \"note4\"},\r\n                    {\"side\": \"up\", \"target\": \"ev2\", \"start-note\": \"note2\", \"end-note\": \"note5\"},\r\n                    {\"side\": \"up\", \"target\": \"ev2\", \"start-note\": \"note3\", \"end-note\": \"note6\"}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"ev2\",\r\n                  \"duration\": {\"base\": \"half\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"B\", \"octave\": 4}, \"id\": \"note4\"},\r\n                    {\"pitch\": {\"step\": \"D\", \"octave\": 5}, \"id\": \"note5\"},\r\n                    {\"pitch\": {\"step\": \"F\", \"octave\": 5}, \"id\": \"note6\"}\r\n                  ]\r\n                }\r\n              ]\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+        "document": "{\r\n  \"mnx\": {\"version\": 1},\r\n  \"global\": {\r\n    \"measures\": [\r\n      {\r\n        \"time\": {\"count\": 4, \"unit\": 4}\r\n      }\r\n    ]\r\n  },\r\n  \"parts\": [\r\n    {\r\n      \"measures\": [\r\n        {\r\n          \"clefs\": [\r\n            {\"clef\": {\"sign\": \"G\", \"staffPosition\": -2}}\r\n          ],\r\n          \"sequences\": [\r\n            {\r\n              \"content\": [\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"ev1\",\r\n                  \"duration\": {\"base\": \"half\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"C\", \"octave\": 5}, \"id\": \"note1\"},\r\n                    {\"pitch\": {\"step\": \"E\", \"octave\": 5}, \"id\": \"note2\"},\r\n                    {\"pitch\": {\"step\": \"G\", \"octave\": 5}, \"id\": \"note3\"}\r\n                  ],\r\n                  \"slurs\": [\r\n                    {\"side\": \"down\", \"target\": \"ev2\", \"startNote\": \"note1\", \"endNote\": \"note4\"},\r\n                    {\"side\": \"up\", \"target\": \"ev2\", \"startNote\": \"note2\", \"endNote\": \"note5\"},\r\n                    {\"side\": \"up\", \"target\": \"ev2\", \"startNote\": \"note3\", \"endNote\": \"note6\"}\r\n                  ]\r\n                },\r\n                {\r\n                  \"type\": \"event\",\r\n                  \"id\": \"ev2\",\r\n                  \"duration\": {\"base\": \"half\"},\r\n                  \"notes\": [\r\n                    {\"pitch\": {\"step\": \"B\", \"octave\": 4}, \"id\": \"note4\"},\r\n                    {\"pitch\": {\"step\": \"D\", \"octave\": 5}, \"id\": \"note5\"},\r\n                    {\"pitch\": {\"step\": \"F\", \"octave\": 5}, \"id\": \"note6\"}\r\n                  ]\r\n                }\r\n              ]\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
         "image_url": "/static/examples/slurs-targeting-specific-notes.png",
         "is_featured": false
     }
@@ -5376,7 +5376,7 @@
     "fields": {
         "example": 19,
         "doc_format": 1,
-        "preamble": "In MusicXML, slurs are always defined within <code>&lt;note&gt;</code> elements.\r\n\r\nIn MNX, a slur can optionally specify which specific notes it’s attached to, using <code>\"start-note\"</code> and <code>\"end-note\"</code>. The <code>\"start-note\"</code> must be within the event that contains the slur, and the <code>\"end-note\"</code> must be within the event pointed-to by <code>\"target\"</code>.",
+        "preamble": "In MusicXML, slurs are always defined within <code>&lt;note&gt;</code> elements.\r\n\r\nIn MNX, a slur can optionally specify which specific notes it’s attached to, using <code>\"startNote\"</code> and <code>\"endNote\"</code>. The <code>\"startNote\"</code> must be within the event that contains the slur, and the <code>\"endNote\"</code> must be within the event pointed-to by <code>\"target\"</code>.",
         "document": "<score-partwise version=\"3.1\">\r\n    <part-list>\r\n        <score-part id=\"P1\">\r\n            <part-name>Music</part-name>\r\n        </score-part>\r\n    </part-list>\r\n    <part id=\"P1\">\r\n        <measure number=\"1\">\r\n            <attributes>\r\n                <divisions>256</divisions>\r\n                <key>\r\n                    <fifths>0</fifths>\r\n                    <mode>major</mode>\r\n                </key>\r\n                <time>\r\n                    <beats>4</beats>\r\n                    <beat-type>4</beat-type>\r\n                </time>\r\n                <staves>1</staves>\r\n                <clef>\r\n                    <sign>G</sign>\r\n                    <line>2</line>\r\n                </clef>\r\n            </attributes>\r\n            <note>\r\n                <pitch>\r\n                    <step>C</step>\r\n                    <octave>5</octave>\r\n                </pitch>\r\n                <duration>512</duration>\r\n                <type>half</type>\r\n                <metadiff><notations>\r\n                    <slur number=\"1\" placement=\"below\" type=\"start\"/>\r\n                </notations></metadiff>\r\n            </note>\r\n            <note>\r\n                <chord/>\r\n                <pitch>\r\n                    <step>E</step>\r\n                    <octave>5</octave>\r\n                </pitch>\r\n                <duration>512</duration>\r\n                <type>half</type>\r\n                <metadiff><notations>\r\n                    <slur number=\"2\" placement=\"above\" type=\"start\"/>\r\n                </notations></metadiff>\r\n            </note>\r\n            <note>\r\n                <chord/>\r\n                <pitch>\r\n                    <step>G</step>\r\n                    <octave>5</octave>\r\n                </pitch>\r\n                <duration>512</duration>\r\n                <type>half</type>\r\n                <metadiff><notations>\r\n                    <slur number=\"3\" placement=\"above\" type=\"start\"/>\r\n                </notations></metadiff>\r\n            </note>\r\n            <note>\r\n                <pitch>\r\n                    <step>B</step>\r\n                    <octave>4</octave>\r\n                </pitch>\r\n                <duration>512</duration>\r\n                <type>half</type>\r\n                <metadiff><notations>\r\n                    <slur number=\"1\" type=\"stop\"/>\r\n                </notations></metadiff>\r\n            </note>\r\n            <note>\r\n                <chord/>\r\n                <pitch>\r\n                    <step>D</step>\r\n                    <octave>5</octave>\r\n                </pitch>\r\n                <duration>512</duration>\r\n                <type>half</type>\r\n                <metadiff><notations>\r\n                    <slur number=\"2\" type=\"stop\"/>\r\n                </notations></metadiff>\r\n            </note>\r\n            <note>\r\n                <chord/>\r\n                <pitch>\r\n                    <step>F</step>\r\n                    <octave>5</octave>\r\n                </pitch>\r\n                <duration>512</duration>\r\n                <type>half</type>\r\n                <metadiff><notations>\r\n                    <slur number=\"3\" type=\"stop\"/>\r\n                </notations></metadiff>\r\n            </note>\r\n        </measure>\r\n    </part>\r\n</score-partwise>",
         "position": 18
     }
