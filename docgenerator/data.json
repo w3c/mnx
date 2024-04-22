@@ -3029,10 +3029,10 @@
     "pk": 143,
     "fields": {
         "parent": 46,
-        "child_key": "grace-type",
+        "child_key": "graceType",
         "child": 111,
         "is_required": false,
-        "description": "The kind of grace notes to use. The default value is \"steal-previous\"."
+        "description": "The kind of grace notes to use. The default value is \"stealPrevious\"."
     }
 },
 {
@@ -3043,7 +3043,7 @@
         "child_key": "slash",
         "child": 112,
         "is_required": false,
-        "description": "Whether grace notes are notated with a slash.\r\n\r\nThe default value (true) specifies a slash, indicating that the grace notes are displayed with a diagonal stroke and are to be performed quickly and not in their notated rhythm. Otherwise, they are performed with the notated note values according to the performance characteristics given by \"grace-type\"."
+        "description": "Whether grace notes are notated with a slash.\r\n\r\nThe default value (true) specifies a slash, indicating that the grace notes are displayed with a diagonal stroke and are to be performed quickly and not in their notated rhythm. Otherwise, they are performed with the notated note values according to the performance characteristics given by \"graceType\"."
     }
 },
 {
@@ -3271,7 +3271,7 @@
     "pk": 167,
     "fields": {
         "parent": 31,
-        "child_key": "smufl-font",
+        "child_key": "smuflFont",
         "child": 118,
         "is_required": false,
         "description": "The SMuFL-compliant font to be used when rendering this note.\r\n\r\nThe primary purpose of this attribute is to override a global font assignment."
