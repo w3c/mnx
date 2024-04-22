@@ -5927,7 +5927,7 @@
     "pk": 1,
     "fields": {
         "parent": 111,
-        "name": "make-time",
+        "name": "makeTime",
         "description": "The run of grace notes delays the onset of the next non-grace event."
     }
 },
@@ -5936,7 +5936,7 @@
     "pk": 2,
     "fields": {
         "parent": 111,
-        "name": "steal-following",
+        "name": "stealFollowing",
         "description": "The run of grace notes occupies a time interval starting at the expected onset of the next non-grace event, both delaying its onset and shortening its duration."
     }
 },
@@ -5945,7 +5945,7 @@
     "pk": 3,
     "fields": {
         "parent": 111,
-        "name": "steal-previous",
+        "name": "stealPrevious",
         "description": "The run of grace notes occupies a time interval that ends before the expected onset of the next non-grace event, shortening the duration of the preceding non-grace event."
     }
 },
