@@ -2062,7 +2062,7 @@
         "description": [
             "The barline drawn at the end of this measure. If not provided, the barline should be interpreted as follows:",
             "",
-            "* If the measure is the last in the document, use {\"type\": \"light-heavy\"}.",
+            "* If the measure is the last in the document, use {\"type\": \"lightHeavy\"}.",
             "* Otherwise, use {\"type\": \"regular\"}."
         ]
     }
@@ -4801,7 +4801,7 @@
     "pk": 50,
     "fields": {
         "parent": 34,
-        "name": "light-light",
+        "name": "lightLight",
         "description": ""
     }
 },
@@ -4810,7 +4810,7 @@
     "pk": 51,
     "fields": {
         "parent": 34,
-        "name": "light-heavy",
+        "name": "lightHeavy",
         "description": ""
     }
 },
@@ -4819,7 +4819,7 @@
     "pk": 52,
     "fields": {
         "parent": 34,
-        "name": "heavy-light",
+        "name": "heavyLight",
         "description": ""
     }
 },
@@ -4828,7 +4828,7 @@
     "pk": 53,
     "fields": {
         "parent": 34,
-        "name": "heavy-heavy",
+        "name": "heavyHeavy",
         "description": ""
     }
 },
