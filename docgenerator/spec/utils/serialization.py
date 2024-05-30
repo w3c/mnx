@@ -40,6 +40,13 @@ def all_model_objects():
                 obj.last_login = datetime.datetime(2021, 1, 19, tzinfo=datetime.timezone.utc)
                 obj.date_joined = datetime.datetime(2021, 1, 19, tzinfo=datetime.timezone.utc)
 
+            # Remove all Windows newline characters ('\r').
+            for field in ModelClass._meta.fields:
+                value = getattr(obj, field.name)
+                if isinstance(value, str) and '\r' in value:
+                    value = value.replace('\r', '')
+                    setattr(obj, field.name, value)
+
             yield obj
 
 def freeze(outfile:str):
