@@ -146,11 +146,21 @@
               "accidentalDisplay": {
                 "additionalProperties": false,
                 "properties": {
-                  "cautionary": {
-                    "type": "boolean"
-                  },
-                  "editorial": {
-                    "type": "boolean"
+                  "enclosure": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "symbol": {
+                        "enum": [
+                          "parentheses",
+                          "bracket"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "symbol"
+                    ],
+                    "type": "object"
                   },
                   "show": {
                     "type": "boolean"

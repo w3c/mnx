@@ -1639,6 +1639,28 @@
     }
 },
 {
+    "model": "spec.jsonobject",
+    "pk": 159,
+    "fields": {
+        "name": "accidental enclosure symbol",
+        "slug": "accidental-enclosure-symbol",
+        "schema": 1,
+        "object_type": 3,
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobject",
+    "pk": 160,
+    "fields": {
+        "name": "accidental enclosure",
+        "slug": "accidental-enclosure",
+        "schema": 1,
+        "object_type": 1,
+        "description": "Describes the symbol that encloses a specific accidental, such as a square bracket or parentheses."
+    }
+},
+{
     "model": "spec.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -3719,28 +3741,6 @@
 },
 {
     "model": "spec.jsonobjectrelationship",
-    "pk": 209,
-    "fields": {
-        "parent": 135,
-        "child_key": "editorial",
-        "child": 112,
-        "is_required": false,
-        "description": "Whether the accidental is considered an editorial marking (traditionally rendered in square brackets). Default is false."
-    }
-},
-{
-    "model": "spec.jsonobjectrelationship",
-    "pk": 210,
-    "fields": {
-        "parent": 135,
-        "child_key": "cautionary",
-        "child": 112,
-        "is_required": false,
-        "description": "Whether the accidental is considered cautionary (traditionally rendered in parentheses). Default is false."
-    }
-},
-{
-    "model": "spec.jsonobjectrelationship",
     "pk": 211,
     "fields": {
         "parent": 136,
@@ -4011,6 +4011,28 @@
         "child_key": "symbol",
         "child": 158,
         "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectrelationship",
+    "pk": 238,
+    "fields": {
+        "parent": 135,
+        "child_key": "enclosure",
+        "child": 160,
+        "is_required": false,
+        "description": "Describes the symbol that visually encloses the accidental, such as a square bracket or parentheses. If this data isn't specified, the accidental is assumed not to have a visual enclosure."
+    }
+},
+{
+    "model": "spec.jsonobjectrelationship",
+    "pk": 239,
+    "fields": {
+        "parent": 160,
+        "child_key": "symbol",
+        "child": 159,
+        "is_required": true,
         "description": ""
     }
 },
@@ -4624,6 +4646,24 @@
         "parent": 89,
         "name": "noSymbol",
         "description": ""
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 69,
+    "fields": {
+        "parent": 159,
+        "name": "parentheses",
+        "description": "The accidental is enclosed in parentheses."
+    }
+},
+{
+    "model": "spec.jsonobjectenum",
+    "pk": 70,
+    "fields": {
+        "parent": 159,
+        "name": "bracket",
+        "description": "The accidental is enclosed in square brackets."
     }
 },
 {
