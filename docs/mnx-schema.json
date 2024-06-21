@@ -1,5 +1,21 @@
 {
   "$defs": {
+    "bar-rhythmic-position": {
+      "additionalProperties": false,
+      "properties": {
+        "bar": {
+          "$ref": "#/$defs/measure-number"
+        },
+        "position": {
+          "$ref": "#/$defs/rhythmic-position"
+        }
+      },
+      "required": [
+        "bar",
+        "position"
+      ],
+      "type": "object"
+    },
     "beam-list": {
       "items": {
         "additionalProperties": false,
@@ -303,9 +319,6 @@
     "integer-unsigned": {
       "type": "integer"
     },
-    "measure-location": {
-      "type": "string"
-    },
     "measure-number": {
       "type": "integer"
     },
@@ -364,6 +377,24 @@
     },
     "positive-integer": {
       "type": "integer"
+    },
+    "rhythmic-position": {
+      "additionalProperties": false,
+      "properties": {
+        "fraction": {
+          "items": {
+            "$ref": "#/$defs/integer-unsigned"
+          },
+          "type": "array"
+        },
+        "graceIndex": {
+          "$ref": "#/$defs/integer-unsigned"
+        }
+      },
+      "required": [
+        "fraction"
+      ],
+      "type": "object"
     },
     "slur-side": {
       "enum": [
@@ -587,7 +618,7 @@
                     "$ref": "#/$defs/color"
                   },
                   "location": {
-                    "$ref": "#/$defs/measure-location"
+                    "$ref": "#/$defs/rhythmic-position"
                   }
                 },
                 "required": [
@@ -602,7 +633,7 @@
                 "additionalProperties": false,
                 "properties": {
                   "location": {
-                    "$ref": "#/$defs/measure-location"
+                    "$ref": "#/$defs/rhythmic-position"
                   },
                   "type": {
                     "enum": [
@@ -666,7 +697,7 @@
                     "$ref": "#/$defs/smufl-glyph"
                   },
                   "location": {
-                    "$ref": "#/$defs/measure-location"
+                    "$ref": "#/$defs/rhythmic-position"
                   }
                 },
                 "required": [
@@ -682,7 +713,7 @@
                       "type": "integer"
                     },
                     "location": {
-                      "$ref": "#/$defs/measure-location"
+                      "$ref": "#/$defs/bar-rhythmic-position"
                     },
                     "value": {
                       "$ref": "#/$defs/note-value"
@@ -834,22 +865,7 @@
                         "type": "object"
                       },
                       "position": {
-                        "additionalProperties": false,
-                        "properties": {
-                          "fraction": {
-                            "items": {
-                              "$ref": "#/$defs/integer-unsigned"
-                            },
-                            "type": "array"
-                          },
-                          "graceIndex": {
-                            "$ref": "#/$defs/integer-unsigned"
-                          }
-                        },
-                        "required": [
-                          "fraction"
-                        ],
-                        "type": "object"
+                        "$ref": "#/$defs/rhythmic-position"
                       }
                     },
                     "required": [
@@ -958,7 +974,7 @@
                               "additionalProperties": false,
                               "properties": {
                                 "end": {
-                                  "$ref": "#/$defs/measure-location"
+                                  "$ref": "#/$defs/bar-rhythmic-position"
                                 },
                                 "orient": {
                                   "$ref": "#/$defs/orientation"
@@ -1118,7 +1134,7 @@
                               "$ref": "#/$defs/id"
                             },
                             "location": {
-                              "$ref": "#/$defs/measure-location"
+                              "$ref": "#/$defs/bar-rhythmic-position"
                             }
                           },
                           "required": [
