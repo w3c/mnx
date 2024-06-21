@@ -4382,6 +4382,17 @@
     }
 },
 {
+    "model": "spec.jsonobjectrelationship",
+    "pk": 242,
+    "fields": {
+        "parent": 19,
+        "child_key": "staff",
+        "child": 105,
+        "is_required": false,
+        "description": "In a multi-staff part, this specifies which staff the clef is in. If unspecified, this should be interpreted as 1."
+    }
+},
+{
     "model": "spec.jsonobjectenum",
     "pk": 1,
     "fields": {

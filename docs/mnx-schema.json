@@ -1,21 +1,5 @@
 {
   "$defs": {
-    "bar-rhythmic-position": {
-      "additionalProperties": false,
-      "properties": {
-        "bar": {
-          "$ref": "#/$defs/measure-number"
-        },
-        "position": {
-          "$ref": "#/$defs/rhythmic-position"
-        }
-      },
-      "required": [
-        "bar",
-        "position"
-      ],
-      "type": "object"
-    },
     "beam-list": {
       "items": {
         "additionalProperties": false,
@@ -321,6 +305,22 @@
     },
     "measure-number": {
       "type": "integer"
+    },
+    "measure-rhythmic-position": {
+      "additionalProperties": false,
+      "properties": {
+        "bar": {
+          "$ref": "#/$defs/measure-number"
+        },
+        "position": {
+          "$ref": "#/$defs/rhythmic-position"
+        }
+      },
+      "required": [
+        "bar",
+        "position"
+      ],
+      "type": "object"
     },
     "note-value": {
       "additionalProperties": false,
@@ -713,7 +713,7 @@
                       "type": "integer"
                     },
                     "location": {
-                      "$ref": "#/$defs/bar-rhythmic-position"
+                      "$ref": "#/$defs/measure-rhythmic-position"
                     },
                     "value": {
                       "$ref": "#/$defs/note-value"
@@ -854,6 +854,9 @@
                             ],
                             "type": "string"
                           },
+                          "staff": {
+                            "$ref": "#/$defs/staff-number"
+                          },
                           "staffPosition": {
                             "$ref": "#/$defs/staff-position"
                           }
@@ -974,7 +977,7 @@
                               "additionalProperties": false,
                               "properties": {
                                 "end": {
-                                  "$ref": "#/$defs/bar-rhythmic-position"
+                                  "$ref": "#/$defs/measure-rhythmic-position"
                                 },
                                 "orient": {
                                   "$ref": "#/$defs/orientation"
@@ -1134,7 +1137,7 @@
                               "$ref": "#/$defs/id"
                             },
                             "location": {
-                              "$ref": "#/$defs/bar-rhythmic-position"
+                              "$ref": "#/$defs/measure-rhythmic-position"
                             }
                           },
                           "required": [
