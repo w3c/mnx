@@ -804,6 +804,15 @@
     "mnx": {
       "additionalProperties": false,
       "properties": {
+        "support": {
+          "additionalProperties": false,
+          "properties": {
+            "useAccidentalDisplay": {
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "version": {
           "type": "integer"
         }
