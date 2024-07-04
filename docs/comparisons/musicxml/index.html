@@ -4985,10 +4985,8 @@
         <h2>Octave shifts (8va)</h2>
         <img class="exampleimg" src="../../static/examples/octave-shifts-8va.png">
         
-        <p class="examplenotes">In MusicXML, you put <code>&lt;octave-shift&gt;</code> elements around the notes that are affected by the octave shift; the issue of whether the octave shift affects the first note <em>following</em> the closing <code>&lt;octave-shift&gt;</code> is interpreted differently by different programs.</p>
-<p class="examplenotes"></p>
-<p class="examplenotes">In MNX, you put a single <code>"type": "octave-shift"</code> object just before the first note it affects. The object's <code>"end"</code> value encodes the measure location of the <em>last note</em> for which the octave shift applies. In this example, the octave shift’s final note, the C quarter note, is in bar 2 and metrical position one half note into the bar.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">In MusicXML, you put <code>&lt;octave-shift&gt;</code> elements around the notes that are affected by the octave shift; the issue of whether the octave shift affects the first note <em>following</em> the closing <code>&lt;octave-shift&gt;</code> is interpreted differently by different programs.</p>
+<p class="examplenotes">In MNX, you put a single <code>"type": "octave-shift"</code> object just before the first note it affects. The object's <code>"end"</code> value encodes the measure location of the <em>last note</em> for which the octave shift applies. In this example, the octave shift’s final note, the C quarter note, is in bar 2 and metrical position one half note into the bar.</p>
 <p class="examplenotes">In both MusicXML and MNX, pitches for notes within an octave shift are specified taking the octave shift into account. In this example, the final two pitches are C7 and C6, despite the notes being rendered on the same staff line.</p>
         
         
@@ -7650,8 +7648,7 @@
         <h2>Jumps (Dal Segno)</h2>
         <img class="exampleimg" src="../../static/examples/jumps-dal-segno.png">
         
-        <p class="examplenotes">MusicXML uses <code>&lt;segno&gt;</code> to specify the visual segno symbol and <code>&lt;sound&gt;</code> elements with <code>segno</code> or <code>dalsegno</code> attributes to specify the playback instructions.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">MusicXML uses <code>&lt;segno&gt;</code> to specify the visual segno symbol and <code>&lt;sound&gt;</code> elements with <code>segno</code> or <code>dalsegno</code> attributes to specify the playback instructions.</p>
 <p class="examplenotes">MNX uses <code>"jump"</code> within the <code>"global"</code> section of the document. The <code>"type"</code> specifies what kind of jump it is, and <code>"location"</code> specifies the target of the jump. This data together represents both the visual notation and the playback instructions.</p>
         
         
@@ -7923,8 +7920,7 @@
         <h2>Jumps (D.S. al Fine)</h2>
         <img class="exampleimg" src="../../static/examples/jumps-ds-al-fine.png">
         
-        <p class="examplenotes">MusicXML uses <code>&lt;segno&gt;</code> to specify the visual segno symbol and <code>&lt;words&gt;</code> for the textual instructions. (Parsers need to interpret the text to extract semantic meaning.) For the playback instructions, MusicXML uses the <code>&lt;sound&gt;</code> element.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">MusicXML uses <code>&lt;segno&gt;</code> to specify the visual segno symbol and <code>&lt;words&gt;</code> for the textual instructions. (Parsers need to interpret the text to extract semantic meaning.) For the playback instructions, MusicXML uses the <code>&lt;sound&gt;</code> element.</p>
 <p class="examplenotes">MNX uses <code>"jump"</code> within the <code>"global"</code> section of the document. The <code>"type"</code> specifies what kind of jump it is, and <code>"location"</code> specifies the target of the jump. This data together represents both the visual notation and the playback instructions.</p>
         
         
