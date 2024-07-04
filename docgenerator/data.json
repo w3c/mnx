@@ -1791,11 +1791,11 @@
     "model": "spec.jsonobject",
     "pk": 161,
     "fields": {
-        "name": "bar rhythmic position",
-        "slug": "bar-rhythmic-position",
+        "name": "measure rhythmic position",
+        "slug": "measure-rhythmic-position",
         "schema": 1,
         "object_type": 1,
-        "description": "<p>Describes the rhythmic position of a notational object within a piece of music. This is comprised of a bar index plus a rhythmic position within that bar.</p>"
+        "description": "<p>Describes the rhythmic position of a notational object within a piece of music. This is comprised of a measure index plus a rhythmic position within that measure.</p>"
     }
 },
 {
@@ -4367,7 +4367,7 @@
         "child_key": "bar",
         "child": 84,
         "is_required": true,
-        "description": "The bar number."
+        "description": ""
     }
 },
 {
@@ -4378,7 +4378,7 @@
         "child_key": "position",
         "child": 140,
         "is_required": true,
-        "description": "The position within the bar."
+        "description": "The position within the measure."
     }
 },
 {
