@@ -854,9 +854,6 @@
                             ],
                             "type": "string"
                           },
-                          "staff": {
-                            "$ref": "#/$defs/staff-number"
-                          },
                           "staffPosition": {
                             "$ref": "#/$defs/staff-position"
                           }
@@ -869,6 +866,9 @@
                       },
                       "position": {
                         "$ref": "#/$defs/rhythmic-position"
+                      },
+                      "staff": {
+                        "$ref": "#/$defs/staff-number"
                       }
                     },
                     "required": [
