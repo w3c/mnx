@@ -1799,6 +1799,17 @@
     }
 },
 {
+    "model": "spec.jsonobject",
+    "pk": 162,
+    "fields": {
+        "name": "support",
+        "slug": "support",
+        "schema": 1,
+        "object_type": 1,
+        "description": "<p>This contains information about how to interpret the data within an MNX document.</p>"
+    }
+},
+{
     "model": "spec.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -4042,7 +4053,13 @@
         "child_key": "accidentalDisplay",
         "child": 135,
         "is_required": false,
-        "description": "Information about the displayed accidental for this note. This is required for any note that has a displayed accidental."
+        "description": [
+            "Information about the displayed accidental for this note.",
+            "",
+            "If this MNX document has \"useAccidentalDisplay\" set to true in its top-level \"mnx\" object's \"supports\" object, this \"accidentalDisplay\" key is required for any note that has a displayed accidental.",
+            "",
+            "If \"useAccidentalDisplay\" is missing or set to false, notes must not include \"accidentalDisplay\"."
+        ]
     }
 },
 {
@@ -4390,6 +4407,36 @@
         "child": 105,
         "is_required": false,
         "description": "In a multi-staff part, this specifies which staff the clef is in. If unspecified, this should be interpreted as 1."
+    }
+},
+{
+    "model": "spec.jsonobjectrelationship",
+    "pk": 245,
+    "fields": {
+        "parent": 126,
+        "child_key": "support",
+        "child": 162,
+        "is_required": false,
+        "description": "Information about how to interpret the data in this MNX file, in cases of ambiguity."
+    }
+},
+{
+    "model": "spec.jsonobjectrelationship",
+    "pk": 246,
+    "fields": {
+        "parent": 162,
+        "child_key": "useAccidentalDisplay",
+        "child": 112,
+        "is_required": false,
+        "description": [
+            "This answers the question \"Does every note with a visible accidental have accidentalDisplay set?\"",
+            "",
+            "If this is set to true, then consuming applications should only draw an accidental on notes that have an \"accidentalDisplay\" value.",
+            "",
+            "If this is set to false, then consuming applications should use their own algorithm to determine whether any given note's accidental should be drawn.",
+            "",
+            "If this value is not provided, it is to be interpreted as false."
+        ]
     }
 },
 {
@@ -5517,7 +5564,7 @@
         "blurb": "",
         "document": [
             "{",
-            "  \"mnx\": {\"version\": 1},",
+            "  \"mnx\": {\"version\": 1, \"support\": {\"useAccidentalDisplay\": true}},",
             "  \"global\": {",
             "    \"measures\": [",
             "      {",
@@ -9404,7 +9451,7 @@
         "blurb": "Note only the music in the first measure is encoded here.",
         "document": [
             "{",
-            "\"mnx\": {\"version\": 1},",
+            "  \"mnx\": {\"version\": 1, \"support\": {\"useAccidentalDisplay\": true}},",
             "  \"global\": {",
             "    \"measures\": [",
             "      {",
@@ -23818,6 +23865,22 @@
     "fields": {
         "example": 44,
         "json_object": 39
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1414,
+    "fields": {
+        "example": 6,
+        "json_object": 162
+    }
+},
+{
+    "model": "spec.exampledocumentobject",
+    "pk": 1415,
+    "fields": {
+        "example": 35,
+        "json_object": 162
     }
 },
 {
