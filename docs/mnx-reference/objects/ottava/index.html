@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The octave shift object | MNX specification</title>
+<title>The ottava object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -44,15 +44,15 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    octave shift
+    ottava
 </p>
 
-<h1>The octave shift object</h1>
+<h1>The ottava object</h1>
 
 <p><b>Type:</b> Dictionary</p>
 
 
-<p>An octave shift, traditionally notated with a marking such as "8va", tells a musician that the affected note(s) are being rendered a number of octaves up or down from their normal appearance on the staff, for sake of readability.</p>
+<p>An ottava (octave shift), traditionally notated with a marking such as "8va", tells a musician that the affected note(s) are being rendered a number of octaves up or down from their normal appearance on the staff, for sake of readability.</p>
 
 <p>Note: the "pitch" attribute of any affected note should be encoded as the sounded pitch. In other words, the absence or presence of an octave shift does not affect a note's "pitch" attribute; the octave shift only affects the note's graphical display.</p>
 
@@ -101,14 +101,14 @@
         
     </td>
     <td>No</td>
-    <td>The staff index to which this octave shift applies, if such a designation makes sense. If not provided, the value is inherited from any sequence ancestor that specified it. If no ancestor did so, the consuming software should determine the value automatically according to its own logic.</td>
+    <td>The staff index to which this ottava applies, if such a designation makes sense. If not provided, the value is inherited from any sequence ancestor that specified it. If no ancestor did so, the consuming software should determine the value automatically according to its own logic.</td>
 </tr>
 
 <tr>
     <td><nobr><b>"type"</b></nobr></td>
     <td>
         
-            The string <code>"octave-shift"</code>
+            The string <code>"ottava"</code>
         
     </td>
     <td>Yes</td>
@@ -119,11 +119,11 @@
     <td><nobr><b>"value"</b></nobr></td>
     <td>
         
-        <a href="../octave-shift-amount/">octave shift amount object</a>
+        <a href="../ottava-amount/">ottava amount object</a>
         
     </td>
     <td>Yes</td>
-    <td>The type of octave shift.</td>
+    <td>The type of ottava.</td>
 </tr>
 
 
@@ -137,7 +137,7 @@
 
 <p>This object is used in the following examples:</p>
 <p>
-    <nobr><a href="../../examples/octave-shifts-8va/">Octave shifts (8va)</a></nobr>
+    <nobr><a href="../../examples/ottavas-8va/">Ottavas (8va)</a></nobr>
 </p>
 
 

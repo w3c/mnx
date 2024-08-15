@@ -995,10 +995,16 @@
                                   "$ref": "#/$defs/staff-number"
                                 },
                                 "type": {
-                                  "const": "octave-shift",
+                                  "const": "ottava",
                                   "type": "string"
                                 },
                                 "value": {
+                                  "enum": [
+                                    1,
+                                    2,
+                                    -1,
+                                    -2
+                                  ],
                                   "type": "integer"
                                 }
                               },
