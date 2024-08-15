@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, re_path
-from spec import views
+from spectools import views
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
