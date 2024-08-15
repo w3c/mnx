@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='exampledocument',
             name='image_url',
-            field=models.CharField(blank=True, help_text='Path to the image within the docgenerator/media directory, e.g., "/static/examples/test.jpg".', max_length=300),
+            field=models.CharField(blank=True, help_text='Path to the image within the doctools/media directory, e.g., "/static/examples/test.jpg".', max_length=300),
         ),
     ]

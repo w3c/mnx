@@ -523,7 +523,7 @@ class ExampleDocument(models.Model):
     blurb = models.TextField(blank=True)
     document = models.TextField()
     image_url = models.CharField(max_length=300, blank=True,
-        help_text='Path to the image within the docgenerator/media directory, e.g., "/static/examples/test.jpg".'
+        help_text='Path to the image within the doctools/media directory, e.g., "/static/examples/test.jpg".'
     )
     is_featured = models.BooleanField(default=False)
 
