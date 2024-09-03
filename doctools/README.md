@@ -38,7 +38,20 @@ source ~/mnxdocs/bin/activate
 pip install -r requirements.txt
 ```
 
-5. Initialize a local database:
+5. Get a git checkout of the mnxdocgenerator tool somewhere
+on your system:
+
+```
+git clone https://github.com/w3c-cg/mnxdocgenerator.git /path/to/local/mnxdocgenerator
+```
+
+6. Install that local version of mnxdocgenerator:
+
+```
+pip install -e /path/to/local/mnxdocgenerator
+```
+
+7. Initialize a local database:
 
 ```
 python manage.py migrate
@@ -47,7 +60,7 @@ python manage.py migrate
 This creates a SQLite file called `db.sqlite3` in the current
 directory.
 
-6. Import the MNX spec data into your local database:
+8. Import the MNX spec data into your local database:
 
 ```
 python manage.py loaddb data.json
