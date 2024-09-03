@@ -230,7 +230,20 @@ source ~/musicxmldocs/bin/activate
 pip install -r requirements.txt
 ```
 
-5. Initialize a local database:
+5. Get a git checkout of the mnxdocgenerator tool somewhere
+on your system:
+
+```
+git clone https://github.com/w3c-cg/mnxdocgenerator.git /path/to/local/mnxdocgenerator
+```
+
+6. Install that local version of mnxdocgenerator:
+
+```
+pip install -e /path/to/local/mnxdocgenerator
+```
+
+7. Initialize a local database:
 
 ```
 python manage.py migrate
@@ -239,7 +252,7 @@ python manage.py migrate
 This creates a SQLite file called `db.sqlite3` in the current
 directory.
 
-6. Create a superuser, for purposes of accessing the admin:
+8. Create a superuser, for purposes of accessing the admin:
 
 ```
 python manage.py createsuperuser
@@ -247,13 +260,13 @@ python manage.py createsuperuser
 
 (The username and password don't matter.)
 
-7. Run the Django web server:
+9. Run the Django web server:
 
 ```
 python manage.py runserver
 ```
 
-8. Do some light bookkeeping via the Django admin:
+10. Do some light bookkeeping via the Django admin:
 
     * Go to http://127.0.0.1:8000/admin/ in your web browser, then
       enter the username and password you created.
@@ -269,13 +282,13 @@ python manage.py runserver
     * For the site name, enter something like "MusicXML documentation".
       For the XML format name, enter "MusicXML". Then save.
 
-9. Get a copy of the MusicXML schema (the file `musicxml.xsd`):
+11. Get a copy of the MusicXML schema (the file `musicxml.xsd`):
 
 ```
 curl https://raw.githubusercontent.com/w3c/musicxml/gh-pages/schema/musicxml.xsd > musicxml.xsd
 ```
 
-10. Import the MusicXML schema into your local database:
+12. Import the MusicXML schema into your local database:
 
 ```
 python manage.py import_xsd musicxml musicxml.xsd
@@ -285,5 +298,5 @@ The first argument, `musicxml`, must be the same as the slug you
 created for the XML schema via the admin. The second argument is
 the path to your XSD file.
 
-11. Browse the site by going to http://127.0.0.1:8000/ in
+13. Browse the site by going to http://127.0.0.1:8000/ in
 your web browser.
