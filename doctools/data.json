@@ -2077,7 +2077,7 @@
         "description": [
             "The barline drawn at the end of this measure. If not provided, the barline should be interpreted as follows:",
             "",
-            "* If the measure is the last in the document, use {\"type\": \"lightHeavy\"}.",
+            "* If the measure is the last in the document, use {\"type\": \"final\"}.",
             "* Otherwise, use {\"type\": \"regular\"}."
         ]
     }
@@ -4896,8 +4896,8 @@
     "pk": 50,
     "fields": {
         "parent": 34,
-        "name": "lightLight",
-        "description": ""
+        "name": "double",
+        "description": "Two light lines together, conventionally known as a \"double barline.\""
     }
 },
 {
@@ -4905,8 +4905,8 @@
     "pk": 51,
     "fields": {
         "parent": 34,
-        "name": "lightHeavy",
-        "description": ""
+        "name": "final",
+        "description": "A light line followed by a heavy line, as conventionally used at the end of a score."
     }
 },
 {
