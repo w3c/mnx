@@ -4440,6 +4440,17 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 247,
+    "fields": {
+        "parent": 36,
+        "child_key": "side",
+        "child": 59,
+        "is_required": false,
+        "description": "Specifies whether the tie curves upward or downward. If not provided, the consuming software should determine the value automatically according to its own logic."
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {
