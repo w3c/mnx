@@ -56,6 +56,30 @@
         "id": {
           "$ref": "#/$defs/id"
         },
+        "lyrics": {
+          "additionalProperties": false,
+          "properties": {
+            "lines": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "continues": {
+                    "type": "boolean"
+                  },
+                  "text": {
+                    "$ref": "#/$defs/string"
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
         "markings": {
           "additionalProperties": false,
           "properties": {
@@ -440,6 +464,9 @@
         "up",
         "down"
       ],
+      "type": "string"
+    },
+    "string": {
       "type": "string"
     },
     "style-class": {
@@ -1116,7 +1143,7 @@
                   "type": "integer"
                 },
                 "label": {
-                  "type": "string"
+                  "$ref": "#/$defs/string"
                 },
                 "start": {
                   "$ref": "#/$defs/measure-number"
