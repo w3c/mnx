@@ -58,7 +58,7 @@
 
 
 
-<p>To accommodate lyrics with multiple lines (i.e., multiple verses), lyric lines are encoded as arrays. Each event&#x27;s &quot;lyrics&quot; object has a &quot;lines&quot; array, with each line representing a vertical column within that syllable.</p>
+<p>To accommodate lyrics with multiple lines (i.e., multiple verses), lyric lines are encoded as structured objects. Each event&#x27;s &quot;lyrics&quot; object has a &quot;lines&quot; array, with each line representing a vertical column within that syllable. Each line is identified by an ID string, which is user-defined within the document. By default, lyric lines are ordered alphabetically by the ID string.</p>
 
 
 
@@ -100,14 +100,14 @@
                               <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
                            },
                            <a class="tag" href="../../objects/event/">"lyrics"</a>: {
-                              <a class="tag" href="../../objects/lyrics/">"lines"</a>: [
-                                 {
+                              <a class="tag" href="../../objects/lyrics/">"lines"</a>: {
+                                 "1": {
                                     <a class="tag" href="../../objects/lyric-line/">"text"</a>: <a class="tag" href="../../objects/string/">"Are"</a>
                                  },
-                                 {
+                                 "2": {
                                     <a class="tag" href="../../objects/lyric-line/">"text"</a>: <a class="tag" href="../../objects/string/">"Am"</a>
                                  }
-                              ]
+                              }
                            },
                            <a class="tag" href="../../objects/event/">"notes"</a>: [
                               {
@@ -124,14 +124,14 @@
                               <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
                            },
                            <a class="tag" href="../../objects/event/">"lyrics"</a>: {
-                              <a class="tag" href="../../objects/lyrics/">"lines"</a>: [
-                                 {
+                              <a class="tag" href="../../objects/lyrics/">"lines"</a>: {
+                                 "1": {
                                     <a class="tag" href="../../objects/lyric-line/">"text"</a>: <a class="tag" href="../../objects/string/">"you"</a>
                                  },
-                                 {
+                                 "2": {
                                     <a class="tag" href="../../objects/lyric-line/">"text"</a>: <a class="tag" href="../../objects/string/">"I"</a>
                                  }
-                              ]
+                              }
                            },
                            <a class="tag" href="../../objects/event/">"notes"</a>: [
                               {
@@ -148,16 +148,16 @@
                               <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
                            },
                            <a class="tag" href="../../objects/event/">"lyrics"</a>: {
-                              <a class="tag" href="../../objects/lyrics/">"lines"</a>: [
-                                 {
+                              <a class="tag" href="../../objects/lyrics/">"lines"</a>: {
+                                 "1": {
                                     <a class="tag" href="../../objects/lyric-line/">"hyphen"</a>: <a class="tag" href="../../objects/boolean/">true</a>,
                                     <a class="tag" href="../../objects/lyric-line/">"text"</a>: <a class="tag" href="../../objects/string/">"sleep"</a>
                                  },
-                                 {
+                                 "2": {
                                     <a class="tag" href="../../objects/lyric-line/">"hyphen"</a>: <a class="tag" href="../../objects/boolean/">true</a>,
                                     <a class="tag" href="../../objects/lyric-line/">"text"</a>: <a class="tag" href="../../objects/string/">"sleep"</a>
                                  }
-                              ]
+                              }
                            },
                            <a class="tag" href="../../objects/event/">"notes"</a>: [
                               {
@@ -174,14 +174,14 @@
                               <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
                            },
                            <a class="tag" href="../../objects/event/">"lyrics"</a>: {
-                              <a class="tag" href="../../objects/lyrics/">"lines"</a>: [
-                                 {
+                              <a class="tag" href="../../objects/lyrics/">"lines"</a>: {
+                                 "1": {
                                     <a class="tag" href="../../objects/lyric-line/">"text"</a>: <a class="tag" href="../../objects/string/">"ing?"</a>
                                  },
-                                 {
+                                 "2": {
                                     <a class="tag" href="../../objects/lyric-line/">"text"</a>: <a class="tag" href="../../objects/string/">"ing?"</a>
                                  }
-                              ]
+                              }
                            },
                            <a class="tag" href="../../objects/event/">"notes"</a>: [
                               {

@@ -60,22 +60,24 @@
           "additionalProperties": false,
           "properties": {
             "lines": {
-              "items": {
-                "additionalProperties": false,
-                "properties": {
-                  "hyphen": {
-                    "type": "boolean"
+              "additionalProperties": {
+                "type": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "hyphen": {
+                      "type": "boolean"
+                    },
+                    "text": {
+                      "$ref": "#/$defs/string"
+                    }
                   },
-                  "text": {
-                    "$ref": "#/$defs/string"
-                  }
-                },
-                "required": [
-                  "text"
-                ],
-                "type": "object"
+                  "required": [
+                    "text"
+                  ],
+                  "type": "object"
+                }
               },
-              "type": "array"
+              "type": "object"
             }
           },
           "type": "object"
