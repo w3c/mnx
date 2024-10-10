@@ -70,14 +70,14 @@
 
 
 <tr>
-    <td><nobr><b>"continues"</b></nobr></td>
+    <td><nobr><b>"hyphen"</b></nobr></td>
     <td>
         
         <a href="../boolean/">boolean object</a>
         
     </td>
     <td>No</td>
-    <td>Specifies that this syllable continues into the subsequent one. Generally this means software will put a hyphen after this syllable. The hyphen character itself should not be encoded within "text".<br><br>Note: For a syllable with "continues":true, the subsequent syllable does not define "continues": true unless it also continues into yet another subsequent syllable. That is, the "continues" relationship is only encoded on the starting syllable.</td>
+    <td>Specifies that this syllable is part of a multi-syllable word and continues into a subsequent syllable. Generally this means software will put a hyphen after this syllable, if space is available.<br><br>The hyphen character itself should not be encoded within "text".<br><br>Note: For a syllable with "hyphen":true, the subsequent syllable does not define "hyphen": true unless it also continues into yet another subsequent syllable. That is, the "hyphen" relationship is only encoded on the starting syllable.</td>
 </tr>
 
 <tr>

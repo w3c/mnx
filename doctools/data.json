@@ -4536,13 +4536,15 @@
     "pk": 252,
     "fields": {
         "parent": 165,
-        "child_key": "continues",
+        "child_key": "hyphen",
         "child": 112,
         "is_required": false,
         "description": [
-            "Specifies that this syllable continues into the subsequent one. Generally this means software will put a hyphen after this syllable. The hyphen character itself should not be encoded within \"text\".",
+            "Specifies that this syllable is part of a multi-syllable word and continues into a subsequent syllable. Generally this means software will put a hyphen after this syllable, if space is available.",
             "",
-            "Note: For a syllable with \"continues\":true, the subsequent syllable does not define \"continues\": true unless it also continues into yet another subsequent syllable. That is, the \"continues\" relationship is only encoded on the starting syllable."
+            "The hyphen character itself should not be encoded within \"text\".",
+            "",
+            "Note: For a syllable with \"hyphen\":true, the subsequent syllable does not define \"hyphen\": true unless it also continues into yet another subsequent syllable. That is, the \"hyphen\" relationship is only encoded on the starting syllable."
         ]
     }
 },
@@ -11310,7 +11312,7 @@
         "name": "Lyrics (basic)",
         "slug": "lyrics-basic",
         "schema": 1,
-        "blurb": "Lyric syllables are encoded for each event. For lyrics that are split across multiple syllables (typically connected via a hyphen), we use \"continues\": true.",
+        "blurb": "Lyric syllables are encoded for each event. For lyrics that are split across multiple syllables (typically connected via a hyphen), we use \"hyphen\": true.",
         "document": [
             "{",
             "   \"mnx\": {",
@@ -11376,7 +11378,7 @@
             "                           \"duration\": {",
             "                              \"base\": \"quarter\"",
             "                           },",
-            "                           \"lyrics\": {\"lines\": [{\"text\": \"sleep\", \"continues\": true}]},",
+            "                           \"lyrics\": {\"lines\": [{\"text\": \"sleep\", \"hyphen\": true}]},",
             "                           \"notes\": [",
             "                              {",
             "                                 \"pitch\": {",
@@ -11494,8 +11496,8 @@
             "                              \"base\": \"quarter\"",
             "                           },",
             "                           \"lyrics\": {\"lines\": [",
-            "                              {\"text\": \"sleep\", \"continues\": true},",
-            "                              {\"text\": \"sleep\", \"continues\": true}",
+            "                              {\"text\": \"sleep\", \"hyphen\": true},",
+            "                              {\"text\": \"sleep\", \"hyphen\": true}",
             "                           ]},",
             "                           \"notes\": [",
             "                              {",
