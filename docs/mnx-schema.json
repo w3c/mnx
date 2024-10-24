@@ -56,6 +56,38 @@
         "id": {
           "$ref": "#/$defs/id"
         },
+        "lyrics": {
+          "additionalProperties": false,
+          "properties": {
+            "lines": {
+              "additionalProperties": {
+                "type": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "text": {
+                      "$ref": "#/$defs/string"
+                    },
+                    "type": {
+                      "enum": [
+                        "start",
+                        "middle",
+                        "end",
+                        "whole"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ],
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
         "markings": {
           "additionalProperties": false,
           "properties": {
@@ -440,6 +472,9 @@
         "up",
         "down"
       ],
+      "type": "string"
+    },
+    "string": {
       "type": "string"
     },
     "style-class": {
@@ -1116,7 +1151,7 @@
                   "type": "integer"
                 },
                 "label": {
-                  "type": "string"
+                  "$ref": "#/$defs/string"
                 },
                 "start": {
                   "$ref": "#/$defs/measure-number"

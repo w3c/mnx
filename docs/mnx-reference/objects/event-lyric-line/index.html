@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The event lyric line object | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../">Reference</a>
+    <ul>
+    <li><a href="../">Objects</a></li>
+    <li><a href="../../examples/">Example documents</a></li>
+    <li><a href="../../../mnx-schema.json">Raw JSON Schema</a></li>
+    </ul>
+</li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Objects</a> &gt;
+    event lyric line
+</p>
+
+<h1>The event lyric line object</h1>
+
+<p><b>Type:</b> Dictionary</p>
+
+
+<p>This encodes a single lyric syllable within a single lyric line (i.e., a single verse).</p>
+
+
+
+<h2>Keys:</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>"text"</b></nobr></td>
+    <td>
+        
+        <a href="../string/">string object</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The text of the syllable.<br><br>This might be an empty string in the case of lyrics that are skipped for a given verse.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>"type"</b></nobr></td>
+    <td>
+        
+        <a href="../event-lyric-line-type/">event lyric line type object</a>
+        
+    </td>
+    <td>No</td>
+    <td>Specifies the syllable's part of the word: "start", "middle", "end" or "whole". If not provided, the default value is "whole".<br><br>Generally software uses this data to determine whether to put a hyphen after a syllable, if space is available. The data can also be used to inform synthesized vocal audio playback.<br><br>Note: The hyphen character itself should not be encoded within "text".</td>
+</tr>
+
+
+</table>
+
+
+
+
+
+<h2 id="examples">Examples</h2>
+
+<p>This object is used in the following examples:</p>
+<p>
+    <nobr><a href="../../examples/lyrics-basic/">Lyrics (basic)</a></nobr>, <nobr><a href="../../examples/lyrics-multi-line/">Lyrics (multi-line)</a></nobr>
+</p>
+
+
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>
