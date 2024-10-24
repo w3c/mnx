@@ -1843,6 +1843,17 @@
     }
 },
 {
+    "model": "spectools.jsonobject",
+    "pk": 166,
+    "fields": {
+        "name": "event lyric line type",
+        "slug": "event-lyric-line-type",
+        "schema": 1,
+        "object_type": 3,
+        "description": ""
+    }
+},
+{
     "model": "spectools.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -4540,15 +4551,15 @@
     "pk": 252,
     "fields": {
         "parent": 165,
-        "child_key": "hyphen",
-        "child": 112,
-        "is_required": false,
+        "child_key": "type",
+        "child": 166,
+        "is_required": true,
         "description": [
-            "Specifies that this syllable is part of a multi-syllable word and continues into a subsequent syllable. Generally this means software will put a hyphen after this syllable, if space is available.",
+            "Specifies the syllable's part of the word: \"start\", \"middle\", \"end\" or \"whole\".",
             "",
-            "The hyphen character itself should not be encoded within \"text\".",
+            "Generally software uses this data to determine whether to put a hyphen after a syllable, if space is available. The data can also be used to inform synthesized vocal audio playback.",
             "",
-            "Note: For a syllable with \"hyphen\":true, the subsequent syllable does not define \"hyphen\": true unless it also continues into yet another subsequent syllable. That is, the \"hyphen\" relationship is only encoded on the starting syllable."
+            "Note: The hyphen character itself should not be encoded within \"text\"."
         ]
     }
 },
@@ -5216,6 +5227,42 @@
         "parent": 55,
         "name": "-2",
         "description": "The written pitch is two octaves higher than sounded. Traditionally rendered with a \"15mb\" symbol."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 75,
+    "fields": {
+        "parent": 166,
+        "name": "start",
+        "description": "This syllable begins a word and continues forward to a subsequent syllable."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 76,
+    "fields": {
+        "parent": 166,
+        "name": "middle",
+        "description": "This syllable continues a previous syllable and continues forward to a subsequent syllable."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 77,
+    "fields": {
+        "parent": 166,
+        "name": "end",
+        "description": "This syllable continues a previous syllable and doesn't continue forward to a subsequent syllable."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 78,
+    "fields": {
+        "parent": 166,
+        "name": "whole",
+        "description": "This syllable constitutes an entire word."
     }
 },
 {
@@ -11316,7 +11363,7 @@
         "name": "Lyrics (basic)",
         "slug": "lyrics-basic",
         "schema": 1,
-        "blurb": "Lyric syllables are encoded for each event. For lyrics that are split across multiple syllables (typically connected via a hyphen), we use \"hyphen\": true.",
+        "blurb": "Lyric syllables are encoded for each event. For lyrics that are split across multiple syllables (typically connected via a hyphen), we use \"type\" to encode each syllable's position in the word.",
         "document": [
             "{",
             "   \"mnx\": {",
@@ -11352,7 +11399,7 @@
             "                           \"duration\": {",
             "                              \"base\": \"quarter\"",
             "                           },",
-            "                           \"lyrics\": {\"lines\": {\"1\": {\"text\": \"Are\"}}},",
+            "                           \"lyrics\": {\"lines\": {\"1\": {\"text\": \"Are\", \"type\": \"whole\"}}},",
             "                           \"notes\": [",
             "                              {",
             "                                 \"pitch\": {",
@@ -11367,7 +11414,7 @@
             "                           \"duration\": {",
             "                              \"base\": \"quarter\"",
             "                           },",
-            "                           \"lyrics\": {\"lines\": {\"1\": {\"text\": \"you\"}}},",
+            "                           \"lyrics\": {\"lines\": {\"1\": {\"text\": \"you\", \"type\": \"whole\"}}},",
             "                           \"notes\": [",
             "                              {",
             "                                 \"pitch\": {",
@@ -11382,7 +11429,7 @@
             "                           \"duration\": {",
             "                              \"base\": \"quarter\"",
             "                           },",
-            "                           \"lyrics\": {\"lines\": {\"1\": {\"text\": \"sleep\", \"hyphen\": true}}},",
+            "                           \"lyrics\": {\"lines\": {\"1\": {\"text\": \"sleep\", \"type\": \"start\"}}},",
             "                           \"notes\": [",
             "                              {",
             "                                 \"pitch\": {",
@@ -11397,7 +11444,7 @@
             "                           \"duration\": {",
             "                              \"base\": \"quarter\"",
             "                           },",
-            "                           \"lyrics\": {\"lines\": {\"1\": {\"text\": \"ing?\"}}},",
+            "                           \"lyrics\": {\"lines\": {\"1\": {\"text\": \"ing?\", \"type\": \"end\"}}},",
             "                           \"notes\": [",
             "                              {",
             "                                 \"pitch\": {",
@@ -11464,8 +11511,8 @@
             "                              \"base\": \"quarter\"",
             "                           },",
             "                           \"lyrics\": {\"lines\": {",
-            "                              \"1\": {\"text\": \"Are\"},",
-            "                              \"2\": {\"text\": \"Am\"}",
+            "                              \"1\": {\"text\": \"Are\", \"type\": \"whole\"},",
+            "                              \"2\": {\"text\": \"Am\", \"type\": \"whole\"}",
             "                           }},",
             "                           \"notes\": [",
             "                              {",
@@ -11482,8 +11529,8 @@
             "                              \"base\": \"quarter\"",
             "                           },",
             "                           \"lyrics\": {\"lines\": {",
-            "                              \"1\": {\"text\": \"you\"},",
-            "                              \"2\": {\"text\": \"I\"}",
+            "                              \"1\": {\"text\": \"you\", \"type\": \"whole\"},",
+            "                              \"2\": {\"text\": \"I\", \"type\": \"whole\"}",
             "                           }},",
             "                           \"notes\": [",
             "                              {",
@@ -11500,8 +11547,8 @@
             "                              \"base\": \"quarter\"",
             "                           },",
             "                           \"lyrics\": {\"lines\": {",
-            "                              \"1\": {\"text\": \"sleep\", \"hyphen\": true},",
-            "                              \"2\": {\"text\": \"sleep\", \"hyphen\": true}",
+            "                              \"1\": {\"text\": \"sleep\", \"type\": \"start\"},",
+            "                              \"2\": {\"text\": \"sleep\", \"hyphen\": \"start\"}",
             "                           }},",
             "                           \"notes\": [",
             "                              {",
@@ -11518,8 +11565,8 @@
             "                              \"base\": \"quarter\"",
             "                           },",
             "                           \"lyrics\": {\"lines\": {",
-            "                              \"1\": {\"text\": \"ing?\"},",
-            "                              \"2\": {\"text\": \"ing?\"}",
+            "                              \"1\": {\"text\": \"ing?\", \"type\": \"end\"},",
+            "                              \"2\": {\"text\": \"ing?\", \"type\": \"end\"}",
             "                           }},",
             "                           \"notes\": [",
             "                              {",

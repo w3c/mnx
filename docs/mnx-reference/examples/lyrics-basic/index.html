@@ -58,7 +58,7 @@
 
 
 
-<p>Lyric syllables are encoded for each event. For lyrics that are split across multiple syllables (typically connected via a hyphen), we use &quot;hyphen&quot;: true.</p>
+<p>Lyric syllables are encoded for each event. For lyrics that are split across multiple syllables (typically connected via a hyphen), we use &quot;type&quot; to encode each syllable&#x27;s position in the word.</p>
 
 
 
@@ -102,6 +102,7 @@
                            <a class="tag" href="../../objects/event/">"lyrics"</a>: {
                               <a class="tag" href="../../objects/lyrics/">"lines"</a>: {
                                  "1": {
+                                    <a class="tag" href="../../objects/event-lyric-line/">"type"</a>: <a class="tag" href="../../objects/event-lyric-line-type/">"whole"</a>,
                                     <a class="tag" href="../../objects/event-lyric-line/">"text"</a>: <a class="tag" href="../../objects/string/">"Are"</a>
                                  }
                               }
@@ -123,6 +124,7 @@
                            <a class="tag" href="../../objects/event/">"lyrics"</a>: {
                               <a class="tag" href="../../objects/lyrics/">"lines"</a>: {
                                  "1": {
+                                    <a class="tag" href="../../objects/event-lyric-line/">"type"</a>: <a class="tag" href="../../objects/event-lyric-line-type/">"whole"</a>,
                                     <a class="tag" href="../../objects/event-lyric-line/">"text"</a>: <a class="tag" href="../../objects/string/">"you"</a>
                                  }
                               }
@@ -144,7 +146,7 @@
                            <a class="tag" href="../../objects/event/">"lyrics"</a>: {
                               <a class="tag" href="../../objects/lyrics/">"lines"</a>: {
                                  "1": {
-                                    <a class="tag" href="../../objects/event-lyric-line/">"hyphen"</a>: <a class="tag" href="../../objects/boolean/">true</a>,
+                                    <a class="tag" href="../../objects/event-lyric-line/">"type"</a>: <a class="tag" href="../../objects/event-lyric-line-type/">"start"</a>,
                                     <a class="tag" href="../../objects/event-lyric-line/">"text"</a>: <a class="tag" href="../../objects/string/">"sleep"</a>
                                  }
                               }
@@ -166,6 +168,7 @@
                            <a class="tag" href="../../objects/event/">"lyrics"</a>: {
                               <a class="tag" href="../../objects/lyrics/">"lines"</a>: {
                                  "1": {
+                                    <a class="tag" href="../../objects/event-lyric-line/">"type"</a>: <a class="tag" href="../../objects/event-lyric-line-type/">"end"</a>,
                                     <a class="tag" href="../../objects/event-lyric-line/">"text"</a>: <a class="tag" href="../../objects/string/">"ing?"</a>
                                  }
                               }

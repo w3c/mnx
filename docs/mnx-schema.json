@@ -64,15 +64,22 @@
                 "type": {
                   "additionalProperties": false,
                   "properties": {
-                    "hyphen": {
-                      "type": "boolean"
-                    },
                     "text": {
                       "$ref": "#/$defs/string"
+                    },
+                    "type": {
+                      "enum": [
+                        "start",
+                        "middle",
+                        "end",
+                        "whole"
+                      ],
+                      "type": "string"
                     }
                   },
                   "required": [
-                    "text"
+                    "text",
+                    "type"
                   ],
                   "type": "object"
                 }
