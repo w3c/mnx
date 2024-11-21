@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The lyrics object | MNX specification</title>
+<title>The lyric line ID object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -44,57 +44,19 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    lyrics
+    lyric line ID
 </p>
 
-<h1>The lyrics object</h1>
+<h1>The lyric line ID object</h1>
 
-<p><b>Type:</b> Dictionary</p>
-
-
-<p>This contains the lyric data for a given event. Typically this correponds to a single sung syllable.</p>
-
-
-
-<h2>Keys:</h2>
-
-<table>
-<thead>
-<tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Required?</th>
-    <th>Description</th>
-</tr>
-</thead>
-
-
-<tr>
-    <td><nobr><b>"lines"</b></nobr></td>
-    <td>
-        
-            
-            An object with user-defined keys, where each value is a <a href="../event-lyric-line/">event lyric line object</a>
-            
-        
-    </td>
-    <td>No</td>
-    <td>A data structure representing all of the event's lyric lines (e.g., for multiple verses). This is encoded as an object in which the keys are user-defined strings (such as "1", "2" or "A") and the values are event lyric line objects.<br><br>These user-defined strings are effectively document-scoped IDs of the lyric lines. All lyric lines that appear together should have the same ID in the document.</td>
-</tr>
-
-
-</table>
+<p><b>Type:</b> String</p>
 
 
 
 
 
-<h2 id="examples">Examples</h2>
 
-<p>This object is used in the following examples:</p>
-<p>
-    <nobr><a href="../../examples/lyric-line-metadata/">Lyric line metadata</a></nobr>, <nobr><a href="../../examples/lyrics-basic/">Lyrics (basic)</a></nobr>, <nobr><a href="../../examples/lyrics-multi-line/">Lyrics (multi-line)</a></nobr>
-</p>
+
 
 
 

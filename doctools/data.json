@@ -1854,6 +1854,83 @@
     }
 },
 {
+    "model": "spectools.jsonobject",
+    "pk": 167,
+    "fields": {
+        "name": "lyrics-global",
+        "slug": "lyrics-global",
+        "schema": 1,
+        "object_type": 1,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 168,
+    "fields": {
+        "name": "lyric line ID list",
+        "slug": "lyric-line-id-list",
+        "schema": 1,
+        "object_type": 2,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 169,
+    "fields": {
+        "name": "lyric lines metadata",
+        "slug": "lyric-lines-metadata",
+        "schema": 1,
+        "object_type": 7,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 170,
+    "fields": {
+        "name": "lyric line metadata",
+        "slug": "lyric-line-metadata",
+        "schema": 1,
+        "object_type": 1,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 171,
+    "fields": {
+        "name": "language code",
+        "slug": "language-code",
+        "schema": 1,
+        "object_type": 3,
+        "description": "An ISO 639 language code, with optional country subcodes from ISO 3166."
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 172,
+    "fields": {
+        "name": "lyric line label",
+        "slug": "lyric-line-label",
+        "schema": 1,
+        "object_type": 3,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 173,
+    "fields": {
+        "name": "lyric line ID",
+        "slug": "lyric-line-id",
+        "schema": 1,
+        "object_type": 3,
+        "description": ""
+    }
+},
+{
     "model": "spectools.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -4561,6 +4638,83 @@
             "",
             "Note: The hyphen character itself should not be encoded within \"text\"."
         ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 253,
+    "fields": {
+        "parent": 1,
+        "child_key": "lyrics",
+        "child": 167,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 254,
+    "fields": {
+        "parent": 167,
+        "child_key": "lineOrder",
+        "child": 168,
+        "is_required": false,
+        "description": "An array of all lyric line IDs used in this MNX document, in the order in which they should be visually displayed (from top to bottom)."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 255,
+    "fields": {
+        "parent": 167,
+        "child_key": "lineMetadata",
+        "child": 169,
+        "is_required": false,
+        "description": "An object mapping lyric line IDs (which are user-defined) to lyric metadata objects. This encodes global metadata on a per-lyric-line basis."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 256,
+    "fields": {
+        "parent": 169,
+        "child_key": "0",
+        "child": 170,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 257,
+    "fields": {
+        "parent": 170,
+        "child_key": "lang",
+        "child": 171,
+        "is_required": false,
+        "description": "A language code that applies to all the lyrics in this lyric line."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 258,
+    "fields": {
+        "parent": 170,
+        "child_key": "label",
+        "child": 172,
+        "is_required": false,
+        "description": "A label for this lyric line. This could be used, for example, in software UI to allow for showing/hiding specific lyric lines."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 259,
+    "fields": {
+        "parent": 168,
+        "child_key": "0",
+        "child": 173,
+        "is_required": false,
+        "description": ""
     }
 },
 {
@@ -11587,6 +11741,141 @@
             "}"
         ],
         "image_url": "/static/examples/lyrics_multiline.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 47,
+    "fields": {
+        "name": "Lyric line metadata",
+        "slug": "lyric-line-metadata",
+        "schema": 1,
+        "blurb": "Each line of lyrics has its own optional metadata, including the language code and a label. This lives in the top-level \"global\" key, as a \"lyrics\" object.",
+        "document": [
+            "{",
+            "   \"mnx\": {",
+            "      \"version\": 1",
+            "   },",
+            "   \"global\": {",
+            "      \"lyrics\": {",
+            "         \"lineOrder\": [\"1\", \"2\", \"3\", \"4\"],",
+            "         \"lineMetadata\": {",
+            "            \"1\": {\"lang\": \"en\", \"label\": \"English\"},",
+            "            \"2\": {\"lang\": \"nl\", \"label\": \"Nederlands\"},",
+            "            \"3\": {\"lang\": \"uk\", \"label\": \"Українська\"},",
+            "            \"4\": {\"lang\": \"es\", \"label\": \"Español\"}",
+            "         }",
+            "      },",
+            "      \"measures\": [",
+            "         {",
+            "            \"time\": {",
+            "               \"count\": 4,",
+            "               \"unit\": 4",
+            "            }",
+            "         },",
+            "         {}",
+            "      ]",
+            "   },",
+            "   \"parts\": [",
+            "      {",
+            "         \"measures\": [",
+            "            {",
+            "               \"clefs\": [",
+            "                  {",
+            "                     \"clef\": {",
+            "                        \"sign\": \"G\",",
+            "                        \"staffPosition\": -2",
+            "                     }",
+            "                  }",
+            "               ],",
+            "               \"sequences\": [",
+            "                  {",
+            "                     \"content\": [",
+            "                        {",
+            "                           \"type\": \"event\",",
+            "                           \"duration\": {",
+            "                              \"base\": \"half\"",
+            "                           },",
+            "                           \"lyrics\": {",
+            "                              \"lines\": {",
+            "                                 \"1\": {\"text\": \"I\"},",
+            "                                 \"2\": {\"text\": \"Ik\"},",
+            "                                 \"3\": {\"text\": \"Я\"},",
+            "                                 \"4\": {\"text\": \"¡Yo\"}",
+            "                              }",
+            "                           },",
+            "                           \"notes\": [",
+            "                              {",
+            "                                 \"pitch\": {",
+            "                                    \"octave\": 4,",
+            "                                    \"step\": \"G\"",
+            "                                 }",
+            "                              }",
+            "                           ]",
+            "                        },",
+            "                        {",
+            "                           \"type\": \"event\",",
+            "                           \"duration\": {",
+            "                              \"base\": \"half\"",
+            "                           },",
+            "                           \"lyrics\": {",
+            "                              \"lines\": {",
+            "                                 \"1\": {\"text\": \"am\"},",
+            "                                 \"2\": {\"text\": \"ben\"},",
+            "                                 \"3\": {\"text\": \"І-\"},",
+            "                                 \"4\": {\"text\": \"soy\"}",
+            "                              }",
+            "                           },",
+            "                           \"notes\": [",
+            "                              {",
+            "                                 \"pitch\": {",
+            "                                    \"octave\": 4,",
+            "                                    \"step\": \"G\"",
+            "                                 }",
+            "                              }",
+            "                           ]",
+            "                        }",
+            "                     ]",
+            "                  }",
+            "               ]",
+            "            },",
+            "            {",
+            "               \"sequences\": [",
+            "                  {",
+            "                     \"content\": [",
+            "                        {",
+            "                           \"type\": \"event\",",
+            "                           \"duration\": {",
+            "                              \"base\": \"whole\"",
+            "                           },",
+            "                           \"lyrics\": {",
+            "                              \"lines\": {",
+            "                                 \"1\": {\"text\": \"John!\"},",
+            "                                 \"2\": {\"text\": \"Jan!\"},",
+            "                                 \"3\": {\"text\": \"ван!\"},",
+            "                                 \"4\": {\"text\": \"Juan!\"}",
+            "                              }",
+            "                           },",
+            "                           \"notes\": [",
+            "                              {",
+            "                                 \"pitch\": {",
+            "                                    \"octave\": 5,",
+            "                                    \"step\": \"C\"",
+            "                                 }",
+            "                              }",
+            "                           ]",
+            "                        }",
+            "                     ]",
+            "                  }",
+            "               ]",
+            "            }",
+            "         ]",
+            "      }",
+            "   ]",
+            "}"
+        ],
+        "image_url": "/static/examples/lyric_metadata.png",
         "is_featured": false
     }
 },
@@ -24712,6 +25001,206 @@
     "pk": 1469,
     "fields": {
         "example": 46,
+        "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1470,
+    "fields": {
+        "example": 47,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1471,
+    "fields": {
+        "example": 47,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1472,
+    "fields": {
+        "example": 47,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1473,
+    "fields": {
+        "example": 47,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1474,
+    "fields": {
+        "example": 47,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1475,
+    "fields": {
+        "example": 47,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1476,
+    "fields": {
+        "example": 47,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1477,
+    "fields": {
+        "example": 47,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1478,
+    "fields": {
+        "example": 47,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1479,
+    "fields": {
+        "example": 47,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1480,
+    "fields": {
+        "example": 47,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1481,
+    "fields": {
+        "example": 47,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1482,
+    "fields": {
+        "example": 47,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1483,
+    "fields": {
+        "example": 47,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1484,
+    "fields": {
+        "example": 47,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1485,
+    "fields": {
+        "example": 47,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1486,
+    "fields": {
+        "example": 47,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1487,
+    "fields": {
+        "example": 47,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1488,
+    "fields": {
+        "example": 47,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1489,
+    "fields": {
+        "example": 47,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1490,
+    "fields": {
+        "example": 47,
+        "json_object": 164
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1491,
+    "fields": {
+        "example": 47,
+        "json_object": 165
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1492,
+    "fields": {
+        "example": 47,
+        "json_object": 45
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1493,
+    "fields": {
+        "example": 47,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1494,
+    "fields": {
+        "example": 47,
         "json_object": 127
     }
 },
