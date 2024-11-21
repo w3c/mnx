@@ -60,8 +60,9 @@
           "additionalProperties": false,
           "properties": {
             "lines": {
-              "additionalProperties": {
-                "type": {
+              "additionalProperties": false,
+              "patternProperties": {
+                "^.*$": {
                   "additionalProperties": false,
                   "properties": {
                     "text": {
