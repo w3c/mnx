@@ -591,6 +591,36 @@
     "global": {
       "additionalProperties": false,
       "properties": {
+        "lyrics": {
+          "additionalProperties": false,
+          "properties": {
+            "lineMetadata": {
+              "additionalProperties": false,
+              "patternProperties": {
+                "^.*$": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "lang": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "lineOrder": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
         "measures": {
           "items": {
             "additionalProperties": false,
