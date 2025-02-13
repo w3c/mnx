@@ -4988,9 +4988,12 @@
         <h2>Ottavas (8va)</h2>
         <img class="exampleimg" src="../../static/examples/octave-shifts-8va.png">
         
-        <p class="examplenotes">In MusicXML, you put <code>&lt;octave-shift&gt;</code> elements around the notes that are affected by the octave shift; the issue of whether the ottava affects the first note <em>following</em> the closing <code>&lt;octave-shift&gt;</code> is interpreted differently by different programs.</p>
-<p class="examplenotes">In MNX, you put a single <code>"type": "ottava"</code> object just before the first note it affects. The object's <code>"end"</code> value encodes the measure location of the <em>last note</em> for which the ottava applies. In this example, the ottava’s final note, the C quarter note, is in bar 2 and metrical position one half note into the bar.</p>
-<p class="examplenotes">In both MusicXML and MNX, pitches for notes within an ottava are specified taking the ottava into account. In this example, the final two pitches are C7 and C6, despite the notes being rendered on the same staff line.</p>
+        <p class="examplenotes">In MusicXML, you put <code>&lt;octave-shift&gt;</code> elements around the notes that are affected by the octave shift; the issue of whether the ottava affects the first note <em>following</em> the closing <code>&lt;octave-shift&gt;</code> is interpreted differently by different programs.</p>
+<p class="examplenotes"></p>
+<p class="examplenotes">In MNX, you put a single <code>"type": "ottava"</code> object just before the first note it affects. The object's <code>"end"</code> value encodes the measure location of the <em>last note</em> for which the ottava applies. In this example, the ottava’s final note, the C quarter note, is in bar 2 and metrical position one half note into the bar.</p>
+<p class="examplenotes"></p>
+<p class="examplenotes">In both MusicXML and MNX, pitches for notes within an ottava are specified taking the ottava into account. In this example, the final two pitches are C7 and C6, despite the notes being rendered on the same staff line.</p>
+<p class="examplenotes"></p>
 <p class="examplenotes">In MusicXML, the encoded value is the number of semitones (8 in this example). In MNX, the encoded value is the number of octaves (1 in this example).</p>
         
         
@@ -5150,7 +5153,7 @@
                         {
                            <a class="tag" href="../../mnx-reference/objects/ottava/">"type"</a>: "ottava",
                            <a class="tag" href="../../mnx-reference/objects/ottava/">"end"</a>: {
-                              <a class="tag" href="../../mnx-reference/objects/measure-rhythmic-position/">"bar"</a>: <a class="tag" href="../../mnx-reference/objects/measure-number/">2</a>,
+                              <a class="tag" href="../../mnx-reference/objects/measure-rhythmic-position/">"measure"</a>: <a class="tag" href="../../mnx-reference/objects/measure-number/">2</a>,
                               <a class="tag" href="../../mnx-reference/objects/measure-rhythmic-position/">"position"</a>: {
                                  <a class="tag" href="../../mnx-reference/objects/rhythmic-position/">"fraction"</a>: [
                                     <a class="tag" href="../../mnx-reference/objects/integer-unsigned/">1</a>,
