@@ -141,21 +141,21 @@
         "schema": 1,
         "object_type": 1,
         "description": [
-            "The style object is a way to define visual styling within an MNX document. Its required \"selector\" specifies which MNX element(s) the style applies to.",
+            "<p>The style object is a way to define visual styling within an MNX document. Its required \"selector\" specifies which MNX element(s) the style applies to.</p>",
             "",
-            "See <a href=\"../../../infrastructure/styling/\">Styling an MNX document</a> for more.",
+            "<p>See <a href=\"../../../infrastructure/styling/\">Styling an MNX document</a> for more.</p>",
             "",
-            "This example defines a style class \"emphasized\", which means to use the color red:",
+            "<p>This example defines a style class \"emphasized\", which means to use the color red:</p>",
             "",
-            "<code>{\"selector\": \".emphasized\", \"color\": \"#ff0000\"}</code>",
+            "<p><code>{\"selector\": \".emphasized\", \"color\": \"#ff0000\"}</code></p>",
             "",
-            "A note object can then use \"class\" to use this style class.",
+            "<p>A note object can then use \"class\" to use this style class.</p>",
             "",
-            "This example says \"all notes must be blue\":",
+            "<p>This example says \"all notes must be blue\":</p>",
             "",
-            "<code>{\"selector\": \"note\", \"color\": \"#0000ff\"}</code>",
+            "<p><code>{\"selector\": \"note\", \"color\": \"#0000ff\"}</code></p>",
             "",
-            "At the moment, the only available style property is \"color\"."
+            "<p>At the moment, the only available style property is \"color\".</p>"
         ]
     }
 },
@@ -400,7 +400,7 @@
         "slug": "tie",
         "schema": 1,
         "object_type": 1,
-        "description": "The \"tie\" object is used to indicate that a note is tied to a subsequent note."
+        "description": "<p>The \"tie\" object is used to indicate that a note is tied to a subsequent note.</p>"
     }
 },
 {
@@ -568,7 +568,7 @@
         "slug": "note-value-quantity",
         "schema": 1,
         "object_type": 1,
-        "description": "A note value quantity is an integer multiple of a note value. For example, this can represent the concepts of \"two eighth notes\" or \"six dotted quarter notes.\""
+        "description": "<p>A note value quantity is an integer multiple of a note value. For example, this can represent the concepts of \"two eighth notes\" or \"six dotted quarter notes.\"</p>"
     }
 },
 {
@@ -649,7 +649,7 @@
         "slug": "slur-side",
         "schema": 1,
         "object_type": 3,
-        "description": "This indicates the orientation of a slur or tie. It specifies whether the slur/tie curves upward or downward."
+        "description": "<p>This indicates the orientation of a slur or tie. It specifies whether the slur/tie curves upward or downward.</p>"
     }
 },
 {
@@ -704,7 +704,7 @@
         "slug": "ending",
         "schema": 1,
         "object_type": 1,
-        "description": "The ending object encodes an alternate ending, sometimes known as a \"volta bracket.\""
+        "description": "<p>The ending object encodes an alternate ending, sometimes known as a \"volta bracket.\"</p>"
     }
 },
 {
@@ -967,9 +967,9 @@
         "schema": 1,
         "object_type": 1,
         "description": [
-            "The staff group object is a way to group staff layouts together, for the purposes of giving them a unified name and/or grouping symbol.",
+            "<p>The staff group object is a way to group staff layouts together, for the purposes of giving them a unified name and/or grouping symbol.",
             "",
-            "You can also nest staff group objects within another, to represent more complex groupings of staves, as in large orchestral scores."
+            "You can also nest staff group objects within another, to represent more complex groupings of staves, as in large orchestral scores.</p>"
         ]
     }
 },
@@ -1188,11 +1188,11 @@
         "schema": 1,
         "object_type": 3,
         "description": [
-            "A string representing a glyph name in the <a href=\"https://w3c.github.io/smufl/latest/\">SMuFL music-font-encoding specification</a>.",
+            "<p>A string representing a glyph name in the <a href=\"https://w3c.github.io/smufl/latest/\">SMuFL music-font-encoding specification</a>.",
             "",
             "In MNX, this is generally used to override default engraving behavior.",
             "",
-            "Example SMuFL glyph name: <code>noteheadXOrnateEllipse</code>"
+            "Example SMuFL glyph name: <code>noteheadXOrnateEllipse</code></p>"
         ]
     }
 },
@@ -1215,7 +1215,7 @@
         "slug": "style-class",
         "schema": 1,
         "object_type": 3,
-        "description": "A style class is a string that styleable MNX elements can use to declare they should be styled."
+        "description": "<p>A style class is a string that styleable MNX elements can use to declare they should be styled.</p>"
     }
 },
 {
@@ -1227,9 +1227,9 @@
         "schema": 1,
         "object_type": 3,
         "description": [
-            "A simple color is a seven-character string representing the red, green and blue components of a color, as defined in the HTML standard. This is commonly known as a hexcode or hex value.",
+            "<p>A simple color is a seven-character string representing the red, green and blue components of a color, as defined in the HTML standard. This is commonly known as a hexcode or hex value.",
             "",
-            "Examples: <code>#000000</code> (black), <code>#ff0000</code> (red)."
+            "Examples: <code>#000000</code> (black), <code>#ff0000</code> (red).</p>"
         ]
     }
 },
@@ -1469,7 +1469,7 @@
         "slug": "note-value",
         "schema": 1,
         "object_type": 1,
-        "description": "A rhythmic value for a note, such as a \"dotted quarter note.\" This is encoded via a base note type, such as \"quarter\", and an optional number of dots."
+        "description": "<p>A rhythmic value for a note, such as a \"dotted quarter note.\" This is encoded via a base note type, such as \"quarter\", and an optional number of dots.</p>"
     }
 },
 {
@@ -1491,7 +1491,7 @@
         "slug": "octave",
         "schema": 1,
         "object_type": 4,
-        "description": "A number representing an octave in Scientific Pitch Notation. The octave for middle C is 4."
+        "description": "<p>A number representing an octave in Scientific Pitch Notation. The octave for middle C is 4.</p>"
     }
 },
 {
@@ -1502,7 +1502,7 @@
         "slug": "alter",
         "schema": 1,
         "object_type": 4,
-        "description": "Describes the alteration to a note's pitch, as an integer in the range -3 to 3, inclusive."
+        "description": "<p>Describes the alteration to a note's pitch, as an integer in the range -3 to 3, inclusive.</p>"
     }
 },
 {
@@ -1573,9 +1573,9 @@
         "schema": 1,
         "object_type": 2,
         "description": [
-            "A two-element array that represents a fraction. The first element represents the numerator, and the second element represents the denominator.",
+            "<p>A two-element array that represents a fraction. The first element represents the numerator, and the second element represents the denominator.",
             "",
-            "The first element must be a non-zero positive integer or zero. The second element must be a non-zero positive integer."
+            "The first element must be a non-zero positive integer or zero. The second element must be a non-zero positive integer.</p>"
         ]
     }
 },
@@ -1587,7 +1587,7 @@
         "slug": "integer-unsigned",
         "schema": 1,
         "object_type": 4,
-        "description": "A non-negative integer."
+        "description": "<p>A non-negative integer.</p>"
     }
 },
 {
@@ -1762,7 +1762,7 @@
         "slug": "breath-mark-symbol",
         "schema": 1,
         "object_type": 3,
-        "description": "See https://w3c.github.io/musicxml/musicxml-reference/data-types/breath-mark-value/"
+        "description": "<p>See https://w3c.github.io/musicxml/musicxml-reference/data-types/breath-mark-value/</p>"
     }
 },
 {
@@ -1784,7 +1784,7 @@
         "slug": "accidental-enclosure",
         "schema": 1,
         "object_type": 1,
-        "description": "Describes the symbol that encloses a specific accidental, such as a square bracket or parentheses."
+        "description": "<p>Describes the symbol that encloses a specific accidental, such as a square bracket or parentheses.</p>"
     }
 },
 {
@@ -1905,7 +1905,7 @@
         "slug": "language-code",
         "schema": 1,
         "object_type": 3,
-        "description": "An <a href=\"https://datatracker.ietf.org/doc/html/rfc5646\">RFC 5646</a> language code."
+        "description": "<p>An <a href=\"https://datatracker.ietf.org/doc/html/rfc5646\">RFC 5646</a> language code.</p>"
     }
 },
 {
