@@ -52,11 +52,11 @@
 <p><b>Type:</b> Dictionary</p>
 
 
-<p>The "tie" object is used to indicate that a note is tied to a subsequent note. Each tie is only encoded on the <em>starting</em> note — i.e., the note that starts the tie.</p>
+<p>The tie object represents a single tie between two notes. A tie is only encoded on the <em>first</em> note — i.e., the note that starts the tie.</p>
 
 <p>In the common case of simple ties, use "target" to specify the tie's end note.</p>
 
-<p>If a tie doesn't connect to a particular destination note (such as in a "laissez vibrer" tie), use "location" to specify how the tie should be positioned.</p>
+<p>For <i>laissez vibrer</i> ties — which do not have a particular destination note — omit "target" and use "lv" instead.</p>
 
 
 
@@ -74,14 +74,14 @@
 
 
 <tr>
-    <td><nobr><b>"location"</b></nobr></td>
+    <td><nobr><b>"lv"</b></nobr></td>
     <td>
         
-        <a href="../slur-tie-end-location/">slur/tie end location object</a>
+        <a href="../boolean/">boolean object</a>
         
     </td>
     <td>No</td>
-    <td>The value of location may lie either before or after the tie’s event, or it may use the special values "incoming" or "outgoing". The handling is as follows:<br><br>* If the location precedes the start of the current event, this signifies a tie starting at the given location and ending on the current note.<br><br>* If the location occurs after the start of the current event, this signifies a tie starting at the current note and ending at the given location.<br><br>* A value of "incoming" places the start location at a conventionally short distance before the current note, and ends on the current note.<br><br>* A value of "outgoing" starts on the current note, and places the end location at a conventionally short distance after the current note.<br><br>If neither target nor location is given, the effect is as if location="outgoing" was specified.</td>
+    <td>Specifies that this tie is a <i>laissez vibrer</i> tie — which does not have a particular destination note.</td>
 </tr>
 
 <tr>
@@ -103,7 +103,7 @@
         
     </td>
     <td>No</td>
-    <td>The ID of a note that lies in the same part, and whose containing event begins directly after the end of the of this note’s event. The step, alteration and octave values for the target note must be identical to this one.<br><br>If target is not provided, the tie does not connect to a particular destination note. In this case, the "location" attribute may be used to specify the location of the other end of the tie.</td>
+    <td>The ID of a note that lies in the same part, and whose containing event begins directly after the end of the of this note’s event. The step, alteration and octave values for the target note must be identical to this one.<br><br>If this is omitted, "lv" is required.</td>
 </tr>
 
 
@@ -119,7 +119,7 @@
 
 <ul>
 
-<li><a href="../note/">note</a>: "tie"</li>
+<li><a href="../note/">note</a>: "ties"</li>
 
 </ul>
 

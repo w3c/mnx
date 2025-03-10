@@ -401,11 +401,11 @@
         "schema": 1,
         "object_type": 1,
         "description": [
-            "<p>The \"tie\" object is used to indicate that a note is tied to a subsequent note. Each tie is only encoded on the <em>starting</em> note — i.e., the note that starts the tie.</p>",
+            "<p>The tie object represents a single tie between two notes. A tie is only encoded on the <em>first</em> note — i.e., the note that starts the tie.</p>",
             "",
             "<p>In the common case of simple ties, use \"target\" to specify the tie's end note.</p>",
             "",
-            "<p>If a tie doesn't connect to a particular destination note (such as in a \"laissez vibrer\" tie), use \"location\" to specify how the tie should be positioned.</p>"
+            "<p>For <i>laissez vibrer</i> ties — which do not have a particular destination note — omit \"target\" and use \"lv\" instead.</p>"
         ]
     }
 },
@@ -1937,6 +1937,17 @@
     }
 },
 {
+    "model": "spectools.jsonobject",
+    "pk": 174,
+    "fields": {
+        "name": "tie list",
+        "slug": "tie-list",
+        "schema": 1,
+        "object_type": 2,
+        "description": ""
+    }
+},
+{
     "model": "spectools.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -2236,10 +2247,14 @@
     "pk": 35,
     "fields": {
         "parent": 31,
-        "child_key": "tie",
-        "child": 36,
+        "child_key": "ties",
+        "child": 174,
         "is_required": false,
-        "description": ""
+        "description": [
+            "If this note starts a tie, this object encodes the tie.",
+            "",
+            "This is an array, because it's possible for a single note to be tied to multiple end notes, in the case of jumps and alternate endings. The order of the elements of this array is undefined."
+        ]
     }
 },
 {
@@ -2253,7 +2268,7 @@
         "description": [
             "The ID of a note that lies in the same part, and whose containing event begins directly after the end of the of this note’s event. The step, alteration and octave values for the target note must be identical to this one.",
             "",
-            "If target is not provided, the tie does not connect to a particular destination note. In this case, the \"location\" attribute may be used to specify the location of the other end of the tie."
+            "If this is omitted, \"lv\" is required."
         ]
     }
 },
@@ -3777,29 +3792,6 @@
 },
 {
     "model": "spectools.jsonobjectrelationship",
-    "pk": 175,
-    "fields": {
-        "parent": 36,
-        "child_key": "location",
-        "child": 60,
-        "is_required": false,
-        "description": [
-            "The value of location may lie either before or after the tie’s event, or it may use the special values \"incoming\" or \"outgoing\". The handling is as follows:",
-            "",
-            "* If the location precedes the start of the current event, this signifies a tie starting at the given location and ending on the current note.",
-            "",
-            "* If the location occurs after the start of the current event, this signifies a tie starting at the current note and ending at the given location.",
-            "",
-            "* A value of \"incoming\" places the start location at a conventionally short distance before the current note, and ends on the current note.",
-            "",
-            "* A value of \"outgoing\" starts on the current note, and places the end location at a conventionally short distance after the current note.",
-            "",
-            "If neither target nor location is given, the effect is as if location=\"outgoing\" was specified."
-        ]
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
     "pk": 176,
     "fields": {
         "parent": 49,
@@ -4721,6 +4713,28 @@
         "child": 173,
         "is_required": false,
         "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 260,
+    "fields": {
+        "parent": 174,
+        "child_key": "0",
+        "child": 36,
+        "is_required": true,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 261,
+    "fields": {
+        "parent": 36,
+        "child_key": "lv",
+        "child": 112,
+        "is_required": false,
+        "description": "Specifies that this tie is a <i>laissez vibrer</i> tie — which does not have a particular destination note."
     }
 },
 {
@@ -6146,7 +6160,7 @@
             "                  \"type\": \"event\",",
             "                  \"duration\": {\"base\": \"quarter\"},",
             "                  \"notes\": [",
-            "                    {\"pitch\": {\"step\": \"E\", \"octave\": 5}, \"tie\": {\"target\": \"note3\"}}",
+            "                    {\"pitch\": {\"step\": \"E\", \"octave\": 5}, \"ties\": [{\"target\": \"note3\"}]}",
             "                  ]",
             "                },",
             "                {",
@@ -6160,7 +6174,7 @@
             "                  \"type\": \"event\",",
             "                  \"duration\": {\"base\": \"quarter\"},",
             "                  \"notes\": [",
-            "                    {\"pitch\": {\"step\": \"C\", \"octave\": 5}, \"tie\": {\"target\": \"note5\"}}",
+            "                    {\"pitch\": {\"step\": \"C\", \"octave\": 5}, \"ties\": [{\"target\": \"note5\"}]}",
             "                  ]",
             "                }",
             "              ]",
@@ -6175,7 +6189,7 @@
             "                  \"type\": \"event\",",
             "                  \"duration\": {\"base\": \"half\"},",
             "                  \"notes\": [",
-            "                    {\"pitch\": {\"step\": \"C\", \"octave\": 5}, \"id\": \"note5\", \"tie\": {\"target\": \"note6\"}}",
+            "                    {\"pitch\": {\"step\": \"C\", \"octave\": 5}, \"id\": \"note5\", \"ties\": [{\"target\": \"note6\"}]}",
             "                  ]",
             "                },",
             "                {",
@@ -9934,7 +9948,7 @@
             "                  \"type\": \"event\",",
             "                  \"duration\": {\"base\": \"half\", \"dots\": 1},",
             "                  \"notes\": [",
-            "                    {\"pitch\": {\"step\": \"E\", \"octave\": 3, \"alter\": -1}, \"tie\": {\"target\": \"pedNote2\"}}",
+            "                    {\"pitch\": {\"step\": \"E\", \"octave\": 3, \"alter\": -1}, \"ties\": [{\"target\": \"pedNote2\"}]}",
             "                  ]",
             "                }",
             "              ]",
@@ -12585,7 +12599,7 @@
         "preamble": [
             "MusicXML uses two elements: <code>&lt;tie&gt;</code> to describe the sound and <code>&lt;tied&gt;</code> to indicate a visual tie in notation. The first note gets <code>type=\"start\"</code>, the second gets <code>type=\"stop\"</code>.",
             "",
-            "MNX uses a single object: <code>\"tie\"</code>. Only the first note in the tie encodes this; its <code>target</code> points at the <code>id</code> of the end note.",
+            "MNX uses a single object: <code>\"ties\"</code>. Only the first note in a tie encodes this; its <code>\"target\"</code> points at the <code>id</code> of the end note.",
             "",
             "For a series of notes tied together (e.g., the second tie in the above example), both MusicXML and MNX require you to encode each “inner tie” separately."
         ],
