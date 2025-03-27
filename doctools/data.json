@@ -4746,6 +4746,23 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 262,
+    "fields": {
+        "parent": 135,
+        "child_key": "force",
+        "child": 112,
+        "is_required": false,
+        "description": [
+            "Whether this accidental display value (either shown or hidden) was set intentionally, as opposed to automatically determined.",
+            "",
+            "This allows for the encoding of intent. Some consuming software may choose to distinguish between accidentals that are intentionally displayed and accidentals that are algorithmically displayed.",
+            "",
+            "If this value isn't provided, it's assumed to be false."
+        ]
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {
