@@ -4179,9 +4179,11 @@
         "description": [
             "Information about the displayed accidental for this note.",
             "",
-            "This value is optional. If it's missing, consuming software should determine accidental display (i.e., decide whether the accidental should be visible) according to its own algorithms.",
+            "This value is optional. If it's missing, consuming software should do the following, based on the value of the top-level <a href=\"../support/\">\"useAccidentalDisplay\" key</a>:",
             "",
-            "See also the <a href=\"../support/\">\"useAccidentalDisplay\" key</a> in the top-level \"mnx\" object's \"support\" object."
+            "* If useAccidentalDisplay is true, then this note's accidentalDisplay should be interpreted as {\"show\": false}.",
+            "",
+            "* If useAccidentalDisplay is false, then this note's accidentalDisplay should be determined according to its own algorithms."
         ]
     }
 },
