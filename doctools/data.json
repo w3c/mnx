@@ -4179,9 +4179,9 @@
         "description": [
             "Information about the displayed accidental for this note.",
             "",
-            "If this MNX document has \"useAccidentalDisplay\" set to true in its top-level \"mnx\" object's \"supports\" object, this \"accidentalDisplay\" key is required for any note that has a displayed accidental.",
+            "This value is optional. If it's missing, consuming software should determine accidental display (i.e., decide whether the accidental should be visible) according to its own algorithms.",
             "",
-            "If \"useAccidentalDisplay\" is missing or set to false, notes must not include \"accidentalDisplay\"."
+            "See also the <a href=\"../support/\">\"useAccidentalDisplay\" key</a> in the top-level \"mnx\" object's \"support\" object."
         ]
     }
 },
@@ -4554,9 +4554,7 @@
         "description": [
             "This answers the question \"Does every note with a visible accidental have accidentalDisplay set?\"",
             "",
-            "If this is set to true, then consuming applications should only draw an accidental on notes that have an \"accidentalDisplay\" value.",
-            "",
-            "If this is set to false, then consuming applications should use their own algorithm to determine whether any given note's accidental should be drawn.",
+            "It's meant as a heads-up for consuming software that doesn't have its own accidental-display algorithm. For this type of software, when reading a document with useAccidentalDisplay=false, the software might opt to display a warning to users, saying \"We don't know which notes should have an accidental displayed.\" Or the software might opt to reject the document outright due to not containing sufficient information.",
             "",
             "If this value is not provided, it is to be interpreted as false."
         ]

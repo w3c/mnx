@@ -77,7 +77,7 @@
         
     </td>
     <td>No</td>
-    <td>Information about the displayed accidental for this note.<br><br>If this MNX document has "useAccidentalDisplay" set to true in its top-level "mnx" object's "supports" object, this "accidentalDisplay" key is required for any note that has a displayed accidental.<br><br>If "useAccidentalDisplay" is missing or set to false, notes must not include "accidentalDisplay".</td>
+    <td>Information about the displayed accidental for this note.<br><br>This value is optional. If it's missing, consuming software should determine accidental display (i.e., decide whether the accidental should be visible) according to its own algorithms.<br><br>See also the <a href="../support/">"useAccidentalDisplay" key</a> in the top-level "mnx" object's "support" object.</td>
 </tr>
 
 <tr>
