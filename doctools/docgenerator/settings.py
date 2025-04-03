@@ -4,6 +4,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'z*i6mb-i!jjgcmiopy@1=)j=)svgo-08jd6b$1($=2gycmstrn'
 DEBUG = True
 
+IS_MUSICXML = False
+IS_MNX = True
+
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
