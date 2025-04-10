@@ -2548,7 +2548,7 @@
         "description": [
             "The location of the last event that is affected by this ottava.",
             "",
-            "This location must lie within the same run of <a href=\"../../../infrastructure/notational-concepts/#measure-content\">measure content</a> as this ottava's start position."
+            "Take care when working with grace notes. If the ottava ends on a note that is directly preceded by grace notes, omit \"graceIndex\" on the rhythmic position in order to include those grace notes in the ottava."
         ]
     }
 },
@@ -4732,7 +4732,11 @@
         "child_key": "position",
         "child": 140,
         "is_required": true,
-        "description": "The location of the first event that is affected by this ottava."
+        "description": [
+            "The location of the first event that is affected by this ottava.",
+            "",
+            "Take care when working with grace notes. If the ottava starts on a note that is directly preceded by grace notes, specify \"graceIndex\" on the rhythmic position in order to include those grace notes in the ottava."
+        ]
     }
 },
 {
