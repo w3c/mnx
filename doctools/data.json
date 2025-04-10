@@ -605,17 +605,6 @@
 },
 {
     "model": "spectools.jsonobject",
-    "pk": 54,
-    "fields": {
-        "name": "literal string ottava",
-        "slug": "literal-string-ottava",
-        "schema": 1,
-        "object_type": 6,
-        "description": "ottava"
-    }
-},
-{
-    "model": "spectools.jsonobject",
     "pk": 55,
     "fields": {
         "name": "ottava amount",
@@ -1948,6 +1937,17 @@
     }
 },
 {
+    "model": "spectools.jsonobject",
+    "pk": 175,
+    "fields": {
+        "name": "ottava list",
+        "slug": "ottava-list",
+        "schema": 1,
+        "object_type": 2,
+        "description": ""
+    }
+},
+{
     "model": "spectools.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -2532,28 +2532,6 @@
 },
 {
     "model": "spectools.jsonobjectrelationship",
-    "pk": 60,
-    "fields": {
-        "parent": 25,
-        "child_key": "3",
-        "child": 53,
-        "is_required": false,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 61,
-    "fields": {
-        "parent": 53,
-        "child_key": "type",
-        "child": 54,
-        "is_required": true,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
     "pk": 62,
     "fields": {
         "parent": 53,
@@ -2572,9 +2550,9 @@
         "child": 161,
         "is_required": true,
         "description": [
-            "The location of the last event that is affected by this direction.",
+            "The location of the last event that is affected by this ottava.",
             "",
-            "This location must lie within the same run of <a href=\"../../../infrastructure/notational-concepts/#measure-content\">measure content</a> as this direction's start position."
+            "This location must lie within the same run of <a href=\"../../../infrastructure/notational-concepts/#measure-content\">measure content</a> as this ottava's start position."
         ]
     }
 },
@@ -4733,6 +4711,43 @@
             "",
             "If this value isn't provided, it's assumed to be false."
         ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 263,
+    "fields": {
+        "parent": 175,
+        "child_key": "0",
+        "child": 53,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 264,
+    "fields": {
+        "parent": 16,
+        "child_key": "ottavas",
+        "child": 175,
+        "is_required": false,
+        "description": [
+            "All ottavas that begin within this part-measure.",
+            "",
+            "Ottavas that are rendered across multiple measures (i.e., ottavas that cross barlines) are encoded in the first measure in which they appear."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 265,
+    "fields": {
+        "parent": 53,
+        "child_key": "position",
+        "child": 140,
+        "is_required": true,
+        "description": "The location of the first event that is affected by this ottava."
     }
 },
 {
@@ -7326,6 +7341,13 @@
             "          \"clefs\": [",
             "            {\"clef\": {\"sign\": \"G\", \"staffPosition\": -2}}",
             "          ],",
+            "          \"ottavas\": [",
+            "            {",
+            "              \"value\": 1,",
+            "              \"position\": {\"fraction\": [1, 2]},",
+            "              \"end\": {\"measure\": 2, \"position\": {\"fraction\": [1, 2]}}",
+            "            }",
+            "          ],",
             "          \"sequences\": [",
             "            {",
             "              \"content\": [",
@@ -7342,11 +7364,6 @@
             "                  \"notes\": [",
             "                    {\"pitch\": {\"step\": \"E\", \"octave\": 5}}",
             "                  ]",
-            "                },",
-            "                {",
-            "                  \"type\": \"ottava\",",
-            "                  \"value\": 1,",
-            "                  \"end\": {\"measure\": 2, \"position\": {\"fraction\": [1, 2]}}",
             "                },",
             "                {",
             "                  \"type\": \"event\",",
@@ -13751,7 +13768,7 @@
         "preamble": [
             "In MusicXML, you put <code>&lt;octave-shift&gt;</code> elements around the notes that are affected by the octave shift; the issue of whether the ottava affects the first note <em>following</em> the closing <code>&lt;octave-shift&gt;</code> is interpreted differently by different programs.",
             "",
-            "In MNX, you put a single <code>\"type\": \"ottava\"</code> object just before the first note it affects. The object's <code>\"end\"</code> value encodes the measure location of the <em>last note</em> for which the ottava applies. In this example, the ottava’s final note, the C quarter note, is in bar 2 and metrical position one half note into the bar.",
+            "In MNX, each part-measure can define an <code>\"ottavas\"</code> array, which contains all of the ottavas that begin in that measure. The ottava's <code>\"position\"</code> value encodes the measure location of the first event for which the ottava applies, and <code>\"end\"</code> encodes the last note for which the ottava applies. In this example, the ottava’s final note, the C quarter note, is in bar 2 and metrical position one half note into the bar.",
             "",
             "In both MusicXML and MNX, pitches for notes within an ottava are specified taking the ottava into account. In this example, the final two pitches are C7 and C6, despite the notes being rendered on the same staff line.",
             "",
@@ -16935,14 +16952,6 @@
     "fields": {
         "example": 16,
         "json_object": 53
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 325,
-    "fields": {
-        "example": 16,
-        "json_object": 54
     }
 },
 {

@@ -959,6 +959,41 @@
                   },
                   "type": "array"
                 },
+                "ottavas": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "end": {
+                        "$ref": "#/$defs/measure-rhythmic-position"
+                      },
+                      "orient": {
+                        "$ref": "#/$defs/orientation"
+                      },
+                      "position": {
+                        "$ref": "#/$defs/rhythmic-position"
+                      },
+                      "staff": {
+                        "$ref": "#/$defs/staff-number"
+                      },
+                      "value": {
+                        "enum": [
+                          1,
+                          2,
+                          -1,
+                          -2
+                        ],
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "end",
+                      "position",
+                      "value"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
                 "sequences": {
                   "items": {
                     "additionalProperties": false,
@@ -1051,39 +1086,6 @@
                                 "inner",
                                 "outer",
                                 "type"
-                              ],
-                              "type": "object"
-                            },
-                            {
-                              "additionalProperties": false,
-                              "properties": {
-                                "end": {
-                                  "$ref": "#/$defs/measure-rhythmic-position"
-                                },
-                                "orient": {
-                                  "$ref": "#/$defs/orientation"
-                                },
-                                "staff": {
-                                  "$ref": "#/$defs/staff-number"
-                                },
-                                "type": {
-                                  "const": "ottava",
-                                  "type": "string"
-                                },
-                                "value": {
-                                  "enum": [
-                                    1,
-                                    2,
-                                    -1,
-                                    -2
-                                  ],
-                                  "type": "integer"
-                                }
-                              },
-                              "required": [
-                                "end",
-                                "type",
-                                "value"
                               ],
                               "type": "object"
                             },
