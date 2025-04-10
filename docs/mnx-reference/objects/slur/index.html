@@ -90,17 +90,6 @@
 </tr>
 
 <tr>
-    <td><nobr><b>location</b></nobr></td>
-    <td>
-        
-        <a href="../slur-tie-end-location/">slur/tie end location</a>
-        
-    </td>
-    <td>No</td>
-    <td>The value of location may lie either before or after the slur’s event, or it may use the special values "incoming" or "outgoing". The handling is as follows:<br><br>* If the location precedes the start of the current event, this signifies a slur starting at the given location and ending on the current event.<br><br>* If the location occurs after the start of the current event, this signifies a slur starting at the current event and ending at the given location.<br><br>* A value of "incoming" places the start location at a conventionally short distance before the current event, and ends on the current event.<br><br>* A value of "outgoing" starts on the current event, and places the end location at a conventionally short distance after the current event.<br><br>If neither target nor location is given, the effect is as if location="outgoing" was specified.</td>
-</tr>
-
-<tr>
     <td><nobr><b>side</b></nobr></td>
     <td>
         
@@ -140,8 +129,8 @@
         <a href="../id/">ID</a>
         
     </td>
-    <td>No</td>
-    <td>If provided, this specifies the ID of the slur’s end event — that is, the last event over which this slur is rendered. This ID must exist in the document and must identify an event.<br><br>If not provided, the slur does not connect to a particular destination event. In this case, "location" may be used to specify the location of the other end of the slur.</td>
+    <td>Yes</td>
+    <td>The ID of the slur’s end event — that is, the last event over which this slur is rendered. This ID must exist in the document and must identify an event.</td>
 </tr>
 
 
@@ -168,7 +157,7 @@
 
 <p>This object is used in the following examples:</p>
 <p>
-    <nobr><a href="../../examples/slurs/">Slurs</a></nobr>, <nobr><a href="../../examples/slurs-chords/">Slurs (for chords)</a></nobr>, <nobr><a href="../../examples/slurs-incomplete-slurs/">Slurs (incomplete slurs)</a></nobr>, <nobr><a href="../../examples/slurs-targeting-specific-notes/">Slurs (targeting specific notes)</a></nobr>
+    <nobr><a href="../../examples/slurs/">Slurs</a></nobr>, <nobr><a href="../../examples/slurs-chords/">Slurs (for chords)</a></nobr>, <nobr><a href="../../examples/slurs-targeting-specific-notes/">Slurs (targeting specific notes)</a></nobr>
 </p>
 
 

@@ -6040,149 +6040,6 @@
     </div>
 </section>
 
-<section class="example" id="slurs-incomplete-slurs">
-    <div class="center">
-        <h2>Slurs (incomplete slurs)</h2>
-        <img class="exampleimg" src="../../static/examples/slurs-incomplete-slurs.png">
-        
-        <p class="examplenotes">In both MusicXML and MNX, slurs aren’t required to end on specific notes. For “incomplete” slurs like this, the two formats have different approaches.</p>
-<p class="examplenotes">With MusicXML’s graphical approach, use two <code>&lt;slur&gt;</code> elements within the same note — one with <code>type="start"</code> and the other with <code>type="start"</code>. Then use the <code>default-x</code> and <code>default-y</code> attributes to position the slur accordingly.</p>
-<p class="examplenotes">With MNX’s semantic approach, use <code>"location": "incoming"</code> or <code>"location": "outgoing"</code> on the slur.</p>
-        
-        
-    </div>
-    <div class="markupexamples" id="markupexamples20">
-        <div class="markupexample">
-            <h3>MusicXML</h3>
-            <div class="markupcode">
-                <div class="xmlmarkup nodiff">&lt;<span class="tag">score-partwise</span> <span class="attrname">version</span>="<span class="attrval">3.1</span>"&gt;
-   &lt;<span class="tag">part-list</span>&gt;
-      &lt;<span class="tag">score-part</span> <span class="attrname">id</span>="<span class="attrval">P1</span>"&gt;
-         &lt;<span class="tag">part-name</span>&gt;Music&lt;/<span class="tag">part-name</span>&gt;
-      &lt;<span class="tag">/score-part</span>&gt;
-   &lt;<span class="tag">/part-list</span>&gt;
-   &lt;<span class="tag">part</span> <span class="attrname">id</span>="<span class="attrval">P1</span>"&gt;
-      &lt;<span class="tag">measure</span> <span class="attrname">number</span>="<span class="attrval">1</span>"&gt;
-         &lt;<span class="tag">attributes</span>&gt;
-            &lt;<span class="tag">divisions</span>&gt;256&lt;/<span class="tag">divisions</span>&gt;
-            &lt;<span class="tag">key</span>&gt;
-               &lt;<span class="tag">fifths</span>&gt;0&lt;/<span class="tag">fifths</span>&gt;
-               &lt;<span class="tag">mode</span>&gt;major&lt;/<span class="tag">mode</span>&gt;
-            &lt;<span class="tag">/key</span>&gt;
-            &lt;<span class="tag">time</span>&gt;
-               &lt;<span class="tag">beats</span>&gt;4&lt;/<span class="tag">beats</span>&gt;
-               &lt;<span class="tag">beat-type</span>&gt;4&lt;/<span class="tag">beat-type</span>&gt;
-            &lt;<span class="tag">/time</span>&gt;
-            &lt;<span class="tag">staves</span>&gt;1&lt;/<span class="tag">staves</span>&gt;
-            &lt;<span class="tag">clef</span>&gt;
-               &lt;<span class="tag">sign</span>&gt;G&lt;/<span class="tag">sign</span>&gt;
-               &lt;<span class="tag">line</span>&gt;2&lt;/<span class="tag">line</span>&gt;
-            &lt;<span class="tag">/clef</span>&gt;
-         &lt;<span class="tag">/attributes</span>&gt;
-         &lt;<span class="tag">note</span>&gt;
-            &lt;<span class="tag">pitch</span>&gt;
-               &lt;<span class="tag">step</span>&gt;C&lt;/<span class="tag">step</span>&gt;
-               &lt;<span class="tag">octave</span>&gt;5&lt;/<span class="tag">octave</span>&gt;
-            &lt;<span class="tag">/pitch</span>&gt;
-            &lt;<span class="tag">duration</span>&gt;512&lt;/<span class="tag">duration</span>&gt;
-            &lt;<span class="tag">type</span>&gt;half&lt;/<span class="tag">type</span>&gt;
-         &lt;<span class="tag">/note</span>&gt;
-         &lt;<span class="tag">note</span>&gt;
-            &lt;<span class="tag">pitch</span>&gt;
-               &lt;<span class="tag">step</span>&gt;D&lt;/<span class="tag">step</span>&gt;
-               &lt;<span class="tag">octave</span>&gt;5&lt;/<span class="tag">octave</span>&gt;
-            &lt;<span class="tag">/pitch</span>&gt;
-            &lt;<span class="tag">duration</span>&gt;512&lt;/<span class="tag">duration</span>&gt;
-            &lt;<span class="tag">type</span>&gt;half&lt;/<span class="tag">type</span>&gt;
-</div><div class="xmlmarkup diff">            &lt;<span class="tag">notations</span>&gt;
-               &lt;<span class="tag">slur</span> <span class="attrname">number</span>="<span class="attrval">1</span>" <span class="attrname">placement</span>="<span class="attrval">above</span>" <span class="attrname">type</span>="<span class="attrval">start</span>" <span class="attrname">default-x</span>="<span class="attrval">0</span>" <span class="attrname">default-y</span>="<span class="attrval">2</span>"&gt;&lt;/<span class="tag">slur</span>&gt;
-               &lt;<span class="tag">slur</span> <span class="attrname">number</span>="<span class="attrval">1</span>" <span class="attrname">type</span>="<span class="attrval">stop</span>" <span class="attrname">default-x</span>="<span class="attrval">40</span>" <span class="attrname">default-y</span>="<span class="attrval">4</span>"&gt;&lt;/<span class="tag">slur</span>&gt;
-            &lt;<span class="tag">/notations</span>&gt;
-</div><div class="xmlmarkup nodiff">         &lt;<span class="tag">/note</span>&gt;
-      &lt;<span class="tag">/measure</span>&gt;
-   &lt;<span class="tag">/part</span>&gt;
-&lt;<span class="tag">/score-partwise</span>&gt;</div>
-            </div>
-        </div>
-        <div class="markupexample">
-            <h3>MNX</h3>
-            <div class="markupcode">
-                <div class="xmlmarkup">{
-   <a class="tag" href="../../mnx-reference/objects/root/">"mnx"</a>: {
-      <a class="tag" href="../../mnx-reference/objects/mnx/">"version"</a>: <a class="tag" href="../../mnx-reference/objects/version-number/">1</a>
-   },
-   <a class="tag" href="../../mnx-reference/objects/root/">"global"</a>: {
-      <a class="tag" href="../../mnx-reference/objects/global/">"measures"</a>: [
-         {
-            <a class="tag" href="../../mnx-reference/objects/measure-global/">"time"</a>: {
-               <a class="tag" href="../../mnx-reference/objects/time/">"count"</a>: <a class="tag" href="../../mnx-reference/objects/positive-integer/">4</a>,
-               <a class="tag" href="../../mnx-reference/objects/time/">"unit"</a>: <a class="tag" href="../../mnx-reference/objects/time-signature-unit/">4</a>
-            }
-         }
-      ]
-   },
-   <a class="tag" href="../../mnx-reference/objects/root/">"parts"</a>: [
-      {
-         <a class="tag" href="../../mnx-reference/objects/part/">"measures"</a>: [
-            {
-               <a class="tag" href="../../mnx-reference/objects/part-measure/">"clefs"</a>: [
-                  {
-                     <a class="tag" href="../../mnx-reference/objects/positioned-clef/">"clef"</a>: {
-                        <a class="tag" href="../../mnx-reference/objects/clef/">"sign"</a>: <a class="tag" href="../../mnx-reference/objects/clef-sign/">"G"</a>,
-                        <a class="tag" href="../../mnx-reference/objects/clef/">"staffPosition"</a>: <a class="tag" href="../../mnx-reference/objects/staff-position/">-2</a>
-                     }
-                  }
-               ],
-               <a class="tag" href="../../mnx-reference/objects/part-measure/">"sequences"</a>: [
-                  {
-                     <a class="tag" href="../../mnx-reference/objects/sequence/">"content"</a>: [
-                        {
-                           <a class="tag" href="../../mnx-reference/objects/event/">"type"</a>: "event",
-                           <a class="tag" href="../../mnx-reference/objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../mnx-reference/objects/note-value/">"base"</a>: <a class="tag" href="../../mnx-reference/objects/note-value-base/">"half"</a>
-                           },
-                           <a class="tag" href="../../mnx-reference/objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../mnx-reference/objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../mnx-reference/objects/pitch/">"octave"</a>: <a class="tag" href="../../mnx-reference/objects/octave/">5</a>,
-                                    <a class="tag" href="../../mnx-reference/objects/pitch/">"step"</a>: <a class="tag" href="../../mnx-reference/objects/step/">"C"</a>
-                                 }
-                              }
-                           ]
-                        },
-                        {
-                           <a class="tag" href="../../mnx-reference/objects/event/">"type"</a>: "event",
-                           <a class="tag" href="../../mnx-reference/objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../mnx-reference/objects/note-value/">"base"</a>: <a class="tag" href="../../mnx-reference/objects/note-value-base/">"half"</a>
-                           },
-                           <a class="tag" href="../../mnx-reference/objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../mnx-reference/objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../mnx-reference/objects/pitch/">"octave"</a>: <a class="tag" href="../../mnx-reference/objects/octave/">5</a>,
-                                    <a class="tag" href="../../mnx-reference/objects/pitch/">"step"</a>: <a class="tag" href="../../mnx-reference/objects/step/">"D"</a>
-                                 }
-                              }
-                           ],
-                           <a class="tag" href="../../mnx-reference/objects/event/">"slurs"</a>: [
-                              {
-                                 <a class="tag" href="../../mnx-reference/objects/slur/">"location"</a>: <a class="tag" href="../../mnx-reference/objects/slur-tie-end-location/">"outgoing"</a>,
-                                 <a class="tag" href="../../mnx-reference/objects/slur/">"side"</a>: <a class="tag" href="../../mnx-reference/objects/slur-side/">"up"</a>
-                              }
-                           ]
-                        }
-                     ]
-                  }
-               ]
-            }
-         ]
-      }
-   ]
-}</div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="example" id="parts">
     <div class="center">
         <h2>Parts</h2>
@@ -6196,7 +6053,7 @@
         
         
     </div>
-    <div class="markupexamples" id="markupexamples21">
+    <div class="markupexamples" id="markupexamples20">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
@@ -6700,7 +6557,7 @@
         
         
     </div>
-    <div class="markupexamples" id="markupexamples22">
+    <div class="markupexamples" id="markupexamples21">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
@@ -6818,7 +6675,7 @@
         
         
     </div>
-    <div class="markupexamples" id="markupexamples23">
+    <div class="markupexamples" id="markupexamples22">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
@@ -6931,7 +6788,7 @@
         
         
     </div>
-    <div class="markupexamples" id="markupexamples24">
+    <div class="markupexamples" id="markupexamples23">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
@@ -7047,7 +6904,7 @@
         
         
     </div>
-    <div class="markupexamples" id="markupexamples25">
+    <div class="markupexamples" id="markupexamples24">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
@@ -7307,7 +7164,7 @@
         
         
     </div>
-    <div class="markupexamples" id="markupexamples26">
+    <div class="markupexamples" id="markupexamples25">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
@@ -7665,7 +7522,7 @@
         
         
     </div>
-    <div class="markupexamples" id="markupexamples27">
+    <div class="markupexamples" id="markupexamples26">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">
@@ -7937,7 +7794,7 @@
         
         
     </div>
-    <div class="markupexamples" id="markupexamples28">
+    <div class="markupexamples" id="markupexamples27">
         <div class="markupexample">
             <h3>MusicXML</h3>
             <div class="markupcode">

@@ -2618,12 +2618,8 @@
         "parent": 58,
         "child_key": "target",
         "child": 37,
-        "is_required": false,
-        "description": [
-            "If provided, this specifies the ID of the slur’s end event — that is, the last event over which this slur is rendered. This ID must exist in the document and must identify an event.",
-            "",
-            "If not provided, the slur does not connect to a particular destination event. In this case, \"location\" may be used to specify the location of the other end of the slur."
-        ]
+        "is_required": true,
+        "description": "The ID of the slur’s end event — that is, the last event over which this slur is rendered. This ID must exist in the document and must identify an event."
     }
 },
 {
@@ -2653,29 +2649,6 @@
             "The ID of the specific note at which this slur ends. This note must be within the event specified by this slur's \"target\" attribute.",
             "",
             "For example, you can use endNote to encode which specific note, within a chord, a slur is intended to end on — in cases when music has multiple slurs end on the same event."
-        ]
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 70,
-    "fields": {
-        "parent": 58,
-        "child_key": "location",
-        "child": 60,
-        "is_required": false,
-        "description": [
-            "The value of location may lie either before or after the slur’s event, or it may use the special values \"incoming\" or \"outgoing\". The handling is as follows:",
-            "",
-            "* If the location precedes the start of the current event, this signifies a slur starting at the given location and ending on the current event.",
-            "",
-            "* If the location occurs after the start of the current event, this signifies a slur starting at the current event and ending at the given location.",
-            "",
-            "* A value of \"incoming\" places the start location at a conventionally short distance before the current event, and ends on the current event.",
-            "",
-            "* A value of \"outgoing\" starts on the current event, and places the end location at a conventionally short distance after the current event.",
-            "",
-            "If neither target nor location is given, the effect is as if location=\"outgoing\" was specified."
         ]
     }
 },
@@ -7687,64 +7660,6 @@
             "}"
         ],
         "image_url": "/static/examples/slurs-targeting-specific-notes.png",
-        "is_featured": false
-    }
-},
-{
-    "model": "spectools.exampledocument",
-    "pk": 20,
-    "fields": {
-        "name": "Slurs (incomplete slurs)",
-        "slug": "slurs-incomplete-slurs",
-        "schema": 1,
-        "blurb": "",
-        "document": [
-            "{",
-            "  \"mnx\": {\"version\": 1},",
-            "  \"global\": {",
-            "    \"measures\": [",
-            "      {",
-            "        \"time\": {\"count\": 4, \"unit\": 4}",
-            "      }",
-            "    ]",
-            "  },",
-            "  \"parts\": [",
-            "    {",
-            "      \"measures\": [",
-            "        {",
-            "          \"clefs\": [",
-            "            {\"clef\": {\"sign\": \"G\", \"staffPosition\": -2}}",
-            "          ],",
-            "          \"sequences\": [",
-            "            {",
-            "              \"content\": [",
-            "                {",
-            "                  \"type\": \"event\",",
-            "                  \"duration\": {\"base\": \"half\"},",
-            "                  \"notes\": [",
-            "                    {\"pitch\": {\"step\": \"C\", \"octave\": 5}}",
-            "                  ]",
-            "                },",
-            "                {",
-            "                  \"type\": \"event\",",
-            "                  \"duration\": {\"base\": \"half\"},",
-            "                  \"notes\": [",
-            "                    {\"pitch\": {\"step\": \"D\", \"octave\": 5}}",
-            "                  ],",
-            "                  \"slurs\": [",
-            "                    {\"side\": \"up\", \"location\": \"outgoing\"}",
-            "                  ]",
-            "                }",
-            "              ]",
-            "            }",
-            "          ]",
-            "        }",
-            "      ]",
-            "    }",
-            "  ]",
-            "}"
-        ],
-        "image_url": "/static/examples/slurs-incomplete-slurs.png",
         "is_featured": false
     }
 },
@@ -14283,73 +14198,6 @@
 },
 {
     "model": "spectools.exampledocumentcomparison",
-    "pk": 20,
-    "fields": {
-        "example": 20,
-        "doc_format": 1,
-        "preamble": [
-            "In both MusicXML and MNX, slurs aren’t required to end on specific notes. For “incomplete” slurs like this, the two formats have different approaches.",
-            "",
-            "With MusicXML’s graphical approach, use two <code>&lt;slur&gt;</code> elements within the same note — one with <code>type=\"start\"</code> and the other with <code>type=\"start\"</code>. Then use the <code>default-x</code> and <code>default-y</code> attributes to position the slur accordingly.",
-            "",
-            "With MNX’s semantic approach, use <code>\"location\": \"incoming\"</code> or <code>\"location\": \"outgoing\"</code> on the slur."
-        ],
-        "document": [
-            "<score-partwise version=\"3.1\">",
-            "    <part-list>",
-            "        <score-part id=\"P1\">",
-            "            <part-name>Music</part-name>",
-            "        </score-part>",
-            "    </part-list>",
-            "    <part id=\"P1\">",
-            "        <measure number=\"1\">",
-            "            <attributes>",
-            "                <divisions>256</divisions>",
-            "                <key>",
-            "                    <fifths>0</fifths>",
-            "                    <mode>major</mode>",
-            "                </key>",
-            "                <time>",
-            "                    <beats>4</beats>",
-            "                    <beat-type>4</beat-type>",
-            "                </time>",
-            "                <staves>1</staves>",
-            "                <clef>",
-            "                    <sign>G</sign>",
-            "                    <line>2</line>",
-            "                </clef>",
-            "            </attributes>",
-            "            <note>",
-            "                <pitch>",
-            "                    <step>C</step>",
-            "                    <octave>5</octave>",
-            "                </pitch>",
-            "                <duration>512</duration>",
-            "                <type>half</type>",
-            "            </note>",
-            "            <note>",
-            "                <pitch>",
-            "                    <step>D</step>",
-            "                    <octave>5</octave>",
-            "                </pitch>",
-            "                <duration>512</duration>",
-            "                <type>half</type>",
-            "                <metadiff><notations>",
-            "                    <slur number=\"1\" placement=\"above\"",
-            "                        type=\"start\" default-x=\"0\" default-y=\"2\"/>",
-            "                    <slur number=\"1\"",
-            "                        type=\"stop\" default-x=\"40\" default-y=\"4\"/>",
-            "                </notations></metadiff>",
-            "            </note>",
-            "        </measure>",
-            "    </part>",
-            "</score-partwise>"
-        ],
-        "position": 19
-    }
-},
-{
-    "model": "spectools.exampledocumentcomparison",
     "pk": 21,
     "fields": {
         "example": 21,
@@ -17491,126 +17339,6 @@
 },
 {
     "model": "spectools.exampledocumentobject",
-    "pk": 391,
-    "fields": {
-        "example": 20,
-        "json_object": 1
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 392,
-    "fields": {
-        "example": 20,
-        "json_object": 3
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 393,
-    "fields": {
-        "example": 20,
-        "json_object": 6
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 395,
-    "fields": {
-        "example": 20,
-        "json_object": 13
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 396,
-    "fields": {
-        "example": 20,
-        "json_object": 14
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 397,
-    "fields": {
-        "example": 20,
-        "json_object": 16
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 398,
-    "fields": {
-        "example": 20,
-        "json_object": 19
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 399,
-    "fields": {
-        "example": 20,
-        "json_object": 20
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 401,
-    "fields": {
-        "example": 20,
-        "json_object": 22
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 404,
-    "fields": {
-        "example": 20,
-        "json_object": 26
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 406,
-    "fields": {
-        "example": 20,
-        "json_object": 30
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 407,
-    "fields": {
-        "example": 20,
-        "json_object": 31
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 408,
-    "fields": {
-        "example": 20,
-        "json_object": 45
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 409,
-    "fields": {
-        "example": 20,
-        "json_object": 58
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 410,
-    "fields": {
-        "example": 20,
-        "json_object": 59
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
     "pk": 411,
     "fields": {
         "example": 21,
@@ -20187,14 +19915,6 @@
 },
 {
     "model": "spectools.exampledocumentobject",
-    "pk": 828,
-    "fields": {
-        "example": 20,
-        "json_object": 60
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
     "pk": 829,
     "fields": {
         "example": 22,
@@ -20574,22 +20294,6 @@
     "pk": 876,
     "fields": {
         "example": 21,
-        "json_object": 127
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 877,
-    "fields": {
-        "example": 20,
-        "json_object": 126
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 878,
-    "fields": {
-        "example": 20,
         "json_object": 127
     }
 },
@@ -21251,22 +20955,6 @@
 },
 {
     "model": "spectools.exampledocumentobject",
-    "pk": 961,
-    "fields": {
-        "example": 20,
-        "json_object": 128
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 962,
-    "fields": {
-        "example": 20,
-        "json_object": 129
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
     "pk": 963,
     "fields": {
         "example": 19,
@@ -21875,22 +21563,6 @@
 },
 {
     "model": "spectools.exampledocumentobject",
-    "pk": 1039,
-    "fields": {
-        "example": 20,
-        "json_object": 130
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1040,
-    "fields": {
-        "example": 20,
-        "json_object": 131
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
     "pk": 1041,
     "fields": {
         "example": 21,
@@ -22467,22 +22139,6 @@
 },
 {
     "model": "spectools.exampledocumentobject",
-    "pk": 1113,
-    "fields": {
-        "example": 20,
-        "json_object": 132
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1114,
-    "fields": {
-        "example": 20,
-        "json_object": 133
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
     "pk": 1115,
     "fields": {
         "example": 21,
@@ -22958,14 +22614,6 @@
     "pk": 1174,
     "fields": {
         "example": 19,
-        "json_object": 139
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1175,
-    "fields": {
-        "example": 20,
         "json_object": 139
     }
 },
@@ -23462,14 +23110,6 @@
     "pk": 1239,
     "fields": {
         "example": 19,
-        "json_object": 143
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1240,
-    "fields": {
-        "example": 20,
         "json_object": 143
     }
 },

@@ -300,9 +300,6 @@
               "lineType": {
                 "type": "string"
               },
-              "location": {
-                "type": "string"
-              },
               "side": {
                 "$ref": "#/$defs/slur-side"
               },
@@ -316,6 +313,9 @@
                 "$ref": "#/$defs/id"
               }
             },
+            "required": [
+              "target"
+            ],
             "type": "object"
           },
           "type": "array"
