@@ -579,17 +579,6 @@
 },
 {
     "model": "spectools.jsonobject",
-    "pk": 52,
-    "fields": {
-        "name": "tuplet sequence content",
-        "slug": "tuplet-sequence-content",
-        "schema": 1,
-        "object_type": 2,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobject",
     "pk": 53,
     "fields": {
         "name": "ottava",
@@ -2510,19 +2499,8 @@
     "fields": {
         "parent": 49,
         "child_key": "content",
-        "child": 52,
+        "child": 25,
         "is_required": true,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 59,
-    "fields": {
-        "parent": 52,
-        "child_key": "0",
-        "child": 26,
-        "is_required": false,
         "description": ""
     }
 },

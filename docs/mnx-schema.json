@@ -441,6 +441,115 @@
       ],
       "type": "object"
     },
+    "sequence-content": {
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/event"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "class": {
+                "$ref": "#/$defs/style-class"
+              },
+              "color": {
+                "$ref": "#/$defs/color"
+              },
+              "content": {
+                "items": {
+                  "$ref": "#/$defs/event"
+                },
+                "type": "array"
+              },
+              "graceType": {
+                "enum": [
+                  "makeTime",
+                  "stealFollowing",
+                  "stealPrevious"
+                ],
+                "type": "string"
+              },
+              "slash": {
+                "type": "boolean"
+              },
+              "type": {
+                "const": "grace",
+                "type": "string"
+              }
+            },
+            "required": [
+              "content",
+              "type"
+            ],
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "bracket": {
+                "enum": [
+                  "yes",
+                  "no",
+                  "auto"
+                ],
+                "type": "string"
+              },
+              "content": {
+                "$ref": "#/$defs/sequence-content"
+              },
+              "inner": {
+                "$ref": "#/$defs/note-value-quantity"
+              },
+              "orient": {
+                "$ref": "#/$defs/orientation"
+              },
+              "outer": {
+                "$ref": "#/$defs/note-value-quantity"
+              },
+              "showNumber": {
+                "$ref": "#/$defs/tuplet-display-setting"
+              },
+              "showValue": {
+                "$ref": "#/$defs/tuplet-display-setting"
+              },
+              "staff": {
+                "$ref": "#/$defs/staff-number"
+              },
+              "type": {
+                "const": "tuplet",
+                "type": "string"
+              }
+            },
+            "required": [
+              "content",
+              "inner",
+              "outer",
+              "type"
+            ],
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "duration": {
+                "$ref": "#/$defs/fraction"
+              },
+              "type": {
+                "const": "space",
+                "type": "string"
+              }
+            },
+            "required": [
+              "duration",
+              "type"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "type": "array"
+    },
     "slur-side": {
       "enum": [
         "up",
@@ -1033,116 +1142,7 @@
                     "additionalProperties": false,
                     "properties": {
                       "content": {
-                        "items": {
-                          "anyOf": [
-                            {
-                              "$ref": "#/$defs/event"
-                            },
-                            {
-                              "additionalProperties": false,
-                              "properties": {
-                                "class": {
-                                  "$ref": "#/$defs/style-class"
-                                },
-                                "color": {
-                                  "$ref": "#/$defs/color"
-                                },
-                                "content": {
-                                  "items": {
-                                    "$ref": "#/$defs/event"
-                                  },
-                                  "type": "array"
-                                },
-                                "graceType": {
-                                  "enum": [
-                                    "makeTime",
-                                    "stealFollowing",
-                                    "stealPrevious"
-                                  ],
-                                  "type": "string"
-                                },
-                                "slash": {
-                                  "type": "boolean"
-                                },
-                                "type": {
-                                  "const": "grace",
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "content",
-                                "type"
-                              ],
-                              "type": "object"
-                            },
-                            {
-                              "additionalProperties": false,
-                              "properties": {
-                                "bracket": {
-                                  "enum": [
-                                    "yes",
-                                    "no",
-                                    "auto"
-                                  ],
-                                  "type": "string"
-                                },
-                                "content": {
-                                  "items": {
-                                    "$ref": "#/$defs/event"
-                                  },
-                                  "type": "array"
-                                },
-                                "inner": {
-                                  "$ref": "#/$defs/note-value-quantity"
-                                },
-                                "orient": {
-                                  "$ref": "#/$defs/orientation"
-                                },
-                                "outer": {
-                                  "$ref": "#/$defs/note-value-quantity"
-                                },
-                                "showNumber": {
-                                  "$ref": "#/$defs/tuplet-display-setting"
-                                },
-                                "showValue": {
-                                  "$ref": "#/$defs/tuplet-display-setting"
-                                },
-                                "staff": {
-                                  "$ref": "#/$defs/staff-number"
-                                },
-                                "type": {
-                                  "const": "tuplet",
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "content",
-                                "inner",
-                                "outer",
-                                "type"
-                              ],
-                              "type": "object"
-                            },
-                            {
-                              "additionalProperties": false,
-                              "properties": {
-                                "duration": {
-                                  "$ref": "#/$defs/fraction"
-                                },
-                                "type": {
-                                  "const": "space",
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "duration",
-                                "type"
-                              ],
-                              "type": "object"
-                            }
-                          ]
-                        },
-                        "type": "array"
+                        "$ref": "#/$defs/sequence-content"
                       },
                       "orient": {
                         "$ref": "#/$defs/orientation"
