@@ -364,6 +364,12 @@
       ],
       "type": "object"
     },
+    "fraction": {
+      "items": {
+        "$ref": "#/$defs/integer-unsigned"
+      },
+      "type": "array"
+    },
     "id": {
       "type": "string"
     },
@@ -449,10 +455,7 @@
       "additionalProperties": false,
       "properties": {
         "fraction": {
-          "items": {
-            "$ref": "#/$defs/integer-unsigned"
-          },
-          "type": "array"
+          "$ref": "#/$defs/fraction"
         },
         "graceIndex": {
           "$ref": "#/$defs/integer-unsigned"
@@ -1127,7 +1130,7 @@
                               "additionalProperties": false,
                               "properties": {
                                 "duration": {
-                                  "$ref": "#/$defs/note-value-quantity"
+                                  "$ref": "#/$defs/fraction"
                                 },
                                 "type": {
                                   "const": "space",

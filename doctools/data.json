@@ -3610,12 +3610,12 @@
     "fields": {
         "parent": 117,
         "child_key": "duration",
-        "child": 51,
+        "child": 141,
         "is_required": true,
         "description": [
-            "The metrical duration of this space.",
+            "The metrical duration of this space, represented as a fraction.",
             "",
-            "Note that, in contrast to an event's duration, this duration is not constrained to a single note value, but may be a multiple of one. I.e., the object is a \"note value quantity\" instead of a \"note value.\""
+            "For example, to match a quarter note's duration, use [1, 4]."
         ]
     }
 },
