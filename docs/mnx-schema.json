@@ -298,6 +298,12 @@
                 "$ref": "#/$defs/id"
               },
               "lineType": {
+                "enum": [
+                  "dashed",
+                  "dotted",
+                  "solid",
+                  "wavy"
+                ],
                 "type": "string"
               },
               "side": {
