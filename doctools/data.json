@@ -4751,6 +4751,17 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 266,
+    "fields": {
+        "parent": 53,
+        "child_key": "voice",
+        "child": 101,
+        "is_required": false,
+        "description": "The voice to which this ottava applies. By default, an ottava applies to all voices in the part; using this key will narrow the scope of the ottava to only the voice you specify."
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {
