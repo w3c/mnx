@@ -11908,6 +11908,135 @@
     }
 },
 {
+    "model": "spectools.exampledocument",
+    "pk": 48,
+    "fields": {
+        "name": "Dynamics",
+        "slug": "dynamics",
+        "schema": 1,
+        "blurb": "",
+        "document": [
+            "{",
+            "  \"global\": {",
+            "    \"measures\": [",
+            "      {",
+            "        \"time\": {",
+            "          \"count\": 4,",
+            "          \"unit\": 4",
+            "        }",
+            "      }",
+            "    ]",
+            "  },",
+            "  \"mnx\": {",
+            "    \"version\": 1",
+            "  },",
+            "  \"parts\": [",
+            "    {",
+            "      \"measures\": [",
+            "        {",
+            "          \"clefs\": [",
+            "            {",
+            "              \"clef\": {",
+            "                \"sign\": \"G\",",
+            "                \"staffPosition\": -2",
+            "              }",
+            "            }",
+            "          ],",
+            "          \"dynamics\": [",
+            "            {\"position\": {\"fraction\": [0, 1]}, \"value\": \"ff\"},",
+            "            {\"position\": {\"fraction\": [3, 4]}, \"value\": \"ppp\"}",
+            "          ],",
+            "          \"sequences\": [",
+            "            {",
+            "              \"content\": [",
+            "                {",
+            "                  \"duration\": {",
+            "                    \"base\": \"quarter\"",
+            "                  },",
+            "                  \"notes\": [",
+            "                    {",
+            "                      \"pitch\": {",
+            "                        \"octave\": 4,",
+            "                        \"step\": \"C\"",
+            "                      }",
+            "                    }",
+            "                  ],",
+            "                  \"type\": \"event\"",
+            "                },",
+            "                {",
+            "                  \"duration\": {",
+            "                    \"base\": \"quarter\"",
+            "                  },",
+            "                  \"notes\": [",
+            "                    {",
+            "                      \"pitch\": {",
+            "                        \"octave\": 4,",
+            "                        \"step\": \"E\"",
+            "                      }",
+            "                    }",
+            "                  ],",
+            "                  \"type\": \"event\"",
+            "                },",
+            "                {",
+            "                  \"duration\": {",
+            "                    \"base\": \"quarter\"",
+            "                  },",
+            "                  \"notes\": [",
+            "                    {",
+            "                      \"pitch\": {",
+            "                        \"octave\": 4,",
+            "                        \"step\": \"G\"",
+            "                      }",
+            "                    }",
+            "                  ],",
+            "                  \"type\": \"event\"",
+            "                },",
+            "                {",
+            "                  \"duration\": {",
+            "                    \"base\": \"quarter\"",
+            "                  },",
+            "                  \"notes\": [",
+            "                    {",
+            "                      \"pitch\": {",
+            "                        \"octave\": 4,",
+            "                        \"step\": \"C\"",
+            "                      }",
+            "                    },",
+            "                    {",
+            "                      \"pitch\": {",
+            "                        \"octave\": 4,",
+            "                        \"step\": \"E\"",
+            "                      }",
+            "                    },",
+            "                    {",
+            "                      \"pitch\": {",
+            "                        \"octave\": 4,",
+            "                        \"step\": \"G\"",
+            "                      }",
+            "                    },",
+            "                    {",
+            "                      \"pitch\": {",
+            "                        \"octave\": 5,",
+            "                        \"step\": \"C\"",
+            "                      }",
+            "                    }",
+            "                  ],",
+            "                  \"type\": \"event\"",
+            "                }",
+            "              ]",
+            "            }",
+            "          ]",
+            "        }",
+            "      ]",
+            "    }",
+            "  ]",
+            "}"
+        ],
+        "image_url": "/static/examples/dynamics.png",
+        "is_featured": false
+    }
+},
+{
     "model": "spectools.exampledocumentcomparison",
     "pk": 1,
     "fields": {
@@ -24971,6 +25100,222 @@
     "fields": {
         "example": 47,
         "json_object": 173
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1498,
+    "fields": {
+        "example": 48,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1499,
+    "fields": {
+        "example": 48,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1500,
+    "fields": {
+        "example": 48,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1501,
+    "fields": {
+        "example": 48,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1502,
+    "fields": {
+        "example": 48,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1503,
+    "fields": {
+        "example": 48,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1504,
+    "fields": {
+        "example": 48,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1505,
+    "fields": {
+        "example": 48,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1506,
+    "fields": {
+        "example": 48,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1507,
+    "fields": {
+        "example": 48,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1508,
+    "fields": {
+        "example": 48,
+        "json_object": 140
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1509,
+    "fields": {
+        "example": 48,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1510,
+    "fields": {
+        "example": 48,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1511,
+    "fields": {
+        "example": 48,
+        "json_object": 142
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1512,
+    "fields": {
+        "example": 48,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1513,
+    "fields": {
+        "example": 48,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1514,
+    "fields": {
+        "example": 48,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1515,
+    "fields": {
+        "example": 48,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1516,
+    "fields": {
+        "example": 48,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1517,
+    "fields": {
+        "example": 48,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1518,
+    "fields": {
+        "example": 48,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1519,
+    "fields": {
+        "example": 48,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1520,
+    "fields": {
+        "example": 48,
+        "json_object": 45
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1521,
+    "fields": {
+        "example": 48,
+        "json_object": 124
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1522,
+    "fields": {
+        "example": 48,
+        "json_object": 125
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1523,
+    "fields": {
+        "example": 48,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1524,
+    "fields": {
+        "example": 48,
+        "json_object": 127
     }
 },
 {
