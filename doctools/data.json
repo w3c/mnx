@@ -1366,17 +1366,6 @@
 },
 {
     "model": "spectools.jsonobject",
-    "pk": 123,
-    "fields": {
-        "name": "literal string dynamic",
-        "slug": "literal-string-dynamic",
-        "schema": 1,
-        "object_type": 6,
-        "description": "dynamic"
-    }
-},
-{
-    "model": "spectools.jsonobject",
     "pk": 124,
     "fields": {
         "name": "dynamic type",
@@ -1394,11 +1383,7 @@
         "slug": "dynamic",
         "schema": 1,
         "object_type": 1,
-        "description": [
-            "<p>Describes a textual dynamic direction to the performer.</p>",
-            "",
-            "<p>The <a href=\"../../../infrastructure/notational-concepts/#metrical-position\">metrical position</a> of this dynamic direction is determined by <a href=\"../../../infrastructure/sequence-content/\">sequencing the content</a>.</p>"
-        ]
+        "description": "<p>Describes a textual dynamic direction to the performer.</p>"
     }
 },
 {
@@ -1942,6 +1927,17 @@
     "fields": {
         "name": "ottava list",
         "slug": "ottava-list",
+        "schema": 1,
+        "object_type": 2,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 176,
+    "fields": {
+        "name": "dynamic list",
+        "slug": "dynamic-list",
         "schema": 1,
         "object_type": 2,
         "description": ""
@@ -3892,17 +3888,6 @@
 },
 {
     "model": "spectools.jsonobjectrelationship",
-    "pk": 188,
-    "fields": {
-        "parent": 125,
-        "child_key": "type",
-        "child": 123,
-        "is_required": true,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
     "pk": 189,
     "fields": {
         "parent": 125,
@@ -4759,6 +4744,61 @@
         "child": 101,
         "is_required": false,
         "description": "The voice to which this ottava applies. By default, an ottava applies to all voices in the part; using this key will narrow the scope of the ottava to only the voice you specify."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 267,
+    "fields": {
+        "parent": 176,
+        "child_key": "0",
+        "child": 125,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 268,
+    "fields": {
+        "parent": 16,
+        "child_key": "dynamics",
+        "child": 176,
+        "is_required": false,
+        "description": "All dynamics in this part-measure."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 269,
+    "fields": {
+        "parent": 125,
+        "child_key": "position",
+        "child": 140,
+        "is_required": true,
+        "description": "The position of this dynamic within the measure."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 270,
+    "fields": {
+        "parent": 125,
+        "child_key": "staff",
+        "child": 105,
+        "is_required": false,
+        "description": "The staff index to which this dynamic applies. By default, a dynamic applies to all staffs in the part."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 271,
+    "fields": {
+        "parent": 125,
+        "child_key": "voice",
+        "child": 101,
+        "is_required": false,
+        "description": "The voice to which this dynamic applies. By default, a dynamic applies to all voices in the part."
     }
 },
 {

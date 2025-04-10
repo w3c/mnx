@@ -47,6 +47,31 @@
     "color": {
       "type": "string"
     },
+    "dynamic": {
+      "additionalProperties": false,
+      "properties": {
+        "glyph": {
+          "$ref": "#/$defs/smufl-glyph"
+        },
+        "position": {
+          "$ref": "#/$defs/rhythmic-position"
+        },
+        "staff": {
+          "$ref": "#/$defs/staff-number"
+        },
+        "value": {
+          "type": "string"
+        },
+        "voice": {
+          "$ref": "#/$defs/voice-name"
+        }
+      },
+      "required": [
+        "position",
+        "value"
+      ],
+      "type": "object"
+    },
     "event": {
       "additionalProperties": false,
       "properties": {
@@ -959,6 +984,12 @@
                   },
                   "type": "array"
                 },
+                "dynamics": {
+                  "items": {
+                    "$ref": "#/$defs/dynamic"
+                  },
+                  "type": "array"
+                },
                 "ottavas": {
                   "items": {
                     "additionalProperties": false,
@@ -1110,24 +1141,7 @@
                               "type": "object"
                             },
                             {
-                              "additionalProperties": false,
-                              "properties": {
-                                "glyph": {
-                                  "$ref": "#/$defs/smufl-glyph"
-                                },
-                                "type": {
-                                  "const": "dynamic",
-                                  "type": "string"
-                                },
-                                "value": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "value"
-                              ],
-                              "type": "object"
+                              "$ref": "#/$defs/dynamic"
                             }
                           ]
                         },
