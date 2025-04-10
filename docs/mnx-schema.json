@@ -47,31 +47,6 @@
     "color": {
       "type": "string"
     },
-    "dynamic": {
-      "additionalProperties": false,
-      "properties": {
-        "glyph": {
-          "$ref": "#/$defs/smufl-glyph"
-        },
-        "position": {
-          "$ref": "#/$defs/rhythmic-position"
-        },
-        "staff": {
-          "$ref": "#/$defs/staff-number"
-        },
-        "value": {
-          "type": "string"
-        },
-        "voice": {
-          "$ref": "#/$defs/voice-name"
-        }
-      },
-      "required": [
-        "position",
-        "value"
-      ],
-      "type": "object"
-    },
     "event": {
       "additionalProperties": false,
       "properties": {
@@ -989,7 +964,29 @@
                 },
                 "dynamics": {
                   "items": {
-                    "$ref": "#/$defs/dynamic"
+                    "additionalProperties": false,
+                    "properties": {
+                      "glyph": {
+                        "$ref": "#/$defs/smufl-glyph"
+                      },
+                      "position": {
+                        "$ref": "#/$defs/rhythmic-position"
+                      },
+                      "staff": {
+                        "$ref": "#/$defs/staff-number"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "voice": {
+                        "$ref": "#/$defs/voice-name"
+                      }
+                    },
+                    "required": [
+                      "position",
+                      "value"
+                    ],
+                    "type": "object"
                   },
                   "type": "array"
                 },
@@ -1142,9 +1139,6 @@
                                 "type"
                               ],
                               "type": "object"
-                            },
-                            {
-                              "$ref": "#/$defs/dynamic"
                             }
                           ]
                         },
