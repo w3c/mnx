@@ -52,7 +52,7 @@
 <p><b>Type:</b> Dictionary</p>
 
 
-<p>The sequence object organizes a set of musical events within a measure into a strict temporal <a href="../../../infrastructure/sequence-content/">sequence</a>, accompanied by relevant directions.</p>
+<p>The sequence object organizes a set of musical events within a measure into a strict temporal <a href="../../../infrastructure/sequence-content/">sequence</a>.</p>
 
 <p>To determine the measure position of each event within a sequence, you <a href="../../../infrastructure/sequence-content/">sequence the content</a>, with a starting position <code>0</code> and time modification ratio <code>1</code>.</p>
 
@@ -90,7 +90,7 @@
         
     </td>
     <td>Yes</td>
-    <td></td>
+    <td>The content of this sequence. Because the array elements are heterogeneous (event vs. grace vs. tuplet, etc.), each element has a <code>"type"</code>. The <code>"type"</code> is assumed to be <code>"event"</code> if left unspecified, because events are by far the most common case.</td>
 </tr>
 
 <tr>
