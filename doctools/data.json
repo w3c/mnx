@@ -3668,7 +3668,11 @@
         "child_key": "sideEnd",
         "child": 59,
         "is_required": false,
-        "description": "The slur’s side at the end of the slur, in cases where it differs from its initial side — for example, in cross-staff notation. If not provided, it's interpreted to have the same value as \"side\"."
+        "description": [
+            "The slur’s side at the end of the slur. This is useful to encode in cases where it differs from its initial side — for example, in cross-staff notation.",
+            "",
+            "If not provided, the consuming software should determine the value automatically according to its own logic. Usually this is the same value as <code>\"side\"</code>."
+        ]
     }
 },
 {
