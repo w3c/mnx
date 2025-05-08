@@ -1,0 +1,44 @@
+{
+  "mnx": {"version": 1},
+  "global": {
+    "measures": [
+      {
+        "time": {"count": 4, "unit": 4}
+      }
+    ]
+  },
+  "parts": [
+    {
+      "measures": [
+        {
+          "clefs": [
+            {"clef": {"sign": "G", "staffPosition": -2}}
+          ],
+          "sequences": [
+            {
+              "content": [
+                {
+                  "type": "grace",
+                  "content": [
+                    {
+                      "duration": {"base": "eighth"},
+                      "notes": [
+                        {"pitch": {"step": "B", "octave": 4}}
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "duration": {"base": "whole"},
+                  "notes": [
+                    {"pitch": {"step": "C", "octave": 5}}
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

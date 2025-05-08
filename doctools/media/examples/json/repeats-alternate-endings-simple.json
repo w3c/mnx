@@ -1,0 +1,87 @@
+{
+  "mnx": {"version": 1},
+  "global": {
+    "measures": [
+      {
+        "time": {"count": 4, "unit": 4},
+        "repeatStart": {}
+      },
+      {
+        "repeatEnd": {},
+        "ending": {"numbers": [1], "duration": 1}
+      },
+      {
+        "repeatEnd": {},
+        "ending": {"numbers": [2], "duration": 1}
+      },
+      {
+        "ending": {"numbers": [3], "duration": 1, "open": true}
+      }
+    ]
+  },
+  "parts": [
+    {
+      "measures": [
+        {
+          "clefs": [
+            {"clef": {"sign": "G", "staffPosition": -2}}
+          ],
+          "sequences": [
+            {
+              "content": [
+                {
+                  "duration": {"base": "whole"},
+                  "notes": [
+                    {"pitch": {"step": "C", "octave": 5}}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sequences": [
+            {
+              "content": [
+                {
+                  "duration": {"base": "whole"},
+                  "notes": [
+                    {"pitch": {"step": "E", "octave": 5}}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sequences": [
+            {
+              "content": [
+                {
+                  "duration": {"base": "whole"},
+                  "notes": [
+                    {"pitch": {"step": "G", "octave": 4}}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sequences": [
+            {
+              "content": [
+                {
+                  "duration": {"base": "whole"},
+                  "notes": [
+                    {"pitch": {"step": "C", "octave": 5}}
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
