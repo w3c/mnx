@@ -1304,10 +1304,8 @@
         <h2>Accidentals</h2>
         <img class="exampleimg" src="../../static/examples/accidentals.png">
         
-        <p class="examplenotes">In MusicXML, use <code>&lt;accidental&gt;</code> within a <code>&lt;note&gt;</code> to indicate a rendered accidental. In MNX, give the note an <code>"accidentalDisplay"</code> key.</p>
-<p class="examplenotes"></p>
-<p class="examplenotes">In both MusicXML and MNX, accidentals are only encoded if they are to be rendered. Notes whose accidental is implied from the key signature (such as the Bb note in bar 2 of this example), or notes repeating a currently active accidental (such as the second Db in bar 2), are not encoded as having an accidental.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">In MusicXML, use <code>&lt;accidental&gt;</code> within a <code>&lt;note&gt;</code> to indicate a rendered accidental. In MNX, give the note an <code>"accidentalDisplay"</code> key.</p>
+<p class="examplenotes">In both MusicXML and MNX, accidentals are only encoded if they are to be rendered. Notes whose accidental is implied from the key signature (such as the Bb note in bar 2 of this example), or notes repeating a currently active accidental (such as the second Db in bar 2), are not encoded as having an accidental.</p>
 <p class="examplenotes">Cautionary accidentals, such as the D natural in bar 3 of this example — that is, accidentals that are not technically required to be displayed and serve as a courtesy to the musician — are not treated any differently than “non-cautionary” accidentals.</p>
         
         
@@ -1610,8 +1608,7 @@
         <h2>Dotted notes (augmentation dots)</h2>
         <img class="exampleimg" src="../../static/examples/dotted-notes.png">
         
-        <p class="examplenotes">In MusicXML, dotted notes get an extra tag, <code>&lt;dot&gt;</code>, within the <code>&lt;note&gt;</code> element. Each note within a chord must have <code>&lt;dot&gt;</code>.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">In MusicXML, dotted notes get an extra tag, <code>&lt;dot&gt;</code>, within the <code>&lt;note&gt;</code> element. Each note within a chord must have <code>&lt;dot&gt;</code>.</p>
 <p class="examplenotes">In MNX, dotted notes are represented with <code>"dots"</code> within the event's <code>"duration"</code>.</p>
         
         
@@ -1817,10 +1814,8 @@
         <h2>Ties</h2>
         <img class="exampleimg" src="../../static/examples/ties.png">
         
-        <p class="examplenotes">MusicXML uses two elements: <code>&lt;tie&gt;</code> to describe the sound and <code>&lt;tied&gt;</code> to indicate a visual tie in notation. The first note gets <code>type="start"</code>, the second gets <code>type="stop"</code>.</p>
-<p class="examplenotes"></p>
-<p class="examplenotes">MNX uses a single object: <code>"ties"</code>. Only the first note in a tie encodes this; its <code>"target"</code> points at the <code>id</code> of the end note.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">MusicXML uses two elements: <code>&lt;tie&gt;</code> to describe the sound and <code>&lt;tied&gt;</code> to indicate a visual tie in notation. The first note gets <code>type="start"</code>, the second gets <code>type="stop"</code>.</p>
+<p class="examplenotes">MNX uses a single object: <code>"ties"</code>. Only the first note in a tie encodes this; its <code>"target"</code> points at the <code>id</code> of the end note.</p>
 <p class="examplenotes">For a series of notes tied together (e.g., the second tie in the above example), both MusicXML and MNX require you to encode each “inner tie” separately.</p>
         
         
@@ -2078,8 +2073,7 @@
         <h2>Beams</h2>
         <img class="exampleimg" src="../../static/examples/beams.png">
         
-        <p class="examplenotes">In MusicXML, you put one or more <code>&lt;beam&gt;</code> elements within a <code>&lt;note&gt;</code> element — a separate element for each beam. The <code>number</code> attribute specifies whether it’s the outer (eighth-note) beam, versus an inner (e.g., 16th note) beam. Parsers need to keep track of currently open beams and look for the values <code>continue</code> or <code>end</code>.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">In MusicXML, you put one or more <code>&lt;beam&gt;</code> elements within a <code>&lt;note&gt;</code> element — a separate element for each beam. The <code>number</code> attribute specifies whether it’s the outer (eighth-note) beam, versus an inner (e.g., 16th note) beam. Parsers need to keep track of currently open beams and look for the values <code>continue</code> or <code>end</code>.</p>
 <p class="examplenotes">In MNX, each beam is encoded within the measure's <code>"beams"</code> object, containing the IDs of the beam’s events.</p>
         
         
@@ -2578,8 +2572,7 @@
         <h2>Beams (secondary beam breaks)</h2>
         <img class="exampleimg" src="../../static/examples/beams-secondary-beam-breaks.png">
         
-        <p class="examplenotes">In MusicXML, secondary beams are encoded with separate <code>&lt;beam&gt;</code> elements within <code>&lt;note&gt;</code> — each with a separate <code>number</code> attribute.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">In MusicXML, secondary beams are encoded with separate <code>&lt;beam&gt;</code> elements within <code>&lt;note&gt;</code> — each with a separate <code>number</code> attribute.</p>
 <p class="examplenotes">In MNX, secondary beams are encoded as separate objects within <code>"beams"</code>, using the <code>"inner"</code> key.</p>
         
         
@@ -3189,8 +3182,7 @@
         <h2>Beams (hooks)</h2>
         <img class="exampleimg" src="../../static/examples/beam-hooks.png">
         
-        <p class="examplenotes">MusicXML uses <code>&lt;beam&gt;</code> elements with the value <code>"forward hook"</code> or <code>"backward hook"</code>.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">MusicXML uses <code>&lt;beam&gt;</code> elements with the value <code>"forward hook"</code> or <code>"backward hook"</code>.</p>
 <p class="examplenotes">MNX uses the <code>"hooks"</code> key on the beam.</p>
         
         
@@ -3566,8 +3558,7 @@
         <h2>Beams (with inner grace notes)</h2>
         <img class="exampleimg" src="../../static/examples/beams-inner-grace-notes.png">
         
-        <p class="examplenotes">In MusicXML, to exclude a grace note from a beam, you exclude <code>&lt;beam&gt;continue&lt;/beam&gt;</code> from the grace note’s <code>&lt;note&gt;</code> element.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">In MusicXML, to exclude a grace note from a beam, you exclude <code>&lt;beam&gt;continue&lt;/beam&gt;</code> from the grace note’s <code>&lt;note&gt;</code> element.</p>
 <p class="examplenotes">In MNX, you exclude the grace note’s event from the beam object.</p>
         
         
@@ -3793,8 +3784,7 @@
         <h2>Beams (across barlines)</h2>
         <img class="exampleimg" src="../../static/examples/beams-across-barlines.png">
         
-        <p class="examplenotes">Both MusicXML and MNX support beams crossing barlines.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">Both MusicXML and MNX support beams crossing barlines.</p>
 <p class="examplenotes">In MNX, the beam is encoded in the sequence in which the beam <em>starts</em>. The beam's <code>"events"</code> list is free to reference IDs of events in a subsequent measure.</p>
         
         
@@ -4044,8 +4034,7 @@
         <h2>Tuplets</h2>
         <img class="exampleimg" src="../../static/examples/tuplets.png">
         
-        <p class="examplenotes">MusicXML uses two separate concepts: a <code>&lt;time-modification&gt;</code> element to encode the tuplet’s ratio and a <code>&lt;tuplet&gt;</code> element to encode the engraved tuplet itself. These go inside <code>&lt;note&gt;</code> elements. Parsers need to keep track of currently open tuplets and look for the value <code>stop</code>.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">MusicXML uses two separate concepts: a <code>&lt;time-modification&gt;</code> element to encode the tuplet’s ratio and a <code>&lt;tuplet&gt;</code> element to encode the engraved tuplet itself. These go inside <code>&lt;note&gt;</code> elements. Parsers need to keep track of currently open tuplets and look for the value <code>stop</code>.</p>
 <p class="examplenotes">MNX uses a single object, with type <code>"tuplet"</code>, which contains the notes or rests therein. The <code>"inner"</code> value encodes the rhythmic duration of the tuplet’s elements as if the tuplet were ignored; the <code>"outer"</code> value encodes the rhythmic duration taking the tuplet’s ratio into account.</p>
         
         
@@ -4876,12 +4865,9 @@
         <h2>Ottavas (8va)</h2>
         <img class="exampleimg" src="../../static/examples/octave-shifts-8va.png">
         
-        <p class="examplenotes">In MusicXML, you put <code>&lt;octave-shift&gt;</code> elements around the notes that are affected by the octave shift; the issue of whether the ottava affects the first note <em>following</em> the closing <code>&lt;octave-shift&gt;</code> is interpreted differently by different programs.</p>
-<p class="examplenotes"></p>
-<p class="examplenotes">In MNX, each part-measure can define an <code>"ottavas"</code> array, which contains all of the ottavas that begin in that measure. The ottava's <code>"position"</code> value encodes the measure location of the first event for which the ottava applies, and <code>"end"</code> encodes the last note for which the ottava applies. In this example, the ottava’s final note, the C quarter note, is in bar 2 and metrical position one half note into the bar.</p>
-<p class="examplenotes"></p>
-<p class="examplenotes">In both MusicXML and MNX, pitches for notes within an ottava are specified taking the ottava into account. In this example, the final two pitches are C7 and C6, despite the notes being rendered on the same staff line.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">In MusicXML, you put <code>&lt;octave-shift&gt;</code> elements around the notes that are affected by the octave shift; the issue of whether the ottava affects the first note <em>following</em> the closing <code>&lt;octave-shift&gt;</code> is interpreted differently by different programs.</p>
+<p class="examplenotes">In MNX, each part-measure can define an <code>"ottavas"</code> array, which contains all of the ottavas that begin in that measure. The ottava's <code>"position"</code> value encodes the measure location of the first event for which the ottava applies, and <code>"end"</code> encodes the last note for which the ottava applies. In this example, the ottava’s final note, the C quarter note, is in bar 2 and metrical position one half note into the bar.</p>
+<p class="examplenotes">In both MusicXML and MNX, pitches for notes within an ottava are specified taking the ottava into account. In this example, the final two pitches are C7 and C6, despite the notes being rendered on the same staff line.</p>
 <p class="examplenotes">In MusicXML, the encoded value is the number of semitones (8 in this example). In MNX, the encoded value is the number of octaves (1 in this example).</p>
         
         
@@ -5134,8 +5120,7 @@
         <h2>Slurs</h2>
         <img class="exampleimg" src="../../static/examples/slurs.png">
         
-        <p class="examplenotes">In MusicXML, you put <code>&lt;slur&gt;</code> elements within the first and last notes in the slur. The first has <code>type=start</code> and the last has <code>type=stop</code>. Use the <code>placement</code> attribute to specify whether the slur is above or below the notes.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">In MusicXML, you put <code>&lt;slur&gt;</code> elements within the first and last notes in the slur. The first has <code>type=start</code> and the last has <code>type=stop</code>. Use the <code>placement</code> attribute to specify whether the slur is above or below the notes.</p>
 <p class="examplenotes">In MNX, an event can contain a <code>"slurs"</code> object, which encodes all of the slurs that begin in that event. The slur’s <code>"target"</code> specifies the ID of the last event in the slur. Use <code>"side"</code> to specify whether the slur is above or below.</p>
         
         
@@ -5432,8 +5417,7 @@
         <h2>Slurs (for chords)</h2>
         <img class="exampleimg" src="../../static/examples/slurs-chords.png">
         
-        <p class="examplenotes">In MusicXML, if the start and/or end points of a slur are chords, then the slur markup goes inside the first note of the chord.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">In MusicXML, if the start and/or end points of a slur are chords, then the slur markup goes inside the first note of the chord.</p>
 <p class="examplenotes">In MNX, the slur is attached to the event, not to the note.</p>
         
         
@@ -5681,8 +5665,7 @@
         <h2>Slurs (targeting specific notes)</h2>
         <img class="exampleimg" src="../../static/examples/slurs-targeting-specific-notes.png">
         
-        <p class="examplenotes">In MusicXML, slurs are always defined within <code>&lt;note&gt;</code> elements.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">In MusicXML, slurs are always defined within <code>&lt;note&gt;</code> elements.</p>
 <p class="examplenotes">In MNX, a slur can optionally specify which specific notes it’s attached to, using <code>"startNote"</code> and <code>"endNote"</code>. The <code>"startNote"</code> must be within the event that contains the slur, and the <code>"endNote"</code> must be within the event pointed-to by <code>"target"</code>.</p>
         
         
@@ -5918,12 +5901,10 @@
         <h2>Parts</h2>
         <img class="exampleimg" src="../../static/examples/parts.png">
         
-        <p class="examplenotes">MusicXML supports two ways of organizing parts:</p>
-<p class="examplenotes">1. If the top-level element is <code>&lt;score-partwise&gt;</code>, then the markup must contain <code>&lt;part&gt;</code> elements that contain <code>&lt;measure&gt;</code> elements.</p>
-<p class="examplenotes">2. If the top-level element is <code>&lt;score-timewise&gt;</code>, then the markup must contain <code>&lt;measure&gt;</code> elements that contain <code>&lt;part&gt;</code> elements.</p>
-<p class="examplenotes"></p>
-<p class="examplenotes">MNX has only one way, similar to MusicXML’s <code>&lt;score-partwise&gt;</code>. Each object in the global <code>"parts"</code> array contains the measure data within <code>"measures"</code>.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">MusicXML supports two ways of organizing parts:</p>
+<p class="examplenotes">1. If the top-level element is <code>&lt;score-partwise&gt;</code>, then the markup must contain <code>&lt;part&gt;</code> elements that contain <code>&lt;measure&gt;</code> elements.</p>
+<p class="examplenotes">2. If the top-level element is <code>&lt;score-timewise&gt;</code>, then the markup must contain <code>&lt;measure&gt;</code> elements that contain <code>&lt;part&gt;</code> elements.</p>
+<p class="examplenotes">MNX has only one way, similar to MusicXML’s <code>&lt;score-partwise&gt;</code>. Each object in the global <code>"parts"</code> array contains the measure data within <code>"measures"</code>.</p>
 <p class="examplenotes">In MusicXML, part metadata such as the title lives within a <code>&lt;part-list&gt;</code> element. In MNX, part metadata goes in the individual part object.</p>
         
         
@@ -6411,8 +6392,7 @@
         <h2>Repeats</h2>
         <img class="exampleimg" src="../../static/examples/repeats.png">
         
-        <p class="examplenotes">MusicXML uses <code>&lt;bar-style&gt;</code> to represent the visual repeat barline and <code>&lt;repeat&gt;</code> to represent the repeated playback.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">MusicXML uses <code>&lt;bar-style&gt;</code> to represent the visual repeat barline and <code>&lt;repeat&gt;</code> to represent the repeated playback.</p>
 <p class="examplenotes">MNX uses <code>"repeatStart"</code> and <code>"repeatEnd"</code> in the global section of the document.</p>
         
         
@@ -6756,8 +6736,7 @@
         <h2>Repeats (with alternate endings, simple)</h2>
         <img class="exampleimg" src="../../static/examples/repeats-alternate-endings-simple.png">
         
-        <p class="examplenotes">In MusicXML, each alternate ending is encoded with two <code>&lt;ending&gt;</code> elements: one to start and the other to stop.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">In MusicXML, each alternate ending is encoded with two <code>&lt;ending&gt;</code> elements: one to start and the other to stop.</p>
 <p class="examplenotes">In MNX, each alternate ending is encoded once, via <code>"ending"</code> in the <code>"global"</code> measures section. The <code>"duration"</code> specifies how many bars the ending lasts.</p>
         
         
@@ -7013,8 +6992,7 @@
         <h2>Repeats (with alternate endings, advanced)</h2>
         <img class="exampleimg" src="../../static/examples/repeats-alternate-endings-advanced.png">
         
-        <p class="examplenotes">In MusicXML, if a bar has multiple endings, the <code>&lt;ending&gt;</code> element’s <code>number</code> attribute is a comma-separated list of the ending numbers (using one-based, not zero-based numbers).</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">In MusicXML, if a bar has multiple endings, the <code>&lt;ending&gt;</code> element’s <code>number</code> attribute is a comma-separated list of the ending numbers (using one-based, not zero-based numbers).</p>
 <p class="examplenotes">In MNX, the <code>"ending"</code> contains a <code>"numbers"</code> array, which is a list of numbers (again using one-based, not zero-based numbers).</p>
         
         
@@ -7364,8 +7342,7 @@
         <h2>Jumps (Dal Segno)</h2>
         <img class="exampleimg" src="../../static/examples/jumps-dal-segno.png">
         
-        <p class="examplenotes">MusicXML uses <code>&lt;segno&gt;</code> to specify the visual segno symbol and <code>&lt;sound&gt;</code> elements with <code>segno</code> or <code>dalsegno</code> attributes to specify the playback instructions.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">MusicXML uses <code>&lt;segno&gt;</code> to specify the visual segno symbol and <code>&lt;sound&gt;</code> elements with <code>segno</code> or <code>dalsegno</code> attributes to specify the playback instructions.</p>
 <p class="examplenotes">MNX uses <code>"jump"</code> within the <code>"global"</code> section of the document. The <code>"type"</code> specifies what kind of jump it is, and <code>"location"</code> specifies the target of the jump. This data together represents both the visual notation and the playback instructions.</p>
         
         
@@ -7632,8 +7609,7 @@
         <h2>Jumps (D.S. al Fine)</h2>
         <img class="exampleimg" src="../../static/examples/jumps-ds-al-fine.png">
         
-        <p class="examplenotes">MusicXML uses <code>&lt;segno&gt;</code> to specify the visual segno symbol and <code>&lt;words&gt;</code> for the textual instructions. (Parsers need to interpret the text to extract semantic meaning.) For the playback instructions, MusicXML uses the <code>&lt;sound&gt;</code> element.</p>
-<p class="examplenotes"></p>
+        <p class="examplenotes">MusicXML uses <code>&lt;segno&gt;</code> to specify the visual segno symbol and <code>&lt;words&gt;</code> for the textual instructions. (Parsers need to interpret the text to extract semantic meaning.) For the playback instructions, MusicXML uses the <code>&lt;sound&gt;</code> element.</p>
 <p class="examplenotes">MNX uses <code>"jump"</code> within the <code>"global"</code> section of the document. The <code>"type"</code> specifies what kind of jump it is, and <code>"location"</code> specifies the target of the jump. This data together represents both the visual notation and the playback instructions.</p>
         
         

@@ -1933,6 +1933,17 @@
     }
 },
 {
+    "model": "spectools.jsonobject",
+    "pk": 177,
+    "fields": {
+        "name": "time signature display",
+        "slug": "time-signature-display",
+        "schema": 1,
+        "object_type": 3,
+        "description": "<p>This encodes visual glyphs for a time signature.</p>"
+    }
+},
+{
     "model": "spectools.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -4777,6 +4788,21 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 272,
+    "fields": {
+        "parent": 13,
+        "child_key": "display",
+        "child": 177,
+        "is_required": false,
+        "description": [
+            "A special time signature glyph to use, e.g. for common time or cut time.",
+            "",
+            "Note it's still required to encode \"count\" and \"unit\" even when using \"display\". For display=\"common\", use \"count\": 4, \"unit\": 4. For display=\"cut\", use \"count\": 2, \"unit\": 2."
+        ]
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {
@@ -5533,6 +5559,24 @@
     }
 },
 {
+    "model": "spectools.jsonobjectenum",
+    "pk": 85,
+    "fields": {
+        "parent": 177,
+        "name": "common",
+        "description": "The symbol representing \"common time.\""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 86,
+    "fields": {
+        "parent": 177,
+        "name": "cut",
+        "description": "The symbol representing \"cut time.\""
+    }
+},
+{
     "model": "spectools.exampledocument",
     "pk": 1,
     "fields": {
@@ -6183,6 +6227,20 @@
         "document": "",
         "document_path": "examples/json/dynamics.json",
         "image_url": "/static/examples/dynamics.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 49,
+    "fields": {
+        "name": "Time signature glyphs",
+        "slug": "time-signature-glyphs",
+        "schema": 1,
+        "blurb": "",
+        "document": "",
+        "document_path": "examples/json/time-signature-glyphs.json",
+        "image_url": "/static/examples/time-signature-glyphs.png",
         "is_featured": false
     }
 },
@@ -19105,6 +19163,206 @@
     "pk": 1524,
     "fields": {
         "example": 48,
+        "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1525,
+    "fields": {
+        "example": 49,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1526,
+    "fields": {
+        "example": 49,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1527,
+    "fields": {
+        "example": 49,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1528,
+    "fields": {
+        "example": 49,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1529,
+    "fields": {
+        "example": 49,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1530,
+    "fields": {
+        "example": 49,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1531,
+    "fields": {
+        "example": 49,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1532,
+    "fields": {
+        "example": 49,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1533,
+    "fields": {
+        "example": 49,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1534,
+    "fields": {
+        "example": 49,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1535,
+    "fields": {
+        "example": 49,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1536,
+    "fields": {
+        "example": 49,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1537,
+    "fields": {
+        "example": 49,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1538,
+    "fields": {
+        "example": 49,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1539,
+    "fields": {
+        "example": 49,
+        "json_object": 15
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1540,
+    "fields": {
+        "example": 49,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1541,
+    "fields": {
+        "example": 49,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1542,
+    "fields": {
+        "example": 49,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1543,
+    "fields": {
+        "example": 49,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1544,
+    "fields": {
+        "example": 49,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1545,
+    "fields": {
+        "example": 49,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1546,
+    "fields": {
+        "example": 49,
+        "json_object": 45
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1547,
+    "fields": {
+        "example": 49,
+        "json_object": 177
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1548,
+    "fields": {
+        "example": 49,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1549,
+    "fields": {
+        "example": 49,
         "json_object": 127
     }
 },

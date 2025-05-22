@@ -920,6 +920,13 @@
                   "count": {
                     "$ref": "#/$defs/positive-integer"
                   },
+                  "display": {
+                    "enum": [
+                      "common",
+                      "cut"
+                    ],
+                    "type": "string"
+                  },
                   "unit": {
                     "enum": [
                       1,
