@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The ottava amount object | MNX specification</title>
+<title>The ottava amount or zero object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -44,15 +44,15 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    ottava amount
+    ottava amount or zero
 </p>
 
-<h1>The ottava amount object</h1>
+<h1>The ottava amount or zero object</h1>
 
 <p><b>Type:</b> Number</p>
 
 
-<p>Represents the number of octaves in an octave shift. See also <a href="../ottava-amount-or-zero/">ottava amount or zero</a>, which includes the value zero.</p>
+<p>Represents the number of octaves in an octave shift, with zero being an option. See also <a href="../ottava-amount">ottava amount</a>, which doesn't support the value zero.</p>
 
 
 
@@ -84,6 +84,11 @@
 </tr>
 
 <tr>
+    <td><nobr><b>0</b></nobr></td>
+    <td>No octave shift is applied. Pitches are sounded exactly as they're written.</td>
+</tr>
+
+<tr>
     <td><nobr><b>1</b></nobr></td>
     <td>The written pitch is one octave lower than sounded. Traditionally rendered with an "8va" symbol.</td>
 </tr>
@@ -108,19 +113,12 @@
 
 <ul>
 
-<li><a href="../ottava/">ottava</a>: "value"</li>
+<li><a href="../clef/">clef</a>: "octave"</li>
 
 </ul>
 
 
 
-
-<h2 id="examples">Examples</h2>
-
-<p>This object is used in the following examples:</p>
-<p>
-    <nobr><a href="../../examples/ottavas-8va/">Ottavas (8va)</a></nobr>
-</p>
 
 
 

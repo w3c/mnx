@@ -1047,6 +1047,15 @@
                             "$ref": "#/$defs/smufl-glyph"
                           },
                           "octave": {
+                            "enum": [
+                              1,
+                              2,
+                              -1,
+                              -2,
+                              3,
+                              -3,
+                              0
+                            ],
                             "type": "integer"
                           },
                           "sign": {

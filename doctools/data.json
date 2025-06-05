@@ -600,7 +600,7 @@
         "slug": "ottava-amount",
         "schema": 1,
         "object_type": 4,
-        "description": ""
+        "description": "<p>Represents the number of octaves in an octave shift. See also <a href=\"../ottava-amount-or-zero/\">ottava amount or zero</a>, which includes the value zero.</p>"
     }
 },
 {
@@ -1941,6 +1941,17 @@
         "schema": 1,
         "object_type": 3,
         "description": "<p>This encodes visual glyphs for a time signature.</p>"
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 178,
+    "fields": {
+        "name": "ottava amount or zero",
+        "slug": "ottava-amount-or-zero",
+        "schema": 1,
+        "object_type": 4,
+        "description": "<p>Represents the number of octaves in an octave shift, with zero being an option. See also <a href=\"../ottava-amount\">ottava amount</a>, which doesn't support the value zero.</p>"
     }
 },
 {
@@ -3293,9 +3304,9 @@
     "fields": {
         "parent": 19,
         "child_key": "octave",
-        "child": 107,
+        "child": 178,
         "is_required": false,
-        "description": "The number of octaves by which the pitches normally indicated by the given clef sign should be transposed. Default is zero."
+        "description": "The number of octaves by which the sounded pitches normally indicated by the given clef sign should be transposed. Default is zero."
     }
 },
 {
@@ -5574,6 +5585,69 @@
         "parent": 177,
         "name": "cut",
         "description": "The symbol representing \"cut time.\""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 87,
+    "fields": {
+        "parent": 178,
+        "name": "1",
+        "description": "The written pitch is one octave lower than sounded. Traditionally rendered with an \"8va\" symbol."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 88,
+    "fields": {
+        "parent": 178,
+        "name": "2",
+        "description": "The written pitch is two octaves lower than sounded. Traditionally rendered with a \"15ma\" symbol."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 89,
+    "fields": {
+        "parent": 178,
+        "name": "-1",
+        "description": "The written pitch is one octave higher than sounded. Traditionally rendered with an \"8vb\" symbol."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 90,
+    "fields": {
+        "parent": 178,
+        "name": "-2",
+        "description": "The written pitch is two octaves higher than sounded. Traditionally rendered with a \"15mb\" symbol."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 91,
+    "fields": {
+        "parent": 178,
+        "name": "3",
+        "description": "The written pitch is three octaves lower than sounded. Traditionally rendered with a \"22\" symbol."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 92,
+    "fields": {
+        "parent": 178,
+        "name": "-3",
+        "description": "The written pitch is three octaves higher than sounded. Traditionally rendered with a \"22\" symbol."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 93,
+    "fields": {
+        "parent": 178,
+        "name": "0",
+        "description": "No octave shift is applied. Pitches are sounded exactly as they're written."
     }
 },
 {
