@@ -80,6 +80,17 @@
     <td>This answers the question "Does every note with a visible accidental have accidentalDisplay set?"<br><br>It's meant as a heads-up for consuming software that doesn't have its own accidental-display algorithm. For this type of software, when reading a document with useAccidentalDisplay=false, the software might opt to display a warning to users, saying "We don't know which notes should have an accidental displayed." Or the software might opt to reject the document outright due to not containing sufficient information.<br><br>If this value is not provided, it is to be interpreted as false.</td>
 </tr>
 
+<tr>
+    <td><nobr><b>useBeams</b></nobr></td>
+    <td>
+        
+        <a href="../boolean/">boolean</a>
+        
+    </td>
+    <td>No</td>
+    <td>This answers the question "Are beams encoded in this document?"<br><br>If the value is true, any MNX event that is not encoded within a beam should be treated as <em>unbeamed</em>.<br><br>If the value is false (or not provided), consuming software is expected to use its own beaming algorithm to determine beams.</td>
+</tr>
+
 
 </table>
 

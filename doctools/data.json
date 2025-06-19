@@ -4824,6 +4824,23 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 274,
+    "fields": {
+        "parent": 162,
+        "child_key": "useBeams",
+        "child": 112,
+        "is_required": false,
+        "description": [
+            "This answers the question \"Are beams encoded in this document?\"",
+            "",
+            "If the value is true, any MNX event that is not encoded within a beam should be treated as <em>unbeamed</em>.",
+            "",
+            "If the value is false (or not provided), consuming software is expected to use its own beaming algorithm to determine beams."
+        ]
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {
