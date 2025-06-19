@@ -3284,7 +3284,11 @@
         "child_key": "glyph",
         "child": 106,
         "is_required": false,
-        "description": "A specific SMuFL glyph name to be used when rendering this clef, e.g. <code>gClefArrowUp</code>. See <a href=\"https://w3c.github.io/smufl/latest/tables/clefs.html\">SMuFL clef glyphs</a>."
+        "description": [
+            "A specific SMuFL glyph name to be used when rendering this clef, e.g. <code>gClefArrowUp</code>. See <a href=\"https://w3c.github.io/smufl/latest/tables/clefs.html\">SMuFL clef glyphs</a>.",
+            "",
+            "We encourage you to use this sparingly. In the case of octave-transposing clefs, it's better to use <code>octave</code> and <code>showOctave</code> rather than just using <code>glyph</code>."
+        ]
     }
 },
 {
@@ -4799,6 +4803,23 @@
             "A special time signature glyph to use, e.g. for common time or cut time.",
             "",
             "Note it's still required to encode \"count\" and \"unit\" even when using \"display\". For display=\"common\", use \"count\": 4, \"unit\": 4. For display=\"cut\", use \"count\": 2, \"unit\": 2."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 273,
+    "fields": {
+        "parent": 19,
+        "child_key": "showOctave",
+        "child": 112,
+        "is_required": false,
+        "description": [
+            "Whether the clef's glyph should display an octave offset visually (such as an \"8va\" at the bottom of a G clef).",
+            "",
+            "This is used together with <code>octave</code>. If <code>octave</code> is set to a non-zero value, <code>showOctave</code> encodes whether the octave offset should be displayed as part of the clef's glyph.",
+            "",
+            "We encourage you to use <code>showOctave</code> instead of the lower-level <code>glyph</code>, because the former encodes intent."
         ]
     }
 },

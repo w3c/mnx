@@ -97,7 +97,7 @@
         
     </td>
     <td>No</td>
-    <td>A specific SMuFL glyph name to be used when rendering this clef, e.g. <code>gClefArrowUp</code>. See <a href="https://w3c.github.io/smufl/latest/tables/clefs.html">SMuFL clef glyphs</a>.</td>
+    <td>A specific SMuFL glyph name to be used when rendering this clef, e.g. <code>gClefArrowUp</code>. See <a href="https://w3c.github.io/smufl/latest/tables/clefs.html">SMuFL clef glyphs</a>.<br><br>We encourage you to use this sparingly. In the case of octave-transposing clefs, it's better to use <code>octave</code> and <code>showOctave</code> rather than just using <code>glyph</code>.</td>
 </tr>
 
 <tr>
@@ -109,6 +109,17 @@
     </td>
     <td>No</td>
     <td>The number of octaves by which the sounded pitches normally indicated by the given clef sign should be transposed. Default is zero.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>showOctave</b></nobr></td>
+    <td>
+        
+        <a href="../boolean/">boolean</a>
+        
+    </td>
+    <td>No</td>
+    <td>Whether the clef's glyph should display an octave offset visually (such as an "8va" at the bottom of a G clef).<br><br>This is used together with <code>octave</code>. If <code>octave</code> is set to a non-zero value, <code>showOctave</code> encodes whether the octave offset should be displayed as part of the clef's glyph.<br><br>We encourage you to use <code>showOctave</code> instead of the lower-level <code>glyph</code>, because the former encodes intent.</td>
 </tr>
 
 <tr>
