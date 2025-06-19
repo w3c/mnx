@@ -17,16 +17,16 @@
           "beams": [
             {
                "events": ["ev1", "ev2", "ev3", "ev4", "ev5", "ev6", "ev7", "ev8"],
-               "inner": [
+               "beams": [
                   {
                      "events": ["ev1", "ev2", "ev3", "ev4"],
-                     "inner": [{
+                     "beams": [{
                         "events": ["ev1", "ev2", "ev3", "ev4"]
                      }]
                   },
                   {
                      "events": ["ev5", "ev6", "ev7", "ev8"],
-                     "inner": [{
+                     "beams": [{
                         "events": ["ev5", "ev6", "ev7", "ev8"]
                      }]
                   }
@@ -34,17 +34,17 @@
             },
             {
                "events": ["ev9", "ev10", "ev11", "ev12", "ev13", "ev14", "ev15", "ev16"],
-               "inner": [
+               "beams": [
                   {
                      "events": ["ev9", "ev10", "ev11", "ev12"],
-                     "inner": [
+                     "beams": [
                         {"events": ["ev9", "ev10"]},
                         {"events": ["ev11", "ev12"]}
                      ]
                   },
                   {
                      "events": ["ev13", "ev14", "ev15", "ev16"],
-                     "inner": [
+                     "beams": [
                         {"events": ["ev13", "ev14"]},
                         {"events": ["ev15", "ev16"]}
                      ]

@@ -442,7 +442,9 @@
         "description": [
             "<p>Describes a single beam.</p>",
             "",
-            "<p>For music that uses secondary beams (i.e., sixteenth notes or smaller), the secondary beams are encoded explicitly, within <code>\"inner\"</code>.</p>"
+            "<p>For music that uses secondary beams (i.e., sixteenth notes or smaller), encoding the secondary beams is optional. If they're encoded explicitly, they go within a nested <code>\"beams\"</code> object within the beam. This nesting can be recursive, for multi-layered beams.</p>",
+            "",
+            "<p>Beam hooks are encoded as a secondary beam containing only a single event. A beam hook can optionally encode the direction of its hook, with <code>\"direction\"</code>.</p>"
         ]
     }
 },
@@ -452,28 +454,6 @@
     "fields": {
         "name": "ID list",
         "slug": "id-list",
-        "schema": 1,
-        "object_type": 2,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobject",
-    "pk": 41,
-    "fields": {
-        "name": "beam hook",
-        "slug": "beam-hook",
-        "schema": 1,
-        "object_type": 1,
-        "description": "<p>Describes a \"hook\" within a beam.</p>"
-    }
-},
-{
-    "model": "spectools.jsonobject",
-    "pk": 42,
-    "fields": {
-        "name": "hook list",
-        "slug": "hook-list",
         "schema": 1,
         "object_type": 2,
         "description": ""
@@ -2347,54 +2327,10 @@
     "pk": 43,
     "fields": {
         "parent": 39,
-        "child_key": "inner",
+        "child_key": "beams",
         "child": 38,
         "is_required": false,
         "description": "Secondary beams within this beam."
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 44,
-    "fields": {
-        "parent": 42,
-        "child_key": "0",
-        "child": 41,
-        "is_required": false,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 45,
-    "fields": {
-        "parent": 39,
-        "child_key": "hooks",
-        "child": 42,
-        "is_required": false,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 46,
-    "fields": {
-        "parent": 41,
-        "child_key": "direction",
-        "child": 43,
-        "is_required": true,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 47,
-    "fields": {
-        "parent": 41,
-        "child_key": "event",
-        "child": 37,
-        "is_required": true,
-        "description": ""
     }
 },
 {
@@ -4843,6 +4779,17 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 275,
+    "fields": {
+        "parent": 39,
+        "child_key": "direction",
+        "child": 43,
+        "is_required": false,
+        "description": "If this beam represents a beam hook, this encodes the direction of the hook. Default value is \"auto\"."
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {
@@ -5680,6 +5627,15 @@
     }
 },
 {
+    "model": "spectools.jsonobjectenum",
+    "pk": 94,
+    "fields": {
+        "parent": 43,
+        "name": "auto",
+        "description": ""
+    }
+},
+{
     "model": "spectools.exampledocument",
     "pk": 1,
     "fields": {
@@ -6344,6 +6300,20 @@
         "document": "",
         "document_path": "examples/json/time-signature-glyphs.json",
         "image_url": "/static/examples/time-signature-glyphs.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 50,
+    "fields": {
+        "name": "Beams (secondary beam breaks implied)",
+        "slug": "beams-secondary-beam-breaks-implied",
+        "schema": 1,
+        "blurb": "",
+        "document": "",
+        "document_path": "examples/json/beams-secondary-beam-breaks-implied.json",
+        "image_url": "/static/examples/beams-secondary-beam-breaks.png",
         "is_featured": false
     }
 },
@@ -7573,7 +7543,7 @@
         "preamble": [
             "MusicXML uses <code>&lt;beam&gt;</code> elements with the value <code>\"forward hook\"</code> or <code>\"backward hook\"</code>.",
             "",
-            "MNX uses the <code>\"hooks\"</code> key on the beam."
+            "MNX uses an inner <code>\"beams\"</code> key on the outer beam, with an optional <code>\"direction\"</code> that specifies the direction of the hook."
         ],
         "document": [
             "<score-partwise version=\"3.1\">",
@@ -10971,14 +10941,6 @@
     "fields": {
         "example": 8,
         "json_object": 37
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 260,
-    "fields": {
-        "example": 11,
-        "json_object": 41
     }
 },
 {
@@ -19466,6 +19428,238 @@
     "pk": 1549,
     "fields": {
         "example": 49,
+        "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1550,
+    "fields": {
+        "example": 11,
+        "json_object": 162
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1551,
+    "fields": {
+        "example": 11,
+        "json_object": 112
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1552,
+    "fields": {
+        "example": 50,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1553,
+    "fields": {
+        "example": 50,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1554,
+    "fields": {
+        "example": 50,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1555,
+    "fields": {
+        "example": 50,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1556,
+    "fields": {
+        "example": 50,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1557,
+    "fields": {
+        "example": 50,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1558,
+    "fields": {
+        "example": 50,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1559,
+    "fields": {
+        "example": 50,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1560,
+    "fields": {
+        "example": 50,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1561,
+    "fields": {
+        "example": 50,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1562,
+    "fields": {
+        "example": 50,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1563,
+    "fields": {
+        "example": 50,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1564,
+    "fields": {
+        "example": 50,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1565,
+    "fields": {
+        "example": 50,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1566,
+    "fields": {
+        "example": 50,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1567,
+    "fields": {
+        "example": 50,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1568,
+    "fields": {
+        "example": 50,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1569,
+    "fields": {
+        "example": 50,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1570,
+    "fields": {
+        "example": 50,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1571,
+    "fields": {
+        "example": 50,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1572,
+    "fields": {
+        "example": 50,
+        "json_object": 162
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1573,
+    "fields": {
+        "example": 50,
+        "json_object": 35
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1574,
+    "fields": {
+        "example": 50,
+        "json_object": 37
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1575,
+    "fields": {
+        "example": 50,
+        "json_object": 39
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1576,
+    "fields": {
+        "example": 50,
+        "json_object": 112
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1577,
+    "fields": {
+        "example": 50,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1578,
+    "fields": {
+        "example": 50,
         "json_object": 127
     }
 },

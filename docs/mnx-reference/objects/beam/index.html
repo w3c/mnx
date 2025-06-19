@@ -54,7 +54,9 @@
 
 <p>Describes a single beam.</p>
 
-<p>For music that uses secondary beams (i.e., sixteenth notes or smaller), the secondary beams are encoded explicitly, within <code>"inner"</code>.</p>
+<p>For music that uses secondary beams (i.e., sixteenth notes or smaller), encoding the secondary beams is optional. If they're encoded explicitly, they go within a nested <code>"beams"</code> object within the beam. This nesting can be recursive, for multi-layered beams.</p>
+
+<p>Beam hooks are encoded as a secondary beam containing only a single event. A beam hook can optionally encode the direction of its hook, with <code>"direction"</code>.</p>
 
 
 
@@ -72,6 +74,31 @@
 
 
 <tr>
+    <td><nobr><b>beams</b></nobr></td>
+    <td>
+        
+            An array of
+            
+            <a href="./">beam objects</a>
+            
+        
+    </td>
+    <td>No</td>
+    <td>Secondary beams within this beam.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>direction</b></nobr></td>
+    <td>
+        
+        <a href="../beam-hook-direction/">beam hook direction</a>
+        
+    </td>
+    <td>No</td>
+    <td>If this beam represents a beam hook, this encodes the direction of the hook. Default value is "auto".</td>
+</tr>
+
+<tr>
     <td><nobr><b>events</b></nobr></td>
     <td>
         
@@ -83,34 +110,6 @@
     </td>
     <td>Yes</td>
     <td>IDs of the events that comprise this beam — in order by their position in the beam.</td>
-</tr>
-
-<tr>
-    <td><nobr><b>hooks</b></nobr></td>
-    <td>
-        
-            An array of
-            
-            <a href="../beam-hook/">beam hook objects</a>
-            
-        
-    </td>
-    <td>No</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td><nobr><b>inner</b></nobr></td>
-    <td>
-        
-            An array of
-            
-            <a href="./">beam objects</a>
-            
-        
-    </td>
-    <td>No</td>
-    <td>Secondary beams within this beam.</td>
 </tr>
 
 
@@ -137,7 +136,7 @@
 
 <p>This object is used in the following examples:</p>
 <p>
-    <nobr><a href="../../examples/beams/">Beams</a></nobr>, <nobr><a href="../../examples/beams-across-barlines/">Beams (across barlines)</a></nobr>, <nobr><a href="../../examples/beam-hooks/">Beams (hooks)</a></nobr>, <nobr><a href="../../examples/beams-secondary-beam-breaks/">Beams (secondary beam breaks)</a></nobr>, <nobr><a href="../../examples/beams-inner-grace-notes/">Beams (with inner grace notes)</a></nobr>, <nobr><a href="../../examples/grace-notes-beamed/">Grace notes (beamed)</a></nobr>, <nobr><a href="../../examples/grand-staff/">Grand staff piano music</a></nobr>, <nobr><a href="../../examples/parts/">Parts</a></nobr>, <nobr><a href="../../examples/tuplets/">Tuplets</a></nobr>
+    <nobr><a href="../../examples/beams/">Beams</a></nobr>, <nobr><a href="../../examples/beams-across-barlines/">Beams (across barlines)</a></nobr>, <nobr><a href="../../examples/beam-hooks/">Beams (hooks)</a></nobr>, <nobr><a href="../../examples/beams-secondary-beam-breaks-implied/">Beams (secondary beam breaks implied)</a></nobr>, <nobr><a href="../../examples/beams-secondary-beam-breaks/">Beams (secondary beam breaks)</a></nobr>, <nobr><a href="../../examples/beams-inner-grace-notes/">Beams (with inner grace notes)</a></nobr>, <nobr><a href="../../examples/grace-notes-beamed/">Grace notes (beamed)</a></nobr>, <nobr><a href="../../examples/grand-staff/">Grand staff piano music</a></nobr>, <nobr><a href="../../examples/parts/">Parts</a></nobr>, <nobr><a href="../../examples/tuplets/">Tuplets</a></nobr>
 </p>
 
 

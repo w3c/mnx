@@ -16,25 +16,25 @@
         {
           "beams": [
             {
-               "events": ["ev1", "ev2", "ev3"],
-               "hooks": [
-                  {"direction": "right", "event": "ev1"},
-                  {"direction": "left", "event": "ev3"}
-               ]
+              "events": ["ev1", "ev2", "ev3"],
+              "beams": [
+                {"events": ["ev1"], "direction": "right"},
+                {"events": ["ev3"], "direction": "left"}
+              ]
             },
             {
-               "events": ["ev4", "ev5", "ev6"],
-               "hooks": [
-                  {"direction": "right", "event": "ev4"},
-                  {"direction": "left", "event": "ev6"}
-               ]
+              "events": ["ev4", "ev5", "ev6"],
+              "beams": [
+                {"events": ["ev4"], "direction": "right"},
+                {"events": ["ev6"], "direction": "left"}
+              ]
             },
             {
-               "events": ["ev7", "ev8", "ev9"],
-               "hooks": [
-                  {"direction": "right", "event": "ev7"},
-                  {"direction": "left", "event": "ev9"}
-               ]
+              "events": ["ev7", "ev8", "ev9"],
+              "beams": [
+                {"events": ["ev7"], "direction": "right"},
+                {"events": ["ev9"], "direction": "left"}
+              ]
             }
           ],
           "clefs": [

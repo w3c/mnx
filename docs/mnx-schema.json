@@ -4,37 +4,22 @@
       "items": {
         "additionalProperties": false,
         "properties": {
+          "beams": {
+            "$ref": "#/$defs/beam-list"
+          },
+          "direction": {
+            "enum": [
+              "left",
+              "right",
+              "auto"
+            ],
+            "type": "string"
+          },
           "events": {
             "items": {
               "$ref": "#/$defs/id"
             },
             "type": "array"
-          },
-          "hooks": {
-            "items": {
-              "additionalProperties": false,
-              "properties": {
-                "direction": {
-                  "enum": [
-                    "left",
-                    "right"
-                  ],
-                  "type": "string"
-                },
-                "event": {
-                  "$ref": "#/$defs/id"
-                }
-              },
-              "required": [
-                "direction",
-                "event"
-              ],
-              "type": "object"
-            },
-            "type": "array"
-          },
-          "inner": {
-            "$ref": "#/$defs/beam-list"
           }
         },
         "required": [
