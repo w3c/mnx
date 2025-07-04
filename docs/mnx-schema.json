@@ -254,6 +254,15 @@
                   "type": "object"
                 },
                 "type": "array"
+              },
+              "written": {
+                "additionalProperties": false,
+                "properties": {
+                  "diatonicDelta": {
+                    "$ref": "#/$defs/integer-signed"
+                  }
+                },
+                "type": "object"
               }
             },
             "required": [

@@ -1961,6 +1961,17 @@
     }
 },
 {
+    "model": "spectools.jsonobject",
+    "pk": 182,
+    "fields": {
+        "name": "written",
+        "slug": "written",
+        "schema": 1,
+        "object_type": 1,
+        "description": "<p>Information about how this note is written in context of a transposed score or part.</p>"
+    }
+},
+{
     "model": "spectools.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -4890,6 +4901,34 @@
             "When transposing key signatures to accommodate this part, \"keyFifthsFlipsAt\" describes the point at which the key signature \"flips\" enharmonically (to avoid an overly large number of sharps or flats).",
             "",
             "Non-negative values (including 0) mean \"subtract 12 fifths,\" and negative values means \"add 12.\" If this value isn't provided, default behavior is to <em>not</em> flip the key signature."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 281,
+    "fields": {
+        "parent": 31,
+        "child_key": "written",
+        "child": 182,
+        "is_required": false,
+        "description": "Information about how this note is written in context of a transposed score or part."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 282,
+    "fields": {
+        "parent": 182,
+        "child_key": "diatonicDelta",
+        "child": 180,
+        "is_required": false,
+        "description": [
+            "After computing the transposed pitch by applying the part's transposition and any necessary \"keyFifthsFlipAt\" value, this specifies the number of diatonic steps to add or remove to obtain the final written pitch.",
+            "",
+            "If not specified, the value is 0.",
+            "",
+            "For example, in case of a C-flat note that you want to write for the player as a B natural, you'd use \"diatonicDelta\": -1."
         ]
     }
 },
