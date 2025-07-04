@@ -1924,6 +1924,28 @@
     }
 },
 {
+    "model": "spectools.jsonobject",
+    "pk": 179,
+    "fields": {
+        "name": "interval",
+        "slug": "interval",
+        "schema": 1,
+        "object_type": 1,
+        "description": "<p>A musical interval between pitches.</p>"
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 180,
+    "fields": {
+        "name": "integer (signed)",
+        "slug": "integer-signed",
+        "schema": 1,
+        "object_type": 4,
+        "description": ""
+    }
+},
+{
     "model": "spectools.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -4787,6 +4809,47 @@
         "child": 43,
         "is_required": false,
         "description": "If this beam represents a beam hook, this encodes the direction of the hook. Default value is \"auto\"."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 276,
+    "fields": {
+        "parent": 14,
+        "child_key": "transposition",
+        "child": 179,
+        "is_required": false,
+        "description": [
+            "The instrument's transposition (used for transposing instruments such as B-flat clarinet). Specifies the interval that transforms a sounding pitch into a written pitch.",
+            "",
+            "For example, a B-flat clarinet, which is written a major-second above sounded pitch, would use the interval {\"diatonic\": 1, \"chromatic\": 2}.",
+            "",
+            "A piccolo, which is written an octave lower than sounded pitch, would use the interval {\"diatonic\": -7, \"chromatic\": -12}.",
+            "",
+            "(Note for MusicXML users: the direction of transposition is the opposite of MusicXML.)"
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 277,
+    "fields": {
+        "parent": 179,
+        "child_key": "diatonic",
+        "child": 180,
+        "is_required": true,
+        "description": "The number of diatonic steps."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 278,
+    "fields": {
+        "parent": 179,
+        "child_key": "chromatic",
+        "child": 180,
+        "is_required": true,
+        "description": "The number of chromatic steps."
     }
 },
 {

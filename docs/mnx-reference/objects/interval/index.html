@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The integer (signed) object | MNX specification</title>
+<title>The interval object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -44,15 +44,55 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    integer (signed)
+    interval
 </p>
 
-<h1>The integer (signed) object</h1>
+<h1>The interval object</h1>
 
-<p><b>Type:</b> Number</p>
+<p><b>Type:</b> Dictionary</p>
+
+
+<p>A musical interval between pitches.</p>
 
 
 
+<h2>Keys</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>chromatic</b></nobr></td>
+    <td>
+        
+        <a href="../integer-signed/">integer (signed)</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The number of chromatic steps.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>diatonic</b></nobr></td>
+    <td>
+        
+        <a href="../integer-signed/">integer (signed)</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The number of diatonic steps.</td>
+</tr>
+
+
+</table>
 
 
 
@@ -64,9 +104,7 @@
 
 <ul>
 
-<li><a href="../interval/">interval</a>: "chromatic"</li>
-
-<li><a href="../interval/">interval</a>: "diatonic"</li>
+<li><a href="../part/">part</a>: "transposition"</li>
 
 </ul>
 

@@ -336,6 +336,9 @@
     "id": {
       "type": "string"
     },
+    "integer-signed": {
+      "type": "integer"
+    },
     "integer-unsigned": {
       "type": "integer"
     },
@@ -1192,6 +1195,22 @@
           },
           "staves": {
             "type": "integer"
+          },
+          "transposition": {
+            "additionalProperties": false,
+            "properties": {
+              "chromatic": {
+                "$ref": "#/$defs/integer-signed"
+              },
+              "diatonic": {
+                "$ref": "#/$defs/integer-signed"
+              }
+            },
+            "required": [
+              "chromatic",
+              "diatonic"
+            ],
+            "type": "object"
           }
         },
         "type": "object"
