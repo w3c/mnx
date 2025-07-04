@@ -1972,6 +1972,61 @@
     }
 },
 {
+    "model": "spectools.jsonobject",
+    "pk": 183,
+    "fields": {
+        "name": "kit notes",
+        "slug": "kit-notes",
+        "schema": 1,
+        "object_type": 2,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 184,
+    "fields": {
+        "name": "kit note",
+        "slug": "kit-note",
+        "schema": 1,
+        "object_type": 1,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 185,
+    "fields": {
+        "name": "kit component ID",
+        "slug": "kit-component-id",
+        "schema": 1,
+        "object_type": 3,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 186,
+    "fields": {
+        "name": "kit",
+        "slug": "kit",
+        "schema": 1,
+        "object_type": 7,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 187,
+    "fields": {
+        "name": "kit component",
+        "slug": "kit-component",
+        "schema": 1,
+        "object_type": 1,
+        "description": ""
+    }
+},
+{
     "model": "spectools.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -4930,6 +4985,113 @@
             "",
             "If not specified, this should be interpreted as false."
         ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 284,
+    "fields": {
+        "parent": 26,
+        "child_key": "kitNotes",
+        "child": 183,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 285,
+    "fields": {
+        "parent": 183,
+        "child_key": "0",
+        "child": 184,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 286,
+    "fields": {
+        "parent": 184,
+        "child_key": "kitComponent",
+        "child": 185,
+        "is_required": true,
+        "description": "Refers to an ID in this part's kit."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 287,
+    "fields": {
+        "parent": 184,
+        "child_key": "staff",
+        "child": 105,
+        "is_required": false,
+        "description": [
+            "A specific staff index for this kit note. If not provided, the value is inherited from any ancestor element that specified it. If no ancestor did so, the value is determined automatically according to the implementation’s rendering rules.",
+            "",
+            "The primary purpose of this attribute is to override a default staff assignment at the sequence or event level — as in cross-staff keyboard notation."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 288,
+    "fields": {
+        "parent": 184,
+        "child_key": "ties",
+        "child": 174,
+        "is_required": false,
+        "description": [
+            "If this kit note starts a tie, this object encodes the tie.",
+            "",
+            "This is an array, because it's possible for a single kit note to be tied to multiple end kit notes, in the case of jumps and alternate endings. The order of the elements of this array is undefined."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 289,
+    "fields": {
+        "parent": 14,
+        "child_key": "kit",
+        "child": 186,
+        "is_required": false,
+        "description": "The definition of a kit of instruments (typically percussion) that are used by this part. Each event in this part can then refer to an individual kitComponent."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 290,
+    "fields": {
+        "parent": 186,
+        "child_key": "0",
+        "child": 187,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 291,
+    "fields": {
+        "parent": 187,
+        "child_key": "staffPosition",
+        "child": 143,
+        "is_required": true,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 292,
+    "fields": {
+        "parent": 187,
+        "child_key": "name",
+        "child": 110,
+        "is_required": false,
+        "description": "A human-readable name for this kit component, e.g., for purposes of display in a UI."
     }
 },
 {

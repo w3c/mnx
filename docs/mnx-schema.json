@@ -41,6 +41,27 @@
         "id": {
           "$ref": "#/$defs/id"
         },
+        "kitNotes": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "kitComponent": {
+                "type": "string"
+              },
+              "staff": {
+                "$ref": "#/$defs/staff-number"
+              },
+              "ties": {
+                "$ref": "#/$defs/tie-list"
+              }
+            },
+            "required": [
+              "kitComponent"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
         "lyrics": {
           "additionalProperties": false,
           "properties": {
@@ -235,22 +256,7 @@
                 "$ref": "#/$defs/staff-number"
               },
               "ties": {
-                "items": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "lv": {
-                      "type": "boolean"
-                    },
-                    "side": {
-                      "$ref": "#/$defs/slur-side"
-                    },
-                    "target": {
-                      "$ref": "#/$defs/id"
-                    }
-                  },
-                  "type": "object"
-                },
-                "type": "array"
+                "$ref": "#/$defs/tie-list"
               },
               "written": {
                 "additionalProperties": false,
@@ -676,6 +682,24 @@
       },
       "type": "array"
     },
+    "tie-list": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "lv": {
+            "type": "boolean"
+          },
+          "side": {
+            "$ref": "#/$defs/slur-side"
+          },
+          "target": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
     "tuplet-display-setting": {
       "enum": [
         "noNumber",
@@ -1019,6 +1043,27 @@
         "properties": {
           "id": {
             "$ref": "#/$defs/id"
+          },
+          "kit": {
+            "additionalProperties": false,
+            "patternProperties": {
+              "^.*$": {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "$ref": "#/$defs/string"
+                  },
+                  "staffPosition": {
+                    "$ref": "#/$defs/staff-position"
+                  }
+                },
+                "required": [
+                  "staffPosition"
+                ],
+                "type": "object"
+              }
+            },
+            "type": "object"
           },
           "measures": {
             "items": {
