@@ -4933,6 +4933,21 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 283,
+    "fields": {
+        "parent": 78,
+        "child_key": "useWritten",
+        "child": 112,
+        "is_required": false,
+        "description": [
+            "If true, this score should be treated as a written-pitch (i.e., transposed) score instead of a concert-pitch score and all note objects and key signatures should be transposed before display.",
+            "",
+            "If not specified, this should be interpreted as false."
+        ]
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {
