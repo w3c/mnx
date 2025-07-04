@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The kit component object | MNX specification</title>
+<title>The sound object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -44,10 +44,10 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    kit component
+    sound
 </p>
 
-<h1>The kit component object</h1>
+<h1>The sound object</h1>
 
 <p><b>Type:</b> Dictionary</p>
 
@@ -68,6 +68,17 @@
 
 
 <tr>
+    <td><nobr><b>midiNumber</b></nobr></td>
+    <td>
+        
+        <a href="../midi-number/">MIDI number</a>
+        
+    </td>
+    <td>No</td>
+    <td></td>
+</tr>
+
+<tr>
     <td><nobr><b>name</b></nobr></td>
     <td>
         
@@ -75,29 +86,7 @@
         
     </td>
     <td>No</td>
-    <td>A human-readable name for this kit component, e.g., for purposes of display in a UI.</td>
-</tr>
-
-<tr>
-    <td><nobr><b>soundID</b></nobr></td>
-    <td>
-        
-        <a href="../id/">ID</a>
-        
-    </td>
-    <td>No</td>
-    <td>ID of the sound used for this kit component. See the "sounds" key in "global".</td>
-</tr>
-
-<tr>
-    <td><nobr><b>staffPosition</b></nobr></td>
-    <td>
-        
-        <a href="../staff-position/">staff position</a>
-        
-    </td>
-    <td>Yes</td>
-    <td></td>
+    <td>A human-readable name for this sound, suitable for use in a UI.</td>
 </tr>
 
 
@@ -113,7 +102,7 @@
 
 <ul>
 
-<li><a href="../part/">part</a>: "kit"</li>
+<li><a href="../global/">global data</a>: "sounds"</li>
 
 </ul>
 

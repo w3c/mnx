@@ -2027,6 +2027,39 @@
     }
 },
 {
+    "model": "spectools.jsonobject",
+    "pk": 188,
+    "fields": {
+        "name": "sounds (global)",
+        "slug": "sounds-global",
+        "schema": 1,
+        "object_type": 7,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 189,
+    "fields": {
+        "name": "sound",
+        "slug": "sound",
+        "schema": 1,
+        "object_type": 1,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 190,
+    "fields": {
+        "name": "MIDI number",
+        "slug": "midi-number",
+        "schema": 1,
+        "object_type": 4,
+        "description": "A MIDI pitch — an unsigned number between 0-127, where middle C is 60."
+    }
+},
+{
     "model": "spectools.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -5092,6 +5125,61 @@
         "child": 110,
         "is_required": false,
         "description": "A human-readable name for this kit component, e.g., for purposes of display in a UI."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 293,
+    "fields": {
+        "parent": 1,
+        "child_key": "sounds",
+        "child": 188,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 294,
+    "fields": {
+        "parent": 188,
+        "child_key": "0",
+        "child": 189,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 295,
+    "fields": {
+        "parent": 189,
+        "child_key": "midiNumber",
+        "child": 190,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 296,
+    "fields": {
+        "parent": 189,
+        "child_key": "name",
+        "child": 110,
+        "is_required": false,
+        "description": "A human-readable name for this sound, suitable for use in a UI."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 297,
+    "fields": {
+        "parent": 187,
+        "child_key": "soundID",
+        "child": 37,
+        "is_required": false,
+        "description": "ID of the sound used for this kit component. See the \"sounds\" key in \"global\"."
     }
 },
 {

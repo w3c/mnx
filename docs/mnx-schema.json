@@ -970,6 +970,24 @@
           },
           "type": "array"
         },
+        "sounds": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^.*$": {
+              "additionalProperties": false,
+              "properties": {
+                "midiNumber": {
+                  "type": "integer"
+                },
+                "name": {
+                  "$ref": "#/$defs/string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
         "styles": {
           "items": {
             "additionalProperties": false,
@@ -1052,6 +1070,9 @@
                 "properties": {
                   "name": {
                     "$ref": "#/$defs/string"
+                  },
+                  "soundID": {
+                    "$ref": "#/$defs/id"
                   },
                   "staffPosition": {
                     "$ref": "#/$defs/staff-position"
