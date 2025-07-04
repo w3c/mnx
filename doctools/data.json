@@ -1950,6 +1950,17 @@
     }
 },
 {
+    "model": "spectools.jsonobject",
+    "pk": 181,
+    "fields": {
+        "name": "part transposition",
+        "slug": "part-transposition",
+        "schema": 1,
+        "object_type": 1,
+        "description": "<p>Describes a part's instrument transposition, including the transposition interval and number of fifths at which key signatures \"flip\" enharmonically.</p>"
+    }
+},
+{
     "model": "spectools.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -4821,7 +4832,7 @@
     "fields": {
         "parent": 14,
         "child_key": "transposition",
-        "child": 179,
+        "child": 181,
         "is_required": false,
         "description": [
             "The instrument's transposition (used for transposing instruments such as B-flat clarinet). Specifies the interval that transforms a sounding pitch into a written pitch.",
@@ -4854,6 +4865,32 @@
         "child": 180,
         "is_required": true,
         "description": "The number of chromatic steps."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 279,
+    "fields": {
+        "parent": 181,
+        "child_key": "interval",
+        "child": 179,
+        "is_required": true,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 280,
+    "fields": {
+        "parent": 181,
+        "child_key": "keyFifthsFlipAt",
+        "child": 180,
+        "is_required": false,
+        "description": [
+            "When transposing key signatures to accommodate this part, \"keyFifthsFlipsAt\" describes the point at which the key signature \"flips\" enharmonically (to avoid an overly large number of sharps or flats).",
+            "",
+            "Non-negative values (including 0) mean \"subtract 12 fifths,\" and negative values means \"add 12.\" If this value isn't provided, default behavior is to <em>not</em> flip the key signature."
+        ]
     }
 },
 {

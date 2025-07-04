@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The integer (signed) object | MNX specification</title>
+<title>The part transposition object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -44,15 +44,55 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    integer (signed)
+    part transposition
 </p>
 
-<h1>The integer (signed) object</h1>
+<h1>The part transposition object</h1>
 
-<p><b>Type:</b> Number</p>
+<p><b>Type:</b> Dictionary</p>
+
+
+<p>Describes a part's instrument transposition, including the transposition interval and number of fifths at which key signatures "flip" enharmonically.</p>
 
 
 
+<h2>Keys</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>interval</b></nobr></td>
+    <td>
+        
+        <a href="../interval/">interval</a>
+        
+    </td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+<tr>
+    <td><nobr><b>keyFifthsFlipAt</b></nobr></td>
+    <td>
+        
+        <a href="../integer-signed/">integer (signed)</a>
+        
+    </td>
+    <td>No</td>
+    <td>When transposing key signatures to accommodate this part, "keyFifthsFlipsAt" describes the point at which the key signature "flips" enharmonically (to avoid an overly large number of sharps or flats).<br><br>Non-negative values (including 0) mean "subtract 12 fifths," and negative values means "add 12." If this value isn't provided, default behavior is to <em>not</em> flip the key signature.</td>
+</tr>
+
+
+</table>
 
 
 
@@ -64,11 +104,7 @@
 
 <ul>
 
-<li><a href="../interval/">interval</a>: "chromatic"</li>
-
-<li><a href="../interval/">interval</a>: "diatonic"</li>
-
-<li><a href="../part-transposition/">part transposition</a>: "keyFifthsFlipAt"</li>
+<li><a href="../part/">part</a>: "transposition"</li>
 
 </ul>
 

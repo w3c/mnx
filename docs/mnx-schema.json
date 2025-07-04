@@ -1199,16 +1199,28 @@
           "transposition": {
             "additionalProperties": false,
             "properties": {
-              "chromatic": {
-                "$ref": "#/$defs/integer-signed"
+              "interval": {
+                "additionalProperties": false,
+                "properties": {
+                  "chromatic": {
+                    "$ref": "#/$defs/integer-signed"
+                  },
+                  "diatonic": {
+                    "$ref": "#/$defs/integer-signed"
+                  }
+                },
+                "required": [
+                  "chromatic",
+                  "diatonic"
+                ],
+                "type": "object"
               },
-              "diatonic": {
+              "keyFifthsFlipAt": {
                 "$ref": "#/$defs/integer-signed"
               }
             },
             "required": [
-              "chromatic",
-              "diatonic"
+              "interval"
             ],
             "type": "object"
           }
