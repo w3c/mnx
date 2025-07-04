@@ -178,7 +178,11 @@
         "slug": "fifths",
         "schema": 1,
         "object_type": 4,
-        "description": ""
+        "description": [
+            "<p>Represents the number of flats or sharps, as in a traditional key signature. Negative numbers are used for flats and positive numbers for sharps, reflecting the key's placement within the circle of fifths (hence the name \"fifths\").</p>",
+            "",
+            "<p>While there's no theoretical limit on this value, for practical purposes we recommend keeping this value between -8 and 8.</p>"
+        ]
     }
 },
 {
