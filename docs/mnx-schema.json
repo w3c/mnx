@@ -323,9 +323,6 @@
           },
           "type": "array"
         },
-        "smuflFont": {
-          "$ref": "#/$defs/smufl-font"
-        },
         "staff": {
           "$ref": "#/$defs/staff-number"
         },
@@ -558,9 +555,6 @@
         "up",
         "down"
       ],
-      "type": "string"
-    },
-    "smufl-font": {
       "type": "string"
     },
     "smufl-glyph": {
@@ -1263,7 +1257,7 @@
             "type": "string"
           },
           "smuflFont": {
-            "$ref": "#/$defs/smufl-font"
+            "type": "string"
           },
           "staves": {
             "type": "integer"
