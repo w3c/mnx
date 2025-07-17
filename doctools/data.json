@@ -5168,6 +5168,39 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 298,
+    "fields": {
+        "parent": 184,
+        "child_key": "id",
+        "child": 37,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 299,
+    "fields": {
+        "parent": 184,
+        "child_key": "perform",
+        "child": 119,
+        "is_required": false,
+        "description": "Controls whether this kit note is performed by consuming software."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 300,
+    "fields": {
+        "parent": 184,
+        "child_key": "class",
+        "child": 108,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {
