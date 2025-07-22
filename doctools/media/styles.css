@@ -223,28 +223,7 @@ main {
     font: 40px smufl,sans-serif;
 }
 
-.w3c-logo {
-    display: inline-flex;
-    background: #1a5e9a;
-    padding: 0.75em;
-    border-radius: 0.4em;
-    float: right;
-}
-.w3c-logo-homepage svg {
-    width: 62px;
-}
-
 @media (max-width: 800px) {
-    .w3c-logo {
-        float: none;
-        margin-bottom: 10px;
-        padding: 0.5em;
-    }
-    .w3c-logo-homepage svg {
-        width: 34px;
-        height: 22px;
-    }
-
     main {
         max-width: 100%;
     }
