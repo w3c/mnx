@@ -5215,6 +5215,23 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 301,
+    "fields": {
+        "parent": 181,
+        "child_key": "prefersWrittenPitches",
+        "child": 112,
+        "is_required": false,
+        "description": [
+            "Specifies that this instrument prefers displaying written pitches (e.g., transposed pitches) even in the context of concert-pitch scores.",
+            "",
+            "By convention, this is applied to piccolos, glockenspiels and double basses.",
+            "",
+            "If not provided, this should be interpreted as false."
+        ]
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {

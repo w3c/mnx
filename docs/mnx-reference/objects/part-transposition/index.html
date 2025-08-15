@@ -91,6 +91,17 @@
     <td>When transposing key signatures to accommodate this part, "keyFifthsFlipsAt" describes the point at which the key signature "flips" enharmonically (to avoid an overly large number of sharps or flats).<br><br>Non-negative values (including 0) mean "subtract 12 fifths," and negative values means "add 12." If this value isn't provided, default behavior is to <em>not</em> flip the key signature.</td>
 </tr>
 
+<tr>
+    <td><nobr><b>prefersWrittenPitches</b></nobr></td>
+    <td>
+        
+        <a href="../boolean/">boolean</a>
+        
+    </td>
+    <td>No</td>
+    <td>Specifies that this instrument prefers displaying written pitches (e.g., transposed pitches) even in the context of concert-pitch scores.<br><br>By convention, this is applied to piccolos, glockenspiels and double basses.<br><br>If not provided, this should be interpreted as false.</td>
+</tr>
+
 
 </table>
 
