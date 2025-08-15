@@ -1935,7 +1935,11 @@
         "slug": "interval",
         "schema": 1,
         "object_type": 1,
-        "description": "<p>A musical interval between pitches.</p>"
+        "description": [
+            "<p>A musical interval between pitches.</p>",
+            "",
+            "<p>It's defined by specifying the \"staffDistance\" and \"halfSteps\" between the pitches. In the future, we plan to add other ways of specifying intervals.</p>"
+        ]
     }
 },
 {
