@@ -2066,6 +2066,17 @@
     }
 },
 {
+    "model": "spectools.jsonobject",
+    "pk": 192,
+    "fields": {
+        "name": "__globalattrs__",
+        "slug": "globalAttrs",
+        "schema": 1,
+        "object_type": 1,
+        "description": ""
+    }
+},
+{
     "model": "spectools.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -2392,28 +2403,6 @@
             "",
             "If \"target\" is omitted, \"lv\" is required with a value of true."
         ]
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 37,
-    "fields": {
-        "parent": 31,
-        "child_key": "id",
-        "child": 37,
-        "is_required": false,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 38,
-    "fields": {
-        "parent": 26,
-        "child_key": "id",
-        "child": 37,
-        "is_required": false,
-        "description": ""
     }
 },
 {
@@ -2860,17 +2849,6 @@
 },
 {
     "model": "spectools.jsonobjectrelationship",
-    "pk": 86,
-    "fields": {
-        "parent": 14,
-        "child_key": "id",
-        "child": 37,
-        "is_required": false,
-        "description": "An optional ID for this part. This is used by other elements in the same MNX document in cases when they need to refer to a specific part (or parts)."
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
     "pk": 87,
     "fields": {
         "parent": 14,
@@ -3056,17 +3034,6 @@
             "",
             "This overrides any layout specified by the parent \"page\" or \"score\" objects."
         ]
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 102,
-    "fields": {
-        "parent": 75,
-        "child_key": "id",
-        "child": 37,
-        "is_required": true,
-        "description": "A unique identifier for this system layout. This is used by \"score\", \"page\" or \"system\" objects to specify which layout the score (or page, or system) uses."
     }
 },
 {
@@ -5183,17 +5150,6 @@
 },
 {
     "model": "spectools.jsonobjectrelationship",
-    "pk": 298,
-    "fields": {
-        "parent": 184,
-        "child_key": "id",
-        "child": 37,
-        "is_required": false,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
     "pk": 299,
     "fields": {
         "parent": 184,
@@ -5229,6 +5185,17 @@
             "",
             "If not provided, this should be interpreted as false."
         ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 303,
+    "fields": {
+        "parent": 192,
+        "child_key": "id",
+        "child": 37,
+        "is_required": false,
+        "description": ""
     }
 },
 {

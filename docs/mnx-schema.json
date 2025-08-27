@@ -1,16 +1,25 @@
 {
   "$defs": {
     "accent": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "pointing": {
           "$ref": "#/$defs/up-or-down"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "accidental-display": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "enclosure": {
           "$ref": "#/$defs/accidental-enclosure"
@@ -25,10 +34,15 @@
       "required": [
         "show"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "accidental-enclosure": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "symbol": {
           "$ref": "#/$defs/accidental-enclosure-symbol"
@@ -37,7 +51,8 @@
       "required": [
         "symbol"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "accidental-enclosure-symbol": {
       "enum": [
@@ -50,7 +65,11 @@
       "type": "integer"
     },
     "barline": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "type": {
           "$ref": "#/$defs/barline-type"
@@ -59,7 +78,8 @@
       "required": [
         "type"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "barline-type": {
       "enum": [
@@ -78,7 +98,11 @@
       "type": "string"
     },
     "beam": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "beams": {
           "$ref": "#/$defs/beam-list"
@@ -93,7 +117,8 @@
       "required": [
         "events"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "beam-hook-direction": {
       "enum": [
@@ -113,19 +138,28 @@
       "type": "integer"
     },
     "breath-mark": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "symbol": {
           "$ref": "#/$defs/breath-mark-symbol"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "breath-mark-symbol": {
       "type": "string"
     },
     "clef": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "class": {
           "$ref": "#/$defs/style-class"
@@ -153,7 +187,8 @@
         "sign",
         "staffPosition"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "clef-sign": {
       "enum": [
@@ -167,7 +202,11 @@
       "type": "string"
     },
     "dynamic": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "glyph": {
           "$ref": "#/$defs/smufl-glyph"
@@ -189,7 +228,8 @@
         "position",
         "value"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "dynamic-list": {
       "items": {
@@ -201,7 +241,11 @@
       "type": "string"
     },
     "ending": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "class": {
           "$ref": "#/$defs/style-class"
@@ -222,7 +266,8 @@
       "required": [
         "duration"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "ending-duration": {
       "type": "integer"
@@ -240,13 +285,14 @@
       "type": "boolean"
     },
     "event": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "duration": {
           "$ref": "#/$defs/note-value"
-        },
-        "id": {
-          "$ref": "#/$defs/id"
         },
         "kitNotes": {
           "$ref": "#/$defs/kit-notes"
@@ -282,10 +328,15 @@
           "$ref": "#/$defs/literal-string-event"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "event-lyric-line": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "text": {
           "$ref": "#/$defs/string"
@@ -297,7 +348,8 @@
       "required": [
         "text"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "event-lyric-line-type": {
       "enum": [
@@ -318,7 +370,11 @@
       "type": "object"
     },
     "event-markings": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "accent": {
           "$ref": "#/$defs/accent"
@@ -354,13 +410,18 @@
           "$ref": "#/$defs/unstress-marking"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "fifths": {
       "type": "integer"
     },
     "fine": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "class": {
           "$ref": "#/$defs/style-class"
@@ -375,7 +436,8 @@
       "required": [
         "location"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "fraction": {
       "items": {
@@ -384,7 +446,11 @@
       "type": "array"
     },
     "global": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "lyrics": {
           "$ref": "#/$defs/lyrics-global"
@@ -402,10 +468,23 @@
       "required": [
         "measures"
       ],
+      "type": "object",
+      "unevaluatedProperties": false
+    },
+    "globalAttrs": {
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        }
+      },
       "type": "object"
     },
     "grace": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "class": {
           "$ref": "#/$defs/style-class"
@@ -430,7 +509,8 @@
         "content",
         "type"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "grace-sequence-content": {
       "items": {
@@ -462,7 +542,11 @@
       "type": "integer"
     },
     "interval": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "halfSteps": {
           "$ref": "#/$defs/integer-signed"
@@ -475,10 +559,15 @@
         "halfSteps",
         "staffDistance"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "jump": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "location": {
           "$ref": "#/$defs/rhythmic-position"
@@ -491,7 +580,8 @@
         "location",
         "type"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "jump-type": {
       "enum": [
@@ -501,7 +591,11 @@
       "type": "string"
     },
     "key": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "class": {
           "$ref": "#/$defs/style-class"
@@ -516,7 +610,8 @@
       "required": [
         "fifths"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "kit": {
       "additionalProperties": false,
@@ -528,7 +623,11 @@
       "type": "object"
     },
     "kit-component": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "name": {
           "$ref": "#/$defs/string"
@@ -543,19 +642,21 @@
       "required": [
         "staffPosition"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "kit-component-id": {
       "type": "string"
     },
     "kit-note": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "class": {
           "$ref": "#/$defs/style-class"
-        },
-        "id": {
-          "$ref": "#/$defs/id"
         },
         "kitComponent": {
           "$ref": "#/$defs/kit-component-id"
@@ -573,7 +674,8 @@
       "required": [
         "kitComponent"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "kit-notes": {
       "items": {
@@ -585,7 +687,11 @@
       "type": "string"
     },
     "layout-change": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "layout": {
           "$ref": "#/$defs/id"
@@ -598,7 +704,8 @@
         "layout",
         "location"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "layout-changes": {
       "items": {
@@ -658,7 +765,11 @@
       "type": "string"
     },
     "lyric-line-metadata": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "label": {
           "$ref": "#/$defs/lyric-line-label"
@@ -667,7 +778,8 @@
           "$ref": "#/$defs/language-code"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "lyric-lines-metadata": {
       "additionalProperties": false,
@@ -679,16 +791,25 @@
       "type": "object"
     },
     "lyrics": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "lines": {
           "$ref": "#/$defs/event-lyric-lines"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "lyrics-global": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "lineMetadata": {
           "$ref": "#/$defs/lyric-lines-metadata"
@@ -697,13 +818,18 @@
           "$ref": "#/$defs/lyric-line-id-list"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "measure-count": {
       "type": "integer"
     },
     "measure-global": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "barline": {
           "$ref": "#/$defs/barline"
@@ -742,13 +868,18 @@
           "$ref": "#/$defs/time"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "measure-number": {
       "type": "integer"
     },
     "measure-rhythmic-position": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "measure": {
           "$ref": "#/$defs/measure-number"
@@ -761,7 +892,8 @@
         "measure",
         "position"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "measures-global": {
       "items": {
@@ -773,7 +905,11 @@
       "type": "integer"
     },
     "mnx": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "support": {
           "$ref": "#/$defs/support"
@@ -785,10 +921,15 @@
       "required": [
         "version"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "multimeasure-rest": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "duration": {
           "$ref": "#/$defs/measure-count"
@@ -804,7 +945,8 @@
         "duration",
         "start"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "multimeasure-rests": {
       "items": {
@@ -813,16 +955,17 @@
       "type": "array"
     },
     "note": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "accidentalDisplay": {
           "$ref": "#/$defs/accidental-display"
         },
         "class": {
           "$ref": "#/$defs/style-class"
-        },
-        "id": {
-          "$ref": "#/$defs/id"
         },
         "perform": {
           "$ref": "#/$defs/perform-options"
@@ -843,10 +986,15 @@
       "required": [
         "pitch"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "note-value": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "base": {
           "$ref": "#/$defs/note-value-base"
@@ -858,7 +1006,8 @@
       "required": [
         "base"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "note-value-base": {
       "enum": [
@@ -883,7 +1032,11 @@
       "type": "string"
     },
     "note-value-quantity": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "duration": {
           "$ref": "#/$defs/note-value"
@@ -896,7 +1049,8 @@
         "duration",
         "multiple"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "notes": {
       "items": {
@@ -911,7 +1065,11 @@
       "type": "string"
     },
     "ottava": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "end": {
           "$ref": "#/$defs/measure-rhythmic-position"
@@ -937,7 +1095,8 @@
         "position",
         "value"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "ottava-amount": {
       "enum": [
@@ -969,7 +1128,11 @@
       "type": "array"
     },
     "page": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "layout": {
           "$ref": "#/$defs/id"
@@ -981,7 +1144,8 @@
       "required": [
         "systems"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "pages": {
       "items": {
@@ -990,11 +1154,12 @@
       "type": "array"
     },
     "part": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
-        "id": {
-          "$ref": "#/$defs/id"
-        },
         "kit": {
           "$ref": "#/$defs/kit"
         },
@@ -1017,10 +1182,15 @@
           "$ref": "#/$defs/part-transposition"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "part-measure": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "beams": {
           "$ref": "#/$defs/beam-list"
@@ -1041,7 +1211,8 @@
       "required": [
         "sequences"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "part-measures": {
       "items": {
@@ -1056,7 +1227,11 @@
       "type": "string"
     },
     "part-transposition": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "interval": {
           "$ref": "#/$defs/interval"
@@ -1071,7 +1246,8 @@
       "required": [
         "interval"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "parts": {
       "items": {
@@ -1080,12 +1256,21 @@
       "type": "array"
     },
     "perform-options": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {},
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "pitch": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "alter": {
           "$ref": "#/$defs/alter"
@@ -1101,10 +1286,15 @@
         "octave",
         "step"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "positioned-clef": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "clef": {
           "$ref": "#/$defs/clef"
@@ -1119,7 +1309,8 @@
       "required": [
         "clef"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "positioned-clef-list": {
       "items": {
@@ -1131,33 +1322,52 @@
       "type": "integer"
     },
     "repeat-end": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "times": {
           "$ref": "#/$defs/repeat-times"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "repeat-start": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {},
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "repeat-times": {
       "type": "integer"
     },
     "rest": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "staffPosition": {
           "$ref": "#/$defs/staff-position"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "rhythmic-position": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "fraction": {
           "$ref": "#/$defs/fraction"
@@ -1169,10 +1379,15 @@
       "required": [
         "fraction"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "root": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "global": {
           "$ref": "#/$defs/global"
@@ -1195,10 +1410,15 @@
         "mnx",
         "parts"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "score": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "layout": {
           "$ref": "#/$defs/id"
@@ -1219,7 +1439,8 @@
       "required": [
         "name"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "score-name": {
       "type": "string"
@@ -1231,7 +1452,11 @@
       "type": "array"
     },
     "segno": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "class": {
           "$ref": "#/$defs/style-class"
@@ -1249,10 +1474,15 @@
       "required": [
         "location"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "sequence": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "content": {
           "$ref": "#/$defs/sequence-content"
@@ -1270,7 +1500,8 @@
       "required": [
         "content"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "sequence-content": {
       "items": {
@@ -1301,7 +1532,11 @@
       "type": "string"
     },
     "slur": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "endNote": {
           "$ref": "#/$defs/id"
@@ -1325,7 +1560,8 @@
       "required": [
         "target"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "slur-list": {
       "items": {
@@ -1350,12 +1586,21 @@
       "type": "string"
     },
     "soft-accent": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {},
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "sound": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "midiNumber": {
           "$ref": "#/$defs/midi-number"
@@ -1364,7 +1609,8 @@
           "$ref": "#/$defs/string"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "sounds-global": {
       "additionalProperties": false,
@@ -1376,7 +1622,11 @@
       "type": "object"
     },
     "space": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "duration": {
           "$ref": "#/$defs/fraction"
@@ -1389,25 +1639,45 @@
         "duration",
         "type"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "spiccato": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {},
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "staccatissimo": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {},
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "staccato": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {},
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "staff": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "label": {
           "$ref": "#/$defs/staff-label"
@@ -1429,13 +1699,18 @@
         "sources",
         "type"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "staff-count": {
       "type": "integer"
     },
     "staff-group": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "content": {
           "$ref": "#/$defs/system-layout-content"
@@ -1454,7 +1729,8 @@
         "content",
         "type"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "staff-label": {
       "type": "string"
@@ -1469,7 +1745,11 @@
       "type": "integer"
     },
     "staff-source": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "label": {
           "$ref": "#/$defs/staff-label"
@@ -1493,7 +1773,8 @@
       "required": [
         "part"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "staff-sources": {
       "items": {
@@ -1529,27 +1810,41 @@
       "type": "string"
     },
     "stress-marking": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {},
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "string": {
       "type": "string"
     },
     "strong-accent": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "pointing": {
           "$ref": "#/$defs/up-or-down"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "style-class": {
       "type": "string"
     },
     "style-global": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "color": {
           "$ref": "#/$defs/color"
@@ -1561,7 +1856,8 @@
       "required": [
         "selector"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "style-selector": {
       "type": "string"
@@ -1573,7 +1869,11 @@
       "type": "array"
     },
     "support": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "useAccidentalDisplay": {
           "type": "boolean"
@@ -1582,10 +1882,15 @@
           "type": "boolean"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "system": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "layout": {
           "$ref": "#/$defs/id"
@@ -1600,23 +1905,25 @@
       "required": [
         "measure"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "system-layout": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "content": {
           "$ref": "#/$defs/system-layout-content"
-        },
-        "id": {
-          "$ref": "#/$defs/id"
         }
       },
       "required": [
-        "content",
-        "id"
+        "content"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "system-layout-content": {
       "items": {
@@ -1638,7 +1945,11 @@
       "type": "array"
     },
     "tempo": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "bpm": {
           "$ref": "#/$defs/bpm"
@@ -1654,7 +1965,8 @@
         "bpm",
         "value"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "tempos": {
       "items": {
@@ -1663,12 +1975,21 @@
       "type": "array"
     },
     "tenuto": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {},
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "tie": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "lv": {
           "type": "boolean"
@@ -1680,7 +2001,8 @@
           "$ref": "#/$defs/id"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "tie-list": {
       "items": {
@@ -1689,7 +2011,11 @@
       "type": "array"
     },
     "time": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "count": {
           "$ref": "#/$defs/positive-integer"
@@ -1705,7 +2031,8 @@
         "count",
         "unit"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "time-signature-display": {
       "enum": [
@@ -1728,7 +2055,11 @@
       "type": "integer"
     },
     "tremolo-single": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "marks": {
           "$ref": "#/$defs/positive-integer"
@@ -1737,10 +2068,15 @@
       "required": [
         "marks"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "tuplet": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "bracket": {
           "$ref": "#/$defs/yes-no-auto"
@@ -1776,7 +2112,8 @@
         "outer",
         "type"
       ],
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "tuplet-display-setting": {
       "enum": [
@@ -1787,9 +2124,14 @@
       "type": "string"
     },
     "unstress-marking": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {},
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "up-or-down": {
       "enum": [
@@ -1805,13 +2147,18 @@
       "type": "string"
     },
     "written": {
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/globalAttrs"
+        }
+      ],
       "properties": {
         "diatonicDelta": {
           "$ref": "#/$defs/integer-signed"
         }
       },
-      "type": "object"
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "yes-no-auto": {
       "enum": [
