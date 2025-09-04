@@ -3931,7 +3931,7 @@
         "description": [
             "This required object serves two purposes:",
             "",
-            "1. It provides a way for consuming applications to quickly test whether a document is intended to be parsed as MNX. Consuming applications should check the top-level object for the presence of an \"mnx\" key.",
+            "1. It provides a way for consuming applications to quickly test whether a document is intended to be parsed as MNX. Consuming applications should check the top-level object for the presence of an \"mnx\" attribute.",
             "",
             "2. It provides metadata about the specific MNX implementation used (namely, the version number)."
         ]
@@ -4116,7 +4116,7 @@
         "description": [
             "Information about the displayed accidental for this note.",
             "",
-            "This value is optional. If it's missing, consuming software should do the following, based on the value of the top-level <a href=\"../support/\">\"useAccidentalDisplay\" key</a>:",
+            "This value is optional. If it's missing, consuming software should do the following, based on the value of the top-level <a href=\"../support/\">\"useAccidentalDisplay\" attribute</a>:",
             "",
             "* If useAccidentalDisplay is true, then this note's accidentalDisplay should be interpreted as {\"show\": false}.",
             "",
@@ -4678,7 +4678,7 @@
         "description": [
             "Specifies that this tie is a <i>laissez vibrer</i> tie — which does not have a particular destination note.",
             "",
-            "If this key is omitted, the value is assumed to be false."
+            "If this attribute is omitted, the value is assumed to be false."
         ]
     }
 },
@@ -4748,7 +4748,7 @@
         "child_key": "voice",
         "child": 101,
         "is_required": false,
-        "description": "The voice to which this ottava applies. By default, an ottava applies to all voices in the part; using this key will narrow the scope of the ottava to only the voice you specify."
+        "description": "The voice to which this ottava applies. By default, an ottava applies to all voices in the part; using this attribute will narrow the scope of the ottava to only the voice you specify."
     }
 },
 {
@@ -4948,7 +4948,7 @@
         "child": 182,
         "is_required": false,
         "description": [
-            "Information about how this note is written in context of a transposed score or part. This allows the note to have two different spellings: the spelling in a concert-pitch score (as defined in the \"pitch\" key) and the spelling in a transposed score or part (as defined in the \"written\" key).",
+            "Information about how this note is written in context of a transposed score or part. This allows the note to have two different spellings: the spelling in a concert-pitch score (as defined in the \"pitch\" attribute) and the spelling in a transposed score or part (as defined in the \"written\" attribute).",
             "",
             "For applications that require more than two spellings for a given note, use a separate part object. We might expand \"written\" to support more than a single alternate spelling in the future, but at the moment we opt for simplicity for the common case."
         ]
@@ -5145,7 +5145,7 @@
         "child_key": "sound",
         "child": 37,
         "is_required": false,
-        "description": "ID of the sound used for this kit component. See the \"sounds\" key in \"global\"."
+        "description": "ID of the sound used for this kit component. See the \"sounds\" attribute in \"global\"."
     }
 },
 {
@@ -6590,7 +6590,7 @@
         "name": "Clef changes",
         "slug": "clef-changes",
         "schema": 1,
-        "blurb": "Each measure can encode a list of clefs. For an inner-bar clef change, the \"position\" key describes the clef's position in the bar. If \"position\" isn't provided, the clef is interpreted to be the start of the bar.",
+        "blurb": "Each measure can encode a list of clefs. For an inner-bar clef change, the \"position\" attribute describes the clef's position in the bar. If \"position\" isn't provided, the clef is interpreted to be the start of the bar.",
         "document": "",
         "document_path": "examples/json/clef-changes.json",
         "image_url": "/static/examples/clef-changes.png",
@@ -6688,7 +6688,7 @@
         "name": "Lyric line metadata",
         "slug": "lyric-line-metadata",
         "schema": 1,
-        "blurb": "Each line of lyrics has its own optional metadata, including the language code and a label. This lives in the top-level \"global\" key, as a \"lyrics\" object.",
+        "blurb": "Each line of lyrics has its own optional metadata, including the language code and a label. This lives in the top-level \"global\" attribute, as a \"lyrics\" object.",
         "document": "",
         "document_path": "examples/json/lyric-line-metadata.json",
         "image_url": "/static/examples/lyric_metadata.png",
@@ -7221,7 +7221,7 @@
         "example": 6,
         "doc_format": 1,
         "preamble": [
-            "In MusicXML, use <code>&lt;accidental&gt;</code> within a <code>&lt;note&gt;</code> to indicate a rendered accidental. In MNX, give the note an <code>\"accidentalDisplay\"</code> key.",
+            "In MusicXML, use <code>&lt;accidental&gt;</code> within a <code>&lt;note&gt;</code> to indicate a rendered accidental. In MNX, give the note an <code>\"accidentalDisplay\"</code> attribute.",
             "",
             "In both MusicXML and MNX, accidentals are only encoded if they are to be rendered. Notes whose accidental is implied from the key signature (such as the Bb note in bar 2 of this example), or notes repeating a currently active accidental (such as the second Db in bar 2), are not encoded as having an accidental.",
             "",
@@ -7738,7 +7738,7 @@
         "preamble": [
             "In MusicXML, secondary beams are encoded with separate <code>&lt;beam&gt;</code> elements within <code>&lt;note&gt;</code> — each with a separate <code>number</code> attribute.",
             "",
-            "In MNX, secondary beams are encoded as separate objects within <code>\"beams\"</code>, using the <code>\"inner\"</code> key."
+            "In MNX, secondary beams are encoded as separate objects within <code>\"beams\"</code>, using the <code>\"inner\"</code> attribute."
         ],
         "document": [
             "<score-partwise version=\"3.1\">",
@@ -7963,7 +7963,7 @@
         "preamble": [
             "MusicXML uses <code>&lt;beam&gt;</code> elements with the value <code>\"forward hook\"</code> or <code>\"backward hook\"</code>.",
             "",
-            "MNX uses an inner <code>\"beams\"</code> key on the outer beam, with an optional <code>\"direction\"</code> that specifies the direction of the hook."
+            "MNX uses an inner <code>\"beams\"</code> attribute on the outer beam, with an optional <code>\"direction\"</code> that specifies the direction of the hook."
         ],
         "document": [
             "<score-partwise version=\"3.1\">",
@@ -20081,6 +20081,22 @@
     "fields": {
         "example": 50,
         "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1579,
+    "fields": {
+        "example": 10,
+        "json_object": 162
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1580,
+    "fields": {
+        "example": 10,
+        "json_object": 112
     }
 },
 {

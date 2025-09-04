@@ -56,7 +56,7 @@
 
 
 
-<h2>Keys</h2>
+<h2>Attributes</h2>
 
 <table>
 <thead>
@@ -88,7 +88,7 @@
         
     </td>
     <td>No</td>
-    <td>Information about the displayed accidental for this note.<br><br>This value is optional. If it's missing, consuming software should do the following, based on the value of the top-level <a href="../support/">"useAccidentalDisplay" key</a>:<br><br>* If useAccidentalDisplay is true, then this note's accidentalDisplay should be interpreted as {"show": false}.<br><br>* If useAccidentalDisplay is false, then this note's accidentalDisplay should be determined according to its own algorithms.</td>
+    <td>Information about the displayed accidental for this note.<br><br>This value is optional. If it's missing, consuming software should do the following, based on the value of the top-level <a href="../support/">"useAccidentalDisplay" attribute</a>:<br><br>* If useAccidentalDisplay is true, then this note's accidentalDisplay should be interpreted as {"show": false}.<br><br>* If useAccidentalDisplay is false, then this note's accidentalDisplay should be determined according to its own algorithms.</td>
 </tr>
 
 <tr>
@@ -168,7 +168,7 @@
         
     </td>
     <td>No</td>
-    <td>Information about how this note is written in context of a transposed score or part. This allows the note to have two different spellings: the spelling in a concert-pitch score (as defined in the "pitch" key) and the spelling in a transposed score or part (as defined in the "written" key).<br><br>For applications that require more than two spellings for a given note, use a separate part object. We might expand "written" to support more than a single alternate spelling in the future, but at the moment we opt for simplicity for the common case.</td>
+    <td>Information about how this note is written in context of a transposed score or part. This allows the note to have two different spellings: the spelling in a concert-pitch score (as defined in the "pitch" attribute) and the spelling in a transposed score or part (as defined in the "written" attribute).<br><br>For applications that require more than two spellings for a given note, use a separate part object. We might expand "written" to support more than a single alternate spelling in the future, but at the moment we opt for simplicity for the common case.</td>
 </tr>
 
 
