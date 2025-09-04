@@ -81,6 +81,19 @@
 </tr>
 
 <tr>
+    <td><nobr><b>_x</b></nobr></td>
+    <td>
+        
+            
+            An object with user-defined keys, where each value is a <a href="../vendor-dict/">vendor dict</a>
+            
+        
+    </td>
+    <td>No</td>
+    <td>Optional vendor extensions. This is a place for extra data beyond the scope of what MNX formally supports.<br><br>If provided, it should be a dictionary that maps vendor keys to dictionaries of data ("vendor dicts").<br><br>Vendor keys are strings that essentially serve as a namespace. An example might be a specific notation software package (e.g., "finale"), or a specific community of practice (e.g., "forteNumbers"). We don't maintain a list of known vendor keys at this time, but we may maintain an informal list in the future, once usage has been established.<br><br>Vendor dicts must be dictionaries. Beyond that, MNX places no requirement on their contents. Implementers are free to design their own data layout within these dictionaries.<br><br>MNX-consuming software is under no obligation to preserve the data within the "_x" attribute. When an MNX document is transferred between separate MNX software implementations, we expect some software will try to preserve it while other software will discard it.</td>
+</tr>
+
+<tr>
     <td><nobr><b>id</b></nobr></td>
     <td>
         

@@ -63,6 +63,7 @@
         "slug": "global",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>The global object represents global notation data, which is generally shared by a set of parts within the score.</p>"
     }
 },
@@ -74,6 +75,7 @@
         "slug": "parts",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -85,6 +87,7 @@
         "slug": "root",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -96,6 +99,7 @@
         "slug": "measures-global",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -107,6 +111,7 @@
         "slug": "styles-global",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -118,6 +123,7 @@
         "slug": "measure-global",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>The measure-global object is the place to encode global information about a measure — that is, the measure's metadata that applies to <em>every</em> part in the score. Examples are key signatures and time signatures.</p>"
     }
 },
@@ -129,6 +135,7 @@
         "slug": "style-selector",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -140,6 +147,7 @@
         "slug": "style-global",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>The style object is a way to define visual styling within an MNX document. Its required \"selector\" specifies which MNX element(s) the style applies to.</p>",
             "",
@@ -167,6 +175,7 @@
         "slug": "color",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -178,6 +187,7 @@
         "slug": "fifths",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": [
             "<p>Represents the number of flats or sharps, as in a traditional key signature. Negative numbers are used for flats and positive numbers for sharps, reflecting the key's placement within the circle of fifths (hence the name \"fifths\").</p>",
             "",
@@ -193,6 +203,7 @@
         "slug": "key",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>The key object defines a key signature applicable to this and all following <a href=\"../../../infrastructure/notational-concepts/#measure-content\">measure content</a>, until changed. This is a <a href=\"../../../infrastructure/notational-concepts/#staff-directions\">staff direction</a>.</p>",
             "",
@@ -214,6 +225,7 @@
         "slug": "time",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>This object defines a time signature, applicable to this and all following <a href=\"../../../infrastructure/notational-concepts/#measure-content\">measure content</a>, until changed. This is a <a href=\"../../../infrastructure/notational-concepts/#staff-directions\">staff direction</a>.</p>",
             "",
@@ -229,6 +241,7 @@
         "slug": "part",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>The part object represents a set of measures which describe a single part within the score — generally corresponding to a single instrument. The sequence of measures must match the measures found in the \"global\" object.</p>"
     }
 },
@@ -240,6 +253,7 @@
         "slug": "part-name",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -251,6 +265,7 @@
         "slug": "part-measure",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>The part measure object is the place to encode the musical information for a given measure in a given part. This constitutes the majority of musical content in an MNX document.</p>"
     }
 },
@@ -262,6 +277,7 @@
         "slug": "part-measures",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -273,6 +289,7 @@
         "slug": "clef",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -284,6 +301,7 @@
         "slug": "sequence",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>The sequence object organizes a set of musical events within a measure into a strict temporal <a href=\"../../../infrastructure/sequence-content/\">sequence</a>.</p>",
             "",
@@ -301,6 +319,7 @@
         "slug": "clef-sign",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -312,6 +331,7 @@
         "slug": "sequence-content",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -323,6 +343,7 @@
         "slug": "event",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>The event object represents a discrete period of time during which one or more notes are performed, or in which a rest occurs.</p>",
             "",
@@ -338,6 +359,7 @@
         "slug": "notes",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -349,6 +371,7 @@
         "slug": "pitch",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -360,6 +383,7 @@
         "slug": "note",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>The note object defines a single note within an event, along with other information pertaining to the note itself rather than to its containing event.</p>"
     }
 },
@@ -371,6 +395,7 @@
         "slug": "barline",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -382,6 +407,7 @@
         "slug": "barline-type",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -393,6 +419,7 @@
         "slug": "rest",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>The rest object defines a rest within an event, along with other information pertaining to the rest rather than to its containing event.</p>"
     }
 },
@@ -404,6 +431,7 @@
         "slug": "tie",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>The tie object represents a single tie between two notes. A tie is only encoded on the <em>first</em> note — i.e., the note that starts the tie.</p>",
             "",
@@ -421,6 +449,7 @@
         "slug": "id",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -432,6 +461,7 @@
         "slug": "beam-list",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -443,6 +473,7 @@
         "slug": "beam",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>Describes a single beam.</p>",
             "",
@@ -460,6 +491,7 @@
         "slug": "id-list",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -471,6 +503,7 @@
         "slug": "beam-hook-direction",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -482,6 +515,7 @@
         "slug": "literal-string-event",
         "schema": 1,
         "object_type": 6,
+        "uses_global_attrs": true,
         "description": "event"
     }
 },
@@ -493,6 +527,7 @@
         "slug": "grace",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>A grace object encodes grace notes. Its \"content\" contains the note data.</p>",
             "",
@@ -510,6 +545,7 @@
         "slug": "literal-string-grace",
         "schema": 1,
         "object_type": 6,
+        "uses_global_attrs": true,
         "description": "grace"
     }
 },
@@ -521,6 +557,7 @@
         "slug": "grace-sequence-content",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -532,6 +569,7 @@
         "slug": "tuplet",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>The tuplet object organizes a set of musical events that form a distinct and contiguous run within a <a href=\"../../../infrastructure/sequence-content/\">sequence</a>, and which are subject to a common <a href=\"../../../infrastructure/sequence-content/\">time modification ratio</a> expressed as the quotient of two rational numbers. A tuplet behaves much like a sequence with respect to its contents.</p>",
             "",
@@ -547,6 +585,7 @@
         "slug": "literal-string-tuplet",
         "schema": 1,
         "object_type": 6,
+        "uses_global_attrs": true,
         "description": "tuplet"
     }
 },
@@ -558,6 +597,7 @@
         "slug": "note-value-quantity",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>A note value quantity is an integer multiple of a note value. For example, this can represent the concepts of \"two eighth notes\" or \"six dotted quarter notes.\"</p>"
     }
 },
@@ -569,6 +609,7 @@
         "slug": "ottava",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>An ottava (octave shift), traditionally notated with a marking such as \"8va\", tells a musician that the affected note(s) are being rendered a number of octaves up or down from their normal appearance on the staff, for sake of readability.</p>",
             "",
@@ -584,6 +625,7 @@
         "slug": "ottava-amount",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": "<p>Represents the number of octaves in an octave shift. See also <a href=\"../ottava-amount-or-zero/\">ottava amount or zero</a>, which includes the value zero.</p>"
     }
 },
@@ -595,6 +637,7 @@
         "slug": "slur-list",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -606,6 +649,7 @@
         "slug": "slur",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -617,6 +661,7 @@
         "slug": "slur-side",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": "<p>This indicates the orientation of a slur or tie. It specifies whether the slur/tie curves upward or downward.</p>"
     }
 },
@@ -628,6 +673,7 @@
         "slug": "slur-tie-end-location",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -639,6 +685,7 @@
         "slug": "repeat-start",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -650,6 +697,7 @@
         "slug": "repeat-end",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -661,6 +709,7 @@
         "slug": "repeat-times",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -672,6 +721,7 @@
         "slug": "ending",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>The ending object encodes an alternate ending, sometimes known as a \"volta bracket.\"</p>"
     }
 },
@@ -683,6 +733,7 @@
         "slug": "ending-numbers",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -694,6 +745,7 @@
         "slug": "ending-duration",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -705,6 +757,7 @@
         "slug": "ending-number",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -716,6 +769,7 @@
         "slug": "ending-open",
         "schema": 1,
         "object_type": 5,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -727,6 +781,7 @@
         "slug": "segno",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -738,6 +793,7 @@
         "slug": "jump",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -749,6 +805,7 @@
         "slug": "jump-type",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -760,6 +817,7 @@
         "slug": "fine",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -771,6 +829,7 @@
         "slug": "staff-count",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -782,6 +841,7 @@
         "slug": "layouts",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -793,6 +853,7 @@
         "slug": "system-layout",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>The system-layout object defines a visual layout that can be used by \"score\", \"page\" or \"system\" objects.</p>",
             "",
@@ -808,6 +869,7 @@
         "slug": "part-short-name",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": "<p>The part's name in abbreviated form. For example, \"Vln\" for violin.</p>"
     }
 },
@@ -819,6 +881,7 @@
         "slug": "scores",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -830,6 +893,7 @@
         "slug": "score",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>The score object represents a particular graphical rendering of the music, with a defined subset of which parts are included, how they're visually arranged, where system breaks happen and where page breaks happen.</p>",
             "",
@@ -849,6 +913,7 @@
         "slug": "score-name",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -860,6 +925,7 @@
         "slug": "pages",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -871,6 +937,7 @@
         "slug": "page",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>The page object represents a single page of music — either printed (as on paper) or digitally rendered.</p>",
             "",
@@ -886,6 +953,7 @@
         "slug": "systems",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -897,6 +965,7 @@
         "slug": "system",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>The system object describes a system of notation — that is, a collection of staves that represent one or more measures across one or more parts.</p>",
             "",
@@ -912,6 +981,7 @@
         "slug": "measure-number",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -923,6 +993,7 @@
         "slug": "system-layout-content",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -934,6 +1005,7 @@
         "slug": "staff-group",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>The staff group object is a way to group staff layouts together, for the purposes of giving them a unified name and/or grouping symbol.",
             "",
@@ -949,6 +1021,7 @@
         "slug": "literal-string-group",
         "schema": 1,
         "object_type": 6,
+        "uses_global_attrs": true,
         "description": "group"
     }
 },
@@ -960,6 +1033,7 @@
         "slug": "staff-symbol",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -971,6 +1045,7 @@
         "slug": "staff-label",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -982,6 +1057,7 @@
         "slug": "literal-string-staff",
         "schema": 1,
         "object_type": 6,
+        "uses_global_attrs": true,
         "description": "staff"
     }
 },
@@ -993,6 +1069,7 @@
         "slug": "staff-labelref",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1004,6 +1081,7 @@
         "slug": "staff-sources",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1015,6 +1093,7 @@
         "slug": "staff-source",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>The staff source object is the way to specify which parts are included in a given layout. You can optionally target a specific voice or staff (for multi-voice parts).</p>"
     }
 },
@@ -1026,6 +1105,7 @@
         "slug": "stem-direction",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1037,6 +1117,7 @@
         "slug": "tempos",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1048,6 +1129,7 @@
         "slug": "tempo",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>The tempo object defines a tempo, from the point of its occurrence forward until changed. The tempo is rendered as a conventional pairing of a small beat unit notation equated to a metronome marking.</p>"
     }
 },
@@ -1059,6 +1141,7 @@
         "slug": "bpm",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1070,6 +1153,7 @@
         "slug": "layout-changes",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1081,6 +1165,7 @@
         "slug": "layout-change",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>The layout change object lets you indicate a change in layout in the middle of a system — usually, but not necessarily, due to changes in stemming.</p>"
     }
 },
@@ -1092,6 +1177,7 @@
         "slug": "voice-name",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1103,6 +1189,7 @@
         "slug": "multimeasure-rests",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1114,6 +1201,7 @@
         "slug": "multimeasure-rest",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>Encodes a single multimeasure rest. The required attributes \"start\" and \"duration\" specify the multimeasure rest's location and length, respectively.</p>",
             "",
@@ -1129,6 +1217,7 @@
         "slug": "measure-count",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1140,6 +1229,7 @@
         "slug": "staff-number",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": [
             "<p>This number identifies a staff in context of a multi-staff part. Counting starts at 1 for the top staff.</p>",
             "",
@@ -1155,6 +1245,7 @@
         "slug": "smufl-glyph",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": [
             "<p>A string representing a glyph name in the <a href=\"https://w3c.github.io/smufl/latest/\">SMuFL music-font-encoding specification</a>.",
             "",
@@ -1172,6 +1263,7 @@
         "slug": "style-class",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": "<p>A style class is a string that styleable MNX elements can use to declare they should be styled.</p>"
     }
 },
@@ -1183,6 +1275,7 @@
         "slug": "simple-color",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": [
             "<p>A simple color is a seven-character string representing the red, green and blue components of a color, as defined in the HTML standard. This is commonly known as a hexcode or hex value.",
             "",
@@ -1198,6 +1291,7 @@
         "slug": "string",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1209,6 +1303,7 @@
         "slug": "grace-type",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1220,6 +1315,7 @@
         "slug": "boolean",
         "schema": 1,
         "object_type": 5,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1231,6 +1327,7 @@
         "slug": "staff",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>The staff object describes the visual display of a single staff within a layout.</p>",
             "",
@@ -1246,6 +1343,7 @@
         "slug": "orientation",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1257,6 +1355,7 @@
         "slug": "literal string space",
         "schema": 1,
         "object_type": 6,
+        "uses_global_attrs": true,
         "description": "space"
     }
 },
@@ -1268,6 +1367,7 @@
         "slug": "space",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>The space object represents a discrete period of time within a sequence in which no sequence content occurs. It embodies the idea of blank space within a measure.</p>"
     }
 },
@@ -1279,6 +1379,7 @@
         "slug": "smufl-font",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1290,6 +1391,7 @@
         "slug": "perform-options",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1301,6 +1403,7 @@
         "slug": "line-type",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1312,6 +1415,7 @@
         "slug": "tuplet-display-setting",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1323,6 +1427,7 @@
         "slug": "yes-no-auto",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1334,6 +1439,7 @@
         "slug": "dynamic-type",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1345,6 +1451,7 @@
         "slug": "dynamic",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>Describes a textual dynamic direction to the performer.</p>"
     }
 },
@@ -1356,6 +1463,7 @@
         "slug": "mnx",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>Holds technical MNX metadata about the document, including the MNX version.</p>"
     }
 },
@@ -1367,6 +1475,7 @@
         "slug": "version-number",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1378,6 +1487,7 @@
         "slug": "positive-integer",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1389,6 +1499,7 @@
         "slug": "time-signature-unit",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1400,6 +1511,7 @@
         "slug": "note-value-base",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1411,6 +1523,7 @@
         "slug": "note-value",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>A rhythmic value for a note, such as a \"dotted quarter note.\" This is encoded via a base note type, such as \"quarter\", and an optional number of dots.</p>"
     }
 },
@@ -1422,6 +1535,7 @@
         "slug": "step",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1433,6 +1547,7 @@
         "slug": "octave",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": "<p>A number representing an octave in Scientific Pitch Notation. The octave for middle C is 4.</p>"
     }
 },
@@ -1444,6 +1559,7 @@
         "slug": "alter",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": "<p>Describes the alteration to a note's pitch, as an integer in the range -3 to 3, inclusive.</p>"
     }
 },
@@ -1455,6 +1571,7 @@
         "slug": "accidental-display",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1466,6 +1583,7 @@
         "slug": "positioned-clef-list",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1477,6 +1595,7 @@
         "slug": "sequence-list",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1488,6 +1607,7 @@
         "slug": "positioned-clef",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>Represents a clef as positioned at a specific location within a measure.</p>",
             "",
@@ -1503,6 +1623,7 @@
         "slug": "rhythmic-position",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>Describes the rhythmic position of a notational object within a bar.</p>"
     }
 },
@@ -1514,6 +1635,7 @@
         "slug": "fraction",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": [
             "<p>A two-element array that represents a fraction. The first element represents the numerator, and the second element represents the denominator.",
             "",
@@ -1529,6 +1651,7 @@
         "slug": "integer-unsigned",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": "<p>A non-negative integer.</p>"
     }
 },
@@ -1540,6 +1663,7 @@
         "slug": "staff-position",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": [
             "<p>Represents a vertical position in a staff, where 0 is the middle of the staff. This number is positive for positions above the middle of the staff, and it's negative for positions below the middle of the staff.</p>",
             "",
@@ -1561,6 +1685,7 @@
         "slug": "event-markings",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>\"Markings\" is a catch-all container for notations that apply to an entire event, such as articulations and single-note tremolos.</p>"
     }
 },
@@ -1572,6 +1697,7 @@
         "slug": "staccato",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1583,6 +1709,7 @@
         "slug": "accent",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1594,6 +1721,7 @@
         "slug": "strong-accent",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1605,6 +1733,7 @@
         "slug": "tenuto",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1616,6 +1745,7 @@
         "slug": "staccatissimo",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1627,6 +1757,7 @@
         "slug": "spiccato",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1638,6 +1769,7 @@
         "slug": "breath-mark",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>Defines a breath mark. This is always encoded on the event <em>before</em> the breath happens — generally the event that contains note(s) that are performed directly before the breath.</p>"
     }
 },
@@ -1649,6 +1781,7 @@
         "slug": "stress-marking",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1660,6 +1793,7 @@
         "slug": "unstress-marking",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1671,6 +1805,7 @@
         "slug": "soft-accent",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1682,6 +1817,7 @@
         "slug": "tremolo-single",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1693,6 +1829,7 @@
         "slug": "up-or-down",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1704,6 +1841,7 @@
         "slug": "breath-mark-symbol",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": "<p>See https://w3c.github.io/musicxml/musicxml-reference/data-types/breath-mark-value/</p>"
     }
 },
@@ -1715,6 +1853,7 @@
         "slug": "accidental-enclosure-symbol",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1726,6 +1865,7 @@
         "slug": "accidental-enclosure",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>Describes the symbol that encloses a specific accidental, such as a square bracket or parentheses.</p>"
     }
 },
@@ -1737,6 +1877,7 @@
         "slug": "measure-rhythmic-position",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>Describes the rhythmic position of a notational object within a piece of music. This is comprised of a measure index plus a rhythmic position within that measure.</p>"
     }
 },
@@ -1748,6 +1889,7 @@
         "slug": "support",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>This contains information about how to interpret the data within an MNX document.</p>"
     }
 },
@@ -1759,6 +1901,7 @@
         "slug": "event-lyric-lines",
         "schema": 1,
         "object_type": 7,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1770,6 +1913,7 @@
         "slug": "lyrics",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>This contains the lyric data for a given event. Typically this correponds to a single sung syllable.</p>"
     }
 },
@@ -1781,6 +1925,7 @@
         "slug": "event-lyric-line",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>This encodes a single lyric syllable within a single lyric line (i.e., a single verse).</p>"
     }
 },
@@ -1792,6 +1937,7 @@
         "slug": "event-lyric-line-type",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1803,6 +1949,7 @@
         "slug": "lyrics-global",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1814,6 +1961,7 @@
         "slug": "lyric-line-id-list",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1825,6 +1973,7 @@
         "slug": "lyric-lines-metadata",
         "schema": 1,
         "object_type": 7,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1836,6 +1985,7 @@
         "slug": "lyric-line-metadata",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1847,6 +1997,7 @@
         "slug": "language-code",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": "<p>An <a href=\"https://datatracker.ietf.org/doc/html/rfc5646\">RFC 5646</a> language code.</p>"
     }
 },
@@ -1858,6 +2009,7 @@
         "slug": "lyric-line-label",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1869,6 +2021,7 @@
         "slug": "lyric-line-id",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1880,6 +2033,7 @@
         "slug": "tie-list",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1891,6 +2045,7 @@
         "slug": "ottava-list",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1902,6 +2057,7 @@
         "slug": "dynamic-list",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1913,6 +2069,7 @@
         "slug": "time-signature-display",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": "<p>This encodes visual glyphs for a time signature.</p>"
     }
 },
@@ -1924,6 +2081,7 @@
         "slug": "ottava-amount-or-zero",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": "<p>Represents the number of octaves in an octave shift, with zero being an option. See also <a href=\"../ottava-amount\">ottava amount</a>, which doesn't support the value zero.</p>"
     }
 },
@@ -1935,6 +2093,7 @@
         "slug": "interval",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": [
             "<p>A musical interval between pitches.</p>",
             "",
@@ -1952,6 +2111,7 @@
         "slug": "integer-signed",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1963,6 +2123,7 @@
         "slug": "part-transposition",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>Describes a part's instrument transposition, including the transposition interval and number of fifths at which key signatures \"flip\" enharmonically.</p>"
     }
 },
@@ -1974,6 +2135,7 @@
         "slug": "written",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": "<p>Information about how this note is written in context of a transposed score or part.</p>"
     }
 },
@@ -1985,6 +2147,7 @@
         "slug": "kit-notes",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -1996,6 +2159,7 @@
         "slug": "kit-note",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -2007,6 +2171,7 @@
         "slug": "kit-component-id",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -2018,6 +2183,7 @@
         "slug": "kit",
         "schema": 1,
         "object_type": 7,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -2029,6 +2195,7 @@
         "slug": "kit-component",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -2040,6 +2207,7 @@
         "slug": "sounds-global",
         "schema": 1,
         "object_type": 7,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -2051,6 +2219,7 @@
         "slug": "sound",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": true,
         "description": ""
     }
 },
@@ -2062,6 +2231,7 @@
         "slug": "midi-number",
         "schema": 1,
         "object_type": 4,
+        "uses_global_attrs": true,
         "description": "A MIDI pitch — an unsigned number between 0-127, where middle C is 60."
     }
 },
@@ -2073,7 +2243,32 @@
         "slug": "global-attrs",
         "schema": 1,
         "object_type": 1,
+        "uses_global_attrs": false,
         "description": "<p>These are the global attributes available on every object within MNX.</p>"
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 193,
+    "fields": {
+        "name": "vendor dict",
+        "slug": "vendor-dict",
+        "schema": 1,
+        "object_type": 1,
+        "uses_global_attrs": false,
+        "description": "<p>A dictionary with vendor-specific data. See <a href=\"../global-attrs/\">the \"_x\" global attribute</a> for more.</p>"
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 194,
+    "fields": {
+        "name": "vendor extensions",
+        "slug": "vendor-extensions",
+        "schema": 1,
+        "object_type": 7,
+        "uses_global_attrs": true,
+        "description": ""
     }
 },
 {
@@ -5207,6 +5402,38 @@
         "child": 110,
         "is_required": false,
         "description": "An optional comment. This serves a similar function as XML or HTML comments."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 305,
+    "fields": {
+        "parent": 194,
+        "child_key": "0",
+        "child": 193,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 306,
+    "fields": {
+        "parent": 192,
+        "child_key": "_x",
+        "child": 194,
+        "is_required": false,
+        "description": [
+            "Optional vendor extensions. This is a place for extra data beyond the scope of what MNX formally supports.",
+            "",
+            "If provided, it should be a dictionary that maps vendor keys to dictionaries of data (\"vendor dicts\").",
+            "",
+            "Vendor keys are strings that essentially serve as a namespace. An example might be a specific notation software package (e.g., \"finale\"), or a specific community of practice (e.g., \"forteNumbers\"). We don't maintain a list of known vendor keys at this time, but we may maintain an informal list in the future, once usage has been established.",
+            "",
+            "Vendor dicts must be dictionaries. Beyond that, MNX places no requirement on their contents. Implementers are free to design their own data layout within these dictionaries.",
+            "",
+            "MNX-consuming software is under no obligation to preserve the data within the \"_x\" attribute. When an MNX document is transferred between separate MNX software implementations, we expect some software will try to preserve it while other software will discard it."
+        ]
     }
 },
 {

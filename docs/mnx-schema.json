@@ -476,6 +476,9 @@
         "_c": {
           "$ref": "#/$defs/string"
         },
+        "_x": {
+          "$ref": "#/$defs/vendor-extensions"
+        },
         "id": {
           "$ref": "#/$defs/id"
         }
@@ -2142,6 +2145,19 @@
         "down"
       ],
       "type": "string"
+    },
+    "vendor-dict": {
+      "properties": {},
+      "type": "object"
+    },
+    "vendor-extensions": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^.*$": {
+          "$ref": "#/$defs/vendor-dict"
+        }
+      },
+      "type": "object"
     },
     "version-number": {
       "type": "integer"
