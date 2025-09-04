@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The beam hook object | MNX specification</title>
+<title>Global attributes | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -44,19 +44,19 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    beam hook
+    __globalattrs__
 </p>
 
-<h1>The beam hook object</h1>
+<h1>Global attributes</h1>
 
 <p><b>Type:</b> Dictionary</p>
 
 
-<p>Describes a "hook" within a beam.</p>
+<p>These are the global attributes available on every object within MNX.</p>
 
 
 
-<h2>Keys</h2>
+<h2>Attributes</h2>
 
 <table>
 <thead>
@@ -70,25 +70,25 @@
 
 
 <tr>
-    <td><nobr><b>direction</b></nobr></td>
+    <td><nobr><b>_c</b></nobr></td>
     <td>
         
-        <a href="../beam-hook-direction/">beam hook direction</a>
+        <a href="../string/">string</a>
         
     </td>
-    <td>Yes</td>
-    <td></td>
+    <td>No</td>
+    <td>An optional comment. This serves a similar function as XML or HTML comments.</td>
 </tr>
 
 <tr>
-    <td><nobr><b>event</b></nobr></td>
+    <td><nobr><b>id</b></nobr></td>
     <td>
         
         <a href="../id/">ID</a>
         
     </td>
-    <td>Yes</td>
-    <td></td>
+    <td>No</td>
+    <td>An optional ID. This must be unique within the document.</td>
 </tr>
 
 
@@ -98,25 +98,11 @@
 
 
 
-<h2>Parent objects</h2>
-
-<p>This object is used by the following parent objects:</p>
-
-<ul>
-
-<li><a href="../beam/">beam</a>: "hooks"</li>
-
-</ul>
 
 
 
 
-<h2 id="examples">Examples</h2>
 
-<p>This object is used in the following examples:</p>
-<p>
-    <nobr><a href="../../examples/beam-hooks/">Beams (hooks)</a></nobr>
-</p>
 
 
 
