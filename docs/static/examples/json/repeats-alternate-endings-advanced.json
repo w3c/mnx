@@ -3,16 +3,36 @@
   "global": {
     "measures": [
       {
+        "_x": {
+          "mnxdocs": {
+            "highlight": ["repeatStart"]
+          }
+        },
         "time": {"count": 3, "unit": 4},
         "repeatStart": {}
       },
       {
+        "_x": {
+          "mnxdocs": {
+            "highlight": ["ending"]
+          }
+        },
         "ending": {"numbers": [1, 2], "duration": 2}
       },
       {
+        "_x": {
+          "mnxdocs": {
+            "highlight": ["repeatEnd"]
+          }
+        },
         "repeatEnd": {}
       },
       {
+        "_x": {
+          "mnxdocs": {
+            "highlight": ["ending"]
+          }
+        },
         "ending": {"numbers": [3], "duration": 2, "open": true}
       },
       {},
