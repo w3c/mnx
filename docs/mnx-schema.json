@@ -734,10 +734,6 @@
       ],
       "type": "string"
     },
-    "literal string space": {
-      "const": "space",
-      "type": "string"
-    },
     "literal-string-event": {
       "const": "event",
       "type": "string"
@@ -748,6 +744,10 @@
     },
     "literal-string-group": {
       "const": "group",
+      "type": "string"
+    },
+    "literal-string-space": {
+      "const": "space",
       "type": "string"
     },
     "literal-string-staff": {
@@ -1638,7 +1638,7 @@
           "$ref": "#/$defs/fraction"
         },
         "type": {
-          "$ref": "#/$defs/literal string space"
+          "$ref": "#/$defs/literal-string-space"
         }
       },
       "required": [
