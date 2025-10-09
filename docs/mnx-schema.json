@@ -161,9 +161,6 @@
         }
       ],
       "properties": {
-        "class": {
-          "$ref": "#/$defs/style-class"
-        },
         "color": {
           "$ref": "#/$defs/simple-color"
         },
@@ -247,9 +244,6 @@
         }
       ],
       "properties": {
-        "class": {
-          "$ref": "#/$defs/style-class"
-        },
         "color": {
           "$ref": "#/$defs/color"
         },
@@ -423,9 +417,6 @@
         }
       ],
       "properties": {
-        "class": {
-          "$ref": "#/$defs/style-class"
-        },
         "color": {
           "$ref": "#/$defs/color"
         },
@@ -460,9 +451,6 @@
         },
         "sounds": {
           "$ref": "#/$defs/sounds-global"
-        },
-        "styles": {
-          "$ref": "#/$defs/styles-global"
         }
       },
       "required": [
@@ -492,9 +480,6 @@
         }
       ],
       "properties": {
-        "class": {
-          "$ref": "#/$defs/style-class"
-        },
         "color": {
           "$ref": "#/$defs/color"
         },
@@ -603,9 +588,6 @@
         }
       ],
       "properties": {
-        "class": {
-          "$ref": "#/$defs/style-class"
-        },
         "color": {
           "$ref": "#/$defs/color"
         },
@@ -661,9 +643,6 @@
         }
       ],
       "properties": {
-        "class": {
-          "$ref": "#/$defs/style-class"
-        },
         "kitComponent": {
           "$ref": "#/$defs/kit-component-id"
         },
@@ -969,9 +948,6 @@
       "properties": {
         "accidentalDisplay": {
           "$ref": "#/$defs/accidental-display"
-        },
-        "class": {
-          "$ref": "#/$defs/style-class"
         },
         "perform": {
           "$ref": "#/$defs/perform-options"
@@ -1464,9 +1440,6 @@
         }
       ],
       "properties": {
-        "class": {
-          "$ref": "#/$defs/style-class"
-        },
         "color": {
           "$ref": "#/$defs/color"
         },
@@ -1841,38 +1814,6 @@
       },
       "type": "object",
       "unevaluatedProperties": false
-    },
-    "style-class": {
-      "type": "string"
-    },
-    "style-global": {
-      "allOf": [
-        {
-          "$ref": "#/$defs/global-attrs"
-        }
-      ],
-      "properties": {
-        "color": {
-          "$ref": "#/$defs/color"
-        },
-        "selector": {
-          "$ref": "#/$defs/style-selector"
-        }
-      },
-      "required": [
-        "selector"
-      ],
-      "type": "object",
-      "unevaluatedProperties": false
-    },
-    "style-selector": {
-      "type": "string"
-    },
-    "styles-global": {
-      "items": {
-        "$ref": "#/$defs/style-global"
-      },
-      "type": "array"
     },
     "support": {
       "allOf": [

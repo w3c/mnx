@@ -1305,9 +1305,7 @@
         <img class="exampleimg" src="../../static/examples/accidentals.png">
         
         <p class="examplenotes">In MusicXML, use <code>&lt;accidental&gt;</code> within a <code>&lt;note&gt;</code> to indicate a rendered accidental. In MNX, give the note an <code>"accidentalDisplay"</code> attribute.</p>
-<p class="examplenotes"></p>
 <p class="examplenotes">In both MusicXML and MNX, accidentals are only encoded if they are to be rendered. Notes whose accidental is implied from the key signature (such as the Bb note in bar 2 of this example), or notes repeating a currently active accidental (such as the second Db in bar 2), are not encoded as having an accidental.</p>
-<p class="examplenotes"></p>
 <p class="examplenotes">Cautionary accidentals, such as the D natural in bar 3 of this example — that is, accidentals that are not technically required to be displayed and serve as a courtesy to the musician — are not treated any differently than “non-cautionary” accidentals.</p>
         
         
@@ -2579,7 +2577,6 @@
         <img class="exampleimg" src="../../static/examples/beams-secondary-beam-breaks.png">
         
         <p class="examplenotes">In MusicXML, secondary beams are encoded with separate <code>&lt;beam&gt;</code> elements within <code>&lt;note&gt;</code> — each with a separate <code>number</code> attribute.</p>
-<p class="examplenotes"></p>
 <p class="examplenotes">In MNX, secondary beams are encoded as separate objects within <code>"beams"</code>, using the <code>"inner"</code> attribute.</p>
         
         
@@ -3193,7 +3190,6 @@
         <img class="exampleimg" src="../../static/examples/beam-hooks.png">
         
         <p class="examplenotes">MusicXML uses <code>&lt;beam&gt;</code> elements with the value <code>"forward hook"</code> or <code>"backward hook"</code>.</p>
-<p class="examplenotes"></p>
 <p class="examplenotes">MNX uses an inner <code>"beams"</code> attribute on the outer beam, with an optional <code>"direction"</code> that specifies the direction of the hook.</p>
         
         

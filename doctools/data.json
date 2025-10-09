@@ -105,18 +105,6 @@
 },
 {
     "model": "spectools.jsonobject",
-    "pk": 5,
-    "fields": {
-        "name": "styles-global",
-        "slug": "styles-global",
-        "schema": 1,
-        "object_type": 2,
-        "uses_global_attrs": true,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobject",
     "pk": 6,
     "fields": {
         "name": "measure global",
@@ -125,46 +113,6 @@
         "object_type": 1,
         "uses_global_attrs": true,
         "description": "<p>The measure-global object is the place to encode global information about a measure — that is, the measure's metadata that applies to <em>every</em> part in the score. Examples are key signatures and time signatures.</p>"
-    }
-},
-{
-    "model": "spectools.jsonobject",
-    "pk": 7,
-    "fields": {
-        "name": "style-selector",
-        "slug": "style-selector",
-        "schema": 1,
-        "object_type": 3,
-        "uses_global_attrs": true,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobject",
-    "pk": 8,
-    "fields": {
-        "name": "style-global",
-        "slug": "style-global",
-        "schema": 1,
-        "object_type": 1,
-        "uses_global_attrs": true,
-        "description": [
-            "<p>The style object is a way to define visual styling within an MNX document. Its required \"selector\" specifies which MNX element(s) the style applies to.</p>",
-            "",
-            "<p>See <a href=\"../../../infrastructure/styling/\">Styling an MNX document</a> for more.</p>",
-            "",
-            "<p>This example defines a style class \"emphasized\", which means to use the color red:</p>",
-            "",
-            "<p><code>{\"selector\": \".emphasized\", \"color\": \"#ff0000\"}</code></p>",
-            "",
-            "<p>A note object can then use \"class\" to use this style class.</p>",
-            "",
-            "<p>This example says \"all notes must be blue\":</p>",
-            "",
-            "<p><code>{\"selector\": \"note\", \"color\": \"#0000ff\"}</code></p>",
-            "",
-            "<p>At the moment, the only available style property is \"color\".</p>"
-        ]
     }
 },
 {
@@ -1257,18 +1205,6 @@
 },
 {
     "model": "spectools.jsonobject",
-    "pk": 108,
-    "fields": {
-        "name": "style class",
-        "slug": "style-class",
-        "schema": 1,
-        "object_type": 3,
-        "uses_global_attrs": true,
-        "description": "<p>A style class is a string that styleable MNX elements can use to declare they should be styled.</p>"
-    }
-},
-{
-    "model": "spectools.jsonobject",
     "pk": 109,
     "fields": {
         "name": "simple color",
@@ -2306,17 +2242,6 @@
 },
 {
     "model": "spectools.jsonobjectrelationship",
-    "pk": 4,
-    "fields": {
-        "parent": 1,
-        "child_key": "styles",
-        "child": 5,
-        "is_required": false,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
     "pk": 5,
     "fields": {
         "parent": 4,
@@ -2324,43 +2249,6 @@
         "child": 6,
         "is_required": false,
         "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 6,
-    "fields": {
-        "parent": 8,
-        "child_key": "selector",
-        "child": 7,
-        "is_required": true,
-        "description": [
-            "A CSS-style selector that specifies which MNX object(s) this style applies to.",
-            "",
-            "Currently MNX supports two types of selectors, object selectors and style selectors."
-        ]
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 7,
-    "fields": {
-        "parent": 5,
-        "child_key": "0",
-        "child": 8,
-        "is_required": false,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 8,
-    "fields": {
-        "parent": 8,
-        "child_key": "color",
-        "child": 9,
-        "is_required": false,
-        "description": "The color to apply to any elements targeted by this style."
     }
 },
 {
@@ -3544,17 +3432,6 @@
 },
 {
     "model": "spectools.jsonobjectrelationship",
-    "pk": 137,
-    "fields": {
-        "parent": 19,
-        "child_key": "class",
-        "child": 108,
-        "is_required": false,
-        "description": "An optional style class to use for this element and all child elements."
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
     "pk": 138,
     "fields": {
         "parent": 19,
@@ -3573,17 +3450,6 @@
         "child": 110,
         "is_required": false,
         "description": "The label to use when rendering this multimeasure rest. This attribute is provided as a way to override the default rendering."
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 140,
-    "fields": {
-        "parent": 69,
-        "child_key": "class",
-        "child": 108,
-        "is_required": false,
-        "description": "An optional style class to use for this object and all child objects."
     }
 },
 {
@@ -3647,28 +3513,6 @@
 },
 {
     "model": "spectools.jsonobjectrelationship",
-    "pk": 146,
-    "fields": {
-        "parent": 46,
-        "child_key": "class",
-        "child": 108,
-        "is_required": false,
-        "description": "An optional style class to use for this object and all child objects."
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 147,
-    "fields": {
-        "parent": 72,
-        "child_key": "class",
-        "child": 108,
-        "is_required": false,
-        "description": "An optional style class to use for this fine direction."
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
     "pk": 148,
     "fields": {
         "parent": 72,
@@ -3676,17 +3520,6 @@
         "child": 9,
         "is_required": false,
         "description": "An optional color to be used when rendering this fine direction."
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 149,
-    "fields": {
-        "parent": 64,
-        "child_key": "class",
-        "child": 108,
-        "is_required": false,
-        "description": "An optional style class to use for this ending."
     }
 },
 {
@@ -3913,17 +3746,6 @@
             "",
             "If not provided, the consuming software should determine the value automatically according to its own logic. Usually this is the same value as <code>\"side\"</code>."
         ]
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 171,
-    "fields": {
-        "parent": 11,
-        "child_key": "class",
-        "child": 108,
-        "is_required": false,
-        "description": "An optional style class to use for this object."
     }
 },
 {
@@ -4287,17 +4109,6 @@
             "",
             "By using this instead of the \"label\" attribute, you can avoid needing to duplicate a part's name in an MNX document."
         ]
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 206,
-    "fields": {
-        "parent": 31,
-        "child_key": "class",
-        "child": 108,
-        "is_required": false,
-        "description": ""
     }
 },
 {
@@ -5352,17 +5163,6 @@
         "child": 119,
         "is_required": false,
         "description": "Controls whether this kit note is performed by consuming software."
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 300,
-    "fields": {
-        "parent": 184,
-        "child_key": "class",
-        "child": 108,
-        "is_required": false,
-        "description": ""
     }
 },
 {
@@ -6761,34 +6561,6 @@
         "document": "",
         "document_path": "examples/json/organ-layout.json",
         "image_url": "/static/examples/organ-layout.png",
-        "is_featured": false
-    }
-},
-{
-    "model": "spectools.exampledocument",
-    "pk": 36,
-    "fields": {
-        "name": "Styling via a class (basic)",
-        "slug": "style-class-basic",
-        "schema": 1,
-        "blurb": "This document defines a style class called \"emphasized\". Any element with class=\"emphasized\" will be colored blue.",
-        "document": "",
-        "document_path": "examples/json/style-class-basic.json",
-        "image_url": "/static/examples/style_class_simple.png",
-        "is_featured": false
-    }
-},
-{
-    "model": "spectools.exampledocument",
-    "pk": 37,
-    "fields": {
-        "name": "Styling elements (basic)",
-        "slug": "style-element-basic",
-        "schema": 1,
-        "blurb": "This document contains a <style> element that effectively says \"color every <note> element blue.\" Because the <style> element lives within <global>, the rule applies to the entire document.",
-        "document": "",
-        "document_path": "examples/json/style-element-basic.json",
-        "image_url": "/static/examples/style_element_simple.png",
         "is_featured": false
     }
 },
@@ -14024,278 +13796,6 @@
 },
 {
     "model": "spectools.exampledocumentobject",
-    "pk": 706,
-    "fields": {
-        "example": 36,
-        "json_object": 1
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 707,
-    "fields": {
-        "example": 36,
-        "json_object": 3
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 708,
-    "fields": {
-        "example": 36,
-        "json_object": 6
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 709,
-    "fields": {
-        "example": 36,
-        "json_object": 7
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 710,
-    "fields": {
-        "example": 36,
-        "json_object": 8
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 711,
-    "fields": {
-        "example": 36,
-        "json_object": 9
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 713,
-    "fields": {
-        "example": 36,
-        "json_object": 13
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 714,
-    "fields": {
-        "example": 36,
-        "json_object": 14
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 715,
-    "fields": {
-        "example": 36,
-        "json_object": 16
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 716,
-    "fields": {
-        "example": 36,
-        "json_object": 19
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 717,
-    "fields": {
-        "example": 36,
-        "json_object": 20
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 719,
-    "fields": {
-        "example": 36,
-        "json_object": 22
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 722,
-    "fields": {
-        "example": 36,
-        "json_object": 26
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 724,
-    "fields": {
-        "example": 36,
-        "json_object": 30
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 725,
-    "fields": {
-        "example": 36,
-        "json_object": 31
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 726,
-    "fields": {
-        "example": 36,
-        "json_object": 33
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 727,
-    "fields": {
-        "example": 36,
-        "json_object": 34
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 729,
-    "fields": {
-        "example": 37,
-        "json_object": 1
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 730,
-    "fields": {
-        "example": 37,
-        "json_object": 3
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 731,
-    "fields": {
-        "example": 37,
-        "json_object": 6
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 732,
-    "fields": {
-        "example": 37,
-        "json_object": 7
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 733,
-    "fields": {
-        "example": 37,
-        "json_object": 8
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 734,
-    "fields": {
-        "example": 37,
-        "json_object": 9
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 736,
-    "fields": {
-        "example": 37,
-        "json_object": 13
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 737,
-    "fields": {
-        "example": 37,
-        "json_object": 14
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 738,
-    "fields": {
-        "example": 37,
-        "json_object": 16
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 739,
-    "fields": {
-        "example": 37,
-        "json_object": 19
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 740,
-    "fields": {
-        "example": 37,
-        "json_object": 20
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 742,
-    "fields": {
-        "example": 37,
-        "json_object": 22
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 745,
-    "fields": {
-        "example": 37,
-        "json_object": 26
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 747,
-    "fields": {
-        "example": 37,
-        "json_object": 30
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 748,
-    "fields": {
-        "example": 37,
-        "json_object": 31
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 749,
-    "fields": {
-        "example": 37,
-        "json_object": 33
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 750,
-    "fields": {
-        "example": 37,
-        "json_object": 34
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
     "pk": 752,
     "fields": {
         "example": 38,
@@ -14835,38 +14335,6 @@
     "pk": 839,
     "fields": {
         "example": 38,
-        "json_object": 127
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 840,
-    "fields": {
-        "example": 37,
-        "json_object": 126
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 841,
-    "fields": {
-        "example": 37,
-        "json_object": 127
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 842,
-    "fields": {
-        "example": 36,
-        "json_object": 126
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 843,
-    "fields": {
-        "example": 36,
         "json_object": 127
     }
 },
@@ -15539,38 +15007,6 @@
     "pk": 930,
     "fields": {
         "example": 38,
-        "json_object": 129
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 931,
-    "fields": {
-        "example": 37,
-        "json_object": 128
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 932,
-    "fields": {
-        "example": 37,
-        "json_object": 129
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 933,
-    "fields": {
-        "example": 36,
-        "json_object": 128
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 934,
-    "fields": {
-        "example": 36,
         "json_object": 129
     }
 },
@@ -16600,38 +16036,6 @@
 },
 {
     "model": "spectools.exampledocumentobject",
-    "pk": 1067,
-    "fields": {
-        "example": 36,
-        "json_object": 130
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1068,
-    "fields": {
-        "example": 36,
-        "json_object": 131
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1069,
-    "fields": {
-        "example": 37,
-        "json_object": 130
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1070,
-    "fields": {
-        "example": 37,
-        "json_object": 131
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
     "pk": 1071,
     "fields": {
         "example": 38,
@@ -17184,38 +16588,6 @@
 },
 {
     "model": "spectools.exampledocumentobject",
-    "pk": 1142,
-    "fields": {
-        "example": 36,
-        "json_object": 132
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1143,
-    "fields": {
-        "example": 36,
-        "json_object": 133
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1144,
-    "fields": {
-        "example": 37,
-        "json_object": 132
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1145,
-    "fields": {
-        "example": 37,
-        "json_object": 133
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
     "pk": 1146,
     "fields": {
         "example": 38,
@@ -17563,30 +16935,6 @@
     "pk": 1191,
     "fields": {
         "example": 35,
-        "json_object": 139
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1192,
-    "fields": {
-        "example": 36,
-        "json_object": 139
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1193,
-    "fields": {
-        "example": 36,
-        "json_object": 108
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1194,
-    "fields": {
-        "example": 37,
         "json_object": 139
     }
 },
@@ -18035,22 +17383,6 @@
     "pk": 1253,
     "fields": {
         "example": 35,
-        "json_object": 143
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1254,
-    "fields": {
-        "example": 36,
-        "json_object": 143
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1255,
-    "fields": {
-        "example": 37,
         "json_object": 143
     }
 },
@@ -20463,143 +19795,6 @@
             "<li>Within a <a href=\"../../mnx-reference/elements/directions-part/\">&lt;directions-part&gt; element</a> or a <a href=\"../../mnx-reference/elements/directions-global/\">&lt;directions-global&gt;</a> element (either within &lt;part&gt;</a> or within &lt;global&gt;</a>). The direction is considered to apply to all sequences.</li>",
             "<li>Within a <a href=\"../../mnx-reference/elements/directions/\">&lt;directions&gt; element below a &lt;sequence&gt;</a>. The direction applies only to the content within this sequence.</li>",
             "</ol>"
-        ]
-    }
-},
-{
-    "model": "spectools.staticpage",
-    "pk": 5,
-    "fields": {
-        "title": "Styling an MNX document",
-        "url": "/infrastructure/styling/",
-        "collection": 1,
-        "order": 6,
-        "content": [
-            "<p>MNX uses a lightweight but powerful syntax for setting visual styles on notational elements. This syntax is a subset of <a href=\"https://www.w3.org/Style/CSS/\">CSS</a> (Cascading Style Sheets).</p>",
-            "",
-            "<p>This styling system is primarily intended to control visual aspects of a score, as opposed to structural aspects. For structural aspects — such as line breaks, page breaks and stave order — please see <a href=\"../../mnx-reference/elements/system-layout/\">&lt;system-layout&gt;</a>.</p>",
-            "",
-            "<h2>Overview</h2>",
-            "",
-            "<p>There are two ways to style an MNX element: using <b>inline styles</b> and using <b>style rules</b>.</p>",
-            "",
-            "<p>Using <b>inline styles</b> is as simple as including the appropriate style properties directly in the appropriate MNX element. For example, here we have a <code>&lt;note&gt;</code> element with an inline <code>color</code> attribute, meaning the note should use a specific color:</p>",
-            "",
-            "<p><code>&lt;note pitch=\"C5\" color=\"#0080FF\" /&gt;</code></p>",
-            "",
-            "<p>Inline styles <em>cascade</em> — that is, they apply recursively to any child element as well. For example, this <code>&lt;sequence&gt;</code> element has  a <code>color</code> attribute, so the inner <code>&lt;note&gt;</code> elements will \"inherit\" that color:</p>",
-            "",
-            "<p><pre><code>&lt;sequence color=\"#0080FF\"&gt;",
-            "   &lt;event value=\"/4\"&gt;",
-            "      &lt;note pitch=\"C5\"/&gt;",
-            "   &lt;/event&gt;",
-            "   &lt;event value=\"/4\"&gt;",
-            "      &lt;note pitch=\"E5\"/&gt;",
-            "   &lt;/event&gt;",
-            "   &lt;event value=\"/4\"&gt;",
-            "      &lt;note pitch=\"G5\"/&gt;",
-            "   &lt;/event&gt;",
-            "   &lt;event value=\"/4\"&gt;",
-            "      &lt;note pitch=\"C6\"/&gt;",
-            "   &lt;/event&gt;",
-            "&lt;/sequence&gt;</code></pre></p>",
-            "",
-            "<p>The downside of inline styles is that the style information is scattered throughout your document, rather than living in a single place. For example, if you decide to change the color of all the notes from blue to red, you'll have to change every single inline style.</p>",
-            "",
-            "<p><b>Style rules</b> give you a way to centralize your style decisions, adding an elegant level of indirection. Instead of \"hard-coding\" your styles directly inline, you use a separate element called <code>&lt;style&gt;</code> that defines rules to apply to your document.</p>",
-            "",
-            "<p>The <code>&lt;style&gt;</code> element defines two things — a style property and a selector (the types of MNX elements to which the style is applied). There are two types of selectors, <em>element selectors</em> and <em>class selectors</em>.</p>",
-            "",
-            "<p>An element selector lets you target style rules to specific elements by name. For example, here we define a style that says \"all <code>&lt;note&gt;</code> elements should be colored blue:\"</p>",
-            "",
-            "<p><code>&lt;style selector=\"note\" color=\"#0000ff\"&gt;</code></p>",
-            "",
-            "<p>A class selector lets you create styles that can then be referred-to from elements. Here we define a style that says \"all elements with the style class <code>\"emphasized\"</code> should be colored blue:</p>",
-            "",
-            "<p><code>&lt;style selector=\".emphasized\" color=\"#0000ff\"&gt;</code></p>",
-            "",
-            "<p>Note the dot at the start of <code>\".emphasized\"</code>. This means <code>emphasized</code> is a style class as opposed to an MNX element name.</p>",
-            "",
-            "<p>Once you've defined this <code>emphasized</code> style, you can assign it to MNX elements by using the <code>class</code> attribute, like so:</p>",
-            "",
-            "<p><code>&lt;note pitch=\"C5\" class=\"emphasized\" /&gt;</code>",
-            "",
-            "<h2>Location of &lt;style&gt;</h2>",
-            "",
-            "<p>An MNX document can have <code>&lt;style&gt;</code> elements in a few different places, including <code>&lt;global&gt;</code>, <code>&lt;page&gt;</code> and <code>&lt;score&gt;</code>. <a href=\"../../mnx-reference/elements/style/\">See here for more</a>.</p>",
-            "",
-            "<p>The styles defined within a <code>&lt;style&gt;</code> element will only apply to the relevant section of the document, depending on where the <code>&lt;style&gt;</code> element lives. See \"Algorithm for calculating an element's applied styles\" below.</p>",
-            "",
-            "<h2>Style properties</h2>",
-            "",
-            "<p>Here is the full list of style properties MNX currently supports. These can be used in <code>&lt;style&gt;</code> elements, and they can be used inline in any styleable MNX element (see below).</p>",
-            "",
-            "<ul>",
-            "<li>color</li>",
-            "</ul>",
-            "",
-            "<p>(Yes, this list is very short at the moment!)</p>",
-            "",
-            "<h2>Styleable MNX elements</h2>",
-            "",
-            "<p>Many MNX elements are styleable — meaning they accept style properties as XML attributes. For a full list, <a href=\"../../mnx-reference/data-types/simple-color/\">see here</a>.</p>",
-            "",
-            "<h2>Algorithm for calculating an element's applied styles</h2>",
-            "",
-            "<p>To determine which style properties apply to a given target element, use the following algorithm:</p>",
-            "",
-            "<p>1. Gather all of the styles that apply <em>directly</em> to the target element. In order from highest priority to lowest priority, these are:</p>",
-            "",
-            "<ul>",
-            "<li>Inline styles in the element itself (e.g., XML attributes such as <code>color</code>).</li>",
-            "<li>Applicable class selectors defined in <code>&lt;style&gt;</code> elements in the applicable <code>&lt;page&gt;</code>.</li>",
-            "<li>Applicable class selectors defined in <code>&lt;style&gt;</code> elements in the applicable <code>&lt;score&gt;</code>.</li>",
-            "<li>Applicable class selectors defined in <code>&lt;style&gt;</code> elements in the applicable <code>&lt;system-layout&gt;</code> or <code>&lt;system-layout-change&gt;</code>.</li>",
-            "<li>Applicable class selectors defined in <code>&lt;style&gt;</code> elements in <code>&lt;global&gt;</code>.</li>",
-            "<li>Applicable element selectors defined in <code>&lt;style&gt;</code> elements in the applicable <code>&lt;page&gt;</code>.</li>",
-            "<li>Applicable element selectors defined in <code>&lt;style&gt;</code> elements in the applicable <code>&lt;score&gt;</code>.</li>",
-            "<li>Applicable element selectors defined in <code>&lt;style&gt;</code> elements in the applicable <code>&lt;system-layout&gt;</code> or <code>&lt;system-layout-change&gt;</code>.</li>",
-            "<li>Applicable element selectors defined in <code>&lt;style&gt;</code> elements in <code>&lt;global&gt;</code>.</li>",
-            "</ul>",
-            "",
-            "<p>2. For each of these categories, sort the results within the category such that later declarations in the document take priority over earlier ones. For scores and layouts, this has the effect that more specific elements override their ancestors. It also means that when multiple class names or specific values are provided in a target element, later ones override earlier ones.</p>",
-            "",
-            "<p>3. Traverse these results, saving the highest-priority result for each style property. This results in a <em>computed value</em> for each style property.</p>",
-            "",
-            "<p>4. If no computed value is found for a given style property for this element, determine the default value by ascending the element's <em>property inheritance chain</em>. This chain is defined as follows:</p>",
-            "",
-            "<ul>",
-            "<li>If the target element is within <code>&lt;part&gt;</code>:",
-            "   <ul>",
-            "      <li>All ancestors of the target up to and including <code>&lt;part&gt;</code>.</li>",
-            "      <li>The <code>&lt;measure-global&gt;</code> element with the same measure index as the target, and this <code>&lt;measure-global&gt;</code> element's ancestors up to and including <code>&lt;global&gt;</code>.</li>",
-            "      <li>The most specific layout element that applies to the target element, and its ancestors up to and including <code>&lt;layouts&gt;</code>.</li>",
-            "      <li>The most specific score element that applies to the target element, and its ancestors up to and including <code>&lt;score&gt;</code>.</li>",
-            "   </ul>",
-            "</li>",
-            "<li>If the target element is within <code>&lt;global&gt;</code>:",
-            "   <ul>",
-            "      <li>All ancestors of the target up to and including <code>&lt;global&gt;</code>.</li>",
-            "      <li>The most specific layout element that applies to the target element, and its ancestors up to and including <code>&lt;layouts&gt;</code>.</li>",
-            "      <li>The most specific score element that applies to the target element, and its ancestors up to and including <code>&lt;score&gt;</code>.</li>",
-            "   </ul>",
-            "</li>",
-            "<li>If the target element is a layout element:",
-            "   <ul>",
-            "      <li>All ancestors of the target up to and including <code>&lt;layouts&gt;</code>.</li>",
-            "      <li>The most specific element within a <code>&lt;score&gt;</code> that applies to the target element, and its ancestors up to and including <code>&lt;score&gt;</code>.</li>",
-            "   </ul>",
-            "</li>",
-            "<li>If the target element is a score element:",
-            "   <ul>",
-            "      <li>All ancestors of the target up to and including <code>&lt;score&gt;</code>.</li>",
-            "   </ul>",
-            "</li>",
-            "</ul>",
-            "",
-            "<p>For each ancestor consulted during this search, examine its computed value. If one is found, the search terminates and that value is used as the target element's default value.</p>",
-            "",
-            "<p>If no computed value is found on an ancestor and the search completes at <code>&lt;global&gt;</code>, then the property assumes an initial value determined by the host application, or by the property's initial value as given in the MNX specification.</p>"
         ]
     }
 }
