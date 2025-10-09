@@ -5289,6 +5289,8 @@
         "description": [
             "The duration of this multi-note tremolo with respect to its containing element. This is how much time the tremolo occupies in the sequence in which it is placed.",
             "",
+            "This value's <code>\"multiple\"</code> must equal the total number of events within the tremolo. (Usually this will be 2.)",
+            "",
             "For example, consider a multi-note tremolo whose total duration equals the duration of a half note and contains two inner events. This would use an <code>outer</code> value of <code>{\"multiple\": \"2\", \"duration\": {\"base\": \"quarter\"}}</code>. (Note, per convention, that both inner events would be visually rendered as half notes.)"
         ]
     }
@@ -5301,7 +5303,13 @@
         "child_key": "content",
         "child": 197,
         "is_required": true,
-        "description": "The sequence of events within this multi-note tremolo. Typically this will be exactly two events."
+        "description": [
+            "The sequence of events within this multi-note tremolo. Typically this will be exactly two events.",
+            "",
+            "Each inner event's <code>\"duration\"</code> must be the duration of the displayed notehead.",
+            "",
+            "For example, consider a multi-note tremolo whose total duration equals the duration of a half note and contains two inner events. Each inner event would have a <code>\"duration\"</code> value of <code>\"half\"</code>."
+        ]
     }
 },
 {
