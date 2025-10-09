@@ -733,6 +733,10 @@
       "const": "staff",
       "type": "string"
     },
+    "literal-string-tremolo": {
+      "const": "tremolo",
+      "type": "string"
+    },
     "literal-string-tuplet": {
       "const": "tuplet",
       "type": "string"
@@ -905,6 +909,35 @@
       },
       "required": [
         "version"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false
+    },
+    "multi-note-tremolo": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/global-attrs"
+        }
+      ],
+      "properties": {
+        "content": {
+          "$ref": "#/$defs/tremolo-sequence-content"
+        },
+        "marks": {
+          "$ref": "#/$defs/positive-integer"
+        },
+        "outer": {
+          "$ref": "#/$defs/note-value-quantity"
+        },
+        "type": {
+          "$ref": "#/$defs/literal-string-tremolo"
+        }
+      },
+      "required": [
+        "content",
+        "marks",
+        "outer",
+        "type"
       ],
       "type": "object",
       "unevaluatedProperties": false
@@ -1496,6 +1529,9 @@
           },
           {
             "$ref": "#/$defs/space"
+          },
+          {
+            "$ref": "#/$defs/multi-note-tremolo"
           }
         ]
       },
@@ -2000,6 +2036,12 @@
         128
       ],
       "type": "integer"
+    },
+    "tremolo-sequence-content": {
+      "items": {
+        "$ref": "#/$defs/event"
+      },
+      "type": "array"
     },
     "tremolo-single": {
       "allOf": [

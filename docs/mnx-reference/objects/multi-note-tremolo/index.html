@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The note value quantity object | MNX specification</title>
+<title>The multi-note tremolo object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -44,15 +44,15 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    note value quantity
+    multi-note tremolo
 </p>
 
-<h1>The note value quantity object</h1>
+<h1>The multi-note tremolo object</h1>
 
 <p><b>Type:</b> Dictionary</p>
 
 
-<p>A note value quantity is an integer multiple of a note value. For example, this can represent the concepts of "two eighth notes" or "six dotted quarter notes."</p>
+<p>This object represents a multi-note tremolo, including all notes within.</p>
 
 
 
@@ -70,25 +70,50 @@
 
 
 <tr>
-    <td><nobr><b>duration</b></nobr></td>
+    <td><nobr><b>content</b></nobr></td>
     <td>
         
-        <a href="../note-value/">note value</a>
+            An array of
+            
+            <a href="../event/">event objects</a>
+            
         
     </td>
     <td>Yes</td>
-    <td>The base note value to be multiplied.</td>
+    <td>The sequence of events within this multi-note tremolo. Typically this will be exactly two events.</td>
 </tr>
 
 <tr>
-    <td><nobr><b>multiple</b></nobr></td>
+    <td><nobr><b>marks</b></nobr></td>
     <td>
         
         <a href="../positive-integer/">positive integer</a>
         
     </td>
     <td>Yes</td>
-    <td>The integer multiple.</td>
+    <td>The number of beams to use in this multi-note tremolo. Must be between 1 and 8, inclusive.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>outer</b></nobr></td>
+    <td>
+        
+        <a href="../note-value-quantity/">note value quantity</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The duration of this multi-note tremolo with respect to its containing element. This is how much time the tremolo occupies in the sequence in which it is placed.<br><br>For example, consider a multi-note tremolo whose total duration equals the duration of a half note and contains two inner events. This would use an <code>outer</code> value of <code>{"multiple": "2", "duration": {"base": "quarter"}}</code>. (Note, per convention, that both inner events would be visually rendered as half notes.)</td>
+</tr>
+
+<tr>
+    <td><nobr><b>type</b></nobr></td>
+    <td>
+        
+            The string <code>"tremolo"</code>
+        
+    </td>
+    <td>Yes</td>
+    <td></td>
 </tr>
 
 
@@ -111,11 +136,7 @@
 
 <ul>
 
-<li><a href="../multi-note-tremolo/">multi-note tremolo</a>: "outer"</li>
-
-<li><a href="../tuplet/">tuplet</a>: "inner"</li>
-
-<li><a href="../tuplet/">tuplet</a>: "outer"</li>
+<li><a href="../sequence/">sequence</a>: "content"</li>
 
 </ul>
 
@@ -126,7 +147,7 @@
 
 <p>This object is used in the following examples:</p>
 <p>
-    <nobr><a href="../../examples/tremolos-multi-note/">Tremolos (multi-note)</a></nobr>, <nobr><a href="../../examples/tuplets/">Tuplets</a></nobr>
+    <nobr><a href="../../examples/tremolos-multi-note/">Tremolos (multi-note)</a></nobr>
 </p>
 
 
