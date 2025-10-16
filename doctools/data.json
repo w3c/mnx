@@ -5346,6 +5346,21 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 313,
+    "fields": {
+        "parent": 195,
+        "child_key": "individualDuration",
+        "child": 131,
+        "is_required": false,
+        "description": [
+            "Optional. The performed duration of an individual event in this multi-note tremolo.",
+            "",
+            "Generally this is unnecessary to encode, because it can be automatically calculated from <code>\"marks\"</code> and <code>\"outer\"</code>. But software may choose to explicitly encode this."
+        ]
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {
