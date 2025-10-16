@@ -2200,7 +2200,18 @@
         "schema": 1,
         "object_type": 1,
         "uses_global_attrs": true,
-        "description": "<p>This object represents a multi-note tremolo, including all notes within.</p>"
+        "description": [
+            "<p>This object represents a multi-note tremolo, including all notes within.</p>",
+            "",
+            "<p>Multi-note tremolos are inherently a special case, for two reasons:</p>",
+            "",
+            "<ol>",
+            "<li>Although a tremolo's events are displayed sequentially, playback should oscillate between the events (hence producing the audible tremolo effect).</li>",
+            "<li>Per convention, a tremolo's events are visually rendered with note values equal to the entire duration of the tremolo.</li>",
+            "</ol>",
+            "",
+            "<p>To account for #2: for each event within a multi-note tremolo, the <code>duration</code> encodes the rhythmic duration of the displayed notehead.</p>"
+        ]
     }
 },
 {
