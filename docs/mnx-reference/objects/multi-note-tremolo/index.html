@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The multi-note tremolo object | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../">Reference</a>
+    <ul>
+    <li><a href="../">Objects</a></li>
+    <li><a href="../../examples/">Example documents</a></li>
+    <li><a href="../../../mnx-schema.json">Raw JSON Schema</a></li>
+    </ul>
+</li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Objects</a> &gt;
+    multi-note tremolo
+</p>
+
+<h1>The multi-note tremolo object</h1>
+
+<p><b>Type:</b> Dictionary</p>
+
+
+<p>This object represents a multi-note tremolo, including all notes within.</p>
+
+<p>Multi-note tremolos are inherently a special case, for two reasons:</p>
+
+<ol>
+<li>Although a tremolo's events are displayed sequentially, playback should oscillate between the events (hence producing the audible tremolo effect).</li>
+<li>Per convention, a tremolo's events are visually rendered with note values equal to the entire duration of the tremolo.</li>
+</ol>
+
+<p>To account for #2: for each event within a multi-note tremolo, the <code>duration</code> encodes the rhythmic duration of the displayed notehead.</p>
+
+
+
+<h2>Attributes</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>content</b></nobr></td>
+    <td>
+        
+            An array of
+            
+            <a href="../event/">event objects</a>
+            
+        
+    </td>
+    <td>Yes</td>
+    <td>The sequence of events within this multi-note tremolo. Typically this will be exactly two events.<br><br>Each inner event's <code>"duration"</code> must be the duration of the displayed notehead.<br><br>For example, consider a multi-note tremolo whose total duration equals the duration of a half note and contains two inner events. Each inner event would have a <code>"duration"</code> value of <code>"half"</code>.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>individualDuration</b></nobr></td>
+    <td>
+        
+        <a href="../note-value/">note value</a>
+        
+    </td>
+    <td>No</td>
+    <td>Optional. The performed duration of an individual event in this multi-note tremolo.<br><br>Generally this is unnecessary to encode, because it can be automatically calculated from <code>"marks"</code> and <code>"outer"</code>. But software may choose to explicitly encode this.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>marks</b></nobr></td>
+    <td>
+        
+        <a href="../positive-integer/">positive integer</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The number of beams to use in this multi-note tremolo. Must be between 1 and 8, inclusive.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>outer</b></nobr></td>
+    <td>
+        
+        <a href="../note-value-quantity/">note value quantity</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The duration of this multi-note tremolo with respect to its containing element. This is how much time the tremolo occupies in the sequence in which it is placed.<br><br>This value's <code>"multiple"</code> must equal the total number of events within the tremolo. (Usually this will be 2.)<br><br>For example, consider a multi-note tremolo whose total duration equals the duration of a half note and contains two inner events. This would use an <code>outer</code> value of <code>{"multiple": "2", "duration": {"base": "quarter"}}</code>. (Note, per convention, that both inner events would be visually rendered as half notes.)</td>
+</tr>
+
+<tr>
+    <td><nobr><b>type</b></nobr></td>
+    <td>
+        
+            The string <code>"tremolo"</code>
+        
+    </td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+
+</table>
+
+
+<p>Plus <a href="../global-attrs/">globally available attributes</a>:
+<b>_c</b>, <b>_x</b>, <b>id</b>
+</p>
+
+
+
+
+
+
+
+<h2>Parent objects</h2>
+
+<p>This object is used by the following parent objects:</p>
+
+<ul>
+
+<li><a href="../sequence/">sequence</a>: "content"</li>
+
+</ul>
+
+
+
+
+<h2 id="examples">Examples</h2>
+
+<p>This object is used in the following examples:</p>
+<p>
+    <nobr><a href="../../examples/tremolos-multi-note/">Tremolos (multi-note)</a></nobr>
+</p>
+
+
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>

@@ -2192,6 +2192,53 @@
     }
 },
 {
+    "model": "spectools.jsonobject",
+    "pk": 195,
+    "fields": {
+        "name": "multi-note tremolo",
+        "slug": "multi-note-tremolo",
+        "schema": 1,
+        "object_type": 1,
+        "uses_global_attrs": true,
+        "description": [
+            "<p>This object represents a multi-note tremolo, including all notes within.</p>",
+            "",
+            "<p>Multi-note tremolos are inherently a special case, for two reasons:</p>",
+            "",
+            "<ol>",
+            "<li>Although a tremolo's events are displayed sequentially, playback should oscillate between the events (hence producing the audible tremolo effect).</li>",
+            "<li>Per convention, a tremolo's events are visually rendered with note values equal to the entire duration of the tremolo.</li>",
+            "</ol>",
+            "",
+            "<p>To account for #2: for each event within a multi-note tremolo, the <code>duration</code> encodes the rhythmic duration of the displayed notehead.</p>"
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 196,
+    "fields": {
+        "name": "literal string tremolo",
+        "slug": "literal-string-tremolo",
+        "schema": 1,
+        "object_type": 6,
+        "uses_global_attrs": true,
+        "description": "tremolo"
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 197,
+    "fields": {
+        "name": "multi-note tremolo sequence content",
+        "slug": "tremolo-sequence-content",
+        "schema": 1,
+        "object_type": 2,
+        "uses_global_attrs": true,
+        "description": ""
+    }
+},
+{
     "model": "spectools.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -4370,7 +4417,7 @@
         "child_key": "marks",
         "child": 128,
         "is_required": true,
-        "description": "The number of marks to use in this tremolo. Must be between 0 and 8, inclusive."
+        "description": "The number of marks to use in this tremolo. Must be between 1 and 8, inclusive."
     }
 },
 {
@@ -5217,6 +5264,99 @@
             "Vendor dicts must be dictionaries. Beyond that, MNX places no requirement on their contents. Implementers are free to design their own data layout within these dictionaries.",
             "",
             "MNX-consuming software is under no obligation to preserve the data within the \"_x\" attribute. When an MNX document is transferred between separate MNX software implementations, we expect some software will try to preserve it while other software will discard it."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 307,
+    "fields": {
+        "parent": 25,
+        "child_key": "5",
+        "child": 195,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 308,
+    "fields": {
+        "parent": 195,
+        "child_key": "type",
+        "child": 196,
+        "is_required": true,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 309,
+    "fields": {
+        "parent": 195,
+        "child_key": "outer",
+        "child": 51,
+        "is_required": true,
+        "description": [
+            "The duration of this multi-note tremolo with respect to its containing element. This is how much time the tremolo occupies in the sequence in which it is placed.",
+            "",
+            "This value's <code>\"multiple\"</code> must equal the total number of events within the tremolo. (Usually this will be 2.)",
+            "",
+            "For example, consider a multi-note tremolo whose total duration equals the duration of a half note and contains two inner events. This would use an <code>outer</code> value of <code>{\"multiple\": \"2\", \"duration\": {\"base\": \"quarter\"}}</code>. (Note, per convention, that both inner events would be visually rendered as half notes.)"
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 310,
+    "fields": {
+        "parent": 195,
+        "child_key": "content",
+        "child": 197,
+        "is_required": true,
+        "description": [
+            "The sequence of events within this multi-note tremolo. Typically this will be exactly two events.",
+            "",
+            "Each inner event's <code>\"duration\"</code> must be the duration of the displayed notehead.",
+            "",
+            "For example, consider a multi-note tremolo whose total duration equals the duration of a half note and contains two inner events. Each inner event would have a <code>\"duration\"</code> value of <code>\"half\"</code>."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 311,
+    "fields": {
+        "parent": 195,
+        "child_key": "marks",
+        "child": 128,
+        "is_required": true,
+        "description": "The number of beams to use in this multi-note tremolo. Must be between 1 and 8, inclusive."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 312,
+    "fields": {
+        "parent": 197,
+        "child_key": "0",
+        "child": 26,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 313,
+    "fields": {
+        "parent": 195,
+        "child_key": "individualDuration",
+        "child": 131,
+        "is_required": false,
+        "description": [
+            "Optional. The performed duration of an individual event in this multi-note tremolo.",
+            "",
+            "Generally this is unnecessary to encode, because it can be automatically calculated from <code>\"marks\"</code> and <code>\"outer\"</code>. But software may choose to explicitly encode this."
         ]
     }
 },
@@ -6717,6 +6857,20 @@
         "document": "",
         "document_path": "examples/json/beams-secondary-beam-breaks-implied.json",
         "image_url": "/static/examples/beams-secondary-beam-breaks.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 51,
+    "fields": {
+        "name": "Tremolos (multi-note)",
+        "slug": "tremolos-multi-note",
+        "schema": 1,
+        "blurb": "",
+        "document": "",
+        "document_path": "examples/json/multi-note-tremolos.json",
+        "image_url": "/static/examples/tremolos-multinote.png",
         "is_featured": false
     }
 },
@@ -19643,6 +19797,206 @@
     }
 },
 {
+    "model": "spectools.exampledocumentobject",
+    "pk": 1581,
+    "fields": {
+        "example": 51,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1582,
+    "fields": {
+        "example": 51,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1583,
+    "fields": {
+        "example": 51,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1584,
+    "fields": {
+        "example": 51,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1585,
+    "fields": {
+        "example": 51,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1586,
+    "fields": {
+        "example": 51,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1587,
+    "fields": {
+        "example": 51,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1588,
+    "fields": {
+        "example": 51,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1589,
+    "fields": {
+        "example": 51,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1590,
+    "fields": {
+        "example": 51,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1591,
+    "fields": {
+        "example": 51,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1592,
+    "fields": {
+        "example": 51,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1593,
+    "fields": {
+        "example": 51,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1594,
+    "fields": {
+        "example": 51,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1596,
+    "fields": {
+        "example": 51,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1597,
+    "fields": {
+        "example": 51,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1598,
+    "fields": {
+        "example": 51,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1599,
+    "fields": {
+        "example": 51,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1601,
+    "fields": {
+        "example": 51,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1602,
+    "fields": {
+        "example": 51,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1603,
+    "fields": {
+        "example": 51,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1604,
+    "fields": {
+        "example": 51,
+        "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1605,
+    "fields": {
+        "example": 51,
+        "json_object": 195
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1606,
+    "fields": {
+        "example": 51,
+        "json_object": 196
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1607,
+    "fields": {
+        "example": 51,
+        "json_object": 51
+    }
+},
+{
     "model": "spectools.staticpagecollection",
     "pk": 1,
     "fields": {
@@ -19703,7 +20057,7 @@
             "<li>Let <i>content</i> be the list of MNX objects comprising the sequence content.</li>",
             "<li>For each object <i>obj</i> within <i>content</i>:",
             "    <ol>",
-            "    <li>If <i>obj</i> has a <a href=\"../../mnx-reference/objects/event/\"><code>\"type\"</code> value of <code>\"event\"</code></a>:",
+            "    <li>If <i>obj</i> has a <a href=\"../../mnx-reference/objects/event/\"><code>\"type\"</code> value of <code>\"event\"</code></a> or is missing a <code>\"type\"</code> attribute:",
             "        <ol>",
             "        <li>If <i>obj</i> has a <code>\"measure\"</code> value of <code>true</code>,",
             "            <ol>",
@@ -19730,12 +20084,18 @@
             "    <li>Else, if <i>obj</i> has a <a href=\"../../mnx-reference/objects/tuplet/\"><code>\"type\"</code> value of <code>\"tuplet\"</code></a>:",
             "        <ol>",
             "        <li>Sequence the content of <i>obj</i>, using <i>sequence cursor</i> as the starting position, and multiplying the <i>time modification ratio</i> by the tuplet's outer / inner ratio for the processing of the tuplet.</li>",
-            "        <li>Add the total duration of <i>obj</i> as given by outer, multiplied by the <i>time modification ratio</i>, to <i>sequence cursor</i>.</li>",
+            "        <li>Add the total duration of <i>obj</i> as given by <code>outer</code>, multiplied by the <i>time modification ratio</i>, to <i>sequence cursor</i>.</li>",
             "        </ol>",
             "    </li>",
             "    <li>Else, if <i>obj</i> has a <a href=\"../../mnx-reference/objects/grace/\"><code>\"type\"</code> value of <code>\"grace\"</code></a>:",
             "        <ol>",
             "        <li>Process the contents of <i>obj</i>, assigning them a non-metrical ordering relative to preceding or following elements as appropriate.</li>",
+            "        </ol>",
+            "    </li>",
+            "    <li>Else, if <i>obj</i> has a <a href=\"../../mnx-reference/objects/multi-note-tremolo/\"><code>\"type\"</code> value of <code>\"tremolo\"</code></a>:",
+            "        <ol>",
+            "        <li>Sequence the content of <i>obj</i>, using <i>sequence cursor</i> as the starting position. Note each event within this multi-note tremolo should be assigned an <i>event duration</i> equal to <i>obj</i>'s <code>outer.duration</code> (i.e., ignoring <i>obj</i>'s <code>outer.multiple</code>).</li>",
+            "        <li>Add the total duration of <i>obj</i> as given by <code>outer</code>, multiplied by the <i>time modification ratio</i>, to <i>sequence cursor</i>.</li>",
             "        </ol>",
             "    </li>",
             "    <li>If <i>sequence cursor</i> exceeds the specified duration for the enclosing element (time signature for a measure, <code>\"inner\"</code> value for a tuplet), throw a processing error.</li>",
