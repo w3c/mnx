@@ -67,7 +67,7 @@
 <li>Let <i>content</i> be the list of MNX objects comprising the sequence content.</li>
 <li>For each object <i>obj</i> within <i>content</i>:
     <ol>
-    <li>If <i>obj</i> has a <a href="../../mnx-reference/objects/event/"><code>"type"</code> value of <code>"event"</code></a>:
+    <li>If <i>obj</i> has a <a href="../../mnx-reference/objects/event/"><code>"type"</code> value of <code>"event"</code></a> or is missing a <code>"type"</code> attribute:
         <ol>
         <li>If <i>obj</i> has a <code>"measure"</code> value of <code>true</code>,
             <ol>
@@ -94,12 +94,18 @@
     <li>Else, if <i>obj</i> has a <a href="../../mnx-reference/objects/tuplet/"><code>"type"</code> value of <code>"tuplet"</code></a>:
         <ol>
         <li>Sequence the content of <i>obj</i>, using <i>sequence cursor</i> as the starting position, and multiplying the <i>time modification ratio</i> by the tuplet's outer / inner ratio for the processing of the tuplet.</li>
-        <li>Add the total duration of <i>obj</i> as given by outer, multiplied by the <i>time modification ratio</i>, to <i>sequence cursor</i>.</li>
+        <li>Add the total duration of <i>obj</i> as given by <code>outer</code>, multiplied by the <i>time modification ratio</i>, to <i>sequence cursor</i>.</li>
         </ol>
     </li>
     <li>Else, if <i>obj</i> has a <a href="../../mnx-reference/objects/grace/"><code>"type"</code> value of <code>"grace"</code></a>:
         <ol>
         <li>Process the contents of <i>obj</i>, assigning them a non-metrical ordering relative to preceding or following elements as appropriate.</li>
+        </ol>
+    </li>
+    <li>Else, if <i>obj</i> has a <a href="../../mnx-reference/objects/multi-note-tremolo/"><code>"type"</code> value of <code>"tremolo"</code></a>:
+        <ol>
+        <li>Sequence the content of <i>obj</i>, using <i>sequence cursor</i> as the starting position. Note each event within this multi-note tremolo should be assigned an <i>event duration</i> equal to <i>obj</i>'s <code>outer.duration</code> (i.e., ignoring <i>obj</i>'s <code>outer.multiple</code>).</li>
+        <li>Add the total duration of <i>obj</i> as given by <code>outer</code>, multiplied by the <i>time modification ratio</i>, to <i>sequence cursor</i>.</li>
         </ol>
     </li>
     <li>If <i>sequence cursor</i> exceeds the specified duration for the enclosing element (time signature for a measure, <code>"inner"</code> value for a tuplet), throw a processing error.</li>
