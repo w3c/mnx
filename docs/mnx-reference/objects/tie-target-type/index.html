@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The tie target type object | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../">Reference</a>
+    <ul>
+    <li><a href="../">Objects</a></li>
+    <li><a href="../../examples/">Example documents</a></li>
+    <li><a href="../../../mnx-schema.json">Raw JSON Schema</a></li>
+    </ul>
+</li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Objects</a> &gt;
+    tie target type
+</p>
+
+<h1>The tie target type object</h1>
+
+<p><b>Type:</b> String</p>
+
+
+
+
+
+
+<h2>Allowed values:</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Value</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+<tr>
+    <td><nobr><b>&quot;arpeggio&quot;</b></nobr></td>
+    <td>The tie is part of an arpeggio notated as consecutive ties, like this:<br><br><img src="../../../static/images/tie-target-type/arpeggio.png" alt="Notation example"><br><br>Note: In this example, the final tie would be encoded as "nextNote".</td>
+</tr>
+
+<tr>
+    <td><nobr><b>&quot;crossJump&quot;</b></nobr></td>
+    <td>The tie ends on a note whose event does <em>not</em> directly follow the start note's event, such as an alternate ending, repeat or jump (e.g., D.S. al Coda).</td>
+</tr>
+
+<tr>
+    <td><nobr><b>&quot;crossVoice&quot;</b></nobr></td>
+    <td>The tie ends on a note in a different sequence.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>&quot;nextNote&quot;</b></nobr></td>
+    <td>The tie ends on a note in the event that directly follows the start note's event.<br><br>This is by far the most common type of tie.</td>
+</tr>
+
+</table>
+
+
+
+<h2>Parent objects</h2>
+
+<p>This object is used by the following parent objects:</p>
+
+<ul>
+
+<li><a href="../tie/">tie</a>: "targetType"</li>
+
+</ul>
+
+
+
+
+
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>

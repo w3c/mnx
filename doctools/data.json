@@ -2239,6 +2239,18 @@
     }
 },
 {
+    "model": "spectools.jsonobject",
+    "pk": 198,
+    "fields": {
+        "name": "tie target type",
+        "slug": "tie-target-type",
+        "schema": 1,
+        "object_type": 3,
+        "uses_global_attrs": true,
+        "description": ""
+    }
+},
+{
     "model": "spectools.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -5361,6 +5373,27 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 314,
+    "fields": {
+        "parent": 36,
+        "child_key": "targetType",
+        "child": 198,
+        "is_required": false,
+        "description": [
+            "Specifies the relationship of the tie's start note to its target (end) note.",
+            "",
+            "Generally, most ties are \"nextNote\", meaning the tie connects notes that are in consecutive events. The other supported values — \"arpeggio\", \"crossVoice\" and \"crossJump\" — describe less frequent situations of music notation.",
+            "",
+            "Many simpler notation applications make the assumption that ties are always in consecutive events. This attribute exists as a hint for these applications, so that they can include or exclude ties accordingly. For example, a simple notation-display application may decide to ignore all ties that don't have targetType \"nextNote\".",
+            "",
+            "If this attribute isn't provided, behavior is undefined. In this case, consuming applications may decide how (or whether) to parse the tie, according to their own algorithms. For example, a simple algorithm might be: only honor this tie if the \"target\" note lives in the subsequent event.",
+            "",
+            "It is an error to use this attribute if \"lv\" is true."
+        ]
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {
@@ -6204,6 +6237,52 @@
         "parent": 43,
         "name": "auto",
         "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 95,
+    "fields": {
+        "parent": 198,
+        "name": "nextNote",
+        "description": [
+            "The tie ends on a note in the event that directly follows the start note's event.",
+            "",
+            "This is by far the most common type of tie."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 96,
+    "fields": {
+        "parent": 198,
+        "name": "crossVoice",
+        "description": "The tie ends on a note in a different sequence."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 97,
+    "fields": {
+        "parent": 198,
+        "name": "arpeggio",
+        "description": [
+            "The tie is part of an arpeggio notated as consecutive ties, like this:",
+            "",
+            "<img src=\"../../../static/images/tie-target-type/arpeggio.png\" alt=\"Notation example\">",
+            "",
+            "Note: In this example, the final tie would be encoded as \"nextNote\"."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 98,
+    "fields": {
+        "parent": 198,
+        "name": "crossJump",
+        "description": "The tie ends on a note whose event does <em>not</em> directly follow the start note's event, such as an alternate ending, repeat or jump (e.g., D.S. al Coda)."
     }
 },
 {

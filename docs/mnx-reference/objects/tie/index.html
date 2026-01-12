@@ -106,6 +106,17 @@
     <td>The ID of a note that ends this tie.<br><br>The start note and end note must be in the same part (i.e., it's not allowed for a tie to start in one part and end in a different part).<br><br>The end note must have the same sounded pitch as the start note — but the two notes are allowed to use different note spellings, as long as those spellings are enharmonically equivalent.<br><br>If "target" is omitted, "lv" is required with a value of true.</td>
 </tr>
 
+<tr>
+    <td><nobr><b>targetType</b></nobr></td>
+    <td>
+        
+        <a href="../tie-target-type/">tie target type</a>
+        
+    </td>
+    <td>No</td>
+    <td>Specifies the relationship of the tie's start note to its target (end) note.<br><br>Generally, most ties are "nextNote", meaning the tie connects notes that are in consecutive events. The other supported values — "arpeggio", "crossVoice" and "crossJump" — describe less frequent situations of music notation.<br><br>Many simpler notation applications make the assumption that ties are always in consecutive events. This attribute exists as a hint for these applications, so that they can include or exclude ties accordingly. For example, a simple notation-display application may decide to ignore all ties that don't have targetType "nextNote".<br><br>If this attribute isn't provided, behavior is undefined. In this case, consuming applications may decide how (or whether) to parse the tie, according to their own algorithms. For example, a simple algorithm might be: only honor this tie if the "target" note lives in the subsequent event.<br><br>It is an error to use this attribute if "lv" is true.</td>
+</tr>
+
 
 </table>
 
