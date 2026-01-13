@@ -176,7 +176,7 @@
         "schema": 1,
         "object_type": 1,
         "uses_global_attrs": true,
-        "description": "<p>The part object represents a set of measures which describe a single part within the score — generally corresponding to a single instrument. The sequence of measures must match the measures found in the \"global\" object.</p>"
+        "description": "<p>The part object represents a set of measures which describe a single part within the score — generally corresponding to a single instrument. The sequence of measures must match the measures found in the <a href=\"../global/\">global data object</a>.</p>"
     }
 },
 {
@@ -2367,8 +2367,8 @@
         "parent": 14,
         "child_key": "measures",
         "child": 17,
-        "is_required": false,
-        "description": ""
+        "is_required": true,
+        "description": "This array's length must match the length of the <a href=\"../global/\">global data object</a>'s \"measures\" array."
     }
 },
 {
