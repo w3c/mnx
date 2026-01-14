@@ -9,6 +9,59 @@
 
 <style>
 .diff * { font-weight: bold; color: blue !important; }
+
+.xmlmarkup {
+    white-space: normal !important;
+}
+.json-collapse-indicator {
+    cursor: pointer;
+    user-select: none;
+    color: #000;
+    font-family: monospace;
+    display: inline;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+.json-collapse-indicator:hover {
+    color: #000;
+}
+.json-collapse-indicator.collapsed {
+    opacity: 0.3;
+}
+.xmlmarkup:hover .json-collapse-indicator {
+    opacity: 0.3;
+}
+.json-line {
+    white-space: pre;
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: inherit;
+}
+.json-line.hidden {
+    display: none !important;
+}
+.json-controls {
+    margin-bottom: 10px;
+}
+.json-control-btn {
+    padding: 6px 12px;
+    margin-right: 8px;
+    background-color: #f6f8fa;
+    border: 1px solid #d1d5da;
+    border-radius: 6px;
+    color: #24292e;
+    font-size: 14px;
+    cursor: pointer;
+}
+.json-control-btn:hover {
+    background-color: #f3f4f6;
+    border-color: #c4c8cc;
+}
+.json-control-btn:active {
+    background-color: #edeff1;
+}
+
 </style>
 
 </head>
@@ -65,293 +118,156 @@
 <p>See also: <a href="../../../comparisons/musicxml/#parts">This same example in MusicXML</a> </p>
 
 
-<div class="xmlmarkup">{
-   <a class="tag" href="../../objects/root/">"mnx"</a>: {
-      <a class="tag" href="../../objects/mnx/">"support"</a>: {
-         <a class="tag" href="../../objects/support/">"useBeams"</a>: <a class="tag" href="../../objects/boolean/">true</a>
-      },
-      <a class="tag" href="../../objects/mnx/">"version"</a>: <a class="tag" href="../../objects/version-number/">1</a>
-   },
-   <a class="tag" href="../../objects/root/">"global"</a>: {
-      <a class="tag" href="../../objects/global/">"measures"</a>: [
-         {
-            <a class="tag" href="../../objects/measure-global/">"time"</a>: {
-               <a class="tag" href="../../objects/time/">"count"</a>: <a class="tag" href="../../objects/positive-integer/">4</a>,
-               <a class="tag" href="../../objects/time/">"unit"</a>: <a class="tag" href="../../objects/time-signature-unit/">4</a>
+
+<div class="json-controls">
+    <button id="expand-all" class="json-control-btn">Expand all</button>
+    <button id="collapse-all" class="json-control-btn">Collapse all</button>
+</div>
+
+
+<div class="xmlmarkup"><div class="json-line" data-indent="0">{</div><div class="json-line" data-section-id="json-section-0" data-is-header="true" data-indent="1">   <a class="tag" href="../../objects/root/">"mnx"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-0">▼</span></div><div class="json-line" data-section-id="json-section-1" data-is-header="true" data-indent="2">      <a class="tag" href="../../objects/mnx/">"support"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-1">▼</span></div><div class="json-line" data-indent="3">         <a class="tag" href="../../objects/support/">"useBeams"</a>: <a class="tag" href="../../objects/boolean/">true</a></div><div class="json-line" data-indent="2">      },</div><div class="json-line" data-indent="2">      <a class="tag" href="../../objects/mnx/">"version"</a>: <a class="tag" href="../../objects/version-number/">1</a></div><div class="json-line" data-indent="1">   },</div><div class="json-line" data-section-id="json-section-2" data-is-header="true" data-indent="1">   <a class="tag" href="../../objects/root/">"global"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-2">▼</span></div><div class="json-line" data-section-id="json-section-3" data-is-header="true" data-indent="2">      <a class="tag" href="../../objects/global/">"measures"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-3">▼</span></div><div class="json-line" data-indent="3" data-section-id="json-section-4" data-is-header="true">         { <span class="json-collapse-indicator" data-section-id="json-section-4">▼</span></div><div class="json-line" data-section-id="json-section-5" data-is-header="true" data-indent="4">            <a class="tag" href="../../objects/measure-global/">"time"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-5">▼</span></div><div class="json-line" data-indent="5">               <a class="tag" href="../../objects/time/">"count"</a>: <a class="tag" href="../../objects/positive-integer/">4</a>,</div><div class="json-line" data-indent="5">               <a class="tag" href="../../objects/time/">"unit"</a>: <a class="tag" href="../../objects/time-signature-unit/">4</a></div><div class="json-line" data-indent="4">            }</div><div class="json-line" data-indent="3">         },</div><div class="json-line" data-indent="3">         {}</div><div class="json-line" data-indent="2">      ]</div><div class="json-line" data-indent="1">   },</div><div class="json-line" data-section-id="json-section-6" data-is-header="true" data-indent="1">   <a class="tag" href="../../objects/root/">"parts"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-6">▼</span></div><div class="json-line" data-indent="2" data-section-id="json-section-7" data-is-header="true">      { <span class="json-collapse-indicator" data-section-id="json-section-7">▼</span></div><div class="json-line" data-section-id="json-section-8" data-is-header="true" data-indent="3">         <a class="tag" href="../../objects/part/">"measures"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-8">▼</span></div><div class="json-line" data-indent="4" data-section-id="json-section-9" data-is-header="true">            { <span class="json-collapse-indicator" data-section-id="json-section-9">▼</span></div><div class="json-line" data-section-id="json-section-10" data-is-header="true" data-indent="5">               <a class="tag" href="../../objects/part-measure/">"clefs"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-10">▼</span></div><div class="json-line" data-indent="6" data-section-id="json-section-11" data-is-header="true">                  { <span class="json-collapse-indicator" data-section-id="json-section-11">▼</span></div><div class="json-line" data-section-id="json-section-12" data-is-header="true" data-indent="7">                     <a class="tag" href="../../objects/positioned-clef/">"clef"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-12">▼</span></div><div class="json-line" data-indent="8">                        <a class="tag" href="../../objects/clef/">"sign"</a>: <a class="tag" href="../../objects/clef-sign/">"G"</a>,</div><div class="json-line" data-indent="8">                        <a class="tag" href="../../objects/clef/">"staffPosition"</a>: <a class="tag" href="../../objects/staff-position/">-2</a></div><div class="json-line" data-indent="7">                     }</div><div class="json-line" data-indent="6">                  }</div><div class="json-line" data-indent="5">               ],</div><div class="json-line" data-section-id="json-section-13" data-is-header="true" data-indent="5">               <a class="tag" href="../../objects/part-measure/">"sequences"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-13">▼</span></div><div class="json-line" data-indent="6" data-section-id="json-section-14" data-is-header="true">                  { <span class="json-collapse-indicator" data-section-id="json-section-14">▼</span></div><div class="json-line" data-section-id="json-section-15" data-is-header="true" data-indent="7">                     <a class="tag" href="../../objects/sequence/">"content"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-15">▼</span></div><div class="json-line" data-indent="8" data-section-id="json-section-16" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-16">▼</span></div><div class="json-line" data-section-id="json-section-17" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-17">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-section-id="json-section-18" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"notes"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-18">▼</span></div><div class="json-line" data-indent="10" data-section-id="json-section-19" data-is-header="true">                              { <span class="json-collapse-indicator" data-section-id="json-section-19">▼</span></div><div class="json-line" data-section-id="json-section-20" data-is-header="true" data-indent="11">                                 <a class="tag" href="../../objects/note/">"pitch"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-20">▼</span></div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,</div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"C"</a></div><div class="json-line" data-indent="11">                                 }</div><div class="json-line" data-indent="10">                              }</div><div class="json-line" data-indent="9">                           ]</div><div class="json-line" data-indent="8">                        },</div><div class="json-line" data-indent="8" data-section-id="json-section-21" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-21">▼</span></div><div class="json-line" data-section-id="json-section-22" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-22">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-section-id="json-section-23" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"notes"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-23">▼</span></div><div class="json-line" data-indent="10" data-section-id="json-section-24" data-is-header="true">                              { <span class="json-collapse-indicator" data-section-id="json-section-24">▼</span></div><div class="json-line" data-section-id="json-section-25" data-is-header="true" data-indent="11">                                 <a class="tag" href="../../objects/note/">"pitch"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-25">▼</span></div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,</div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"D"</a></div><div class="json-line" data-indent="11">                                 }</div><div class="json-line" data-indent="10">                              }</div><div class="json-line" data-indent="9">                           ]</div><div class="json-line" data-indent="8">                        },</div><div class="json-line" data-indent="8" data-section-id="json-section-26" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-26">▼</span></div><div class="json-line" data-section-id="json-section-27" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-27">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-section-id="json-section-28" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"notes"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-28">▼</span></div><div class="json-line" data-indent="10" data-section-id="json-section-29" data-is-header="true">                              { <span class="json-collapse-indicator" data-section-id="json-section-29">▼</span></div><div class="json-line" data-section-id="json-section-30" data-is-header="true" data-indent="11">                                 <a class="tag" href="../../objects/note/">"pitch"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-30">▼</span></div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,</div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"E"</a></div><div class="json-line" data-indent="11">                                 }</div><div class="json-line" data-indent="10">                              }</div><div class="json-line" data-indent="9">                           ]</div><div class="json-line" data-indent="8">                        },</div><div class="json-line" data-indent="8" data-section-id="json-section-31" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-31">▼</span></div><div class="json-line" data-section-id="json-section-32" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-32">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-section-id="json-section-33" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"notes"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-33">▼</span></div><div class="json-line" data-indent="10" data-section-id="json-section-34" data-is-header="true">                              { <span class="json-collapse-indicator" data-section-id="json-section-34">▼</span></div><div class="json-line" data-section-id="json-section-35" data-is-header="true" data-indent="11">                                 <a class="tag" href="../../objects/note/">"pitch"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-35">▼</span></div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,</div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"G"</a></div><div class="json-line" data-indent="11">                                 }</div><div class="json-line" data-indent="10">                              }</div><div class="json-line" data-indent="9">                           ]</div><div class="json-line" data-indent="8">                        }</div><div class="json-line" data-indent="7">                     ]</div><div class="json-line" data-indent="6">                  }</div><div class="json-line" data-indent="5">               ]</div><div class="json-line" data-indent="4">            },</div><div class="json-line" data-indent="4" data-section-id="json-section-36" data-is-header="true">            { <span class="json-collapse-indicator" data-section-id="json-section-36">▼</span></div><div class="json-line" data-section-id="json-section-37" data-is-header="true" data-indent="5">               <a class="tag" href="../../objects/part-measure/">"sequences"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-37">▼</span></div><div class="json-line" data-indent="6" data-section-id="json-section-38" data-is-header="true">                  { <span class="json-collapse-indicator" data-section-id="json-section-38">▼</span></div><div class="json-line" data-section-id="json-section-39" data-is-header="true" data-indent="7">                     <a class="tag" href="../../objects/sequence/">"content"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-39">▼</span></div><div class="json-line" data-indent="8" data-section-id="json-section-40" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-40">▼</span></div><div class="json-line" data-section-id="json-section-41" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-41">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-section-id="json-section-42" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"notes"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-42">▼</span></div><div class="json-line" data-indent="10" data-section-id="json-section-43" data-is-header="true">                              { <span class="json-collapse-indicator" data-section-id="json-section-43">▼</span></div><div class="json-line" data-section-id="json-section-44" data-is-header="true" data-indent="11">                                 <a class="tag" href="../../objects/note/">"pitch"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-44">▼</span></div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,</div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"C"</a></div><div class="json-line" data-indent="11">                                 }</div><div class="json-line" data-indent="10">                              }</div><div class="json-line" data-indent="9">                           ]</div><div class="json-line" data-indent="8">                        },</div><div class="json-line" data-indent="8" data-section-id="json-section-45" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-45">▼</span></div><div class="json-line" data-section-id="json-section-46" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-46">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-section-id="json-section-47" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"notes"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-47">▼</span></div><div class="json-line" data-indent="10" data-section-id="json-section-48" data-is-header="true">                              { <span class="json-collapse-indicator" data-section-id="json-section-48">▼</span></div><div class="json-line" data-section-id="json-section-49" data-is-header="true" data-indent="11">                                 <a class="tag" href="../../objects/note/">"pitch"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-49">▼</span></div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,</div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"D"</a></div><div class="json-line" data-indent="11">                                 }</div><div class="json-line" data-indent="10">                              }</div><div class="json-line" data-indent="9">                           ]</div><div class="json-line" data-indent="8">                        },</div><div class="json-line" data-indent="8" data-section-id="json-section-50" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-50">▼</span></div><div class="json-line" data-section-id="json-section-51" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-51">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-section-id="json-section-52" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"notes"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-52">▼</span></div><div class="json-line" data-indent="10" data-section-id="json-section-53" data-is-header="true">                              { <span class="json-collapse-indicator" data-section-id="json-section-53">▼</span></div><div class="json-line" data-section-id="json-section-54" data-is-header="true" data-indent="11">                                 <a class="tag" href="../../objects/note/">"pitch"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-54">▼</span></div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,</div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"E"</a></div><div class="json-line" data-indent="11">                                 }</div><div class="json-line" data-indent="10">                              }</div><div class="json-line" data-indent="9">                           ]</div><div class="json-line" data-indent="8">                        },</div><div class="json-line" data-indent="8" data-section-id="json-section-55" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-55">▼</span></div><div class="json-line" data-section-id="json-section-56" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-56">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-section-id="json-section-57" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"notes"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-57">▼</span></div><div class="json-line" data-indent="10" data-section-id="json-section-58" data-is-header="true">                              { <span class="json-collapse-indicator" data-section-id="json-section-58">▼</span></div><div class="json-line" data-section-id="json-section-59" data-is-header="true" data-indent="11">                                 <a class="tag" href="../../objects/note/">"pitch"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-59">▼</span></div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,</div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"C"</a></div><div class="json-line" data-indent="11">                                 }</div><div class="json-line" data-indent="10">                              }</div><div class="json-line" data-indent="9">                           ]</div><div class="json-line" data-indent="8">                        }</div><div class="json-line" data-indent="7">                     ]</div><div class="json-line" data-indent="6">                  }</div><div class="json-line" data-indent="5">               ]</div><div class="json-line" data-indent="4">            }</div><div class="json-line" data-indent="3">         ],</div><div class="json-line" data-indent="3">         <a class="tag" href="../../objects/part/">"name"</a>: <a class="tag" href="../../objects/part-name/">"Melody"</a></div><div class="json-line" data-indent="2">      },</div><div class="json-line" data-indent="2" data-section-id="json-section-60" data-is-header="true">      { <span class="json-collapse-indicator" data-section-id="json-section-60">▼</span></div><div class="json-line" data-section-id="json-section-61" data-is-header="true" data-indent="3">         <a class="tag" href="../../objects/part/">"measures"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-61">▼</span></div><div class="json-line" data-indent="4" data-section-id="json-section-62" data-is-header="true">            { <span class="json-collapse-indicator" data-section-id="json-section-62">▼</span></div><div class="json-line" data-section-id="json-section-63" data-is-header="true" data-indent="5">               <a class="tag" href="../../objects/part-measure/">"beams"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-63">▼</span></div><div class="json-line" data-indent="6" data-section-id="json-section-64" data-is-header="true">                  { <span class="json-collapse-indicator" data-section-id="json-section-64">▼</span></div><div class="json-line" data-section-id="json-section-65" data-is-header="true" data-indent="7">                     <a class="tag" href="../../objects/beam/">"events"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-65">▼</span></div><div class="json-line" data-indent="8">                        <a class="tag" href="../../objects/id/">"ev6"</a>,</div><div class="json-line" data-indent="8">                        <a class="tag" href="../../objects/id/">"ev7"</a>,</div><div class="json-line" data-indent="8">                        <a class="tag" href="../../objects/id/">"ev8"</a>,</div><div class="json-line" data-indent="8">                        <a class="tag" href="../../objects/id/">"ev9"</a></div><div class="json-line" data-indent="7">                     ]</div><div class="json-line" data-indent="6">                  }</div><div class="json-line" data-indent="5">               ],</div><div class="json-line" data-section-id="json-section-66" data-is-header="true" data-indent="5">               <a class="tag" href="../../objects/part-measure/">"clefs"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-66">▼</span></div><div class="json-line" data-indent="6" data-section-id="json-section-67" data-is-header="true">                  { <span class="json-collapse-indicator" data-section-id="json-section-67">▼</span></div><div class="json-line" data-section-id="json-section-68" data-is-header="true" data-indent="7">                     <a class="tag" href="../../objects/positioned-clef/">"clef"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-68">▼</span></div><div class="json-line" data-indent="8">                        <a class="tag" href="../../objects/clef/">"sign"</a>: <a class="tag" href="../../objects/clef-sign/">"G"</a>,</div><div class="json-line" data-indent="8">                        <a class="tag" href="../../objects/clef/">"staffPosition"</a>: <a class="tag" href="../../objects/staff-position/">-2</a></div><div class="json-line" data-indent="7">                     }</div><div class="json-line" data-indent="6">                  }</div><div class="json-line" data-indent="5">               ],</div><div class="json-line" data-section-id="json-section-69" data-is-header="true" data-indent="5">               <a class="tag" href="../../objects/part-measure/">"sequences"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-69">▼</span></div><div class="json-line" data-indent="6" data-section-id="json-section-70" data-is-header="true">                  { <span class="json-collapse-indicator" data-section-id="json-section-70">▼</span></div><div class="json-line" data-section-id="json-section-71" data-is-header="true" data-indent="7">                     <a class="tag" href="../../objects/sequence/">"content"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-71">▼</span></div><div class="json-line" data-indent="8" data-section-id="json-section-72" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-72">▼</span></div><div class="json-line" data-section-id="json-section-73" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-73">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"half"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-indent="9">                           <a class="tag" href="../../objects/event/">"rest"</a>: {}</div><div class="json-line" data-indent="8">                        },</div><div class="json-line" data-indent="8" data-section-id="json-section-74" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-74">▼</span></div><div class="json-line" data-indent="9">                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev6"</a>,</div><div class="json-line" data-section-id="json-section-75" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-75">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-section-id="json-section-76" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"notes"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-76">▼</span></div><div class="json-line" data-indent="10" data-section-id="json-section-77" data-is-header="true">                              { <span class="json-collapse-indicator" data-section-id="json-section-77">▼</span></div><div class="json-line" data-section-id="json-section-78" data-is-header="true" data-indent="11">                                 <a class="tag" href="../../objects/note/">"pitch"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-78">▼</span></div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,</div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"C"</a></div><div class="json-line" data-indent="11">                                 }</div><div class="json-line" data-indent="10">                              }</div><div class="json-line" data-indent="9">                           ]</div><div class="json-line" data-indent="8">                        },</div><div class="json-line" data-indent="8" data-section-id="json-section-79" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-79">▼</span></div><div class="json-line" data-indent="9">                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev7"</a>,</div><div class="json-line" data-section-id="json-section-80" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-80">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-section-id="json-section-81" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"notes"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-81">▼</span></div><div class="json-line" data-indent="10" data-section-id="json-section-82" data-is-header="true">                              { <span class="json-collapse-indicator" data-section-id="json-section-82">▼</span></div><div class="json-line" data-section-id="json-section-83" data-is-header="true" data-indent="11">                                 <a class="tag" href="../../objects/note/">"pitch"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-83">▼</span></div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,</div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"D"</a></div><div class="json-line" data-indent="11">                                 }</div><div class="json-line" data-indent="10">                              }</div><div class="json-line" data-indent="9">                           ]</div><div class="json-line" data-indent="8">                        },</div><div class="json-line" data-indent="8" data-section-id="json-section-84" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-84">▼</span></div><div class="json-line" data-indent="9">                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev8"</a>,</div><div class="json-line" data-section-id="json-section-85" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-85">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-section-id="json-section-86" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"notes"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-86">▼</span></div><div class="json-line" data-indent="10" data-section-id="json-section-87" data-is-header="true">                              { <span class="json-collapse-indicator" data-section-id="json-section-87">▼</span></div><div class="json-line" data-section-id="json-section-88" data-is-header="true" data-indent="11">                                 <a class="tag" href="../../objects/note/">"pitch"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-88">▼</span></div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,</div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"E"</a></div><div class="json-line" data-indent="11">                                 }</div><div class="json-line" data-indent="10">                              }</div><div class="json-line" data-indent="9">                           ]</div><div class="json-line" data-indent="8">                        },</div><div class="json-line" data-indent="8" data-section-id="json-section-89" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-89">▼</span></div><div class="json-line" data-indent="9">                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev9"</a>,</div><div class="json-line" data-section-id="json-section-90" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-90">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-section-id="json-section-91" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"notes"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-91">▼</span></div><div class="json-line" data-indent="10" data-section-id="json-section-92" data-is-header="true">                              { <span class="json-collapse-indicator" data-section-id="json-section-92">▼</span></div><div class="json-line" data-section-id="json-section-93" data-is-header="true" data-indent="11">                                 <a class="tag" href="../../objects/note/">"pitch"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-93">▼</span></div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,</div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"D"</a></div><div class="json-line" data-indent="11">                                 }</div><div class="json-line" data-indent="10">                              }</div><div class="json-line" data-indent="9">                           ]</div><div class="json-line" data-indent="8">                        }</div><div class="json-line" data-indent="7">                     ]</div><div class="json-line" data-indent="6">                  }</div><div class="json-line" data-indent="5">               ]</div><div class="json-line" data-indent="4">            },</div><div class="json-line" data-indent="4" data-section-id="json-section-94" data-is-header="true">            { <span class="json-collapse-indicator" data-section-id="json-section-94">▼</span></div><div class="json-line" data-section-id="json-section-95" data-is-header="true" data-indent="5">               <a class="tag" href="../../objects/part-measure/">"sequences"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-95">▼</span></div><div class="json-line" data-indent="6" data-section-id="json-section-96" data-is-header="true">                  { <span class="json-collapse-indicator" data-section-id="json-section-96">▼</span></div><div class="json-line" data-section-id="json-section-97" data-is-header="true" data-indent="7">                     <a class="tag" href="../../objects/sequence/">"content"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-97">▼</span></div><div class="json-line" data-indent="8" data-section-id="json-section-98" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-98">▼</span></div><div class="json-line" data-section-id="json-section-99" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-99">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"half"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-indent="9">                           <a class="tag" href="../../objects/event/">"rest"</a>: {}</div><div class="json-line" data-indent="8">                        },</div><div class="json-line" data-indent="8" data-section-id="json-section-100" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-100">▼</span></div><div class="json-line" data-section-id="json-section-101" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-101">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-section-id="json-section-102" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"notes"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-102">▼</span></div><div class="json-line" data-indent="10" data-section-id="json-section-103" data-is-header="true">                              { <span class="json-collapse-indicator" data-section-id="json-section-103">▼</span></div><div class="json-line" data-section-id="json-section-104" data-is-header="true" data-indent="11">                                 <a class="tag" href="../../objects/note/">"pitch"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-104">▼</span></div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,</div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"G"</a></div><div class="json-line" data-indent="11">                                 }</div><div class="json-line" data-indent="10">                              }</div><div class="json-line" data-indent="9">                           ]</div><div class="json-line" data-indent="8">                        },</div><div class="json-line" data-indent="8" data-section-id="json-section-105" data-is-header="true">                        { <span class="json-collapse-indicator" data-section-id="json-section-105">▼</span></div><div class="json-line" data-section-id="json-section-106" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"duration"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-106">▼</span></div><div class="json-line" data-indent="10">                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a></div><div class="json-line" data-indent="9">                           },</div><div class="json-line" data-section-id="json-section-107" data-is-header="true" data-indent="9">                           <a class="tag" href="../../objects/event/">"notes"</a>: [ <span class="json-collapse-indicator" data-section-id="json-section-107">▼</span></div><div class="json-line" data-indent="10" data-section-id="json-section-108" data-is-header="true">                              { <span class="json-collapse-indicator" data-section-id="json-section-108">▼</span></div><div class="json-line" data-section-id="json-section-109" data-is-header="true" data-indent="11">                                 <a class="tag" href="../../objects/note/">"pitch"</a>: { <span class="json-collapse-indicator" data-section-id="json-section-109">▼</span></div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,</div><div class="json-line" data-indent="12">                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"E"</a></div><div class="json-line" data-indent="11">                                 }</div><div class="json-line" data-indent="10">                              }</div><div class="json-line" data-indent="9">                           ]</div><div class="json-line" data-indent="8">                        }</div><div class="json-line" data-indent="7">                     ]</div><div class="json-line" data-indent="6">                  }</div><div class="json-line" data-indent="5">               ]</div><div class="json-line" data-indent="4">            }</div><div class="json-line" data-indent="3">         ],</div><div class="json-line" data-indent="3">         <a class="tag" href="../../objects/part/">"name"</a>: <a class="tag" href="../../objects/part-name/">"Harmony"</a></div><div class="json-line" data-indent="2">      }</div><div class="json-line" data-indent="1">   ]</div><div class="json-line" data-indent="0">}</div></div>
+
+
+<script>
+(function() {
+    'use strict';
+
+    // Constants for collapse/expand indicators
+    var INDICATOR_EXPANDED = '▼';
+    var INDICATOR_COLLAPSED = '•••';
+
+    // Add click handlers to all collapse indicators
+    document.querySelectorAll('.json-collapse-indicator').forEach(function(indicator) {
+        indicator.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            var sectionId = this.getAttribute('data-section-id');
+            var headerLine = this.closest('.json-line');
+            var headerIndent = parseInt(headerLine.getAttribute('data-indent'), 10);
+            var isExpanded = this.textContent === INDICATOR_EXPANDED;
+
+            // Update the indicator
+            this.textContent = isExpanded ? INDICATOR_COLLAPSED : INDICATOR_EXPANDED;
+
+            // Update the collapsed class for visibility control
+            if (isExpanded) {
+                this.classList.add('collapsed');
+            } else {
+                this.classList.remove('collapsed');
             }
-         },
-         {}
-      ]
-   },
-   <a class="tag" href="../../objects/root/">"parts"</a>: [
-      {
-         <a class="tag" href="../../objects/part/">"measures"</a>: [
-            {
-               <a class="tag" href="../../objects/part-measure/">"clefs"</a>: [
-                  {
-                     <a class="tag" href="../../objects/positioned-clef/">"clef"</a>: {
-                        <a class="tag" href="../../objects/clef/">"sign"</a>: <a class="tag" href="../../objects/clef-sign/">"G"</a>,
-                        <a class="tag" href="../../objects/clef/">"staffPosition"</a>: <a class="tag" href="../../objects/staff-position/">-2</a>
-                     }
-                  }
-               ],
-               <a class="tag" href="../../objects/part-measure/">"sequences"</a>: [
-                  {
-                     <a class="tag" href="../../objects/sequence/">"content"</a>: [
-                        {
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
-                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"C"</a>
-                                 }
-                              }
-                           ]
-                        },
-                        {
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
-                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"D"</a>
-                                 }
-                              }
-                           ]
-                        },
-                        {
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
-                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"E"</a>
-                                 }
-                              }
-                           ]
-                        },
-                        {
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
-                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"G"</a>
-                                 }
-                              }
-                           ]
-                        }
-                     ]
-                  }
-               ]
-            },
-            {
-               <a class="tag" href="../../objects/part-measure/">"sequences"</a>: [
-                  {
-                     <a class="tag" href="../../objects/sequence/">"content"</a>: [
-                        {
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
-                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"C"</a>
-                                 }
-                              }
-                           ]
-                        },
-                        {
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
-                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"D"</a>
-                                 }
-                              }
-                           ]
-                        },
-                        {
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
-                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"E"</a>
-                                 }
-                              }
-                           ]
-                        },
-                        {
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
-                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"C"</a>
-                                 }
-                              }
-                           ]
-                        }
-                     ]
-                  }
-               ]
+
+            // Determine the closing bracket type by looking at the opening bracket
+            var headerText = headerLine.textContent.trim();
+            var openingBracket = headerText.includes('{') ? '{' : '[';
+            var closingBracket = openingBracket === '{' ? '}' : ']';
+
+            // Add/remove closing bracket when collapsing/expanding
+            if (isExpanded) {
+                // Collapsing: add closing bracket after indicator
+                // Check if this line is highlighted by looking for markuphl in the line
+                var isHighlighted = headerLine.querySelector('b.markuphl') !== null;
+
+                if (isHighlighted) {
+                    var closingBold = document.createElement('b');
+                    closingBold.className = 'markuphl json-closing-bracket';
+                    closingBold.textContent = ' ' + closingBracket;
+                    this.parentNode.insertBefore(closingBold, this.nextSibling);
+                } else {
+                    var closingSpan = document.createElement('span');
+                    closingSpan.className = 'json-closing-bracket';
+                    closingSpan.textContent = ' ' + closingBracket;
+                    this.parentNode.insertBefore(closingSpan, this.nextSibling);
+                }
+            } else {
+                // Expanding: remove closing bracket
+                var closingElement = this.nextSibling;
+                if (closingElement && closingElement.classList.contains('json-closing-bracket')) {
+                    closingElement.remove();
+                }
             }
-         ],
-         <a class="tag" href="../../objects/part/">"name"</a>: <a class="tag" href="../../objects/part-name/">"Melody"</a>
-      },
-      {
-         <a class="tag" href="../../objects/part/">"measures"</a>: [
-            {
-               <a class="tag" href="../../objects/part-measure/">"beams"</a>: [
-                  {
-                     <a class="tag" href="../../objects/beam/">"events"</a>: [
-                        <a class="tag" href="../../objects/id/">"ev6"</a>,
-                        <a class="tag" href="../../objects/id/">"ev7"</a>,
-                        <a class="tag" href="../../objects/id/">"ev8"</a>,
-                        <a class="tag" href="../../objects/id/">"ev9"</a>
-                     ]
-                  }
-               ],
-               <a class="tag" href="../../objects/part-measure/">"clefs"</a>: [
-                  {
-                     <a class="tag" href="../../objects/positioned-clef/">"clef"</a>: {
-                        <a class="tag" href="../../objects/clef/">"sign"</a>: <a class="tag" href="../../objects/clef-sign/">"G"</a>,
-                        <a class="tag" href="../../objects/clef/">"staffPosition"</a>: <a class="tag" href="../../objects/staff-position/">-2</a>
-                     }
-                  }
-               ],
-               <a class="tag" href="../../objects/part-measure/">"sequences"</a>: [
-                  {
-                     <a class="tag" href="../../objects/sequence/">"content"</a>: [
-                        {
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"half"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"rest"</a>: {}
-                        },
-                        {
-                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev6"</a>,
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
-                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"C"</a>
-                                 }
-                              }
-                           ]
-                        },
-                        {
-                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev7"</a>,
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
-                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"D"</a>
-                                 }
-                              }
-                           ]
-                        },
-                        {
-                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev8"</a>,
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
-                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"E"</a>
-                                 }
-                              }
-                           ]
-                        },
-                        {
-                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev9"</a>,
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
-                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"D"</a>
-                                 }
-                              }
-                           ]
+
+            // Find all lines that belong to this section (including the closing bracket)
+            var currentLine = headerLine.nextElementSibling;
+            var closingLine = null;
+
+            while (currentLine && currentLine.classList.contains('json-line')) {
+                var currentIndent = parseInt(currentLine.getAttribute('data-indent'), 10);
+
+                // When we reach the closing bracket (same indent as header), save it and continue
+                if (currentIndent === headerIndent) {
+                    closingLine = currentLine;
+                    break;
+                }
+
+                // Stop when we reach a line at lesser indent level (shouldn't happen)
+                if (currentIndent < headerIndent) {
+                    break;
+                }
+
+                // Toggle visibility of child lines
+                if (isExpanded) {
+                    currentLine.classList.add('hidden');
+                } else {
+                    // Only show direct children; nested collapsed sections stay collapsed
+                    if (currentIndent === headerIndent + 1) {
+                        currentLine.classList.remove('hidden');
+                    } else {
+                        // Check if any parent section is collapsed
+                        var shouldShow = true;
+                        var checkLine = headerLine.nextElementSibling;
+                        while (checkLine !== currentLine) {
+                            if (checkLine.getAttribute('data-is-header') === 'true') {
+                                var checkIndent = parseInt(checkLine.getAttribute('data-indent'), 10);
+                                if (checkIndent < currentIndent && checkIndent > headerIndent) {
+                                    var checkIndicator = checkLine.querySelector('.json-collapse-indicator');
+                                    if (checkIndicator && checkIndicator.textContent === INDICATOR_COLLAPSED) {
+                                        shouldShow = false;
+                                        break;
+                                    }
+                                }
+                            }
+                            checkLine = checkLine.nextElementSibling;
                         }
-                     ]
-                  }
-               ]
-            },
-            {
-               <a class="tag" href="../../objects/part-measure/">"sequences"</a>: [
-                  {
-                     <a class="tag" href="../../objects/sequence/">"content"</a>: [
-                        {
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"half"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"rest"</a>: {}
-                        },
-                        {
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
-                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"G"</a>
-                                 }
-                              }
-                           ]
-                        },
-                        {
-                           <a class="tag" href="../../objects/event/">"duration"</a>: {
-                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
-                           },
-                           <a class="tag" href="../../objects/event/">"notes"</a>: [
-                              {
-                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
-                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
-                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"E"</a>
-                                 }
-                              }
-                           ]
+                        if (shouldShow) {
+                            currentLine.classList.remove('hidden');
                         }
-                     ]
-                  }
-               ]
+                    }
+                }
+
+                currentLine = currentLine.nextElementSibling;
             }
-         ],
-         <a class="tag" href="../../objects/part/">"name"</a>: <a class="tag" href="../../objects/part-name/">"Harmony"</a>
-      }
-   ]
-}</div>
+
+            // Toggle the closing bracket visibility
+            if (closingLine) {
+                if (isExpanded) {
+                    closingLine.classList.add('hidden');
+                } else {
+                    closingLine.classList.remove('hidden');
+                }
+            }
+        });
+    });
+
+    // Handle expand/collapse all buttons
+    document.getElementById('expand-all').addEventListener('click', function() {
+        document.querySelectorAll('.json-collapse-indicator').forEach(function(indicator) {
+            if (indicator.textContent === INDICATOR_COLLAPSED) {
+                indicator.click();
+            }
+        });
+    });
+
+    document.getElementById('collapse-all').addEventListener('click', function() {
+        document.querySelectorAll('.json-collapse-indicator').forEach(function(indicator) {
+            if (indicator.textContent === INDICATOR_EXPANDED) {
+                indicator.click();
+            }
+        });
+    });
+})();
+</script>
+
 
     </main>
 </div>
