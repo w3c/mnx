@@ -1,0 +1,549 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>MNX example: Tie targets | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+<style>
+.diff * { font-weight: bold; color: blue !important; }
+</style>
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../../objects/">Reference</a>
+    <ul>
+    <li><a href="../../objects/">Objects</a></li>
+    <li><a href="../">Example documents</a></li>
+    <li><a href="../../../mnx-schema.json">Raw JSON Schema</a></li>
+    </ul>
+</li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Examples</a> &gt;
+    Tie targets
+</p>
+
+<h1>Tie targets</h1>
+
+
+<p><img src="../../../static/examples/tie-target-type.png"></p>
+
+
+
+<p>MNX supports various types of tie “targets,” and this data can be encoded in order to help programs parse a document (for example, ignoring ties that a program cannot internally model).<br><br>This example also includes a laissez vibrer tie, encoded via &quot;lv&quot;.</p>
+
+
+
+
+
+
+<div class="xmlmarkup">{
+   <a class="tag" href="../../objects/root/">"mnx"</a>: {
+      <a class="tag" href="../../objects/mnx/">"version"</a>: <a class="tag" href="../../objects/version-number/">1</a>
+   },
+   <a class="tag" href="../../objects/root/">"global"</a>: {
+      <a class="tag" href="../../objects/global/">"measures"</a>: [
+         {
+            <a class="tag" href="../../objects/measure-global/">"key"</a>: {
+               <a class="tag" href="../../objects/key/">"fifths"</a>: <a class="tag" href="../../objects/fifths/">0</a>
+            },
+            <a class="tag" href="../../objects/measure-global/">"time"</a>: {
+               <a class="tag" href="../../objects/time/">"count"</a>: <a class="tag" href="../../objects/positive-integer/">4</a>,
+               <a class="tag" href="../../objects/time/">"unit"</a>: <a class="tag" href="../../objects/time-signature-unit/">4</a>
+            }
+         },
+         {},
+         {
+            <a class="tag" href="../../objects/measure-global/">"ending"</a>: {
+               <a class="tag" href="../../objects/ending/">"duration"</a>: <a class="tag" href="../../objects/ending-duration/">1</a>,
+               <a class="tag" href="../../objects/ending/">"numbers"</a>: [
+                  <a class="tag" href="../../objects/ending-number/">1</a>
+               ],
+               <a class="tag" href="../../objects/ending/">"open"</a>: <a class="tag" href="../../objects/ending-open/">false</a>
+            },
+            <a class="tag" href="../../objects/measure-global/">"repeatEnd"</a>: {}
+         },
+         {
+            <a class="tag" href="../../objects/measure-global/">"ending"</a>: {
+               <a class="tag" href="../../objects/ending/">"duration"</a>: <a class="tag" href="../../objects/ending-duration/">1</a>,
+               <a class="tag" href="../../objects/ending/">"numbers"</a>: [
+                  <a class="tag" href="../../objects/ending-number/">2</a>
+               ],
+               <a class="tag" href="../../objects/ending/">"open"</a>: <a class="tag" href="../../objects/ending-open/">true</a>
+            }
+         },
+         {}
+      ]
+   },
+   <a class="tag" href="../../objects/root/">"parts"</a>: [
+      {
+         <a class="tag" href="../../objects/part/">"id"</a>: <a class="tag" href="../../objects/id/">"P1"</a>,
+         <a class="tag" href="../../objects/part/">"measures"</a>: [
+            {
+               <a class="tag" href="../../objects/part-measure/">"clefs"</a>: [
+                  {
+                     <a class="tag" href="../../objects/positioned-clef/">"clef"</a>: {
+                        <a class="tag" href="../../objects/clef/">"glyph"</a>: <a class="tag" href="../../objects/smufl-glyph/">"gClef"</a>,
+                        <a class="tag" href="../../objects/clef/">"octave"</a>: <a class="tag" href="../../objects/ottava-amount-or-zero/">0</a>,
+                        <a class="tag" href="../../objects/clef/">"sign"</a>: <a class="tag" href="../../objects/clef-sign/">"G"</a>,
+                        <a class="tag" href="../../objects/clef/">"staffPosition"</a>: <a class="tag" href="../../objects/staff-position/">-2</a>
+                     }
+                  }
+               ],
+               <a class="tag" href="../../objects/part-measure/">"sequences"</a>: [
+                  {
+                     <a class="tag" href="../../objects/sequence/">"content"</a>: [
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev21"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev21n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">4</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"G"</a>
+                                 },
+                                 <a class="tag" href="../../objects/note/">"ties"</a>: [
+                                    {
+                                       <a class="tag" href="../../objects/tie/">"target"</a>: <a class="tag" href="../../objects/id/">"ev26n1"</a>,
+                                       <b class="markuphl"><a class="tag" href="../../objects/tie/">"targetType"</a>:</b> <b class="markuphl"><a class="tag" href="../../objects/tie-target-type/">"crossVoice"</a></b>
+                                    }
+                                 ]
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev22"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev22n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">4</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"A"</a>
+                                 }
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev23"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev23n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">4</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"B"</a>
+                                 }
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev24"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev24n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"C"</a>
+                                 },
+                                 <a class="tag" href="../../objects/note/">"ties"</a>: [
+                                    {
+                                       <a class="tag" href="../../objects/tie/">"target"</a>: <a class="tag" href="../../objects/id/">"ev25n1"</a>,
+                                       <b class="markuphl"><a class="tag" href="../../objects/tie/">"targetType"</a>:</b> <b class="markuphl"><a class="tag" href="../../objects/tie-target-type/">"nextNote"</a></b>
+                                    }
+                                 ]
+                              }
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     <a class="tag" href="../../objects/sequence/">"content"</a>: [
+                        {
+                           <a class="tag" href="../../objects/event/">"type"</a>: "space",
+                           <a class="tag" href="../../objects/event/">"duration"</a>: [
+                              <a class="tag" href="../../objects/positive-integer/">1</a>,
+                              <a class="tag" href="../../objects/positive-integer/">4</a>
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev26"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev26n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">4</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"G"</a>
+                                 }
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev27"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev27n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"alter"</a>: <a class="tag" href="../../objects/alter/">1</a>,
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">4</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"F"</a>
+                                 }
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev28"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev28n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">4</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"G"</a>
+                                 }
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev29"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev29n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">4</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"C"</a>
+                                 }
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev30"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"rest"</a>: {
+                              <a class="tag" href="../../objects/rest/">"staffPosition"</a>: <a class="tag" href="../../objects/staff-position/">-4</a>
+                           }
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               <a class="tag" href="../../objects/part-measure/">"sequences"</a>: [
+                  {
+                     <a class="tag" href="../../objects/sequence/">"content"</a>: [
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev25"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev25n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"C"</a>
+                                 }
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev31"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"rest"</a>: {}
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev32"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"rest"</a>: {}
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev33"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev33n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">4</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"E"</a>
+                                 },
+                                 <a class="tag" href="../../objects/note/">"ties"</a>: [
+                                    {
+                                       <a class="tag" href="../../objects/tie/">"side"</a>: <a class="tag" href="../../objects/slur-side/">"down"</a>,
+                                       <a class="tag" href="../../objects/tie/">"target"</a>: <a class="tag" href="../../objects/id/">"ev36n1"</a>,
+                                       <b class="markuphl"><a class="tag" href="../../objects/tie/">"targetType"</a>:</b> <b class="markuphl"><a class="tag" href="../../objects/tie-target-type/">"arpeggio"</a></b>
+                                    },
+                                    {
+                                       <a class="tag" href="../../objects/tie/">"side"</a>: <a class="tag" href="../../objects/slur-side/">"down"</a>,
+                                       <a class="tag" href="../../objects/tie/">"target"</a>: <a class="tag" href="../../objects/id/">"ev38n1"</a>,
+                                       <b class="markuphl"><a class="tag" href="../../objects/tie/">"targetType"</a>:</b> <b class="markuphl"><a class="tag" href="../../objects/tie-target-type/">"crossJump"</a></b>
+                                    }
+                                 ]
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev34"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev34n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">4</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"G"</a>
+                                 },
+                                 <a class="tag" href="../../objects/note/">"ties"</a>: [
+                                    {
+                                       <a class="tag" href="../../objects/tie/">"side"</a>: <a class="tag" href="../../objects/slur-side/">"down"</a>,
+                                       <a class="tag" href="../../objects/tie/">"target"</a>: <a class="tag" href="../../objects/id/">"ev36n2"</a>,
+                                       <b class="markuphl"><a class="tag" href="../../objects/tie/">"targetType"</a>:</b> <b class="markuphl"><a class="tag" href="../../objects/tie-target-type/">"arpeggio"</a></b>
+                                    },
+                                    {
+                                       <a class="tag" href="../../objects/tie/">"side"</a>: <a class="tag" href="../../objects/slur-side/">"down"</a>,
+                                       <a class="tag" href="../../objects/tie/">"target"</a>: <a class="tag" href="../../objects/id/">"ev38n2"</a>,
+                                       <b class="markuphl"><a class="tag" href="../../objects/tie/">"targetType"</a>:</b> <b class="markuphl"><a class="tag" href="../../objects/tie-target-type/">"crossJump"</a></b>
+                                    }
+                                 ]
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev35"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev35n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"C"</a>
+                                 },
+                                 <a class="tag" href="../../objects/note/">"ties"</a>: [
+                                    {
+                                       <a class="tag" href="../../objects/tie/">"side"</a>: <a class="tag" href="../../objects/slur-side/">"up"</a>,
+                                       <a class="tag" href="../../objects/tie/">"target"</a>: <a class="tag" href="../../objects/id/">"ev36n3"</a>,
+                                       <b class="markuphl"><a class="tag" href="../../objects/tie/">"targetType"</a>:</b> <b class="markuphl"><a class="tag" href="../../objects/tie-target-type/">"nextNote"</a></b>
+                                    },
+                                    {
+                                       <a class="tag" href="../../objects/tie/">"side"</a>: <a class="tag" href="../../objects/slur-side/">"up"</a>,
+                                       <a class="tag" href="../../objects/tie/">"target"</a>: <a class="tag" href="../../objects/id/">"ev38n3"</a>,
+                                       <b class="markuphl"><a class="tag" href="../../objects/tie/">"targetType"</a>:</b> <b class="markuphl"><a class="tag" href="../../objects/tie-target-type/">"crossJump"</a></b>
+                                    }
+                                 ]
+                              }
+                           ]
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               <a class="tag" href="../../objects/part-measure/">"sequences"</a>: [
+                  {
+                     <a class="tag" href="../../objects/sequence/">"content"</a>: [
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev36"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"half"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev36n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">4</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"E"</a>
+                                 }
+                              },
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev36n2"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">4</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"G"</a>
+                                 }
+                              },
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev36n3"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"C"</a>
+                                 }
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev37"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"half"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"rest"</a>: {}
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               <a class="tag" href="../../objects/part-measure/">"sequences"</a>: [
+                  {
+                     <a class="tag" href="../../objects/sequence/">"content"</a>: [
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev38"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"half"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev38n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">4</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"E"</a>
+                                 }
+                              },
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev38n2"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">4</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"G"</a>
+                                 }
+                              },
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev38n3"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"C"</a>
+                                 }
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev39"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"half"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"rest"</a>: {}
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               <a class="tag" href="../../objects/part-measure/">"sequences"</a>: [
+                  {
+                     <a class="tag" href="../../objects/sequence/">"content"</a>: [
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev40"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"quarter"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"rest"</a>: {}
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev41"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"notes"</a>: [
+                              {
+                                 <a class="tag" href="../../objects/note/">"id"</a>: <a class="tag" href="../../objects/id/">"ev41n1"</a>,
+                                 <a class="tag" href="../../objects/note/">"pitch"</a>: {
+                                    <a class="tag" href="../../objects/pitch/">"octave"</a>: <a class="tag" href="../../objects/octave/">5</a>,
+                                    <a class="tag" href="../../objects/pitch/">"step"</a>: <a class="tag" href="../../objects/step/">"G"</a>
+                                 },
+                                 <a class="tag" href="../../objects/note/">"ties"</a>: [
+                                    {
+                                       <b class="markuphl"><a class="tag" href="../../objects/tie/">"lv"</a>:</b> <b class="markuphl"><a class="tag" href="../../objects/boolean/">true</a>,</b>
+                                       <a class="tag" href="../../objects/tie/">"side"</a>: <a class="tag" href="../../objects/slur-side/">"up"</a>
+                                    }
+                                 ]
+                              }
+                           ]
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev42"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"eighth"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"rest"</a>: {}
+                        },
+                        {
+                           <a class="tag" href="../../objects/event/">"id"</a>: <a class="tag" href="../../objects/id/">"ev43"</a>,
+                           <a class="tag" href="../../objects/event/">"duration"</a>: {
+                              <a class="tag" href="../../objects/note-value/">"base"</a>: <a class="tag" href="../../objects/note-value-base/">"half"</a>
+                           },
+                           <a class="tag" href="../../objects/event/">"rest"</a>: {}
+                        }
+                     ]
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}</div>
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>
