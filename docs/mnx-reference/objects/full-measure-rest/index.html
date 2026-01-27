@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The support object | MNX specification</title>
+<title>The full measure rest object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -44,15 +44,13 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    support
+    full measure rest
 </p>
 
-<h1>The support object</h1>
+<h1>The full measure rest object</h1>
 
 <p><b>Type:</b> Dictionary</p>
 
-
-<p>This contains information about how to interpret the data within an MNX document.</p>
 
 
 
@@ -70,25 +68,25 @@
 
 
 <tr>
-    <td><nobr><b>useAccidentalDisplay</b></nobr></td>
+    <td><nobr><b>staffPosition</b></nobr></td>
     <td>
         
-        <a href="../boolean/">boolean</a>
+        <a href="../staff-position/">staff position</a>
         
     </td>
     <td>No</td>
-    <td>This answers the question "Does every note with a visible accidental have accidentalDisplay set?"<br><br>It's meant as a heads-up for consuming software that doesn't have its own accidental-display algorithm. For this type of software, when reading a document with useAccidentalDisplay=false, the software might opt to display a warning to users, saying "We don't know which notes should have an accidental displayed." Or the software might opt to reject the document outright due to not containing sufficient information.<br><br>If this value is not provided, it is to be interpreted as false.</td>
+    <td>If provided, this specifies the vertical position of the rest on the staff. If not provided, the rest should be positioned automatically according to convention.<br><br>This vertical position is the "origin point" from which the rest symbol's SMuFL glyph is drawn. For example, a quarter rest is drawn from its vertical midpoint. See the <a href="https://w3c.github.io/smufl/latest/tables/rests.html">SMuFL rests documentation</a> for more.</td>
 </tr>
 
 <tr>
-    <td><nobr><b>useBeams</b></nobr></td>
+    <td><nobr><b>visualDuration</b></nobr></td>
     <td>
         
-        <a href="../boolean/">boolean</a>
+        <a href="../note-value/">note value</a>
         
     </td>
     <td>No</td>
-    <td>This answers the question "Are beams encoded in this document?"<br><br>If the value is true, any MNX event that is not encoded within a beam should be treated as <em>unbeamed</em>.<br><br>If the value is false (or not provided), consuming software is expected to use its own beaming algorithm to determine beams.</td>
+    <td>Encodes the duration of the visual glyph used for this full-measure rest. For example, if a rest is visually represented by a whole note, this would get <code>"visualDuration": {"base": "whole"}</code>.<br><br>Note this doesn't necessarily match the time signature.<br><br>This is optional. If not provided, consuming applications are free to use their own algorithms to determine which glyph to use for this full-measure rest.</td>
 </tr>
 
 
@@ -111,7 +109,7 @@
 
 <ul>
 
-<li><a href="../mnx/">MNX metadata</a>: "support"</li>
+<li><a href="../sequence/">sequence</a>: "fullMeasure"</li>
 
 </ul>
 
@@ -123,17 +121,7 @@
 <p>This object is used in the following examples:</p>
 <p>
 
-<nobr><a href="../../examples/accidentals/">Accidentals</a></nobr>,
-
-<nobr><a href="../../examples/beam-hooks/">Beams (hooks)</a></nobr>,
-
-<nobr><a href="../../examples/beams-secondary-beam-breaks-implied/">Beams (secondary beam breaks implied)</a></nobr>,
-
-<nobr><a href="../../examples/beams-secondary-beam-breaks/">Beams (secondary beam breaks)</a></nobr>,
-
-<nobr><a href="../../examples/full-measure-rests/">Full-measure rests</a></nobr>,
-
-<nobr><a href="../../examples/organ-layout/">Organ layout</a></nobr>
+<nobr><a href="../../examples/full-measure-rests/">Full-measure rests</a></nobr>
 
 </p>
 

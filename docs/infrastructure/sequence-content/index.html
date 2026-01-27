@@ -69,20 +69,9 @@
     <ol>
     <li>If <i>obj</i> has a <a href="../../mnx-reference/objects/event/"><code>"type"</code> value of <code>"event"</code></a> or is missing a <code>"type"</code> attribute:
         <ol>
-        <li>If <i>obj</i> has a <code>"measure"</code> value of <code>true</code>,
-            <ol>
-            <li>If <i>sequence cursor</i> is greater than zero, throw a processing error.</li>
-            <li>Set <i>sequence cursor</i> to the end of the measure as defined by its time signature.</li>
-            </ol>
-        </li>
-        <li>Else,
-            <ol>
-            <li>Set the metrical position of <i>obj</i> to <i>sequence cursor</i>.</li>
-            <li>If <i>obj</i> has a <code>"duration"</code>, assign it to <i>event duration</i>.</li>
-            <li>Else, throw a processing error.</li>
-            <li>Multiply <i>event duration</i> by the <i>time modification ratio</i>, and add the result to <i>sequence cursor</i>.</li>
-            </ol>
-        </li>
+        <li>Set the metrical position of <i>obj</i> to <i>sequence cursor</i>.</li>
+        <li>Assign the event's <code>"duration"</code> to <i>event duration</i>.</li>
+        <li>Multiply <i>event duration</i> by the <i>time modification ratio</i>, and add the result to <i>sequence cursor</i>.</li>
         </ol>
     </li>
     <li>Else, if <i>obj</i> has a <a href="../../mnx-reference/objects/space/"><code>"type"</code> value of <code>"space"</code></a>:
