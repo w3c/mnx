@@ -1733,6 +1733,9 @@
         }
       ],
       "properties": {
+        "barlineStyle": {
+          "$ref": "#/$defs/staff-group-barline-style"
+        },
         "content": {
           "$ref": "#/$defs/system-layout-content"
         },
@@ -1752,6 +1755,15 @@
       ],
       "type": "object",
       "unevaluatedProperties": false
+    },
+    "staff-group-barline-style": {
+      "enum": [
+        "individual",
+        "instrument",
+        "unified",
+        "mensurstrich"
+      ],
+      "type": "string"
     },
     "staff-label": {
       "type": "string"

@@ -2251,6 +2251,18 @@
     }
 },
 {
+    "model": "spectools.jsonobject",
+    "pk": 199,
+    "fields": {
+        "name": "staff group barline style",
+        "slug": "staff-group-barline-style",
+        "schema": 1,
+        "object_type": 3,
+        "uses_global_attrs": true,
+        "description": "<p>This encodes a strategy for how barlines should be connected across staves.</p>"
+    }
+},
+{
     "model": "spectools.jsonobjectrelationship",
     "pk": 1,
     "fields": {
@@ -5394,6 +5406,21 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 315,
+    "fields": {
+        "parent": 86,
+        "child_key": "barlineStyle",
+        "child": 199,
+        "is_required": false,
+        "description": [
+            "How barlines within this staff group are connected.",
+            "",
+            "If not specified, the default value is \"instrument\", meaning all staves corresponding to the same MNX part use connected barlines."
+        ]
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {
@@ -6283,6 +6310,60 @@
         "parent": 198,
         "name": "crossJump",
         "description": "The tie ends on a note whose event does <em>not</em> directly follow the start note's event, such as an alternate ending, repeat or jump (e.g., D.S. al Coda)."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 99,
+    "fields": {
+        "parent": 199,
+        "name": "individual",
+        "description": [
+            "Barlines are not connected across staves. Barlines are only drawn within each individual staff.",
+            "",
+            "<img src=\"../../../static/images/staff-group-barline-style/individual.png\" alt=\"Notation example\">"
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 100,
+    "fields": {
+        "parent": 199,
+        "name": "instrument",
+        "description": [
+            "Barlines are only connected within staves that correspond to the same MNX <a href=\"../part/\">part</a>. For example, piano music with a grand staff (two staves) will generally connect the two staves with a shared barline.",
+            "",
+            "This behaves the same as \"individual\" except for MNX <a href=\"../part/\">parts</a> that have a \"staves\" value greater than 1.",
+            "",
+            "<img src=\"../../../static/images/staff-group-barline-style/instrument.png\" alt=\"Notation example\">"
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 101,
+    "fields": {
+        "parent": 199,
+        "name": "unified",
+        "description": [
+            "Barlines are always connected, across all staves.",
+            "",
+            "<img src=\"../../../static/images/staff-group-barline-style/unified.png\" alt=\"Notation example\">"
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 102,
+    "fields": {
+        "parent": 199,
+        "name": "mensurstrich",
+        "description": [
+            "Barlines are always connected, across all staves, in the Mensurstrich style. In this style, the lines aren't drawn within the five-line staff, but rather only between the staves.",
+            "",
+            "<img src=\"../../../static/images/staff-group-barline-style/mensurstrich.png\" alt=\"Notation example\">"
+        ]
     }
 },
 {
