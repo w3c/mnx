@@ -297,9 +297,6 @@
         "markings": {
           "$ref": "#/$defs/event-markings"
         },
-        "measure": {
-          "type": "boolean"
-        },
         "notes": {
           "$ref": "#/$defs/notes"
         },
@@ -322,6 +319,9 @@
           "$ref": "#/$defs/literal-string-event"
         }
       },
+      "required": [
+        "duration"
+      ],
       "type": "object",
       "unevaluatedProperties": false
     },
@@ -435,6 +435,23 @@
         "$ref": "#/$defs/integer-unsigned"
       },
       "type": "array"
+    },
+    "full-measure-rest": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/global-attrs"
+        }
+      ],
+      "properties": {
+        "staffPosition": {
+          "$ref": "#/$defs/staff-position"
+        },
+        "visualDuration": {
+          "$ref": "#/$defs/note-value"
+        }
+      },
+      "type": "object",
+      "unevaluatedProperties": false
     },
     "global": {
       "allOf": [
@@ -1504,6 +1521,9 @@
       "properties": {
         "content": {
           "$ref": "#/$defs/sequence-content"
+        },
+        "fullMeasure": {
+          "$ref": "#/$defs/full-measure-rest"
         },
         "orient": {
           "$ref": "#/$defs/orientation"

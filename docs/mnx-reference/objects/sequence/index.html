@@ -96,6 +96,17 @@
 </tr>
 
 <tr>
+    <td><nobr><b>fullMeasure</b></nobr></td>
+    <td>
+        
+        <a href="../full-measure-rest/">full measure rest</a>
+        
+    </td>
+    <td>No</td>
+    <td>Specifies that this sequence is a full-measure rest, and contains optional information about that full-measure rest.<br><br>Typically, full-measure rests get special treatment by notation apps: they're centered horizontally within the bar and they might use a rest glyph that doesn't necessarily match the bar's duration.<br><br>If a sequence has <code>fullMeasure</code> defined, then the sequence's <code>content</code> must be an empty array.<br><br>Note the full measure rest object has no required attributes of its own. It's valid for <code>fullMeasure</code> to be set to an empty object: <code>{}</code>. In this case, this means the sequence is indeed a full-measure rest, with default full-measure rest attributes.</td>
+</tr>
+
+<tr>
     <td><nobr><b>orient</b></nobr></td>
     <td>
         
@@ -181,6 +192,8 @@
 <nobr><a href="../../examples/dotted-notes/">Dotted notes (augmentation dots)</a></nobr>,
 
 <nobr><a href="../../examples/dynamics/">Dynamics</a></nobr>,
+
+<nobr><a href="../../examples/full-measure-rests/">Full-measure rests</a></nobr>,
 
 <nobr><a href="../../examples/grace-note/">Grace note</a></nobr>,
 

@@ -54,7 +54,7 @@
 
 <p>The event object represents a discrete period of time during which one or more notes are performed, or in which a rest occurs.</p>
 
-<p>All events other than <i>whole-measure events</i> require a <code>value</code> attribute to provide their duration as a <a href="../../data-types/note-value/">note value</a>. This duration is implicitly multiplied by the current <a href="../../../infrastructure/sequence-content/">time modification ratio</a>, as specified by the process of <a href="../../../infrastructure/sequence-content/">sequencing the content</a> of the event’s containing element.</p>
+<p>All events require a <code>value</code> attribute to provide their duration as a <a href="../../data-types/note-value/">note value</a>. This duration is implicitly multiplied by the current <a href="../../../infrastructure/sequence-content/">time modification ratio</a>, as specified by the process of <a href="../../../infrastructure/sequence-content/">sequencing the content</a> of the event’s containing element.</p>
 
 
 
@@ -78,8 +78,8 @@
         <a href="../note-value/">note value</a>
         
     </td>
-    <td>No</td>
-    <td>The duration of this event. This is required unless this event has measure=true.</td>
+    <td>Yes</td>
+    <td>The duration of this event.</td>
 </tr>
 
 <tr>
@@ -116,17 +116,6 @@
     </td>
     <td>No</td>
     <td></td>
-</tr>
-
-<tr>
-    <td><nobr><b>measure</b></nobr></td>
-    <td>
-        
-        <a href="../boolean/">boolean</a>
-        
-    </td>
-    <td>No</td>
-    <td>Whether this event is a <i>whole-measure event</i> — meaning its duration lasts the entire measure. This is used, for example, for rests that last an entire measure.<br><br>If this value is set to true, then this event may not specify "value" and this event must either be empty or contain exactly one rest.</td>
 </tr>
 
 <tr>
@@ -269,6 +258,8 @@
 <nobr><a href="../../examples/dotted-notes/">Dotted notes (augmentation dots)</a></nobr>,
 
 <nobr><a href="../../examples/dynamics/">Dynamics</a></nobr>,
+
+<nobr><a href="../../examples/full-measure-rests/">Full-measure rests</a></nobr>,
 
 <nobr><a href="../../examples/grace-note/">Grace note</a></nobr>,
 
