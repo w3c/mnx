@@ -3702,28 +3702,17 @@
 },
 {
     "model": "spectools.jsonobjectrelationship",
-    "pk": 161,
-    "fields": {
-        "parent": 6,
-        "child_key": "index",
-        "child": 84,
-        "is_required": false,
-        "description": [
-            "The one-based index of this measure within the document's score order. The default value is 1 for the first measure in \"global\". For all other measures, the default value is the value of the previous measure plus 1.",
-            "",
-            "This is used within the MNX document in cases when content needs to refer to a specific measure."
-        ]
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
     "pk": 162,
     "fields": {
         "parent": 6,
         "child_key": "number",
         "child": 84,
         "is_required": false,
-        "description": "A visual label for the measure. It is not required to be unique in the document. If omitted, its value is the same as \"index\"."
+        "description": [
+            "A visual label for the measure. It is not required to be unique in the document.",
+            "",
+            "If it's omitted, consuming applications are free to use their own algorithms for determining this measure's visual label. A simple algorithm is to use the 1-based index of this measure within the global measures list."
+        ]
     }
 },
 {

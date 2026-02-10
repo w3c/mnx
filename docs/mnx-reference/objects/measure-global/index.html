@@ -103,17 +103,6 @@
 </tr>
 
 <tr>
-    <td><nobr><b>index</b></nobr></td>
-    <td>
-        
-        <a href="../measure-number/">measure number</a>
-        
-    </td>
-    <td>No</td>
-    <td>The one-based index of this measure within the document's score order. The default value is 1 for the first measure in "global". For all other measures, the default value is the value of the previous measure plus 1.<br><br>This is used within the MNX document in cases when content needs to refer to a specific measure.</td>
-</tr>
-
-<tr>
     <td><nobr><b>jump</b></nobr></td>
     <td>
         
@@ -143,7 +132,7 @@
         
     </td>
     <td>No</td>
-    <td>A visual label for the measure. It is not required to be unique in the document. If omitted, its value is the same as "index".</td>
+    <td>A visual label for the measure. It is not required to be unique in the document.<br><br>If it's omitted, consuming applications are free to use their own algorithms for determining this measure's visual label. A simple algorithm is to use the 1-based index of this measure within the global measures list.</td>
 </tr>
 
 <tr>
