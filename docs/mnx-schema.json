@@ -1567,6 +1567,7 @@
       "type": "array"
     },
     "simple-color": {
+      "pattern": "^#[0-9a-f]{6}$",
       "type": "string"
     },
     "slur": {
@@ -2218,7 +2219,7 @@
       "type": "string"
     }
   },
-  "$id": "https://w3c.github.io/mnx/docs/mnx-schema.json/version/3",
+  "$id": "https://w3c.github.io/mnx/docs/mnx-schema.json/version/4",
   "$ref": "#/$defs/root",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "An encoding of Common Western Music Notation.",
