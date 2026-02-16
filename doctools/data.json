@@ -24,7 +24,7 @@
         "name": "MNX",
         "slug": "mnx",
         "is_json": true,
-        "version": "2"
+        "version": "3"
     }
 },
 {
@@ -1799,7 +1799,7 @@
         "schema": 1,
         "object_type": 1,
         "uses_global_attrs": true,
-        "description": "<p>Describes the rhythmic position of a notational object within a piece of music. This is comprised of a measure index plus a rhythmic position within that measure.</p>"
+        "description": "<p>Describes the rhythmic position of a notational object within a piece of music. This is comprised of a measure plus a rhythmic position within that measure.</p>"
     }
 },
 {
@@ -3167,9 +3167,9 @@
     "fields": {
         "parent": 83,
         "child_key": "measure",
-        "child": 84,
+        "child": 37,
         "is_required": true,
-        "description": "Specifies the starting measure in this system. This corresponds to the \"index\" value of the measure object."
+        "description": "The ID of the first <a href=\"../measure-global/\">global measure</a> in this system."
     }
 },
 {
@@ -3434,9 +3434,9 @@
     "fields": {
         "parent": 103,
         "child_key": "start",
-        "child": 84,
+        "child": 37,
         "is_required": true,
-        "description": "The measure number in which this multimeasure rest begins."
+        "description": "The ID of the <a href=\"../measure-global/\">global measure</a> in which this multimeasure rest begins."
     }
 },
 {
@@ -4492,9 +4492,9 @@
     "fields": {
         "parent": 161,
         "child_key": "measure",
-        "child": 84,
+        "child": 37,
         "is_required": true,
-        "description": ""
+        "description": "The ID of the <a href=\"../measure-global/\">global measure</a> that this position refers to."
     }
 },
 {

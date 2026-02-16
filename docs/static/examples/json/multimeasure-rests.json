@@ -3,15 +3,16 @@
   "global": {
     "measures": [
       {
+        "id": "m1",
         "barline": {"type": "regular"},
         "time": {"count": 4, "unit": 4}
       },
-      {},
-      {},
-      {},
-      {},
-      {},
-      {}
+      {"id": "m2"},
+      {"id": "m3"},
+      {"id": "m4"},
+      {"id": "m5"},
+      {"id": "m6"},
+      {"id": "m7"}
     ]
   },
   "parts": [
@@ -317,8 +318,8 @@
       "name": "Full score",
       "pages": [
         {"systems": [
-          {"measure": 1},
-          {"measure": 5}
+          {"measure": "m1"},
+          {"measure": "m5"}
         ]
         }
       ]
@@ -332,7 +333,7 @@
       "name": "Part A",
       "layout": "PartAAlone",
       "multimeasureRests": [
-        {"start": 3, "duration": 2}
+        {"start": "m3", "duration": 2}
       ]
     },
     {
@@ -344,8 +345,8 @@
       "name": "Part B",
       "layout": "PartBAlone",
       "multimeasureRests": [
-        {"start": 1, "duration": 2},
-        {"start": 5, "duration": 2}
+        {"start": "m1", "duration": 2},
+        {"start": "m5", "duration": 2}
       ]
     }
   ]

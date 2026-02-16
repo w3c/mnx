@@ -3,9 +3,10 @@
   "global": {
     "measures": [
       {
+        "id": "m1",
         "time": {"count": 4, "unit": 4}
       },
-      {}
+      {"id": "m2"}
     ]
   },
   "parts": [
@@ -420,7 +421,7 @@
       "pages": [
         {
           "systems": [
-            {"layout": "Choral4Staff", "measure": 1}
+            {"layout": "Choral4Staff", "measure": "m1"}
           ]
         }
       ]
@@ -430,7 +431,7 @@
       "pages": [
         {
           "systems": [
-            {"layout": "Choral2StaffStemSplit", "measure": 1}
+            {"layout": "Choral2StaffStemSplit", "measure": "m1"}
           ]
         }
       ]
@@ -442,9 +443,9 @@
           "systems": [
             {
               "layout": "Choral2StaffChorded",
-              "measure": 1,
+              "measure": "m1",
               "layoutChanges": [
-                {"layout": "Choral2StaffMenSplit", "location": {"measure": 2, "position": {"fraction": [0, 1]}}}
+                {"layout": "Choral2StaffMenSplit", "location": {"measure": "m2", "position": {"fraction": [0, 1]}}}
               ]
             }
           ]

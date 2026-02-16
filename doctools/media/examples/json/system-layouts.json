@@ -1,6 +1,14 @@
 {
   "mnx": {"version": 1},
-  "global": {"measures": []},
+  "global": {"measures": [
+    {"id": "m1"},
+    {"id": "m2"},
+    {"id": "m3"},
+    {"id": "m4"},
+    {"id": "m5"},
+    {"id": "m6"},
+    {"id": "m7"}
+  ]},
   "parts": [
     {
       "name": "Flute 1",
@@ -165,8 +173,8 @@
       "pages": [
         {
           "systems": [
-            {"measure": 1, "layout": "layout1"},
-            {"measure": 4, "layout": "layout2"}
+            {"measure": "m1", "layout": "layout1"},
+            {"measure": "m4", "layout": "layout2"}
           ]
         }
       ]

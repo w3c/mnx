@@ -885,7 +885,7 @@
       ],
       "properties": {
         "measure": {
-          "$ref": "#/$defs/measure-number"
+          "$ref": "#/$defs/id"
         },
         "position": {
           "$ref": "#/$defs/rhythmic-position"
@@ -973,7 +973,7 @@
           "$ref": "#/$defs/string"
         },
         "start": {
-          "$ref": "#/$defs/measure-number"
+          "$ref": "#/$defs/id"
         }
       },
       "required": [
@@ -1917,7 +1917,7 @@
           "$ref": "#/$defs/layout-changes"
         },
         "measure": {
-          "$ref": "#/$defs/measure-number"
+          "$ref": "#/$defs/id"
         }
       },
       "required": [
@@ -2218,7 +2218,7 @@
       "type": "string"
     }
   },
-  "$id": "https://w3c.github.io/mnx/docs/mnx-schema.json/version/2",
+  "$id": "https://w3c.github.io/mnx/docs/mnx-schema.json/version/3",
   "$ref": "#/$defs/root",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "An encoding of Common Western Music Notation.",

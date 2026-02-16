@@ -3,6 +3,7 @@
   "global": {
     "measures": [
       {
+        "id": "m1",
         "key": {"fifths": -3},
         "time": {"count": 3, "unit": 4}
       }
@@ -190,10 +191,10 @@
       "pages": [
         {
           "systems": [
-            {"layout": "organ3Staff", "measure": 1, "layoutChanges": [
-              {"layout": "organ3StaffSplitOber", "location": {"measure": 1, "position": {"fraction": [3, 8]}}}
+            {"layout": "organ3Staff", "measure": "m1", "layoutChanges": [
+              {"layout": "organ3StaffSplitOber", "location": {"measure": "m1", "position": {"fraction": [3, 8]}}}
             ]},
-            {"layout": "organ3StaffSplitOber", "measure": 6}
+            {"layout": "organ3StaffSplitOber", "measure": "m6"}
           ]
         }
       ]
