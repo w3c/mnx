@@ -24,7 +24,7 @@
         "name": "MNX",
         "slug": "mnx",
         "is_json": true,
-        "version": "18"
+        "version": "19"
     }
 },
 {
@@ -2613,6 +2613,7 @@
             "<li>\"immediate\": position, value</li>",
             "<li>\"gradual\": position, end, wedgeType</li>",
             "<li>\"relative\": position, relativeValue</li>",
+            "<li>\"accent\": position, value</li>",
             "</ul>",
             "",
             "<p>To encode a hairpin with both starting and ending dynamic values (such as \"p < f\"), use two separate dynamic groups:</p>",
@@ -2671,6 +2672,19 @@
         "slug": "relative-dynamic-value",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 217,
+    "fields": {
+        "name": "smufl glyph list",
+        "slug": "smufl-glyph-list",
+        "schema": 1,
+        "object_type": 2,
         "uses_global_attrs": true,
         "regex": "",
         "description": ""
@@ -6384,6 +6398,47 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 363,
+    "fields": {
+        "parent": 217,
+        "child_key": "0",
+        "child": 106,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 364,
+    "fields": {
+        "parent": 212,
+        "child_key": "glyphs",
+        "child": 217,
+        "is_required": false,
+        "description": [
+            "Optional list of SMuFL glyphs to use when displaying this dynamic.",
+            "",
+            "If this is provided, consuming applications should use these specific glyphs. If this isn't provided, consuming applications should automatically determine the SMuFL glyphs based on \"value\", \"attackValue\" and \"relativeValue\"."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 365,
+    "fields": {
+        "parent": 212,
+        "child_key": "attackValue",
+        "child": 124,
+        "is_required": false,
+        "description": [
+            "Encodes a dynamic that should be used specifically during the note attack, with the expectation that the dynamic should immediately be followed by a different dynamic value.",
+            "",
+            "For example, this is used for \"fp\" dynamics, which are a bit of a special case meaning \"start playing in f, then immediately reduce dynamics to p.\" This is encoded as {\"attackValue\": \"f\", \"value\": \"p\"}."
+        ]
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {
@@ -7578,7 +7633,7 @@
     "fields": {
         "parent": 214,
         "name": "immediate",
-        "description": ""
+        "description": "Used for standard dynamics such as f and p. The dynamic value is an absolute value (not a relative one). This is the most common type of dynamic."
     }
 },
 {
@@ -7587,7 +7642,7 @@
     "fields": {
         "parent": 214,
         "name": "gradual",
-        "description": ""
+        "description": "Used for hairpins (crescendo, diminuendo)."
     }
 },
 {
@@ -7596,7 +7651,7 @@
     "fields": {
         "parent": 214,
         "name": "relative",
-        "description": ""
+        "description": "Used for dynamics whose value is meant to be interpreted relatively, like <i>più</i> p (\"quieter\")."
     }
 },
 {
@@ -7705,6 +7760,24 @@
         "parent": 216,
         "name": "softer",
         "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 149,
+    "fields": {
+        "parent": 214,
+        "name": "accent",
+        "description": "Used for dynamics that are temporary accents on a single beat, such as sfz (sforzando)."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 150,
+    "fields": {
+        "parent": 124,
+        "name": "n",
+        "description": "niente"
     }
 },
 {

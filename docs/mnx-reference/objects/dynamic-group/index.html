@@ -64,6 +64,7 @@
 <li>"immediate": position, value</li>
 <li>"gradual": position, end, wedgeType</li>
 <li>"relative": position, relativeValue</li>
+<li>"accent": position, value</li>
 </ul>
 
 <p>To encode a hairpin with both starting and ending dynamic values (such as "p < f"), use two separate dynamic groups:</p>
@@ -89,6 +90,17 @@
 
 
 <tr>
+    <td><nobr><b>attackValue</b></nobr></td>
+    <td>
+        
+        <a href="../dynamic-value/">dynamic value</a>
+        
+    </td>
+    <td>No</td>
+    <td>Encodes a dynamic that should be used specifically during the note attack, with the expectation that the dynamic should immediately be followed by a different dynamic value.<br><br>For example, this is used for "fp" dynamics, which are a bit of a special case meaning "start playing in f, then immediately reduce dynamics to p." This is encoded as {"attackValue": "f", "value": "p"}.</td>
+</tr>
+
+<tr>
     <td><nobr><b>end</b></nobr></td>
     <td>
         
@@ -97,6 +109,20 @@
     </td>
     <td>No</td>
     <td>Required if type is "gradual". This defines the endpoint of the gradual dynamic.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>glyphs</b></nobr></td>
+    <td>
+        
+            An array of
+            
+            <a href="../smufl-glyph/">smufl glyph objects</a>
+            
+        
+    </td>
+    <td>No</td>
+    <td>Optional list of SMuFL glyphs to use when displaying this dynamic.<br><br>If this is provided, consuming applications should use these specific glyphs. If this isn't provided, consuming applications should automatically determine the SMuFL glyphs based on "value", "attackValue" and "relativeValue".</td>
 </tr>
 
 <tr>
