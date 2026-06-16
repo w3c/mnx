@@ -24,7 +24,7 @@
         "name": "MNX",
         "slug": "mnx",
         "is_json": true,
-        "version": "17"
+        "version": "18"
     }
 },
 {
@@ -1367,7 +1367,7 @@
         "object_type": 3,
         "uses_global_attrs": true,
         "regex": "",
-        "description": "<p>Represents a symbol's vertical orientation.</p>"
+        "description": "<p>Represents a symbol's vertical orientation. See also <a href=\"../multi-staff-orientation/\">multi-staff orientation</a>, which supports multi-staff music.</p>"
     }
 },
 {
@@ -1465,26 +1465,13 @@
     "model": "spectools.jsonobject",
     "pk": 124,
     "fields": {
-        "name": "dynamic type",
-        "slug": "dynamic-type",
+        "name": "dynamic value",
+        "slug": "dynamic-value",
         "schema": 1,
         "object_type": 3,
         "uses_global_attrs": true,
         "regex": "",
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobject",
-    "pk": 125,
-    "fields": {
-        "name": "dynamic",
-        "slug": "dynamic",
-        "schema": 1,
-        "object_type": 1,
-        "uses_global_attrs": true,
-        "regex": "",
-        "description": "<p>Describes a textual dynamic direction to the performer.</p>"
+        "description": "<p>Defines available options for <a href=\"../dynamic-group/\">dynamic group</a> values.</p>"
     }
 },
 {
@@ -2137,8 +2124,8 @@
     "model": "spectools.jsonobject",
     "pk": 176,
     "fields": {
-        "name": "dynamic list",
-        "slug": "dynamic-list",
+        "name": "dynamic group list",
+        "slug": "dynamic-group-list",
         "schema": 1,
         "object_type": 2,
         "uses_global_attrs": true,
@@ -2603,6 +2590,90 @@
             "",
             "<p>See also: <a href=\"../arpeggio/\">arpeggios</a>.</p>"
         ]
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 212,
+    "fields": {
+        "name": "dynamic group",
+        "slug": "dynamic-group",
+        "schema": 1,
+        "object_type": 1,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": [
+            "<p>Encodes a dynamic value at a given rhythmic position.</p>",
+            "",
+            "<p>This is used for any type of dynamic, from immediate ones (such as \"p\" or \"f\") to gradual ones (such as crescendo hairpins).</p>",
+            "",
+            "<p>Various attributes are required only for certain types. For quick reference, here are the required attributes for each \"type\" value:</p>",
+            "",
+            "<ul>",
+            "<li>\"immediate\": position, value</li>",
+            "<li>\"gradual\": position, end, wedgeType</li>",
+            "<li>\"relative\": position, relativeValue</li>",
+            "</ul>",
+            "",
+            "<p>To encode a hairpin with both starting and ending dynamic values (such as \"p < f\"), use two separate dynamic groups:</p>",
+            "",
+            "<ul>",
+            "<li>One with type=\"gradual\", value=\"p\" and wedgeType=\"increasing\"</li>",
+            "<li>A second with type=\"immediate\", value \"f\" and \"position\" equal to the previous dynamic group's \"end\"</li>",
+            "</ul>"
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 213,
+    "fields": {
+        "name": "multi-staff orientation",
+        "slug": "multi-staff-orientation",
+        "schema": 1,
+        "object_type": 3,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": "<p>Represents a symbol's vertical orientation, with support for multi-staff music via the \"between\" value. See also <a href=\"../orientation/\">orientation</a>, which doesn't support \"between\".</p>"
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 214,
+    "fields": {
+        "name": "dynamic group type",
+        "slug": "dynamic-group-type",
+        "schema": 1,
+        "object_type": 3,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": "<p>Encodes the type of a <a href=\"../dynamic-group/\">dynamic group</a>.</p>"
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 215,
+    "fields": {
+        "name": "wedge type",
+        "slug": "wedge-type",
+        "schema": 1,
+        "object_type": 3,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": "<p>Defines the direction of a gradual <a href=\"../dynamic-group/\">dynamic group</a> (i.e., a hairpin).</p>"
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 216,
+    "fields": {
+        "name": "relative dynamic value",
+        "slug": "relative-dynamic-value",
+        "schema": 1,
+        "object_type": 3,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": ""
     }
 },
 {
@@ -4289,28 +4360,6 @@
 },
 {
     "model": "spectools.jsonobjectrelationship",
-    "pk": 189,
-    "fields": {
-        "parent": 125,
-        "child_key": "value",
-        "child": 124,
-        "is_required": true,
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 190,
-    "fields": {
-        "parent": 125,
-        "child_key": "glyph",
-        "child": 106,
-        "is_required": false,
-        "description": "A specific SMuFL glyph name to be used when rendering this dynamic."
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
     "pk": 192,
     "fields": {
         "parent": 3,
@@ -5130,7 +5179,7 @@
     "fields": {
         "parent": 176,
         "child_key": "0",
-        "child": 125,
+        "child": 212,
         "is_required": false,
         "description": ""
     }
@@ -5144,39 +5193,6 @@
         "child": 176,
         "is_required": false,
         "description": "All dynamics in this part-measure."
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 269,
-    "fields": {
-        "parent": 125,
-        "child_key": "position",
-        "child": 140,
-        "is_required": true,
-        "description": "The position of this dynamic within the measure."
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 270,
-    "fields": {
-        "parent": 125,
-        "child_key": "staff",
-        "child": 105,
-        "is_required": false,
-        "description": "The staff index to which this dynamic applies. By default, a dynamic applies to all staffs in the part."
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 271,
-    "fields": {
-        "parent": 125,
-        "child_key": "voice",
-        "child": 101,
-        "is_required": false,
-        "description": "The voice to which this dynamic applies. By default, a dynamic applies to all voices in the part."
     }
 },
 {
@@ -6236,6 +6252,135 @@
             "",
             "All inner notes (i.e., any other notes that are encoded at this rhythmic position and whose pitch lies between the \"start\" and \"end\" notes) are interpreted as being within the non-arpeggio; they are not explicitly encoded."
         ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 352,
+    "fields": {
+        "parent": 212,
+        "child_key": "position",
+        "child": 140,
+        "is_required": true,
+        "description": "The rhythmic position at which this dynamic group starts."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 353,
+    "fields": {
+        "parent": 212,
+        "child_key": "staff",
+        "child": 105,
+        "is_required": false,
+        "description": "The staff index to which this dynamic group applies. By default, a dynamic group applies to all staffs in the <a href=\"../part/\">part</a>."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 354,
+    "fields": {
+        "parent": 212,
+        "child_key": "voice",
+        "child": 101,
+        "is_required": false,
+        "description": "The voice to which this dynamic group applies. By default, a dynamic group applies to all voices in the <a href=\"../part/\">part</a>."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 355,
+    "fields": {
+        "parent": 212,
+        "child_key": "orient",
+        "child": 213,
+        "is_required": false,
+        "description": [
+            "Where the dynamic group is positioned, relative to the staff.",
+            "",
+            "If not provided, the default value is \"auto\"."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 356,
+    "fields": {
+        "parent": 212,
+        "child_key": "type",
+        "child": 214,
+        "is_required": true,
+        "description": "Distinguishes between different types of dynamics. This can be \"immediate\" (such as a notated \"p\"), \"gradual\" (such as a crescendo hairpin) or \"relative\" (such as a notated \"<i>più</i> p\", meaning \"quieter\").</p>"
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 357,
+    "fields": {
+        "parent": 212,
+        "child_key": "value",
+        "child": 124,
+        "is_required": false,
+        "description": [
+            "Required if type is \"immediate\". This defines the dynamic value, such as \"p\" or \"f\".",
+            "",
+            "For gradual dynamics, this is the dynamic value at the beginning."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 358,
+    "fields": {
+        "parent": 212,
+        "child_key": "wedgeType",
+        "child": 215,
+        "is_required": false,
+        "description": "Required if type is \"gradual\". This defines whether the hairpin is gradually opening or gradually closing."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 359,
+    "fields": {
+        "parent": 212,
+        "child_key": "relativeValue",
+        "child": 216,
+        "is_required": false,
+        "description": "Required if type is \"relative\"."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 360,
+    "fields": {
+        "parent": 212,
+        "child_key": "end",
+        "child": 161,
+        "is_required": false,
+        "description": "Required if type is \"gradual\". This defines the endpoint of the gradual dynamic."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 361,
+    "fields": {
+        "parent": 212,
+        "child_key": "prefix",
+        "child": 110,
+        "is_required": false,
+        "description": "Optional text to display before the dynamic marking, such as \"<i>più</i>\"."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 362,
+    "fields": {
+        "parent": 212,
+        "child_key": "suffix",
+        "child": 110,
+        "is_required": false,
+        "description": "Optional text to display after the dynamic marking, such as \"<i>sub.</i>\"."
     }
 },
 {
@@ -7388,6 +7533,177 @@
     "fields": {
         "parent": 206,
         "name": "down",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 129,
+    "fields": {
+        "parent": 213,
+        "name": "above",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 130,
+    "fields": {
+        "parent": 213,
+        "name": "auto",
+        "description": "Consuming applications are free to use their own algorithms to determine orientation."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 131,
+    "fields": {
+        "parent": 213,
+        "name": "below",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 132,
+    "fields": {
+        "parent": 213,
+        "name": "between",
+        "description": "Between multiple staves of music. For example: between the two staves in a grand staff."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 133,
+    "fields": {
+        "parent": 214,
+        "name": "immediate",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 134,
+    "fields": {
+        "parent": 214,
+        "name": "gradual",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 136,
+    "fields": {
+        "parent": 214,
+        "name": "relative",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 137,
+    "fields": {
+        "parent": 124,
+        "name": "ppp",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 138,
+    "fields": {
+        "parent": 124,
+        "name": "pp",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 139,
+    "fields": {
+        "parent": 124,
+        "name": "p",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 140,
+    "fields": {
+        "parent": 124,
+        "name": "mp",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 141,
+    "fields": {
+        "parent": 124,
+        "name": "mf",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 142,
+    "fields": {
+        "parent": 124,
+        "name": "f",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 143,
+    "fields": {
+        "parent": 124,
+        "name": "ff",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 144,
+    "fields": {
+        "parent": 124,
+        "name": "fff",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 145,
+    "fields": {
+        "parent": 215,
+        "name": "increasing",
+        "description": "For example, a crescendo."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 146,
+    "fields": {
+        "parent": 215,
+        "name": "decreasing",
+        "description": "For example, a diminuendo."
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 147,
+    "fields": {
+        "parent": 216,
+        "name": "louder",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 148,
+    "fields": {
+        "parent": 216,
+        "name": "softer",
         "description": ""
     }
 },
@@ -20539,14 +20855,6 @@
     "fields": {
         "example": 48,
         "json_object": 124
-    }
-},
-{
-    "model": "spectools.exampledocumentobject",
-    "pk": 1522,
-    "fields": {
-        "example": 48,
-        "json_object": 125
     }
 },
 {

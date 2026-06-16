@@ -254,43 +254,79 @@
     "color": {
       "type": "string"
     },
-    "dynamic": {
+    "dynamic-group": {
       "allOf": [
         {
           "$ref": "#/$defs/global-attrs"
         }
       ],
       "properties": {
-        "glyph": {
-          "$ref": "#/$defs/smufl-glyph"
+        "end": {
+          "$ref": "#/$defs/measure-rhythmic-position"
+        },
+        "orient": {
+          "$ref": "#/$defs/multi-staff-orientation"
         },
         "position": {
           "$ref": "#/$defs/rhythmic-position"
         },
+        "prefix": {
+          "$ref": "#/$defs/string"
+        },
+        "relativeValue": {
+          "$ref": "#/$defs/relative-dynamic-value"
+        },
         "staff": {
           "$ref": "#/$defs/staff-number"
         },
+        "suffix": {
+          "$ref": "#/$defs/string"
+        },
+        "type": {
+          "$ref": "#/$defs/dynamic-group-type"
+        },
         "value": {
-          "$ref": "#/$defs/dynamic-type"
+          "$ref": "#/$defs/dynamic-value"
         },
         "voice": {
           "$ref": "#/$defs/voice-name"
+        },
+        "wedgeType": {
+          "$ref": "#/$defs/wedge-type"
         }
       },
       "required": [
         "position",
-        "value"
+        "type"
       ],
       "type": "object",
       "unevaluatedProperties": false
     },
-    "dynamic-list": {
+    "dynamic-group-list": {
       "items": {
-        "$ref": "#/$defs/dynamic"
+        "$ref": "#/$defs/dynamic-group"
       },
       "type": "array"
     },
-    "dynamic-type": {
+    "dynamic-group-type": {
+      "enum": [
+        "immediate",
+        "gradual",
+        "relative"
+      ],
+      "type": "string"
+    },
+    "dynamic-value": {
+      "enum": [
+        "ppp",
+        "pp",
+        "p",
+        "mp",
+        "mf",
+        "f",
+        "ff",
+        "fff"
+      ],
       "type": "string"
     },
     "ending": {
@@ -1088,6 +1124,15 @@
       "type": "object",
       "unevaluatedProperties": false
     },
+    "multi-staff-orientation": {
+      "enum": [
+        "above",
+        "auto",
+        "below",
+        "between"
+      ],
+      "type": "string"
+    },
     "multimeasure-rest": {
       "allOf": [
         {
@@ -1398,7 +1443,7 @@
           "$ref": "#/$defs/positioned-clef-list"
         },
         "dynamics": {
-          "$ref": "#/$defs/dynamic-list"
+          "$ref": "#/$defs/dynamic-group-list"
         },
         "nonArpeggios": {
           "$ref": "#/$defs/non-arpeggio-list"
@@ -1522,6 +1567,13 @@
     },
     "positive-integer": {
       "type": "integer"
+    },
+    "relative-dynamic-value": {
+      "enum": [
+        "louder",
+        "softer"
+      ],
+      "type": "string"
     },
     "repeat-end": {
       "allOf": [
@@ -2409,6 +2461,13 @@
     "voice-name": {
       "type": "string"
     },
+    "wedge-type": {
+      "enum": [
+        "increasing",
+        "decreasing"
+      ],
+      "type": "string"
+    },
     "written": {
       "allOf": [
         {
@@ -2432,7 +2491,7 @@
       "type": "string"
     }
   },
-  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/17",
+  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/18",
   "$ref": "#/$defs/root",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "An encoding of Common Western Music Notation.",

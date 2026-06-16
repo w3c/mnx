@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The dynamic group object | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../">Reference</a>
+    <ul>
+    <li><a href="../">Objects</a></li>
+    <li><a href="../../examples/">Example documents</a></li>
+    <li><a href="../../../mnx-schema.json">Raw JSON Schema</a></li>
+    </ul>
+</li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Objects</a> &gt;
+    dynamic group
+</p>
+
+<h1>The dynamic group object</h1>
+
+<p><b>Type:</b> Dictionary</p>
+
+
+
+
+<p>Encodes a dynamic value at a given rhythmic position.</p>
+
+<p>This is used for any type of dynamic, from immediate ones (such as "p" or "f") to gradual ones (such as crescendo hairpins).</p>
+
+<p>Various attributes are required only for certain types. For quick reference, here are the required attributes for each "type" value:</p>
+
+<ul>
+<li>"immediate": position, value</li>
+<li>"gradual": position, end, wedgeType</li>
+<li>"relative": position, relativeValue</li>
+</ul>
+
+<p>To encode a hairpin with both starting and ending dynamic values (such as "p < f"), use two separate dynamic groups:</p>
+
+<ul>
+<li>One with type="gradual", value="p" and wedgeType="increasing"</li>
+<li>A second with type="immediate", value "f" and "position" equal to the previous dynamic group's "end"</li>
+</ul>
+
+
+
+<h2>Attributes</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>end</b></nobr></td>
+    <td>
+        
+        <a href="../measure-rhythmic-position/">measure rhythmic position</a>
+        
+    </td>
+    <td>No</td>
+    <td>Required if type is "gradual". This defines the endpoint of the gradual dynamic.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>orient</b></nobr></td>
+    <td>
+        
+        <a href="../multi-staff-orientation/">multi-staff orientation</a>
+        
+    </td>
+    <td>No</td>
+    <td>Where the dynamic group is positioned, relative to the staff.<br><br>If not provided, the default value is "auto".</td>
+</tr>
+
+<tr>
+    <td><nobr><b>position</b></nobr></td>
+    <td>
+        
+        <a href="../rhythmic-position/">rhythmic position</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The rhythmic position at which this dynamic group starts.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>prefix</b></nobr></td>
+    <td>
+        
+        <a href="../string/">string</a>
+        
+    </td>
+    <td>No</td>
+    <td>Optional text to display before the dynamic marking, such as "<i>più</i>".</td>
+</tr>
+
+<tr>
+    <td><nobr><b>relativeValue</b></nobr></td>
+    <td>
+        
+        <a href="../relative-dynamic-value/">relative dynamic value</a>
+        
+    </td>
+    <td>No</td>
+    <td>Required if type is "relative".</td>
+</tr>
+
+<tr>
+    <td><nobr><b>staff</b></nobr></td>
+    <td>
+        
+        <a href="../staff-number/">staff number</a>
+        
+    </td>
+    <td>No</td>
+    <td>The staff index to which this dynamic group applies. By default, a dynamic group applies to all staffs in the <a href="../part/">part</a>.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>suffix</b></nobr></td>
+    <td>
+        
+        <a href="../string/">string</a>
+        
+    </td>
+    <td>No</td>
+    <td>Optional text to display after the dynamic marking, such as "<i>sub.</i>".</td>
+</tr>
+
+<tr>
+    <td><nobr><b>type</b></nobr></td>
+    <td>
+        
+        <a href="../dynamic-group-type/">dynamic group type</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>Distinguishes between different types of dynamics. This can be "immediate" (such as a notated "p"), "gradual" (such as a crescendo hairpin) or "relative" (such as a notated "<i>più</i> p", meaning "quieter").</p></td>
+</tr>
+
+<tr>
+    <td><nobr><b>value</b></nobr></td>
+    <td>
+        
+        <a href="../dynamic-value/">dynamic value</a>
+        
+    </td>
+    <td>No</td>
+    <td>Required if type is "immediate". This defines the dynamic value, such as "p" or "f".<br><br>For gradual dynamics, this is the dynamic value at the beginning.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>voice</b></nobr></td>
+    <td>
+        
+        <a href="../voice-name/">voice name</a>
+        
+    </td>
+    <td>No</td>
+    <td>The voice to which this dynamic group applies. By default, a dynamic group applies to all voices in the <a href="../part/">part</a>.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>wedgeType</b></nobr></td>
+    <td>
+        
+        <a href="../wedge-type/">wedge type</a>
+        
+    </td>
+    <td>No</td>
+    <td>Required if type is "gradual". This defines whether the hairpin is gradually opening or gradually closing.</td>
+</tr>
+
+
+</table>
+
+
+<p>Plus <a href="../global-attrs/">globally available attributes</a>:
+<b>_c</b>, <b>_x</b>, <b>id</b>
+</p>
+
+
+
+
+
+
+
+<h2>Parent objects</h2>
+
+<p>This object is used by the following parent objects:</p>
+
+<ul>
+
+<li><a href="../part-measure/">part measure</a>: "dynamics"</li>
+
+</ul>
+
+
+
+
+
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>
