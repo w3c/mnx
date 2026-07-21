@@ -24,7 +24,7 @@
         "name": "MNX",
         "slug": "mnx",
         "is_json": true,
-        "version": "20"
+        "version": "21"
     }
 },
 {
@@ -6435,6 +6435,23 @@
             "Encodes a dynamic that should be used specifically during the note attack, with the expectation that the dynamic should immediately be followed by a different dynamic value.",
             "",
             "For example, this is used for \"fp\" dynamics, which are a bit of a special case meaning \"start playing in f, then immediately reduce dynamics to p.\" This is encoded as {\"attackValue\": \"f\", \"value\": \"p\"}."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 366,
+    "fields": {
+        "parent": 212,
+        "child_key": "visuallyContinues",
+        "child": 37,
+        "is_required": false,
+        "description": [
+            "Points to the ID of the directly previous dynamic group, as a hint to rendering engines that this dynamic group and that previous one should be rendered as a single unit. (Typically this means the dynamics and hairpins are drawn at the same vertical position.)",
+            "",
+            "There is no limit to the length of a \"visuallyContinues\" chain. For example, it's perfectly OK for three or four dynamic groups to each define \"visuallyContinues\" pointing at the previous dynamic group.",
+            "",
+            "Encoding this is only strictly necessary if it can't be automatically derived by comparing consecutive dynamic groups' \"position\" and \"end\" attributes. Rendering engines are encouraged to determine the visuallyContinues value on their own, if it's not explicitly encoded."
         ]
     }
 },

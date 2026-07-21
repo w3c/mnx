@@ -214,6 +214,17 @@
 </tr>
 
 <tr>
+    <td><nobr><b>visuallyContinues</b></nobr></td>
+    <td>
+        
+        <a href="../id/">ID</a>
+        
+    </td>
+    <td>No</td>
+    <td>Points to the ID of the directly previous dynamic group, as a hint to rendering engines that this dynamic group and that previous one should be rendered as a single unit. (Typically this means the dynamics and hairpins are drawn at the same vertical position.)<br><br>There is no limit to the length of a "visuallyContinues" chain. For example, it's perfectly OK for three or four dynamic groups to each define "visuallyContinues" pointing at the previous dynamic group.<br><br>Encoding this is only strictly necessary if it can't be automatically derived by comparing consecutive dynamic groups' "position" and "end" attributes. Rendering engines are encouraged to determine the visuallyContinues value on their own, if it's not explicitly encoded.</td>
+</tr>
+
+<tr>
     <td><nobr><b>voice</b></nobr></td>
     <td>
         
