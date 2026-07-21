@@ -24,7 +24,7 @@
         "name": "MNX",
         "slug": "mnx",
         "is_json": true,
-        "version": "21"
+        "version": "22"
     }
 },
 {
@@ -6324,7 +6324,7 @@
         "child_key": "type",
         "child": 214,
         "is_required": true,
-        "description": "Distinguishes between different types of dynamics. This can be \"immediate\" (such as a notated \"p\"), \"gradual\" (such as a crescendo hairpin) or \"relative\" (such as a notated \"<i>più</i> p\", meaning \"quieter\").</p>"
+        "description": "Distinguishes between different types of dynamics. This can be \"immediate\" (such as a notated \"p\"), \"gradual\" (such as a crescendo hairpin), \"accent\" (such as \"sfz\") or \"relative\" (such as a notated \"<i>più</i> p\", meaning \"quieter\").</p>"
     }
 },
 {
@@ -6428,13 +6428,13 @@
     "pk": 365,
     "fields": {
         "parent": 212,
-        "child_key": "attackValue",
+        "child_key": "residualValue",
         "child": 124,
         "is_required": false,
         "description": [
-            "Encodes a dynamic that should be used specifically during the note attack, with the expectation that the dynamic should immediately be followed by a different dynamic value.",
+            "Only valid for type=\"accent\". This encodes the dynamic that should be used after the initial accent attack.",
             "",
-            "For example, this is used for \"fp\" dynamics, which are a bit of a special case meaning \"start playing in f, then immediately reduce dynamics to p.\" This is encoded as {\"attackValue\": \"f\", \"value\": \"p\"}."
+            "For example, this is used for \"fp\" dynamics, which are a bit of a special case meaning \"start playing in f, then immediately reduce dynamics to p.\" This is encoded as {\"value\": \"f\", \"residualValue\": \"p\"}."
         ]
     }
 },

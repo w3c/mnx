@@ -261,9 +261,6 @@
         }
       ],
       "properties": {
-        "attackValue": {
-          "$ref": "#/$defs/dynamic-value"
-        },
         "end": {
           "$ref": "#/$defs/measure-rhythmic-position"
         },
@@ -281,6 +278,9 @@
         },
         "relativeValue": {
           "$ref": "#/$defs/relative-dynamic-value"
+        },
+        "residualValue": {
+          "$ref": "#/$defs/dynamic-value"
         },
         "staff": {
           "$ref": "#/$defs/staff-number"
@@ -2512,7 +2512,7 @@
       "type": "string"
     }
   },
-  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/21",
+  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/22",
   "$ref": "#/$defs/root",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "An encoding of Common Western Music Notation.",
