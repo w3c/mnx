@@ -261,6 +261,12 @@
         }
       ],
       "properties": {
+        "accentPrefix": {
+          "$ref": "#/$defs/dynamic-prefix"
+        },
+        "accentSuffix": {
+          "$ref": "#/$defs/dynamic-suffix"
+        },
         "end": {
           "$ref": "#/$defs/measure-rhythmic-position"
         },
@@ -323,6 +329,21 @@
         "gradual",
         "relative",
         "accent"
+      ],
+      "type": "string"
+    },
+    "dynamic-prefix": {
+      "enum": [
+        "\"s\"",
+        "\"r\"",
+        "\"\""
+      ],
+      "type": "string"
+    },
+    "dynamic-suffix": {
+      "enum": [
+        "\"z\"",
+        "\"\""
       ],
       "type": "string"
     },
@@ -2512,7 +2533,7 @@
       "type": "string"
     }
   },
-  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/22",
+  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/23",
   "$ref": "#/$defs/root",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "An encoding of Common Western Music Notation.",

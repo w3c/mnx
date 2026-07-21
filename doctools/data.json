@@ -24,7 +24,7 @@
         "name": "MNX",
         "slug": "mnx",
         "is_json": true,
-        "version": "22"
+        "version": "23"
     }
 },
 {
@@ -2685,6 +2685,32 @@
         "slug": "smufl-glyph-list",
         "schema": 1,
         "object_type": 2,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 218,
+    "fields": {
+        "name": "dynamic prefix",
+        "slug": "dynamic-prefix",
+        "schema": 1,
+        "object_type": 3,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 219,
+    "fields": {
+        "name": "dynamic suffix",
+        "slug": "dynamic-suffix",
+        "schema": 1,
+        "object_type": 3,
         "uses_global_attrs": true,
         "regex": "",
         "description": ""
@@ -6456,6 +6482,40 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 367,
+    "fields": {
+        "parent": 212,
+        "child_key": "accentPrefix",
+        "child": 218,
+        "is_required": false,
+        "description": [
+            "Only valid for type=\"accent\". This encodes the prefix for the dynamic.",
+            "",
+            "For example, for a \"sfz\" dynamic, the prefix is \"s\".",
+            "",
+            "If not provided, the default is \"s\"."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 368,
+    "fields": {
+        "parent": 212,
+        "child_key": "accentSuffix",
+        "child": 219,
+        "is_required": false,
+        "description": [
+            "Only valid for type=\"accent\". This encodes the suffix for the dynamic.",
+            "",
+            "For example, for a \"sfz\" dynamic, the suffix is \"z\".",
+            "",
+            "If not provided, the default is \"z\"."
+        ]
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {
@@ -7831,6 +7891,51 @@
         "parent": 124,
         "name": "fffff",
         "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 155,
+    "fields": {
+        "parent": 218,
+        "name": "\"s\"",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 156,
+    "fields": {
+        "parent": 218,
+        "name": "\"r\"",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 157,
+    "fields": {
+        "parent": 218,
+        "name": "\"\"",
+        "description": "(Empty string.)"
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 158,
+    "fields": {
+        "parent": 219,
+        "name": "\"z\"",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 159,
+    "fields": {
+        "parent": 219,
+        "name": "\"\"",
+        "description": "(Empty string.)"
     }
 },
 {
