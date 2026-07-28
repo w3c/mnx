@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The multi-staff orientation object | MNX specification</title>
+<title>The measure repeat counter object | MNX specification</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../../../static/styles.css">
@@ -44,53 +44,64 @@
     <a href="../../../">MNX specification</a> &gt;
     <a href="../../">MNX reference</a> &gt;
     <a href="../">Objects</a> &gt;
-    multi-staff orientation
+    measure repeat counter
 </p>
 
-<h1>The multi-staff orientation object</h1>
+<h1>The measure repeat counter object</h1>
 
-<p><b>Type:</b> String</p>
-
-
-
-
-<p>Represents a symbol's vertical orientation, with support for multi-staff music via the "between" value. See also <a href="../orientation/">orientation</a>, which doesn't support "between".</p>
+<p><b>Type:</b> Dictionary</p>
 
 
 
 
 
-<h2>Allowed values:</h2>
+
+<h2>Attributes</h2>
 
 <table>
 <thead>
 <tr>
-    <th>Value</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
     <th>Description</th>
 </tr>
 </thead>
 
+
 <tr>
-    <td><nobr><b>&quot;above&quot;</b></nobr></td>
-    <td></td>
+    <td><nobr><b>count</b></nobr></td>
+    <td>
+        
+        <a href="../positive-integer/">positive integer</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The count to display.</td>
 </tr>
 
 <tr>
-    <td><nobr><b>&quot;auto&quot;</b></nobr></td>
-    <td>Consuming applications are free to use their own algorithms to determine orientation.</td>
+    <td><nobr><b>orient</b></nobr></td>
+    <td>
+        
+        <a href="../multi-staff-orientation/">multi-staff orientation</a>
+        
+    </td>
+    <td>No</td>
+    <td>Where to display the count. If not provided, consuming applications should use their own algorithms.</td>
 </tr>
 
-<tr>
-    <td><nobr><b>&quot;below&quot;</b></nobr></td>
-    <td></td>
-</tr>
-
-<tr>
-    <td><nobr><b>&quot;between&quot;</b></nobr></td>
-    <td>Between multiple staves of music. For example: between the two staves in a grand staff.</td>
-</tr>
 
 </table>
+
+
+<p>Plus <a href="../global-attrs/">globally available attributes</a>:
+<b>_c</b>, <b>_x</b>, <b>id</b>
+</p>
+
+
+
+
 
 
 
@@ -100,9 +111,7 @@
 
 <ul>
 
-<li><a href="../dynamic-group/">dynamic group</a>: "orient"</li>
-
-<li><a href="../measure-repeat-counter/">measure repeat counter</a>: "orient"</li>
+<li><a href="../measure-repeat/">measure repeat</a>: "counter"</li>
 
 </ul>
 

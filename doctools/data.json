@@ -24,7 +24,7 @@
         "name": "MNX",
         "slug": "mnx",
         "is_json": true,
-        "version": "26"
+        "version": "27"
     }
 },
 {
@@ -2711,6 +2711,51 @@
         "slug": "dynamic-suffix",
         "schema": 1,
         "object_type": 3,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 220,
+    "fields": {
+        "name": "measure repeat",
+        "slug": "measure-repeat",
+        "schema": 1,
+        "object_type": 1,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": [
+            "<p>This encodes a simile marking, which means \"repeat all music in the previous X measures.\"</p>",
+            "",
+            "<p>If a part-measure contains this marking, then generally its sequence content should be empty. (There is no need to encode the repeated music again.) But in some cases, published music <em>does</em> use a simile marking and notation in the same bar; in that case, encode both the measure repeat and the sequence content.</p>",
+            "",
+            "<p>For a measure repeat that lasts more than one bar (\"number\" > 1), note that only the first bar should encode the measure repeat. Subsequent bars do not encode any information about the measure repeat.</p>"
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 221,
+    "fields": {
+        "name": "measure repeat count",
+        "slug": "measure-repeat-count",
+        "schema": 1,
+        "object_type": 4,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": "<p>Defines the number of repeats in a measure repeat. Valid values are: 1, 2, 3, 4.</p>"
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 222,
+    "fields": {
+        "name": "measure repeat counter",
+        "slug": "measure-repeat-counter",
+        "schema": 1,
+        "object_type": 1,
         "uses_global_attrs": true,
         "regex": "",
         "description": ""
@@ -6537,6 +6582,87 @@
     }
 },
 {
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 370,
+    "fields": {
+        "parent": 16,
+        "child_key": "measureRepeat",
+        "child": 220,
+        "is_required": false,
+        "description": "If this part measure is a measure repeat, this includes data about that repeat."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 371,
+    "fields": {
+        "parent": 220,
+        "child_key": "number",
+        "child": 221,
+        "is_required": true,
+        "description": "The number of measures to repeat."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 372,
+    "fields": {
+        "parent": 220,
+        "child_key": "staffPosition",
+        "child": 143,
+        "is_required": false,
+        "description": [
+            "If provided, this specifies the vertical position of the measure repeat glyph on the staff. If not provided, the glyph should be positioned automatically according to convention. Generally this is value 0 (the middle staff line).",
+            "",
+            "This vertical position is the \"origin point\" from which the SMuFL glyph is drawn."
+        ]
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 373,
+    "fields": {
+        "parent": 220,
+        "child_key": "displayNumber",
+        "child": 112,
+        "is_required": false,
+        "description": "Whether a number is displayed above the measure repeat glyph. If not provided, consuming applications should determine this according to their own algorithms and convention. The displayed number should equal the value of \"number\"."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 374,
+    "fields": {
+        "parent": 220,
+        "child_key": "counter",
+        "child": 222,
+        "is_required": false,
+        "description": "Encodes a counter that should be displayed with the measure repeat glyph. Traditionally this is used to help musicians keep track of the current measure repeat iteration."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 375,
+    "fields": {
+        "parent": 222,
+        "child_key": "count",
+        "child": 128,
+        "is_required": true,
+        "description": "The count to display."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 376,
+    "fields": {
+        "parent": 222,
+        "child_key": "orient",
+        "child": 213,
+        "is_required": false,
+        "description": "Where to display the count. If not provided, consuming applications should use their own algorithms."
+    }
+},
+{
     "model": "spectools.jsonobjectenum",
     "pk": 1,
     "fields": {
@@ -8696,6 +8822,40 @@
         "document": "",
         "document_path": "examples/json/dynamics-accents.json",
         "image_url": "/static/examples/dynamics-accents.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 55,
+    "fields": {
+        "name": "Measure repeats",
+        "slug": "measure-repeats",
+        "schema": 1,
+        "blurb": [
+            "Measure repeats (aka \"simile\" markings) are encoded on the part-measure object, as a \"measureRepeat\" attribute.",
+            "",
+            "In a part-measure that contains a measureRepeat, the sequence content is usually empty. (Occasionally, published music uses a measure-repeat marking with notation in the same bar. In that case, use \"measureRepeat\" and populate the sequence content.)",
+            "",
+            "For a multi-measure repeat, such as the two-bar repeat at the end of this example, the measureRepeat is encoded on the first of the bars, and nothing is encoded in the remaining bars."
+        ],
+        "document": "",
+        "document_path": "examples/json/measure-repeats.json",
+        "image_url": "/static/examples/measure-repeats.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 56,
+    "fields": {
+        "name": "Measure repeats (with counters)",
+        "slug": "measure-repeats-with-counters",
+        "schema": 1,
+        "blurb": "Sometimes published music includes \"counters\" above measure repeats — numbers that help the musician keep track of how many times the repeat has happened. In MNX, these numbers are encoded via \"counter\" on the measure-repeat object.",
+        "document": "",
+        "document_path": "examples/json/measure-repeats-counter.json",
+        "image_url": "/static/examples/measure-repeats-counter.png",
         "is_featured": false
     }
 },
@@ -22555,6 +22715,422 @@
     "fields": {
         "example": 54,
         "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1701,
+    "fields": {
+        "example": 55,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1702,
+    "fields": {
+        "example": 55,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1703,
+    "fields": {
+        "example": 55,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1704,
+    "fields": {
+        "example": 55,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1705,
+    "fields": {
+        "example": 55,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1706,
+    "fields": {
+        "example": 55,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1707,
+    "fields": {
+        "example": 55,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1708,
+    "fields": {
+        "example": 55,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1709,
+    "fields": {
+        "example": 55,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1710,
+    "fields": {
+        "example": 55,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1711,
+    "fields": {
+        "example": 55,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1712,
+    "fields": {
+        "example": 55,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1713,
+    "fields": {
+        "example": 55,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1714,
+    "fields": {
+        "example": 55,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1715,
+    "fields": {
+        "example": 55,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1716,
+    "fields": {
+        "example": 55,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1717,
+    "fields": {
+        "example": 55,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1718,
+    "fields": {
+        "example": 55,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1719,
+    "fields": {
+        "example": 55,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1720,
+    "fields": {
+        "example": 55,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1721,
+    "fields": {
+        "example": 55,
+        "json_object": 33
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1722,
+    "fields": {
+        "example": 55,
+        "json_object": 34
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1723,
+    "fields": {
+        "example": 55,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1724,
+    "fields": {
+        "example": 55,
+        "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1725,
+    "fields": {
+        "example": 55,
+        "json_object": 220
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1726,
+    "fields": {
+        "example": 55,
+        "json_object": 221
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1727,
+    "fields": {
+        "example": 56,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1728,
+    "fields": {
+        "example": 56,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1729,
+    "fields": {
+        "example": 56,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1730,
+    "fields": {
+        "example": 56,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1731,
+    "fields": {
+        "example": 56,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1732,
+    "fields": {
+        "example": 56,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1733,
+    "fields": {
+        "example": 56,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1734,
+    "fields": {
+        "example": 56,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1735,
+    "fields": {
+        "example": 56,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1736,
+    "fields": {
+        "example": 56,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1737,
+    "fields": {
+        "example": 56,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1738,
+    "fields": {
+        "example": 56,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1739,
+    "fields": {
+        "example": 56,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1740,
+    "fields": {
+        "example": 56,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1741,
+    "fields": {
+        "example": 56,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1742,
+    "fields": {
+        "example": 56,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1743,
+    "fields": {
+        "example": 56,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1744,
+    "fields": {
+        "example": 56,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1745,
+    "fields": {
+        "example": 56,
+        "json_object": 220
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1746,
+    "fields": {
+        "example": 56,
+        "json_object": 221
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1747,
+    "fields": {
+        "example": 56,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1748,
+    "fields": {
+        "example": 56,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1751,
+    "fields": {
+        "example": 56,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1752,
+    "fields": {
+        "example": 56,
+        "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1753,
+    "fields": {
+        "example": 56,
+        "json_object": 213
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1754,
+    "fields": {
+        "example": 56,
+        "json_object": 222
     }
 },
 {

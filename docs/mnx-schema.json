@@ -1083,6 +1083,55 @@
     "measure-number": {
       "type": "integer"
     },
+    "measure-repeat": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/global-attrs"
+        }
+      ],
+      "properties": {
+        "counter": {
+          "$ref": "#/$defs/measure-repeat-counter"
+        },
+        "displayNumber": {
+          "type": "boolean"
+        },
+        "number": {
+          "$ref": "#/$defs/measure-repeat-count"
+        },
+        "staffPosition": {
+          "$ref": "#/$defs/staff-position"
+        }
+      },
+      "required": [
+        "number"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false
+    },
+    "measure-repeat-count": {
+      "type": "integer"
+    },
+    "measure-repeat-counter": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/global-attrs"
+        }
+      ],
+      "properties": {
+        "count": {
+          "$ref": "#/$defs/positive-integer"
+        },
+        "orient": {
+          "$ref": "#/$defs/multi-staff-orientation"
+        }
+      },
+      "required": [
+        "count"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false
+    },
     "measure-rhythmic-position": {
       "allOf": [
         {
@@ -1485,6 +1534,9 @@
         },
         "dynamics": {
           "$ref": "#/$defs/dynamic-group-list"
+        },
+        "measureRepeat": {
+          "$ref": "#/$defs/measure-repeat"
         },
         "nonArpeggios": {
           "$ref": "#/$defs/non-arpeggio-list"
@@ -2538,7 +2590,7 @@
       "type": "string"
     }
   },
-  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/26",
+  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/27",
   "$ref": "#/$defs/root",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "An encoding of Common Western Music Notation.",

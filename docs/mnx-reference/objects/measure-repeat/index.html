@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The measure repeat object | MNX specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../../../static/styles.css">
+
+</head>
+
+<body class="has-sidenav">
+<div class="topnav">
+    <button id="toggle" class="toggle">
+        <svg viewBox="0 0 100 80" width="16" height="16" fill="currentColor">
+          <rect width="100" height="20" rx="8"></rect>
+          <rect y="30" width="100" height="20" rx="8"></rect>
+          <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+    </button>
+    <a class="logo" href="../../../">
+        <span class="logo-text">MNX specification</span>
+    </a>
+</div>
+
+
+<div class="content">
+    <nav class="sidenav">
+        <ul>
+<li><a href="../../../">Home</a></li>
+<li><a href="../">Reference</a>
+    <ul>
+    <li><a href="../">Objects</a></li>
+    <li><a href="../../examples/">Example documents</a></li>
+    <li><a href="../../../mnx-schema.json">Raw JSON Schema</a></li>
+    </ul>
+</li>
+<li><a href="../../../comparisons/musicxml/">MNX and MusicXML</a></li>
+</ul>
+    </nav>
+    <main>
+    
+<p class="breadcrumb">
+    <a href="../../../">MNX specification</a> &gt;
+    <a href="../../">MNX reference</a> &gt;
+    <a href="../">Objects</a> &gt;
+    measure repeat
+</p>
+
+<h1>The measure repeat object</h1>
+
+<p><b>Type:</b> Dictionary</p>
+
+
+
+
+<p>This encodes a simile marking, which means "repeat all music in the previous X measures."</p>
+
+<p>If a part-measure contains this marking, then generally its sequence content should be empty. (There is no need to encode the repeated music again.) But in some cases, published music <em>does</em> use a simile marking and notation in the same bar; in that case, encode both the measure repeat and the sequence content.</p>
+
+<p>For a measure repeat that lasts more than one bar ("number" > 1), note that only the first bar should encode the measure repeat. Subsequent bars do not encode any information about the measure repeat.</p>
+
+
+
+<h2>Attributes</h2>
+
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required?</th>
+    <th>Description</th>
+</tr>
+</thead>
+
+
+<tr>
+    <td><nobr><b>counter</b></nobr></td>
+    <td>
+        
+        <a href="../measure-repeat-counter/">measure repeat counter</a>
+        
+    </td>
+    <td>No</td>
+    <td>Encodes a counter that should be displayed with the measure repeat glyph. Traditionally this is used to help musicians keep track of the current measure repeat iteration.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>displayNumber</b></nobr></td>
+    <td>
+        
+        <a href="../boolean/">boolean</a>
+        
+    </td>
+    <td>No</td>
+    <td>Whether a number is displayed above the measure repeat glyph. If not provided, consuming applications should determine this according to their own algorithms and convention. The displayed number should equal the value of "number".</td>
+</tr>
+
+<tr>
+    <td><nobr><b>number</b></nobr></td>
+    <td>
+        
+        <a href="../measure-repeat-count/">measure repeat count</a>
+        
+    </td>
+    <td>Yes</td>
+    <td>The number of measures to repeat.</td>
+</tr>
+
+<tr>
+    <td><nobr><b>staffPosition</b></nobr></td>
+    <td>
+        
+        <a href="../staff-position/">staff position</a>
+        
+    </td>
+    <td>No</td>
+    <td>If provided, this specifies the vertical position of the measure repeat glyph on the staff. If not provided, the glyph should be positioned automatically according to convention. Generally this is value 0 (the middle staff line).<br><br>This vertical position is the "origin point" from which the SMuFL glyph is drawn.</td>
+</tr>
+
+
+</table>
+
+
+<p>Plus <a href="../global-attrs/">globally available attributes</a>:
+<b>_c</b>, <b>_x</b>, <b>id</b>
+</p>
+
+
+
+
+
+
+
+<h2>Parent objects</h2>
+
+<p>This object is used by the following parent objects:</p>
+
+<ul>
+
+<li><a href="../part-measure/">part measure</a>: "measureRepeat"</li>
+
+</ul>
+
+
+
+
+<h2 id="examples">Examples</h2>
+
+<p>This object is used in the following examples:</p>
+<p>
+
+<nobr><a href="../../examples/measure-repeats/">Measure repeats</a></nobr>,
+
+<nobr><a href="../../examples/measure-repeats-with-counters/">Measure repeats (with counters)</a></nobr>
+
+</p>
+
+
+
+    </main>
+</div>
+
+
+<script type="text/javascript" src="../../../static/global.js"></script>
+
+</body>
+</html>
