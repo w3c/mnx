@@ -24,7 +24,7 @@
         "name": "MNX",
         "slug": "mnx",
         "is_json": true,
-        "version": "25"
+        "version": "26"
     }
 },
 {
@@ -7919,8 +7919,8 @@
     "pk": 155,
     "fields": {
         "parent": 218,
-        "name": "\"s\"",
-        "description": ""
+        "name": "s",
+        "description": "Used for sforzando markings, such as sf and sfz."
     }
 },
 {
@@ -7928,17 +7928,8 @@
     "pk": 156,
     "fields": {
         "parent": 218,
-        "name": "\"r\"",
-        "description": ""
-    }
-},
-{
-    "model": "spectools.jsonobjectenum",
-    "pk": 157,
-    "fields": {
-        "parent": 218,
-        "name": "\"\"",
-        "description": "(Empty string.)"
+        "name": "r",
+        "description": "Used for rinforzando markings, such as rf and rfz."
     }
 },
 {
@@ -7946,8 +7937,8 @@
     "pk": 158,
     "fields": {
         "parent": 219,
-        "name": "\"z\"",
-        "description": ""
+        "name": "z",
+        "description": "Used for markings ending in z, such as sfz, rfz and fz."
     }
 },
 {
@@ -7955,8 +7946,8 @@
     "pk": 159,
     "fields": {
         "parent": 219,
-        "name": "\"\"",
-        "description": "(Empty string.)"
+        "name": "",
+        "description": "(Empty string.) Used for markings with no suffix, such as sf and rf."
     }
 },
 {
@@ -7975,6 +7966,15 @@
         "parent": 124,
         "name": "ffffff",
         "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectenum",
+    "pk": 162,
+    "fields": {
+        "parent": 218,
+        "name": "",
+        "description": "(Empty string.) Used for markings with no prefix, such as fz and fp."
     }
 },
 {
