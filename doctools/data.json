@@ -6364,7 +6364,9 @@
         "description": [
             "Required if type is \"immediate\". This defines the dynamic value, such as \"p\" or \"f\".",
             "",
-            "For gradual dynamics, this is the dynamic value at the beginning."
+            "For gradual dynamics, this is the dynamic value at the beginning.",
+            "",
+            "For accent dynamics, this is the value of the initial attack (the \"f\" in \"sfz\"). See residualValue for the dynamic that applies afterward."
         ]
     }
 },
@@ -6409,7 +6411,11 @@
         "child_key": "prefix",
         "child": 110,
         "is_required": false,
-        "description": "Optional text to display before the dynamic marking, such as \"<i>più</i>\"."
+        "description": [
+            "Optional text to display before the dynamic marking, such as \"<i>più</i>\".",
+            "",
+            "This is free-form text displayed alongside the marking. It is not related to accentPrefix, which encodes a structural part of an accent marking itself."
+        ]
     }
 },
 {
@@ -6420,7 +6426,11 @@
         "child_key": "suffix",
         "child": 110,
         "is_required": false,
-        "description": "Optional text to display after the dynamic marking, such as \"<i>sub.</i>\"."
+        "description": [
+            "Optional text to display after the dynamic marking, such as \"<i>sub.</i>\".",
+            "",
+            "This is free-form text displayed alongside the marking. It is not related to accentSuffix, which encodes a structural part of an accent marking itself."
+        ]
     }
 },
 {
