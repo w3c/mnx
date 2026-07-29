@@ -2771,7 +2771,7 @@
         "object_type": 1,
         "uses_global_attrs": true,
         "regex": "",
-        "description": "A rehearsal mark: an arbitrary index into the score, used to coordinate players in rehearsal (\"start from B\"). It carries no musical meaning of its own, and renumbering every mark in a score changes nothing about the music. Contrast <a href=\"../section/\">section</a>, which names a formal unit."
+        "description": "A rehearsal mark for this measure: an arbitrary index into the score, used to coordinate players in rehearsal (\"start from B\"). It carries no musical meaning of its own, and renumbering every mark in a score changes nothing about the music. Contrast <a href=\"../section/\">section</a>, which names a formal unit."
     }
 },
 {
@@ -2784,7 +2784,7 @@
         "object_type": 1,
         "uses_global_attrs": true,
         "regex": "",
-        "description": "The name of a formal section of the music, such as \"Intro\", \"Verse\" or \"Chorus\". Unlike a <a href=\"../rehearsal/\">rehearsal mark</a>, this states what the music <i>is</i>: renaming a section changes the description of the piece's form. A section extends until the next one begins."
+        "description": "The name of a formal section of the music beginning at this measure, such as \"Intro\", \"Verse\" or \"Chorus\". Unlike a <a href=\"../rehearsal/\">rehearsal mark</a>, this states what the music <i>is</i>: renaming a section changes the description of the piece's form. A section extends until the next one begins."
     }
 },
 {
@@ -2810,7 +2810,11 @@
         "object_type": 2,
         "uses_global_attrs": true,
         "regex": "",
-        "description": "An array of <a href=\"../direction/\">direction</a> objects."
+        "description": [
+            "An array of <a href=\"../direction/\">direction</a> objects.",
+            "",
+            "Directions sharing a position and orientation are displayed stacked outward from the staff in the order they appear in this array, so the first is nearest the notes."
+        ]
     }
 },
 {
@@ -6716,17 +6720,6 @@
 },
 {
     "model": "spectools.jsonobjectrelationship",
-    "pk": 377,
-    "fields": {
-        "parent": 223,
-        "child_key": "location",
-        "child": 140,
-        "is_required": true,
-        "description": "The location of this rehearsal mark within the bar."
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
     "pk": 378,
     "fields": {
         "parent": 223,
@@ -6745,17 +6738,6 @@
         "child": 9,
         "is_required": false,
         "description": "The color of the rehearsal mark."
-    }
-},
-{
-    "model": "spectools.jsonobjectrelationship",
-    "pk": 380,
-    "fields": {
-        "parent": 224,
-        "child_key": "location",
-        "child": 140,
-        "is_required": true,
-        "description": "The location of this section label within the bar."
     }
 },
 {
