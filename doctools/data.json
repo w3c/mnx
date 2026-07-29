@@ -24,7 +24,7 @@
         "name": "MNX",
         "slug": "mnx",
         "is_json": true,
-        "version": "27"
+        "version": "28-proposed"
     }
 },
 {
@@ -2759,6 +2759,58 @@
         "uses_global_attrs": true,
         "regex": "",
         "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 223,
+    "fields": {
+        "name": "rehearsal",
+        "slug": "rehearsal",
+        "schema": 1,
+        "object_type": 1,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": "A rehearsal mark: an arbitrary index into the score, used to coordinate players in rehearsal (\"start from B\"). It carries no musical meaning of its own, and renumbering every mark in a score changes nothing about the music. Contrast <a href=\"../section/\">section</a>, which names a formal unit."
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 224,
+    "fields": {
+        "name": "section",
+        "slug": "section",
+        "schema": 1,
+        "object_type": 1,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": "The name of a formal section of the music, such as \"Intro\", \"Verse\" or \"Chorus\". Unlike a <a href=\"../rehearsal/\">rehearsal mark</a>, this states what the music <i>is</i>: renaming a section changes the description of the piece's form. A section extends until the next one begins."
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 225,
+    "fields": {
+        "name": "direction",
+        "slug": "direction",
+        "schema": 1,
+        "object_type": 1,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": "['A textual or symbolic instruction attached to a point in the music, such as \"Play 8x\", \"let ring\" or \"cresc. poco a poco\".', '', 'Directions are for instructions that have no more specific representation. Anything MNX models directly should use that model instead: a dynamic is a <a href=\"../dynamic-group/\">dynamic group</a>, a repeat structure is a <a href=\"../jump/\">jump</a>, and a named formal unit is a <a href=\"../section/\">section</a>.', '', \"A direction is not styled by the document. How it is set — typeface, size, weight — is the renderer's decision, in the same way it is for every other object in MNX.\"]"
+    }
+},
+{
+    "model": "spectools.jsonobject",
+    "pk": 226,
+    "fields": {
+        "name": "direction list",
+        "slug": "direction-list",
+        "schema": 1,
+        "object_type": 2,
+        "uses_global_attrs": true,
+        "regex": "",
+        "description": "An array of <a href=\"../direction/\">direction</a> objects."
     }
 },
 {
@@ -6660,6 +6712,193 @@
         "child": 213,
         "is_required": false,
         "description": "Where to display the count. If not provided, consuming applications should use their own algorithms."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 377,
+    "fields": {
+        "parent": 223,
+        "child_key": "location",
+        "child": 140,
+        "is_required": true,
+        "description": "The location of this rehearsal mark within the bar."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 378,
+    "fields": {
+        "parent": 223,
+        "child_key": "label",
+        "child": 110,
+        "is_required": true,
+        "description": "The text of the mark, such as \"A\" or \"12\". Rehearsal marks are conventionally enclosed in a box; that is a consequence of the object being a rehearsal mark and does not need to be encoded."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 379,
+    "fields": {
+        "parent": 223,
+        "child_key": "color",
+        "child": 9,
+        "is_required": false,
+        "description": "The color of the rehearsal mark."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 380,
+    "fields": {
+        "parent": 224,
+        "child_key": "location",
+        "child": 140,
+        "is_required": true,
+        "description": "The location of this section label within the bar."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 381,
+    "fields": {
+        "parent": 224,
+        "child_key": "label",
+        "child": 110,
+        "is_required": true,
+        "description": "The name of the section, such as \"Verse 1\"."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 382,
+    "fields": {
+        "parent": 224,
+        "child_key": "color",
+        "child": 9,
+        "is_required": false,
+        "description": "The color of the section label."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 383,
+    "fields": {
+        "parent": 225,
+        "child_key": "position",
+        "child": 140,
+        "is_required": true,
+        "description": "The location of this direction within the bar."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 384,
+    "fields": {
+        "parent": 225,
+        "child_key": "text",
+        "child": 110,
+        "is_required": false,
+        "description": "The text of the direction. Either this or <code>glyphs</code> is required."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 385,
+    "fields": {
+        "parent": 225,
+        "child_key": "glyphs",
+        "child": 217,
+        "is_required": false,
+        "description": "SMuFL glyphs to display instead of text, for directions that are symbolic rather than textual. Either this or <code>text</code> is required."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 386,
+    "fields": {
+        "parent": 225,
+        "child_key": "orient",
+        "child": 213,
+        "is_required": false,
+        "description": "Whether the direction is displayed above or below the staff."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 387,
+    "fields": {
+        "parent": 225,
+        "child_key": "staff",
+        "child": 105,
+        "is_required": false,
+        "description": "The staff this direction applies to."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 388,
+    "fields": {
+        "parent": 225,
+        "child_key": "voice",
+        "child": 101,
+        "is_required": false,
+        "description": "The voice this direction applies to."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 389,
+    "fields": {
+        "parent": 225,
+        "child_key": "color",
+        "child": 9,
+        "is_required": false,
+        "description": "The color of the direction."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 390,
+    "fields": {
+        "parent": 226,
+        "child_key": "0",
+        "child": 225,
+        "is_required": false,
+        "description": ""
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 391,
+    "fields": {
+        "parent": 6,
+        "child_key": "rehearsal",
+        "child": 223,
+        "is_required": false,
+        "description": "The rehearsal mark at this measure, if any. Rehearsal marks are score-wide: they apply to every part."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 392,
+    "fields": {
+        "parent": 6,
+        "child_key": "section",
+        "child": 224,
+        "is_required": false,
+        "description": "The formal section beginning at this measure, if any. Sections are score-wide: they apply to every part."
+    }
+},
+{
+    "model": "spectools.jsonobjectrelationship",
+    "pk": 393,
+    "fields": {
+        "parent": 16,
+        "child_key": "directions",
+        "child": 226,
+        "is_required": false,
+        "description": "Directions in this measure for this part."
     }
 },
 {
