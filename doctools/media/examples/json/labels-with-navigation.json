@@ -1,0 +1,131 @@
+{
+  "global": {
+    "measures": [
+      {
+        "_x": {
+          "mnxdocs": {
+            "highlight": ["rehearsal", "section"]
+          }
+        },
+        "time": {
+          "count": 4,
+          "unit": 4
+        },
+        "rehearsal": {"label": "A"},
+        "section": {"label": "Intro"},
+        "segno": {"location": {"fraction": [0, 4]}},
+        "tempos": [
+          {"value": {"base": "quarter"}, "bpm": 120}
+        ]
+      },
+      {},
+      {
+        "rehearsal": {"label": "B"},
+        "section": {"label": "Coda"},
+        "fine": {"location": {"fraction": [0, 4]}}
+      },
+      {}
+    ]
+  },
+  "mnx": {
+    "version": 1
+  },
+  "parts": [
+    {
+      "measures": [
+        {
+          "clefs": [
+            {
+              "clef": {
+                "sign": "G",
+                "staffPosition": -2
+              }
+            }
+          ],
+          "sequences": [
+            {
+              "content": [
+                {
+                  "duration": {
+                    "base": "whole"
+                  },
+                  "notes": [
+                    {
+                      "pitch": {
+                        "step": "C",
+                        "octave": 4
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sequences": [
+            {
+              "content": [
+                {
+                  "duration": {
+                    "base": "whole"
+                  },
+                  "notes": [
+                    {
+                      "pitch": {
+                        "step": "E",
+                        "octave": 4
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sequences": [
+            {
+              "content": [
+                {
+                  "duration": {
+                    "base": "whole"
+                  },
+                  "notes": [
+                    {
+                      "pitch": {
+                        "step": "G",
+                        "octave": 4
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sequences": [
+            {
+              "content": [
+                {
+                  "duration": {
+                    "base": "whole"
+                  },
+                  "notes": [
+                    {
+                      "pitch": {
+                        "step": "C",
+                        "octave": 5
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

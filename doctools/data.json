@@ -24,7 +24,7 @@
         "name": "MNX",
         "slug": "mnx",
         "is_json": true,
-        "version": "28-proposed"
+        "version": "28"
     }
 },
 {
@@ -9077,6 +9077,152 @@
         "document": "",
         "document_path": "examples/json/measure-repeats-counter.json",
         "image_url": "/static/examples/measure-repeats-counter.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 57,
+    "fields": {
+        "name": "Rehearsal marks",
+        "slug": "rehearsal-marks",
+        "schema": 1,
+        "blurb": [
+            "A rehearsal mark is an arbitrary index into the score, used to coordinate players in rehearsal (\"start from B\"). It carries no musical meaning of its own: renumbering every mark in a score changes nothing about the music.",
+            "",
+            "Rehearsal marks are conventionally drawn in a box. That follows from the object being a rehearsal mark, so the document does not encode it."
+        ],
+        "document": "",
+        "document_path": "examples/json/rehearsal-marks.json",
+        "image_url": "/static/examples/rehearsal-marks.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 58,
+    "fields": {
+        "name": "Sections",
+        "slug": "sections",
+        "schema": 1,
+        "blurb": [
+            "A section names a formal unit of the music. Unlike a rehearsal mark it states what the music is, so renaming \"Chorus\" to \"Verse\" changes the description of the piece’s form.",
+            "",
+            "A section extends until the next one begins."
+        ],
+        "document": "",
+        "document_path": "examples/json/sections.json",
+        "image_url": "/static/examples/sections.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 59,
+    "fields": {
+        "name": "Sections with rehearsal marks",
+        "slug": "sections-with-rehearsal-marks",
+        "schema": 1,
+        "blurb": "Rehearsal marks and sections are separate objects because they are separate things, and they routinely appear together — a chart marked \"A\" at the start of the verse carries both an index and a name for the same measure.",
+        "document": "",
+        "document_path": "examples/json/sections-with-rehearsal-marks.json",
+        "image_url": "/static/examples/sections-with-rehearsal-marks.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 60,
+    "fields": {
+        "name": "Directions",
+        "slug": "directions",
+        "schema": 1,
+        "blurb": [
+            "A direction is a textual instruction attached to a point in the music, for anything that has no more specific representation. Directions belong to a part rather than to the score, and several may occur in one measure.",
+            "",
+            "A direction carries no typography. How it is set is the consuming application’s decision, as it is for every other object in MNX."
+        ],
+        "document": "",
+        "document_path": "examples/json/directions.json",
+        "image_url": "/static/examples/directions.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 61,
+    "fields": {
+        "name": "Symbolic directions",
+        "slug": "directions-symbolic",
+        "schema": 1,
+        "blurb": "A direction may carry SMuFL glyphs instead of text, for instructions that are symbolic rather than written out. The glyphs here are the piano pedal marks.",
+        "document": "",
+        "document_path": "examples/json/directions-symbolic.json",
+        "image_url": "/static/examples/directions-symbolic.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 62,
+    "fields": {
+        "name": "Directions across parts",
+        "slug": "directions-across-parts",
+        "schema": 1,
+        "blurb": [
+            "Rehearsal marks and sections are score-wide: they live on the global measure and apply to every part, so they are stated once however many parts a score has.",
+            "",
+            "A direction is part-specific. Here only the first part is told to play the passage solo, while both parts share the rehearsal mark and the section name."
+        ],
+        "document": "",
+        "document_path": "examples/json/directions-across-parts.json",
+        "image_url": "/static/examples/directions-across-parts.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 63,
+    "fields": {
+        "name": "Directions on a multi-staff part",
+        "slug": "directions-multi-staff",
+        "schema": 1,
+        "blurb": "On a part with more than one staff, a direction may name the staff it belongs to. An orientation of \"between\" places it between the staves, where it belongs to the part as a whole rather than to either staff.",
+        "document": "",
+        "document_path": "examples/json/directions-multi-staff.json",
+        "image_url": "/static/examples/directions-multi-staff.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 64,
+    "fields": {
+        "name": "Stacked directions",
+        "slug": "directions-stacked",
+        "schema": 1,
+        "blurb": [
+            "Directions sharing a position and an orientation are displayed stacked outward from the staff, in the order they appear in the array — the first is nearest the notes.",
+            "",
+            "That ordering is all a consuming application needs in order to place several instructions at one point. No direction states how far from the staff it belongs, and none needs to."
+        ],
+        "document": "",
+        "document_path": "examples/json/directions-stacked.json",
+        "image_url": "/static/examples/directions-stacked.png",
+        "is_featured": false
+    }
+},
+{
+    "model": "spectools.exampledocument",
+    "pk": 65,
+    "fields": {
+        "name": "Labels with navigation marks",
+        "slug": "labels-with-navigation",
+        "schema": 1,
+        "blurb": "Rehearsal marks and sections sit alongside the navigation marks a measure already carries. Both describe the measure, while a segno or a fine is positioned at a point within it.",
+        "document": "",
+        "document_path": "examples/json/labels-with-navigation.json",
+        "image_url": "/static/examples/labels-with-navigation.png",
         "is_featured": false
     }
 },
@@ -23352,6 +23498,1966 @@
     "fields": {
         "example": 56,
         "json_object": 222
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1755,
+    "fields": {
+        "example": 57,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1756,
+    "fields": {
+        "example": 57,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1757,
+    "fields": {
+        "example": 57,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1758,
+    "fields": {
+        "example": 57,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1759,
+    "fields": {
+        "example": 57,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1760,
+    "fields": {
+        "example": 57,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1761,
+    "fields": {
+        "example": 57,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1762,
+    "fields": {
+        "example": 57,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1763,
+    "fields": {
+        "example": 57,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1764,
+    "fields": {
+        "example": 57,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1765,
+    "fields": {
+        "example": 57,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1766,
+    "fields": {
+        "example": 57,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1767,
+    "fields": {
+        "example": 57,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1768,
+    "fields": {
+        "example": 57,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1769,
+    "fields": {
+        "example": 57,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1770,
+    "fields": {
+        "example": 57,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1771,
+    "fields": {
+        "example": 57,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1772,
+    "fields": {
+        "example": 57,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1773,
+    "fields": {
+        "example": 57,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1774,
+    "fields": {
+        "example": 57,
+        "json_object": 223
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1775,
+    "fields": {
+        "example": 57,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1776,
+    "fields": {
+        "example": 57,
+        "json_object": 110
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1777,
+    "fields": {
+        "example": 57,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1778,
+    "fields": {
+        "example": 57,
+        "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1779,
+    "fields": {
+        "example": 58,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1780,
+    "fields": {
+        "example": 58,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1781,
+    "fields": {
+        "example": 58,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1782,
+    "fields": {
+        "example": 58,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1783,
+    "fields": {
+        "example": 58,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1784,
+    "fields": {
+        "example": 58,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1785,
+    "fields": {
+        "example": 58,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1786,
+    "fields": {
+        "example": 58,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1787,
+    "fields": {
+        "example": 58,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1788,
+    "fields": {
+        "example": 58,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1789,
+    "fields": {
+        "example": 58,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1790,
+    "fields": {
+        "example": 58,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1791,
+    "fields": {
+        "example": 58,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1792,
+    "fields": {
+        "example": 58,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1793,
+    "fields": {
+        "example": 58,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1794,
+    "fields": {
+        "example": 58,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1795,
+    "fields": {
+        "example": 58,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1796,
+    "fields": {
+        "example": 58,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1797,
+    "fields": {
+        "example": 58,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1798,
+    "fields": {
+        "example": 58,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1799,
+    "fields": {
+        "example": 58,
+        "json_object": 224
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1800,
+    "fields": {
+        "example": 58,
+        "json_object": 110
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1801,
+    "fields": {
+        "example": 58,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1802,
+    "fields": {
+        "example": 58,
+        "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1803,
+    "fields": {
+        "example": 59,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1804,
+    "fields": {
+        "example": 59,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1805,
+    "fields": {
+        "example": 59,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1806,
+    "fields": {
+        "example": 59,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1807,
+    "fields": {
+        "example": 59,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1808,
+    "fields": {
+        "example": 59,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1809,
+    "fields": {
+        "example": 59,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1810,
+    "fields": {
+        "example": 59,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1811,
+    "fields": {
+        "example": 59,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1812,
+    "fields": {
+        "example": 59,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1813,
+    "fields": {
+        "example": 59,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1814,
+    "fields": {
+        "example": 59,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1815,
+    "fields": {
+        "example": 59,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1816,
+    "fields": {
+        "example": 59,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1817,
+    "fields": {
+        "example": 59,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1818,
+    "fields": {
+        "example": 59,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1819,
+    "fields": {
+        "example": 59,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1820,
+    "fields": {
+        "example": 59,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1821,
+    "fields": {
+        "example": 59,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1822,
+    "fields": {
+        "example": 59,
+        "json_object": 223
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1823,
+    "fields": {
+        "example": 59,
+        "json_object": 224
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1824,
+    "fields": {
+        "example": 59,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1825,
+    "fields": {
+        "example": 59,
+        "json_object": 110
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1826,
+    "fields": {
+        "example": 59,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1827,
+    "fields": {
+        "example": 59,
+        "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1828,
+    "fields": {
+        "example": 60,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1829,
+    "fields": {
+        "example": 60,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1830,
+    "fields": {
+        "example": 60,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1831,
+    "fields": {
+        "example": 60,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1832,
+    "fields": {
+        "example": 60,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1833,
+    "fields": {
+        "example": 60,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1834,
+    "fields": {
+        "example": 60,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1835,
+    "fields": {
+        "example": 60,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1836,
+    "fields": {
+        "example": 60,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1837,
+    "fields": {
+        "example": 60,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1838,
+    "fields": {
+        "example": 60,
+        "json_object": 140
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1839,
+    "fields": {
+        "example": 60,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1840,
+    "fields": {
+        "example": 60,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1841,
+    "fields": {
+        "example": 60,
+        "json_object": 142
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1842,
+    "fields": {
+        "example": 60,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1843,
+    "fields": {
+        "example": 60,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1844,
+    "fields": {
+        "example": 60,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1845,
+    "fields": {
+        "example": 60,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1846,
+    "fields": {
+        "example": 60,
+        "json_object": 213
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1847,
+    "fields": {
+        "example": 60,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1848,
+    "fields": {
+        "example": 60,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1849,
+    "fields": {
+        "example": 60,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1850,
+    "fields": {
+        "example": 60,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1851,
+    "fields": {
+        "example": 60,
+        "json_object": 225
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1852,
+    "fields": {
+        "example": 60,
+        "json_object": 110
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1853,
+    "fields": {
+        "example": 60,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1854,
+    "fields": {
+        "example": 60,
+        "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1855,
+    "fields": {
+        "example": 61,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1856,
+    "fields": {
+        "example": 61,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1857,
+    "fields": {
+        "example": 61,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1858,
+    "fields": {
+        "example": 61,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1859,
+    "fields": {
+        "example": 61,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1860,
+    "fields": {
+        "example": 61,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1861,
+    "fields": {
+        "example": 61,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1862,
+    "fields": {
+        "example": 61,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1863,
+    "fields": {
+        "example": 61,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1864,
+    "fields": {
+        "example": 61,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1865,
+    "fields": {
+        "example": 61,
+        "json_object": 140
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1866,
+    "fields": {
+        "example": 61,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1867,
+    "fields": {
+        "example": 61,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1868,
+    "fields": {
+        "example": 61,
+        "json_object": 142
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1869,
+    "fields": {
+        "example": 61,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1870,
+    "fields": {
+        "example": 61,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1871,
+    "fields": {
+        "example": 61,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1872,
+    "fields": {
+        "example": 61,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1873,
+    "fields": {
+        "example": 61,
+        "json_object": 213
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1874,
+    "fields": {
+        "example": 61,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1875,
+    "fields": {
+        "example": 61,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1876,
+    "fields": {
+        "example": 61,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1877,
+    "fields": {
+        "example": 61,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1878,
+    "fields": {
+        "example": 61,
+        "json_object": 225
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1879,
+    "fields": {
+        "example": 61,
+        "json_object": 106
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1880,
+    "fields": {
+        "example": 61,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1881,
+    "fields": {
+        "example": 61,
+        "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1882,
+    "fields": {
+        "example": 62,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1883,
+    "fields": {
+        "example": 62,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1884,
+    "fields": {
+        "example": 62,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1885,
+    "fields": {
+        "example": 62,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1886,
+    "fields": {
+        "example": 62,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1887,
+    "fields": {
+        "example": 62,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1888,
+    "fields": {
+        "example": 62,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1889,
+    "fields": {
+        "example": 62,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1890,
+    "fields": {
+        "example": 62,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1891,
+    "fields": {
+        "example": 62,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1892,
+    "fields": {
+        "example": 62,
+        "json_object": 140
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1893,
+    "fields": {
+        "example": 62,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1894,
+    "fields": {
+        "example": 62,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1895,
+    "fields": {
+        "example": 62,
+        "json_object": 142
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1896,
+    "fields": {
+        "example": 62,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1897,
+    "fields": {
+        "example": 62,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1898,
+    "fields": {
+        "example": 62,
+        "json_object": 15
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1899,
+    "fields": {
+        "example": 62,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1900,
+    "fields": {
+        "example": 62,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1901,
+    "fields": {
+        "example": 62,
+        "json_object": 213
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1902,
+    "fields": {
+        "example": 62,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1903,
+    "fields": {
+        "example": 62,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1904,
+    "fields": {
+        "example": 62,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1905,
+    "fields": {
+        "example": 62,
+        "json_object": 223
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1906,
+    "fields": {
+        "example": 62,
+        "json_object": 224
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1907,
+    "fields": {
+        "example": 62,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1908,
+    "fields": {
+        "example": 62,
+        "json_object": 225
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1909,
+    "fields": {
+        "example": 62,
+        "json_object": 110
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1910,
+    "fields": {
+        "example": 62,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1911,
+    "fields": {
+        "example": 62,
+        "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1912,
+    "fields": {
+        "example": 63,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1913,
+    "fields": {
+        "example": 63,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1914,
+    "fields": {
+        "example": 63,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1915,
+    "fields": {
+        "example": 63,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1916,
+    "fields": {
+        "example": 63,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1917,
+    "fields": {
+        "example": 63,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1918,
+    "fields": {
+        "example": 63,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1919,
+    "fields": {
+        "example": 63,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1920,
+    "fields": {
+        "example": 63,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1921,
+    "fields": {
+        "example": 63,
+        "json_object": 73
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1922,
+    "fields": {
+        "example": 63,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1923,
+    "fields": {
+        "example": 63,
+        "json_object": 140
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1924,
+    "fields": {
+        "example": 63,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1925,
+    "fields": {
+        "example": 63,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1926,
+    "fields": {
+        "example": 63,
+        "json_object": 142
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1927,
+    "fields": {
+        "example": 63,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1928,
+    "fields": {
+        "example": 63,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1929,
+    "fields": {
+        "example": 63,
+        "json_object": 15
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1930,
+    "fields": {
+        "example": 63,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1931,
+    "fields": {
+        "example": 63,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1932,
+    "fields": {
+        "example": 63,
+        "json_object": 213
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1933,
+    "fields": {
+        "example": 63,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1934,
+    "fields": {
+        "example": 63,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1935,
+    "fields": {
+        "example": 63,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1936,
+    "fields": {
+        "example": 63,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1937,
+    "fields": {
+        "example": 63,
+        "json_object": 225
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1938,
+    "fields": {
+        "example": 63,
+        "json_object": 105
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1939,
+    "fields": {
+        "example": 63,
+        "json_object": 110
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1940,
+    "fields": {
+        "example": 63,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1941,
+    "fields": {
+        "example": 63,
+        "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1942,
+    "fields": {
+        "example": 64,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1943,
+    "fields": {
+        "example": 64,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1944,
+    "fields": {
+        "example": 64,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1945,
+    "fields": {
+        "example": 64,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1946,
+    "fields": {
+        "example": 64,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1947,
+    "fields": {
+        "example": 64,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1948,
+    "fields": {
+        "example": 64,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1949,
+    "fields": {
+        "example": 64,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1950,
+    "fields": {
+        "example": 64,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1951,
+    "fields": {
+        "example": 64,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1952,
+    "fields": {
+        "example": 64,
+        "json_object": 140
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1953,
+    "fields": {
+        "example": 64,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1954,
+    "fields": {
+        "example": 64,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1955,
+    "fields": {
+        "example": 64,
+        "json_object": 142
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1956,
+    "fields": {
+        "example": 64,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1957,
+    "fields": {
+        "example": 64,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1958,
+    "fields": {
+        "example": 64,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1959,
+    "fields": {
+        "example": 64,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1960,
+    "fields": {
+        "example": 64,
+        "json_object": 213
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1961,
+    "fields": {
+        "example": 64,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1962,
+    "fields": {
+        "example": 64,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1963,
+    "fields": {
+        "example": 64,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1964,
+    "fields": {
+        "example": 64,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1965,
+    "fields": {
+        "example": 64,
+        "json_object": 225
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1966,
+    "fields": {
+        "example": 64,
+        "json_object": 110
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1967,
+    "fields": {
+        "example": 64,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1968,
+    "fields": {
+        "example": 64,
+        "json_object": 127
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1969,
+    "fields": {
+        "example": 65,
+        "json_object": 128
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1970,
+    "fields": {
+        "example": 65,
+        "json_object": 1
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1971,
+    "fields": {
+        "example": 65,
+        "json_object": 129
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1972,
+    "fields": {
+        "example": 65,
+        "json_object": 3
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1973,
+    "fields": {
+        "example": 65,
+        "json_object": 130
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1974,
+    "fields": {
+        "example": 65,
+        "json_object": 131
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1975,
+    "fields": {
+        "example": 65,
+        "json_object": 69
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1976,
+    "fields": {
+        "example": 65,
+        "json_object": 6
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1977,
+    "fields": {
+        "example": 65,
+        "json_object": 72
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1978,
+    "fields": {
+        "example": 65,
+        "json_object": 132
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1979,
+    "fields": {
+        "example": 65,
+        "json_object": 133
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1980,
+    "fields": {
+        "example": 65,
+        "json_object": 139
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1981,
+    "fields": {
+        "example": 65,
+        "json_object": 140
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1982,
+    "fields": {
+        "example": 65,
+        "json_object": 13
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1983,
+    "fields": {
+        "example": 65,
+        "json_object": 142
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1984,
+    "fields": {
+        "example": 65,
+        "json_object": 14
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1985,
+    "fields": {
+        "example": 65,
+        "json_object": 143
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1986,
+    "fields": {
+        "example": 65,
+        "json_object": 16
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1987,
+    "fields": {
+        "example": 65,
+        "json_object": 19
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1988,
+    "fields": {
+        "example": 65,
+        "json_object": 20
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1989,
+    "fields": {
+        "example": 65,
+        "json_object": 22
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1990,
+    "fields": {
+        "example": 65,
+        "json_object": 26
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1991,
+    "fields": {
+        "example": 65,
+        "json_object": 30
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1992,
+    "fields": {
+        "example": 65,
+        "json_object": 223
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1993,
+    "fields": {
+        "example": 65,
+        "json_object": 224
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1994,
+    "fields": {
+        "example": 65,
+        "json_object": 97
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1995,
+    "fields": {
+        "example": 65,
+        "json_object": 98
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1996,
+    "fields": {
+        "example": 65,
+        "json_object": 31
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1997,
+    "fields": {
+        "example": 65,
+        "json_object": 110
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1998,
+    "fields": {
+        "example": 65,
+        "json_object": 126
+    }
+},
+{
+    "model": "spectools.exampledocumentobject",
+    "pk": 1999,
+    "fields": {
+        "example": 65,
+        "json_object": 127
     }
 },
 {
