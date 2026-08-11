@@ -59,7 +59,7 @@ The top level looks like this:
 
 ```json
 {
-    "version": "27",
+    "version": 28,
     "format": {"name": "MNX", "slug": "mnx"},
     "site": { ... },
     "objects": { ... },
@@ -68,7 +68,7 @@ The top level looks like this:
 ```
 
 * `version` — the MNX version, which appears in the generated JSON
-Schema's `$id`.
+Schema's `$id`. A number or a string.
 * `format.name`, `format.slug` — used in page titles and URLs.
 
 ### `site`
