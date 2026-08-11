@@ -1,0 +1,798 @@
+{
+    "comparisonFormats": [
+        {
+            "name": "MusicXML",
+            "slug": "musicxml"
+        }
+    ],
+    "examples": [
+        {
+            "slug": "hello-world",
+            "name": "“Hello world”",
+            "blurb": [
+                "This basic MNX document contains a single middle C whole note, on a treble clef staff, in 4/4 time."
+            ],
+            "documentPath": "examples/json/hello-world.json",
+            "imagePath": "examples/hello-world.png",
+            "featured": true,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 0,
+                    "documentPath": "examples/musicxml/hello-world.xml",
+                    "preamble": []
+                }
+            ]
+        },
+        {
+            "slug": "two-bar-c-major-scale",
+            "name": "Two-bar C major scale",
+            "blurb": [],
+            "documentPath": "examples/json/two-bar-c-major-scale.json",
+            "imagePath": "examples/two-bar-c-major-scale.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 1,
+                    "documentPath": "examples/musicxml/two-bar-c-major-scale.xml",
+                    "preamble": []
+                }
+            ]
+        },
+        {
+            "slug": "three-note-chord-and-half-rest",
+            "name": "Three-note chord and half rest",
+            "blurb": [],
+            "documentPath": "examples/json/three-note-chord-and-half-rest.json",
+            "imagePath": "examples/three-note-chord-and-half-rest.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 2,
+                    "documentPath": "examples/musicxml/three-note-chord-and-half-rest.xml",
+                    "preamble": [
+                        "In MusicXML, notes within chords contain <code>&lt;chord/&gt;</code> (except for the first note in the chord). In MNX, notes within chords are contained within a single \"event\"."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "time-signatures",
+            "name": "Time signatures",
+            "blurb": [],
+            "documentPath": "examples/json/time-signatures.json",
+            "imagePath": "examples/time-signatures.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 3,
+                    "documentPath": "examples/musicxml/time-signatures.xml",
+                    "preamble": [
+                        "In MusicXML, each part’s <code>&lt;measure&gt;</code> can contain an <code>&lt;attributes&gt;</code> element with an optional <code>&lt;time&gt;</code>. MNX uses a score-wide <code>\"global\"</code> object. In both cases, you only specify the time signature when it differs from the previous bar."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "key-signatures",
+            "name": "Key signatures",
+            "blurb": [],
+            "documentPath": "examples/json/key-signatures.json",
+            "imagePath": "examples/key-signatures.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 4,
+                    "documentPath": "examples/musicxml/key-signatures.xml",
+                    "preamble": [
+                        "In MusicXML, each part’s <code>&lt;measure&gt;</code> can contain an <code>&lt;attributes&gt;</code> element with an optional <code>&lt;key&gt;</code>. MNX uses a score-wide <code>\"global\"</code> object. In both cases, you only specify the key signature when it differs from the previous bar."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "accidentals",
+            "name": "Accidentals",
+            "blurb": [],
+            "documentPath": "examples/json/accidentals.json",
+            "imagePath": "examples/accidentals.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 5,
+                    "documentPath": "examples/musicxml/accidentals.xml",
+                    "preamble": [
+                        "In MusicXML, use <code>&lt;accidental&gt;</code> within a <code>&lt;note&gt;</code> to indicate a rendered accidental. In MNX, give the note an <code>\"accidentalDisplay\"</code> attribute.",
+                        "",
+                        "In both MusicXML and MNX, accidentals are only encoded if they are to be rendered. Notes whose accidental is implied from the key signature (such as the Bb note in bar 2 of this example), or notes repeating a currently active accidental (such as the second Db in bar 2), are not encoded as having an accidental.",
+                        "",
+                        "Cautionary accidentals, such as the D natural in bar 3 of this example — that is, accidentals that are not technically required to be displayed and serve as a courtesy to the musician — are not treated any differently than “non-cautionary” accidentals."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "dotted-notes",
+            "name": "Dotted notes (augmentation dots)",
+            "blurb": [],
+            "documentPath": "examples/json/dotted-notes.json",
+            "imagePath": "examples/dotted-notes.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 6,
+                    "documentPath": "examples/musicxml/dotted-notes.xml",
+                    "preamble": [
+                        "In MusicXML, dotted notes get an extra tag, <code>&lt;dot&gt;</code>, within the <code>&lt;note&gt;</code> element. Each note within a chord must have <code>&lt;dot&gt;</code>.",
+                        "",
+                        "In MNX, dotted notes are represented with <code>\"dots\"</code> within the event's <code>\"duration\"</code>."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "ties",
+            "name": "Ties",
+            "blurb": [],
+            "documentPath": "examples/json/ties.json",
+            "imagePath": "examples/ties.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 7,
+                    "documentPath": "examples/musicxml/ties.xml",
+                    "preamble": [
+                        "MusicXML uses two elements: <code>&lt;tie&gt;</code> to describe the sound and <code>&lt;tied&gt;</code> to indicate a visual tie in notation. The first note gets <code>type=\"start\"</code>, the second gets <code>type=\"stop\"</code>.",
+                        "",
+                        "MNX uses a single object: <code>\"ties\"</code>. Only the first note in a tie encodes this; its <code>\"target\"</code> points at the <code>id</code> of the end note.",
+                        "",
+                        "For a series of notes tied together (e.g., the second tie in the above example), both MusicXML and MNX require you to encode each “inner tie” separately."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "beams",
+            "name": "Beams",
+            "blurb": [],
+            "documentPath": "examples/json/beams.json",
+            "imagePath": "examples/beams.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 8,
+                    "documentPath": "examples/musicxml/beams.xml",
+                    "preamble": [
+                        "In MusicXML, you put one or more <code>&lt;beam&gt;</code> elements within a <code>&lt;note&gt;</code> element — a separate element for each beam. The <code>number</code> attribute specifies whether it’s the outer (eighth-note) beam, versus an inner (e.g., 16th note) beam. Parsers need to keep track of currently open beams and look for the values <code>continue</code> or <code>end</code>.",
+                        "",
+                        "In MNX, each beam is encoded within the measure's <code>\"beams\"</code> object, containing the IDs of the beam’s events."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "beams-secondary-beam-breaks",
+            "name": "Beams (secondary beam breaks)",
+            "blurb": [],
+            "documentPath": "examples/json/beams-secondary-beam-breaks.json",
+            "imagePath": "examples/beams-secondary-beam-breaks.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 9,
+                    "documentPath": "examples/musicxml/beams-secondary-beam-breaks.xml",
+                    "preamble": [
+                        "In MusicXML, secondary beams are encoded with separate <code>&lt;beam&gt;</code> elements within <code>&lt;note&gt;</code> — each with a separate <code>number</code> attribute.",
+                        "",
+                        "In MNX, secondary beams are encoded as separate objects within <code>\"beams\"</code>, using the <code>\"inner\"</code> attribute."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "beam-hooks",
+            "name": "Beams (hooks)",
+            "blurb": [],
+            "documentPath": "examples/json/beam-hooks.json",
+            "imagePath": "examples/beam-hooks.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 10,
+                    "documentPath": "examples/musicxml/beam-hooks.xml",
+                    "preamble": [
+                        "MusicXML uses <code>&lt;beam&gt;</code> elements with the value <code>\"forward hook\"</code> or <code>\"backward hook\"</code>.",
+                        "",
+                        "MNX uses an inner <code>\"beams\"</code> attribute on the outer beam, with an optional <code>\"direction\"</code> that specifies the direction of the hook."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "beams-inner-grace-notes",
+            "name": "Beams (with inner grace notes)",
+            "blurb": [],
+            "documentPath": "examples/json/beams-inner-grace-notes.json",
+            "imagePath": "examples/beams-inner-grace-notes.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 11,
+                    "documentPath": "examples/musicxml/beams-inner-grace-notes.xml",
+                    "preamble": [
+                        "In MusicXML, to exclude a grace note from a beam, you exclude <code>&lt;beam&gt;continue&lt;/beam&gt;</code> from the grace note’s <code>&lt;note&gt;</code> element.",
+                        "",
+                        "In MNX, you exclude the grace note’s event from the beam object."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "beams-across-barlines",
+            "name": "Beams (across barlines)",
+            "blurb": [],
+            "documentPath": "examples/json/beams-across-barlines.json",
+            "imagePath": "examples/beams-across-barlines.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 12,
+                    "documentPath": "examples/musicxml/beams-across-barlines.xml",
+                    "preamble": [
+                        "Both MusicXML and MNX support beams crossing barlines.",
+                        "",
+                        "In MNX, the beam is encoded in the sequence in which the beam <em>starts</em>. The beam's <code>\"events\"</code> list is free to reference IDs of events in a subsequent measure."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "tuplets",
+            "name": "Tuplets",
+            "blurb": [],
+            "documentPath": "examples/json/tuplets.json",
+            "imagePath": "examples/tuplets.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 13,
+                    "documentPath": "examples/musicxml/tuplets.xml",
+                    "preamble": [
+                        "MusicXML uses two separate concepts: a <code>&lt;time-modification&gt;</code> element to encode the tuplet’s ratio and a <code>&lt;tuplet&gt;</code> element to encode the engraved tuplet itself. These go inside <code>&lt;note&gt;</code> elements. Parsers need to keep track of currently open tuplets and look for the value <code>stop</code>.",
+                        "",
+                        "MNX uses a single object, with type <code>\"tuplet\"</code>, which contains the notes or rests therein. The <code>\"inner\"</code> value encodes the rhythmic duration of the tuplet’s elements as if the tuplet were ignored; the <code>\"outer\"</code> value encodes the rhythmic duration taking the tuplet’s ratio into account."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "multiple-voices",
+            "name": "Multiple voices",
+            "blurb": [],
+            "documentPath": "examples/json/multiple-voices.json",
+            "imagePath": "examples/multiple-voices.png",
+            "featured": true,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 14,
+                    "documentPath": "examples/musicxml/multiple-voices.xml",
+                    "preamble": [
+                        "In MusicXML, parsers need to keep track of an internal position; this example uses <code>&lt;backup&gt;</code> to move the internal position back to <code>0</code> to begin the second voice. In MNX, voices are explicitly grouped within \"sequences.\""
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "ottavas-8va",
+            "name": "Ottavas (8va)",
+            "blurb": [],
+            "documentPath": "examples/json/ottavas-8va.json",
+            "imagePath": "examples/octave-shifts-8va.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 15,
+                    "documentPath": "examples/musicxml/ottavas-8va.xml",
+                    "preamble": [
+                        "In MusicXML, you put <code>&lt;octave-shift&gt;</code> elements around the notes that are affected by the octave shift; the issue of whether the ottava affects the first note <em>following</em> the closing <code>&lt;octave-shift&gt;</code> is interpreted differently by different programs.",
+                        "",
+                        "In MNX, each part-measure can define an <code>\"ottavas\"</code> array, which contains all of the ottavas that begin in that measure. The ottava's <code>\"position\"</code> value encodes the measure location of the first event for which the ottava applies, and <code>\"end\"</code> encodes the last note for which the ottava applies. In this example, the ottava’s final note, the C quarter note, is in bar 2 and metrical position one half note into the bar.",
+                        "",
+                        "In both MusicXML and MNX, pitches for notes within an ottava are specified taking the ottava into account. In this example, the final two pitches are C7 and C6, despite the notes being rendered on the same staff line.",
+                        "",
+                        "In MusicXML, the encoded value is the number of semitones (8 in this example). In MNX, the encoded value is the number of octaves (1 in this example)."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "slurs",
+            "name": "Slurs",
+            "blurb": [],
+            "documentPath": "examples/json/slurs.json",
+            "imagePath": "examples/slurs.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 16,
+                    "documentPath": "examples/musicxml/slurs.xml",
+                    "preamble": [
+                        "In MusicXML, you put <code>&lt;slur&gt;</code> elements within the first and last notes in the slur. The first has <code>type=start</code> and the last has <code>type=stop</code>. Use the <code>placement</code> attribute to specify whether the slur is above or below the notes.",
+                        "",
+                        "In MNX, an event can contain a <code>\"slurs\"</code> object, which encodes all of the slurs that begin in that event. The slur’s <code>\"target\"</code> specifies the ID of the last event in the slur. Use <code>\"side\"</code> to specify whether the slur is above or below."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "slurs-chords",
+            "name": "Slurs (for chords)",
+            "blurb": [],
+            "documentPath": "examples/json/slurs-chords.json",
+            "imagePath": "examples/slurs-chords.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 17,
+                    "documentPath": "examples/musicxml/slurs-chords.xml",
+                    "preamble": [
+                        "In MusicXML, if the start and/or end points of a slur are chords, then the slur markup goes inside the first note of the chord.",
+                        "",
+                        "In MNX, the slur is attached to the event, not to the note."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "slurs-targeting-specific-notes",
+            "name": "Slurs (targeting specific notes)",
+            "blurb": [],
+            "documentPath": "examples/json/slurs-targeting-specific-notes.json",
+            "imagePath": "examples/slurs-targeting-specific-notes.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 18,
+                    "documentPath": "examples/musicxml/slurs-targeting-specific-notes.xml",
+                    "preamble": [
+                        "In MusicXML, slurs are always defined within <code>&lt;note&gt;</code> elements.",
+                        "",
+                        "In MNX, a slur can optionally specify which specific notes it’s attached to, using <code>\"startNote\"</code> and <code>\"endNote\"</code>. The <code>\"startNote\"</code> must be within the event that contains the slur, and the <code>\"endNote\"</code> must be within the event pointed-to by <code>\"target\"</code>."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "parts",
+            "name": "Parts",
+            "blurb": [],
+            "documentPath": "examples/json/parts.json",
+            "imagePath": "examples/parts.png",
+            "featured": true,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 20,
+                    "documentPath": "examples/musicxml/parts.xml",
+                    "preamble": [
+                        "MusicXML supports two ways of organizing parts:",
+                        "1. If the top-level element is <code>&lt;score-partwise&gt;</code>, then the markup must contain <code>&lt;part&gt;</code> elements that contain <code>&lt;measure&gt;</code> elements.",
+                        "2. If the top-level element is <code>&lt;score-timewise&gt;</code>, then the markup must contain <code>&lt;measure&gt;</code> elements that contain <code>&lt;part&gt;</code> elements.",
+                        "",
+                        "MNX has only one way, similar to MusicXML’s <code>&lt;score-partwise&gt;</code>. Each object in the global <code>\"parts\"</code> array contains the measure data within <code>\"measures\"</code>.",
+                        "",
+                        "In MusicXML, part metadata such as the title lives within a <code>&lt;part-list&gt;</code> element. In MNX, part metadata goes in the individual part object."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "repeats",
+            "name": "Repeats",
+            "blurb": [],
+            "documentPath": "examples/json/repeats.json",
+            "imagePath": "examples/repeats.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 21,
+                    "documentPath": "examples/musicxml/repeats.xml",
+                    "preamble": [
+                        "MusicXML uses <code>&lt;bar-style&gt;</code> to represent the visual repeat barline and <code>&lt;repeat&gt;</code> to represent the repeated playback.",
+                        "",
+                        "MNX uses <code>\"repeatStart\"</code> and <code>\"repeatEnd\"</code> in the global section of the document."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "repeats-implied-start-repeat",
+            "name": "Repeats (with implied start repeat)",
+            "blurb": [],
+            "documentPath": "examples/json/repeats-implied-start-repeat.json",
+            "imagePath": "examples/repeats-implied-start-repeat.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 22,
+                    "documentPath": "examples/musicxml/repeats-implied-start-repeat.xml",
+                    "preamble": [
+                        "In both MusicXML and MNX, you can simply leave out the start repeat if it’s at the start of the music."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "repeats-more-once-repeated",
+            "name": "Repeats (more than once repeated)",
+            "blurb": [
+                "In this example, the measure is to be performed four times (or “repeated three times,” depending on your perspective)."
+            ],
+            "documentPath": "examples/json/repeats-more-once-repeated.json",
+            "imagePath": "examples/repeats-more-once-repeated.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 23,
+                    "documentPath": "examples/musicxml/repeats-more-once-repeated.xml",
+                    "preamble": [
+                        "Both MusicXML and MNX use an optional <code>times</code> attribute for specifying the number of times the music within a repeat should be performed."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "repeats-alternate-endings-simple",
+            "name": "Repeats (with alternate endings, simple)",
+            "blurb": [],
+            "documentPath": "examples/json/repeats-alternate-endings-simple.json",
+            "imagePath": "examples/repeats-alternate-endings-simple.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 24,
+                    "documentPath": "examples/musicxml/repeats-alternate-endings-simple.xml",
+                    "preamble": [
+                        "In MusicXML, each alternate ending is encoded with two <code>&lt;ending&gt;</code> elements: one to start and the other to stop.",
+                        "",
+                        "In MNX, each alternate ending is encoded once, via <code>\"ending\"</code> in the <code>\"global\"</code> measures section. The <code>\"duration\"</code> specifies how many bars the ending lasts."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "repeats-alternate-endings-advanced",
+            "name": "Repeats (with alternate endings, advanced)",
+            "blurb": [],
+            "documentPath": "examples/json/repeats-alternate-endings-advanced.json",
+            "imagePath": "examples/repeats-alternate-endings-advanced.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 25,
+                    "documentPath": "examples/musicxml/repeats-alternate-endings-advanced.xml",
+                    "preamble": [
+                        "In MusicXML, if a bar has multiple endings, the <code>&lt;ending&gt;</code> element’s <code>number</code> attribute is a comma-separated list of the ending numbers (using one-based, not zero-based numbers).",
+                        "",
+                        "In MNX, the <code>\"ending\"</code> contains a <code>\"numbers\"</code> array, which is a list of numbers (again using one-based, not zero-based numbers)."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "jumps-dal-segno",
+            "name": "Jumps (Dal Segno)",
+            "blurb": [
+                "In this example, the bars are to be performed in this order: 1, 2, 3, 4, 5, 2, 3, 4, 5."
+            ],
+            "documentPath": "examples/json/jumps-dal-segno.json",
+            "imagePath": "examples/jumps-dal-segno.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 26,
+                    "documentPath": "examples/musicxml/jumps-dal-segno.xml",
+                    "preamble": [
+                        "MusicXML uses <code>&lt;segno&gt;</code> to specify the visual segno symbol and <code>&lt;sound&gt;</code> elements with <code>segno</code> or <code>dalsegno</code> attributes to specify the playback instructions.",
+                        "",
+                        "MNX uses <code>\"jump\"</code> within the <code>\"global\"</code> section of the document. The <code>\"type\"</code> specifies what kind of jump it is, and <code>\"location\"</code> specifies the target of the jump. This data together represents both the visual notation and the playback instructions."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "jumps-ds-al-fine",
+            "name": "Jumps (D.S. al Fine)",
+            "blurb": [
+                "In this example, the bars are to be performed in this order: 1, 2, 3, 4, 5, 2, 3."
+            ],
+            "documentPath": "examples/json/jumps-ds-al-fine.json",
+            "imagePath": "examples/jumps-ds-al-fine.png",
+            "featured": false,
+            "comparisons": [
+                {
+                    "format": "musicxml",
+                    "position": 27,
+                    "documentPath": "examples/musicxml/jumps-ds-al-fine.xml",
+                    "preamble": [
+                        "MusicXML uses <code>&lt;segno&gt;</code> to specify the visual segno symbol and <code>&lt;words&gt;</code> for the textual instructions. (Parsers need to interpret the text to extract semantic meaning.) For the playback instructions, MusicXML uses the <code>&lt;sound&gt;</code> element.",
+                        "",
+                        "MNX uses <code>\"jump\"</code> within the <code>\"global\"</code> section of the document. The <code>\"type\"</code> specifies what kind of jump it is, and <code>\"location\"</code> specifies the target of the jump. This data together represents both the visual notation and the playback instructions."
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "grace-note",
+            "name": "Grace note",
+            "blurb": [],
+            "documentPath": "examples/json/grace-note.json",
+            "imagePath": "examples/grace-note.png",
+            "featured": false
+        },
+        {
+            "slug": "system-layouts",
+            "name": "System layouts",
+            "blurb": [],
+            "documentPath": "examples/json/system-layouts.json",
+            "imagePath": "examples/system-layouts.png",
+            "featured": false
+        },
+        {
+            "slug": "grace-notes-beamed",
+            "name": "Grace notes (beamed)",
+            "blurb": [],
+            "documentPath": "examples/json/grace-notes-beamed.json",
+            "imagePath": "examples/beams-grace-notes.png",
+            "featured": false
+        },
+        {
+            "slug": "tempo-markings",
+            "name": "Tempo markings",
+            "blurb": [],
+            "documentPath": "examples/json/tempo-markings.json",
+            "imagePath": "examples/tempo-marking.png",
+            "featured": false
+        },
+        {
+            "slug": "multiple-layouts",
+            "name": "Multiple layouts",
+            "blurb": [
+                "In this image, you see three different representations of the same underlying SATB music — one with four separate staves, one with two staves (using multiple voices) and one with two staves (using notes combined into chords).",
+                "",
+                "This can be encoded entirely within a single MNX document. The underlying music (the notes, barlines, etc.) is encoded only once, within the \"global\" and \"part\" objects. But there are three separate score objects — one for each visual representation of the music.",
+                "",
+                "A score references a particular layout. The layout object is where the style information is contained: which parts, in which order."
+            ],
+            "documentPath": "examples/json/multiple-layouts.json",
+            "imagePath": "examples/multiple-layouts.png",
+            "featured": true
+        },
+        {
+            "slug": "orchestral-layout",
+            "name": "Orchestral layout",
+            "blurb": [],
+            "documentPath": "examples/json/orchestral-layout.json",
+            "imagePath": "examples/orchestral-layout.png",
+            "featured": false
+        },
+        {
+            "slug": "organ-layout",
+            "name": "Organ layout",
+            "blurb": [
+                "Note only the music in the first measure is encoded here."
+            ],
+            "documentPath": "examples/json/organ-layout.json",
+            "imagePath": "examples/organ-layout.png",
+            "featured": false
+        },
+        {
+            "slug": "multimeasure-rests",
+            "name": "Multimeasure rests",
+            "blurb": [
+                "This example document contains three views of the same underlying music: a \"full score\" plus two parts as intended for individual musicians. In MNX, these are represented by three separate score objects.",
+                "",
+                "Multimeasure rests are tied to a particular score. They live within the \"multimeasureRests\" object, and each rest defines its starting measure number and how long the rest lasts."
+            ],
+            "documentPath": "examples/json/multimeasure-rests.json",
+            "imagePath": "examples/multimeasure-rests.png",
+            "featured": false
+        },
+        {
+            "slug": "clef-changes",
+            "name": "Clef changes",
+            "blurb": [
+                "Each measure can encode a list of clefs. For an inner-bar clef change, the \"position\" attribute describes the clef's position in the bar. If \"position\" isn't provided, the clef is interpreted to be the start of the bar."
+            ],
+            "documentPath": "examples/json/clef-changes.json",
+            "imagePath": "examples/clef-changes.png",
+            "featured": false
+        },
+        {
+            "slug": "rest-positions",
+            "name": "Rest positions",
+            "blurb": [
+                "You can optionally encode the vertical position of a rest — a situation that is most often encountered in multivoice music — by using \"staffPosition\" within the \"rest\" object. In this example, the rests are positioned slightly above, to make room for the bottom voice; this is staff position 2."
+            ],
+            "documentPath": "examples/json/rest-positions.json",
+            "imagePath": "examples/rest-positions.png",
+            "featured": false
+        },
+        {
+            "slug": "articulations",
+            "name": "Articulations",
+            "blurb": [
+                "Articulations live on an event. They're encoded in the event's \"markings\" object."
+            ],
+            "documentPath": "examples/json/articulations.json",
+            "imagePath": "examples/articulations.png",
+            "featured": false
+        },
+        {
+            "slug": "single-note-tremolos",
+            "name": "Tremolos (single-note)",
+            "blurb": [
+                "Single-note tremolos live on an event. They're encoded in the event's \"markings\" object. Each tremolo must encode the number of visible marks — 1, 2 and 3 in this example."
+            ],
+            "documentPath": "examples/json/single-note-tremolos.json",
+            "imagePath": "examples/tremolos.png",
+            "featured": false
+        },
+        {
+            "slug": "grand-staff",
+            "name": "Grand staff piano music",
+            "blurb": [
+                "The grand staff, despite having two staves, is considered a single \"part.\" The part is encoded with \"staves\": 2. Where necessary, you encode which staff a given notation belongs to — such as clefs and sequences."
+            ],
+            "documentPath": "examples/json/grand-staff.json",
+            "imagePath": "examples/grand-staff.png",
+            "featured": false
+        },
+        {
+            "slug": "lyrics-basic",
+            "name": "Lyrics (basic)",
+            "blurb": [
+                "Lyric syllables are encoded for each event. For lyrics that are split across multiple syllables (typically connected via a hyphen), we use \"type\" to encode each syllable's position in the word."
+            ],
+            "documentPath": "examples/json/lyrics-basic.json",
+            "imagePath": "examples/lyrics_basic.png",
+            "featured": false
+        },
+        {
+            "slug": "lyrics-multi-line",
+            "name": "Lyrics (multi-line)",
+            "blurb": [
+                "To accommodate lyrics with multiple lines (i.e., multiple verses), lyric lines are encoded as structured objects. Each event's \"lyrics\" object has a \"lines\" array, with each line representing a vertical column within that syllable. Each line is identified by an ID string, which is user-defined within the document. By default, lyric lines are ordered alphabetically by the ID string."
+            ],
+            "documentPath": "examples/json/lyrics-multi-line.json",
+            "imagePath": "examples/lyrics_multiline.png",
+            "featured": false
+        },
+        {
+            "slug": "lyric-line-metadata",
+            "name": "Lyric line metadata",
+            "blurb": [
+                "Each line of lyrics has its own optional metadata, including the language code and a label. This lives in the top-level \"global\" attribute, as a \"lyrics\" object."
+            ],
+            "documentPath": "examples/json/lyric-line-metadata.json",
+            "imagePath": "examples/lyric_metadata.png",
+            "featured": false
+        },
+        {
+            "slug": "dynamics",
+            "name": "Dynamics",
+            "blurb": [],
+            "documentPath": "examples/json/dynamics.json",
+            "imagePath": "examples/dynamics.png",
+            "featured": false
+        },
+        {
+            "slug": "time-signature-glyphs",
+            "name": "Time signature glyphs",
+            "blurb": [],
+            "documentPath": "examples/json/time-signature-glyphs.json",
+            "imagePath": "examples/time-signature-glyphs.png",
+            "featured": false
+        },
+        {
+            "slug": "beams-secondary-beam-breaks-implied",
+            "name": "Beams (secondary beam breaks implied)",
+            "blurb": [],
+            "documentPath": "examples/json/beams-secondary-beam-breaks-implied.json",
+            "imagePath": "examples/beams-secondary-beam-breaks.png",
+            "featured": false
+        },
+        {
+            "slug": "tremolos-multi-note",
+            "name": "Tremolos (multi-note)",
+            "blurb": [],
+            "documentPath": "examples/json/multi-note-tremolos.json",
+            "imagePath": "examples/tremolos-multinote.png",
+            "featured": false
+        },
+        {
+            "slug": "tie-targets",
+            "name": "Tie targets",
+            "blurb": [
+                "MNX supports various types of tie “targets,” and this data can be encoded in order to help programs parse a document (for example, ignoring ties that a program cannot internally model).",
+                "",
+                "This example also includes a laissez vibrer tie, encoded via \"lv\"."
+            ],
+            "documentPath": "examples/json/tie-target-type.json",
+            "imagePath": "examples/tie-target-type.png",
+            "featured": false
+        },
+        {
+            "slug": "full-measure-rests",
+            "name": "Full-measure rests",
+            "blurb": [],
+            "documentPath": "examples/json/full-measure-rests.json",
+            "imagePath": "examples/full-measure-rests.png",
+            "featured": false
+        },
+        {
+            "slug": "dynamic-accents",
+            "name": "Dynamic accents",
+            "blurb": [
+                "In accent dynamics, such as sf or fz, an MNX document encodes the accent metadata (the \"s\" prefix of \"sf\", or the \"z\" suffix of \"fz\") structurally.",
+                "",
+                "The \"accentPrefix\", \"value\", \"accentSuffix\" and \"residualValue\" concatenate to the conventional abbreviation, so \"s\" + \"f\" + \"z\" results in \"sfz\" and \"r\" + \"f\" + \"z\" results in \"rfz\".",
+                "",
+                "Note: if not explicitly encoded, \"accentPrefix\" defaults to \"s\" and \"accentSuffix\" defaults to \"z\", meaning the common case (sfz) can be encoded as {\"type\": \"accent\", \"value\": \"f\"}. To encode a dynamic without that prefix or suffix, use an empty string: {\"type\": \"accent\": \"accentPrefix\": \"\", \"value\": \"f\"} encodes fz.",
+                "",
+                "The second measure here demonstrates \"residualValue\", which is the dynamic that applies after the initial attack."
+            ],
+            "documentPath": "examples/json/dynamics-accents.json",
+            "imagePath": "examples/dynamics-accents.png",
+            "featured": false
+        },
+        {
+            "slug": "measure-repeats",
+            "name": "Measure repeats",
+            "blurb": [
+                "Measure repeats (aka \"simile\" markings) are encoded on the part-measure object, as a \"measureRepeat\" attribute.",
+                "",
+                "In a part-measure that contains a measureRepeat, the sequence content is usually empty. (Occasionally, published music uses a measure-repeat marking with notation in the same bar. In that case, use \"measureRepeat\" and populate the sequence content.)",
+                "",
+                "For a multi-measure repeat, such as the two-bar repeat at the end of this example, the measureRepeat is encoded on the first of the bars, and nothing is encoded in the remaining bars."
+            ],
+            "documentPath": "examples/json/measure-repeats.json",
+            "imagePath": "examples/measure-repeats.png",
+            "featured": false
+        },
+        {
+            "slug": "measure-repeats-with-counters",
+            "name": "Measure repeats (with counters)",
+            "blurb": [
+                "Sometimes published music includes \"counters\" above measure repeats — numbers that help the musician keep track of how many times the repeat has happened. In MNX, these numbers are encoded via \"counter\" on the measure-repeat object."
+            ],
+            "documentPath": "examples/json/measure-repeats-counter.json",
+            "imagePath": "examples/measure-repeats-counter.png",
+            "featured": false
+        }
+    ]
+}

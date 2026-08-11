@@ -91,12 +91,6 @@
       "type": "object",
       "unevaluatedProperties": false
     },
-    "arpeggio-list": {
-      "items": {
-        "$ref": "#/$defs/arpeggio"
-      },
-      "type": "array"
-    },
     "barline": {
       "allOf": [
         {
@@ -144,7 +138,10 @@
           "$ref": "#/$defs/beam-hook-direction"
         },
         "events": {
-          "$ref": "#/$defs/id-list"
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -271,7 +268,10 @@
           "$ref": "#/$defs/measure-rhythmic-position"
         },
         "glyphs": {
-          "$ref": "#/$defs/smufl-glyph-list"
+          "items": {
+            "$ref": "#/$defs/smufl-glyph"
+          },
+          "type": "array"
         },
         "orient": {
           "$ref": "#/$defs/multi-staff-orientation"
@@ -319,12 +319,6 @@
       ],
       "type": "object",
       "unevaluatedProperties": false
-    },
-    "dynamic-group-list": {
-      "items": {
-        "$ref": "#/$defs/dynamic-group"
-      },
-      "type": "array"
     },
     "dynamic-group-type": {
       "enum": [
@@ -384,7 +378,10 @@
           "$ref": "#/$defs/ending-duration"
         },
         "numbers": {
-          "$ref": "#/$defs/ending-numbers"
+          "items": {
+            "$ref": "#/$defs/ending-number"
+          },
+          "type": "array"
         },
         "open": {
           "$ref": "#/$defs/ending-open"
@@ -401,12 +398,6 @@
     },
     "ending-number": {
       "type": "integer"
-    },
-    "ending-numbers": {
-      "items": {
-        "$ref": "#/$defs/ending-number"
-      },
-      "type": "array"
     },
     "ending-open": {
       "type": "boolean"
@@ -425,7 +416,10 @@
           "$ref": "#/$defs/fermata"
         },
         "kitNotes": {
-          "$ref": "#/$defs/kit-notes"
+          "items": {
+            "$ref": "#/$defs/kit-note"
+          },
+          "type": "array"
         },
         "lyrics": {
           "$ref": "#/$defs/lyrics"
@@ -434,7 +428,10 @@
           "$ref": "#/$defs/event-markings"
         },
         "notes": {
-          "$ref": "#/$defs/notes"
+          "items": {
+            "$ref": "#/$defs/note"
+          },
+          "type": "array"
         },
         "orient": {
           "$ref": "#/$defs/orientation"
@@ -443,7 +440,10 @@
           "$ref": "#/$defs/rest"
         },
         "slurs": {
-          "$ref": "#/$defs/slur-list"
+          "items": {
+            "$ref": "#/$defs/slur"
+          },
+          "type": "array"
         },
         "staff": {
           "$ref": "#/$defs/staff-number"
@@ -452,7 +452,8 @@
           "$ref": "#/$defs/stem-direction"
         },
         "type": {
-          "$ref": "#/$defs/literal-string-event"
+          "const": "event",
+          "type": "string"
         }
       },
       "required": [
@@ -621,6 +622,8 @@
       "items": {
         "$ref": "#/$defs/integer-unsigned"
       },
+      "maxItems": 2,
+      "minItems": 2,
       "type": "array"
     },
     "full-measure-rest": {
@@ -654,7 +657,10 @@
           "$ref": "#/$defs/lyrics-global"
         },
         "measures": {
-          "$ref": "#/$defs/measures-global"
+          "items": {
+            "$ref": "#/$defs/measure-global"
+          },
+          "type": "array"
         },
         "sounds": {
           "$ref": "#/$defs/sounds-global"
@@ -691,7 +697,10 @@
           "$ref": "#/$defs/color"
         },
         "content": {
-          "$ref": "#/$defs/grace-sequence-content"
+          "items": {
+            "$ref": "#/$defs/event"
+          },
+          "type": "array"
         },
         "graceType": {
           "$ref": "#/$defs/grace-type"
@@ -700,7 +709,8 @@
           "type": "boolean"
         },
         "type": {
-          "$ref": "#/$defs/literal-string-grace"
+          "const": "grace",
+          "type": "string"
         }
       },
       "required": [
@@ -709,12 +719,6 @@
       ],
       "type": "object",
       "unevaluatedProperties": false
-    },
-    "grace-sequence-content": {
-      "items": {
-        "$ref": "#/$defs/event"
-      },
-      "type": "array"
     },
     "grace-type": {
       "enum": [
@@ -727,12 +731,6 @@
     "id": {
       "pattern": "^[\\x21-\\x7E]{1,256}$",
       "type": "string"
-    },
-    "id-list": {
-      "items": {
-        "$ref": "#/$defs/id"
-      },
-      "type": "array"
     },
     "id-pair": {
       "properties": {
@@ -882,12 +880,6 @@
       "type": "object",
       "unevaluatedProperties": false
     },
-    "kit-notes": {
-      "items": {
-        "$ref": "#/$defs/kit-note"
-      },
-      "type": "array"
-    },
     "language-code": {
       "type": "string"
     },
@@ -912,18 +904,6 @@
       "type": "object",
       "unevaluatedProperties": false
     },
-    "layout-changes": {
-      "items": {
-        "$ref": "#/$defs/layout-change"
-      },
-      "type": "array"
-    },
-    "layouts": {
-      "items": {
-        "$ref": "#/$defs/system-layout"
-      },
-      "type": "array"
-    },
     "line-type": {
       "enum": [
         "dashed",
@@ -933,42 +913,8 @@
       ],
       "type": "string"
     },
-    "literal-string-event": {
-      "const": "event",
-      "type": "string"
-    },
-    "literal-string-grace": {
-      "const": "grace",
-      "type": "string"
-    },
-    "literal-string-group": {
-      "const": "group",
-      "type": "string"
-    },
-    "literal-string-space": {
-      "const": "space",
-      "type": "string"
-    },
-    "literal-string-staff": {
-      "const": "staff",
-      "type": "string"
-    },
-    "literal-string-tremolo": {
-      "const": "tremolo",
-      "type": "string"
-    },
-    "literal-string-tuplet": {
-      "const": "tuplet",
-      "type": "string"
-    },
     "lyric-line-id": {
       "type": "string"
-    },
-    "lyric-line-id-list": {
-      "items": {
-        "$ref": "#/$defs/lyric-line-id"
-      },
-      "type": "array"
     },
     "lyric-line-label": {
       "type": "string"
@@ -1024,7 +970,10 @@
           "$ref": "#/$defs/lyric-lines-metadata"
         },
         "lineOrder": {
-          "$ref": "#/$defs/lyric-line-id-list"
+          "items": {
+            "$ref": "#/$defs/lyric-line-id"
+          },
+          "type": "array"
         }
       },
       "type": "object",
@@ -1071,7 +1020,10 @@
           "$ref": "#/$defs/segno"
         },
         "tempos": {
-          "$ref": "#/$defs/tempos"
+          "items": {
+            "$ref": "#/$defs/tempo"
+          },
+          "type": "array"
         },
         "time": {
           "$ref": "#/$defs/time"
@@ -1153,12 +1105,6 @@
       "type": "object",
       "unevaluatedProperties": false
     },
-    "measures-global": {
-      "items": {
-        "$ref": "#/$defs/measure-global"
-      },
-      "type": "array"
-    },
     "midi-number": {
       "type": "integer"
     },
@@ -1190,7 +1136,10 @@
       ],
       "properties": {
         "content": {
-          "$ref": "#/$defs/tremolo-sequence-content"
+          "items": {
+            "$ref": "#/$defs/event"
+          },
+          "type": "array"
         },
         "individualDuration": {
           "$ref": "#/$defs/note-value"
@@ -1202,7 +1151,8 @@
           "$ref": "#/$defs/note-value-quantity"
         },
         "type": {
-          "$ref": "#/$defs/literal-string-tremolo"
+          "const": "tremolo",
+          "type": "string"
         }
       },
       "required": [
@@ -1247,12 +1197,6 @@
       "type": "object",
       "unevaluatedProperties": false
     },
-    "multimeasure-rests": {
-      "items": {
-        "$ref": "#/$defs/multimeasure-rest"
-      },
-      "type": "array"
-    },
     "non-arpeggio": {
       "allOf": [
         {
@@ -1273,12 +1217,6 @@
       ],
       "type": "object",
       "unevaluatedProperties": false
-    },
-    "non-arpeggio-list": {
-      "items": {
-        "$ref": "#/$defs/non-arpeggio"
-      },
-      "type": "array"
     },
     "note": {
       "allOf": [
@@ -1375,12 +1313,6 @@
       "type": "object",
       "unevaluatedProperties": false
     },
-    "notes": {
-      "items": {
-        "$ref": "#/$defs/note"
-      },
-      "type": "array"
-    },
     "octave": {
       "type": "integer"
     },
@@ -1449,12 +1381,6 @@
       ],
       "type": "integer"
     },
-    "ottava-list": {
-      "items": {
-        "$ref": "#/$defs/ottava"
-      },
-      "type": "array"
-    },
     "page": {
       "allOf": [
         {
@@ -1466,7 +1392,10 @@
           "$ref": "#/$defs/id"
         },
         "systems": {
-          "$ref": "#/$defs/systems"
+          "items": {
+            "$ref": "#/$defs/system"
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -1474,12 +1403,6 @@
       ],
       "type": "object",
       "unevaluatedProperties": false
-    },
-    "pages": {
-      "items": {
-        "$ref": "#/$defs/page"
-      },
-      "type": "array"
     },
     "part": {
       "allOf": [
@@ -1492,7 +1415,10 @@
           "$ref": "#/$defs/kit"
         },
         "measures": {
-          "$ref": "#/$defs/part-measures"
+          "items": {
+            "$ref": "#/$defs/part-measure"
+          },
+          "type": "array"
         },
         "name": {
           "$ref": "#/$defs/part-name"
@@ -1524,28 +1450,46 @@
       ],
       "properties": {
         "arpeggios": {
-          "$ref": "#/$defs/arpeggio-list"
+          "items": {
+            "$ref": "#/$defs/arpeggio"
+          },
+          "type": "array"
         },
         "beams": {
           "$ref": "#/$defs/beam-list"
         },
         "clefs": {
-          "$ref": "#/$defs/positioned-clef-list"
+          "items": {
+            "$ref": "#/$defs/positioned-clef"
+          },
+          "type": "array"
         },
         "dynamics": {
-          "$ref": "#/$defs/dynamic-group-list"
+          "items": {
+            "$ref": "#/$defs/dynamic-group"
+          },
+          "type": "array"
         },
         "measureRepeat": {
           "$ref": "#/$defs/measure-repeat"
         },
         "nonArpeggios": {
-          "$ref": "#/$defs/non-arpeggio-list"
+          "items": {
+            "$ref": "#/$defs/non-arpeggio"
+          },
+          "type": "array"
         },
         "ottavas": {
-          "$ref": "#/$defs/ottava-list"
+          "items": {
+            "$ref": "#/$defs/ottava"
+          },
+          "type": "array"
         },
         "sequences": {
-          "$ref": "#/$defs/sequence-list"
+          "items": {
+            "$ref": "#/$defs/sequence"
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -1553,12 +1497,6 @@
       ],
       "type": "object",
       "unevaluatedProperties": false
-    },
-    "part-measures": {
-      "items": {
-        "$ref": "#/$defs/part-measure"
-      },
-      "type": "array"
     },
     "part-name": {
       "type": "string"
@@ -1588,12 +1526,6 @@
       ],
       "type": "object",
       "unevaluatedProperties": false
-    },
-    "parts": {
-      "items": {
-        "$ref": "#/$defs/part"
-      },
-      "type": "array"
     },
     "perform-options": {
       "allOf": [
@@ -1651,12 +1583,6 @@
       ],
       "type": "object",
       "unevaluatedProperties": false
-    },
-    "positioned-clef-list": {
-      "items": {
-        "$ref": "#/$defs/positioned-clef"
-      },
-      "type": "array"
     },
     "positive-integer": {
       "type": "integer"
@@ -1740,16 +1666,25 @@
           "$ref": "#/$defs/global"
         },
         "layouts": {
-          "$ref": "#/$defs/layouts"
+          "items": {
+            "$ref": "#/$defs/system-layout"
+          },
+          "type": "array"
         },
         "mnx": {
           "$ref": "#/$defs/mnx"
         },
         "parts": {
-          "$ref": "#/$defs/parts"
+          "items": {
+            "$ref": "#/$defs/part"
+          },
+          "type": "array"
         },
         "scores": {
-          "$ref": "#/$defs/scores"
+          "items": {
+            "$ref": "#/$defs/score"
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -1771,13 +1706,19 @@
           "$ref": "#/$defs/id"
         },
         "multimeasureRests": {
-          "$ref": "#/$defs/multimeasure-rests"
+          "items": {
+            "$ref": "#/$defs/multimeasure-rest"
+          },
+          "type": "array"
         },
         "name": {
           "$ref": "#/$defs/score-name"
         },
         "pages": {
-          "$ref": "#/$defs/pages"
+          "items": {
+            "$ref": "#/$defs/page"
+          },
+          "type": "array"
         },
         "useWritten": {
           "type": "boolean"
@@ -1791,12 +1732,6 @@
     },
     "score-name": {
       "type": "string"
-    },
-    "scores": {
-      "items": {
-        "$ref": "#/$defs/score"
-      },
-      "type": "array"
     },
     "segno": {
       "allOf": [
@@ -1872,12 +1807,6 @@
       },
       "type": "array"
     },
-    "sequence-list": {
-      "items": {
-        "$ref": "#/$defs/sequence"
-      },
-      "type": "array"
-    },
     "simple-color": {
       "pattern": "^#[0-9a-f]{6}$",
       "type": "string"
@@ -1914,12 +1843,6 @@
       "type": "object",
       "unevaluatedProperties": false
     },
-    "slur-list": {
-      "items": {
-        "$ref": "#/$defs/slur"
-      },
-      "type": "array"
-    },
     "slur-side": {
       "enum": [
         "up",
@@ -1935,12 +1858,6 @@
     },
     "smufl-glyph": {
       "type": "string"
-    },
-    "smufl-glyph-list": {
-      "items": {
-        "$ref": "#/$defs/smufl-glyph"
-      },
-      "type": "array"
     },
     "soft-accent": {
       "allOf": [
@@ -1993,7 +1910,8 @@
           "$ref": "#/$defs/fraction"
         },
         "type": {
-          "$ref": "#/$defs/literal-string-space"
+          "const": "space",
+          "type": "string"
         }
       },
       "required": [
@@ -2059,13 +1977,17 @@
           "$ref": "#/$defs/staff-labelref"
         },
         "sources": {
-          "$ref": "#/$defs/staff-sources"
+          "items": {
+            "$ref": "#/$defs/staff-source"
+          },
+          "type": "array"
         },
         "symbol": {
           "$ref": "#/$defs/staff-symbol"
         },
         "type": {
-          "$ref": "#/$defs/literal-string-staff"
+          "const": "staff",
+          "type": "string"
         }
       },
       "required": [
@@ -2098,7 +2020,8 @@
           "$ref": "#/$defs/staff-symbol"
         },
         "type": {
-          "$ref": "#/$defs/literal-string-group"
+          "const": "group",
+          "type": "string"
         }
       },
       "required": [
@@ -2164,12 +2087,6 @@
       ],
       "type": "object",
       "unevaluatedProperties": false
-    },
-    "staff-sources": {
-      "items": {
-        "$ref": "#/$defs/staff-source"
-      },
-      "type": "array"
     },
     "staff-symbol": {
       "enum": [
@@ -2260,7 +2177,10 @@
           "$ref": "#/$defs/id"
         },
         "layoutChanges": {
-          "$ref": "#/$defs/layout-changes"
+          "items": {
+            "$ref": "#/$defs/layout-change"
+          },
+          "type": "array"
         },
         "measure": {
           "$ref": "#/$defs/id"
@@ -2302,12 +2222,6 @@
       },
       "type": "array"
     },
-    "systems": {
-      "items": {
-        "$ref": "#/$defs/system"
-      },
-      "type": "array"
-    },
     "tempo": {
       "allOf": [
         {
@@ -2331,12 +2245,6 @@
       ],
       "type": "object",
       "unevaluatedProperties": false
-    },
-    "tempos": {
-      "items": {
-        "$ref": "#/$defs/tempo"
-      },
-      "type": "array"
     },
     "tenuto": {
       "allOf": [
@@ -2434,12 +2342,6 @@
       ],
       "type": "integer"
     },
-    "tremolo-sequence-content": {
-      "items": {
-        "$ref": "#/$defs/event"
-      },
-      "type": "array"
-    },
     "tremolo-single": {
       "allOf": [
         {
@@ -2492,7 +2394,8 @@
           "$ref": "#/$defs/staff-number"
         },
         "type": {
-          "$ref": "#/$defs/literal-string-tuplet"
+          "const": "tuplet",
+          "type": "string"
         }
       },
       "required": [
@@ -2590,7 +2493,7 @@
       "type": "string"
     }
   },
-  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/27",
+  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/28",
   "$ref": "#/$defs/root",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "An encoding of Common Western Music Notation.",

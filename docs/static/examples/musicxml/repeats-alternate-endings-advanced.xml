@@ -1,0 +1,122 @@
+<score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Music</part-name>
+        </score-part>
+    </part-list>
+    <part id="P1">
+        <measure number="1">
+            <barline location="left">
+                <bar-style>heavy-light</bar-style>
+                <repeat direction="forward"/>
+            </barline>
+            <attributes>
+                <divisions>256</divisions>
+                <key>
+                    <fifths>0</fifths>
+                    <mode>major</mode>
+                </key>
+                <time>
+                    <beats>3</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>768</duration>
+                <type>half</type>
+                <dot/>
+            </note>
+        </measure>
+        <measure number="2">
+            <barline location="left">
+                <metadiff><ending number="1,2" type="start"/></metadiff>
+            </barline>
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>768</duration>
+                <type>half</type>
+                <dot/>
+            </note>
+        </measure>
+        <measure number="3">
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>512</duration>
+                <type>half</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>D</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+            <barline location="right">
+                <bar-style>light-heavy</bar-style>
+                <metadiff><ending number="1,2" type="stop"/></metadiff>
+                <repeat direction="backward"/>
+            </barline>
+        </measure>
+        <measure number="4">
+            <barline location="left">
+                <metadiff><ending number="3" type="start"/></metadiff>
+            </barline>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>768</duration>
+                <type>half</type>
+                <dot/>
+            </note>
+        </measure>
+        <measure number="5">
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>512</duration>
+                <type>half</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>F</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>256</duration>
+                <type>quarter</type>
+            </note>
+            <barline location="right">
+                <metadiff><ending number="3" type="discontinue"/></metadiff>
+            </barline>
+        </measure>
+        <measure number="6">
+            <note>
+                <pitch>
+                    <step>E</step>
+                    <octave>5</octave>
+                </pitch>
+                <duration>768</duration>
+                <type>half</type>
+                <dot/>
+            </note>
+        </measure>
+    </part>
+</score-partwise>

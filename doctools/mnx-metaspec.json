@@ -1,0 +1,3417 @@
+{
+    "version": 28,
+    "format": {
+        "name": "MNX",
+        "slug": "mnx"
+    },
+    "site": {
+        "siteName": "MNX specification",
+        "formatName": "MNX",
+        "sidebarHtml": [
+            "<ul>",
+            "<li><a href=\"/\">Home</a></li>",
+            "<li><a href=\"/mnx-reference/objects/\">Reference</a>",
+            "    <ul>",
+            "    <li><a href=\"/mnx-reference/objects/\">Objects</a></li>",
+            "    <li><a href=\"/mnx-reference/examples/\">Example documents</a></li>",
+            "    <li><a href=\"/mnx-schema.json\">Raw JSON Schema</a></li>",
+            "    </ul>",
+            "</li>",
+            "<li><a href=\"/comparisons/musicxml/\">MNX and MusicXML</a></li>",
+            "</ul>"
+        ]
+    },
+    "objects": {
+        "global": {
+            "title": "global data",
+            "kind": "dict",
+            "properties": {
+                "lyrics": {
+                    "type": "lyrics-global"
+                },
+                "measures": {
+                    "items": [
+                        "measure-global"
+                    ],
+                    "required": true
+                },
+                "sounds": {
+                    "type": "sounds-global"
+                }
+            },
+            "description": [
+                "<p>The global object represents global notation data, which is generally shared by a set of parts within the score.</p>"
+            ]
+        },
+        "root": {
+            "role": "root",
+            "title": "__root__",
+            "kind": "dict",
+            "properties": {
+                "global": {
+                    "type": "global",
+                    "required": true
+                },
+                "layouts": {
+                    "items": [
+                        "system-layout"
+                    ]
+                },
+                "mnx": {
+                    "type": "mnx",
+                    "required": true,
+                    "description": [
+                        "This required object serves two purposes:",
+                        "",
+                        "1. It provides a way for consuming applications to quickly test whether a document is intended to be parsed as MNX. Consuming applications should check the top-level object for the presence of an \"mnx\" attribute.",
+                        "",
+                        "2. It provides metadata about the specific MNX implementation used (namely, the version number)."
+                    ]
+                },
+                "parts": {
+                    "items": [
+                        "part"
+                    ],
+                    "required": true
+                },
+                "scores": {
+                    "items": [
+                        "score"
+                    ]
+                }
+            }
+        },
+        "measure-global": {
+            "title": "measure global",
+            "kind": "dict",
+            "properties": {
+                "barline": {
+                    "type": "barline",
+                    "description": [
+                        "The barline drawn at the end of this measure. If not provided, the barline should be interpreted as follows:",
+                        "",
+                        "* If the measure is the last in the document, use {\"type\": \"final\"}.",
+                        "* Otherwise, use {\"type\": \"regular\"}."
+                    ]
+                },
+                "ending": {
+                    "type": "ending",
+                    "description": [
+                        "Alternate endings (aka \"voltas\") that begin in this measure."
+                    ]
+                },
+                "fermata": {
+                    "type": "fermata",
+                    "description": [
+                        "Represents a fermata that's visually aligned with the barline at the end of this measure. This is traditionally rendered over the barline."
+                    ]
+                },
+                "fine": {
+                    "type": "fine"
+                },
+                "jump": {
+                    "type": "jump"
+                },
+                "key": {
+                    "type": "key"
+                },
+                "number": {
+                    "type": "measure-number",
+                    "description": [
+                        "A visual label for the measure. It is not required to be unique in the document.",
+                        "",
+                        "If it's omitted, consuming applications are free to use their own algorithms for determining this measure's visual label. A simple algorithm is to use the 1-based index of this measure within the global measures list."
+                    ]
+                },
+                "repeatEnd": {
+                    "type": "repeat-end"
+                },
+                "repeatStart": {
+                    "type": "repeat-start"
+                },
+                "segno": {
+                    "type": "segno"
+                },
+                "tempos": {
+                    "items": [
+                        "tempo"
+                    ]
+                },
+                "time": {
+                    "type": "time"
+                }
+            },
+            "description": [
+                "<p>The measure-global object is the place to encode global information about a measure — that is, the measure's metadata that applies to <em>every</em> part in the score. Examples are key signatures and time signatures.</p>"
+            ]
+        },
+        "color": {
+            "kind": "string"
+        },
+        "fifths": {
+            "kind": "number",
+            "description": [
+                "<p>Represents the number of flats or sharps, as in a traditional key signature. Negative numbers are used for flats and positive numbers for sharps, reflecting the key's placement within the circle of fifths (hence the name \"fifths\").</p>",
+                "",
+                "<p>While there's no theoretical limit on this value, for practical purposes we recommend keeping this value between -8 and 8.</p>"
+            ]
+        },
+        "key": {
+            "title": "key signature",
+            "kind": "dict",
+            "properties": {
+                "color": {
+                    "type": "color",
+                    "description": [
+                        "An optional color to be used when rendering this key signature."
+                    ]
+                },
+                "fifths": {
+                    "type": "fifths",
+                    "required": true,
+                    "description": [
+                        "The number of fifths distance from a signature with no accidentals."
+                    ]
+                }
+            },
+            "description": [
+                "<p>The key object defines a key signature applicable to this and all following measures, until changed..</p>"
+            ]
+        },
+        "time": {
+            "title": "time signature",
+            "kind": "dict",
+            "properties": {
+                "count": {
+                    "type": "positive-integer",
+                    "required": true,
+                    "description": [
+                        "The number of beats. Generally this corresponds to the top number of the rendered time signature."
+                    ]
+                },
+                "display": {
+                    "type": "time-signature-display",
+                    "description": [
+                        "A special time signature glyph to use, e.g. for common time or cut time.",
+                        "",
+                        "Note it's still required to encode \"count\" and \"unit\" even when using \"display\". For display=\"common\", use \"count\": 4, \"unit\": 4. For display=\"cut\", use \"count\": 2, \"unit\": 2."
+                    ]
+                },
+                "unit": {
+                    "type": "time-signature-unit",
+                    "required": true,
+                    "description": [
+                        "The unit value. Generally this corresponds to the bottom number of the rendered time signature."
+                    ]
+                }
+            },
+            "description": [
+                "<p>This object defines a time signature, applicable to this and all following measures, until changed.</p>"
+            ]
+        },
+        "part": {
+            "kind": "dict",
+            "properties": {
+                "kit": {
+                    "type": "kit",
+                    "description": [
+                        "The definition of a kit of instruments (typically percussion) that are used by this part. Each event in this part can then refer to an individual kitComponent."
+                    ]
+                },
+                "measures": {
+                    "items": [
+                        "part-measure"
+                    ],
+                    "required": true,
+                    "description": [
+                        "This array's length must match the length of the <a href=\"../global/\">global data object</a>'s \"measures\" array."
+                    ]
+                },
+                "name": {
+                    "type": "part-name",
+                    "description": [
+                        "An optional name for this part. Notation software might use this in instrument-selection UI, and/or it might be rendered to the left of this part's staves (see the \"staff\" object)."
+                    ]
+                },
+                "shortName": {
+                    "type": "part-short-name",
+                    "description": [
+                        "An optional abbreviated name for this part. Notation software might use this in instrument-selection UI, and/or it might be rendered to the left of this part's staves (see the \"staff\" object).",
+                        "",
+                        "For example, the system in a piece of music might use the name \"Guitar\", while subsequent systems might use the abbreviated \"Gtr.\" instead."
+                    ]
+                },
+                "smuflFont": {
+                    "type": "smufl-font",
+                    "description": [
+                        "The SMuFL-compliant font to be used to render notational objects in this part. Can be overridden by certain child elements."
+                    ]
+                },
+                "staves": {
+                    "type": "staff-count",
+                    "description": [
+                        "The number of staves that this part uses. For example, use the value 2 for a grand staff (as used in piano music).",
+                        "",
+                        "If not provided, the default is 1."
+                    ]
+                },
+                "transposition": {
+                    "type": "part-transposition",
+                    "description": [
+                        "The instrument's transposition (used for transposing instruments such as B-flat clarinet). Specifies the interval that transforms a sounding pitch into a written pitch.",
+                        "",
+                        "For example, a B-flat clarinet, which is written a major-second above sounded pitch, would use the interval {\"staffDistance\": 1, \"halfSteps\": 2}.",
+                        "",
+                        "A piccolo, which is written an octave lower than sounded pitch, would use the interval {\"staffDistance\": -7, \"halfSteps\": -12}.",
+                        "",
+                        "(Note for MusicXML users: the direction of transposition is the opposite of MusicXML.)"
+                    ]
+                }
+            },
+            "description": [
+                "<p>The part object represents a set of measures which describe a single part within the score — generally corresponding to a single instrument. The sequence of measures must match the measures found in the <a href=\"../global/\">global data object</a>.</p>"
+            ]
+        },
+        "part-name": {
+            "title": "part name",
+            "kind": "string"
+        },
+        "part-measure": {
+            "title": "part measure",
+            "kind": "dict",
+            "properties": {
+                "arpeggios": {
+                    "items": [
+                        "arpeggio"
+                    ],
+                    "description": [
+                        "All arpeggios in this part-measure."
+                    ]
+                },
+                "beams": {
+                    "type": "beam-list",
+                    "description": [
+                        "All beams that begin within this part-measure.",
+                        "",
+                        "Beams that are rendered in multiple measures (i.e., beams that cross barlines) are encoded in the first measure in which they appear."
+                    ]
+                },
+                "clefs": {
+                    "items": [
+                        "positioned-clef"
+                    ]
+                },
+                "dynamics": {
+                    "items": [
+                        "dynamic-group"
+                    ],
+                    "description": [
+                        "All dynamics in this part-measure."
+                    ]
+                },
+                "measureRepeat": {
+                    "type": "measure-repeat",
+                    "description": [
+                        "If this part measure is a measure repeat, this includes data about that repeat."
+                    ]
+                },
+                "nonArpeggios": {
+                    "items": [
+                        "non-arpeggio"
+                    ],
+                    "description": [
+                        "All non-arpeggios in this part-measure."
+                    ]
+                },
+                "ottavas": {
+                    "items": [
+                        "ottava"
+                    ],
+                    "description": [
+                        "All ottavas that begin within this part-measure.",
+                        "",
+                        "Ottavas that are rendered across multiple measures (i.e., ottavas that cross barlines) are encoded in the first measure in which they appear."
+                    ]
+                },
+                "sequences": {
+                    "items": [
+                        "sequence"
+                    ],
+                    "required": true
+                }
+            },
+            "description": [
+                "<p>The part measure object is the place to encode the musical information for a given measure in a given part. This constitutes the majority of musical content in an MNX document.</p>"
+            ]
+        },
+        "clef": {
+            "kind": "dict",
+            "properties": {
+                "color": {
+                    "type": "simple-color",
+                    "description": [
+                        "An optional color to be used when rendering this element and all child elements."
+                    ]
+                },
+                "glyph": {
+                    "type": "smufl-glyph",
+                    "description": [
+                        "A specific SMuFL glyph name to be used when rendering this clef, e.g. <code>gClefArrowUp</code>. See <a href=\"https://w3c-cg.github.io/smufl/latest/tables/clefs.html\">SMuFL clef glyphs</a>.",
+                        "",
+                        "We encourage you to use this sparingly. In the case of octave-transposing clefs, it's better to use <code>octave</code> and <code>showOctave</code> rather than just using <code>glyph</code>."
+                    ]
+                },
+                "octave": {
+                    "type": "ottava-amount-or-zero",
+                    "description": [
+                        "The number of octaves by which the sounded pitches normally indicated by the given clef sign should be transposed. Default is zero."
+                    ]
+                },
+                "showOctave": {
+                    "type": "boolean",
+                    "description": [
+                        "Whether the clef's glyph should display an octave offset visually (such as an \"8\" at the top or bottom of a G clef).",
+                        "",
+                        "This is used together with <code>octave</code>. If <code>octave</code> is set to a non-zero value, <code>showOctave</code> encodes whether the octave offset should be displayed as part of the clef's glyph.",
+                        "",
+                        "If <code>octave</code> is non-zero and <code>showOctave</code> is not provided, <code>showOctave</code> is to be interpreted as true.",
+                        "",
+                        "We encourage you to use <code>showOctave</code> instead of the lower-level <code>glyph</code>, because the former encodes intent."
+                    ]
+                },
+                "sign": {
+                    "type": "clef-sign",
+                    "required": true,
+                    "description": [
+                        "The clef sign."
+                    ]
+                },
+                "staffPosition": {
+                    "type": "staff-position",
+                    "required": true,
+                    "description": [
+                        "The staff position at which the clef is drawn. For example, a standard G glef is drawn at position -2."
+                    ]
+                }
+            }
+        },
+        "sequence": {
+            "kind": "dict",
+            "properties": {
+                "content": {
+                    "type": "sequence-content",
+                    "required": true,
+                    "description": [
+                        "The content of this sequence. Because the array elements are heterogeneous (event vs. grace vs. tuplet, etc.), each element has a <code>\"type\"</code>. The <code>\"type\"</code> is assumed to be <code>\"event\"</code> if left unspecified, because events are by far the most common case."
+                    ]
+                },
+                "fullMeasure": {
+                    "type": "full-measure-rest",
+                    "description": [
+                        "Specifies that this sequence is a full-measure rest, and contains optional information about that full-measure rest.",
+                        "",
+                        "Typically, full-measure rests get special treatment by notation apps: they're centered horizontally within the bar and they might use a rest glyph that doesn't necessarily match the bar's duration.",
+                        "",
+                        "If a sequence has <code>fullMeasure</code> defined, then the sequence's <code>content</code> must be an empty array.",
+                        "",
+                        "Note the full measure rest object has no required attributes of its own. It's valid for <code>fullMeasure</code> to be set to an empty object: <code>{}</code>. In this case, this means the sequence is indeed a full-measure rest, with default full-measure rest attributes."
+                    ]
+                },
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "The default orientation of the content in this sequence. If not provided, the orientation is determined automatically according to the implementation’s rendering rules and may be overridden by descendant elements."
+                    ]
+                },
+                "staff": {
+                    "type": "staff-number",
+                    "description": [
+                        "The default staff number of the content in this sequence. This is used in cross-staff keyboard notation. If not provided, the value is assumed to be 1 (the first staff in the part)."
+                    ]
+                },
+                "voice": {
+                    "type": "voice-name",
+                    "description": [
+                        "A string that identifies the voice to which this sequence belongs. All sequences in a given part having the same value of \"voice\" belong to the same voice. Within a given measure, no two sequences may share the same value for voice. The value of voice is an opaque identifier that does not supply information from producers to consumers."
+                    ]
+                }
+            },
+            "description": [
+                "<p>The sequence object organizes a set of musical events within a measure into a strict temporal <a href=\"../../../infrastructure/sequence-content/\">sequence</a>.</p>",
+                "",
+                "<p>To determine the measure position of each event within a sequence, you <a href=\"../../../infrastructure/sequence-content/\">sequence the content</a>, with a starting position <code>0</code> and time modification ratio <code>1</code>.</p>",
+                "",
+                "<p>The content within each sequence supplies the music for a single polyphonic voice within its containing measure, including notes, chords, rests, tuplets and grace notes.</p>"
+            ]
+        },
+        "clef-sign": {
+            "title": "clef sign",
+            "kind": "string",
+            "values": {
+                "C": [],
+                "F": [],
+                "G": []
+            }
+        },
+        "sequence-content": {
+            "kind": "array",
+            "items": [
+                "event",
+                "grace",
+                "tuplet",
+                "space",
+                "multi-note-tremolo"
+            ]
+        },
+        "event": {
+            "kind": "dict",
+            "properties": {
+                "duration": {
+                    "type": "note-value",
+                    "required": true,
+                    "description": [
+                        "The duration of this event."
+                    ]
+                },
+                "fermata": {
+                    "type": "fermata"
+                },
+                "kitNotes": {
+                    "items": [
+                        "kit-note"
+                    ]
+                },
+                "lyrics": {
+                    "type": "lyrics",
+                    "description": [
+                        "Lyrics for this event."
+                    ]
+                },
+                "markings": {
+                    "type": "event-markings"
+                },
+                "notes": {
+                    "items": [
+                        "note"
+                    ]
+                },
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "A specific orientation for this event. If not provided, the orientation is inherited from any ancestor element that specified it. If no ancestor did so, the orientation is determined automatically according to the implementation’s rendering rules."
+                    ]
+                },
+                "rest": {
+                    "type": "rest"
+                },
+                "slurs": {
+                    "items": [
+                        "slur"
+                    ]
+                },
+                "staff": {
+                    "type": "staff-number",
+                    "description": [
+                        "A specific staff index for this event. If not provided, the value is inherited from any ancestor element that specified it. If no ancestor did so, the value is determined automatically according to the implementation’s rendering rules.",
+                        "",
+                        "The primary purpose of this attribute is to override a default staff assignment at the sequence level — as in cross-staff keyboard notation."
+                    ]
+                },
+                "stemDirection": {
+                    "type": "stem-direction",
+                    "description": [
+                        "Whether the stem of the note(s) in this event is up or down. If not provided, this is left to consuming software to decide automatically."
+                    ]
+                },
+                "type": {
+                    "const": "event",
+                    "description": [
+                        "Optional. \"type\" is used to disambiguate between different types of objects within a sequence, and \"type\" is assumed to be \"event\" if it's not explicitly specified."
+                    ]
+                }
+            },
+            "description": [
+                "<p>The event object represents a discrete period of time during which one or more notes are performed, or in which a rest occurs.</p>",
+                "",
+                "<p>All events require a <code>value</code> attribute to provide their duration as a <a href=\"../../data-types/note-value/\">note value</a>. This duration is implicitly multiplied by the current <a href=\"../../../infrastructure/sequence-content/\">time modification ratio</a>, as specified by the process of <a href=\"../../../infrastructure/sequence-content/\">sequencing the content</a> of the event’s containing element.</p>"
+            ]
+        },
+        "pitch": {
+            "kind": "dict",
+            "properties": {
+                "alter": {
+                    "type": "alter"
+                },
+                "octave": {
+                    "type": "octave",
+                    "required": true
+                },
+                "step": {
+                    "type": "step",
+                    "required": true
+                }
+            }
+        },
+        "note": {
+            "kind": "dict",
+            "properties": {
+                "accidentalDisplay": {
+                    "type": "accidental-display",
+                    "description": [
+                        "Information about the displayed accidental for this note.",
+                        "",
+                        "This value is optional. If it's missing, consuming software should do the following, based on the value of the top-level <a href=\"../support/\">\"useAccidentalDisplay\" attribute</a>:",
+                        "",
+                        "* If useAccidentalDisplay is true, then this note's accidentalDisplay should be interpreted as {\"show\": false}.",
+                        "",
+                        "* If useAccidentalDisplay is false, then this note's accidentalDisplay should be determined according to its own algorithms."
+                    ]
+                },
+                "perform": {
+                    "type": "perform-options",
+                    "description": [
+                        "Controls whether this note is performed by consuming software."
+                    ]
+                },
+                "pitch": {
+                    "type": "pitch",
+                    "required": true,
+                    "description": [
+                        "The note's sounded pitch."
+                    ]
+                },
+                "staff": {
+                    "type": "staff-number",
+                    "description": [
+                        "A specific staff index for this note. If not provided, the value is inherited from any ancestor element that specified it. If no ancestor did so, the value is determined automatically according to the implementation’s rendering rules.",
+                        "",
+                        "The primary purpose of this attribute is to override a default staff assignment at the sequence or event level — as in cross-staff keyboard notation."
+                    ]
+                },
+                "ties": {
+                    "type": "tie-list",
+                    "description": [
+                        "If this note starts a tie, this object encodes the tie.",
+                        "",
+                        "This is an array, because it's possible for a single note to be tied to multiple end notes, in the case of jumps and alternate endings. The order of the elements of this array is undefined."
+                    ]
+                },
+                "written": {
+                    "type": "written",
+                    "description": [
+                        "Information about how this note is written in context of a transposed score or part. This allows the note to have two different spellings: the spelling in a concert-pitch score (as defined in the \"pitch\" attribute) and the spelling in a transposed score or part (as defined in the \"written\" attribute).",
+                        "",
+                        "For applications that require more than two spellings for a given note, use a separate part object. We might expand \"written\" to support more than a single alternate spelling in the future, but at the moment we opt for simplicity for the common case."
+                    ]
+                }
+            },
+            "description": [
+                "<p>The note object defines a single note within an event, along with other information pertaining to the note itself rather than to its containing event.</p>"
+            ]
+        },
+        "barline": {
+            "kind": "dict",
+            "properties": {
+                "type": {
+                    "type": "barline-type",
+                    "required": true
+                }
+            }
+        },
+        "barline-type": {
+            "title": "barline type",
+            "kind": "string",
+            "values": {
+                "regular": [],
+                "dotted": [],
+                "dashed": [],
+                "heavy": [],
+                "double": [
+                    "Two light lines together, conventionally known as a \"double barline.\""
+                ],
+                "final": [
+                    "A light line followed by a heavy line, as conventionally used at the end of a score."
+                ],
+                "heavyLight": [],
+                "heavyHeavy": [],
+                "tick": [],
+                "short": [],
+                "noBarline": []
+            }
+        },
+        "rest": {
+            "kind": "dict",
+            "properties": {
+                "staffPosition": {
+                    "type": "staff-position",
+                    "description": [
+                        "If provided, this specifies the vertical position of the rest on the staff. If not provided, the rest should be positioned automatically according to convention.",
+                        "",
+                        "This vertical position is the \"origin point\" from which the rest symbol's SMuFL glyph is drawn. For example, a quarter rest is drawn from its vertical midpoint. See the <a href=\"https://w3c-cg.github.io/smufl/latest/tables/rests.html\">SMuFL rests documentation</a> for more."
+                    ]
+                }
+            },
+            "description": [
+                "<p>The rest object defines a rest within an event, along with other information pertaining to the rest rather than to its containing event.</p>"
+            ]
+        },
+        "tie": {
+            "kind": "dict",
+            "properties": {
+                "lv": {
+                    "type": "boolean",
+                    "description": [
+                        "Specifies that this tie is a <i>laissez vibrer</i> tie — which does not have a particular destination note.",
+                        "",
+                        "If this attribute is omitted, the value is assumed to be false."
+                    ]
+                },
+                "side": {
+                    "type": "slur-side",
+                    "description": [
+                        "Specifies whether the tie curves upward or downward. If not provided, the consuming software should determine the value automatically according to its own logic."
+                    ]
+                },
+                "target": {
+                    "type": "id",
+                    "description": [
+                        "The ID of a note that ends this tie.",
+                        "",
+                        "The start note and end note must be in the same part (i.e., it's not allowed for a tie to start in one part and end in a different part).",
+                        "",
+                        "The end note must have the same sounded pitch as the start note — but the two notes are allowed to use different note spellings, as long as those spellings are enharmonically equivalent.",
+                        "",
+                        "If \"target\" is omitted, \"lv\" is required with a value of true."
+                    ]
+                },
+                "targetType": {
+                    "type": "tie-target-type",
+                    "description": [
+                        "Specifies the relationship of the tie's start note to its target (end) note.",
+                        "",
+                        "Generally, most ties are \"nextNote\", meaning the tie connects notes that are in consecutive events. The other supported values — \"arpeggio\", \"crossVoice\" and \"crossJump\" — describe less frequent situations of music notation.",
+                        "",
+                        "Many simpler notation applications make the assumption that ties are always in consecutive events. This attribute exists as a hint for these applications, so that they can include or exclude ties accordingly. For example, a simple notation-display application may decide to ignore all ties that don't have targetType \"nextNote\".",
+                        "",
+                        "If this attribute isn't provided, behavior is undefined. In this case, consuming applications may decide how (or whether) to parse the tie, according to their own algorithms. For example, a simple algorithm might be: only honor this tie if the \"target\" note lives in the subsequent event.",
+                        "",
+                        "It is an error to use this attribute if \"lv\" is true."
+                    ]
+                }
+            },
+            "description": [
+                "<p>The tie object represents a single tie between two notes. A tie is only encoded on the <em>first</em> note — i.e., the note that starts the tie.</p>",
+                "",
+                "<p>In the common case of simple ties, use \"target\" to specify the tie's end note.</p>",
+                "",
+                "<p>For <i>laissez vibrer</i> ties — which do not have a particular destination note — omit \"target\" and use \"lv\" instead.</p>"
+            ]
+        },
+        "id": {
+            "title": "ID",
+            "kind": "string",
+            "pattern": "^[\\x21-\\x7E]{1,256}$",
+            "description": [
+                "<p>MNX requires that IDs:</p>",
+                "",
+                "<ul>",
+                "<li>Are between 1 and 256 characters long (inclusive)</li>",
+                "<li>Consist only of ASCII characters</li>",
+                "<li>Do not contain spaces or nonprintable characters</li>",
+                "</ul>"
+            ]
+        },
+        "beam-list": {
+            "title": "beam list",
+            "kind": "array",
+            "items": [
+                "beam"
+            ]
+        },
+        "beam": {
+            "kind": "dict",
+            "properties": {
+                "beams": {
+                    "type": "beam-list",
+                    "description": [
+                        "Secondary beams within this beam."
+                    ]
+                },
+                "direction": {
+                    "type": "beam-hook-direction",
+                    "description": [
+                        "If this beam represents a beam hook, this encodes the direction of the hook. Default value is \"auto\"."
+                    ]
+                },
+                "events": {
+                    "items": [
+                        "id"
+                    ],
+                    "required": true,
+                    "description": [
+                        "IDs of the events that comprise this beam — in order by their position in the beam."
+                    ]
+                }
+            },
+            "description": [
+                "<p>Describes a single beam.</p>",
+                "",
+                "<p>For music that uses secondary beams (i.e., sixteenth notes or smaller), encoding the secondary beams is optional. If they're encoded explicitly, they go within a nested <code>\"beams\"</code> object within the beam. This nesting can be recursive, for multi-layered beams.</p>",
+                "",
+                "<p>Beam hooks are encoded as a secondary beam containing only a single event. A beam hook can optionally encode the direction of its hook, with <code>\"direction\"</code>.</p>"
+            ]
+        },
+        "beam-hook-direction": {
+            "title": "beam hook direction",
+            "kind": "string",
+            "values": {
+                "left": [],
+                "right": [],
+                "auto": []
+            }
+        },
+        "grace": {
+            "kind": "dict",
+            "properties": {
+                "color": {
+                    "type": "color",
+                    "description": [
+                        "An optional color to be used when rendering this object and all child objects."
+                    ]
+                },
+                "content": {
+                    "items": [
+                        "event"
+                    ],
+                    "required": true
+                },
+                "graceType": {
+                    "type": "grace-type",
+                    "description": [
+                        "The kind of grace notes to use. The default value is \"stealPrevious\"."
+                    ]
+                },
+                "slash": {
+                    "type": "boolean",
+                    "description": [
+                        "Whether grace notes are notated with a slash.",
+                        "",
+                        "The default value (true) specifies a slash, indicating that the grace notes are displayed with a diagonal stroke and are to be performed quickly and not in their notated rhythm. Otherwise, they are performed with the notated note values according to the performance characteristics given by \"graceType\"."
+                    ]
+                },
+                "type": {
+                    "const": "grace",
+                    "required": true
+                }
+            },
+            "description": [
+                "<p>A grace object encodes grace notes. Its \"content\" contains the note data.</p>",
+                "",
+                "<p>Within \"content\", each inner event's \"value\" encodes the visual rhythmic appearance of the grace note — e.g., \"/8\" for an eighth note.</p>"
+            ]
+        },
+        "tuplet": {
+            "kind": "dict",
+            "properties": {
+                "bracket": {
+                    "type": "yes-no-auto",
+                    "description": [
+                        "Controls the display of a bracket in conjunction with the tuplet. This is disregarded if \"showNumber\" has a value of \"none\".",
+                        "",
+                        "* \"auto\" (default) — a bracket is shown for the tuplet if and only if the notes are unbeamed.",
+                        "",
+                        "* \"yes\" — always display a bracket.",
+                        "",
+                        "* \"no\" — never display a bracket."
+                    ]
+                },
+                "content": {
+                    "type": "sequence-content",
+                    "required": true
+                },
+                "inner": {
+                    "type": "note-value-quantity",
+                    "required": true,
+                    "description": [
+                        "The duration of the enclosed content, as notated.",
+                        "",
+                        "For example, a quarter-note triplet would use the value {\"multiple\": \"3\", \"duration\": {\"base\": \"quarter\"}}."
+                    ]
+                },
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "A specific orientation for this tuplet. If not provided, the orientation is inherited from any ancestor element that specified it. If no ancestor did so, the orientation is determined automatically according to the implementation’s rendering rules."
+                    ]
+                },
+                "outer": {
+                    "type": "note-value-quantity",
+                    "required": true,
+                    "description": [
+                        "The duration of this tuplet with respect to its containing element. This is how much time the tuplet occupies in the measure (or parent tuplet, in case of nested tuplets) in which it is placed.",
+                        "",
+                        "For example, a quarter-note triplet would use the value {\"multiple\": \"2\", \"duration\": {\"base\": \"quarter\"}}."
+                    ]
+                },
+                "showNumber": {
+                    "type": "tuplet-display-setting",
+                    "description": [
+                        "Controls the display of the quantity of inner and outer note value units for the tuplet. If not provided, \"inner\" is assumed."
+                    ]
+                },
+                "showValue": {
+                    "type": "tuplet-display-setting",
+                    "description": [
+                        "Controls the display of the note value units used inside and outside the tuplet. If not provided, \"none\" is assumed."
+                    ]
+                },
+                "staff": {
+                    "type": "staff-number",
+                    "description": [
+                        "A specific staff index for this tuplet. If not provided, the value is inherited from any ancestor element that specified it. If no ancestor did so, the value is determined automatically according to the implementation’s rendering rules.",
+                        "",
+                        "The primary purpose of this attribute is to override a default staff assignment at the sequence level — as in cross-staff keyboard notation."
+                    ]
+                },
+                "type": {
+                    "const": "tuplet",
+                    "required": true
+                }
+            },
+            "description": [
+                "<p>The tuplet object organizes a set of musical events that form a distinct and contiguous run within a <a href=\"../../../infrastructure/sequence-content/\">sequence</a>, and which are subject to a common <a href=\"../../../infrastructure/sequence-content/\">time modification ratio</a> expressed as the quotient of two rational numbers. A tuplet behaves much like a sequence with respect to its contents.</p>",
+                "",
+                "<p>The contents of the tuplet are placed into a temporal sequence by performing the procedure <a href=\"../../../infrastructure/sequence-content/\">sequencing the content</a> with a starting position determined by the parent context, and a time modification ratio equal to the tuplet’s outer value divided by its inner value. Following this procedure, the value of the <i>sequence cursor</i> MUST equal the value of inner, or the contents are considered to be in error.</p>"
+            ]
+        },
+        "note-value-quantity": {
+            "title": "note value quantity",
+            "kind": "dict",
+            "properties": {
+                "duration": {
+                    "type": "note-value",
+                    "required": true,
+                    "description": [
+                        "The base note value to be multiplied."
+                    ]
+                },
+                "multiple": {
+                    "type": "positive-integer",
+                    "required": true,
+                    "description": [
+                        "The integer multiple."
+                    ]
+                }
+            },
+            "description": [
+                "<p>A note value quantity is an integer multiple of a note value. For example, this can represent the concepts of \"two eighth notes\" or \"six dotted quarter notes.\"</p>"
+            ]
+        },
+        "ottava": {
+            "kind": "dict",
+            "properties": {
+                "end": {
+                    "type": "measure-rhythmic-position",
+                    "required": true,
+                    "description": [
+                        "The location of the last event that is affected by this ottava.",
+                        "",
+                        "Take care when working with grace notes. If the ottava ends at a rhythmic position that is directly preceded by grace notes, use \"graceIndex: 0\" on the rhythmic position in order to include those grace notes in the ottava."
+                    ]
+                },
+                "orient": {
+                    "type": "orientation"
+                },
+                "position": {
+                    "type": "rhythmic-position",
+                    "required": true,
+                    "description": [
+                        "The location of the first event that is affected by this ottava.",
+                        "",
+                        "Take care when working with grace notes. If the ottava starts at a rhythmic position that is directly preceded by grace notes, omit \"graceIndex\" from the rhythmic position in order to include those grace notes in the ottava."
+                    ]
+                },
+                "staff": {
+                    "type": "staff-number",
+                    "description": [
+                        "The staff number to which this ottava applies, if such a designation makes sense. If not provided, the default is 1."
+                    ]
+                },
+                "value": {
+                    "type": "ottava-amount",
+                    "required": true,
+                    "description": [
+                        "The type of ottava."
+                    ]
+                },
+                "voice": {
+                    "type": "voice-name",
+                    "description": [
+                        "The voice to which this ottava applies. By default, an ottava applies to all voices in the part; using this attribute will narrow the scope of the ottava to only the voice you specify."
+                    ]
+                }
+            },
+            "description": [
+                "<p>An ottava (octave shift), traditionally notated with a marking such as \"8va\", tells a musician that the affected note(s) are being rendered a number of octaves up or down from their normal appearance on the staff, for sake of readability.</p>",
+                "",
+                "<p>Note: the \"pitch\" attribute of any affected note should be encoded as the sounded pitch. In other words, the absence or presence of an octave shift does not affect a note's \"pitch\" attribute; the octave shift only affects the note's graphical display.</p>"
+            ]
+        },
+        "ottava-amount": {
+            "title": "ottava amount",
+            "kind": "number",
+            "values": {
+                "1": [
+                    "The written pitch is one octave lower than sounded. Traditionally rendered with an \"8va\" symbol."
+                ],
+                "2": [
+                    "The written pitch is two octaves lower than sounded. Traditionally rendered with a \"15ma\" symbol."
+                ],
+                "-1": [
+                    "The written pitch is one octave higher than sounded. Traditionally rendered with an \"8vb\" symbol."
+                ],
+                "-2": [
+                    "The written pitch is two octaves higher than sounded. Traditionally rendered with a \"15mb\" symbol."
+                ],
+                "3": [
+                    "The written pitch is three octaves lower than sounded. Traditionally rendered with a \"22\" symbol."
+                ],
+                "-3": [
+                    "The written pitch is three octaves higher than sounded. Traditionally rendered with a \"22\" symbol."
+                ]
+            },
+            "description": [
+                "<p>Represents the number of octaves in an octave shift. See also <a href=\"../ottava-amount-or-zero/\">ottava amount or zero</a>, which includes the value zero.</p>"
+            ]
+        },
+        "slur": {
+            "kind": "dict",
+            "properties": {
+                "endNote": {
+                    "type": "id",
+                    "description": [
+                        "The ID of the specific note at which this slur ends. This note must be within the event specified by this slur's \"target\" attribute.",
+                        "",
+                        "For example, you can use endNote to encode which specific note, within a chord, a slur is intended to end on — in cases when music has multiple slurs end on the same event."
+                    ]
+                },
+                "lineType": {
+                    "type": "line-type",
+                    "description": [
+                        "The slur's line type. If not provided, the consuming software should determine the value automatically according to its own logic."
+                    ]
+                },
+                "side": {
+                    "type": "slur-side",
+                    "description": [
+                        "The slur's side. If not provided, the consuming software should determine the value automatically according to its own logic."
+                    ]
+                },
+                "sideEnd": {
+                    "type": "slur-side",
+                    "description": [
+                        "The slur’s side at the end of the slur. This is useful to encode in cases where it differs from its initial side — for example, in cross-staff notation.",
+                        "",
+                        "If not provided, the consuming software should determine the value automatically according to its own logic. Usually this is the same value as <code>\"side\"</code>."
+                    ]
+                },
+                "startNote": {
+                    "type": "id",
+                    "description": [
+                        "The ID of the specific note at which this slur starts. This note must be within the event that contains this slur.",
+                        "",
+                        "For example, you can use startNote to encode which specific note, within a chord, a slur is intended to start on — in cases when music has multiple slurs starting on the same event."
+                    ]
+                },
+                "target": {
+                    "type": "id",
+                    "required": true,
+                    "description": [
+                        "The ID of the slur’s end event — that is, the last event over which this slur is rendered. This ID must exist in the document and must identify an event."
+                    ]
+                }
+            }
+        },
+        "slur-side": {
+            "title": "slur side",
+            "kind": "string",
+            "values": {
+                "up": [
+                    "The slur/tie is curved upward (the tips face down)."
+                ],
+                "down": [
+                    "The slur/tie is curved downward (the tips face up)."
+                ]
+            },
+            "description": [
+                "<p>This indicates the orientation of a slur or tie. It specifies whether the slur/tie curves upward or downward.</p>"
+            ]
+        },
+        "slur-tie-end-location": {
+            "title": "slur/tie end location",
+            "kind": "string"
+        },
+        "repeat-start": {
+            "title": "repeat start",
+            "kind": "dict",
+            "properties": {}
+        },
+        "repeat-end": {
+            "title": "repeat end",
+            "kind": "dict",
+            "properties": {
+                "times": {
+                    "type": "repeat-times"
+                }
+            }
+        },
+        "repeat-times": {
+            "title": "repeat times",
+            "kind": "number"
+        },
+        "ending": {
+            "kind": "dict",
+            "properties": {
+                "color": {
+                    "type": "color",
+                    "description": [
+                        "An optional color to use when rendering this ending."
+                    ]
+                },
+                "duration": {
+                    "type": "ending-duration",
+                    "required": true,
+                    "description": [
+                        "The duration of this ending, measured as a number of bars."
+                    ]
+                },
+                "numbers": {
+                    "items": [
+                        "ending-number"
+                    ]
+                },
+                "open": {
+                    "type": "ending-open"
+                }
+            },
+            "description": [
+                "<p>The ending object encodes an alternate ending, sometimes known as a \"volta bracket.\"</p>"
+            ]
+        },
+        "ending-duration": {
+            "title": "ending duration",
+            "kind": "number",
+            "description": [
+                "<p>This describes the duration of an alternate ending (a \"volta\"), expressed as a number of bars. It must be an integer greater than or equal to 1.</p>"
+            ]
+        },
+        "ending-number": {
+            "title": "ending number",
+            "kind": "number"
+        },
+        "ending-open": {
+            "title": "ending open",
+            "kind": "boolean"
+        },
+        "segno": {
+            "kind": "dict",
+            "properties": {
+                "color": {
+                    "type": "color",
+                    "description": [
+                        "An optional color to be used when rendering this object and all child objects."
+                    ]
+                },
+                "glyph": {
+                    "type": "smufl-glyph",
+                    "description": [
+                        "A specific SMuFL glyph name to be used when rendering this segno."
+                    ]
+                },
+                "location": {
+                    "type": "rhythmic-position",
+                    "required": true,
+                    "description": [
+                        "The location of this segno within the bar."
+                    ]
+                }
+            }
+        },
+        "jump": {
+            "kind": "dict",
+            "properties": {
+                "location": {
+                    "type": "rhythmic-position",
+                    "required": true,
+                    "description": [
+                        "The location of this direction within the bar."
+                    ]
+                },
+                "type": {
+                    "type": "jump-type",
+                    "required": true
+                }
+            }
+        },
+        "jump-type": {
+            "title": "jump type",
+            "kind": "string",
+            "values": {
+                "dsalfine": [],
+                "segno": []
+            }
+        },
+        "fine": {
+            "kind": "dict",
+            "properties": {
+                "color": {
+                    "type": "color",
+                    "description": [
+                        "An optional color to be used when rendering this fine direction."
+                    ]
+                },
+                "location": {
+                    "type": "rhythmic-position",
+                    "required": true,
+                    "description": [
+                        "The location of this fine direction within the bar."
+                    ]
+                }
+            }
+        },
+        "staff-count": {
+            "title": "staff count",
+            "kind": "number"
+        },
+        "system-layout": {
+            "title": "system layout",
+            "kind": "dict",
+            "properties": {
+                "content": {
+                    "type": "system-layout-content",
+                    "required": true
+                }
+            },
+            "description": [
+                "<p>The system-layout object defines a visual layout that can be used by <a href=\"../score/\">score</a>, <a href=\"../page/\">page</a> or <a href=\"../system/\">system</a> objects.</p>",
+                "",
+                "<p>For example, a layout might say \"Include the vocal part, with the piano part directly below. For the piano part, use a grand-staff brace.\"</p>"
+            ]
+        },
+        "part-short-name": {
+            "title": "part short name",
+            "kind": "string",
+            "description": [
+                "<p>The part's name in abbreviated form. For example, \"Vln\" for violin.</p>"
+            ]
+        },
+        "score": {
+            "kind": "dict",
+            "properties": {
+                "layout": {
+                    "type": "id",
+                    "description": [
+                        "An optional layout to use for all systems in this score. If provided, this should be the ID of a system layout object in the same MNX document.",
+                        "",
+                        "Note that individual page and system objects within this score can optionally override this."
+                    ]
+                },
+                "multimeasureRests": {
+                    "items": [
+                        "multimeasure-rest"
+                    ],
+                    "description": [
+                        "Defines all of the multimeasure rests within this particular score."
+                    ]
+                },
+                "name": {
+                    "type": "score-name",
+                    "required": true,
+                    "description": [
+                        "The score name, suitable for display to people viewing or selecting this particular score within music notation software.",
+                        "",
+                        "Examples: \"Full score\", \"Flute 1 part\"."
+                    ]
+                },
+                "pages": {
+                    "items": [
+                        "page"
+                    ]
+                },
+                "useWritten": {
+                    "type": "boolean",
+                    "description": [
+                        "If true, this score should be treated as a written-pitch (i.e., transposed) score instead of a concert-pitch score and all note objects and key signatures should be transposed before display.",
+                        "",
+                        "If not specified, this should be interpreted as false."
+                    ]
+                }
+            },
+            "description": [
+                "<p>The score object represents a particular graphical rendering of the music, with a defined subset of which parts are included, how they're visually arranged, where system breaks happen and where page breaks happen.</p>",
+                "",
+                "<p>An MNX document can contain multiple scores. For example, you can use this to define a \"full score\" vs. individual printed parts, within a single MNX file.</p>",
+                "",
+                "<p>MNX documents are not required to contain a score object. If a score object isn't provided, the default rendering behavior is to include all parts — in the same order as defined in the top-level \"parts\" object — with line breaks and page breaks determined automatically by the consuming software.</p>",
+                "",
+                "<p>A score object also is not required to contain a \"pages\" array. If \"pages\" is omitted, page breaks are to be determined automatically by the consuming software.</p>"
+            ]
+        },
+        "score-name": {
+            "title": "score name",
+            "kind": "string"
+        },
+        "page": {
+            "kind": "dict",
+            "properties": {
+                "layout": {
+                    "type": "id",
+                    "description": [
+                        "An optional layout to use for the systems in this page. If provided, this should be the ID of a <a href=\"../system-layout/\">system-layout object</a> in the same MNX document.",
+                        "",
+                        "This overrides the layout specified by the parent <a href=\"../score/\">score</a> object. It can be further overridden, on a per-system basis, in child system objects."
+                    ]
+                },
+                "systems": {
+                    "items": [
+                        "system"
+                    ],
+                    "required": true
+                }
+            },
+            "description": [
+                "<p>The page object represents a single page of music — either printed (as on paper) or digitally rendered.</p>",
+                "",
+                "<p>It's part of a <a href=\"../score/\">score</a> and contains a <a href=\"../system/\">system object</a> for each system of music in the page.</p>"
+            ]
+        },
+        "system": {
+            "kind": "dict",
+            "properties": {
+                "layout": {
+                    "type": "id",
+                    "description": [
+                        "An optional layout to use for this system. If provided, this should be the ID of a <a href=\"../system-layout/\">system-layout</a> in the same MNX document.",
+                        "",
+                        "This overrides any layout specified by the parent <a href=\"../page/\">page</a> or <a href=\"../score/\">score</a> objects."
+                    ]
+                },
+                "layoutChanges": {
+                    "items": [
+                        "layout-change"
+                    ]
+                },
+                "measure": {
+                    "type": "id",
+                    "required": true,
+                    "description": [
+                        "The ID of the first <a href=\"../measure-global/\">global measure</a> in this system."
+                    ]
+                }
+            },
+            "description": [
+                "<p>The system object describes a system of notation — that is, a collection of staves that represent one or more measures across one or more parts.</p>",
+                "",
+                "<p>This element is used in context of a <a href=\"../page/\">page</a>. Each system specifies its starting measure number and can optionally specify a layout.</p>"
+            ]
+        },
+        "measure-number": {
+            "title": "measure number",
+            "kind": "number"
+        },
+        "system-layout-content": {
+            "title": "system layout content",
+            "kind": "array",
+            "items": [
+                "staff-group",
+                "staff"
+            ]
+        },
+        "staff-group": {
+            "title": "staff group",
+            "kind": "dict",
+            "properties": {
+                "barlineStyle": {
+                    "type": "staff-group-barline-style",
+                    "description": [
+                        "How barlines within this staff group are connected.",
+                        "",
+                        "If not specified, the default value is \"instrument\", meaning all staves corresponding to the same MNX part use connected barlines."
+                    ]
+                },
+                "content": {
+                    "type": "system-layout-content",
+                    "required": true
+                },
+                "label": {
+                    "type": "staff-label",
+                    "description": [
+                        "An optional name for this group of staves. If provided, this should be rendered to the left of the staff group."
+                    ]
+                },
+                "symbol": {
+                    "type": "staff-symbol",
+                    "description": [
+                        "The symbol to use along the left vertical edge of this group of staves. If omitted, the default value is \"none\".",
+                        "",
+                        "Note that the child objects might also define their own own \"symbol\" attributes."
+                    ]
+                },
+                "type": {
+                    "const": "group",
+                    "required": true
+                }
+            },
+            "description": [
+                "<p>The staff group object is a way to group staff layouts together, for the purposes of giving them a unified name and/or grouping symbol.",
+                "",
+                "You can also nest staff group objects within another, to represent more complex groupings of staves, as in large orchestral scores.</p>"
+            ]
+        },
+        "staff-symbol": {
+            "title": "staff symbol",
+            "kind": "string",
+            "values": {
+                "bracket": [],
+                "brace": [],
+                "noSymbol": []
+            }
+        },
+        "staff-label": {
+            "title": "staff label",
+            "kind": "string"
+        },
+        "staff-labelref": {
+            "title": "staff labelref",
+            "kind": "string",
+            "values": {
+                "name": [
+                    "Use the <a href=\"../part/\">part</a>'s \"name\" attribute."
+                ],
+                "shortName": [
+                    "Use the <a href=\"../part/\">part</a>'s \"shortName\" attribute."
+                ]
+            },
+            "description": [
+                "<p>This data encodes the answer to the question: \"should we display the part's name or the part's shortName\"?</p>"
+            ]
+        },
+        "staff-source": {
+            "title": "staff source",
+            "kind": "dict",
+            "properties": {
+                "label": {
+                    "type": "staff-label",
+                    "description": [
+                        "An optional name for this source's region of the staff. If provided, this should be rendered to the left of the staff, vertically aligned to communicate the label is for this particular source (as opposed to other sources in the same staff).",
+                        "",
+                        "This should only be used in cases where a single staff is sourced from more than one staff source and you want to more than one label for that staff. Otherwise, use a label on the staff object instead."
+                    ]
+                },
+                "labelref": {
+                    "type": "staff-labelref",
+                    "description": [
+                        "If provided, this specifies that the corresponding part's name (or shortName) should be rendered to the left of the staff. See the documentation for \"label\".",
+                        "",
+                        "By using this instead of the \"label\" attribute, you can avoid needing to duplicate a part's name in an MNX document."
+                    ]
+                },
+                "part": {
+                    "type": "id",
+                    "required": true,
+                    "description": [
+                        "A reference to the appropriate <a href=\"../part/\">part</a>."
+                    ]
+                },
+                "staff": {
+                    "type": "staff-number",
+                    "description": [
+                        "Optional staff within the given part. This allows you to choose which staff to use from a multi-staff part."
+                    ]
+                },
+                "stem": {
+                    "type": "stem-direction",
+                    "description": [
+                        "The stem direction to use for all notes within the associated part. Default is \"float\", meaning the stem directions should be determined algorithmically."
+                    ]
+                },
+                "voice": {
+                    "type": "voice-name",
+                    "description": [
+                        "Optional voice within the given part. This allows you to filter the associated part's sequence data by voice.",
+                        "",
+                        "This is useful for complex orchestral scores, where individual parts are sometimes placed on multiple staves but sometimes placed on a single staff.",
+                        "",
+                        "If this is not provided, the layout will use all the notation data from the part (i.e., applying no filter)."
+                    ]
+                }
+            },
+            "description": [
+                "<p>The staff source object is the way to specify which <a href=\"../part/\">parts</a> are included in a given <a href=\"../system-layout/\">layout</a>. You can optionally target a specific voice or staff (for multi-voice parts).</p>"
+            ]
+        },
+        "stem-direction": {
+            "title": "stem direction",
+            "kind": "string",
+            "values": {
+                "up": [],
+                "down": []
+            }
+        },
+        "tempo": {
+            "kind": "dict",
+            "properties": {
+                "bpm": {
+                    "type": "bpm",
+                    "required": true,
+                    "description": [
+                        "The number of times per minute the given <code>value</code> should occur."
+                    ]
+                },
+                "location": {
+                    "type": "rhythmic-position",
+                    "description": [
+                        "The rhythmic position of this tempo marking. If not provided, the default value is zero (the start of the measure)."
+                    ]
+                },
+                "value": {
+                    "type": "note-value",
+                    "required": true,
+                    "description": [
+                        "A note value which is asserted to occur with a frequency of <code>bpm</code> times per minute."
+                    ]
+                }
+            },
+            "description": [
+                "<p>The tempo object defines a tempo, from the point of its occurrence forward until changed. The tempo is rendered as a conventional pairing of a small beat unit notation equated to a metronome marking.</p>"
+            ]
+        },
+        "bpm": {
+            "kind": "number"
+        },
+        "layout-change": {
+            "title": "layout change",
+            "kind": "dict",
+            "properties": {
+                "layout": {
+                    "type": "id",
+                    "required": true
+                },
+                "location": {
+                    "type": "measure-rhythmic-position",
+                    "required": true,
+                    "description": [
+                        "The position of the layout change, with respect to the full document."
+                    ]
+                }
+            },
+            "description": [
+                "<p>The layout change object lets you indicate a change in layout in the middle of a system — usually, but not necessarily, due to changes in stemming.</p>"
+            ]
+        },
+        "voice-name": {
+            "title": "voice name",
+            "kind": "string"
+        },
+        "multimeasure-rest": {
+            "title": "multimeasure rest",
+            "kind": "dict",
+            "properties": {
+                "duration": {
+                    "type": "measure-count",
+                    "required": true,
+                    "description": [
+                        "The number of measures that this multimeasure rest spans. Generally this corresponds to the number graphically rendered in the score."
+                    ]
+                },
+                "label": {
+                    "type": "string",
+                    "description": [
+                        "The label to use when rendering this multimeasure rest. This attribute is provided as a way to override the default rendering."
+                    ]
+                },
+                "start": {
+                    "type": "id",
+                    "required": true,
+                    "description": [
+                        "The ID of the <a href=\"../measure-global/\">global measure</a> in which this multimeasure rest begins."
+                    ]
+                }
+            },
+            "description": [
+                "<p>Encodes a single multimeasure rest. The required attributes \"start\" and \"duration\" specify the multimeasure rest's location and length, respectively.</p>",
+                "",
+                "<p>When rendering MNX into graphical notation, applications are expected to use the value of \"duration\" as the number above the rest. If the optional \"label\" attribute is provided, that must be used instead.</p>"
+            ]
+        },
+        "measure-count": {
+            "title": "measure count",
+            "kind": "number"
+        },
+        "staff-number": {
+            "title": "staff number",
+            "kind": "number",
+            "description": [
+                "<p>This number identifies a staff in context of a multi-staff part. Counting starts at 1 for the top staff.</p>",
+                "",
+                "<p>For example, consider piano music with a grand staff: two staves total. Staff number 1 refers to the top staff, and staff number 2 refers to the bottom one.</p>"
+            ]
+        },
+        "smufl-glyph": {
+            "title": "smufl glyph",
+            "kind": "string",
+            "description": [
+                "<p>A string representing a glyph name in the <a href=\"https://w3c-cg.github.io/smufl/latest/\">SMuFL music-font-encoding specification</a>.",
+                "",
+                "In MNX, this is generally used to override default engraving behavior.",
+                "",
+                "Example SMuFL glyph name: <code>noteheadXOrnateEllipse</code></p>"
+            ]
+        },
+        "simple-color": {
+            "title": "simple color",
+            "kind": "string",
+            "pattern": "^#[0-9a-f]{6}$",
+            "description": [
+                "<p>A simple color is a seven-character string representing the red, green and blue components of a color, as defined in the HTML standard. This is commonly known as a hexcode or hex value.",
+                "",
+                "Examples: <code>#000000</code> (black), <code>#ff0000</code> (red).</p>"
+            ]
+        },
+        "string": {
+            "kind": "string"
+        },
+        "grace-type": {
+            "title": "grace type",
+            "kind": "string",
+            "values": {
+                "makeTime": [
+                    "The run of grace notes delays the onset of the next non-grace event."
+                ],
+                "stealFollowing": [
+                    "The run of grace notes occupies a time interval starting at the expected onset of the next non-grace event, both delaying its onset and shortening its duration."
+                ],
+                "stealPrevious": [
+                    "The run of grace notes occupies a time interval that ends before the expected onset of the next non-grace event, shortening the duration of the preceding non-grace event."
+                ]
+            }
+        },
+        "boolean": {
+            "kind": "boolean"
+        },
+        "staff": {
+            "kind": "dict",
+            "properties": {
+                "label": {
+                    "type": "staff-label",
+                    "description": [
+                        "An optional name for this staff. If provided, this should be rendered to the left of the staff.",
+                        "",
+                        "Generally we recommend using \"labelref\" instead of \"label\", to avoid duplication of data within an MNX document."
+                    ]
+                },
+                "labelref": {
+                    "type": "staff-labelref",
+                    "description": [
+                        "If provided, this specifies that the corresponding part's name (or shortName) should be rendered to the left of the staff.",
+                        "",
+                        "By using this instead of the \"label\" attribute, you can avoid needing to duplicate a part's name in an MNX document."
+                    ]
+                },
+                "sources": {
+                    "items": [
+                        "staff-source"
+                    ],
+                    "required": true
+                },
+                "symbol": {
+                    "type": "staff-symbol",
+                    "description": [
+                        "The symbol to use along the left vertical edge of this staff. If omitted, the default value is \"none\".",
+                        "",
+                        "Note that parent objects might also define their own \"symbol\" attributes."
+                    ]
+                },
+                "type": {
+                    "const": "staff",
+                    "required": true
+                }
+            },
+            "description": [
+                "<p>The staff object describes the visual display of a single staff within a layout.</p>",
+                "",
+                "<p>Generally this corresponds to a single part (from the <a href=\"../root/\">top-level parts array</a>), but MNX supports encoding multiple parts in the same staff — as might be used, for example, when combining soprano and alto vocal parts into a single staff.</p>"
+            ]
+        },
+        "orientation": {
+            "kind": "string",
+            "values": {
+                "above": [],
+                "below": [],
+                "auto": [
+                    "Consuming applications are free to use their own algorithms to determine orientation."
+                ]
+            },
+            "description": [
+                "<p>Represents a symbol's vertical orientation. See also <a href=\"../multi-staff-orientation/\">multi-staff orientation</a>, which supports multi-staff music.</p>"
+            ]
+        },
+        "space": {
+            "kind": "dict",
+            "properties": {
+                "duration": {
+                    "type": "fraction",
+                    "required": true,
+                    "description": [
+                        "The metrical duration of this space, represented as a fraction.",
+                        "",
+                        "For example, to match a quarter note's duration, use [1, 4]."
+                    ]
+                },
+                "type": {
+                    "const": "space",
+                    "required": true
+                }
+            },
+            "description": [
+                "<p>The space object represents a discrete period of time within a sequence in which no sequence content occurs. It embodies the idea of blank space within a measure.</p>"
+            ]
+        },
+        "smufl-font": {
+            "title": "smufl font",
+            "kind": "string"
+        },
+        "perform-options": {
+            "title": "perform options",
+            "kind": "dict",
+            "properties": {}
+        },
+        "line-type": {
+            "title": "line type",
+            "kind": "string",
+            "values": {
+                "dashed": [],
+                "dotted": [],
+                "solid": [],
+                "wavy": []
+            }
+        },
+        "tuplet-display-setting": {
+            "title": "tuplet display setting",
+            "kind": "string",
+            "values": {
+                "noNumber": [
+                    "Do not show any tuplet units."
+                ],
+                "inner": [
+                    "Display only the note value unit of the tuplet’s \"inner\" attribute."
+                ],
+                "both": [
+                    "Display both the note value units of the tuplet's \"inner\" and \"outer\" attributes."
+                ]
+            }
+        },
+        "yes-no-auto": {
+            "title": "yes, no or auto",
+            "kind": "string",
+            "values": {
+                "yes": [],
+                "no": [],
+                "auto": []
+            }
+        },
+        "dynamic-value": {
+            "title": "dynamic value",
+            "kind": "string",
+            "values": {
+                "ppp": [],
+                "pp": [],
+                "p": [],
+                "mp": [],
+                "mf": [],
+                "f": [],
+                "ff": [],
+                "fff": [],
+                "n": [
+                    "niente"
+                ],
+                "pppp": [],
+                "ppppp": [],
+                "ffff": [],
+                "fffff": [],
+                "pppppp": [],
+                "ffffff": []
+            },
+            "description": [
+                "<p>Defines available options for <a href=\"../dynamic-group/\">dynamic group</a> values.</p>"
+            ]
+        },
+        "mnx": {
+            "title": "MNX metadata",
+            "kind": "dict",
+            "properties": {
+                "support": {
+                    "type": "support",
+                    "description": [
+                        "Information about how to interpret the data in this MNX file, in cases of ambiguity."
+                    ]
+                },
+                "version": {
+                    "type": "version-number",
+                    "required": true,
+                    "description": [
+                        "The MNX version number, as an integer.",
+                        "",
+                        "MNX uses simple integers for version numbers, as opposed to strings or multi-part version numbers (\"3.1\"). Each release of MNX increments the version number.",
+                        "",
+                        "Because MNX aims to be backward compatible — i.e., an older MNX version should always be openable by future software — version numbers are mostly useful for determining which <em>new</em> MNX features are available."
+                    ]
+                }
+            },
+            "description": [
+                "<p>Holds technical MNX metadata about the document, including the MNX version.</p>"
+            ]
+        },
+        "version-number": {
+            "title": "version number",
+            "kind": "number"
+        },
+        "positive-integer": {
+            "title": "positive integer",
+            "kind": "number",
+            "description": [
+                "<p>An integer of the value 1 or greater.</p>"
+            ]
+        },
+        "time-signature-unit": {
+            "title": "time signature unit",
+            "kind": "number",
+            "values": {
+                "1": [],
+                "2": [],
+                "4": [],
+                "8": [],
+                "16": [],
+                "32": [],
+                "64": [],
+                "128": []
+            }
+        },
+        "note-value-base": {
+            "title": "note value base",
+            "kind": "string",
+            "values": {
+                "duplexMaxima": [],
+                "maxima": [],
+                "longa": [],
+                "breve": [],
+                "whole": [],
+                "half": [],
+                "quarter": [],
+                "eighth": [],
+                "16th": [],
+                "32nd": [],
+                "64th": [],
+                "128th": [],
+                "256th": [],
+                "512th": [],
+                "1024th": [],
+                "2048th": [],
+                "4096th": []
+            }
+        },
+        "note-value": {
+            "title": "note value",
+            "kind": "dict",
+            "properties": {
+                "base": {
+                    "type": "note-value-base",
+                    "required": true
+                },
+                "dots": {
+                    "type": "positive-integer",
+                    "description": [
+                        "Number of augmentation dots. If not specified, this value is assumed to be 0. Though MNX has no limit on number of dots encoded, we advise software implementations not to worry about supporting more than 5."
+                    ]
+                }
+            },
+            "description": [
+                "<p>A rhythmic value for a note, such as a \"dotted quarter note.\" This is encoded via a base note type, such as \"quarter\", and an optional number of dots.</p>"
+            ]
+        },
+        "step": {
+            "title": "note step",
+            "kind": "string",
+            "values": {
+                "A": [],
+                "B": [],
+                "C": [],
+                "D": [],
+                "E": [],
+                "F": [],
+                "G": []
+            }
+        },
+        "octave": {
+            "title": "note octave",
+            "kind": "number",
+            "description": [
+                "<p>A number representing an octave in Scientific Pitch Notation. The octave for middle C is 4.</p>"
+            ]
+        },
+        "alter": {
+            "title": "note alter",
+            "kind": "number",
+            "description": [
+                "<p>Describes the alteration to a note's pitch, as an integer in the range -3 to 3, inclusive.</p>"
+            ]
+        },
+        "accidental-display": {
+            "title": "accidental display",
+            "kind": "dict",
+            "properties": {
+                "enclosure": {
+                    "type": "accidental-enclosure",
+                    "description": [
+                        "Describes the symbol that visually encloses the accidental, such as a square bracket or parentheses. If this data isn't specified, the accidental is assumed not to have a visual enclosure."
+                    ]
+                },
+                "force": {
+                    "type": "boolean",
+                    "description": [
+                        "Whether this accidental display value (either shown or hidden) was set intentionally, as opposed to automatically determined.",
+                        "",
+                        "This allows for the encoding of intent. Some consuming software may choose to distinguish between accidentals that are intentionally displayed and accidentals that are algorithmically displayed.",
+                        "",
+                        "If this value isn't provided, it's assumed to be false."
+                    ]
+                },
+                "show": {
+                    "type": "boolean",
+                    "required": true,
+                    "description": [
+                        "Whether the accidental is to be displayed."
+                    ]
+                }
+            }
+        },
+        "positioned-clef": {
+            "title": "positioned clef",
+            "kind": "dict",
+            "properties": {
+                "clef": {
+                    "type": "clef",
+                    "required": true
+                },
+                "position": {
+                    "type": "rhythmic-position",
+                    "description": [
+                        "If this position isn't provided, the clef's position is assumed to be the start of the bar."
+                    ]
+                },
+                "staff": {
+                    "type": "staff-number",
+                    "description": [
+                        "In a multi-staff part, this specifies which staff the clef is in. If unspecified, this should be interpreted as 1."
+                    ]
+                }
+            },
+            "description": [
+                "<p>Represents a clef as positioned at a specific location within a measure.</p>",
+                "",
+                "<p>If the position isn't encoded, the position is assumed to be the start of the measure.</p>"
+            ]
+        },
+        "rhythmic-position": {
+            "title": "rhythmic position",
+            "kind": "dict",
+            "properties": {
+                "fraction": {
+                    "type": "fraction",
+                    "required": true,
+                    "description": [
+                        "The rhythmic position, as a fraction. For example, \"the position a quarter note's duration into a bar\" would be encoded as [1, 4]."
+                    ]
+                },
+                "graceIndex": {
+                    "type": "integer-unsigned",
+                    "description": [
+                        "This allows targeting of grace notes. Given that a grace note has the same rhythmic position as its target (non-grace) note, it's necessary to provide a way to distinguish between a target note and a grace note. And in the case of multiple grace notes, it's necessary to provide a way to target a specific one of them.",
+                        "",
+                        "The graceIndex value is a non-negative integer that counts \"backwards\" from the target note. The target note gets graceIndex=0. The right-most grace note gets graceIndex=1. Then, going leftward from the right-most grace note, the graceIndex increments by 1 for each additional grace note.",
+                        "",
+                        "If graceIndex isn't specified, the position should be interpreted as <em>before</em> all grace notes."
+                    ]
+                }
+            },
+            "description": [
+                "<p>Describes the rhythmic position of a notational object within a bar.</p>"
+            ]
+        },
+        "fraction": {
+            "kind": "array",
+            "items": [
+                "integer-unsigned"
+            ],
+            "minItems": 2,
+            "maxItems": 2,
+            "description": [
+                "<p>A two-element array that represents a fraction. The first element represents the numerator, and the second element represents the denominator.",
+                "",
+                "The first element must be a non-zero positive integer or zero. The second element must be a non-zero positive integer.</p>"
+            ]
+        },
+        "integer-unsigned": {
+            "title": "integer (unsigned)",
+            "kind": "number",
+            "description": [
+                "<p>A non-negative integer.</p>"
+            ]
+        },
+        "staff-position": {
+            "title": "staff position",
+            "kind": "number",
+            "description": [
+                "<p>Represents a vertical position in a staff, where 0 is the middle of the staff. This number is positive for positions above the middle of the staff, and it's negative for positions below the middle of the staff.</p>",
+                "",
+                "<p>This value is expressed in \"half staff spaces.\" In other words, the staff position values of two consecutive staff lines are always 2 apart. This allows both lines and spaces to be encoded with simple integer values.</p>",
+                "",
+                "<p>For example: in a standard five-line staff, the middle line is position 0. The space directly above the middle line is position 1. The line directly above the middle line is position 2. The space directly below the middle line is position -1. The line directly below the middle line is position -2.</p>",
+                "",
+                "<p>In a single-line staff, position 0 represents the line itself, position 1 represents the space directly above the line, and position -1 represents the space directly below the line.</p>",
+                "",
+                "<p>In a two-line staff, position 0 represents the space between the two lines, position 1 represents the top line, and position -1 represents the bottom line.</p>"
+            ]
+        },
+        "event-markings": {
+            "title": "event markings",
+            "kind": "dict",
+            "properties": {
+                "accent": {
+                    "type": "accent"
+                },
+                "bowDirection": {
+                    "type": "bow-direction"
+                },
+                "breath": {
+                    "type": "breath-mark"
+                },
+                "softAccent": {
+                    "type": "soft-accent"
+                },
+                "spiccato": {
+                    "type": "spiccato"
+                },
+                "staccatissimo": {
+                    "type": "staccatissimo"
+                },
+                "staccato": {
+                    "type": "staccato"
+                },
+                "stress": {
+                    "type": "stress-marking"
+                },
+                "strongAccent": {
+                    "type": "strong-accent"
+                },
+                "tenuto": {
+                    "type": "tenuto"
+                },
+                "tremolo": {
+                    "type": "tremolo-single"
+                },
+                "unstress": {
+                    "type": "unstress-marking"
+                }
+            },
+            "description": [
+                "<p>\"Markings\" is a catch-all container for notations that apply to an entire event, such as articulations and single-note tremolos.</p>"
+            ]
+        },
+        "staccato": {
+            "kind": "dict",
+            "properties": {
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "Whether this marking is displayed above or below the associated event.",
+                        "",
+                        "If omitted, the default value is \"auto\"."
+                    ]
+                }
+            }
+        },
+        "accent": {
+            "kind": "dict",
+            "properties": {
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "Whether this marking is displayed above or below the associated event.",
+                        "",
+                        "If omitted, the default value is \"auto\"."
+                    ]
+                }
+            }
+        },
+        "strong-accent": {
+            "title": "strong accent",
+            "kind": "dict",
+            "properties": {
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "Whether this marking is displayed above or below the associated event.",
+                        "",
+                        "If omitted, the default value is \"auto\"."
+                    ]
+                },
+                "pointing": {
+                    "type": "up-down-auto",
+                    "description": [
+                        "Specifies whether this accent should point upward or downward.",
+                        "",
+                        "For example: a strong accent mark above the staff (i.e., in its standard orientation) has the value \"up\".",
+                        "",
+                        "If not provided, the default value is \"auto\"."
+                    ]
+                }
+            }
+        },
+        "tenuto": {
+            "kind": "dict",
+            "properties": {
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "Whether this marking is displayed above or below the associated event.",
+                        "",
+                        "If omitted, the default value is \"auto\"."
+                    ]
+                }
+            }
+        },
+        "staccatissimo": {
+            "kind": "dict",
+            "properties": {
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "Whether this marking is displayed above or below the associated event.",
+                        "",
+                        "If omitted, the default value is \"auto\"."
+                    ]
+                }
+            }
+        },
+        "spiccato": {
+            "kind": "dict",
+            "properties": {
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "Whether this marking is displayed above or below the associated event.",
+                        "",
+                        "If omitted, the default value is \"auto\"."
+                    ]
+                }
+            }
+        },
+        "breath-mark": {
+            "title": "breath mark",
+            "kind": "dict",
+            "properties": {
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "Whether this marking is displayed above or below the associated event.",
+                        "",
+                        "If omitted, the default value is \"auto\"."
+                    ]
+                },
+                "symbol": {
+                    "type": "breath-mark-symbol"
+                }
+            },
+            "description": [
+                "<p>Defines a breath mark. This is always encoded on the event <em>before</em> the breath happens — generally the event that contains note(s) that are performed directly before the breath.</p>"
+            ]
+        },
+        "stress-marking": {
+            "title": "stress marking",
+            "kind": "dict",
+            "properties": {
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "Whether this marking is displayed above or below the associated event.",
+                        "",
+                        "If omitted, the default value is \"auto\"."
+                    ]
+                }
+            }
+        },
+        "unstress-marking": {
+            "title": "unstress marking",
+            "kind": "dict",
+            "properties": {
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "Whether this marking is displayed above or below the associated event.",
+                        "",
+                        "If omitted, the default value is \"auto\"."
+                    ]
+                }
+            }
+        },
+        "soft-accent": {
+            "title": "soft accent",
+            "kind": "dict",
+            "properties": {
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "Whether this marking is displayed above or below the associated event.",
+                        "",
+                        "If omitted, the default value is \"auto\"."
+                    ]
+                }
+            }
+        },
+        "tremolo-single": {
+            "title": "single-note tremolo",
+            "kind": "dict",
+            "properties": {
+                "marks": {
+                    "type": "positive-integer",
+                    "required": true,
+                    "description": [
+                        "The number of marks to use in this tremolo. Must be between 1 and 8, inclusive."
+                    ]
+                },
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "Whether this marking is displayed above or below the associated event.",
+                        "",
+                        "If omitted, the default value is \"auto\".",
+                        "",
+                        "Note that single-note tremolos are displayed over a note's stem, so generally the default value of \"auto\" is sufficient. The main reason to specify a custom \"orient\" for a single-note tremolo is for stemless notes."
+                    ]
+                }
+            }
+        },
+        "up-down-auto": {
+            "title": "up, down or auto",
+            "kind": "string",
+            "values": {
+                "up": [
+                    "The symbol is pointing upward."
+                ],
+                "down": [
+                    "The symbol is pointing downward."
+                ],
+                "auto": [
+                    "Consuming applications are free to determine the symbol direction based on their own algorithms."
+                ]
+            },
+            "description": [
+                "<p>Describes the direction a musical symbol should be pointing. This is used for symbols that are allowed to point in multiple directions depending on musical context.</p>",
+                "",
+                "<p>See also <a href=\"../up-down/\">up or down</a>, a more constrained data type that doesn't support the value \"auto\".</p>"
+            ]
+        },
+        "breath-mark-symbol": {
+            "title": "breath mark symbol",
+            "kind": "string",
+            "description": [
+                "<p>See https://w3c-cg.github.io/musicxml/musicxml-reference/data-types/breath-mark-value/</p>"
+            ]
+        },
+        "accidental-enclosure-symbol": {
+            "title": "accidental enclosure symbol",
+            "kind": "string",
+            "values": {
+                "parentheses": [
+                    "The accidental is enclosed in parentheses."
+                ],
+                "brackets": [
+                    "The accidental is enclosed in square brackets."
+                ]
+            }
+        },
+        "accidental-enclosure": {
+            "title": "accidental enclosure",
+            "kind": "dict",
+            "properties": {
+                "symbol": {
+                    "type": "accidental-enclosure-symbol",
+                    "required": true
+                }
+            },
+            "description": [
+                "<p>Describes the symbol that encloses a specific accidental, such as a square bracket or parentheses.</p>"
+            ]
+        },
+        "measure-rhythmic-position": {
+            "title": "measure rhythmic position",
+            "kind": "dict",
+            "properties": {
+                "measure": {
+                    "type": "id",
+                    "required": true,
+                    "description": [
+                        "The ID of the <a href=\"../measure-global/\">global measure</a> that this position refers to."
+                    ]
+                },
+                "position": {
+                    "type": "rhythmic-position",
+                    "required": true,
+                    "description": [
+                        "The position within the measure."
+                    ]
+                }
+            },
+            "description": [
+                "<p>Describes the rhythmic position of a notational object within a piece of music. This is comprised of a measure plus a rhythmic position within that measure.</p>"
+            ]
+        },
+        "support": {
+            "kind": "dict",
+            "properties": {
+                "useAccidentalDisplay": {
+                    "type": "boolean",
+                    "description": [
+                        "This answers the question \"Does every note with a visible accidental have accidentalDisplay set?\"",
+                        "",
+                        "It's meant as a heads-up for consuming software that doesn't have its own accidental-display algorithm. For this type of software, when reading a document with useAccidentalDisplay=false, the software might opt to display a warning to users, saying \"We don't know which notes should have an accidental displayed.\" Or the software might opt to reject the document outright due to not containing sufficient information.",
+                        "",
+                        "If this value is not provided, it is to be interpreted as false."
+                    ]
+                },
+                "useBeams": {
+                    "type": "boolean",
+                    "description": [
+                        "This answers the question \"Are beams encoded in this document?\"",
+                        "",
+                        "If the value is true, any MNX event that is not encoded within a beam should be treated as <em>unbeamed</em>.",
+                        "",
+                        "If the value is false (or not provided), consuming software is expected to use its own beaming algorithm to determine beams."
+                    ]
+                }
+            },
+            "description": [
+                "<p>This contains information about how to interpret the data within an MNX document.</p>"
+            ]
+        },
+        "event-lyric-lines": {
+            "title": "event lyric lines",
+            "kind": "keyedDict",
+            "values": "event-lyric-line"
+        },
+        "lyrics": {
+            "kind": "dict",
+            "properties": {
+                "lines": {
+                    "type": "event-lyric-lines",
+                    "description": [
+                        "A data structure representing all of the event's lyric lines (e.g., for multiple verses). This is encoded as an object in which the keys are user-defined strings (such as \"1\", \"2\" or \"A\") and the values are event lyric line objects.",
+                        "",
+                        "These user-defined strings are effectively document-scoped IDs of the lyric lines. All lyric lines that appear together should have the same ID in the document."
+                    ]
+                }
+            },
+            "description": [
+                "<p>This contains the lyric data for a given event. Typically this correponds to a single sung syllable.</p>"
+            ]
+        },
+        "event-lyric-line": {
+            "title": "event lyric line",
+            "kind": "dict",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "required": true,
+                    "description": [
+                        "The text of the syllable.",
+                        "",
+                        "This might be an empty string in the case of lyrics that are skipped for a given verse."
+                    ]
+                },
+                "type": {
+                    "type": "event-lyric-line-type",
+                    "description": [
+                        "Specifies the syllable's part of the word: \"start\", \"middle\", \"end\" or \"whole\". If not provided, the default value is \"whole\".",
+                        "",
+                        "Generally software uses this data to determine whether to put a hyphen after a syllable, if space is available. The data can also be used to inform synthesized vocal audio playback.",
+                        "",
+                        "Note: The hyphen character itself should not be encoded within \"text\"."
+                    ]
+                }
+            },
+            "description": [
+                "<p>This encodes a single lyric syllable within a single lyric line (i.e., a single verse).</p>"
+            ]
+        },
+        "event-lyric-line-type": {
+            "title": "event lyric line type",
+            "kind": "string",
+            "values": {
+                "start": [
+                    "This syllable begins a word and continues forward to a subsequent syllable."
+                ],
+                "middle": [
+                    "This syllable continues a previous syllable and continues forward to a subsequent syllable."
+                ],
+                "end": [
+                    "This syllable continues a previous syllable and doesn't continue forward to a subsequent syllable."
+                ],
+                "whole": [
+                    "This syllable constitutes an entire word."
+                ]
+            }
+        },
+        "lyrics-global": {
+            "kind": "dict",
+            "properties": {
+                "lineMetadata": {
+                    "type": "lyric-lines-metadata",
+                    "description": [
+                        "An object mapping lyric line IDs (which are user-defined) to lyric metadata objects. This encodes global metadata on a per-lyric-line basis."
+                    ]
+                },
+                "lineOrder": {
+                    "items": [
+                        "lyric-line-id"
+                    ],
+                    "description": [
+                        "An array of all lyric line IDs used in this MNX document, in the order in which they should be visually displayed (from top to bottom)."
+                    ]
+                }
+            }
+        },
+        "lyric-lines-metadata": {
+            "title": "lyric lines metadata",
+            "kind": "keyedDict",
+            "values": "lyric-line-metadata"
+        },
+        "lyric-line-metadata": {
+            "title": "lyric line metadata",
+            "kind": "dict",
+            "properties": {
+                "label": {
+                    "type": "lyric-line-label",
+                    "description": [
+                        "A label for this lyric line. This could be used, for example, in software UI to allow for showing/hiding specific lyric lines."
+                    ]
+                },
+                "lang": {
+                    "type": "language-code",
+                    "description": [
+                        "A language code that applies to all the lyrics in this lyric line."
+                    ]
+                }
+            }
+        },
+        "language-code": {
+            "title": "language code",
+            "kind": "string",
+            "description": [
+                "<p>An <a href=\"https://datatracker.ietf.org/doc/html/rfc5646\">RFC 5646</a> language code.</p>"
+            ]
+        },
+        "lyric-line-label": {
+            "title": "lyric line label",
+            "kind": "string"
+        },
+        "lyric-line-id": {
+            "title": "lyric line ID",
+            "kind": "string"
+        },
+        "tie-list": {
+            "title": "tie list",
+            "kind": "array",
+            "items": [
+                "tie"
+            ]
+        },
+        "time-signature-display": {
+            "title": "time signature display",
+            "kind": "string",
+            "values": {
+                "common": [
+                    "The symbol representing \"common time.\""
+                ],
+                "cut": [
+                    "The symbol representing \"cut time.\""
+                ]
+            },
+            "description": [
+                "<p>This encodes visual glyphs for a time signature.</p>"
+            ]
+        },
+        "ottava-amount-or-zero": {
+            "title": "ottava amount or zero",
+            "kind": "number",
+            "values": {
+                "1": [
+                    "The written pitch is one octave lower than sounded. Traditionally rendered with an \"8va\" symbol."
+                ],
+                "2": [
+                    "The written pitch is two octaves lower than sounded. Traditionally rendered with a \"15ma\" symbol."
+                ],
+                "-1": [
+                    "The written pitch is one octave higher than sounded. Traditionally rendered with an \"8vb\" symbol."
+                ],
+                "-2": [
+                    "The written pitch is two octaves higher than sounded. Traditionally rendered with a \"15mb\" symbol."
+                ],
+                "3": [
+                    "The written pitch is three octaves lower than sounded. Traditionally rendered with a \"22\" symbol."
+                ],
+                "-3": [
+                    "The written pitch is three octaves higher than sounded. Traditionally rendered with a \"22\" symbol."
+                ],
+                "0": [
+                    "No octave shift is applied. Pitches are sounded exactly as they're written."
+                ]
+            },
+            "description": [
+                "<p>Represents the number of octaves in an octave shift, with zero being an option. See also <a href=\"../ottava-amount\">ottava amount</a>, which doesn't support the value zero.</p>"
+            ]
+        },
+        "interval": {
+            "kind": "dict",
+            "properties": {
+                "halfSteps": {
+                    "type": "integer-signed",
+                    "required": true,
+                    "description": [
+                        "The number of chromatic steps between the pitches."
+                    ]
+                },
+                "staffDistance": {
+                    "type": "integer-signed",
+                    "required": true,
+                    "description": [
+                        "The distance between the pitches, in context of a musical staff.",
+                        "",
+                        "For example, in a treble clef staff, the staffDistance between the bottom E line and the bottom F space is 1. The staffDistance between the bottom E line and the G line directly above is 2."
+                    ]
+                }
+            },
+            "description": [
+                "<p>A musical interval between pitches.</p>",
+                "",
+                "<p>It's defined by specifying the \"staffDistance\" and \"halfSteps\" between the pitches. These can be positive, negative or zero. Generally \"staffDistance\" and \"halfSteps\" will have the same sign, but there are edge-case situations where they might differ.</p>",
+                "",
+                "<p>In the future, we plan to add other ways of specifying intervals.</p>"
+            ]
+        },
+        "integer-signed": {
+            "title": "integer (signed)",
+            "kind": "number"
+        },
+        "part-transposition": {
+            "title": "part transposition",
+            "kind": "dict",
+            "properties": {
+                "interval": {
+                    "type": "interval",
+                    "required": true
+                },
+                "keyFifthsFlipAt": {
+                    "type": "integer-signed",
+                    "description": [
+                        "When transposing key signatures to accommodate this part, \"keyFifthsFlipsAt\" describes the point at which the key signature \"flips\" enharmonically (to avoid an overly large number of sharps or flats).",
+                        "",
+                        "Non-negative values (including 0) mean \"subtract 12 fifths,\" and negative values means \"add 12.\" If this value isn't provided, default behavior is to <em>not</em> flip the key signature."
+                    ]
+                },
+                "prefersWrittenPitches": {
+                    "type": "boolean",
+                    "description": [
+                        "Specifies that this instrument prefers displaying written pitches (e.g., transposed pitches) even in the context of concert-pitch scores.",
+                        "",
+                        "By convention, this is applied to piccolos, glockenspiels and double basses.",
+                        "",
+                        "If not provided, this should be interpreted as false."
+                    ]
+                }
+            },
+            "description": [
+                "<p>Describes a part's instrument transposition, including the transposition interval and number of fifths at which key signatures \"flip\" enharmonically.</p>"
+            ]
+        },
+        "written": {
+            "kind": "dict",
+            "properties": {
+                "diatonicDelta": {
+                    "type": "integer-signed",
+                    "description": [
+                        "After computing the transposed pitch by applying the part's transposition and any necessary \"keyFifthsFlipAt\" value, this specifies the number of diatonic steps to add or remove to obtain the final written pitch.",
+                        "",
+                        "If not specified, the value is 0.",
+                        "",
+                        "For example, in case of a C-flat note that you want to write for the player as a B natural, you'd use \"diatonicDelta\": -1."
+                    ]
+                }
+            },
+            "description": [
+                "<p>Information about how this note is written in context of a transposed score or part.</p>"
+            ]
+        },
+        "kit-note": {
+            "title": "kit note",
+            "kind": "dict",
+            "properties": {
+                "kitComponent": {
+                    "type": "id",
+                    "required": true,
+                    "description": [
+                        "The ID of this note's <a href=\"../kit-component/\">kit component</a>."
+                    ]
+                },
+                "perform": {
+                    "type": "perform-options",
+                    "description": [
+                        "Controls whether this kit note is performed by consuming software."
+                    ]
+                },
+                "staff": {
+                    "type": "staff-number",
+                    "description": [
+                        "A specific staff index for this kit note. If not provided, the value is inherited from any ancestor element that specified it. If no ancestor did so, the value is determined automatically according to the implementation’s rendering rules.",
+                        "",
+                        "The primary purpose of this attribute is to override a default staff assignment at the sequence or event level — as in cross-staff keyboard notation."
+                    ]
+                },
+                "ties": {
+                    "type": "tie-list",
+                    "description": [
+                        "If this kit note starts a tie, this object encodes the tie.",
+                        "",
+                        "This is an array, because it's possible for a single kit note to be tied to multiple end kit notes, in the case of jumps and alternate endings. The order of the elements of this array is undefined."
+                    ]
+                }
+            }
+        },
+        "kit": {
+            "kind": "keyedDict",
+            "values": "kit-component"
+        },
+        "kit-component": {
+            "title": "kit component",
+            "kind": "dict",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": [
+                        "A human-readable name for this kit component, e.g., for purposes of display in a UI."
+                    ]
+                },
+                "sound": {
+                    "type": "id",
+                    "description": [
+                        "ID of the <a href=\"../sound/\">sound</a> used for this kit component. See the \"sounds\" attribute in <a href=\"../global/\">global</a>."
+                    ]
+                },
+                "staffPosition": {
+                    "type": "staff-position",
+                    "required": true
+                }
+            },
+            "description": [
+                "<p>A kit component represents a single sound used by a kit, along with the position that should be used when the kit component is displayed on a staff. A kit is defined in the <a href=\"../part/\">part</a> \"kit\" attribute.</p>",
+                "",
+                "<p>This is generally used for unpitched percussion music, and some applications call it a \"percussion map.\" For example, one kit component might be \"Bass drum,\" with the staff position on the bottom staff line (staffPosition -4).</p>",
+                "",
+                "<p>Within an event, a <a href=\"../kit-note/\">kit note</a> encodes a specific instance of a kit component (e.g., a specific hit of the bass drum on the first beat of measure 4).</p>"
+            ]
+        },
+        "sounds-global": {
+            "title": "sounds (global)",
+            "kind": "keyedDict",
+            "values": "sound"
+        },
+        "sound": {
+            "kind": "dict",
+            "properties": {
+                "midiNumber": {
+                    "type": "midi-number"
+                },
+                "name": {
+                    "type": "string",
+                    "description": [
+                        "A human-readable name for this sound, suitable for use in a UI."
+                    ]
+                }
+            }
+        },
+        "midi-number": {
+            "title": "MIDI number",
+            "kind": "number",
+            "description": [
+                "A MIDI pitch — an unsigned number between 0-127, where middle C is 60."
+            ]
+        },
+        "global-attrs": {
+            "role": "globalAttributes",
+            "title": "__globalattrs__",
+            "kind": "dict",
+            "globalAttributes": false,
+            "properties": {
+                "_c": {
+                    "type": "string",
+                    "description": [
+                        "An optional comment. This serves a similar function as XML or HTML comments."
+                    ]
+                },
+                "_x": {
+                    "type": "vendor-extensions",
+                    "description": [
+                        "Optional vendor extensions. This is a place for extra data beyond the scope of what MNX formally supports.",
+                        "",
+                        "If provided, it should be a dictionary that maps vendor keys to dictionaries of data (\"vendor dicts\").",
+                        "",
+                        "Vendor keys are strings that essentially serve as a namespace. An example might be a specific notation software package (e.g., \"finale\"), or a specific community of practice (e.g., \"forteNumbers\"). We don't maintain a list of known vendor keys at this time, but we may maintain an informal list in the future, once usage has been established.",
+                        "",
+                        "Vendor dicts must be dictionaries. Beyond that, MNX places no requirement on their contents. Implementers are free to design their own data layout within these dictionaries.",
+                        "",
+                        "MNX-consuming software is under no obligation to preserve the data within the \"_x\" attribute. When an MNX document is transferred between separate MNX software implementations, we expect some software will try to preserve it while other software will discard it."
+                    ]
+                },
+                "id": {
+                    "type": "id",
+                    "description": [
+                        "An optional ID. This must be unique within the document."
+                    ]
+                }
+            },
+            "description": [
+                "<p>These are the global attributes available on every object within MNX.</p>"
+            ]
+        },
+        "vendor-dict": {
+            "title": "vendor dict",
+            "kind": "dict",
+            "globalAttributes": false,
+            "properties": {},
+            "description": [
+                "<p>A dictionary with vendor-specific data. See <a href=\"../global-attrs/\">the \"_x\" global attribute</a> for more.</p>"
+            ]
+        },
+        "vendor-extensions": {
+            "title": "vendor extensions",
+            "kind": "keyedDict",
+            "values": "vendor-dict"
+        },
+        "multi-note-tremolo": {
+            "title": "multi-note tremolo",
+            "kind": "dict",
+            "properties": {
+                "content": {
+                    "items": [
+                        "event"
+                    ],
+                    "required": true,
+                    "description": [
+                        "The sequence of events within this multi-note tremolo. Typically this will be exactly two events.",
+                        "",
+                        "Each inner event's <code>\"duration\"</code> must be the duration of the displayed notehead.",
+                        "",
+                        "For example, consider a multi-note tremolo whose total duration equals the duration of a half note and contains two inner events. Each inner event would have a <code>\"duration\"</code> value of <code>\"half\"</code>."
+                    ]
+                },
+                "individualDuration": {
+                    "type": "note-value",
+                    "description": [
+                        "Optional. The performed duration of an individual event in this multi-note tremolo.",
+                        "",
+                        "Generally this is unnecessary to encode, because it can be automatically calculated from <code>\"marks\"</code> and <code>\"outer\"</code>. But software may choose to explicitly encode this."
+                    ]
+                },
+                "marks": {
+                    "type": "positive-integer",
+                    "required": true,
+                    "description": [
+                        "The number of beams to use in this multi-note tremolo. Must be between 1 and 8, inclusive."
+                    ]
+                },
+                "outer": {
+                    "type": "note-value-quantity",
+                    "required": true,
+                    "description": [
+                        "The duration of this multi-note tremolo with respect to its containing element. This is how much time the tremolo occupies in the sequence in which it is placed.",
+                        "",
+                        "This value's <code>\"multiple\"</code> must equal the total number of events within the tremolo. (Usually this will be 2.)",
+                        "",
+                        "For example, consider a multi-note tremolo whose total duration equals the duration of a half note and contains two inner events. This would use an <code>outer</code> value of <code>{\"multiple\": \"2\", \"duration\": {\"base\": \"quarter\"}}</code>. (Note, per convention, that both inner events would be visually rendered as half notes.)"
+                    ]
+                },
+                "type": {
+                    "const": "tremolo",
+                    "required": true
+                }
+            },
+            "description": [
+                "<p>This object represents a multi-note tremolo, including all notes within.</p>",
+                "",
+                "<p>Multi-note tremolos are inherently a special case, for two reasons:</p>",
+                "",
+                "<ol>",
+                "<li>Although a tremolo's events are displayed sequentially, playback should oscillate between the events (hence producing the audible tremolo effect).</li>",
+                "<li>Per convention, a tremolo's events are visually rendered with note values equal to the entire duration of the tremolo.</li>",
+                "</ol>",
+                "",
+                "<p>To account for #2: for each event within a multi-note tremolo, the <code>duration</code> encodes the rhythmic duration of the displayed notehead.</p>"
+            ]
+        },
+        "tie-target-type": {
+            "title": "tie target type",
+            "kind": "string",
+            "values": {
+                "nextNote": [
+                    "The tie ends on a note in the event that directly follows the start note's event.",
+                    "",
+                    "This is by far the most common type of tie."
+                ],
+                "crossVoice": [
+                    "The tie ends on a note in a different sequence."
+                ],
+                "arpeggio": [
+                    "The tie is part of an arpeggio notated as consecutive ties, like this:",
+                    "",
+                    "<img src=\"../../../static/images/tie-target-type/arpeggio.png\" alt=\"Notation example\">",
+                    "",
+                    "Note: In this example, the final tie would be encoded as \"nextNote\"."
+                ],
+                "crossJump": [
+                    "The tie ends on a note whose event does <em>not</em> directly follow the start note's event, such as an alternate ending, repeat or jump (e.g., D.S. al Coda)."
+                ]
+            }
+        },
+        "staff-group-barline-style": {
+            "title": "staff group barline style",
+            "kind": "string",
+            "values": {
+                "individual": [
+                    "Barlines are not connected across staves. Barlines are only drawn within each individual staff.",
+                    "",
+                    "<img src=\"../../../static/images/staff-group-barline-style/individual.png\" alt=\"Notation example\">"
+                ],
+                "instrument": [
+                    "Barlines are only connected within staves that correspond to the same MNX <a href=\"../part/\">part</a>. For example, piano music with a grand staff (two staves) will generally connect the two staves with a shared barline.",
+                    "",
+                    "This behaves the same as \"individual\" except for MNX <a href=\"../part/\">parts</a> that have a \"staves\" value greater than 1.",
+                    "",
+                    "<img src=\"../../../static/images/staff-group-barline-style/instrument.png\" alt=\"Notation example\">"
+                ],
+                "unified": [
+                    "Barlines are always connected, across all staves.",
+                    "",
+                    "<img src=\"../../../static/images/staff-group-barline-style/unified.png\" alt=\"Notation example\">"
+                ],
+                "mensurstrich": [
+                    "Barlines are always connected, across all staves, in the Mensurstrich style. In this style, the lines aren't drawn within the five-line staff, but rather only between the staves.",
+                    "",
+                    "<img src=\"../../../static/images/staff-group-barline-style/mensurstrich.png\" alt=\"Notation example\">"
+                ]
+            },
+            "description": [
+                "<p>This encodes a strategy for how barlines should be connected across staves.</p>"
+            ]
+        },
+        "full-measure-rest": {
+            "title": "full measure rest",
+            "kind": "dict",
+            "properties": {
+                "fermata": {
+                    "type": "fermata"
+                },
+                "staffPosition": {
+                    "type": "staff-position",
+                    "description": [
+                        "If provided, this specifies the vertical position of the rest on the staff. If not provided, the rest should be positioned automatically according to convention.",
+                        "",
+                        "This vertical position is the \"origin point\" from which the rest symbol's SMuFL glyph is drawn. For example, a quarter rest is drawn from its vertical midpoint. See the <a href=\"https://w3c-cg.github.io/smufl/latest/tables/rests.html\">SMuFL rests documentation</a> for more."
+                    ]
+                },
+                "visualDuration": {
+                    "type": "note-value",
+                    "description": [
+                        "Encodes the duration of the visual glyph used for this full-measure rest. For example, if a rest is visually represented by a whole note, this would get <code>\"visualDuration\": {\"base\": \"whole\"}</code>.",
+                        "",
+                        "Note this doesn't necessarily match the time signature.",
+                        "",
+                        "This is optional. If not provided, consuming applications are free to use their own algorithms to determine which glyph to use for this full-measure rest."
+                    ]
+                }
+            }
+        },
+        "fermata-duration": {
+            "title": "fermata duration",
+            "kind": "string",
+            "values": {
+                "auto": [
+                    "Consuming software is free to determine the duration according to its own algorithms."
+                ],
+                "none": [
+                    "The fermata doesn't affect playback. (In other words, playback should proceed as if the fermata didn't exist.)"
+                ],
+                "veryLong": [],
+                "long": [],
+                "normal": [],
+                "short": [],
+                "veryShort": []
+            },
+            "description": [
+                "<p>These values represent the duration of a fermata's pause.</p>"
+            ]
+        },
+        "fermata-symbol": {
+            "title": "fermata symbol",
+            "kind": "string",
+            "values": {
+                "normal": [
+                    "<span class=\"smufl\"></span>"
+                ],
+                "angled": [
+                    "<span class=\"smufl\"></span>"
+                ],
+                "square": [
+                    "<span class=\"smufl\"></span>"
+                ],
+                "doubleAngled": [
+                    "<span class=\"smufl\"></span>"
+                ],
+                "doubleSquare": [
+                    "<span class=\"smufl\"></span>"
+                ],
+                "doubleDot": [
+                    "<span class=\"smufl\"></span>"
+                ],
+                "halfCurve": [
+                    "<span class=\"smufl\"></span>"
+                ],
+                "curlew": [
+                    "<span class=\"smufl\"></span>"
+                ]
+            },
+            "description": [
+                "<p>The visual symbol used for a fermata.</p>"
+            ]
+        },
+        "fermata": {
+            "kind": "dict",
+            "properties": {
+                "duration": {
+                    "type": "fermata-duration",
+                    "description": [
+                        "The duration of the fermata's pause.",
+                        "",
+                        "This is intentionally open-ended, as opposed to specifying precise amounts of time. We expect consuming applications will have their own internal mappings of how long a \"normal\" fermata should last versus a \"long\" one, etc.",
+                        "",
+                        "If unspecified, the default value is \"auto\"."
+                    ]
+                },
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "The vertical orientation of this fermata's symbol with respect to the staff.",
+                        "",
+                        "If unspecified, the default value is \"auto\"."
+                    ]
+                },
+                "pointing": {
+                    "type": "up-down-auto",
+                    "description": [
+                        "The direction that this fermata symbol points.",
+                        "",
+                        "For example: a standard fermata above the staff should have the value \"up\".",
+                        "",
+                        "If unspecified, the default value is \"auto\"."
+                    ]
+                },
+                "symbol": {
+                    "type": "fermata-symbol",
+                    "description": [
+                        "The visual symbol to use for this fermata.",
+                        "",
+                        "(Note: this is deliberately not a SMuFL glyph name because that would be a bit too low-level. There are multiple glyphs for the same \"symbol\", such as the upside-down version of each fermata gyph.)",
+                        "",
+                        "If unspecified, the default value is \"normal\"."
+                    ]
+                }
+            },
+            "description": [
+                "<p>Represents a fermata. All attributes are optional.</p>"
+            ]
+        },
+        "bow-direction": {
+            "title": "bow direction",
+            "kind": "dict",
+            "properties": {
+                "direction": {
+                    "type": "up-down",
+                    "required": true,
+                    "description": [
+                        "Whether this is an up-bow or down-bow."
+                    ]
+                },
+                "orient": {
+                    "type": "orientation",
+                    "description": [
+                        "Whether this marking is displayed above or below the associated event.",
+                        "",
+                        "If omitted, the default value is \"auto\"."
+                    ]
+                }
+            },
+            "description": [
+                "<p>A bow direction marking. This can be either an up-bow or down-bow.</p>",
+                "",
+                "<p>This is used both for bowed instruments and for plectrum instruments (the picking direction).</p>"
+            ]
+        },
+        "up-down": {
+            "title": "up or down",
+            "kind": "string",
+            "values": {
+                "up": [],
+                "down": []
+            },
+            "description": [
+                "<p>A direction (either up or down).</p>",
+                "",
+                "<p>See also <a href=\"../up-down-auto/\">up, down or auto</a>, a slightly looser data type that also supports the value \"auto\".</p>"
+            ]
+        },
+        "arpeggio": {
+            "kind": "dict",
+            "properties": {
+                "arrow": {
+                    "type": "boolean",
+                    "description": [
+                        "Whether an arrow should be drawn at the end of the arpeggio marking. This visually communicates the direction of the arpeggio, though some published music chooses not to display an arrow as a matter of style.",
+                        "",
+                        "If not specified, the default value is false."
+                    ]
+                },
+                "direction": {
+                    "type": "up-down-auto",
+                    "description": [
+                        "The direction that this arpeggio's notes are arpeggiated. \"up\" means from lower-pitched notes to higher-pitched notes, and \"down\" means the opposite. \"auto\" means consuming applications are free to decide automatically.",
+                        "",
+                        "If not specfiied, the default value is \"auto\"."
+                    ]
+                },
+                "position": {
+                    "type": "rhythmic-position",
+                    "required": true,
+                    "description": [
+                        "The arpeggio's position within the bar."
+                    ]
+                },
+                "span": {
+                    "type": "id-pair",
+                    "required": true,
+                    "description": [
+                        "The IDs of the two <a href=\"../note/\">notes</a> that bookend this arpeggio. The \"start\" ID is the first-played note, and the \"end\" ID represents the last-played note. This provides the necessary information to draw the arpeggio marking and interpret its playback.",
+                        "",
+                        "Both notes must be in the same rhythmic position within the same bar and same part. Note they're <em>not</em> required to be in the same sequence; cross-sequence (aka cross-voice) and cross-staff arpeggios are supported, as long as the sequences and staves are in the same <a href=\"../part/\">part</a>.",
+                        "",
+                        "All inner notes (i.e., any other notes that are encoded at this rhythmic position and whose pitch lies between the \"start\" and \"end\" notes) are interpreted as being within the arpeggio; they are not explicitly encoded."
+                    ]
+                }
+            },
+            "description": [
+                "<p>Represents an arpeggio marking (the vertical marking that communicates that several notes with the same rhythmic position are to be performed as an arpeggio).</p>",
+                "",
+                "<p>Note an arpeggio marking might consist of notes across several staves. This is valid, as long as those staves are in the same <a href=\"../part/\">part</a>.</p>",
+                "",
+                "<p>See also: <a href=\"../non-arpeggio/\">non-arpeggios</a>.</p>"
+            ]
+        },
+        "id-pair": {
+            "title": "ID pair",
+            "kind": "dict",
+            "globalAttributes": false,
+            "properties": {
+                "end": {
+                    "type": "id",
+                    "required": true
+                },
+                "start": {
+                    "type": "id",
+                    "required": true
+                }
+            },
+            "description": [
+                "<p>Represents a pair of IDs within the MNX document. Both are required.</p>"
+            ]
+        },
+        "non-arpeggio": {
+            "kind": "dict",
+            "properties": {
+                "position": {
+                    "type": "rhythmic-position",
+                    "required": true,
+                    "description": [
+                        "The non-arpeggio's position within the bar."
+                    ]
+                },
+                "span": {
+                    "type": "id-pair",
+                    "required": true,
+                    "description": [
+                        "The IDs of the two <a href=\"../note/\">notes</a> that bookend this non-arpeggio. The \"start\" ID is the note with the lower sounded pitch, and the \"end\" ID is the note with the higher pitch. This provides the necessary information to draw the non-arpeggio marking.",
+                        "",
+                        "Both notes must be in the same rhythmic position within the same bar and same part. Note they're <em>not</em> required to be in the same sequence; cross-sequence (aka cross-voice) and cross-staff non-arpeggios are supported, as long as the sequences and staves are in the same <a href=\"../part/\">part</a>.",
+                        "",
+                        "All inner notes (i.e., any other notes that are encoded at this rhythmic position and whose pitch lies between the \"start\" and \"end\" notes) are interpreted as being within the non-arpeggio; they are not explicitly encoded."
+                    ]
+                }
+            },
+            "description": [
+                "<p>Represents a non-arpeggio marking: the vertical marking that communicates that several notes with the same rhythmic position are <em>not</em> to be performed as an arpeggio. This is typically drawn as a square bracket to the left of the relevant notes.</p>",
+                "",
+                "<p>Note a non-arpeggio marking might consist of notes across several staves. This is valid, as long as those staves are in the same <a href=\"../part/\">part</a>.</p>",
+                "",
+                "<p>See also: <a href=\"../arpeggio/\">arpeggios</a>.</p>"
+            ]
+        },
+        "dynamic-group": {
+            "title": "dynamic group",
+            "kind": "dict",
+            "properties": {
+                "accentPrefix": {
+                    "type": "dynamic-prefix",
+                    "description": [
+                        "Only valid for type=\"accent\". This encodes the prefix for the dynamic.",
+                        "",
+                        "For example, for a \"sfz\" dynamic, the prefix is \"s\".",
+                        "",
+                        "If not provided, the default is \"s\"."
+                    ]
+                },
+                "accentSuffix": {
+                    "type": "dynamic-suffix",
+                    "description": [
+                        "Only valid for type=\"accent\". This encodes the suffix for the dynamic.",
+                        "",
+                        "For example, for a \"sfz\" dynamic, the suffix is \"z\".",
+                        "",
+                        "If not provided, the default is \"z\"."
+                    ]
+                },
+                "end": {
+                    "type": "measure-rhythmic-position",
+                    "description": [
+                        "Required if type is \"gradual\". This defines the endpoint of the gradual dynamic."
+                    ]
+                },
+                "glyphs": {
+                    "items": [
+                        "smufl-glyph"
+                    ],
+                    "description": [
+                        "Optional list of SMuFL glyphs to use when displaying this dynamic.",
+                        "",
+                        "If this is provided, consuming applications should use these specific glyphs. If this isn't provided, consuming applications should automatically determine the SMuFL glyphs based on \"value\", \"attackValue\" and \"relativeValue\"."
+                    ]
+                },
+                "orient": {
+                    "type": "multi-staff-orientation",
+                    "description": [
+                        "Where the dynamic group is positioned, relative to the staff.",
+                        "",
+                        "If not provided, the default value is \"auto\"."
+                    ]
+                },
+                "position": {
+                    "type": "rhythmic-position",
+                    "required": true,
+                    "description": [
+                        "The rhythmic position at which this dynamic group starts."
+                    ]
+                },
+                "prefix": {
+                    "type": "string",
+                    "description": [
+                        "Optional text to display before the dynamic marking, such as \"<i>più</i>\".",
+                        "",
+                        "This is free-form text displayed alongside the marking. It is not related to accentPrefix, which encodes a structural part of an accent marking itself."
+                    ]
+                },
+                "relativeValue": {
+                    "type": "relative-dynamic-value",
+                    "description": [
+                        "Required if type is \"relative\"."
+                    ]
+                },
+                "residualValue": {
+                    "type": "dynamic-value",
+                    "description": [
+                        "Only valid for type=\"accent\". This encodes the dynamic that should be used after the initial accent attack.",
+                        "",
+                        "For example, this is used for \"fp\" dynamics, which are a bit of a special case meaning \"start playing in f, then immediately reduce dynamics to p.\" This is encoded as {\"value\": \"f\", \"residualValue\": \"p\"}."
+                    ]
+                },
+                "staff": {
+                    "type": "staff-number",
+                    "description": [
+                        "The staff index to which this dynamic group applies. By default, a dynamic group applies to all staffs in the <a href=\"../part/\">part</a>."
+                    ]
+                },
+                "staffEnd": {
+                    "type": "staff-number",
+                    "description": [
+                        "Only valid for type=\"gradual.\" This optionally encodes the staff at which the hairpin ends, for hairpins that are angled diagonally and cross staves."
+                    ]
+                },
+                "suffix": {
+                    "type": "string",
+                    "description": [
+                        "Optional text to display after the dynamic marking, such as \"<i>sub.</i>\".",
+                        "",
+                        "This is free-form text displayed alongside the marking. It is not related to accentSuffix, which encodes a structural part of an accent marking itself."
+                    ]
+                },
+                "type": {
+                    "type": "dynamic-group-type",
+                    "required": true,
+                    "description": [
+                        "Distinguishes between different types of dynamics. This can be \"immediate\" (such as a notated \"p\"), \"gradual\" (such as a crescendo hairpin), \"accent\" (such as \"sfz\") or \"relative\" (such as a notated \"<i>più</i> p\", meaning \"quieter\").</p>"
+                    ]
+                },
+                "value": {
+                    "type": "dynamic-value",
+                    "description": [
+                        "Required if type is \"immediate\". This defines the dynamic value, such as \"p\" or \"f\".",
+                        "",
+                        "For gradual dynamics, this is the dynamic value at the beginning.",
+                        "",
+                        "For accent dynamics, this is the value of the initial attack (the \"f\" in \"sfz\"). See residualValue for the dynamic that applies afterward."
+                    ]
+                },
+                "visuallyContinues": {
+                    "type": "id",
+                    "description": [
+                        "Points to the ID of the directly previous dynamic group, as a hint to rendering engines that this dynamic group and that previous one should be rendered as a single unit. (Typically this means the dynamics and hairpins are drawn at the same vertical position.)",
+                        "",
+                        "There is no limit to the length of a \"visuallyContinues\" chain. For example, it's perfectly OK for three or four dynamic groups to each define \"visuallyContinues\" pointing at the previous dynamic group.",
+                        "",
+                        "Encoding this is only strictly necessary if it can't be automatically derived by comparing consecutive dynamic groups' \"position\" and \"end\" attributes. Rendering engines are encouraged to determine the visuallyContinues value on their own, if it's not explicitly encoded."
+                    ]
+                },
+                "voice": {
+                    "type": "voice-name",
+                    "description": [
+                        "The voice to which this dynamic group applies. By default, a dynamic group applies to all voices in the <a href=\"../part/\">part</a>."
+                    ]
+                },
+                "wedgeType": {
+                    "type": "wedge-type",
+                    "description": [
+                        "Required if type is \"gradual\". This defines whether the hairpin is gradually opening or gradually closing."
+                    ]
+                }
+            },
+            "description": [
+                "<p>Encodes a dynamic value at a given rhythmic position.</p>",
+                "",
+                "<p>This is used for any type of dynamic, from immediate ones (such as \"p\" or \"f\") to gradual ones (such as crescendo hairpins).</p>",
+                "",
+                "<p>Various attributes are required only for certain types. For quick reference, here are the required attributes for each \"type\" value:</p>",
+                "",
+                "<ul>",
+                "<li>\"immediate\": position, value</li>",
+                "<li>\"gradual\": position, end, wedgeType</li>",
+                "<li>\"relative\": position, relativeValue</li>",
+                "<li>\"accent\": position, value</li>",
+                "</ul>",
+                "",
+                "<p>To encode a hairpin with both starting and ending dynamic values (such as \"p < f\"), use two separate dynamic groups:</p>",
+                "",
+                "<ul>",
+                "<li>One with type=\"gradual\", value=\"p\" and wedgeType=\"increasing\"</li>",
+                "<li>A second with type=\"immediate\", value \"f\" and \"position\" equal to the previous dynamic group's \"end\"</li>",
+                "</ul>"
+            ]
+        },
+        "multi-staff-orientation": {
+            "title": "multi-staff orientation",
+            "kind": "string",
+            "values": {
+                "above": [],
+                "auto": [
+                    "Consuming applications are free to use their own algorithms to determine orientation."
+                ],
+                "below": [],
+                "between": [
+                    "Between multiple staves of music. For example: between the two staves in a grand staff."
+                ]
+            },
+            "description": [
+                "<p>Represents a symbol's vertical orientation, with support for multi-staff music via the \"between\" value. See also <a href=\"../orientation/\">orientation</a>, which doesn't support \"between\".</p>"
+            ]
+        },
+        "dynamic-group-type": {
+            "title": "dynamic group type",
+            "kind": "string",
+            "values": {
+                "immediate": [
+                    "Used for standard dynamics such as f and p. The dynamic value is an absolute value (not a relative one). This is the most common type of dynamic."
+                ],
+                "gradual": [
+                    "Used for hairpins (crescendo, diminuendo)."
+                ],
+                "relative": [
+                    "Used for dynamics whose value is meant to be interpreted relatively, like <i>più</i> p (\"quieter\")."
+                ],
+                "accent": [
+                    "Used for dynamics that are temporary accents on a single beat, such as sfz (sforzando)."
+                ]
+            },
+            "description": [
+                "<p>Encodes the type of a <a href=\"../dynamic-group/\">dynamic group</a>.</p>"
+            ]
+        },
+        "wedge-type": {
+            "title": "wedge type",
+            "kind": "string",
+            "values": {
+                "increasing": [
+                    "For example, a crescendo."
+                ],
+                "decreasing": [
+                    "For example, a diminuendo."
+                ]
+            },
+            "description": [
+                "<p>Defines the direction of a gradual <a href=\"../dynamic-group/\">dynamic group</a> (i.e., a hairpin).</p>"
+            ]
+        },
+        "relative-dynamic-value": {
+            "title": "relative dynamic value",
+            "kind": "string",
+            "values": {
+                "louder": [],
+                "softer": []
+            }
+        },
+        "dynamic-prefix": {
+            "title": "dynamic prefix",
+            "kind": "string",
+            "values": {
+                "s": [
+                    "Used for sforzando markings, such as sf and sfz."
+                ],
+                "r": [
+                    "Used for rinforzando markings, such as rf and rfz."
+                ],
+                "": [
+                    "(Empty string.) Used for markings with no prefix, such as fz and fp."
+                ]
+            }
+        },
+        "dynamic-suffix": {
+            "title": "dynamic suffix",
+            "kind": "string",
+            "values": {
+                "z": [
+                    "Used for markings ending in z, such as sfz, rfz and fz."
+                ],
+                "": [
+                    "(Empty string.) Used for markings with no suffix, such as sf and rf."
+                ]
+            }
+        },
+        "measure-repeat": {
+            "title": "measure repeat",
+            "kind": "dict",
+            "properties": {
+                "counter": {
+                    "type": "measure-repeat-counter",
+                    "description": [
+                        "Encodes a counter that should be displayed with the measure repeat glyph. Traditionally this is used to help musicians keep track of the current measure repeat iteration."
+                    ]
+                },
+                "displayNumber": {
+                    "type": "boolean",
+                    "description": [
+                        "Whether a number is displayed above the measure repeat glyph. If not provided, consuming applications should determine this according to their own algorithms and convention. The displayed number should equal the value of \"number\"."
+                    ]
+                },
+                "number": {
+                    "type": "measure-repeat-count",
+                    "required": true,
+                    "description": [
+                        "The number of measures to repeat."
+                    ]
+                },
+                "staffPosition": {
+                    "type": "staff-position",
+                    "description": [
+                        "If provided, this specifies the vertical position of the measure repeat glyph on the staff. If not provided, the glyph should be positioned automatically according to convention. Generally this is value 0 (the middle staff line).",
+                        "",
+                        "This vertical position is the \"origin point\" from which the SMuFL glyph is drawn."
+                    ]
+                }
+            },
+            "description": [
+                "<p>This encodes a simile marking, which means \"repeat all music in the previous X measures.\"</p>",
+                "",
+                "<p>If a part-measure contains this marking, then generally its sequence content should be empty. (There is no need to encode the repeated music again.) But in some cases, published music <em>does</em> use a simile marking and notation in the same bar; in that case, encode both the measure repeat and the sequence content.</p>",
+                "",
+                "<p>For a measure repeat that lasts more than one bar (\"number\" > 1), note that only the first bar should encode the measure repeat. Subsequent bars do not encode any information about the measure repeat.</p>"
+            ]
+        },
+        "measure-repeat-count": {
+            "title": "measure repeat count",
+            "kind": "number",
+            "description": [
+                "<p>Defines the number of repeats in a measure repeat. Valid values are: 1, 2, 3, 4.</p>"
+            ]
+        },
+        "measure-repeat-counter": {
+            "title": "measure repeat counter",
+            "kind": "dict",
+            "properties": {
+                "count": {
+                    "type": "positive-integer",
+                    "required": true,
+                    "description": [
+                        "The count to display."
+                    ]
+                },
+                "orient": {
+                    "type": "multi-staff-orientation",
+                    "description": [
+                        "Where to display the count. If not provided, consuming applications should use their own algorithms."
+                    ]
+                }
+            }
+        }
+    },
+    "pageCollections": [
+        {
+            "title": "Infrastructure",
+            "url": "/infrastructure/",
+            "pages": [
+                {
+                    "title": "Notational concepts",
+                    "url": "/infrastructure/notational-concepts/",
+                    "contentFile": "notational-concepts.html"
+                },
+                {
+                    "title": "Sequence content",
+                    "url": "/infrastructure/sequence-content/",
+                    "contentFile": "sequence-content.html"
+                }
+            ]
+        }
+    ]
+}
