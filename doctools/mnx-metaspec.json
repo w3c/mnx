@@ -1976,11 +1976,13 @@
         },
         "fraction": {
             "kind": "array",
+            "extraJSONSchema": {
+                "minItems": 2,
+                "maxItems": 2
+            },
             "items": [
                 "integer-unsigned"
             ],
-            "minItems": 2,
-            "maxItems": 2,
             "description": [
                 "<p>A two-element array that represents a fraction. The first element represents the numerator, and the second element represents the denominator.",
                 "",
