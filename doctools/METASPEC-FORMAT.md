@@ -163,6 +163,7 @@ Other attribute fields:
 attributes.
 * `description` — prose describing this attribute, shown in the object's
 attribute table.
+* `extraJSONSchema` — see "Extra JSON Schema data" below.
 
 Note that descriptions live on the *attribute*, not on the type it points
 at. The same attribute name means different things in different objects —
@@ -253,12 +254,33 @@ be passed through verbatim into that object's JSON Schema definition.
 }
 ```
 
+An individual attribute can define one too, in which case it applies to
+that one use of the type rather than to every use of it:
+
+```json
+"multi-note-tremolo": {
+    "kind": "dict",
+    "properties": {
+        "beams": {
+            "type": "positive-integer",
+            "required": true,
+            "extraJSONSchema": {"maximum": 8},
+            "description": ["The number of beams to use…"]
+        }
+    }
+}
+```
+
 This is a simple hook for adding extra JSON Schema validation that the
 metaspec system doesn't natively support.
 
+The contents are merged in after the generated keywords, so a key that the
+generator produces itself — `type`, `enum`, `pattern`, `$ref` and so on —
+would override it. `validate_metaspec` warns when that happens.
+
 Note that `extraJSONSchema` affects only the generated JSON Schema, not the
 documentation pages, so anything encoded here should also be stated in the
-object's `description`.
+`description` of the object or attribute.
 
 ### Special objects
 
