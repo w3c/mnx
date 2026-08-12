@@ -185,6 +185,7 @@
       "unevaluatedProperties": false
     },
     "bpm": {
+      "minimum": 1,
       "type": "integer"
     },
     "breath-mark": {
@@ -401,9 +402,11 @@
       "unevaluatedProperties": false
     },
     "ending-duration": {
+      "minimum": 1,
       "type": "integer"
     },
     "ending-number": {
+      "minimum": 1,
       "type": "integer"
     },
     "ending-open": {
@@ -758,6 +761,7 @@
       "type": "integer"
     },
     "integer-unsigned": {
+      "minimum": 0,
       "type": "integer"
     },
     "interval": {
@@ -987,6 +991,7 @@
       "unevaluatedProperties": false
     },
     "measure-count": {
+      "minimum": 1,
       "type": "integer"
     },
     "measure-global": {
@@ -1040,6 +1045,7 @@
       "unevaluatedProperties": false
     },
     "measure-number": {
+      "minimum": 0,
       "type": "integer"
     },
     "measure-repeat": {
@@ -1069,6 +1075,8 @@
       "unevaluatedProperties": false
     },
     "measure-repeat-count": {
+      "maximum": 4,
+      "minimum": 1,
       "type": "integer"
     },
     "measure-repeat-counter": {
@@ -1113,6 +1121,8 @@
       "unevaluatedProperties": false
     },
     "midi-number": {
+      "maximum": 127,
+      "minimum": 0,
       "type": "integer"
     },
     "mnx": {
@@ -1152,7 +1162,9 @@
           "$ref": "#/$defs/note-value"
         },
         "marks": {
-          "$ref": "#/$defs/positive-integer"
+          "$ref": "#/$defs/positive-integer",
+          "maximum": 8,
+          "minimum": 1
         },
         "outer": {
           "$ref": "#/$defs/note-value-quantity"
@@ -1268,7 +1280,7 @@
           "$ref": "#/$defs/note-value-base"
         },
         "dots": {
-          "$ref": "#/$defs/positive-integer"
+          "$ref": "#/$defs/integer-unsigned"
         }
       },
       "required": [
@@ -1592,6 +1604,7 @@
       "unevaluatedProperties": false
     },
     "positive-integer": {
+      "minimum": 1,
       "type": "integer"
     },
     "relative-dynamic-value": {
@@ -1626,6 +1639,7 @@
       "unevaluatedProperties": false
     },
     "repeat-times": {
+      "minimum": 2,
       "type": "integer"
     },
     "rest": {
@@ -2002,6 +2016,7 @@
       "unevaluatedProperties": false
     },
     "staff-count": {
+      "minimum": 1,
       "type": "integer"
     },
     "staff-group": {
@@ -2055,6 +2070,7 @@
       "type": "string"
     },
     "staff-number": {
+      "minimum": 1,
       "type": "integer"
     },
     "staff-position": {
@@ -2354,7 +2370,9 @@
       ],
       "properties": {
         "marks": {
-          "$ref": "#/$defs/positive-integer"
+          "$ref": "#/$defs/positive-integer",
+          "maximum": 8,
+          "minimum": 1
         },
         "orient": {
           "$ref": "#/$defs/orientation"

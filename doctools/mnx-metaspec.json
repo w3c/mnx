@@ -1,5 +1,5 @@
 {
-    "version": 31,
+    "version": 32,
     "format": {
         "name": "MNX",
         "slug": "mnx"
@@ -1063,7 +1063,13 @@
         },
         "repeat-times": {
             "title": "repeat times",
-            "kind": "number"
+            "kind": "number",
+            "extraJSONSchema": {
+                "minimum": 2
+            },
+            "description": [
+                "<p>Describes the number of times a repeated section is performed. Must be an integer 2 or greater. (A value of 1 would be incorrect, because by definition a repeated section is played at least twice.)</p>"
+            ]
         },
         "ending": {
             "kind": "dict",
@@ -1097,13 +1103,19 @@
         "ending-duration": {
             "title": "ending duration",
             "kind": "number",
+            "extraJSONSchema": {
+                "minimum": 1
+            },
             "description": [
                 "<p>This describes the duration of an alternate ending (a \"volta\"), expressed as a number of bars. It must be an integer greater than or equal to 1.</p>"
             ]
         },
         "ending-number": {
             "title": "ending number",
-            "kind": "number"
+            "kind": "number",
+            "extraJSONSchema": {
+                "minimum": 1
+            }
         },
         "ending-open": {
             "title": "ending open",
@@ -1177,7 +1189,10 @@
         },
         "staff-count": {
             "title": "staff count",
-            "kind": "number"
+            "kind": "number",
+            "extraJSONSchema": {
+                "minimum": 1
+            }
         },
         "system-layout": {
             "title": "system layout",
@@ -1313,7 +1328,10 @@
         },
         "measure-number": {
             "title": "measure number",
-            "kind": "number"
+            "kind": "number",
+            "extraJSONSchema": {
+                "minimum": 0
+            }
         },
         "system-layout-content": {
             "title": "system layout content",
@@ -1483,7 +1501,10 @@
             ]
         },
         "bpm": {
-            "kind": "number"
+            "kind": "number",
+            "extraJSONSchema": {
+                "minimum": 1
+            }
         },
         "layout-change": {
             "title": "layout change",
@@ -1542,11 +1563,17 @@
         },
         "measure-count": {
             "title": "measure count",
-            "kind": "number"
+            "kind": "number",
+            "extraJSONSchema": {
+                "minimum": 1
+            }
         },
         "staff-number": {
             "title": "staff number",
             "kind": "number",
+            "extraJSONSchema": {
+                "minimum": 1
+            },
             "description": [
                 "<p>This number identifies a staff in context of a multi-staff part. Counting starts at 1 for the top staff.</p>",
                 "",
@@ -1775,6 +1802,9 @@
         "positive-integer": {
             "title": "positive integer",
             "kind": "number",
+            "extraJSONSchema": {
+                "minimum": 1
+            },
             "description": [
                 "<p>An integer of the value 1 or greater.</p>"
             ]
@@ -1825,7 +1855,7 @@
                     "required": true
                 },
                 "dots": {
-                    "type": "positive-integer",
+                    "type": "integer-unsigned",
                     "description": [
                         "Number of augmentation dots. If not specified, this value is assumed to be 0. Though MNX has no limit on number of dots encoded, we advise software implementations not to worry about supporting more than 5."
                     ]
@@ -1960,6 +1990,9 @@
         "integer-unsigned": {
             "title": "integer (unsigned)",
             "kind": "number",
+            "extraJSONSchema": {
+                "minimum": 0
+            },
             "description": [
                 "<p>A non-negative integer.</p>"
             ]
@@ -2184,6 +2217,10 @@
             "properties": {
                 "marks": {
                     "type": "positive-integer",
+                    "extraJSONSchema": {
+                        "minimum": 1,
+                        "maximum": 8
+                    },
                     "required": true,
                     "description": [
                         "The number of marks to use in this tremolo. Must be between 1 and 8, inclusive."
@@ -2668,6 +2705,10 @@
         "midi-number": {
             "title": "MIDI number",
             "kind": "number",
+            "extraJSONSchema": {
+                "minimum": 0,
+                "maximum": 127
+            },
             "description": [
                 "A MIDI pitch — an unsigned number between 0-127, where middle C is 60."
             ]
@@ -2750,6 +2791,10 @@
                 },
                 "marks": {
                     "type": "positive-integer",
+                    "extraJSONSchema": {
+                        "minimum": 1,
+                        "maximum": 8
+                    },
                     "required": true,
                     "description": [
                         "The number of beams to use in this multi-note tremolo. Must be between 1 and 8, inclusive."
@@ -3390,6 +3435,10 @@
         "measure-repeat-count": {
             "title": "measure repeat count",
             "kind": "number",
+            "extraJSONSchema": {
+                "minimum": 1,
+                "maximum": 4
+            },
             "description": [
                 "<p>Defines the number of repeats in a measure repeat. Valid values are: 1, 2, 3, 4.</p>"
             ]
