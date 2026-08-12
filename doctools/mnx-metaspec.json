@@ -1,5 +1,5 @@
 {
-    "version": 30,
+    "version": 31,
     "format": {
         "name": "MNX",
         "slug": "mnx"
@@ -2126,7 +2126,10 @@
                     ]
                 },
                 "symbol": {
-                    "type": "breath-mark-symbol"
+                    "type": "breath-mark-symbol",
+                    "description": [
+                        "Which symbol to use for this breath mark. If not provided, the default value is \"auto\"."
+                    ]
                 }
             },
             "description": [
@@ -2221,8 +2224,25 @@
         "breath-mark-symbol": {
             "title": "breath mark symbol",
             "kind": "string",
+            "values": {
+                "comma": [
+                    "<span class=\"smufl\"></span>"
+                ],
+                "tick": [
+                    "<span class=\"smufl\"></span>"
+                ],
+                "upbow": [
+                    "<span class=\"smufl\"></span>"
+                ],
+                "salzedo": [
+                    "<span class=\"smufl\"></span>"
+                ],
+                "auto": [
+                    "Consuming applications are free to determine the symbol direction based on their own convention."
+                ]
+            },
             "description": [
-                "<p>See https://w3c-cg.github.io/musicxml/musicxml-reference/data-types/breath-mark-value/</p>"
+                "<p>The specific symbol to use for a breath mark.</p>"
             ]
         },
         "accidental-enclosure-symbol": {

@@ -205,6 +205,13 @@
       "unevaluatedProperties": false
     },
     "breath-mark-symbol": {
+      "enum": [
+        "comma",
+        "tick",
+        "upbow",
+        "salzedo",
+        "auto"
+      ],
       "type": "string"
     },
     "clef": {
@@ -2490,7 +2497,7 @@
       "type": "string"
     }
   },
-  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/30",
+  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/31",
   "$ref": "#/$defs/root",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "An encoding of Common Western Music Notation.",
