@@ -1,5 +1,5 @@
 {
-    "version": 29,
+    "version": 30,
     "format": {
         "name": "MNX",
         "slug": "mnx"
@@ -3336,9 +3336,11 @@
                     ]
                 },
                 "displayNumber": {
-                    "type": "boolean",
+                    "type": "yes-no-auto",
                     "description": [
-                        "Whether a number is displayed above the measure repeat glyph. If not provided, consuming applications should determine this according to their own algorithms and convention. The displayed number should equal the value of \"number\"."
+                        "Whether a number is displayed above the measure repeat glyph. This displayed number should equal the value of \"number\".",
+                        "",
+                        "If not provided, the default is auto, meaning consuming applications should determine this according to their own algorithms and convention."
                     ]
                 },
                 "number": {

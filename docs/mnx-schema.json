@@ -1046,7 +1046,7 @@
           "$ref": "#/$defs/measure-repeat-counter"
         },
         "displayNumber": {
-          "type": "boolean"
+          "$ref": "#/$defs/yes-no-auto"
         },
         "number": {
           "$ref": "#/$defs/measure-repeat-count"
@@ -2490,7 +2490,7 @@
       "type": "string"
     }
   },
-  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/29",
+  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/30",
   "$ref": "#/$defs/root",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "An encoding of Common Western Music Notation.",
