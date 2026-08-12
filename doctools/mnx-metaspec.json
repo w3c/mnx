@@ -3388,7 +3388,9 @@
                 "orient": {
                     "type": "multi-staff-orientation",
                     "description": [
-                        "Where to display the count. If not provided, consuming applications should use their own algorithms."
+                        "Where to display the count.",
+                        "",
+                        "If not provided, the default is auto, meaning consuming applications should determine this according to their own algorithms and convention."
                     ]
                 }
             }
