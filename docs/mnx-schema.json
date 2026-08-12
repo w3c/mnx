@@ -185,7 +185,7 @@
       "unevaluatedProperties": false
     },
     "bpm": {
-      "minimum": 1,
+      "exclusiveMinimum": 0,
       "type": "integer"
     },
     "breath-mark": {
@@ -2515,7 +2515,7 @@
       "type": "string"
     }
   },
-  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/32",
+  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/33",
   "$ref": "#/$defs/root",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "An encoding of Common Western Music Notation.",

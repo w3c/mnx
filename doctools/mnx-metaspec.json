@@ -1,5 +1,5 @@
 {
-    "version": 32,
+    "version": 33,
     "format": {
         "name": "MNX",
         "slug": "mnx"
@@ -1503,7 +1503,7 @@
         "bpm": {
             "kind": "number",
             "extraJSONSchema": {
-                "minimum": 1
+                "exclusiveMinimum": 0
             }
         },
         "layout-change": {
