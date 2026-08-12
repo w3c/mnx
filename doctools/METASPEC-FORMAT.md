@@ -115,6 +115,7 @@ slug. Use this when the display name differs from the slug, e.g. slug
 `key` with title `key signature`.
 * `description` — prose describing the object, shown on its docs page.
 * `role` — see "Special objects" below.
+* `extraJSONSchema` — see "Extra JSON Schema data" below.
 
 Objects of kind `array` and `keyedDict` don't get their own documentation
 page; they're described inline wherever they're used.
@@ -238,6 +239,26 @@ the type of every value:
 ```json
 "event-lyric-lines": { "kind": "keyedDict", "values": "event-lyric-line" }
 ```
+
+### Extra JSON Schema data
+
+Any object can define an `extraJSONSchema` dictionary, whose contents will
+be passed through verbatim into that object's JSON Schema definition.
+
+```json
+"positive-integer": {
+    "title": "positive integer",
+    "kind": "number",
+    "extraJSONSchema": {"minimum": 1}
+}
+```
+
+This is a simple hook for adding extra JSON Schema validation that the
+metaspec system doesn't natively support.
+
+Note that `extraJSONSchema` affects only the generated JSON Schema, not the
+documentation pages, so anything encoded here should also be stated in the
+object's `description`.
 
 ### Special objects
 
