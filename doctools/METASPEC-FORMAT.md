@@ -225,13 +225,10 @@ description:
 "fraction": {
     "kind": "array",
     "items": ["integer-unsigned"],
-    "minItems": 2,
-    "maxItems": 2,
+    "extraJSONSchema": {"minItems": 2, "maxItems": 2},
     "description": ["<p>A two-element array representing a fraction…</p>"]
 }
 ```
-
-`minItems` and `maxItems` are optional bounds on the array's length.
 
 An object of kind `keyedDict` is a JSON object whose keys are chosen by the
 document author rather than by the specification. Its `values` field names
