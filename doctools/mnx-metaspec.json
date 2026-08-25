@@ -344,7 +344,7 @@
                         "positioned-staff-config"
                     ],
                     "description": [
-                        "Encodes information about the stave changes that begin in this part measure. This is the number of staff lines, the distance between staff lines, etc.",
+                        "Encodes information about the staff changes that begin in this part measure. This is the number of staff lines and (in the future) other metadata about the staff itself.",
                         "",
                         "For example: a part that uses a single-line staff should use {\"staffConfigs\": [{\"config\": {\"lines\": 1}}]} in the very first measure.",
                         "",
@@ -352,9 +352,9 @@
                         "",
                         "In the vast majority of music, a part will only encode \"staffConfigs\" in its very first part measure. The only situation in which subsequent measures would change this value is music in which a part's staff changes (for example, from a five-line staff to a single-line staff).",
                         "",
-                        "If a part doesn't provide \"staffConfigs\" in any of its part measures, consuming applications should assume the part uses a standard five-line staff: {\"lines\": 5, \"distance\": 2}",
+                        "If a part doesn't provide \"staffConfigs\" in any of its part measures, consuming applications should assume the part uses a standard five-line staff: {\"lines\": 5}.",
                         "",
-                        "Note: this value is an array in order to support multi-staff parts. The first element of the array is the top staff, and so forth."
+                        "Note: this value is an array in order to support multi-staff parts."
                     ]
                 }
             },
