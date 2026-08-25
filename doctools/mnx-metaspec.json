@@ -1609,7 +1609,7 @@
                     ]
                 },
                 "distance": {
-                    "type": "positive-integer",
+                    "type": "number",
                     "description": [
                         "The distance between the staff lines, as measured in half-staff-spaces. If not provided, the default is 2 (i.e., a single staff space).",
                         "",
@@ -1858,6 +1858,13 @@
         "version-number": {
             "title": "version number",
             "kind": "integer"
+        },
+        "number": {
+            "title": "number",
+            "kind": "float",
+            "description": [
+                "<p>An integer or float.</p>"
+            ]
         },
         "positive-integer": {
             "title": "positive integer",
