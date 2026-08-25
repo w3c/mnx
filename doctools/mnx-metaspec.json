@@ -149,7 +149,7 @@
             "kind": "string"
         },
         "fifths": {
-            "kind": "number",
+            "kind": "integer",
             "description": [
                 "<p>Represents the number of flats or sharps, as in a traditional key signature. Negative numbers are used for flats and positive numbers for sharps, reflecting the key's placement within the circle of fifths (hence the name \"fifths\").</p>",
                 "",
@@ -959,7 +959,7 @@
         },
         "ottava-amount": {
             "title": "ottava amount",
-            "kind": "number",
+            "kind": "integer",
             "values": {
                 "1": [
                     "The written pitch is one octave lower than sounded. Traditionally rendered with an \"8va\" symbol."
@@ -1063,7 +1063,7 @@
         },
         "repeat-times": {
             "title": "repeat times",
-            "kind": "number",
+            "kind": "integer",
             "extraJSONSchema": {
                 "minimum": 2
             },
@@ -1102,7 +1102,7 @@
         },
         "ending-duration": {
             "title": "ending duration",
-            "kind": "number",
+            "kind": "integer",
             "extraJSONSchema": {
                 "minimum": 1
             },
@@ -1112,7 +1112,7 @@
         },
         "ending-number": {
             "title": "ending number",
-            "kind": "number",
+            "kind": "integer",
             "extraJSONSchema": {
                 "minimum": 1
             }
@@ -1189,7 +1189,7 @@
         },
         "staff-count": {
             "title": "staff count",
-            "kind": "number",
+            "kind": "integer",
             "extraJSONSchema": {
                 "minimum": 1
             }
@@ -1328,7 +1328,7 @@
         },
         "measure-number": {
             "title": "measure number",
-            "kind": "number",
+            "kind": "integer",
             "extraJSONSchema": {
                 "minimum": 0
             }
@@ -1501,7 +1501,7 @@
             ]
         },
         "bpm": {
-            "kind": "number",
+            "kind": "integer",
             "extraJSONSchema": {
                 "exclusiveMinimum": 0
             }
@@ -1563,14 +1563,14 @@
         },
         "measure-count": {
             "title": "measure count",
-            "kind": "number",
+            "kind": "integer",
             "extraJSONSchema": {
                 "minimum": 1
             }
         },
         "staff-number": {
             "title": "staff number",
-            "kind": "number",
+            "kind": "integer",
             "extraJSONSchema": {
                 "minimum": 1
             },
@@ -1797,11 +1797,11 @@
         },
         "version-number": {
             "title": "version number",
-            "kind": "number"
+            "kind": "integer"
         },
         "positive-integer": {
             "title": "positive integer",
-            "kind": "number",
+            "kind": "integer",
             "extraJSONSchema": {
                 "minimum": 1
             },
@@ -1811,7 +1811,7 @@
         },
         "time-signature-unit": {
             "title": "time signature unit",
-            "kind": "number",
+            "kind": "integer",
             "values": {
                 "1": [],
                 "2": [],
@@ -1880,14 +1880,14 @@
         },
         "octave": {
             "title": "note octave",
-            "kind": "number",
+            "kind": "integer",
             "description": [
                 "<p>A number representing an octave in Scientific Pitch Notation. The octave for middle C is 4.</p>"
             ]
         },
         "alter": {
             "title": "note alter",
-            "kind": "number",
+            "kind": "integer",
             "description": [
                 "<p>Describes the alteration to a note's pitch, as an integer in the range -3 to 3, inclusive.</p>"
             ]
@@ -1991,7 +1991,7 @@
         },
         "integer-unsigned": {
             "title": "integer (unsigned)",
-            "kind": "number",
+            "kind": "integer",
             "extraJSONSchema": {
                 "minimum": 0
             },
@@ -2001,7 +2001,7 @@
         },
         "staff-position": {
             "title": "staff position",
-            "kind": "number",
+            "kind": "integer",
             "description": [
                 "<p>Represents a vertical position in a staff, where 0 is the middle of the staff. This number is positive for positions above the middle of the staff, and it's negative for positions below the middle of the staff.</p>",
                 "",
@@ -2508,7 +2508,7 @@
         },
         "ottava-amount-or-zero": {
             "title": "ottava amount or zero",
-            "kind": "number",
+            "kind": "integer",
             "values": {
                 "1": [
                     "The written pitch is one octave lower than sounded. Traditionally rendered with an \"8va\" symbol."
@@ -2566,7 +2566,7 @@
         },
         "integer-signed": {
             "title": "integer (signed)",
-            "kind": "number"
+            "kind": "integer"
         },
         "part-transposition": {
             "title": "part transposition",
@@ -2706,7 +2706,7 @@
         },
         "midi-number": {
             "title": "MIDI number",
-            "kind": "number",
+            "kind": "integer",
             "extraJSONSchema": {
                 "minimum": 0,
                 "maximum": 127
@@ -3436,7 +3436,7 @@
         },
         "measure-repeat-count": {
             "title": "measure repeat count",
-            "kind": "number",
+            "kind": "integer",
             "extraJSONSchema": {
                 "minimum": 1,
                 "maximum": 4

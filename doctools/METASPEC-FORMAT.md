@@ -102,7 +102,8 @@ Every definition has a `kind`, which determines which other fields apply:
 | --- | --- | --- |
 | `dict` | A JSON object with known keys | `properties` |
 | `string` | A JSON string | `values`, `pattern` |
-| `number` | A JSON number (generated as `integer`) | `values` |
+| `integer` | A JSON number with no fractional part (generated as `integer`) | `values` |
+| `float` | A JSON number that may have a fractional part (generated as `number`) | `values` |
 | `boolean` | A JSON boolean | — |
 | `array` | A JSON array | `items` |
 | `keyedDict` | A JSON object with user-defined keys | `values` |
@@ -183,8 +184,8 @@ This is rare; only a handful of objects do it.
 
 ### Allowed values
 
-Objects of kind `string` and `number` may enumerate their allowed values in
-`values`, mapping each value to its description:
+Objects of kind `string`, `integer` and `float` may enumerate their allowed
+values in `values`, mapping each value to its description:
 
 ```json
 "stem-direction": {
@@ -196,9 +197,11 @@ Objects of kind `string` and `number` may enumerate their allowed values in
 }
 ```
 
-Use an empty array for a value that needs no description. For `kind:
-"number"`, the keys are still JSON strings (JSON keys are required to be)
-but must be parseable as integers. The empty string is a legal value.
+Use an empty array for a value that needs no description. For the numeric
+kinds, the keys are still JSON strings (JSON keys are required to be) but
+must be parseable as numbers: as integers for `kind: "integer"`, and as
+integers or decimals for `kind: "float"`. For `kind: "string"`, the empty
+string is a legal value.
 
 Values are listed in the generated JSON Schema in the order written here,
 so keep them in a sensible order.
@@ -246,7 +249,7 @@ be passed through verbatim into that object's JSON Schema definition.
 ```json
 "positive-integer": {
     "title": "positive integer",
-    "kind": "number",
+    "kind": "integer",
     "extraJSONSchema": {"minimum": 1}
 }
 ```
