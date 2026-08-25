@@ -1513,7 +1513,7 @@
           },
           "type": "array"
         },
-        "staves": {
+        "staffConfigs": {
           "items": {
             "$ref": "#/$defs/positioned-staff-config"
           },
@@ -1619,15 +1619,18 @@
         }
       ],
       "properties": {
+        "config": {
+          "$ref": "#/$defs/staff-config"
+        },
         "position": {
           "$ref": "#/$defs/rhythmic-position"
         },
-        "staves": {
-          "$ref": "#/$defs/staff-config"
+        "staff": {
+          "$ref": "#/$defs/staff-number"
         }
       },
       "required": [
-        "staves"
+        "config"
       ],
       "type": "object",
       "unevaluatedProperties": false

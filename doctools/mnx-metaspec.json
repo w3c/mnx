@@ -339,7 +339,7 @@
                     ],
                     "required": true
                 },
-                "staves": {
+                "staffConfigs": {
                     "items": [
                         "positioned-staff-config"
                     ],
@@ -1625,7 +1625,7 @@
             "title": "positioned staff config",
             "kind": "dict",
             "properties": {
-                "staves": {
+                "config": {
                     "type": "staff-config",
                     "required": true
                 },
@@ -1633,6 +1633,12 @@
                     "type": "rhythmic-position",
                     "description": [
                         "If this position isn't provided, it's assumed to be the start of the bar."
+                    ]
+                },
+                "staff": {
+                    "type": "staff-number",
+                    "description": [
+                        "In a multi-staff part, this specifies which staff the config applies to. If unspecified, this should be interpreted as 1."
                     ]
                 }
             },
