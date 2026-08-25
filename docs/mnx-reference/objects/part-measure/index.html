@@ -180,6 +180,20 @@
     <td></td>
 </tr>
 
+<tr>
+    <td><nobr><b>staves</b></nobr></td>
+    <td>
+        
+            An array of
+            
+            <a href="../positioned-staff-config/">positioned staff config objects</a>
+            
+        
+    </td>
+    <td>No</td>
+    <td>Encodes information about the stave changes that begin in this part measure. This is the number of staff lines, the distance between staff lines, etc.<br><br>For example: a part that uses a single-line staff should use {"staves": [{"lines": 1}]} in the very first measure.<br><br>This "staves" value should be considered active until it's overridden by another one in a subsequent measure. In other words, it only needs to be encoded at the beginning.<br><br>In the vast majority of music, a part will only encode "staves" in its very first part measure. The only situation in which subsequent measures would change this value is music in which a part's staff changes (for example, from a five-line staff to a single-line staff).<br><br>If a part doesn't provide "staves" in any of its part measures, consuming applications should assume the part uses a standard five-line staff: {"lines": 5, "distance": 2}<br><br>Note: this value is an array in order to support multi-staff parts. The first element of the array is the top staff, and so forth.</td>
+</tr>
+
 
 </table>
 
