@@ -1607,14 +1607,6 @@
                     "description": [
                         "The number of staff lines. If not provided, the default is 5."
                     ]
-                },
-                "distance": {
-                    "type": "number",
-                    "description": [
-                        "The distance between the staff lines, as measured in half-staff-spaces. If not provided, the default is 2 (i.e., a single staff space).",
-                        "",
-                        "Note this distance is measured from the center of each staff line."
-                    ]
                 }
             },
             "description": [
@@ -1864,13 +1856,6 @@
         "version-number": {
             "title": "version number",
             "kind": "integer"
-        },
-        "number": {
-            "title": "number",
-            "kind": "float",
-            "description": [
-                "<p>An integer or float.</p>"
-            ]
         },
         "positive-integer": {
             "title": "positive integer",
