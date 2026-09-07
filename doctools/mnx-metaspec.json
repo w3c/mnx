@@ -1603,9 +1603,11 @@
             "kind": "dict",
             "properties": {
                 "lines": {
-                    "type": "positive-integer",
+                    "type": "integer-unsigned",
                     "description": [
-                        "The number of staff lines. If not provided, the default is 5."
+                        "The number of staff lines. If not provided, the default is 5.",
+                        "",
+                        "Note that 0 is a valid value (meaning no staff lines are drawn)."
                     ]
                 }
             },
